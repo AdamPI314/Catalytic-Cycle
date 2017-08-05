@@ -1,15 +1,13 @@
 import pandas as pd
 import numpy as np
 import re
-#import os
-#import sys
-
-# parse species
+import os
+import sys
 
 
 def parse_spe_info(filename):
     """
-    parse species info from file= "os.path.join(file_dir, "output", "species_labelling.dat")"
+    parse species info from file= "os.path.join(file_dir, "output", "species_labelling.csv")"
     """
     line_content = np.genfromtxt(filename, dtype=str, delimiter='\n')
 
@@ -26,54 +24,38 @@ def parse_spe_info(filename):
 # parse reactions
 def parse_reaction_and_its_index(filename):
     """
-    parse reaction info from file= "os.path.join(file_dir, "output", "reaction_labelling.dat")"
+    parse reaction info from file= "os.path.join(file_dir, "output", "reaction_labelling.csv")"
     """
     # load data
-    # line_content= [x.rstrip('\n') for x in open(filename)]
     line_content = np.genfromtxt(filename, dtype=str, delimiter='\n')
-    # use regex to parse reaction itself
-    matched_reaction_str = [re.findall("(\d+):\s+([\w|+|=|>|<|(|)|\-|,]+)", line)[0] for line in line_content
-                            if len(re.findall("(\d+):\s+([\w|+|=|>|<|(|)|\-|,]+)", line)) != 0]
-    # reaction index
-    matched_index_str = [re.findall("[=|<|>]+\s+(\d+)\s*(\d+)?", line)[0] for line in line_content
-                         if len(re.findall("[=|<|>]+\s+(\d+)\s*(\d+)?", line)) != 0]
-    # map the old and new reaction index, basically create two dictionaries
-    old_new_index_dict = dict(
-        [(matched_reaction_str[i][0], matched_index_str[i]) for i in range(len(matched_reaction_str))])
+    matched_ind1_ind2_str = [re.findall("(\d+)\s+([-]?\d+)\s+([\w|+|=|>|<|(|)|\-|,]+)", line)[0] for line in line_content
+                             if len(re.findall("(\d+)\s+([-]?\d+)\s+([\w|+|=|>|<|(|)|\-|,]+)", line)) != 0]
     # map the new old reaction index
     new_old_index_dict = dict()
-    for i in range(len(matched_reaction_str)):
+    for i in range(len(matched_ind1_ind2_str)):
         new_old_index_dict.update(
-            {matched_index_str[i][0]: str(matched_reaction_str[i][0])})
-        if(matched_index_str[i][1] != ''):
-            new_old_index_dict.update(
-                {matched_index_str[i][1]: str(matched_reaction_str[i][0]) + '*'})
-    # reaction's new index and reaction itself
-    # parse reaction arrow first
-    matched_reaction_arrow = [re.findall("([=|>|<]+)", ind_reaction[1])
-                              for ind_reaction in matched_reaction_str]
-    # split reactant and product
-    reactant_product = [re.findall("([\w|+|(|)|\-|,]+)[=|>|<]+([\w|+|(|)|\-|,]+)", ind_reaction[1])
-                        for ind_reaction in matched_reaction_str]
+            {matched_ind1_ind2_str[i][0]: str(matched_ind1_ind2_str[i][1])})
+
+    # reactant arrow product
+    reactant_arrow_product = [re.findall("([\w|+|(|)|\-|,]+)([=|>|<]+)([\w|+|(|)|\-|,]+)", ind1_ind2_reaction[2])[0]
+                              for ind1_ind2_reaction in matched_ind1_ind2_str]
+    reactant = [x[0] for x in reactant_arrow_product]
+    arrow = [x[1] for x in reactant_arrow_product]
+    product = [x[2] for x in reactant_arrow_product]
     # map reaction new reaction label and the exact reaction
     new_ind_reaction_dict = dict()
-    for i in range(len(matched_index_str)):
-        if matched_reaction_arrow[i][0] == '=' or matched_reaction_arrow[i][0] == '<=>':
+    for i in range(len(reactant_arrow_product)):
+        if int(matched_ind1_ind2_str[i][1]) > 0:
             new_ind_reaction_dict.update(
-                {matched_index_str[i][0]: reactant_product[i][0][0] + '=>' + reactant_product[i][0][1]})
+                {matched_ind1_ind2_str[i][0]: reactant[i] + '=>' + product[i]})
+        elif int(matched_ind1_ind2_str[i][1]) < 0:
             new_ind_reaction_dict.update(
-                {matched_index_str[i][1]: reactant_product[i][0][1] + '=>' + reactant_product[i][0][0]})
-        elif matched_reaction_arrow[i][0] == '=>':
-            new_ind_reaction_dict.update(
-                {matched_index_str[i][0]: reactant_product[i][0][0] + '=>' + reactant_product[i][0][1]})
-        elif matched_reaction_arrow[i][0] == '<=':
-            new_ind_reaction_dict.update(
-                {matched_index_str[i][1]: reactant_product[i][0][1] + '=>' + reactant_product[i][0][0]})
+                {matched_ind1_ind2_str[i][0]: product[i] + '=>' + reactant[i]})
 
-    return old_new_index_dict, new_old_index_dict, new_ind_reaction_dict
+    return new_old_index_dict, new_ind_reaction_dict
 
 
-def PATH_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, pathway_name):
+def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, pathway_name):
     """
     converted path to their real species name and reaction format instead of index
     """
@@ -105,13 +87,22 @@ def read_pathname_convert_2_real_spe_reaction(filename_spe, filename_reaction, f
 
     # load spe and reaction info
     spe_ind_name_dict, spe_name_ind_dict = parse_spe_info(filename_spe)
-    old_new_index_dict, new_old_index_dict, new_ind_reaction_dict = parse_reaction_and_its_index(
+    new_old_index_dict, new_ind_reaction_dict = parse_reaction_and_its_index(
         filename_reaction)
 
     # convert species reaction index to real species and reactions
     path_data['path'] = path_data['path'].apply(
-        lambda x: PATH_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, x))
+        lambda x: pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, x))
 
     # write to file
     path_data[0:topN].to_csv(filename_p_out, header=False,
                              index=False, sep=';', columns=['path', 'prob'])
+
+
+if __name__ == '__main__':
+    file_dir = os.path.abspath(os.path.realpath(
+        os.path.join(sys.argv[0], os.pardir)))
+    print(file_dir)
+    new_old_index_dict, new_ind_reaction_dict = parse_reaction_and_its_index(
+        os.path.join(file_dir, "reaction_labelling.csv"))
+    print(file_dir)

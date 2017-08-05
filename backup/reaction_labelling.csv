@@ -1,0 +1,9689 @@
+0:	OH+H2=H+H2O
+=	0	1
+	H2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H2O:1	
+	H2O:1	-->	H2:1	
+
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+1:	H+O2=OH+O
+=	2	3
+	H:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	H:1	
+
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+2:	O+H2=H+OH
+=	4	5
+	H2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	OH:1	
+	OH:1	-->	H2:1	
+
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+3:	H+O2(+M)=HO2(+M)
+=	6	7
+	H:1	-->	HO2:1	
+	HO2:1	-->	H:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+4:	HO2+OH=O2+H2O
+=	8	9
+	HO2:1	-->	H2O:1	
+	H2O:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	O2:1	
+	O2:1	-->	OH:1	
+
+5:	HO2+H=OH+OH
+=	10	11
+	H:1	-->	OH:2	
+	OH:2	-->	H:1	
+
+	HO2:1	-->	OH:2	
+	OH:2	-->	HO2:1	
+
+6:	H2+O2=HO2+H
+=	12	13
+	H2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	HO2:1	
+	HO2:1	-->	H2:1	
+
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+7:	HO2+H=O+H2O
+=	14	15
+	H:1	-->	H2O:1	
+	H2O:1	-->	H:1	
+	H:1	-->	O:1	
+	O:1	-->	H:1	
+
+	HO2:1	-->	H2O:1	
+	H2O:1	-->	HO2:1	
+	HO2:1	-->	O:1	
+	O:1	-->	HO2:1	
+
+8:	HO2+O=OH+O2
+=	16	17
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+	O:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+9:	OH+OH=O+H2O
+=	18	19
+	OH:2	-->	H2O:1	
+	H2O:1	-->	OH:2	
+	OH:2	-->	O:1	
+	O:1	-->	OH:2	
+
+10:	H2+M=H+H+M
+=	20	21
+	H2:1	-->	H:2	
+	H:2	-->	H2:1	
+
+11:	H2+H2O=H+H+H2O
+=	22	23
+	H2:1	-->	H:2	
+	H:2	-->	H2:1	
+	H2:1	-->	H2O:1	
+	H2O:1	-->	H2:1	
+
+	H2O:1	-->	H:2	
+	H:2	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+
+12:	H2+CO2=H+H+CO2
+=	24	25
+	CO2:1	-->	CO2:1	
+	CO2:1	-->	CO2:1	
+	CO2:1	-->	H:2	
+	H:2	-->	CO2:1	
+
+	H2:1	-->	CO2:1	
+	CO2:1	-->	H2:1	
+	H2:1	-->	H:2	
+	H:2	-->	H2:1	
+
+13:	H2O+M=H+OH+M
+=	26	27
+	H2O:1	-->	H:1	
+	H:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+
+14:	H2O+H2O=H+OH+H2O
+=	28	29
+	H2O:2	-->	H:1	
+	H:1	-->	H2O:2	
+	H2O:2	-->	H2O:1	
+	H2O:1	-->	H2O:2	
+	H2O:2	-->	OH:1	
+	OH:1	-->	H2O:2	
+
+15:	O+H+M=OH+M
+=	30	31
+	H:1	-->	OH:1	
+	OH:1	-->	H:1	
+
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+16:	O2+M=O+O+M
+=	32	33
+	O2:1	-->	O:2	
+	O:2	-->	O2:1	
+
+17:	HO2+HO2=O2+H2O2
+=	34	35
+	HO2:2	-->	H2O2:1	
+	H2O2:1	-->	HO2:2	
+	HO2:2	-->	O2:1	
+	O2:1	-->	HO2:2	
+
+18:	OH+OH(+M)=H2O2(+M)
+=	36	37
+	OH:2	-->	H2O2:1	
+	H2O2:1	-->	OH:2	
+
+19:	H2O2+H=HO2+H2
+=	38	39
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	HO2:1	
+	HO2:1	-->	H:1	
+
+	H2O2:1	-->	H2:1	
+	H2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+
+20:	H2O2+H=OH+H2O
+=	40	41
+	H:1	-->	H2O:1	
+	H2O:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	H:1	
+
+	H2O2:1	-->	H2O:1	
+	H2O:1	-->	H2O2:1	
+	H2O2:1	-->	OH:1	
+	OH:1	-->	H2O2:1	
+
+21:	H2O2+O=OH+HO2
+=	42	43
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	OH:1	
+	OH:1	-->	H2O2:1	
+
+	O:1	-->	HO2:1	
+	HO2:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+22:	H2O2+OH=HO2+H2O
+=	44	45
+	H2O2:1	-->	H2O:1	
+	H2O:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+
+23:	CO+O(+M)=CO2(+M)
+=	46	47
+	CO:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+
+	O:1	-->	CO2:1	
+	CO2:1	-->	O:1	
+
+24:	CO+OH=CO2+H
+=	48	49
+	CO:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+	CO:1	-->	H:1	
+	H:1	-->	CO:1	
+
+	OH:1	-->	CO2:1	
+	CO2:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+25:	CO+O2=CO2+O
+=	50	51
+	CO:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	CO:1	
+
+	O2:1	-->	CO2:1	
+	CO2:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+26:	CO+HO2=CO2+OH
+=	52	53
+	CO:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+	CO:1	-->	OH:1	
+	OH:1	-->	CO:1	
+
+	HO2:1	-->	CO2:1	
+	CO2:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+27:	HCO+OH=CO+H2O
+=	54	55
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	H2O:1	
+	H2O:1	-->	HCO:1	
+
+	OH:1	-->	CO:1	
+	CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+28:	HCO+M=CO+H+M
+=	56	57
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+	H:1	-->	HCO:1	
+
+29:	HCO+H=CO+H2
+=	58	59
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	H2:1	
+	H2:1	-->	HCO:1	
+
+30:	HCO+O=CO+OH
+=	60	61
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+31:	HCO+O=CO2+H
+=	62	63
+	HCO:1	-->	CO2:1	
+	CO2:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+	H:1	-->	HCO:1	
+
+	O:1	-->	CO2:1	
+	CO2:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+32:	HCO+O2=CO+HO2
+=	64	65
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	HO2:1	
+	HO2:1	-->	HCO:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+33:	HCO+H2O=CO+H+H2O
+=	66	67
+	H2O:1	-->	CO:1	
+	CO:1	-->	H2O:1	
+	H2O:1	-->	H:1	
+	H:1	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+	H:1	-->	HCO:1	
+	HCO:1	-->	H2O:1	
+	H2O:1	-->	HCO:1	
+
+34:	HCO+HO2=CO+H2O2
+=	68	69
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+	HCO:1	-->	H2O2:1	
+	H2O2:1	-->	HCO:1	
+
+	HO2:1	-->	CO:1	
+	CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+35:	HCO+HCO=CO+CH2O
+=	70	71
+	HCO:2	-->	CH2O:1	
+	CH2O:1	-->	HCO:2	
+	HCO:2	-->	CO:1	
+	CO:1	-->	HCO:2	
+
+36:	CH2O+OH=HCO+H2O
+=	72	73
+	CH2O:1	-->	H2O:1	
+	H2O:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+
+37:	CH2O+H=HCO+H2
+=	74	75
+	CH2O:1	-->	H2:1	
+	H2:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+
+38:	CH2O+M=HCO+H+M
+=	76	77
+	CH2O:1	-->	H:1	
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+39:	CH2O+M=CO+H2+M
+=	78	79
+	CH2O:1	-->	CO:1	
+	CO:1	-->	CH2O:1	
+	CH2O:1	-->	H2:1	
+	H2:1	-->	CH2O:1	
+
+40:	CH2O+O=HCO+OH
+=	80	81
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+41:	CH2O+CH3=HCO+CH4
+=	82	83
+	CH2O:1	-->	CH4:1	
+	CH4:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	HCO:1	
+	HCO:1	-->	CH3:1	
+
+42:	CH2O+HO2=HCO+H2O2
+=	84	85
+	CH2O:1	-->	H2O2:1	
+	H2O2:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	HCO:1	
+	HCO:1	-->	HO2:1	
+
+43:	CH2O+O2=HCO+HO2
+=	86	87
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+	CH2O:1	-->	HO2:1	
+	HO2:1	-->	CH2O:1	
+
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+44:	CH2OH(+M)=CH2O+H(+M)
+=	88	89
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	H:1	
+	H:1	-->	CH2OH:1	
+
+45:	CH2OH+H=CH2O+H2
+=	90	91
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	H2:1	
+	H2:1	-->	CH2OH:1	
+
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+46:	CH2OH+O=CH2O+OH
+=	92	93
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	OH:1	
+	OH:1	-->	CH2OH:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+47:	CH2OH+OH=CH2O+H2O
+=	94	95
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	H2O:1	
+	H2O:1	-->	CH2OH:1	
+
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+48:	CH2OH+O2=CH2O+HO2
+=	96	97
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	HO2:1	
+	HO2:1	-->	CH2OH:1	
+
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+49:	CH2OH+HO2=CH2O+H2O2
+=	98	99
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	H2O2:1	
+	H2O2:1	-->	CH2OH:1	
+
+	HO2:1	-->	CH2O:1	
+	CH2O:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+50:	CH2OH+CH3=CH2O+CH4
+=	100	101
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH4:1	
+	CH4:1	-->	CH2OH:1	
+
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+51:	CH2OH+CH2(T)=CH2O+CH3
+=	102	103
+	CH2(T):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH3:1	
+	CH3:1	-->	CH2(T):1	
+
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3:1	
+	CH3:1	-->	CH2OH:1	
+
+52:	CH2OH+CH2OH=CH3OH+CH2O
+=	104	105
+	CH2OH:2	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:2	
+	CH2OH:2	-->	CH3OH:1	
+	CH3OH:1	-->	CH2OH:2	
+
+53:	CH2OH+CH3O=CH3OH+CH2O
+=	106	107
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH2OH:1	
+
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+54:	CH3O(+M)=CH2O+H(+M)
+=	108	109
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	H:1	
+	H:1	-->	CH3O:1	
+
+55:	CH3O+H=CH2O+H2
+=	110	111
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	H2:1	
+	H2:1	-->	CH3O:1	
+
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+56:	CH3O+O=CH2O+OH
+=	112	113
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	OH:1	
+	OH:1	-->	CH3O:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+57:	CH3O+OH=CH2O+H2O
+=	114	115
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	H2O:1	
+	H2O:1	-->	CH3O:1	
+
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+58:	CH3O+O2=CH2O+HO2
+=	116	117
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	HO2:1	
+	HO2:1	-->	CH3O:1	
+
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+59:	CH3O+HO2=CH2O+H2O2
+=	118	119
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	H2O2:1	
+	H2O2:1	-->	CH3O:1	
+
+	HO2:1	-->	CH2O:1	
+	CH2O:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+60:	CH3O+CH3=CH2O+CH4
+=	120	121
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	CH4:1	
+	CH4:1	-->	CH3O:1	
+
+61:	CH3O+CH2(T)=CH2O+CH3
+=	122	123
+	CH2(T):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH3:1	
+	CH3:1	-->	CH2(T):1	
+
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	CH3O:1	
+
+62:	CH3O+HCO=CH3OH+CO
+=	124	125
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	CO:1	
+	CO:1	-->	CH3O:1	
+
+	HCO:1	-->	CH3OH:1	
+	CH3OH:1	-->	HCO:1	
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+
+63:	CH3O+CH3O=CH3OH+CH2O
+=	126	127
+	CH3O:2	-->	CH2O:1	
+	CH2O:1	-->	CH3O:2	
+	CH3O:2	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:2	
+
+64:	CH2O+CH3O<=>CH3OH+HCO
+<=>	128	129
+	CH2O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	HCO:1	
+	HCO:1	-->	CH3O:1	
+
+65:	CH2OH+HCO<=>CH2O+CH2O
+<=>	130	131
+	CH2OH:1	-->	CH2O:2	
+	CH2O:2	-->	CH2OH:1	
+
+	HCO:1	-->	CH2O:2	
+	CH2O:2	-->	HCO:1	
+
+66:	CH3OH(+M)=CH3+OH(+M)
+=	132	133
+	CH3OH:1	-->	CH3:1	
+	CH3:1	-->	CH3OH:1	
+	CH3OH:1	-->	OH:1	
+	OH:1	-->	CH3OH:1	
+
+67:	CH3OH(+M)=CH2(S)+H2O(+M)
+=	134	135
+	CH3OH:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH3OH:1	
+	CH3OH:1	-->	H2O:1	
+	H2O:1	-->	CH3OH:1	
+
+68:	CH3OH+OH=CH2OH+H2O
+=	136	137
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2O:1	
+	H2O:1	-->	CH3OH:1	
+
+	OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+69:	CH3OH+OH=CH3O+H2O
+=	138	139
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2O:1	
+	H2O:1	-->	CH3OH:1	
+
+	OH:1	-->	CH3O:1	
+	CH3O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+70:	CH3OH+O=CH2OH+OH
+=	140	141
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	OH:1	
+	OH:1	-->	CH3OH:1	
+
+	O:1	-->	CH2OH:1	
+	CH2OH:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+71:	CH3OH+H=CH2OH+H2
+=	142	143
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2:1	
+	H2:1	-->	CH3OH:1	
+
+	H:1	-->	CH2OH:1	
+	CH2OH:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+72:	CH3OH+H=CH3O+H2
+=	144	145
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2:1	
+	H2:1	-->	CH3OH:1	
+
+	H:1	-->	CH3O:1	
+	CH3O:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+73:	CH3OH+CH3=CH2OH+CH4
+=	146	147
+	CH3:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH4:1	
+	CH4:1	-->	CH3OH:1	
+
+74:	CH3OH+CH3=CH3O+CH4
+=	148	149
+	CH3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH4:1	
+	CH4:1	-->	CH3OH:1	
+
+75:	CH3OH+HO2=CH2OH+H2O2
+=	150	151
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2O2:1	
+	H2O2:1	-->	CH3OH:1	
+
+	HO2:1	-->	CH2OH:1	
+	CH2OH:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+76:	CH3OH+HO2=CH3O+H2O2
+=	152	153
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	H2O2:1	
+	H2O2:1	-->	CH3OH:1	
+
+	HO2:1	-->	CH3O:1	
+	CH3O:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+77:	CH3OH+HCO=CH2OH+CH2O
+=	154	155
+	CH3OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+
+	HCO:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2OH:1	
+	CH2OH:1	-->	HCO:1	
+
+78:	CH3OH+CH3O=CH3OH+CH2OH
+=	156	157
+	CH3O:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3OH:1	
+
+79:	CH3OH+O2=CH2OH+HO2
+=	158	159
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	HO2:1	
+	HO2:1	-->	CH3OH:1	
+
+	O2:1	-->	CH2OH:1	
+	CH2OH:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+80:	C2H6(+M)=CH3+CH3(+M)
+=	160	161
+	C2H6:1	-->	CH3:2	
+	CH3:2	-->	C2H6:1	
+
+81:	CH4(+M)=CH3+H(+M)
+=	162	163
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	H:1	
+	H:1	-->	CH4:1	
+
+82:	CH3+HO2=CH3O+OH
+=	164	165
+	CH3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+	OH:1	-->	CH3:1	
+
+	HO2:1	-->	CH3O:1	
+	CH3O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+83:	CH3+O=CH2O+H
+=	166	167
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+84:	CH3+O2=CH3O+O
+=	168	169
+	CH3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	CH3:1	
+
+	O2:1	-->	CH3O:1	
+	CH3O:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+85:	CH3+O2=CH2O+OH
+=	170	171
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+	OH:1	-->	CH3:1	
+
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+86:	CH3+OH=CH2(T)+H2O
+=	172	173
+	CH3:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH3:1	
+	CH3:1	-->	H2O:1	
+	H2O:1	-->	CH3:1	
+
+	OH:1	-->	CH2(T):1	
+	CH2(T):1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+87:	CH3+OH(+M)=CH2(S)+H2O(+M)
+=	174	175
+	CH3:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH3:1	
+	CH3:1	-->	H2O:1	
+	H2O:1	-->	CH3:1	
+
+	OH:1	-->	CH2(S):1	
+	CH2(S):1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+88:	CH3+OH(+M)=CH2OH+H(+M)
+=	176	177
+	CH3:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+	OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+89:	CH3+OH(+M)=CH3O+H(+M)
+=	178	179
+	CH3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+	OH:1	-->	CH3O:1	
+	CH3O:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+90:	CH3+H=CH2(S)+H2
+=	180	181
+	CH3:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH3:1	
+	CH3:1	-->	H2:1	
+	H2:1	-->	CH3:1	
+
+	H:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+91:	CH3+CH3=C2H5+H
+=	182	183
+	CH3:2	-->	C2H5:1	
+	C2H5:1	-->	CH3:2	
+	CH3:2	-->	H:1	
+	H:1	-->	CH3:2	
+
+92:	CH3+M=CH2(T)+H+M
+=	184	185
+	CH3:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+93:	CH3+M=CH+H2+M
+=	186	187
+	CH3:1	-->	CH:1	
+	CH:1	-->	CH3:1	
+	CH3:1	-->	H2:1	
+	H2:1	-->	CH3:1	
+
+94:	CH3+HO2=CH4+O2
+=	188	189
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	O2:1	
+	O2:1	-->	CH3:1	
+
+	HO2:1	-->	CH4:1	
+	CH4:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+95:	CH4+H=CH3+H2
+=	190	191
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	H2:1	
+	H2:1	-->	CH4:1	
+
+	H:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+96:	CH4+OH=CH3+H2O
+=	192	193
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	H2O:1	
+	H2O:1	-->	CH4:1	
+
+	OH:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+97:	CH4+O=CH3+OH
+=	194	195
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	OH:1	
+	OH:1	-->	CH4:1	
+
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+98:	CH4+HO2=CH3+H2O2
+=	196	197
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	H2O2:1	
+	H2O2:1	-->	CH4:1	
+
+	HO2:1	-->	CH3:1	
+	CH3:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+99:	CH3+O2(+M)=CH3O2(+M)
+=	198	199
+	CH3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3:1	
+
+	O2:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+
+100:	CH3O2+H=CH3O+OH
+=	200	201
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	OH:1	
+	OH:1	-->	CH3O2:1	
+
+	H:1	-->	CH3O:1	
+	CH3O:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	H:1	
+
+101:	CH3O2+O=CH3O+O2
+=	202	203
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+	O:1	-->	CH3O:1	
+	CH3O:1	-->	O:1	
+	O:1	-->	O2:1	
+	O2:1	-->	O:1	
+
+102:	CH3O2+OH=CH3OH+O2
+=	204	205
+	CH3O2:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+	OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	OH:1	
+	OH:1	-->	O2:1	
+	O2:1	-->	OH:1	
+
+103:	CH3O2+HO2=CH3OOH+O2
+=	206	207
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+	HO2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+104:	CH3O2+H2O2=CH3OOH+HO2
+=	208	209
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	HO2:1	
+	HO2:1	-->	CH3O2:1	
+
+	H2O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+
+105:	CH3O2+CH3=CH3O+CH3O
+=	210	211
+	CH3:1	-->	CH3O:2	
+	CH3O:2	-->	CH3:1	
+
+	CH3O2:1	-->	CH3O:2	
+	CH3O:2	-->	CH3O2:1	
+
+106:	CH3O2+CH2O=CH3OOH+HCO
+=	212	213
+	CH2O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	HCO:1	
+	HCO:1	-->	CH3O2:1	
+
+107:	CH3O2+CH4=CH3OOH+CH3
+=	214	215
+	CH3O2:1	-->	CH3:1	
+	CH3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH4:1	
+
+108:	CH3O2+CH3O=CH2O+CH3OOH
+=	216	217
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O:1	
+
+	CH3O2:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+109:	CH3O2+CH2OH=CH2O+CH3OOH
+=	218	219
+	CH2OH:1	-->	CH2O:1	
+	CH2O:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH2OH:1	
+
+	CH3O2:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+110:	CH3O2+CH3OH=CH3OOH+CH2OH
+=	220	221
+	CH3O2:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3OH:1	
+
+111:	CH3O2+CH3O2=CH3O+CH3O+O2
+=	222	223
+	CH3O2:2	-->	CH3O:2	
+	CH3O:2	-->	CH3O2:2	
+	CH3O2:2	-->	O2:1	
+	O2:1	-->	CH3O2:2	
+
+112:	CH3O2+CH3O2=CH3OH+CH2O+O2
+=	224	225
+	CH3O2:2	-->	CH2O:1	
+	CH2O:1	-->	CH3O2:2	
+	CH3O2:2	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O2:2	
+	CH3O2:2	-->	O2:1	
+	O2:1	-->	CH3O2:2	
+
+113:	CH3OOH=CH3O+OH
+=	226	227
+	CH3OOH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	OH:1	
+	OH:1	-->	CH3OOH:1	
+
+114:	CH3OOH+H=CH3O2+H2
+=	228	229
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	H2:1	
+	H2:1	-->	CH3OOH:1	
+
+	H:1	-->	CH3O2:1	
+	CH3O2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+115:	CH3OOH+H=CH3O+H2O
+=	230	231
+	CH3OOH:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	H2O:1	
+	H2O:1	-->	CH3OOH:1	
+
+	H:1	-->	CH3O:1	
+	CH3O:1	-->	H:1	
+	H:1	-->	H2O:1	
+	H2O:1	-->	H:1	
+
+116:	CH3OOH+O=CH2O+OH+OH
+=	232	233
+	CH3OOH:1	-->	CH2O:1	
+	CH2O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	OH:2	
+	OH:2	-->	CH3OOH:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	OH:2	
+	OH:2	-->	O:1	
+
+117:	CH3OOH+OH=CH3O2+H2O
+=	234	235
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	H2O:1	
+	H2O:1	-->	CH3OOH:1	
+
+	OH:1	-->	CH3O2:1	
+	CH3O2:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+118:	CH3OOH+OH=CH2O+OH+H2O
+=	236	237
+	CH3OOH:1	-->	CH2O:1	
+	CH2O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	H2O:1	
+	H2O:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	OH:1	
+	OH:1	-->	CH3OOH:1	
+
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	OH:1	
+	OH:1	-->	OH:1	
+
+119:	CH2(S)+M=CH2(T)+M
+=	238	239
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+
+120:	CH2(S)+N2=CH2(T)+N2
+=	240	241
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	N2:1	
+	N2:1	-->	CH2(S):1	
+
+	N2:1	-->	CH2(T):1	
+	CH2(T):1	-->	N2:1	
+	N2:1	-->	N2:1	
+	N2:1	-->	N2:1	
+
+121:	CH2(S)+H2=CH2(T)+H2
+=	242	243
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	H2:1	
+	H2:1	-->	CH2(S):1	
+
+	H2:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2:1	
+	H2:1	-->	H2:1	
+	H2:1	-->	H2:1	
+
+122:	CH2(S)+O2=CH2(T)+O2
+=	244	245
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	O2:1	
+	O2:1	-->	CH2(S):1	
+
+	O2:1	-->	CH2(T):1	
+	CH2(T):1	-->	O2:1	
+	O2:1	-->	O2:1	
+	O2:1	-->	O2:1	
+
+123:	CH2(S)+H2O=CH2(T)+H2O
+=	246	247
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	H2O:1	
+	H2O:1	-->	CH2(S):1	
+
+	H2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+	H2O:1	-->	H2O:1	
+
+124:	CH2(S)+CO2=CH2(T)+CO2
+=	248	249
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	CO2:1	
+	CO2:1	-->	CH2(S):1	
+
+	CO2:1	-->	CH2(T):1	
+	CH2(T):1	-->	CO2:1	
+	CO2:1	-->	CO2:1	
+	CO2:1	-->	CO2:1	
+
+125:	CH2(S)+CH4=CH2(T)+CH4
+=	250	251
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	CH4:1	
+	CH4:1	-->	CH2(S):1	
+
+	CH4:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH4:1	
+	CH4:1	-->	CH4:1	
+	CH4:1	-->	CH4:1	
+
+126:	CH2(S)+CH4=CH3+CH3
+=	252	253
+	CH2(S):1	-->	CH3:2	
+	CH3:2	-->	CH2(S):1	
+
+	CH4:1	-->	CH3:2	
+	CH3:2	-->	CH4:1	
+
+127:	CH2(S)+C2H2=CH2(T)+C2H2
+=	254	255
+	C2H2:1	-->	C2H2:1	
+	C2H2:1	-->	C2H2:1	
+	C2H2:1	-->	CH2(T):1	
+	CH2(T):1	-->	C2H2:1	
+
+	CH2(S):1	-->	C2H2:1	
+	C2H2:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+
+128:	CH2(S)+C2H4=CH2(T)+C2H4
+=	256	257
+	C2H4:1	-->	C2H4:1	
+	C2H4:1	-->	C2H4:1	
+	C2H4:1	-->	CH2(T):1	
+	CH2(T):1	-->	C2H4:1	
+
+	CH2(S):1	-->	C2H4:1	
+	C2H4:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+
+129:	CH2(S)+O2=CO+OH+H
+=	258	259
+	CH2(S):1	-->	CO:1	
+	CO:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	CH2(S):1	
+	CH2(S):1	-->	OH:1	
+	OH:1	-->	CH2(S):1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+130:	CH2(S)+O=CO+H+H
+=	260	261
+	CH2(S):1	-->	CO:1	
+	CO:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:2	
+	H:2	-->	CH2(S):1	
+
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	H:2	
+	H:2	-->	O:1	
+
+131:	CH2(S)+OH=CH2O+H
+=	262	263
+	CH2(S):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	CH2(S):1	
+
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+132:	CH2(S)+H=CH+H2
+=	264	265
+	CH2(S):1	-->	CH:1	
+	CH:1	-->	CH2(S):1	
+	CH2(S):1	-->	H2:1	
+	H2:1	-->	CH2(S):1	
+
+	H:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+133:	CH2(S)+CO2=CH2O+CO
+=	266	267
+	CH2(S):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(S):1	
+	CH2(S):1	-->	CO:1	
+	CO:1	-->	CH2(S):1	
+
+	CO2:1	-->	CH2O:1	
+	CH2O:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+	CO:1	-->	CO2:1	
+
+134:	CH2(S)+CH3=C2H4+H
+=	268	269
+	CH2(S):1	-->	C2H4:1	
+	C2H4:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	CH2(S):1	
+
+	CH3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+135:	CH2(T)+M=C+H2+M
+=	270	271
+	CH2(T):1	-->	C:1	
+	C:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2:1	
+	H2:1	-->	CH2(T):1	
+
+136:	CH2(T)+OH=CH+H2O
+=	272	273
+	CH2(T):1	-->	CH:1	
+	CH:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2O:1	
+	H2O:1	-->	CH2(T):1	
+
+	OH:1	-->	CH:1	
+	CH:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+137:	CH2(T)+OH=CH2O+H
+=	274	275
+	CH2(T):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	CH2(T):1	
+
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+138:	CH2(T)+CH2(T)=C2H2+2H
+=	276	277
+	CH2(T):2	-->	C2H2:1	
+	C2H2:1	-->	CH2(T):2	
+	CH2(T):2	-->	H:2	
+	H:2	-->	CH2(T):2	
+
+139:	CH2(T)+CH2(T)=C2H2+H2
+=	278	279
+	CH2(T):2	-->	C2H2:1	
+	C2H2:1	-->	CH2(T):2	
+	CH2(T):2	-->	H2:1	
+	H2:1	-->	CH2(T):2	
+
+140:	CH2(T)+CH3=C2H4+H
+=	280	281
+	CH2(T):1	-->	C2H4:1	
+	C2H4:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	CH2(T):1	
+
+	CH3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+141:	CH2(T)+H=CH+H2
+=	282	283
+	CH2(T):1	-->	CH:1	
+	CH:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2:1	
+	H2:1	-->	CH2(T):1	
+
+	H:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+142:	CH2(T)+CO2=CH2O+CO
+=	284	285
+	CH2(T):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+
+	CO2:1	-->	CH2O:1	
+	CH2O:1	-->	CO2:1	
+	CO2:1	-->	CO:1	
+	CO:1	-->	CO2:1	
+
+143:	CH2(T)+O=CO+H+H
+=	286	287
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:2	
+	H:2	-->	CH2(T):1	
+
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	H:2	
+	H:2	-->	O:1	
+
+144:	CH2(T)+O=CO+H2
+=	288	289
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2:1	
+	H2:1	-->	CH2(T):1	
+
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	H2:1	
+	H2:1	-->	O:1	
+
+145:	CH2(T)+O2=CO+H2O
+=	290	291
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2O:1	
+	H2O:1	-->	CH2(T):1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	H2O:1	
+	H2O:1	-->	O2:1	
+
+146:	CH2(T)+O2=CO2+H+H
+=	292	293
+	CH2(T):1	-->	CO2:1	
+	CO2:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:2	
+	H:2	-->	CH2(T):1	
+
+	O2:1	-->	CO2:1	
+	CO2:1	-->	O2:1	
+	O2:1	-->	H:2	
+	H:2	-->	O2:1	
+
+147:	CH2(T)+O2=CH2O+O
+=	294	295
+	CH2(T):1	-->	CH2O:1	
+	CH2O:1	-->	CH2(T):1	
+	CH2(T):1	-->	O:1	
+	O:1	-->	CH2(T):1	
+
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+148:	CH2(T)+O2=CO2+H2
+=	296	297
+	CH2(T):1	-->	CO2:1	
+	CO2:1	-->	CH2(T):1	
+	CH2(T):1	-->	H2:1	
+	H2:1	-->	CH2(T):1	
+
+	O2:1	-->	CO2:1	
+	CO2:1	-->	O2:1	
+	O2:1	-->	H2:1	
+	H2:1	-->	O2:1	
+
+149:	CH2(T)+O2=CO+OH+H
+=	298	299
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	CH2(T):1	
+	CH2(T):1	-->	OH:1	
+	OH:1	-->	CH2(T):1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+150:	CH2(T)+CH4=CH3+CH3
+=	300	301
+	CH2(T):1	-->	CH3:2	
+	CH3:2	-->	CH2(T):1	
+
+	CH4:1	-->	CH3:2	
+	CH3:2	-->	CH4:1	
+
+151:	CH+H=C+H2
+=	302	303
+	CH:1	-->	C:1	
+	C:1	-->	CH:1	
+	CH:1	-->	H2:1	
+	H2:1	-->	CH:1	
+
+	H:1	-->	C:1	
+	C:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+152:	CH+O2=CO2+H
+=	304	305
+	CH:1	-->	CO2:1	
+	CO2:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	O2:1	-->	CO2:1	
+	CO2:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+
+153:	CH+O2=CO+H+O
+=	306	307
+	CH:1	-->	CO:1	
+	CO:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+	CH:1	-->	O:1	
+	O:1	-->	CH:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+154:	CH+O2=CO+OH
+=	308	309
+	CH:1	-->	CO:1	
+	CO:1	-->	CH:1	
+	CH:1	-->	OH:1	
+	OH:1	-->	CH:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+155:	CH+O2=HCO+O
+=	310	311
+	CH:1	-->	HCO:1	
+	HCO:1	-->	CH:1	
+	CH:1	-->	O:1	
+	O:1	-->	CH:1	
+
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+156:	CH+O=CO+H
+=	312	313
+	CH:1	-->	CO:1	
+	CO:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+157:	CH+CO2=HCO+CO
+=	314	315
+	CH:1	-->	CO:1	
+	CO:1	-->	CH:1	
+	CH:1	-->	HCO:1	
+	HCO:1	-->	CH:1	
+
+	CO2:1	-->	CO:1	
+	CO:1	-->	CO2:1	
+	CO2:1	-->	HCO:1	
+	HCO:1	-->	CO2:1	
+
+158:	CH+H2O=CH2O+H
+=	316	317
+	CH:1	-->	CH2O:1	
+	CH2O:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	H2O:1	-->	CH2O:1	
+	CH2O:1	-->	H2O:1	
+	H2O:1	-->	H:1	
+	H:1	-->	H2O:1	
+
+159:	CH+CH4=C2H4+H
+=	318	319
+	CH:1	-->	C2H4:1	
+	C2H4:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	CH4:1	-->	C2H4:1	
+	C2H4:1	-->	CH4:1	
+	CH4:1	-->	H:1	
+	H:1	-->	CH4:1	
+
+160:	C+O2=CO+O
+=	320	321
+	C:1	-->	CO:1	
+	CO:1	-->	C:1	
+	C:1	-->	O:1	
+	O:1	-->	C:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+161:	CH+OH=HCO+H
+=	322	323
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+	CH:1	-->	HCO:1	
+	HCO:1	-->	CH:1	
+
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+
+162:	CH+OH=C+H2O
+=	324	325
+	CH:1	-->	C:1	
+	C:1	-->	CH:1	
+	CH:1	-->	H2O:1	
+	H2O:1	-->	CH:1	
+
+	OH:1	-->	C:1	
+	C:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+163:	CH+CH2(T)=C2H2+H
+=	326	327
+	CH:1	-->	C2H2:1	
+	C2H2:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	CH2(T):1	-->	C2H2:1	
+	C2H2:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	CH2(T):1	
+
+164:	CH+CH3=C2H3+H
+=	328	329
+	CH:1	-->	C2H3:1	
+	C2H3:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	CH3:1	-->	C2H3:1	
+	C2H3:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+165:	C+OH=CO+H
+=	330	331
+	C:1	-->	CO:1	
+	CO:1	-->	C:1	
+	C:1	-->	H:1	
+	H:1	-->	C:1	
+
+	OH:1	-->	CO:1	
+	CO:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+166:	C+CH3=C2H2+H
+=	332	333
+	C:1	-->	C2H2:1	
+	C2H2:1	-->	C:1	
+	C:1	-->	H:1	
+	H:1	-->	C:1	
+
+	CH3:1	-->	C2H2:1	
+	C2H2:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+167:	CH2(S)+H=CH2(T)+H
+=	334	335
+	CH2(S):1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	CH2(S):1	
+
+	H:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	H:1	
+	H:1	-->	H:1	
+
+168:	C2H6+OH=C2H5+H2O
+=	336	337
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	H2O:1	
+	H2O:1	-->	C2H6:1	
+
+	OH:1	-->	C2H5:1	
+	C2H5:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+169:	C2H6+O=C2H5+OH
+=	338	339
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	OH:1	
+	OH:1	-->	C2H6:1	
+
+	O:1	-->	C2H5:1	
+	C2H5:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+170:	C2H6+H=C2H5+H2
+=	340	341
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	H2:1	
+	H2:1	-->	C2H6:1	
+
+	H:1	-->	C2H5:1	
+	C2H5:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+171:	C2H6+CH3=C2H5+CH4
+=	342	343
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	CH4:1	
+	CH4:1	-->	C2H6:1	
+
+	CH3:1	-->	C2H5:1	
+	C2H5:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+172:	C2H6+HO2=C2H5+H2O2
+=	344	345
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	H2O2:1	
+	H2O2:1	-->	C2H6:1	
+
+	HO2:1	-->	C2H5:1	
+	C2H5:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+173:	C2H6+O2=C2H5+HO2
+=	346	347
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	HO2:1	
+	HO2:1	-->	C2H6:1	
+
+	O2:1	-->	C2H5:1	
+	C2H5:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+174:	C2H5(+M)=C2H4+H(+M)
+=	348	349
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	H:1	
+	H:1	-->	C2H5:1	
+
+175:	H+C2H5(+M)=C2H6(+M)
+=	350	351
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+
+	H:1	-->	C2H6:1	
+	C2H6:1	-->	H:1	
+
+176:	C2H5+OH=C2H4+H2O
+=	352	353
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	H2O:1	
+	H2O:1	-->	C2H5:1	
+
+	OH:1	-->	C2H4:1	
+	C2H4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+177:	C2H5+O=CH3+CH2O
+=	354	355
+	C2H5:1	-->	CH2O:1	
+	CH2O:1	-->	C2H5:1	
+	C2H5:1	-->	CH3:1	
+	CH3:1	-->	C2H5:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+
+178:	C2H5+O=CH3CHO+H
+=	356	357
+	C2H5:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C2H5:1	
+	C2H5:1	-->	H:1	
+	H:1	-->	C2H5:1	
+
+	O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+179:	C2H5+O=C2H4+OH
+=	358	359
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	OH:1	
+	OH:1	-->	C2H5:1	
+
+	O:1	-->	C2H4:1	
+	C2H4:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+180:	C2H5+H=C2H4+H2
+=	360	361
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	H2:1	
+	H2:1	-->	C2H5:1	
+
+	H:1	-->	C2H4:1	
+	C2H4:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+181:	C2H5+CH3=C2H4+CH4
+=	362	363
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	CH4:1	
+	CH4:1	-->	C2H5:1	
+
+	CH3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+182:	C2H5+C2H5=C2H4+C2H6
+=	364	365
+	C2H5:2	-->	C2H4:1	
+	C2H4:1	-->	C2H5:2	
+	C2H5:2	-->	C2H6:1	
+	C2H6:1	-->	C2H5:2	
+
+183:	C2H5+HCO=C2H6+CO
+=	366	367
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	CO:1	
+	CO:1	-->	C2H5:1	
+
+	HCO:1	-->	C2H6:1	
+	C2H6:1	-->	HCO:1	
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+
+184:	C2H5+O2=C2H4+HO2
+=	368	369
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	HO2:1	
+	HO2:1	-->	C2H5:1	
+
+	O2:1	-->	C2H4:1	
+	C2H4:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+185:	C2H5+O2(+M)=C2H5O2(+M)
+=	370	371
+	C2H5:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C2H5:1	
+
+	O2:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	O2:1	
+
+186:	C2H5O2(+M)=C2H4+HO2(+M)
+=	372	373
+	C2H5O2:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	HO2:1	
+	HO2:1	-->	C2H5O2:1	
+
+187:	C2H6+CH3O2<=>C2H5+CH3OOH
+<=>	374	375
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C2H6:1	
+
+	CH3O2:1	-->	C2H5:1	
+	C2H5:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+188:	C2H6+CH3O<=>C2H5+CH3OH
+<=>	376	377
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	CH3OH:1	
+	CH3OH:1	-->	C2H6:1	
+
+	CH3O:1	-->	C2H5:1	
+	C2H5:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+189:	C2H6+CH<=>C2H5+CH2(T)
+<=>	378	379
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	CH2(T):1	
+	CH2(T):1	-->	C2H6:1	
+
+	CH:1	-->	C2H5:1	
+	C2H5:1	-->	CH:1	
+	CH:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH:1	
+
+190:	CH2(S)+C2H6<=>CH3+C2H5
+<=>	380	381
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	CH3:1	
+	CH3:1	-->	C2H6:1	
+
+	CH2(S):1	-->	C2H5:1	
+	C2H5:1	-->	CH2(S):1	
+	CH2(S):1	-->	CH3:1	
+	CH3:1	-->	CH2(S):1	
+
+191:	H2+C2H5O2<=>H+C2H5O2H
+<=>	382	383
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	H:1	
+	H:1	-->	C2H5O2:1	
+
+	H2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	H2:1	
+
+192:	C2H5+C2H3<=>C2H4+C2H4
+<=>	384	385
+	C2H3:1	-->	C2H4:2	
+	C2H4:2	-->	C2H3:1	
+
+	C2H5:1	-->	C2H4:2	
+	C2H4:2	-->	C2H5:1	
+
+193:	C2H5+HO2<=>C2H5O+OH
+<=>	386	387
+	C2H5:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5:1	
+	C2H5:1	-->	OH:1	
+	OH:1	-->	C2H5:1	
+
+	HO2:1	-->	C2H5O:1	
+	C2H5O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+194:	CH3O2+C2H5<=>CH3O+C2H5O
+<=>	388	389
+	C2H5:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5:1	
+	C2H5:1	-->	CH3O:1	
+	CH3O:1	-->	C2H5:1	
+
+	CH3O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+195:	CH4+C2H5O2<=>CH3+C2H5O2H
+<=>	390	391
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	CH3:1	
+	CH3:1	-->	C2H5O2:1	
+
+	CH4:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+
+196:	CH3OH+C2H5O2<=>CH2OH+C2H5O2H
+<=>	392	393
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	CH2OH:1	
+	CH2OH:1	-->	C2H5O2:1	
+
+	CH3OH:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH3OH:1	
+
+197:	C2H5O2+HO2<=>C2H5O2H+O2
+<=>	394	395
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	O2:1	
+	O2:1	-->	C2H5O2:1	
+
+	HO2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+198:	C2H6+C2H5O2<=>C2H5+C2H5O2H
+<=>	396	397
+	C2H5O2:1	-->	C2H5:1	
+	C2H5:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H6:1	
+
+199:	C2H5O2H<=>C2H5O+OH
+<=>	398	399
+	C2H5O2H:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	OH:1	
+	OH:1	-->	C2H5O2H:1	
+
+200:	C2H5O2<=>C2H4O2H
+<=>	400	401
+	C2H5O2:1	-->	C2H4O2H:1	
+	C2H4O2H:1	-->	C2H5O2:1	
+
+201:	C2H4O2H<=>C2H4+HO2
+<=>	402	403
+	C2H4O2H:1	-->	C2H4:1	
+	C2H4:1	-->	C2H4O2H:1	
+	C2H4O2H:1	-->	HO2:1	
+	HO2:1	-->	C2H4O2H:1	
+
+202:	C2H3O1-2<=>CH3CO
+<=>	404	405
+	C2H3O1-2:1	-->	CH3CO:1	
+	CH3CO:1	-->	C2H3O1-2:1	
+
+203:	C2H3O1-2<=>CH2CHO
+<=>	406	407
+	C2H3O1-2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H3O1-2:1	
+
+204:	CH3CHO(+M)=CH3+HCO(+M)
+=	408	409
+	CH3CHO:1	-->	CH3:1	
+	CH3:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	HCO:1	
+	HCO:1	-->	CH3CHO:1	
+
+205:	CH3CHO=CH4+CO
+=	410	411
+	CH3CHO:1	-->	CH4:1	
+	CH4:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	CO:1	
+	CO:1	-->	CH3CHO:1	
+
+206:	CH3CHO+OH=CH2CHO+H2O
+=	412	413
+	CH3CHO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	H2O:1	
+	H2O:1	-->	CH3CHO:1	
+
+	OH:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+207:	CH3CHO+OH=CH3CO+H2O
+=	414	415
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	H2O:1	
+	H2O:1	-->	CH3CHO:1	
+
+	OH:1	-->	CH3CO:1	
+	CH3CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+208:	CH3CHO+H=CH3CO+H2
+=	416	417
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	H2:1	
+	H2:1	-->	CH3CHO:1	
+
+	H:1	-->	CH3CO:1	
+	CH3CO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+209:	CH3CHO+H=CH2CHO+H2
+=	418	419
+	CH3CHO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	H2:1	
+	H2:1	-->	CH3CHO:1	
+
+	H:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+210:	CH3CHO+O=CH3CO+OH
+=	420	421
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+	OH:1	-->	CH3CHO:1	
+
+	O:1	-->	CH3CO:1	
+	CH3CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+211:	CH3CHO+O=CH2CHO+OH
+=	422	423
+	CH3CHO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+	OH:1	-->	CH3CHO:1	
+
+	O:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+212:	CH3CHO+CH3=CH3CO+CH4
+=	424	425
+	CH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	CH4:1	
+	CH4:1	-->	CH3CHO:1	
+
+213:	CH3CHO+HO2=CH3CO+H2O2
+=	426	427
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	H2O2:1	
+	H2O2:1	-->	CH3CHO:1	
+
+	HO2:1	-->	CH3CO:1	
+	CH3CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+214:	CH3CHO+O2=CH3CO+HO2
+=	428	429
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	HO2:1	
+	HO2:1	-->	CH3CHO:1	
+
+	O2:1	-->	CH3CO:1	
+	CH3CO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+215:	CH3O2+CH3CHO<=>CH3OOH+CH3CO
+<=>	430	431
+	CH3CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3CHO:1	
+
+	CH3O2:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+216:	CH3CO=CH3+CO
+=	432	433
+	CH3CO:1	-->	CH3:1	
+	CH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	CO:1	
+	CO:1	-->	CH3CO:1	
+
+217:	CH3CO+H<=>CH2CO+H2
+<=>	434	435
+	CH3CO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3CO:1	
+	CH3CO:1	-->	H2:1	
+	H2:1	-->	CH3CO:1	
+
+	H:1	-->	CH2CO:1	
+	CH2CO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+218:	CH3CO+O<=>CH2CO+OH
+<=>	436	437
+	CH3CO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3CO:1	
+	CH3CO:1	-->	OH:1	
+	OH:1	-->	CH3CO:1	
+
+	O:1	-->	CH2CO:1	
+	CH2CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+219:	CH3CO+CH3<=>CH2CO+CH4
+<=>	438	439
+	CH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	CH3CO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH4:1	
+	CH4:1	-->	CH3CO:1	
+
+220:	CH2CHO=CH2CO+H
+=	440	441
+	CH2CHO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	H:1	
+	H:1	-->	CH2CHO:1	
+
+221:	CH2CHO=CH3+CO
+=	442	443
+	CH2CHO:1	-->	CH3:1	
+	CH3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CO:1	
+	CO:1	-->	CH2CHO:1	
+
+222:	CH2CHO+OH=CH2CO+H2O
+=	444	445
+	CH2CHO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	H2O:1	
+	H2O:1	-->	CH2CHO:1	
+
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+223:	CH2CHO+OH=CH2OH+HCO
+=	446	447
+	CH2CHO:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+	OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+
+224:	CH2CHO+H=CH3+HCO
+=	448	449
+	CH2CHO:1	-->	CH3:1	
+	CH3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+	H:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+
+225:	CH2CHO+H=CH3CO+H
+=	450	451
+	CH2CHO:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	H:1	
+	H:1	-->	CH2CHO:1	
+
+	H:1	-->	CH3CO:1	
+	CH3CO:1	-->	H:1	
+	H:1	-->	H:1	
+	H:1	-->	H:1	
+
+226:	CH2CHO+O=CH2O+HCO
+=	452	453
+	CH2CHO:1	-->	CH2O:1	
+	CH2O:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+
+227:	CH2CHO+CH3=C2H5+HCO
+=	454	455
+	CH2CHO:1	-->	C2H5:1	
+	C2H5:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+	CH3:1	-->	C2H5:1	
+	C2H5:1	-->	CH3:1	
+	CH3:1	-->	HCO:1	
+	HCO:1	-->	CH3:1	
+
+228:	CH2CHO+CH2(T)=C2H4+HCO
+=	456	457
+	CH2(T):1	-->	C2H4:1	
+	C2H4:1	-->	CH2(T):1	
+	CH2(T):1	-->	HCO:1	
+	HCO:1	-->	CH2(T):1	
+
+	CH2CHO:1	-->	C2H4:1	
+	C2H4:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+229:	CH2CHO+CH=C2H3+HCO
+=	458	459
+	CH:1	-->	C2H3:1	
+	C2H3:1	-->	CH:1	
+	CH:1	-->	HCO:1	
+	HCO:1	-->	CH:1	
+
+	CH2CHO:1	-->	C2H3:1	
+	C2H3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HCO:1	
+	HCO:1	-->	CH2CHO:1	
+
+230:	CH2CHO+O2=OH+OCHCHO
+=	460	461
+	CH2CHO:1	-->	OCHCHO:1	
+	OCHCHO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	OH:1	
+	OH:1	-->	CH2CHO:1	
+
+	O2:1	-->	OCHCHO:1	
+	OCHCHO:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+231:	CH2(T)+CO(+M)=CH2CO(+M)
+=	462	463
+	CH2(T):1	-->	CH2CO:1	
+	CH2CO:1	-->	CH2(T):1	
+
+	CO:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO:1	
+
+232:	CH2CO+OH=CH2OH+CO
+=	464	465
+	CH2CO:1	-->	CH2OH:1	
+	CH2OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO:1	
+	CO:1	-->	CH2CO:1	
+
+	OH:1	-->	CH2OH:1	
+	CH2OH:1	-->	OH:1	
+	OH:1	-->	CO:1	
+	CO:1	-->	OH:1	
+
+233:	CH2CO+OH=CH3+CO2
+=	466	467
+	CH2CO:1	-->	CH3:1	
+	CH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO2:1	
+	CO2:1	-->	CH2CO:1	
+
+	OH:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+	OH:1	-->	CO2:1	
+	CO2:1	-->	OH:1	
+
+234:	CH2CO+OH=HCCO+H2O
+=	468	469
+	CH2CO:1	-->	H2O:1	
+	H2O:1	-->	CH2CO:1	
+	CH2CO:1	-->	HCCO:1	
+	HCCO:1	-->	CH2CO:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	HCCO:1	
+	HCCO:1	-->	OH:1	
+
+235:	CH2CO+H=CH3+CO
+=	470	471
+	CH2CO:1	-->	CH3:1	
+	CH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO:1	
+	CO:1	-->	CH2CO:1	
+
+	H:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+
+236:	CH2CO+H=HCCO+H2
+=	472	473
+	CH2CO:1	-->	H2:1	
+	H2:1	-->	CH2CO:1	
+	CH2CO:1	-->	HCCO:1	
+	HCCO:1	-->	CH2CO:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	HCCO:1	
+	HCCO:1	-->	H:1	
+
+237:	CH2CO+O=CO2+CH2(T)
+=	474	475
+	CH2CO:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH2CO:1	
+	CH2CO:1	-->	CO2:1	
+	CO2:1	-->	CH2CO:1	
+
+	O:1	-->	CH2(T):1	
+	CH2(T):1	-->	O:1	
+	O:1	-->	CO2:1	
+	CO2:1	-->	O:1	
+
+238:	CH2CO+O=CH2O+CO
+=	476	477
+	CH2CO:1	-->	CH2O:1	
+	CH2O:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO:1	
+	CO:1	-->	CH2CO:1	
+
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+239:	CH2CO+O=HCCO+OH
+=	478	479
+	CH2CO:1	-->	HCCO:1	
+	HCCO:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	CH2CO:1	
+
+	O:1	-->	HCCO:1	
+	HCCO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+240:	CH2(S)+CH2CO<=>C2H4+CO
+<=>	480	481
+	CH2(S):1	-->	C2H4:1	
+	C2H4:1	-->	CH2(S):1	
+	CH2(S):1	-->	CO:1	
+	CO:1	-->	CH2(S):1	
+
+	CH2CO:1	-->	C2H4:1	
+	C2H4:1	-->	CH2CO:1	
+	CH2CO:1	-->	CO:1	
+	CO:1	-->	CH2CO:1	
+
+241:	HCCO+OH<=>HCO+HCO
+<=>	482	483
+	HCCO:1	-->	HCO:2	
+	HCO:2	-->	HCCO:1	
+
+	OH:1	-->	HCO:2	
+	HCO:2	-->	OH:1	
+
+242:	CH+CH2O<=>H+CH2CO
+<=>	484	485
+	CH:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CH:1	
+
+	CH2O:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	CH2O:1	
+
+243:	H+HCCOH<=>H+CH2CO
+<=>	486	487
+	H:1	-->	CH2CO:1	
+	CH2CO:1	-->	H:1	
+	H:1	-->	H:1	
+	H:1	-->	H:1	
+
+	HCCOH:1	-->	CH2CO:1	
+	CH2CO:1	-->	HCCOH:1	
+	HCCOH:1	-->	H:1	
+	H:1	-->	HCCOH:1	
+
+244:	HCCOH+H=HCCO+H2
+=	488	489
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	HCCO:1	
+	HCCO:1	-->	H:1	
+
+	HCCOH:1	-->	H2:1	
+	H2:1	-->	HCCOH:1	
+	HCCOH:1	-->	HCCO:1	
+	HCCO:1	-->	HCCOH:1	
+
+245:	HCCOH+OH=HCCO+H2O
+=	490	491
+	HCCOH:1	-->	H2O:1	
+	H2O:1	-->	HCCOH:1	
+	HCCOH:1	-->	HCCO:1	
+	HCCO:1	-->	HCCOH:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	HCCO:1	
+	HCCO:1	-->	OH:1	
+
+246:	HCCOH+O=HCCO+OH
+=	492	493
+	HCCOH:1	-->	HCCO:1	
+	HCCO:1	-->	HCCOH:1	
+	HCCOH:1	-->	OH:1	
+	OH:1	-->	HCCOH:1	
+
+	O:1	-->	HCCO:1	
+	HCCO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+247:	CH+CO(+M)=HCCO(+M)
+=	494	495
+	CH:1	-->	HCCO:1	
+	HCCO:1	-->	CH:1	
+
+	CO:1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+
+248:	HCCO+OH=C2O+H2O
+=	496	497
+	HCCO:1	-->	C2O:1	
+	C2O:1	-->	HCCO:1	
+	HCCO:1	-->	H2O:1	
+	H2O:1	-->	HCCO:1	
+
+	OH:1	-->	C2O:1	
+	C2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+249:	HCCO+H=CH2(S)+CO
+=	498	499
+	H:1	-->	CH2(S):1	
+	CH2(S):1	-->	H:1	
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+
+	HCCO:1	-->	CH2(S):1	
+	CH2(S):1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+
+250:	HCCO+H=CH2(T)+CO
+=	500	501
+	H:1	-->	CH2(T):1	
+	CH2(T):1	-->	H:1	
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+
+	HCCO:1	-->	CH2(T):1	
+	CH2(T):1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+
+251:	HCCO+O=H+CO+CO
+=	502	503
+	HCCO:1	-->	CO:2	
+	CO:2	-->	HCCO:1	
+	HCCO:1	-->	H:1	
+	H:1	-->	HCCO:1	
+
+	O:1	-->	CO:2	
+	CO:2	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+252:	HCCO+O=CH+CO2
+=	504	505
+	HCCO:1	-->	CH:1	
+	CH:1	-->	HCCO:1	
+	HCCO:1	-->	CO2:1	
+	CO2:1	-->	HCCO:1	
+
+	O:1	-->	CH:1	
+	CH:1	-->	O:1	
+	O:1	-->	CO2:1	
+	CO2:1	-->	O:1	
+
+253:	HCCO+O2=CO2+CO+H
+=	506	507
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+	HCCO:1	-->	CO2:1	
+	CO2:1	-->	HCCO:1	
+	HCCO:1	-->	H:1	
+	H:1	-->	HCCO:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	CO2:1	
+	CO2:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+
+254:	HCCO+O2=CO+CO+OH
+=	508	509
+	HCCO:1	-->	CO:2	
+	CO:2	-->	HCCO:1	
+	HCCO:1	-->	OH:1	
+	OH:1	-->	HCCO:1	
+
+	O2:1	-->	CO:2	
+	CO:2	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+255:	HCCO+CH=C2H2+CO
+=	510	511
+	CH:1	-->	C2H2:1	
+	C2H2:1	-->	CH:1	
+	CH:1	-->	CO:1	
+	CO:1	-->	CH:1	
+
+	HCCO:1	-->	C2H2:1	
+	C2H2:1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+
+256:	HCCO+HCCO=C2H2+CO+CO
+=	512	513
+	HCCO:2	-->	C2H2:1	
+	C2H2:1	-->	HCCO:2	
+	HCCO:2	-->	CO:2	
+	CO:2	-->	HCCO:2	
+
+257:	HCCO+CH2(T)=C2H3+CO
+=	514	515
+	CH2(T):1	-->	C2H3:1	
+	C2H3:1	-->	CH2(T):1	
+	CH2(T):1	-->	CO:1	
+	CO:1	-->	CH2(T):1	
+
+	HCCO:1	-->	C2H3:1	
+	C2H3:1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+
+258:	HCCO+CH3=C2H4+CO
+=	516	517
+	CH3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3:1	
+	CH3:1	-->	CO:1	
+	CO:1	-->	CH3:1	
+
+	HCCO:1	-->	C2H4:1	
+	C2H4:1	-->	HCCO:1	
+	HCCO:1	-->	CO:1	
+	CO:1	-->	HCCO:1	
+
+259:	C2O+OH=CO+CO+H
+=	518	519
+	C2O:1	-->	CO:2	
+	CO:2	-->	C2O:1	
+	C2O:1	-->	H:1	
+	H:1	-->	C2O:1	
+
+	OH:1	-->	CO:2	
+	CO:2	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+260:	C2O+H=CH+CO
+=	520	521
+	C2O:1	-->	CH:1	
+	CH:1	-->	C2O:1	
+	C2O:1	-->	CO:1	
+	CO:1	-->	C2O:1	
+
+	H:1	-->	CH:1	
+	CH:1	-->	H:1	
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+
+261:	C2O+O=CO+CO
+=	522	523
+	C2O:1	-->	CO:2	
+	CO:2	-->	C2O:1	
+
+	O:1	-->	CO:2	
+	CO:2	-->	O:1	
+
+262:	C2O+O2=CO+CO+O
+=	524	525
+	C2O:1	-->	CO:2	
+	CO:2	-->	C2O:1	
+	C2O:1	-->	O:1	
+	O:1	-->	C2O:1	
+
+	O2:1	-->	CO:2	
+	CO:2	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+263:	C2H+H(+M)=C2H2(+M)
+=	526	527
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	C2H:1	
+
+	H:1	-->	C2H2:1	
+	C2H2:1	-->	H:1	
+
+264:	C2H+OH=HCCO+H
+=	528	529
+	C2H:1	-->	H:1	
+	H:1	-->	C2H:1	
+	C2H:1	-->	HCCO:1	
+	HCCO:1	-->	C2H:1	
+
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	HCCO:1	
+	HCCO:1	-->	OH:1	
+
+265:	C2H+O=CH+CO
+=	530	531
+	C2H:1	-->	CH:1	
+	CH:1	-->	C2H:1	
+	C2H:1	-->	CO:1	
+	CO:1	-->	C2H:1	
+
+	O:1	-->	CH:1	
+	CH:1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+266:	C2H+O2=CO+CO+H
+=	532	533
+	C2H:1	-->	CO:2	
+	CO:2	-->	C2H:1	
+	C2H:1	-->	H:1	
+	H:1	-->	C2H:1	
+
+	O2:1	-->	CO:2	
+	CO:2	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+
+267:	C2H4(+M)=H2+C2H2(+M)
+=	534	535
+	C2H4:1	-->	C2H2:1	
+	C2H2:1	-->	C2H4:1	
+	C2H4:1	-->	H2:1	
+	H2:1	-->	C2H4:1	
+
+268:	C2H3+H(+M)=C2H4(+M)
+=	536	537
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+
+	H:1	-->	C2H4:1	
+	C2H4:1	-->	H:1	
+
+269:	C2H4+OH=C2H3+H2O
+=	538	539
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	H2O:1	
+	H2O:1	-->	C2H4:1	
+
+	OH:1	-->	C2H3:1	
+	C2H3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+270:	C2H4+H=C2H3+H2
+=	540	541
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	H2:1	
+	H2:1	-->	C2H4:1	
+
+	H:1	-->	C2H3:1	
+	C2H3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+271:	C2H4+O=CH3+HCO
+=	542	543
+	C2H4:1	-->	CH3:1	
+	CH3:1	-->	C2H4:1	
+	C2H4:1	-->	HCO:1	
+	HCO:1	-->	C2H4:1	
+
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+
+272:	C2H4+O=CH2CHO+H
+=	544	545
+	C2H4:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H4:1	
+	C2H4:1	-->	H:1	
+	H:1	-->	C2H4:1	
+
+	O:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+273:	C2H4+HO2=CH3CHO+OH
+=	546	547
+	C2H4:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C2H4:1	
+	C2H4:1	-->	OH:1	
+	OH:1	-->	C2H4:1	
+
+	HO2:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+274:	C2H4+O2=C2H3+HO2
+=	548	549
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	HO2:1	
+	HO2:1	-->	C2H4:1	
+
+	O2:1	-->	C2H3:1	
+	C2H3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+275:	C2H4+O2=CH2CHO+OH
+=	550	551
+	C2H4:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H4:1	
+	C2H4:1	-->	OH:1	
+	OH:1	-->	C2H4:1	
+
+	O2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+276:	C2H4+CH3=C2H3+CH4
+=	552	553
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	CH4:1	
+	CH4:1	-->	C2H4:1	
+
+	CH3:1	-->	C2H3:1	
+	C2H3:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+277:	C2H3(+M)=H+C2H2(+M)
+=	554	555
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	H:1	
+	H:1	-->	C2H3:1	
+
+278:	C2H3+OH=C2H2+H2O
+=	556	557
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	H2O:1	
+	H2O:1	-->	C2H3:1	
+
+	OH:1	-->	C2H2:1	
+	C2H2:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+279:	C2H3+H=C2H2+H2
+=	558	559
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	H2:1	
+	H2:1	-->	C2H3:1	
+
+	H:1	-->	C2H2:1	
+	C2H2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+280:	C2H3+O=CH2CO+H
+=	560	561
+	C2H3:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H3:1	
+	C2H3:1	-->	H:1	
+	H:1	-->	C2H3:1	
+
+	O:1	-->	CH2CO:1	
+	CH2CO:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+281:	C2H3+HO2=C2H2+H2O2
+=	562	563
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	H2O2:1	
+	H2O2:1	-->	C2H3:1	
+
+	HO2:1	-->	C2H2:1	
+	C2H2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+282:	C2H3+O2=CH2O+HCO
+=	564	565
+	C2H3:1	-->	CH2O:1	
+	CH2O:1	-->	C2H3:1	
+	C2H3:1	-->	HCO:1	
+	HCO:1	-->	C2H3:1	
+
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+
+283:	C2H3+O2=CH2CHO+O
+=	566	567
+	C2H3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H3:1	
+	C2H3:1	-->	O:1	
+	O:1	-->	C2H3:1	
+
+	O2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O2:1	
+	O2:1	-->	O:1	
+	O:1	-->	O2:1	
+
+284:	C2H3+O2=C2H2+HO2
+=	568	569
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	HO2:1	
+	HO2:1	-->	C2H3:1	
+
+	O2:1	-->	C2H2:1	
+	C2H2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+285:	C2H3+CH3=C2H2+CH4
+=	570	571
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	CH4:1	
+	CH4:1	-->	C2H3:1	
+
+	CH3:1	-->	C2H2:1	
+	C2H2:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+286:	C2H3+CH2O=C2H4+HCO
+=	572	573
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	HCO:1	
+	HCO:1	-->	C2H3:1	
+
+	CH2O:1	-->	C2H4:1	
+	C2H4:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+287:	C2H3+HCO=C2H4+CO
+=	574	575
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	CO:1	
+	CO:1	-->	C2H3:1	
+
+	HCO:1	-->	C2H4:1	
+	C2H4:1	-->	HCO:1	
+	HCO:1	-->	CO:1	
+	CO:1	-->	HCO:1	
+
+288:	C2H3+C2H3=C2H4+C2H2
+=	576	577
+	C2H3:2	-->	C2H2:1	
+	C2H2:1	-->	C2H3:2	
+	C2H3:2	-->	C2H4:1	
+	C2H4:1	-->	C2H3:2	
+
+289:	C2H3+CH=CH2(T)+C2H2
+=	578	579
+	C2H3:1	-->	C2H2:1	
+	C2H2:1	-->	C2H3:1	
+	C2H3:1	-->	CH2(T):1	
+	CH2(T):1	-->	C2H3:1	
+
+	CH:1	-->	C2H2:1	
+	C2H2:1	-->	CH:1	
+	CH:1	-->	CH2(T):1	
+	CH2(T):1	-->	CH:1	
+
+290:	C2H2+OH=C2H+H2O
+=	580	581
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	H2O:1	
+	H2O:1	-->	C2H2:1	
+
+	OH:1	-->	C2H:1	
+	C2H:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+291:	C2H2+OH=HCCOH+H
+=	582	583
+	C2H2:1	-->	H:1	
+	H:1	-->	C2H2:1	
+	C2H2:1	-->	HCCOH:1	
+	HCCOH:1	-->	C2H2:1	
+
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+	OH:1	-->	HCCOH:1	
+	HCCOH:1	-->	OH:1	
+
+292:	C2H2+OH=CH2CO+H
+=	584	585
+	C2H2:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H2:1	
+	C2H2:1	-->	H:1	
+	H:1	-->	C2H2:1	
+
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	H:1	
+	H:1	-->	OH:1	
+
+293:	C2H2+OH=CH3+CO
+=	586	587
+	C2H2:1	-->	CH3:1	
+	CH3:1	-->	C2H2:1	
+	C2H2:1	-->	CO:1	
+	CO:1	-->	C2H2:1	
+
+	OH:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+	OH:1	-->	CO:1	
+	CO:1	-->	OH:1	
+
+294:	C2H2+H=C2H+H2
+=	588	589
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	H2:1	
+	H2:1	-->	C2H2:1	
+
+	H:1	-->	C2H:1	
+	C2H:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+295:	C2H2+O=CH2(T)+CO
+=	590	591
+	C2H2:1	-->	CH2(T):1	
+	CH2(T):1	-->	C2H2:1	
+	C2H2:1	-->	CO:1	
+	CO:1	-->	C2H2:1	
+
+	O:1	-->	CH2(T):1	
+	CH2(T):1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+296:	C2H2+O=HCCO+H
+=	592	593
+	C2H2:1	-->	H:1	
+	H:1	-->	C2H2:1	
+	C2H2:1	-->	HCCO:1	
+	HCCO:1	-->	C2H2:1	
+
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+	O:1	-->	HCCO:1	
+	HCCO:1	-->	O:1	
+
+297:	C2H2+O=C2H+OH
+=	594	595
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	OH:1	
+	OH:1	-->	C2H2:1	
+
+	O:1	-->	C2H:1	
+	C2H:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+298:	C2H2+HO2=CH2CO+OH
+=	596	597
+	C2H2:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H2:1	
+	C2H2:1	-->	OH:1	
+	OH:1	-->	C2H2:1	
+
+	HO2:1	-->	CH2CO:1	
+	CH2CO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+299:	C2H2+O2=HCO+HCO
+=	598	599
+	C2H2:1	-->	HCO:2	
+	HCO:2	-->	C2H2:1	
+
+	O2:1	-->	HCO:2	
+	HCO:2	-->	O2:1	
+
+300:	C2H2+CH3=CH4+C2H
+=	600	601
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	CH4:1	
+	CH4:1	-->	C2H2:1	
+
+	CH3:1	-->	C2H:1	
+	C2H:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+301:	OCHCHO+M=HCO+HCO+M
+=	602	603
+	OCHCHO:1	-->	HCO:2	
+	HCO:2	-->	OCHCHO:1	
+
+302:	OCHCHO+H=CH2O+HCO
+=	604	605
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	HCO:1	
+	HCO:1	-->	H:1	
+
+	OCHCHO:1	-->	CH2O:1	
+	CH2O:1	-->	OCHCHO:1	
+	OCHCHO:1	-->	HCO:1	
+	HCO:1	-->	OCHCHO:1	
+
+303:	C2H4+CH3O<=>C2H3+CH3OH
+<=>	606	607
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3OH:1	
+	CH3OH:1	-->	C2H4:1	
+
+	CH3O:1	-->	C2H3:1	
+	C2H3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+304:	C2H4+CH3O2<=>C2H3+CH3OOH
+<=>	608	609
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C2H4:1	
+
+	CH3O2:1	-->	C2H3:1	
+	C2H3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+305:	C2H4+C2H5O2<=>C2H3+C2H5O2H
+<=>	610	611
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H4:1	
+
+	C2H5O2:1	-->	C2H3:1	
+	C2H3:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+
+306:	C2H5O=CH3+CH2O
+=	612	613
+	C2H5O:1	-->	CH2O:1	
+	CH2O:1	-->	C2H5O:1	
+	C2H5O:1	-->	CH3:1	
+	CH3:1	-->	C2H5O:1	
+
+307:	CH3COCH2<=>CH2CO+CH3
+<=>	614	615
+	CH3COCH2:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	CH3:1	
+	CH3:1	-->	CH3COCH2:1	
+
+308:	CH3COCH2O2<=>CH3COCH2+O2
+<=>	616	617
+	CH3COCH2O2:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	CH3COCH2O2:1	
+	CH3COCH2O2:1	-->	O2:1	
+	O2:1	-->	CH3COCH2O2:1	
+
+309:	CH2O+CH3COCH2O2<=>HCO+CH3COCH2O2H
+<=>	618	619
+	CH2O:1	-->	CH3COCH2O2H:1	
+	CH3COCH2O2H:1	-->	CH2O:1	
+	CH2O:1	-->	HCO:1	
+	HCO:1	-->	CH2O:1	
+
+	CH3COCH2O2:1	-->	CH3COCH2O2H:1	
+	CH3COCH2O2H:1	-->	CH3COCH2O2:1	
+	CH3COCH2O2:1	-->	HCO:1	
+	HCO:1	-->	CH3COCH2O2:1	
+
+310:	HO2+CH3COCH2O2<=>CH3COCH2O2H+O2
+<=>	620	621
+	CH3COCH2O2:1	-->	CH3COCH2O2H:1	
+	CH3COCH2O2H:1	-->	CH3COCH2O2:1	
+	CH3COCH2O2:1	-->	O2:1	
+	O2:1	-->	CH3COCH2O2:1	
+
+	HO2:1	-->	CH3COCH2O2H:1	
+	CH3COCH2O2H:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+311:	CH3COCH2O2H<=>CH3COCH2O+OH
+<=>	622	623
+	CH3COCH2O2H:1	-->	CH3COCH2O:1	
+	CH3COCH2O:1	-->	CH3COCH2O2H:1	
+	CH3COCH2O2H:1	-->	OH:1	
+	OH:1	-->	CH3COCH2O2H:1	
+
+312:	CH3COCH2O<=>CH3CO+CH2O
+<=>	624	625
+	CH3COCH2O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3COCH2O:1	
+	CH3COCH2O:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3COCH2O:1	
+
+313:	C2H3CHO<=>C2H3+HCO
+<=>	626	627
+	C2H3CHO:1	-->	C2H3:1	
+	C2H3:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	HCO:1	
+	HCO:1	-->	C2H3CHO:1	
+
+314:	C2H3CHO+H<=>C2H3CO+H2
+<=>	628	629
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	H2:1	
+	H2:1	-->	C2H3CHO:1	
+
+	H:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+315:	C2H3CHO+O<=>C2H3CO+OH
+<=>	630	631
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	OH:1	
+	OH:1	-->	C2H3CHO:1	
+
+	O:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+316:	C2H3CHO+OH<=>C2H3CO+H2O
+<=>	632	633
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	H2O:1	
+	H2O:1	-->	C2H3CHO:1	
+
+	OH:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+317:	C2H3CHO+O2<=>C2H3CO+HO2
+<=>	634	635
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	HO2:1	
+	HO2:1	-->	C2H3CHO:1	
+
+	O2:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+318:	C2H3CHO+HO2<=>C2H3CO+H2O2
+<=>	636	637
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	H2O2:1	
+	H2O2:1	-->	C2H3CHO:1	
+
+	HO2:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+319:	C2H3CHO+CH3<=>C2H3CO+CH4
+<=>	638	639
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	CH4:1	
+	CH4:1	-->	C2H3CHO:1	
+
+	CH3:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+320:	C2H3CHO+C2H3<=>C2H3CO+C2H4
+<=>	640	641
+	C2H3:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3:1	
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3CHO:1	
+
+321:	C2H3CHO+CH3O<=>C2H3CO+CH3OH
+<=>	642	643
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	CH3OH:1	
+	CH3OH:1	-->	C2H3CHO:1	
+
+	CH3O:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+322:	C2H3CHO+CH3O2<=>C2H3CO+CH3OOH
+<=>	644	645
+	C2H3CHO:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C2H3CHO:1	
+
+	CH3O2:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+323:	C2H3CO<=>C2H3+CO
+<=>	646	647
+	C2H3CO:1	-->	C2H3:1	
+	C2H3:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	CO:1	
+	CO:1	-->	C2H3CO:1	
+
+324:	C2H5CHO<=>C2H5+HCO
+<=>	648	649
+	C2H5CHO:1	-->	C2H5:1	
+	C2H5:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	HCO:1	
+	HCO:1	-->	C2H5CHO:1	
+
+325:	C2H5CHO+H<=>C2H5CO+H2
+<=>	650	651
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	H2:1	
+	H2:1	-->	C2H5CHO:1	
+
+	H:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+326:	C2H5CHO+O<=>C2H5CO+OH
+<=>	652	653
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	OH:1	
+	OH:1	-->	C2H5CHO:1	
+
+	O:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+327:	C2H5CHO+OH<=>C2H5CO+H2O
+<=>	654	655
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	H2O:1	
+	H2O:1	-->	C2H5CHO:1	
+
+	OH:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+328:	C2H5CHO+CH3<=>C2H5CO+CH4
+<=>	656	657
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	CH4:1	
+	CH4:1	-->	C2H5CHO:1	
+
+	CH3:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+329:	C2H5CHO+HO2<=>C2H5CO+H2O2
+<=>	658	659
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	H2O2:1	
+	H2O2:1	-->	C2H5CHO:1	
+
+	HO2:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+330:	C2H5CHO+CH3O<=>C2H5CO+CH3OH
+<=>	660	661
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	CH3OH:1	
+	CH3OH:1	-->	C2H5CHO:1	
+
+	CH3O:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+331:	C2H5CHO+CH3O2<=>C2H5CO+CH3OOH
+<=>	662	663
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C2H5CHO:1	
+
+	CH3O2:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+332:	C2H5CHO+C2H5<=>C2H5CO+C2H6
+<=>	664	665
+	C2H5:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5:1	
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5CHO:1	
+
+333:	C2H5CHO+C2H5O2<=>C2H5CO+C2H5O2H
+<=>	666	667
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5CHO:1	
+
+	C2H5O2:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+
+334:	C2H5CHO+O2<=>C2H5CO+HO2
+<=>	668	669
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	HO2:1	
+	HO2:1	-->	C2H5CHO:1	
+
+	O2:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+335:	C2H5CHO+C2H3<=>C2H5CO+C2H4
+<=>	670	671
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H3:1	
+
+	C2H5CHO:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+
+336:	C2H5CO<=>C2H5+CO
+<=>	672	673
+	C2H5CO:1	-->	C2H5:1	
+	C2H5:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	CO:1	
+	CO:1	-->	C2H5CO:1	
+
+337:	CH3+CO2=CH3OCO
+=	674	675
+	CH3:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	CH3:1	
+
+	CO2:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	CO2:1	
+
+338:	CH3O+CO=CH3OCO
+=	676	677
+	CH3O:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	CH3O:1	
+
+	CO:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	CO:1	
+
+339:	C3H8(+M)=CH3+C2H5(+M)
+=	678	679
+	C3H8:1	-->	C2H5:1	
+	C2H5:1	-->	C3H8:1	
+	C3H8:1	-->	CH3:1	
+	CH3:1	-->	C3H8:1	
+
+340:	C3H8<=>NC3H7+H
+<=>	680	681
+	C3H8:1	-->	H:1	
+	H:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+341:	C3H8<=>IC3H7+H
+<=>	682	683
+	C3H8:1	-->	H:1	
+	H:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+342:	C3H8+O2<=>IC3H7+HO2
+<=>	684	685
+	C3H8:1	-->	HO2:1	
+	HO2:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	IC3H7:1	
+	IC3H7:1	-->	O2:1	
+
+343:	C3H8+O2<=>NC3H7+HO2
+<=>	686	687
+	C3H8:1	-->	HO2:1	
+	HO2:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	NC3H7:1	
+	NC3H7:1	-->	O2:1	
+
+344:	H+C3H8<=>H2+IC3H7
+<=>	688	689
+	C3H8:1	-->	H2:1	
+	H2:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	IC3H7:1	
+	IC3H7:1	-->	H:1	
+
+345:	H+C3H8<=>H2+NC3H7
+<=>	690	691
+	C3H8:1	-->	H2:1	
+	H2:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	NC3H7:1	
+	NC3H7:1	-->	H:1	
+
+346:	C3H8+O<=>IC3H7+OH
+<=>	692	693
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+	C3H8:1	-->	OH:1	
+	OH:1	-->	C3H8:1	
+
+	O:1	-->	IC3H7:1	
+	IC3H7:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+347:	C3H8+O<=>NC3H7+OH
+<=>	694	695
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+	C3H8:1	-->	OH:1	
+	OH:1	-->	C3H8:1	
+
+	O:1	-->	NC3H7:1	
+	NC3H7:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+348:	C3H8+OH<=>NC3H7+H2O
+<=>	696	697
+	C3H8:1	-->	H2O:1	
+	H2O:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	NC3H7:1	
+	NC3H7:1	-->	OH:1	
+
+349:	C3H8+OH<=>IC3H7+H2O
+<=>	698	699
+	C3H8:1	-->	H2O:1	
+	H2O:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	IC3H7:1	
+	IC3H7:1	-->	OH:1	
+
+350:	C3H8+HO2<=>NC3H7+H2O2
+<=>	700	701
+	C3H8:1	-->	H2O2:1	
+	H2O2:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	NC3H7:1	
+	NC3H7:1	-->	HO2:1	
+
+351:	C3H8+HO2<=>IC3H7+H2O2
+<=>	702	703
+	C3H8:1	-->	H2O2:1	
+	H2O2:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	IC3H7:1	
+	IC3H7:1	-->	HO2:1	
+
+352:	CH3+C3H8<=>CH4+IC3H7
+<=>	704	705
+	C3H8:1	-->	CH4:1	
+	CH4:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	IC3H7:1	
+	IC3H7:1	-->	CH3:1	
+
+353:	CH3+C3H8<=>CH4+NC3H7
+<=>	706	707
+	C3H8:1	-->	CH4:1	
+	CH4:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	NC3H7:1	
+	NC3H7:1	-->	CH3:1	
+
+354:	IC3H7+C3H8<=>NC3H7+C3H8
+<=>	708	709
+	C3H8:1	-->	C3H8:1	
+	C3H8:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	IC3H7:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	NC3H7:1	
+	NC3H7:1	-->	IC3H7:1	
+
+355:	C2H3+C3H8<=>C2H4+IC3H7
+<=>	710	711
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	IC3H7:1	
+	IC3H7:1	-->	C2H3:1	
+
+	C3H8:1	-->	C2H4:1	
+	C2H4:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+356:	C2H3+C3H8<=>C2H4+NC3H7
+<=>	712	713
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	NC3H7:1	
+	NC3H7:1	-->	C2H3:1	
+
+	C3H8:1	-->	C2H4:1	
+	C2H4:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+357:	C2H5+C3H8<=>C2H6+IC3H7
+<=>	714	715
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	IC3H7:1	
+	IC3H7:1	-->	C2H5:1	
+
+	C3H8:1	-->	C2H6:1	
+	C2H6:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+358:	C2H5+C3H8<=>C2H6+NC3H7
+<=>	716	717
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	NC3H7:1	
+	NC3H7:1	-->	C2H5:1	
+
+	C3H8:1	-->	C2H6:1	
+	C2H6:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+359:	C3H8+C3H5-A<=>NC3H7+C3H6
+<=>	718	719
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H5-A:1	
+
+	C3H8:1	-->	C3H6:1	
+	C3H6:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+360:	C3H8+C3H5-A<=>IC3H7+C3H6
+<=>	720	721
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H5-A:1	
+
+	C3H8:1	-->	C3H6:1	
+	C3H6:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+361:	C3H8+CH3O<=>NC3H7+CH3OH
+<=>	722	723
+	C3H8:1	-->	CH3OH:1	
+	CH3OH:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	NC3H7:1	
+	NC3H7:1	-->	CH3O:1	
+
+362:	C3H8+CH3O<=>IC3H7+CH3OH
+<=>	724	725
+	C3H8:1	-->	CH3OH:1	
+	CH3OH:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	IC3H7:1	
+	IC3H7:1	-->	CH3O:1	
+
+363:	CH3O2+C3H8<=>CH3OOH+NC3H7
+<=>	726	727
+	C3H8:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	NC3H7:1	
+	NC3H7:1	-->	CH3O2:1	
+
+364:	CH3O2+C3H8<=>CH3OOH+IC3H7
+<=>	728	729
+	C3H8:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	IC3H7:1	
+	IC3H7:1	-->	CH3O2:1	
+
+365:	C2H5O2+C3H8<=>C2H5O2H+NC3H7
+<=>	730	731
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	NC3H7:1	
+	NC3H7:1	-->	C2H5O2:1	
+
+	C3H8:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+
+366:	C2H5O2+C3H8<=>C2H5O2H+IC3H7
+<=>	732	733
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	IC3H7:1	
+	IC3H7:1	-->	C2H5O2:1	
+
+	C3H8:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+
+367:	IC3H7<=>H+C3H6
+<=>	734	735
+	IC3H7:1	-->	C3H6:1	
+	C3H6:1	-->	IC3H7:1	
+	IC3H7:1	-->	H:1	
+	H:1	-->	IC3H7:1	
+
+368:	IC3H7+H<=>C2H5+CH3
+<=>	736	737
+	H:1	-->	C2H5:1	
+	C2H5:1	-->	H:1	
+	H:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+
+	IC3H7:1	-->	C2H5:1	
+	C2H5:1	-->	IC3H7:1	
+	IC3H7:1	-->	CH3:1	
+	CH3:1	-->	IC3H7:1	
+
+369:	IC3H7+O2<=>C3H6+HO2
+<=>	738	739
+	IC3H7:1	-->	C3H6:1	
+	C3H6:1	-->	IC3H7:1	
+	IC3H7:1	-->	HO2:1	
+	HO2:1	-->	IC3H7:1	
+
+	O2:1	-->	C3H6:1	
+	C3H6:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+370:	IC3H7+OH<=>C3H6+H2O
+<=>	740	741
+	IC3H7:1	-->	C3H6:1	
+	C3H6:1	-->	IC3H7:1	
+	IC3H7:1	-->	H2O:1	
+	H2O:1	-->	IC3H7:1	
+
+	OH:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+371:	IC3H7+O<=>CH3CHO+CH3
+<=>	742	743
+	IC3H7:1	-->	CH3:1	
+	CH3:1	-->	IC3H7:1	
+	IC3H7:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	IC3H7:1	
+
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O:1	
+
+372:	NC3H7<=>CH3+C2H4
+<=>	744	745
+	NC3H7:1	-->	C2H4:1	
+	C2H4:1	-->	NC3H7:1	
+	NC3H7:1	-->	CH3:1	
+	CH3:1	-->	NC3H7:1	
+
+373:	NC3H7<=>H+C3H6
+<=>	746	747
+	NC3H7:1	-->	C3H6:1	
+	C3H6:1	-->	NC3H7:1	
+	NC3H7:1	-->	H:1	
+	H:1	-->	NC3H7:1	
+
+374:	NC3H7+O2<=>C3H6+HO2
+<=>	748	749
+	NC3H7:1	-->	C3H6:1	
+	C3H6:1	-->	NC3H7:1	
+	NC3H7:1	-->	HO2:1	
+	HO2:1	-->	NC3H7:1	
+
+	O2:1	-->	C3H6:1	
+	C3H6:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+375:	C2H5CHO+NC3H7<=>C2H5CO+C3H8
+<=>	750	751
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C3H8:1	
+	C3H8:1	-->	C2H5CHO:1	
+
+	NC3H7:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	NC3H7:1	
+	NC3H7:1	-->	C3H8:1	
+	C3H8:1	-->	NC3H7:1	
+
+376:	C2H5CHO+IC3H7<=>C2H5CO+C3H8
+<=>	752	753
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C3H8:1	
+	C3H8:1	-->	C2H5CHO:1	
+
+	IC3H7:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	IC3H7:1	
+	IC3H7:1	-->	C3H8:1	
+	C3H8:1	-->	IC3H7:1	
+
+377:	C2H5CHO+C3H5-A<=>C2H5CO+C3H6
+<=>	754	755
+	C2H5CHO:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C3H6:1	
+	C3H6:1	-->	C2H5CHO:1	
+
+	C3H5-A:1	-->	C2H5CO:1	
+	C2H5CO:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+
+378:	C3H6<=>C2H3+CH3
+<=>	756	757
+	C3H6:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6:1	
+	C3H6:1	-->	CH3:1	
+	CH3:1	-->	C3H6:1	
+
+379:	C3H6<=>C3H5-A+H
+<=>	758	759
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	H:1	
+	H:1	-->	C3H6:1	
+
+380:	C3H6<=>C3H5-S+H
+<=>	760	761
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	H:1	
+	H:1	-->	C3H6:1	
+
+381:	C3H6+O<=>C2H5+HCO
+<=>	762	763
+	C3H6:1	-->	C2H5:1	
+	C2H5:1	-->	C3H6:1	
+	C3H6:1	-->	HCO:1	
+	HCO:1	-->	C3H6:1	
+
+	O:1	-->	C2H5:1	
+	C2H5:1	-->	O:1	
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+
+382:	C3H6+O<=>CH2CO+CH3+H
+<=>	764	765
+	C3H6:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H6:1	
+	C3H6:1	-->	CH3:1	
+	CH3:1	-->	C3H6:1	
+	C3H6:1	-->	H:1	
+	H:1	-->	C3H6:1	
+
+	O:1	-->	CH2CO:1	
+	CH2CO:1	-->	O:1	
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+
+383:	C3H6+O<=>CH3CHCO+H+H
+<=>	766	767
+	C3H6:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	C3H6:1	
+	C3H6:1	-->	H:2	
+	H:2	-->	C3H6:1	
+
+	O:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	O:1	
+	O:1	-->	H:2	
+	H:2	-->	O:1	
+
+384:	C3H6+O<=>C3H5-A+OH
+<=>	768	769
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	C3H6:1	
+
+	O:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+385:	C3H6+O<=>C3H5-S+OH
+<=>	770	771
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	C3H6:1	
+
+	O:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+386:	C3H6+OH<=>C3H5-A+H2O
+<=>	772	773
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	H2O:1	
+	H2O:1	-->	C3H6:1	
+
+	OH:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+387:	C3H6+OH<=>C3H5-S+H2O
+<=>	774	775
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	H2O:1	
+	H2O:1	-->	C3H6:1	
+
+	OH:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+388:	C3H6+HO2<=>C3H5-A+H2O2
+<=>	776	777
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	H2O2:1	
+	H2O2:1	-->	C3H6:1	
+
+	HO2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+389:	C3H6+HO2<=>C3H5-S+H2O2
+<=>	778	779
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	H2O2:1	
+	H2O2:1	-->	C3H6:1	
+
+	HO2:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+390:	C3H6+H<=>C3H5-A+H2
+<=>	780	781
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	H2:1	
+	H2:1	-->	C3H6:1	
+
+	H:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+391:	C3H6+H<=>C3H5-S+H2
+<=>	782	783
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	H2:1	
+	H2:1	-->	C3H6:1	
+
+	H:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+392:	C3H6+H<=>C2H4+CH3
+<=>	784	785
+	C3H6:1	-->	C2H4:1	
+	C2H4:1	-->	C3H6:1	
+	C3H6:1	-->	CH3:1	
+	CH3:1	-->	C3H6:1	
+
+	H:1	-->	C2H4:1	
+	C2H4:1	-->	H:1	
+	H:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+
+393:	C3H6+O2<=>C3H5-A+HO2
+<=>	786	787
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	HO2:1	
+	HO2:1	-->	C3H6:1	
+
+	O2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+394:	C3H6+O2<=>C3H5-S+HO2
+<=>	788	789
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	HO2:1	
+	HO2:1	-->	C3H6:1	
+
+	O2:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+395:	C3H6+CH3<=>C3H5-A+CH4
+<=>	790	791
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	CH4:1	
+	CH4:1	-->	C3H6:1	
+
+	CH3:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+396:	C3H6+CH3<=>C3H5-S+CH4
+<=>	792	793
+	C3H6:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C3H6:1	
+	C3H6:1	-->	CH4:1	
+	CH4:1	-->	C3H6:1	
+
+	CH3:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+397:	C3H6+C2H5<=>C3H5-A+C2H6
+<=>	794	795
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C2H5:1	
+
+	C3H6:1	-->	C2H6:1	
+	C2H6:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+
+398:	C3H6+CH3O2<=>C3H5-A+CH3OOH
+<=>	796	797
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C3H6:1	
+
+	CH3O2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+399:	C3H6+HO2<=>C3H6O1-2+OH
+<=>	798	799
+	C3H6:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	C3H6:1	
+
+	HO2:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+400:	C3H6+C2H5O2<=>C3H5-A+C2H5O2H
+<=>	800	801
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C2H5O2:1	
+
+	C3H6:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+
+401:	C3H5-A<=>C2H2+CH3
+<=>	802	803
+	C3H5-A:1	-->	C2H2:1	
+	C2H2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH3:1	
+	CH3:1	-->	C3H5-A:1	
+
+402:	C3H5-A<=>C3H4-A+H
+<=>	804	805
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	H:1	
+	H:1	-->	C3H5-A:1	
+
+403:	C3H5-A+HO2<=>C3H5O+OH
+<=>	806	807
+	C3H5-A:1	-->	C3H5O:1	
+	C3H5O:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	OH:1	
+	OH:1	-->	C3H5-A:1	
+
+	HO2:1	-->	C3H5O:1	
+	C3H5O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+404:	C3H5-A+CH3O2<=>C3H5O+CH3O
+<=>	808	809
+	C3H5-A:1	-->	C3H5O:1	
+	C3H5O:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH3O:1	
+	CH3O:1	-->	C3H5-A:1	
+
+	CH3O2:1	-->	C3H5O:1	
+	C3H5O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+405:	C3H5-A+H<=>C3H4-A+H2
+<=>	810	811
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	H2:1	
+	H2:1	-->	C3H5-A:1	
+
+	H:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+406:	C3H5-A+CH3<=>C3H4-A+CH4
+<=>	812	813
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH4:1	
+	CH4:1	-->	C3H5-A:1	
+
+	CH3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+407:	C3H5-A+C2H5<=>C2H6+C3H4-A
+<=>	814	815
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C2H5:1	
+
+	C3H5-A:1	-->	C2H6:1	
+	C2H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+
+408:	C3H5-A+C2H5<=>C2H4+C3H6
+<=>	816	817
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	C3H6:1	
+	C3H6:1	-->	C2H5:1	
+
+	C3H5-A:1	-->	C2H4:1	
+	C2H4:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+
+409:	C3H5-A+C2H3<=>C2H4+C3H4-A
+<=>	818	819
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C2H3:1	
+
+	C3H5-A:1	-->	C2H4:1	
+	C2H4:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+
+410:	C3H4-A+C3H6<=>C3H5-A+C3H5-A
+<=>	820	821
+	C3H4-A:1	-->	C3H5-A:2	
+	C3H5-A:2	-->	C3H4-A:1	
+
+	C3H6:1	-->	C3H5-A:2	
+	C3H5-A:2	-->	C3H6:1	
+
+411:	C3H5-A+O2<=>C3H4-A+HO2
+<=>	822	823
+	C3H5-A:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	HO2:1	
+	HO2:1	-->	C3H5-A:1	
+
+	O2:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+412:	C3H5-A+O2<=>CH2CHO+CH2O
+<=>	824	825
+	C3H5-A:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH2O:1	
+	CH2O:1	-->	C3H5-A:1	
+
+	O2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O2:1	
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+
+413:	C3H5-A+O2<=>C2H3CHO+OH
+<=>	826	827
+	C3H5-A:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	OH:1	
+	OH:1	-->	C3H5-A:1	
+
+	O2:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+414:	C3H5-A+O2<=>C2H2+CH2O+OH
+<=>	828	829
+	C3H5-A:1	-->	C2H2:1	
+	C2H2:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	CH2O:1	
+	CH2O:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	OH:1	
+	OH:1	-->	C3H5-A:1	
+
+	O2:1	-->	C2H2:1	
+	C2H2:1	-->	O2:1	
+	O2:1	-->	CH2O:1	
+	CH2O:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+415:	C3H5-S<=>C2H2+CH3
+<=>	830	831
+	C3H5-S:1	-->	C2H2:1	
+	C2H2:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	CH3:1	
+	CH3:1	-->	C3H5-S:1	
+
+416:	C3H5-S<=>C3H4-P+H
+<=>	832	833
+	C3H5-S:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	H:1	
+	H:1	-->	C3H5-S:1	
+
+417:	C3H5-S+O2<=>CH3CHO+HCO
+<=>	834	835
+	C3H5-S:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	HCO:1	
+	HCO:1	-->	C3H5-S:1	
+
+	O2:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O2:1	
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+
+418:	C3H5-S+H<=>C3H4-A+H2
+<=>	836	837
+	C3H5-S:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	H2:1	
+	H2:1	-->	C3H5-S:1	
+
+	H:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+419:	C3H5-S+CH3<=>C3H4-A+CH4
+<=>	838	839
+	C3H5-S:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	CH4:1	
+	CH4:1	-->	C3H5-S:1	
+
+	CH3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+420:	C3H4-A+M<=>C3H3+H+M
+<=>	840	841
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H:1	
+	H:1	-->	C3H4-A:1	
+
+421:	C3H4-A<=>C3H4-P
+<=>	842	843
+	C3H4-A:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C3H4-A:1	
+
+422:	C3H4-A+O2<=>C3H3+HO2
+<=>	844	845
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	HO2:1	
+	HO2:1	-->	C3H4-A:1	
+
+	O2:1	-->	C3H3:1	
+	C3H3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+423:	C3H4-A+HO2<=>CH2CO+CH2(T)+OH
+<=>	846	847
+	C3H4-A:1	-->	CH2(T):1	
+	CH2(T):1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	OH:1	
+	OH:1	-->	C3H4-A:1	
+
+	HO2:1	-->	CH2(T):1	
+	CH2(T):1	-->	HO2:1	
+	HO2:1	-->	CH2CO:1	
+	CH2CO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+424:	C3H4-A+OH<=>CH2CO+CH3
+<=>	848	849
+	C3H4-A:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH3:1	
+	CH3:1	-->	C3H4-A:1	
+
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+
+425:	C3H4-A+OH<=>C3H3+H2O
+<=>	850	851
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H2O:1	
+	H2O:1	-->	C3H4-A:1	
+
+	OH:1	-->	C3H3:1	
+	C3H3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+426:	C3H4-A+O<=>C2H4+CO
+<=>	852	853
+	C3H4-A:1	-->	C2H4:1	
+	C2H4:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CO:1	
+	CO:1	-->	C3H4-A:1	
+
+	O:1	-->	C2H4:1	
+	C2H4:1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+427:	C3H4-A+O<=>C2H2+CH2O
+<=>	854	855
+	C3H4-A:1	-->	C2H2:1	
+	C2H2:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH2O:1	
+	CH2O:1	-->	C3H4-A:1	
+
+	O:1	-->	C2H2:1	
+	C2H2:1	-->	O:1	
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+
+428:	C3H4-A+H<=>C3H3+H2
+<=>	856	857
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H2:1	
+	H2:1	-->	C3H4-A:1	
+
+	H:1	-->	C3H3:1	
+	C3H3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+429:	C3H4-A+CH3<=>C3H3+CH4
+<=>	858	859
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH4:1	
+	CH4:1	-->	C3H4-A:1	
+
+	CH3:1	-->	C3H3:1	
+	C3H3:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+430:	C3H4-A+C3H5-A<=>C3H3+C3H6
+<=>	860	861
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H4-A:1	
+
+	C3H5-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+
+431:	C3H4-A+C2H<=>C3H3+C2H2
+<=>	862	863
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C3H3:1	
+	C3H3:1	-->	C2H:1	
+
+	C3H4-A:1	-->	C2H2:1	
+	C2H2:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+
+432:	C3H4-P+M<=>C3H3+H+M
+<=>	864	865
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	H:1	
+	H:1	-->	C3H4-P:1	
+
+433:	C3H4-P<=>C2H+CH3
+<=>	866	867
+	C3H4-P:1	-->	C2H:1	
+	C2H:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CH3:1	
+	CH3:1	-->	C3H4-P:1	
+
+434:	C3H4-P+O2<=>HCCO+OH+CH2(T)
+<=>	868	869
+	C3H4-P:1	-->	CH2(T):1	
+	CH2(T):1	-->	C3H4-P:1	
+	C3H4-P:1	-->	HCCO:1	
+	HCCO:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	OH:1	
+	OH:1	-->	C3H4-P:1	
+
+	O2:1	-->	CH2(T):1	
+	CH2(T):1	-->	O2:1	
+	O2:1	-->	HCCO:1	
+	HCCO:1	-->	O2:1	
+	O2:1	-->	OH:1	
+	OH:1	-->	O2:1	
+
+435:	C3H4-P+O2<=>C3H3+HO2
+<=>	870	871
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	HO2:1	
+	HO2:1	-->	C3H4-P:1	
+
+	O2:1	-->	C3H3:1	
+	C3H3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+436:	C3H4-P+HO2<=>C2H4+CO+OH
+<=>	872	873
+	C3H4-P:1	-->	C2H4:1	
+	C2H4:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CO:1	
+	CO:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	OH:1	
+	OH:1	-->	C3H4-P:1	
+
+	HO2:1	-->	C2H4:1	
+	C2H4:1	-->	HO2:1	
+	HO2:1	-->	CO:1	
+	CO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+437:	C3H4-P+OH<=>C3H3+H2O
+<=>	874	875
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	H2O:1	
+	H2O:1	-->	C3H4-P:1	
+
+	OH:1	-->	C3H3:1	
+	C3H3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+438:	C3H4-P+OH<=>CH2CO+CH3
+<=>	876	877
+	C3H4-P:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CH3:1	
+	CH3:1	-->	C3H4-P:1	
+
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	CH3:1	
+	CH3:1	-->	OH:1	
+
+439:	C3H4-P+O<=>CH2CO+CH2(T)
+<=>	878	879
+	C3H4-P:1	-->	CH2(T):1	
+	CH2(T):1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H4-P:1	
+
+	O:1	-->	CH2(T):1	
+	CH2(T):1	-->	O:1	
+	O:1	-->	CH2CO:1	
+	CH2CO:1	-->	O:1	
+
+440:	C3H4-P+O<=>C2H3+HCO
+<=>	880	881
+	C3H4-P:1	-->	C2H3:1	
+	C2H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	HCO:1	
+	HCO:1	-->	C3H4-P:1	
+
+	O:1	-->	C2H3:1	
+	C2H3:1	-->	O:1	
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+
+441:	C3H4-P+O<=>C2H4+CO
+<=>	882	883
+	C3H4-P:1	-->	C2H4:1	
+	C2H4:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CO:1	
+	CO:1	-->	C3H4-P:1	
+
+	O:1	-->	C2H4:1	
+	C2H4:1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+442:	C3H4-P+O<=>HCCO+CH3
+<=>	884	885
+	C3H4-P:1	-->	CH3:1	
+	CH3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	HCCO:1	
+	HCCO:1	-->	C3H4-P:1	
+
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+	O:1	-->	HCCO:1	
+	HCCO:1	-->	O:1	
+
+443:	C3H4-P+O<=>HCCO+CH2(T)+H
+<=>	886	887
+	C3H4-P:1	-->	CH2(T):1	
+	CH2(T):1	-->	C3H4-P:1	
+	C3H4-P:1	-->	H:1	
+	H:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	HCCO:1	
+	HCCO:1	-->	C3H4-P:1	
+
+	O:1	-->	CH2(T):1	
+	CH2(T):1	-->	O:1	
+	O:1	-->	H:1	
+	H:1	-->	O:1	
+	O:1	-->	HCCO:1	
+	HCCO:1	-->	O:1	
+
+444:	C3H4-P+O<=>C3H3+OH
+<=>	888	889
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	OH:1	
+	OH:1	-->	C3H4-P:1	
+
+	O:1	-->	C3H3:1	
+	C3H3:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+445:	C3H4-P+H<=>C3H3+H2
+<=>	890	891
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	H2:1	
+	H2:1	-->	C3H4-P:1	
+
+	H:1	-->	C3H3:1	
+	C3H3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+446:	C3H4-P+CH3<=>C3H3+CH4
+<=>	892	893
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CH4:1	
+	CH4:1	-->	C3H4-P:1	
+
+	CH3:1	-->	C3H3:1	
+	C3H3:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+447:	C3H4-P+C2H<=>C3H3+C2H2
+<=>	894	895
+	C2H:1	-->	C2H2:1	
+	C2H2:1	-->	C2H:1	
+	C2H:1	-->	C3H3:1	
+	C3H3:1	-->	C2H:1	
+
+	C3H4-P:1	-->	C2H2:1	
+	C2H2:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+
+448:	C3H4-P+C2H3<=>C3H3+C2H4
+<=>	896	897
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C3H3:1	
+	C3H3:1	-->	C2H3:1	
+
+	C3H4-P:1	-->	C2H4:1	
+	C2H4:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+
+449:	C3H4-P+C3H5-A<=>C3H3+C3H6
+<=>	898	899
+	C3H4-P:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C3H6:1	
+	C3H6:1	-->	C3H4-P:1	
+
+	C3H5-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+
+450:	C3H3+O<=>CH2O+C2H
+<=>	900	901
+	C3H3:1	-->	C2H:1	
+	C2H:1	-->	C3H3:1	
+	C3H3:1	-->	CH2O:1	
+	CH2O:1	-->	C3H3:1	
+
+	O:1	-->	C2H:1	
+	C2H:1	-->	O:1	
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+
+451:	C3H3+OH<=>C3H2+H2O
+<=>	902	903
+	C3H3:1	-->	C3H2:1	
+	C3H2:1	-->	C3H3:1	
+	C3H3:1	-->	H2O:1	
+	H2O:1	-->	C3H3:1	
+
+	OH:1	-->	C3H2:1	
+	C3H2:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+452:	C3H3+O2<=>CH2CO+HCO
+<=>	904	905
+	C3H3:1	-->	CH2CO:1	
+	CH2CO:1	-->	C3H3:1	
+	C3H3:1	-->	HCO:1	
+	HCO:1	-->	C3H3:1	
+
+	O2:1	-->	CH2CO:1	
+	CH2CO:1	-->	O2:1	
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+
+453:	C3H3+CH3<=>C2H5+C2H
+<=>	906	907
+	C3H3:1	-->	C2H:1	
+	C2H:1	-->	C3H3:1	
+	C3H3:1	-->	C2H5:1	
+	C2H5:1	-->	C3H3:1	
+
+	CH3:1	-->	C2H:1	
+	C2H:1	-->	CH3:1	
+	CH3:1	-->	C2H5:1	
+	C2H5:1	-->	CH3:1	
+
+454:	C3H2+O2<=>HCO+HCCO
+<=>	908	909
+	C3H2:1	-->	HCCO:1	
+	HCCO:1	-->	C3H2:1	
+	C3H2:1	-->	HCO:1	
+	HCO:1	-->	C3H2:1	
+
+	O2:1	-->	HCCO:1	
+	HCCO:1	-->	O2:1	
+	O2:1	-->	HCO:1	
+	HCO:1	-->	O2:1	
+
+455:	C3H4-A+HO2<=>C2H4+CO+OH
+<=>	910	911
+	C3H4-A:1	-->	C2H4:1	
+	C2H4:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CO:1	
+	CO:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	OH:1	
+	OH:1	-->	C3H4-A:1	
+
+	HO2:1	-->	C2H4:1	
+	C2H4:1	-->	HO2:1	
+	HO2:1	-->	CO:1	
+	CO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+456:	C3H4-A+HO2<=>C3H3+H2O2
+<=>	912	913
+	C3H4-A:1	-->	C3H3:1	
+	C3H3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	H2O2:1	
+	H2O2:1	-->	C3H4-A:1	
+
+	HO2:1	-->	C3H3:1	
+	C3H3:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+457:	C2H2+CH3<=>C3H4-P+H
+<=>	914	915
+	C2H2:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	C2H2:1	
+	C2H2:1	-->	H:1	
+	H:1	-->	C2H2:1	
+
+	CH3:1	-->	C3H4-P:1	
+	C3H4-P:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+458:	C2H2+CH3<=>C3H4-A+H
+<=>	916	917
+	C2H2:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C2H2:1	
+	C2H2:1	-->	H:1	
+	H:1	-->	C2H2:1	
+
+	CH3:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	CH3:1	
+	CH3:1	-->	H:1	
+	H:1	-->	CH3:1	
+
+459:	C3H3+H<=>C3H2+H2
+<=>	918	919
+	C3H3:1	-->	C3H2:1	
+	C3H2:1	-->	C3H3:1	
+	C3H3:1	-->	H2:1	
+	H2:1	-->	C3H3:1	
+
+	H:1	-->	C3H2:1	
+	C3H2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+460:	C3H2+OH<=>C2H2+HCO
+<=>	920	921
+	C3H2:1	-->	C2H2:1	
+	C2H2:1	-->	C3H2:1	
+	C3H2:1	-->	HCO:1	
+	HCO:1	-->	C3H2:1	
+
+	OH:1	-->	C2H2:1	
+	C2H2:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+
+461:	C3H2+O2<=>HCCO+CO+H
+<=>	922	923
+	C3H2:1	-->	CO:1	
+	CO:1	-->	C3H2:1	
+	C3H2:1	-->	H:1	
+	H:1	-->	C3H2:1	
+	C3H2:1	-->	HCCO:1	
+	HCCO:1	-->	C3H2:1	
+
+	O2:1	-->	CO:1	
+	CO:1	-->	O2:1	
+	O2:1	-->	H:1	
+	H:1	-->	O2:1	
+	O2:1	-->	HCCO:1	
+	HCCO:1	-->	O2:1	
+
+462:	CH3CHCO+OH<=>C2H5+CO2
+<=>	924	925
+	CH3CHCO:1	-->	C2H5:1	
+	C2H5:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	CO2:1	
+	CO2:1	-->	CH3CHCO:1	
+
+	OH:1	-->	C2H5:1	
+	C2H5:1	-->	OH:1	
+	OH:1	-->	CO2:1	
+	CO2:1	-->	OH:1	
+
+463:	CH3CHCO+H<=>C2H5+CO
+<=>	926	927
+	CH3CHCO:1	-->	C2H5:1	
+	C2H5:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	CO:1	
+	CO:1	-->	CH3CHCO:1	
+
+	H:1	-->	C2H5:1	
+	C2H5:1	-->	H:1	
+	H:1	-->	CO:1	
+	CO:1	-->	H:1	
+
+464:	CH3CHCO+O<=>CH3CHO+CO
+<=>	928	929
+	CH3CHCO:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	CO:1	
+	CO:1	-->	CH3CHCO:1	
+
+	O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O:1	
+	O:1	-->	CO:1	
+	CO:1	-->	O:1	
+
+465:	NC3H7+HO2<=>NC3H7O+OH
+<=>	930	931
+	HO2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+	NC3H7:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7:1	
+	NC3H7:1	-->	OH:1	
+	OH:1	-->	NC3H7:1	
+
+466:	CH3O2+NC3H7<=>CH3O+NC3H7O
+<=>	932	933
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	CH3O2:1	
+
+	NC3H7:1	-->	CH3O:1	
+	CH3O:1	-->	NC3H7:1	
+	NC3H7:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7:1	
+
+467:	NC3H7O2<=>NC3H7+O2
+<=>	934	935
+	NC3H7O2:1	-->	NC3H7:1	
+	NC3H7:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	O2:1	
+	O2:1	-->	NC3H7O2:1	
+
+468:	IC3H7O2<=>IC3H7+O2
+<=>	936	937
+	IC3H7O2:1	-->	IC3H7:1	
+	IC3H7:1	-->	IC3H7O2:1	
+	IC3H7O2:1	-->	O2:1	
+	O2:1	-->	IC3H7O2:1	
+
+469:	NC3H7O2+CH3O2<=>NC3H7O+CH3O+O2
+<=>	938	939
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+	NC3H7O2:1	-->	CH3O:1	
+	CH3O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	O2:1	
+	O2:1	-->	NC3H7O2:1	
+
+470:	NC3H7O2+C2H5O2<=>NC3H7O+C2H5O+O2
+<=>	940	941
+	C2H5O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	O2:1	
+	O2:1	-->	C2H5O2:1	
+
+	NC3H7O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	O2:1	
+	O2:1	-->	NC3H7O2:1	
+
+471:	NC3H7O2+NC3H7O2<=>O2+NC3H7O+NC3H7O
+<=>	942	943
+	NC3H7O2:2	-->	NC3H7O:2	
+	NC3H7O:2	-->	NC3H7O2:2	
+	NC3H7O2:2	-->	O2:1	
+	O2:1	-->	NC3H7O2:2	
+
+472:	NC3H7O2+CH3<=>NC3H7O+CH3O
+<=>	944	945
+	CH3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3:1	
+	CH3:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	CH3:1	
+
+	NC3H7O2:1	-->	CH3O:1	
+	CH3O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+
+473:	NC3H7O2+C2H5<=>NC3H7O+C2H5O
+<=>	946	947
+	C2H5:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5:1	
+	C2H5:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	C2H5:1	
+
+	NC3H7O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+
+474:	NC3H7O2+NC3H7<=>NC3H7O+NC3H7O
+<=>	948	949
+	NC3H7:1	-->	NC3H7O:2	
+	NC3H7O:2	-->	NC3H7:1	
+
+	NC3H7O2:1	-->	NC3H7O:2	
+	NC3H7O:2	-->	NC3H7O2:1	
+
+475:	NC3H7O2+C3H5-A<=>NC3H7O+C3H5O
+<=>	950	951
+	C3H5-A:1	-->	C3H5O:1	
+	C3H5O:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	C3H5-A:1	
+
+	NC3H7O2:1	-->	C3H5O:1	
+	C3H5O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+
+476:	NC3H7O<=>C2H5+CH2O
+<=>	952	953
+	NC3H7O:1	-->	C2H5:1	
+	C2H5:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	CH2O:1	
+	CH2O:1	-->	NC3H7O:1	
+
+477:	NC3H7O<=>C2H5CHO+H
+<=>	954	955
+	NC3H7O:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	H:1	
+	H:1	-->	NC3H7O:1	
+
+478:	NC3H7O2<=>C3H6OOH-2,1
+<=>	956	957
+	NC3H7O2:1	-->	C3H6OOH-2,1:1	
+	C3H6OOH-2,1:1	-->	NC3H7O2:1	
+
+479:	NC3H7O2<=>C3H6OOH-3,1
+<=>	958	959
+	NC3H7O2:1	-->	C3H6OOH-3,1:1	
+	C3H6OOH-3,1:1	-->	NC3H7O2:1	
+
+480:	C3H6OOH-2,1<=>C3H6O1-2+OH
+<=>	960	961
+	C3H6OOH-2,1:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	C3H6OOH-2,1:1	
+	C3H6OOH-2,1:1	-->	OH:1	
+	OH:1	-->	C3H6OOH-2,1:1	
+
+481:	C3H6OOH-2,1<=>C3H6+HO2
+<=>	962	963
+	C3H6OOH-2,1:1	-->	C3H6:1	
+	C3H6:1	-->	C3H6OOH-2,1:1	
+	C3H6OOH-2,1:1	-->	HO2:1	
+	HO2:1	-->	C3H6OOH-2,1:1	
+
+482:	C3H6OOH-3,1<=>OH+CH2O+C2H4
+<=>	964	965
+	C3H6OOH-3,1:1	-->	C2H4:1	
+	C2H4:1	-->	C3H6OOH-3,1:1	
+	C3H6OOH-3,1:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6OOH-3,1:1	
+	C3H6OOH-3,1:1	-->	OH:1	
+	OH:1	-->	C3H6OOH-3,1:1	
+
+483:	C3H6OOH-2,1<=>C2H4+CH2O+OH
+<=>	966	967
+	C3H6OOH-2,1:1	-->	C2H4:1	
+	C2H4:1	-->	C3H6OOH-2,1:1	
+	C3H6OOH-2,1:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6OOH-2,1:1	
+	C3H6OOH-2,1:1	-->	OH:1	
+	OH:1	-->	C3H6OOH-2,1:1	
+
+484:	C3H6OOH1-3O2<=>C3H6OOH-3,1+O2
+<=>	968	969
+	C3H6OOH1-3O2:1	-->	C3H6OOH-3,1:1	
+	C3H6OOH-3,1:1	-->	C3H6OOH1-3O2:1	
+	C3H6OOH1-3O2:1	-->	O2:1	
+	O2:1	-->	C3H6OOH1-3O2:1	
+
+485:	C3H5O<=>C2H3CHO+H
+<=>	970	971
+	C3H5O:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C3H5O:1	
+	C3H5O:1	-->	H:1	
+	H:1	-->	C3H5O:1	
+
+486:	C3H5O<=>C2H3+CH2O
+<=>	972	973
+	C3H5O:1	-->	C2H3:1	
+	C2H3:1	-->	C3H5O:1	
+	C3H5O:1	-->	CH2O:1	
+	CH2O:1	-->	C3H5O:1	
+
+487:	C3H5O+O2<=>C2H3CHO+HO2
+<=>	974	975
+	C3H5O:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C3H5O:1	
+	C3H5O:1	-->	HO2:1	
+	HO2:1	-->	C3H5O:1	
+
+	O2:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+488:	C3H6O1-2<=>C2H4+CH2O
+<=>	976	977
+	C3H6O1-2:1	-->	C2H4:1	
+	C2H4:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+
+489:	C3H6O1-2+OH<=>CH2O+C2H3+H2O
+<=>	978	979
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	H2O:1	
+	H2O:1	-->	C3H6O1-2:1	
+
+	OH:1	-->	C2H3:1	
+	C2H3:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+490:	C3H6O1-2+H<=>CH2O+C2H3+H2
+<=>	980	981
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	H2:1	
+	H2:1	-->	C3H6O1-2:1	
+
+	H:1	-->	C2H3:1	
+	C2H3:1	-->	H:1	
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+491:	C3H6O1-2+O<=>CH2O+C2H3+OH
+<=>	982	983
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	OH:1	
+	OH:1	-->	C3H6O1-2:1	
+
+	O:1	-->	C2H3:1	
+	C2H3:1	-->	O:1	
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+492:	C3H6O1-2+HO2<=>CH2O+C2H3+H2O2
+<=>	984	985
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	H2O2:1	
+	H2O2:1	-->	C3H6O1-2:1	
+
+	HO2:1	-->	C2H3:1	
+	C2H3:1	-->	HO2:1	
+	HO2:1	-->	CH2O:1	
+	CH2O:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+493:	C3H6O1-2+CH3O2<=>CH2O+C2H3+CH3OOH
+<=>	986	987
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C3H6O1-2:1	
+
+	CH3O2:1	-->	C2H3:1	
+	C2H3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+494:	C3H6O1-2+CH3<=>CH2O+C2H3+CH4
+<=>	988	989
+	C3H6O1-2:1	-->	C2H3:1	
+	C2H3:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH2O:1	
+	CH2O:1	-->	C3H6O1-2:1	
+	C3H6O1-2:1	-->	CH4:1	
+	CH4:1	-->	C3H6O1-2:1	
+
+	CH3:1	-->	C2H3:1	
+	C2H3:1	-->	CH3:1	
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+495:	IC3H7O2<=>C3H6+HO2
+<=>	990	991
+	IC3H7O2:1	-->	C3H6:1	
+	C3H6:1	-->	IC3H7O2:1	
+	IC3H7O2:1	-->	HO2:1	
+	HO2:1	-->	IC3H7O2:1	
+
+496:	NC3H7O2<=>C3H6+HO2
+<=>	992	993
+	NC3H7O2:1	-->	C3H6:1	
+	C3H6:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	HO2:1	
+	HO2:1	-->	NC3H7O2:1	
+
+497:	C4H10(+M)<=>C2H5+C2H5(+M)
+<=>	994	995
+	C4H10:1	-->	C2H5:2	
+	C2H5:2	-->	C4H10:1	
+
+498:	C4H10(+M)<=>NC3H7+CH3(+M)
+<=>	996	997
+	C4H10:1	-->	CH3:1	
+	CH3:1	-->	C4H10:1	
+	C4H10:1	-->	NC3H7:1	
+	NC3H7:1	-->	C4H10:1	
+
+499:	C4H10<=>PC4H9+H
+<=>	998	999
+	C4H10:1	-->	H:1	
+	H:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+500:	C4H10<=>SC4H9+H
+<=>	1000	1001
+	C4H10:1	-->	H:1	
+	H:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+501:	C4H10+O2<=>PC4H9+HO2
+<=>	1002	1003
+	C4H10:1	-->	HO2:1	
+	HO2:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	PC4H9:1	
+	PC4H9:1	-->	O2:1	
+
+502:	C4H10+O2<=>SC4H9+HO2
+<=>	1004	1005
+	C4H10:1	-->	HO2:1	
+	HO2:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	SC4H9:1	
+	SC4H9:1	-->	O2:1	
+
+503:	C4H10+C3H5-A<=>PC4H9+C3H6
+<=>	1006	1007
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	PC4H9:1	
+	PC4H9:1	-->	C3H5-A:1	
+
+	C4H10:1	-->	C3H6:1	
+	C3H6:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+504:	C4H10+C3H5-A<=>SC4H9+C3H6
+<=>	1008	1009
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	SC4H9:1	
+	SC4H9:1	-->	C3H5-A:1	
+
+	C4H10:1	-->	C3H6:1	
+	C3H6:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+505:	C4H10+C2H5<=>PC4H9+C2H6
+<=>	1010	1011
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	PC4H9:1	
+	PC4H9:1	-->	C2H5:1	
+
+	C4H10:1	-->	C2H6:1	
+	C2H6:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+506:	C4H10+C2H5<=>SC4H9+C2H6
+<=>	1012	1013
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	SC4H9:1	
+	SC4H9:1	-->	C2H5:1	
+
+	C4H10:1	-->	C2H6:1	
+	C2H6:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+507:	C4H10+C2H3<=>PC4H9+C2H4
+<=>	1014	1015
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	PC4H9:1	
+	PC4H9:1	-->	C2H3:1	
+
+	C4H10:1	-->	C2H4:1	
+	C2H4:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+508:	C4H10+C2H3<=>SC4H9+C2H4
+<=>	1016	1017
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	SC4H9:1	
+	SC4H9:1	-->	C2H3:1	
+
+	C4H10:1	-->	C2H4:1	
+	C2H4:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+509:	C4H10+CH3<=>PC4H9+CH4
+<=>	1018	1019
+	C4H10:1	-->	CH4:1	
+	CH4:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	PC4H9:1	
+	PC4H9:1	-->	CH3:1	
+
+510:	C4H10+CH3<=>SC4H9+CH4
+<=>	1020	1021
+	C4H10:1	-->	CH4:1	
+	CH4:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	SC4H9:1	
+	SC4H9:1	-->	CH3:1	
+
+511:	C4H10+H<=>PC4H9+H2
+<=>	1022	1023
+	C4H10:1	-->	H2:1	
+	H2:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	PC4H9:1	
+	PC4H9:1	-->	H:1	
+
+512:	C4H10+H<=>SC4H9+H2
+<=>	1024	1025
+	C4H10:1	-->	H2:1	
+	H2:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	SC4H9:1	
+	SC4H9:1	-->	H:1	
+
+513:	C4H10+OH<=>PC4H9+H2O
+<=>	1026	1027
+	C4H10:1	-->	H2O:1	
+	H2O:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	PC4H9:1	
+	PC4H9:1	-->	OH:1	
+
+514:	C4H10+OH<=>SC4H9+H2O
+<=>	1028	1029
+	C4H10:1	-->	H2O:1	
+	H2O:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	SC4H9:1	
+	SC4H9:1	-->	OH:1	
+
+515:	C4H10+O<=>PC4H9+OH
+<=>	1030	1031
+	C4H10:1	-->	OH:1	
+	OH:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+	O:1	-->	PC4H9:1	
+	PC4H9:1	-->	O:1	
+
+516:	C4H10+O<=>SC4H9+OH
+<=>	1032	1033
+	C4H10:1	-->	OH:1	
+	OH:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+	O:1	-->	SC4H9:1	
+	SC4H9:1	-->	O:1	
+
+517:	C4H10+HO2<=>PC4H9+H2O2
+<=>	1034	1035
+	C4H10:1	-->	H2O2:1	
+	H2O2:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	PC4H9:1	
+	PC4H9:1	-->	HO2:1	
+
+518:	C4H10+HO2<=>SC4H9+H2O2
+<=>	1036	1037
+	C4H10:1	-->	H2O2:1	
+	H2O2:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	SC4H9:1	
+	SC4H9:1	-->	HO2:1	
+
+519:	C4H10+CH3O<=>PC4H9+CH3OH
+<=>	1038	1039
+	C4H10:1	-->	CH3OH:1	
+	CH3OH:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	PC4H9:1	
+	PC4H9:1	-->	CH3O:1	
+
+520:	C4H10+CH3O<=>SC4H9+CH3OH
+<=>	1040	1041
+	C4H10:1	-->	CH3OH:1	
+	CH3OH:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	SC4H9:1	
+	SC4H9:1	-->	CH3O:1	
+
+521:	C4H10+PC4H9<=>SC4H9+C4H10
+<=>	1042	1043
+	C4H10:1	-->	C4H10:1	
+	C4H10:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	PC4H9:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	SC4H9:1	
+	SC4H9:1	-->	PC4H9:1	
+
+522:	CH3O2+C4H10<=>CH3OOH+PC4H9
+<=>	1044	1045
+	C4H10:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	PC4H9:1	
+	PC4H9:1	-->	CH3O2:1	
+
+523:	CH3O2+C4H10<=>CH3OOH+SC4H9
+<=>	1046	1047
+	C4H10:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	SC4H9:1	
+	SC4H9:1	-->	CH3O2:1	
+
+524:	C2H5O2+C4H10<=>C2H5O2H+PC4H9
+<=>	1048	1049
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	PC4H9:1	
+	PC4H9:1	-->	C2H5O2:1	
+
+	C4H10:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C4H10:1	
+	C4H10:1	-->	PC4H9:1	
+	PC4H9:1	-->	C4H10:1	
+
+525:	C2H5O2+C4H10<=>C2H5O2H+SC4H9
+<=>	1050	1051
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	SC4H9:1	
+	SC4H9:1	-->	C2H5O2:1	
+
+	C4H10:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C4H10:1	
+	C4H10:1	-->	SC4H9:1	
+	SC4H9:1	-->	C4H10:1	
+
+526:	PC4H9<=>C2H5+C2H4
+<=>	1052	1053
+	PC4H9:1	-->	C2H4:1	
+	C2H4:1	-->	PC4H9:1	
+	PC4H9:1	-->	C2H5:1	
+	C2H5:1	-->	PC4H9:1	
+
+527:	SC4H9<=>C3H6+CH3
+<=>	1054	1055
+	SC4H9:1	-->	C3H6:1	
+	C3H6:1	-->	SC4H9:1	
+	SC4H9:1	-->	CH3:1	
+	CH3:1	-->	SC4H9:1	
+
+528:	PC4H9<=>C4H8-1+H
+<=>	1056	1057
+	PC4H9:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	PC4H9:1	
+	PC4H9:1	-->	H:1	
+	H:1	-->	PC4H9:1	
+
+529:	SC4H9<=>C4H8-1+H
+<=>	1058	1059
+	SC4H9:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	SC4H9:1	
+	SC4H9:1	-->	H:1	
+	H:1	-->	SC4H9:1	
+
+530:	PC4H9+O2<=>C4H8-1+HO2
+<=>	1060	1061
+	O2:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+	PC4H9:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	PC4H9:1	
+	PC4H9:1	-->	HO2:1	
+	HO2:1	-->	PC4H9:1	
+
+531:	SC4H9+O2<=>C4H8-1+HO2
+<=>	1062	1063
+	O2:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+	SC4H9:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	SC4H9:1	
+	SC4H9:1	-->	HO2:1	
+	HO2:1	-->	SC4H9:1	
+
+532:	C4H8-1<=>C3H5-A+CH3
+<=>	1064	1065
+	C4H8-1:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	CH3:1	
+	CH3:1	-->	C4H8-1:1	
+
+533:	C4H8-1<=>C2H3+C2H5
+<=>	1066	1067
+	C4H8-1:1	-->	C2H3:1	
+	C2H3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C2H5:1	
+	C2H5:1	-->	C4H8-1:1	
+
+534:	C4H8-1<=>H+C4H71-3
+<=>	1068	1069
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	H:1	
+	H:1	-->	C4H8-1:1	
+
+535:	C4H8-1+O2<=>C4H71-3+HO2
+<=>	1070	1071
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	HO2:1	
+	HO2:1	-->	C4H8-1:1	
+
+	O2:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+536:	C4H8-1+H<=>C4H71-3+H2
+<=>	1072	1073
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	H2:1	
+	H2:1	-->	C4H8-1:1	
+
+	H:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+537:	C4H8-1+OH<=>C4H71-3+H2O
+<=>	1074	1075
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	H2O:1	
+	H2O:1	-->	C4H8-1:1	
+
+	OH:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+538:	C4H8-1+CH3<=>C4H71-3+CH4
+<=>	1076	1077
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	CH4:1	
+	CH4:1	-->	C4H8-1:1	
+
+	CH3:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+539:	C4H8-1+HO2<=>C4H71-3+H2O2
+<=>	1078	1079
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	H2O2:1	
+	H2O2:1	-->	C4H8-1:1	
+
+	HO2:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+540:	C4H8-1+CH3O2<=>C4H71-3+CH3OOH
+<=>	1080	1081
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C4H8-1:1	
+
+	CH3O2:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+541:	C4H8-1+CH3O<=>C4H71-3+CH3OH
+<=>	1082	1083
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	CH3OH:1	
+	CH3OH:1	-->	C4H8-1:1	
+
+	CH3O:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+542:	C4H8-1+C3H5-A<=>C4H71-3+C3H6
+<=>	1084	1085
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C3H5-A:1	
+
+	C4H8-1:1	-->	C3H6:1	
+	C3H6:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+
+543:	C4H8-1+C4H6<=>C4H71-3+C4H71-3
+<=>	1086	1087
+	C4H6:1	-->	C4H71-3:2	
+	C4H71-3:2	-->	C4H6:1	
+
+	C4H8-1:1	-->	C4H71-3:2	
+	C4H71-3:2	-->	C4H8-1:1	
+
+544:	C4H8-1+C2H5O2<=>C4H71-3+C2H5O2H
+<=>	1088	1089
+	C2H5O2:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C2H5O2:1	
+
+	C4H8-1:1	-->	C2H5O2H:1	
+	C2H5O2H:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+
+545:	C4H8OH-1<=>C4H8-1+OH
+<=>	1090	1091
+	C4H8OH-1:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C4H8OH-1:1	
+	C4H8OH-1:1	-->	OH:1	
+	OH:1	-->	C4H8OH-1:1	
+
+546:	C4H72-1<=>C4H71-3
+<=>	1092	1093
+	C4H72-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H72-1:1	
+
+547:	C4H71-3+C2H5<=>C4H8-1+C2H4
+<=>	1094	1095
+	C2H5:1	-->	C2H4:1	
+	C2H4:1	-->	C2H5:1	
+	C2H5:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C2H5:1	
+
+	C4H71-3:1	-->	C2H4:1	
+	C2H4:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C4H71-3:1	
+
+548:	C4H71-3+CH3O<=>C4H8-1+CH2O
+<=>	1096	1097
+	C4H71-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH2O:1	
+	CH2O:1	-->	C4H71-3:1	
+
+	CH3O:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	CH3O:1	
+	CH3O:1	-->	CH2O:1	
+	CH2O:1	-->	CH3O:1	
+
+549:	C4H71-3+O<=>C2H3CHO+CH3
+<=>	1098	1099
+	C4H71-3:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH3:1	
+	CH3:1	-->	C4H71-3:1	
+
+	O:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	O:1	
+	O:1	-->	CH3:1	
+	CH3:1	-->	O:1	
+
+550:	C4H71-3+HO2<=>C4H7O+OH
+<=>	1100	1101
+	C4H71-3:1	-->	C4H7O:1	
+	C4H7O:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	OH:1	
+	OH:1	-->	C4H71-3:1	
+
+	HO2:1	-->	C4H7O:1	
+	C4H7O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+551:	C4H71-3+CH3O2<=>C4H7O+CH3O
+<=>	1102	1103
+	C4H71-3:1	-->	C4H7O:1	
+	C4H7O:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	CH3O:1	
+	CH3O:1	-->	C4H71-3:1	
+
+	CH3O2:1	-->	C4H7O:1	
+	C4H7O:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+552:	C3H5-A+C4H71-3<=>C3H6+C4H6
+<=>	1104	1105
+	C3H5-A:1	-->	C3H6:1	
+	C3H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C4H6:1	
+	C4H6:1	-->	C3H5-A:1	
+
+	C4H71-3:1	-->	C3H6:1	
+	C3H6:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H6:1	
+	C4H6:1	-->	C4H71-3:1	
+
+553:	C4H71-3+O2<=>C4H6+HO2
+<=>	1106	1107
+	C4H71-3:1	-->	C4H6:1	
+	C4H6:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	HO2:1	
+	HO2:1	-->	C4H71-3:1	
+
+	O2:1	-->	C4H6:1	
+	C4H6:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+554:	H+C4H71-3<=>C4H6+H2
+<=>	1108	1109
+	C4H71-3:1	-->	C4H6:1	
+	C4H6:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	H2:1	
+	H2:1	-->	C4H71-3:1	
+
+	H:1	-->	C4H6:1	
+	C4H6:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+555:	C2H5+C4H71-3<=>C4H6+C2H6
+<=>	1110	1111
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C4H6:1	
+	C4H6:1	-->	C2H5:1	
+
+	C4H71-3:1	-->	C2H6:1	
+	C2H6:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H6:1	
+	C4H6:1	-->	C4H71-3:1	
+
+556:	C2H3+C4H71-3<=>C2H4+C4H6
+<=>	1112	1113
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C4H6:1	
+	C4H6:1	-->	C2H3:1	
+
+	C4H71-3:1	-->	C2H4:1	
+	C2H4:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H6:1	
+	C4H6:1	-->	C4H71-3:1	
+
+557:	C4H71-3+C2H5O2<=>C4H7O+C2H5O
+<=>	1114	1115
+	C2H5O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C4H7O:1	
+	C4H7O:1	-->	C2H5O2:1	
+
+	C4H71-3:1	-->	C2H5O:1	
+	C2H5O:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C4H7O:1	
+	C4H7O:1	-->	C4H71-3:1	
+
+558:	NC3H7O2+C4H71-3<=>NC3H7O+C4H7O
+<=>	1116	1117
+	C4H71-3:1	-->	C4H7O:1	
+	C4H7O:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	C4H71-3:1	
+
+	NC3H7O2:1	-->	C4H7O:1	
+	C4H7O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+
+559:	C4H7O<=>CH3CHO+C2H3
+<=>	1118	1119
+	C4H7O:1	-->	C2H3:1	
+	C2H3:1	-->	C4H7O:1	
+	C4H7O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C4H7O:1	
+
+560:	C4H7O<=>C2H3CHO+CH3
+<=>	1120	1121
+	C4H7O:1	-->	C2H3CHO:1	
+	C2H3CHO:1	-->	C4H7O:1	
+	C4H7O:1	-->	CH3:1	
+	CH3:1	-->	C4H7O:1	
+
+561:	C4H6<=>C2H3+C2H3
+<=>	1122	1123
+	C4H6:1	-->	C2H3:2	
+	C2H3:2	-->	C4H6:1	
+
+562:	C4H6+OH<=>C2H5+CH2CO
+<=>	1124	1125
+	C4H6:1	-->	C2H5:1	
+	C2H5:1	-->	C4H6:1	
+	C4H6:1	-->	CH2CO:1	
+	CH2CO:1	-->	C4H6:1	
+
+	OH:1	-->	C2H5:1	
+	C2H5:1	-->	OH:1	
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+
+563:	C4H6+OH<=>CH2O+C3H5-A
+<=>	1126	1127
+	C4H6:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C4H6:1	
+	C4H6:1	-->	CH2O:1	
+	CH2O:1	-->	C4H6:1	
+
+	OH:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+
+564:	C4H6+OH<=>C2H3+CH3CHO
+<=>	1128	1129
+	C4H6:1	-->	C2H3:1	
+	C2H3:1	-->	C4H6:1	
+	C4H6:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C4H6:1	
+
+	OH:1	-->	C2H3:1	
+	C2H3:1	-->	OH:1	
+	OH:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+
+565:	C4H6+O<=>C2H4+CH2CO
+<=>	1130	1131
+	C4H6:1	-->	C2H4:1	
+	C2H4:1	-->	C4H6:1	
+	C4H6:1	-->	CH2CO:1	
+	CH2CO:1	-->	C4H6:1	
+
+	O:1	-->	C2H4:1	
+	C2H4:1	-->	O:1	
+	O:1	-->	CH2CO:1	
+	CH2CO:1	-->	O:1	
+
+566:	C4H6+O<=>CH2O+C3H4-A
+<=>	1132	1133
+	C4H6:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	C4H6:1	
+	C4H6:1	-->	CH2O:1	
+	CH2O:1	-->	C4H6:1	
+
+	O:1	-->	C3H4-A:1	
+	C3H4-A:1	-->	O:1	
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+
+567:	C2H3+C2H4<=>C4H6+H
+<=>	1134	1135
+	C2H3:1	-->	C4H6:1	
+	C4H6:1	-->	C2H3:1	
+	C2H3:1	-->	H:1	
+	H:1	-->	C2H3:1	
+
+	C2H4:1	-->	C4H6:1	
+	C4H6:1	-->	C2H4:1	
+	C2H4:1	-->	H:1	
+	H:1	-->	C2H4:1	
+
+568:	PC4H9O2<=>PC4H9+O2
+<=>	1136	1137
+	PC4H9O2:1	-->	O2:1	
+	O2:1	-->	PC4H9O2:1	
+	PC4H9O2:1	-->	PC4H9:1	
+	PC4H9:1	-->	PC4H9O2:1	
+
+569:	PC4H9O2<=>C4H8OOH1-3
+<=>	1138	1139
+	PC4H9O2:1	-->	C4H8OOH1-3:1	
+	C4H8OOH1-3:1	-->	PC4H9O2:1	
+
+570:	C4H8OOH1-3<=>OH+CH2O+C3H6
+<=>	1140	1141
+	C4H8OOH1-3:1	-->	C3H6:1	
+	C3H6:1	-->	C4H8OOH1-3:1	
+	C4H8OOH1-3:1	-->	CH2O:1	
+	CH2O:1	-->	C4H8OOH1-3:1	
+	C4H8OOH1-3:1	-->	OH:1	
+	OH:1	-->	C4H8OOH1-3:1	
+
+571:	C4H8OOH1-3O2<=>C4H8OOH1-3+O2
+<=>	1142	1143
+	C4H8OOH1-3O2:1	-->	C4H8OOH1-3:1	
+	C4H8OOH1-3:1	-->	C4H8OOH1-3O2:1	
+	C4H8OOH1-3O2:1	-->	O2:1	
+	O2:1	-->	C4H8OOH1-3O2:1	
+
+572:	C4H8OOH1-3O2<=>NC4KET13+OH
+<=>	1144	1145
+	C4H8OOH1-3O2:1	-->	NC4KET13:1	
+	NC4KET13:1	-->	C4H8OOH1-3O2:1	
+	C4H8OOH1-3O2:1	-->	OH:1	
+	OH:1	-->	C4H8OOH1-3O2:1	
+
+573:	NC4KET13<=>CH3CHO+CH2CHO+OH
+<=>	1146	1147
+	NC4KET13:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	NC4KET13:1	
+	NC4KET13:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	NC4KET13:1	
+	NC4KET13:1	-->	OH:1	
+	OH:1	-->	NC4KET13:1	
+
+574:	CH2CH2COCH3<=>C2H4+CH3CO
+<=>	1148	1149
+	CH2CH2COCH3:1	-->	C2H4:1	
+	C2H4:1	-->	CH2CH2COCH3:1	
+	CH2CH2COCH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH2CH2COCH3:1	
+
+575:	C2H5COCH2<=>CH2CO+C2H5
+<=>	1150	1151
+	C2H5COCH2:1	-->	C2H5:1	
+	C2H5:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H5COCH2:1	
+
+576:	CH3CHCOCH3<=>C2H3COCH3+H
+<=>	1152	1153
+	CH3CHCOCH3:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3CHCOCH3:1	
+	CH3CHCOCH3:1	-->	H:1	
+	H:1	-->	CH3CHCOCH3:1	
+
+577:	CH3CHCOCH3<=>CH3CHCO+CH3
+<=>	1154	1155
+	CH3CHCOCH3:1	-->	CH3:1	
+	CH3:1	-->	CH3CHCOCH3:1	
+	CH3CHCOCH3:1	-->	CH3CHCO:1	
+	CH3CHCO:1	-->	CH3CHCOCH3:1	
+
+578:	NC3H7CHO+O2<=>NC3H7CO+HO2
+<=>	1156	1157
+	NC3H7CHO:1	-->	HO2:1	
+	HO2:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	O2:1	
+
+579:	NC3H7CHO+OH<=>NC3H7CO+H2O
+<=>	1158	1159
+	NC3H7CHO:1	-->	H2O:1	
+	H2O:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	OH:1	
+
+580:	NC3H7CHO+H<=>NC3H7CO+H2
+<=>	1160	1161
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	H:1	
+
+	NC3H7CHO:1	-->	H2:1	
+	H2:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+581:	NC3H7CHO+O<=>NC3H7CO+OH
+<=>	1162	1163
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	OH:1	
+	OH:1	-->	NC3H7CHO:1	
+
+	O:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+582:	NC3H7CHO+HO2<=>NC3H7CO+H2O2
+<=>	1164	1165
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	HO2:1	
+
+	NC3H7CHO:1	-->	H2O2:1	
+	H2O2:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+583:	NC3H7CHO+CH3<=>NC3H7CO+CH4
+<=>	1166	1167
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	CH3:1	
+
+	NC3H7CHO:1	-->	CH4:1	
+	CH4:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+584:	NC3H7CHO+CH3O<=>NC3H7CO+CH3OH
+<=>	1168	1169
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	CH3O:1	
+
+	NC3H7CHO:1	-->	CH3OH:1	
+	CH3OH:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+585:	NC3H7CHO+CH3O2<=>NC3H7CO+CH3OOH
+<=>	1170	1171
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	CH3O2:1	
+
+	NC3H7CHO:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7CHO:1	
+
+586:	NC3H7CO<=>NC3H7+CO
+<=>	1172	1173
+	NC3H7CO:1	-->	CO:1	
+	CO:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	NC3H7:1	
+	NC3H7:1	-->	NC3H7CO:1	
+
+587:	C2H3COCH3+OH<=>CH3CHO+CH3CO
+<=>	1174	1175
+	C2H3COCH3:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	C2H3COCH3:1	
+
+	OH:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+	OH:1	-->	CH3CO:1	
+	CH3CO:1	-->	OH:1	
+
+588:	C2H3COCH3+OH<=>CH2CO+C2H3+H2O
+<=>	1176	1177
+	C2H3COCH3:1	-->	C2H3:1	
+	C2H3:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	H2O:1	
+	H2O:1	-->	C2H3COCH3:1	
+
+	OH:1	-->	C2H3:1	
+	C2H3:1	-->	OH:1	
+	OH:1	-->	CH2CO:1	
+	CH2CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+589:	C2H3COCH3+HO2<=>CH2CHO+CH3CO+OH
+<=>	1178	1179
+	C2H3COCH3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	OH:1	
+	OH:1	-->	C2H3COCH3:1	
+
+	HO2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HO2:1	
+	HO2:1	-->	CH3CO:1	
+	CH3CO:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+590:	C2H3COCH3+HO2<=>CH2CO+C2H3+H2O2
+<=>	1180	1181
+	C2H3COCH3:1	-->	C2H3:1	
+	C2H3:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	H2O2:1	
+	H2O2:1	-->	C2H3COCH3:1	
+
+	HO2:1	-->	C2H3:1	
+	C2H3:1	-->	HO2:1	
+	HO2:1	-->	CH2CO:1	
+	CH2CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+591:	C2H3COCH3+CH3O2<=>CH2CHO+CH3CO+CH3O
+<=>	1182	1183
+	C2H3COCH3:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3CO:1	
+	CH3CO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3O:1	
+	CH3O:1	-->	C2H3COCH3:1	
+
+	CH3O2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3CO:1	
+	CH3CO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+592:	C2H3COCH3+CH3O2<=>CH2CO+C2H3+CH3OOH
+<=>	1184	1185
+	C2H3COCH3:1	-->	C2H3:1	
+	C2H3:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH2CO:1	
+	CH2CO:1	-->	C2H3COCH3:1	
+	C2H3COCH3:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C2H3COCH3:1	
+
+	CH3O2:1	-->	C2H3:1	
+	C2H3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+593:	H+MB3J=MB
+=	1186	1187
+	H:1	-->	MB:1	
+	MB:1	-->	H:1	
+
+	MB3J:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+
+594:	H+MB2J=MB
+=	1188	1189
+	H:1	-->	MB:1	
+	MB:1	-->	H:1	
+
+	MB2J:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+
+595:	H+MBMJ=MB
+=	1190	1191
+	H:1	-->	MB:1	
+	MB:1	-->	H:1	
+
+	MBMJ:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+
+596:	MB=CH3OH+CH2CO+C2H4
+=	1192	1193
+	MB:1	-->	C2H4:1	
+	C2H4:1	-->	MB:1	
+	MB:1	-->	CH2CO:1	
+	CH2CO:1	-->	MB:1	
+	MB:1	-->	CH3OH:1	
+	CH3OH:1	-->	MB:1	
+
+597:	MB(+M)<=>ME2J+C2H5(+M)
+<=>	1194	1195
+	MB:1	-->	C2H5:1	
+	C2H5:1	-->	MB:1	
+	MB:1	-->	ME2J:1	
+	ME2J:1	-->	MB:1	
+
+598:	MB(+M)<=>CH3OCO+NC3H7(+M)
+<=>	1196	1197
+	MB:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	MB:1	
+	MB:1	-->	NC3H7:1	
+	NC3H7:1	-->	MB:1	
+
+599:	MB(+M)<=>NC3H7CO+CH3O(+M)
+<=>	1198	1199
+	MB:1	-->	CH3O:1	
+	CH3O:1	-->	MB:1	
+	MB:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	MB:1	
+
+600:	MB+C2H3<=>C2H4+MB3J
+<=>	1200	1201
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	MB3J:1	
+	MB3J:1	-->	C2H3:1	
+
+	MB:1	-->	C2H4:1	
+	C2H4:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+601:	MB+C2H5<=>C2H6+MB3J
+<=>	1202	1203
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	MB3J:1	
+	MB3J:1	-->	C2H5:1	
+
+	MB:1	-->	C2H6:1	
+	C2H6:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+602:	MB+CH3<=>CH4+MB3J
+<=>	1204	1205
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	MB3J:1	
+	MB3J:1	-->	CH3:1	
+
+	MB:1	-->	CH4:1	
+	CH4:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+603:	MB+CH3O<=>CH3OH+MB3J
+<=>	1206	1207
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	MB3J:1	
+	MB3J:1	-->	CH3O:1	
+
+	MB:1	-->	CH3OH:1	
+	CH3OH:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+604:	MB+CH3O2<=>CH3OOH+MB3J
+<=>	1208	1209
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	MB3J:1	
+	MB3J:1	-->	CH3O2:1	
+
+	MB:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+605:	MB+H<=>H2+MB3J
+<=>	1210	1211
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	MB3J:1	
+	MB3J:1	-->	H:1	
+
+	MB:1	-->	H2:1	
+	H2:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+606:	MB+HO2<=>H2O2+MB3J
+<=>	1212	1213
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	MB3J:1	
+	MB3J:1	-->	HO2:1	
+
+	MB:1	-->	H2O2:1	
+	H2O2:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+607:	MB+O<=>OH+MB3J
+<=>	1214	1215
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+	MB:1	-->	OH:1	
+	OH:1	-->	MB:1	
+
+	O:1	-->	MB3J:1	
+	MB3J:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+608:	MB+O2<=>HO2+MB3J
+<=>	1216	1217
+	MB:1	-->	HO2:1	
+	HO2:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	MB3J:1	
+	MB3J:1	-->	O2:1	
+
+609:	MB+OH<=>H2O+MB3J
+<=>	1218	1219
+	MB:1	-->	H2O:1	
+	H2O:1	-->	MB:1	
+	MB:1	-->	MB3J:1	
+	MB3J:1	-->	MB:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	MB3J:1	
+	MB3J:1	-->	OH:1	
+
+610:	MB+C2H3<=>C2H4+MB2J
+<=>	1220	1221
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	MB2J:1	
+	MB2J:1	-->	C2H3:1	
+
+	MB:1	-->	C2H4:1	
+	C2H4:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+611:	MB+C2H5<=>C2H6+MB2J
+<=>	1222	1223
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	MB2J:1	
+	MB2J:1	-->	C2H5:1	
+
+	MB:1	-->	C2H6:1	
+	C2H6:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+612:	MB+CH3<=>CH4+MB2J
+<=>	1224	1225
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	MB2J:1	
+	MB2J:1	-->	CH3:1	
+
+	MB:1	-->	CH4:1	
+	CH4:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+613:	MB+CH3O<=>CH3OH+MB2J
+<=>	1226	1227
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	MB2J:1	
+	MB2J:1	-->	CH3O:1	
+
+	MB:1	-->	CH3OH:1	
+	CH3OH:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+614:	MB+CH3O2<=>CH3OOH+MB2J
+<=>	1228	1229
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	MB2J:1	
+	MB2J:1	-->	CH3O2:1	
+
+	MB:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+615:	MB+H=H2+MB2J
+=	1230	1231
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	MB2J:1	
+	MB2J:1	-->	H:1	
+
+	MB:1	-->	H2:1	
+	H2:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+616:	MB+HO2<=>H2O2+MB2J
+<=>	1232	1233
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	MB2J:1	
+	MB2J:1	-->	HO2:1	
+
+	MB:1	-->	H2O2:1	
+	H2O2:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+617:	MB+O<=>OH+MB2J
+<=>	1234	1235
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+	MB:1	-->	OH:1	
+	OH:1	-->	MB:1	
+
+	O:1	-->	MB2J:1	
+	MB2J:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+618:	MB+O2<=>HO2+MB2J
+<=>	1236	1237
+	MB:1	-->	HO2:1	
+	HO2:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	MB2J:1	
+	MB2J:1	-->	O2:1	
+
+619:	MB+OH<=>H2O+MB2J
+<=>	1238	1239
+	MB:1	-->	H2O:1	
+	H2O:1	-->	MB:1	
+	MB:1	-->	MB2J:1	
+	MB2J:1	-->	MB:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	MB2J:1	
+	MB2J:1	-->	OH:1	
+
+620:	MB+C2H3<=>C2H4+MBMJ
+<=>	1240	1241
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	MBMJ:1	
+	MBMJ:1	-->	C2H3:1	
+
+	MB:1	-->	C2H4:1	
+	C2H4:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+621:	MB+C2H5<=>C2H6+MBMJ
+<=>	1242	1243
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	MBMJ:1	
+	MBMJ:1	-->	C2H5:1	
+
+	MB:1	-->	C2H6:1	
+	C2H6:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+622:	MB+CH3<=>CH4+MBMJ
+<=>	1244	1245
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	MBMJ:1	
+	MBMJ:1	-->	CH3:1	
+
+	MB:1	-->	CH4:1	
+	CH4:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+623:	MB+CH3O<=>CH3OH+MBMJ
+<=>	1246	1247
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+	CH3O:1	-->	MBMJ:1	
+	MBMJ:1	-->	CH3O:1	
+
+	MB:1	-->	CH3OH:1	
+	CH3OH:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+624:	MB+CH3O2<=>CH3OOH+MBMJ
+<=>	1248	1249
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	MBMJ:1	
+	MBMJ:1	-->	CH3O2:1	
+
+	MB:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+625:	MB+H=H2+MBMJ
+=	1250	1251
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	MBMJ:1	
+	MBMJ:1	-->	H:1	
+
+	MB:1	-->	H2:1	
+	H2:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+626:	MB+HO2<=>H2O2+MBMJ
+<=>	1252	1253
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	MBMJ:1	
+	MBMJ:1	-->	HO2:1	
+
+	MB:1	-->	H2O2:1	
+	H2O2:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+627:	MB+O<=>OH+MBMJ
+<=>	1254	1255
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+	MB:1	-->	OH:1	
+	OH:1	-->	MB:1	
+
+	O:1	-->	MBMJ:1	
+	MBMJ:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+628:	MB+O2<=>HO2+MBMJ
+<=>	1256	1257
+	MB:1	-->	HO2:1	
+	HO2:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	MBMJ:1	
+	MBMJ:1	-->	O2:1	
+
+629:	MB+OH<=>H2O+MBMJ
+<=>	1258	1259
+	MB:1	-->	H2O:1	
+	H2O:1	-->	MB:1	
+	MB:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	MBMJ:1	
+	MBMJ:1	-->	OH:1	
+
+630:	MB2J<=>MB2D+H
+<=>	1260	1261
+	MB2J:1	-->	H:1	
+	H:1	-->	MB2J:1	
+	MB2J:1	-->	MB2D:1	
+	MB2D:1	-->	MB2J:1	
+
+631:	MB2J<=>MP2D+CH3
+<=>	1262	1263
+	MB2J:1	-->	CH3:1	
+	CH3:1	-->	MB2J:1	
+	MB2J:1	-->	MP2D:1	
+	MP2D:1	-->	MB2J:1	
+
+632:	MB3J<=>C3H6+CH3OCO
+<=>	1264	1265
+	MB3J:1	-->	C3H6:1	
+	C3H6:1	-->	MB3J:1	
+	MB3J:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	MB3J:1	
+
+633:	MB3J<=>MB2D+H
+<=>	1266	1267
+	MB3J:1	-->	H:1	
+	H:1	-->	MB3J:1	
+	MB3J:1	-->	MB2D:1	
+	MB2D:1	-->	MB3J:1	
+
+634:	ME2J<=>CH2CO+CH3O
+<=>	1268	1269
+	ME2J:1	-->	CH2CO:1	
+	CH2CO:1	-->	ME2J:1	
+	ME2J:1	-->	CH3O:1	
+	CH3O:1	-->	ME2J:1	
+
+635:	NC3H7CO<=>CH2CO+C2H5
+<=>	1270	1271
+	NC3H7CO:1	-->	C2H5:1	
+	C2H5:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	CH2CO:1	
+	CH2CO:1	-->	NC3H7CO:1	
+
+636:	MBMJ<=>NC3H7CO+CH2O
+<=>	1272	1273
+	MBMJ:1	-->	CH2O:1	
+	CH2O:1	-->	MBMJ:1	
+	MBMJ:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	MBMJ:1	
+
+637:	MB3J<=>MBMJ
+<=>	1274	1275
+	MB3J:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB3J:1	
+
+638:	MB3J<=>MB2J
+<=>	1276	1277
+	MB3J:1	-->	MB2J:1	
+	MB2J:1	-->	MB3J:1	
+
+639:	MB2J<=>MBMJ
+<=>	1278	1279
+	MB2J:1	-->	MBMJ:1	
+	MBMJ:1	-->	MB2J:1	
+
+640:	MB2D+O<=>ME2J+CH3CO
+<=>	1280	1281
+	MB2D:1	-->	CH3CO:1	
+	CH3CO:1	-->	MB2D:1	
+	MB2D:1	-->	ME2J:1	
+	ME2J:1	-->	MB2D:1	
+
+	O:1	-->	CH3CO:1	
+	CH3CO:1	-->	O:1	
+	O:1	-->	ME2J:1	
+	ME2J:1	-->	O:1	
+
+641:	MP2D+O<=>ME2J+HCO
+<=>	1282	1283
+	MP2D:1	-->	HCO:1	
+	HCO:1	-->	MP2D:1	
+	MP2D:1	-->	ME2J:1	
+	ME2J:1	-->	MP2D:1	
+
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+	O:1	-->	ME2J:1	
+	ME2J:1	-->	O:1	
+
+642:	MP2D+O<=>CH3OCO+CH2CHO
+<=>	1284	1285
+	MP2D:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	MP2D:1	
+	MP2D:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	MP2D:1	
+
+	O:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O:1	
+	O:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	O:1	
+
+643:	MP2D<=>C2H3+CH3OCO
+<=>	1286	1287
+	MP2D:1	-->	C2H3:1	
+	C2H3:1	-->	MP2D:1	
+	MP2D:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	MP2D:1	
+
+644:	HO2+MB2J<=>OH+MB2O
+<=>	1288	1289
+	HO2:1	-->	MB2O:1	
+	MB2O:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+	MB2J:1	-->	MB2O:1	
+	MB2O:1	-->	MB2J:1	
+	MB2J:1	-->	OH:1	
+	OH:1	-->	MB2J:1	
+
+645:	CH3O2+MB2J<=>CH3O+MB2O
+<=>	1290	1291
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	MB2O:1	
+	MB2O:1	-->	CH3O2:1	
+
+	MB2J:1	-->	CH3O:1	
+	CH3O:1	-->	MB2J:1	
+	MB2J:1	-->	MB2O:1	
+	MB2O:1	-->	MB2J:1	
+
+646:	C2H5O2+MB2J<=>C2H5O+MB2O
+<=>	1292	1293
+	C2H5O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	MB2O:1	
+	MB2O:1	-->	C2H5O2:1	
+
+	MB2J:1	-->	C2H5O:1	
+	C2H5O:1	-->	MB2J:1	
+	MB2J:1	-->	MB2O:1	
+	MB2O:1	-->	MB2J:1	
+
+647:	NC3H7O2+MB2J<=>NC3H7O+MB2O
+<=>	1294	1295
+	MB2J:1	-->	MB2O:1	
+	MB2O:1	-->	MB2J:1	
+	MB2J:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	MB2J:1	
+
+	NC3H7O2:1	-->	MB2O:1	
+	MB2O:1	-->	NC3H7O2:1	
+	NC3H7O2:1	-->	NC3H7O:1	
+	NC3H7O:1	-->	NC3H7O2:1	
+
+648:	MB2O<=>C2H5CHO+CH3OCO
+<=>	1296	1297
+	MB2O:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	MB2O:1	
+	MB2O:1	-->	CH3OCO:1	
+	CH3OCO:1	-->	MB2O:1	
+
+649:	MP2D+CH3<=>C2H3CO+CH2O+CH4
+<=>	1298	1299
+	CH3:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	CH3:1	
+	CH3:1	-->	CH2O:1	
+	CH2O:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH2O:1	
+	CH2O:1	-->	MP2D:1	
+	MP2D:1	-->	CH4:1	
+	CH4:1	-->	MP2D:1	
+
+650:	MP2D+H<=>C2H3CO+CH2O+H2
+<=>	1300	1301
+	H:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	H:1	
+	H:1	-->	CH2O:1	
+	CH2O:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH2O:1	
+	CH2O:1	-->	MP2D:1	
+	MP2D:1	-->	H2:1	
+	H2:1	-->	MP2D:1	
+
+651:	MP2D+O<=>C2H3CO+CH2O+OH
+<=>	1302	1303
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH2O:1	
+	CH2O:1	-->	MP2D:1	
+	MP2D:1	-->	OH:1	
+	OH:1	-->	MP2D:1	
+
+	O:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	O:1	
+	O:1	-->	CH2O:1	
+	CH2O:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+652:	MP2D+OH<=>C2H3CO+CH2O+H2O
+<=>	1304	1305
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH2O:1	
+	CH2O:1	-->	MP2D:1	
+	MP2D:1	-->	H2O:1	
+	H2O:1	-->	MP2D:1	
+
+	OH:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+653:	MP2D+HO2<=>C2H3CO+CH2O+H2O2
+<=>	1306	1307
+	HO2:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	HO2:1	
+	HO2:1	-->	CH2O:1	
+	CH2O:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH2O:1	
+	CH2O:1	-->	MP2D:1	
+	MP2D:1	-->	H2O2:1	
+	H2O2:1	-->	MP2D:1	
+
+654:	CH2COOH<=>CH2CO+OH
+<=>	1308	1309
+	CH2COOH:1	-->	CH2CO:1	
+	CH2CO:1	-->	CH2COOH:1	
+	CH2COOH:1	-->	OH:1	
+	OH:1	-->	CH2COOH:1	
+
+655:	MEMJ<=>CH3CO+CH2O
+<=>	1310	1311
+	MEMJ:1	-->	CH2O:1	
+	CH2O:1	-->	MEMJ:1	
+	MEMJ:1	-->	CH3CO:1	
+	CH3CO:1	-->	MEMJ:1	
+
+656:	ME2J<=>MEMJ
+<=>	1312	1313
+	ME2J:1	-->	MEMJ:1	
+	MEMJ:1	-->	ME2J:1	
+
+657:	MP2D+H<=>MP2DMJ+H2
+<=>	1314	1315
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+	H:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	H:1	
+
+	MP2D:1	-->	H2:1	
+	H2:1	-->	MP2D:1	
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+
+658:	MP2D+OH<=>MP2DMJ+H2O
+<=>	1316	1317
+	MP2D:1	-->	H2O:1	
+	H2O:1	-->	MP2D:1	
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	OH:1	
+
+659:	MP2D+CH3<=>MP2DMJ+CH4
+<=>	1318	1319
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+	CH3:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	CH3:1	
+
+	MP2D:1	-->	CH4:1	
+	CH4:1	-->	MP2D:1	
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+
+660:	MP2D+HO2<=>MP2DMJ+H2O2
+<=>	1320	1321
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	HO2:1	
+
+	MP2D:1	-->	H2O2:1	
+	H2O2:1	-->	MP2D:1	
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+
+661:	MP2D+O<=>MP2DMJ+OH
+<=>	1322	1323
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+	MP2D:1	-->	OH:1	
+	OH:1	-->	MP2D:1	
+
+	O:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+662:	MP2D+CH3O2<=>MP2DMJ+CH3OOH
+<=>	1324	1325
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+	CH3O2:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	CH3O2:1	
+
+	MP2D:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	MP2D:1	
+	MP2D:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	MP2D:1	
+
+663:	MP2D<=>C2H3CO+CH3O
+<=>	1326	1327
+	MP2D:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2D:1	
+	MP2D:1	-->	CH3O:1	
+	CH3O:1	-->	MP2D:1	
+
+664:	MP2DMJ<=>C2H3CO+CH2O
+<=>	1328	1329
+	MP2DMJ:1	-->	C2H3CO:1	
+	C2H3CO:1	-->	MP2DMJ:1	
+	MP2DMJ:1	-->	CH2O:1	
+	CH2O:1	-->	MP2DMJ:1	
+
+665:	MBMOO<=>MBMJ+O2
+<=>	1330	1331
+	MBMOO:1	-->	MBMJ:1	
+	MBMJ:1	-->	MBMOO:1	
+	MBMOO:1	-->	O2:1	
+	O2:1	-->	MBMOO:1	
+
+666:	MB3OO<=>MB3J+O2
+<=>	1332	1333
+	MB3OO:1	-->	MB3J:1	
+	MB3J:1	-->	MB3OO:1	
+	MB3OO:1	-->	O2:1	
+	O2:1	-->	MB3OO:1	
+
+667:	MB2OO<=>MB2J+O2
+<=>	1334	1335
+	MB2OO:1	-->	MB2J:1	
+	MB2J:1	-->	MB2OO:1	
+	MB2OO:1	-->	O2:1	
+	O2:1	-->	MB2OO:1	
+
+668:	C5H11-1<=>C2H4+NC3H7
+<=>	1336	1337
+	C5H11-1:1	-->	C2H4:1	
+	C2H4:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	NC3H7:1	
+	NC3H7:1	-->	C5H11-1:1	
+
+669:	C5H11-1<=>H+C5H10-1
+<=>	1338	1339
+	C5H11-1:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	H:1	
+	H:1	-->	C5H11-1:1	
+
+670:	C5H11-1<=>C5H11-2
+<=>	1340	1341
+	C5H11-1:1	-->	C5H11-2:1	
+	C5H11-2:1	-->	C5H11-1:1	
+
+671:	C5H11-2<=>C3H6+C2H5
+<=>	1342	1343
+	C5H11-2:1	-->	C2H5:1	
+	C2H5:1	-->	C5H11-2:1	
+	C5H11-2:1	-->	C3H6:1	
+	C3H6:1	-->	C5H11-2:1	
+
+672:	C5H11-2<=>C5H10-1+H
+<=>	1344	1345
+	C5H11-2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C5H11-2:1	
+	C5H11-2:1	-->	H:1	
+	H:1	-->	C5H11-2:1	
+
+673:	C5H10-1<=>C2H5+C3H5-A
+<=>	1346	1347
+	C5H10-1:1	-->	C2H5:1	
+	C2H5:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C5H10-1:1	
+
+674:	C5H10-1+H<=>C5H91-4+H2
+<=>	1348	1349
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	H2:1	
+	H2:1	-->	C5H10-1:1	
+
+	H:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+675:	C5H10-1+O<=>C5H91-4+OH
+<=>	1350	1351
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	OH:1	
+	OH:1	-->	C5H10-1:1	
+
+	O:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+676:	C5H10-1+OH<=>C5H91-4+H2O
+<=>	1352	1353
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	H2O:1	
+	H2O:1	-->	C5H10-1:1	
+
+	OH:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+677:	C5H10-1+CH3<=>C5H91-4+CH4
+<=>	1354	1355
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	CH4:1	
+	CH4:1	-->	C5H10-1:1	
+
+	CH3:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+678:	C5H10-1+O2<=>C5H91-4+HO2
+<=>	1356	1357
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	HO2:1	
+	HO2:1	-->	C5H10-1:1	
+
+	O2:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+679:	C5H10-1+HO2<=>C5H91-4+H2O2
+<=>	1358	1359
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	H2O2:1	
+	H2O2:1	-->	C5H10-1:1	
+
+	HO2:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+680:	C5H10-1+CH3O2<=>C5H91-4+CH3OOH
+<=>	1360	1361
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C5H10-1:1	
+
+	CH3O2:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+681:	C5H10-1+CH3O<=>C5H91-4+CH3OH
+<=>	1362	1363
+	C5H10-1:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	CH3OH:1	
+	CH3OH:1	-->	C5H10-1:1	
+
+	CH3O:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+682:	C5H91-4<=>C3H6+C2H3
+<=>	1364	1365
+	C5H91-4:1	-->	C2H3:1	
+	C2H3:1	-->	C5H91-4:1	
+	C5H91-4:1	-->	C3H6:1	
+	C3H6:1	-->	C5H91-4:1	
+
+683:	C5H11-1+O2<=>C5H10-1+HO2
+<=>	1366	1367
+	C5H11-1:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	HO2:1	
+	HO2:1	-->	C5H11-1:1	
+
+	O2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+684:	C5H11-2+O2<=>C5H10-1+HO2
+<=>	1368	1369
+	C5H11-2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C5H11-2:1	
+	C5H11-2:1	-->	HO2:1	
+	HO2:1	-->	C5H11-2:1	
+
+	O2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+685:	C5H11O2-1<=>C5H11-1+O2
+<=>	1370	1371
+	C5H11O2-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C5H11O2-1:1	
+	C5H11O2-1:1	-->	O2:1	
+	O2:1	-->	C5H11O2-1:1	
+
+686:	C5H11O2-1<=>C5H10-1+HO2
+<=>	1372	1373
+	C5H11O2-1:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C5H11O2-1:1	
+	C5H11O2-1:1	-->	HO2:1	
+	HO2:1	-->	C5H11O2-1:1	
+
+687:	C6H13-1+O2<=>C6H12-1+HO2
+<=>	1374	1375
+	C6H13-1:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	HO2:1	
+	HO2:1	-->	C6H13-1:1	
+
+	O2:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+688:	C6H13-1<=>C2H4+PC4H9
+<=>	1376	1377
+	C6H13-1:1	-->	C2H4:1	
+	C2H4:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	PC4H9:1	
+	PC4H9:1	-->	C6H13-1:1	
+
+689:	C6H13-1<=>C6H12-1+H
+<=>	1378	1379
+	C6H13-1:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	H:1	
+	H:1	-->	C6H13-1:1	
+
+690:	C6H12-1<=>NC3H7+C3H5-A
+<=>	1380	1381
+	C6H12-1:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	NC3H7:1	
+	NC3H7:1	-->	C6H12-1:1	
+
+691:	C6H12-1+OH<=>C5H11-1+CH2O
+<=>	1382	1383
+	C6H12-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	CH2O:1	
+	CH2O:1	-->	C6H12-1:1	
+
+	OH:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+
+692:	C6H12-1+O<=>C5H11-1+HCO
+<=>	1384	1385
+	C6H12-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	HCO:1	
+	HCO:1	-->	C6H12-1:1	
+
+	O:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	O:1	
+	O:1	-->	HCO:1	
+	HCO:1	-->	O:1	
+
+693:	C6H13O2-1<=>C6H13-1+O2
+<=>	1386	1387
+	C6H13O2-1:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	C6H13O2-1:1	
+	C6H13O2-1:1	-->	O2:1	
+	O2:1	-->	C6H13O2-1:1	
+
+694:	C6H13O2-1<=>C6H12-1+HO2
+<=>	1388	1389
+	C6H13O2-1:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C6H13O2-1:1	
+	C6H13O2-1:1	-->	HO2:1	
+	HO2:1	-->	C6H13O2-1:1	
+
+695:	NC3H7COCH2<=>NC3H7+CH2CO
+<=>	1390	1391
+	NC3H7COCH2:1	-->	CH2CO:1	
+	CH2CO:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	NC3H7:1	
+	NC3H7:1	-->	NC3H7COCH2:1	
+
+696:	NC7H16<=>H+C7H15-1
+<=>	1392	1393
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	H:1	
+	H:1	-->	NC7H16:1	
+
+697:	NC7H16<=>H+C7H15-2
+<=>	1394	1395
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	H:1	
+	H:1	-->	NC7H16:1	
+
+698:	NC7H16<=>H+C7H15-3
+<=>	1396	1397
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	H:1	
+	H:1	-->	NC7H16:1	
+
+699:	NC7H16<=>H+C7H15-4
+<=>	1398	1399
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	H:1	
+	H:1	-->	NC7H16:1	
+
+700:	NC7H16(+M)<=>C6H13-1+CH3(+M)
+<=>	1400	1401
+	NC7H16:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3:1	
+	CH3:1	-->	NC7H16:1	
+
+701:	NC7H16(+M)<=>C5H11-1+C2H5(+M)
+<=>	1402	1403
+	NC7H16:1	-->	C2H5:1	
+	C2H5:1	-->	NC7H16:1	
+	NC7H16:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	NC7H16:1	
+
+702:	NC7H16(+M)<=>PC4H9+NC3H7(+M)
+<=>	1404	1405
+	NC7H16:1	-->	NC3H7:1	
+	NC3H7:1	-->	NC7H16:1	
+	NC7H16:1	-->	PC4H9:1	
+	PC4H9:1	-->	NC7H16:1	
+
+703:	NC7H16+H<=>C7H15-1+H2
+<=>	1406	1407
+	H:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2:1	
+	H2:1	-->	NC7H16:1	
+
+704:	NC7H16+H<=>C7H15-2+H2
+<=>	1408	1409
+	H:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2:1	
+	H2:1	-->	NC7H16:1	
+
+705:	NC7H16+H<=>C7H15-3+H2
+<=>	1410	1411
+	H:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2:1	
+	H2:1	-->	NC7H16:1	
+
+706:	NC7H16+H<=>C7H15-4+H2
+<=>	1412	1413
+	H:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2:1	
+	H2:1	-->	NC7H16:1	
+
+707:	NC7H16+O<=>C7H15-1+OH
+<=>	1414	1415
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	OH:1	
+	OH:1	-->	NC7H16:1	
+
+	O:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+708:	NC7H16+O<=>C7H15-2+OH
+<=>	1416	1417
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	OH:1	
+	OH:1	-->	NC7H16:1	
+
+	O:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+709:	NC7H16+O<=>C7H15-3+OH
+<=>	1418	1419
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	OH:1	
+	OH:1	-->	NC7H16:1	
+
+	O:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+710:	NC7H16+O<=>C7H15-4+OH
+<=>	1420	1421
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	OH:1	
+	OH:1	-->	NC7H16:1	
+
+	O:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	O:1	
+	O:1	-->	OH:1	
+	OH:1	-->	O:1	
+
+711:	NC7H16+OH<=>C7H15-1+H2O
+<=>	1422	1423
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O:1	
+	H2O:1	-->	NC7H16:1	
+
+	OH:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+712:	NC7H16+OH<=>C7H15-2+H2O
+<=>	1424	1425
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O:1	
+	H2O:1	-->	NC7H16:1	
+
+	OH:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+713:	NC7H16+OH<=>C7H15-3+H2O
+<=>	1426	1427
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O:1	
+	H2O:1	-->	NC7H16:1	
+
+	OH:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+714:	NC7H16+OH<=>C7H15-4+H2O
+<=>	1428	1429
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O:1	
+	H2O:1	-->	NC7H16:1	
+
+	OH:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+715:	NC7H16+HO2<=>C7H15-1+H2O2
+<=>	1430	1431
+	HO2:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O2:1	
+	H2O2:1	-->	NC7H16:1	
+
+716:	NC7H16+HO2<=>C7H15-2+H2O2
+<=>	1432	1433
+	HO2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O2:1	
+	H2O2:1	-->	NC7H16:1	
+
+717:	NC7H16+HO2<=>C7H15-3+H2O2
+<=>	1434	1435
+	HO2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O2:1	
+	H2O2:1	-->	NC7H16:1	
+
+718:	NC7H16+HO2<=>C7H15-4+H2O2
+<=>	1436	1437
+	HO2:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	H2O2:1	
+	H2O2:1	-->	NC7H16:1	
+
+719:	NC7H16+CH3<=>C7H15-1+CH4
+<=>	1438	1439
+	CH3:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH4:1	
+	CH4:1	-->	NC7H16:1	
+
+720:	NC7H16+CH3<=>C7H15-2+CH4
+<=>	1440	1441
+	CH3:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH4:1	
+	CH4:1	-->	NC7H16:1	
+
+721:	NC7H16+CH3<=>C7H15-3+CH4
+<=>	1442	1443
+	CH3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH4:1	
+	CH4:1	-->	NC7H16:1	
+
+722:	NC7H16+CH3<=>C7H15-4+CH4
+<=>	1444	1445
+	CH3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH4:1	
+	CH4:1	-->	NC7H16:1	
+
+723:	NC7H16+O2<=>C7H15-1+HO2
+<=>	1446	1447
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	HO2:1	
+	HO2:1	-->	NC7H16:1	
+
+	O2:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+724:	NC7H16+O2<=>C7H15-2+HO2
+<=>	1448	1449
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	HO2:1	
+	HO2:1	-->	NC7H16:1	
+
+	O2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+725:	NC7H16+O2<=>C7H15-3+HO2
+<=>	1450	1451
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	HO2:1	
+	HO2:1	-->	NC7H16:1	
+
+	O2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+726:	NC7H16+O2<=>C7H15-4+HO2
+<=>	1452	1453
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	HO2:1	
+	HO2:1	-->	NC7H16:1	
+
+	O2:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+727:	NC7H16+C2H5<=>C7H15-1+C2H6
+<=>	1454	1455
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C2H5:1	
+
+	NC7H16:1	-->	C2H6:1	
+	C2H6:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+
+728:	NC7H16+C2H5<=>C7H15-2+C2H6
+<=>	1456	1457
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C2H5:1	
+
+	NC7H16:1	-->	C2H6:1	
+	C2H6:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+
+729:	NC7H16+C2H5<=>C7H15-3+C2H6
+<=>	1458	1459
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C2H5:1	
+
+	NC7H16:1	-->	C2H6:1	
+	C2H6:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+
+730:	NC7H16+C2H5<=>C7H15-4+C2H6
+<=>	1460	1461
+	C2H5:1	-->	C2H6:1	
+	C2H6:1	-->	C2H5:1	
+	C2H5:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C2H5:1	
+
+	NC7H16:1	-->	C2H6:1	
+	C2H6:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+
+731:	NC7H16+CH3O<=>C7H15-1+CH3OH
+<=>	1462	1463
+	CH3O:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OH:1	
+	CH3OH:1	-->	NC7H16:1	
+
+732:	NC7H16+CH3O<=>C7H15-2+CH3OH
+<=>	1464	1465
+	CH3O:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OH:1	
+	CH3OH:1	-->	NC7H16:1	
+
+733:	NC7H16+CH3O<=>C7H15-3+CH3OH
+<=>	1466	1467
+	CH3O:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OH:1	
+	CH3OH:1	-->	NC7H16:1	
+
+734:	NC7H16+CH3O<=>C7H15-4+CH3OH
+<=>	1468	1469
+	CH3O:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OH:1	
+	CH3OH:1	-->	NC7H16:1	
+
+735:	NC7H16+C2H3<=>C7H15-1+C2H4
+<=>	1470	1471
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C2H3:1	
+
+	NC7H16:1	-->	C2H4:1	
+	C2H4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+
+736:	NC7H16+C2H3<=>C7H15-2+C2H4
+<=>	1472	1473
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C2H3:1	
+
+	NC7H16:1	-->	C2H4:1	
+	C2H4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+
+737:	NC7H16+C2H3<=>C7H15-3+C2H4
+<=>	1474	1475
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C2H3:1	
+
+	NC7H16:1	-->	C2H4:1	
+	C2H4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+
+738:	NC7H16+C2H3<=>C7H15-4+C2H4
+<=>	1476	1477
+	C2H3:1	-->	C2H4:1	
+	C2H4:1	-->	C2H3:1	
+	C2H3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C2H3:1	
+
+	NC7H16:1	-->	C2H4:1	
+	C2H4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+
+739:	NC7H16+CH3O2<=>C7H15-1+CH3OOH
+<=>	1478	1479
+	CH3O2:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	NC7H16:1	
+
+740:	NC7H16+CH3O2<=>C7H15-2+CH3OOH
+<=>	1480	1481
+	CH3O2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	NC7H16:1	
+
+741:	NC7H16+CH3O2<=>C7H15-3+CH3OOH
+<=>	1482	1483
+	CH3O2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	NC7H16:1	
+
+742:	NC7H16+CH3O2<=>C7H15-4+CH3OOH
+<=>	1484	1485
+	CH3O2:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	NC7H16:1	
+
+743:	NC7H16+C7H15O2-1<=>C7H15-1+C7H15O2H-1
+<=>	1486	1487
+	C7H15O2-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	NC7H16:1	
+
+744:	NC7H16+C7H15O2-3<=>C7H15-1+C7H15O2H-3
+<=>	1488	1489
+	C7H15O2-3:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+
+	NC7H16:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	NC7H16:1	
+
+745:	NC7H16+C7H15O2-1<=>C7H15-2+C7H15O2H-1
+<=>	1490	1491
+	C7H15O2-1:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	NC7H16:1	
+
+746:	NC7H16+C7H15O2-3<=>C7H15-2+C7H15O2H-3
+<=>	1492	1493
+	C7H15O2-3:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	NC7H16:1	
+
+747:	NC7H16+C7H15O2-1<=>C7H15-3+C7H15O2H-1
+<=>	1494	1495
+	C7H15O2-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	NC7H16:1	
+
+748:	NC7H16+C7H15O2-3<=>C7H15-3+C7H15O2H-3
+<=>	1496	1497
+	C7H15O2-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	NC7H16:1	
+
+749:	NC7H16+C7H15O2-1<=>C7H15-4+C7H15O2H-1
+<=>	1498	1499
+	C7H15O2-1:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	NC7H16:1	
+
+750:	NC7H16+C7H15O2-3<=>C7H15-4+C7H15O2H-3
+<=>	1500	1501
+	C7H15O2-3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	NC7H16:1	
+
+751:	NC7H16+C7H15-1<=>C7H15-2+NC7H16
+<=>	1502	1503
+	C7H15-1:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-1:1	
+
+	NC7H16:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+752:	NC7H16+C7H15-1<=>C7H15-3+NC7H16
+<=>	1504	1505
+	C7H15-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-1:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+753:	NC7H16+C7H15-1<=>C7H15-4+NC7H16
+<=>	1506	1507
+	C7H15-1:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-1:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+754:	NC7H16+C7H15-2<=>C7H15-3+NC7H16
+<=>	1508	1509
+	C7H15-2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-2:1	
+
+	NC7H16:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+755:	NC7H16+C7H15-2<=>C7H15-4+NC7H16
+<=>	1510	1511
+	C7H15-2:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-2:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+756:	NC7H16+C7H15-3<=>C7H15-4+NC7H16
+<=>	1512	1513
+	C7H15-3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC7H16:1	
+	NC7H16:1	-->	C7H15-3:1	
+
+	NC7H16:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+	NC7H16:1	-->	NC7H16:1	
+
+757:	C7H15-1<=>C5H11-1+C2H4
+<=>	1514	1515
+	C7H15-1:1	-->	C2H4:1	
+	C2H4:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C7H15-1:1	
+
+758:	C7H15-1<=>C7H14-1+H
+<=>	1516	1517
+	C7H15-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	H:1	
+	H:1	-->	C7H15-1:1	
+
+759:	C7H15-2<=>PC4H9+C3H6
+<=>	1518	1519
+	C7H15-2:1	-->	C3H6:1	
+	C3H6:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	PC4H9:1	
+	PC4H9:1	-->	C7H15-2:1	
+
+760:	C7H15-2<=>C7H14-1+H
+<=>	1520	1521
+	C7H15-2:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	H:1	
+	H:1	-->	C7H15-2:1	
+
+761:	C7H15-2<=>C7H14-2+H
+<=>	1522	1523
+	C7H15-2:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	H:1	
+	H:1	-->	C7H15-2:1	
+
+762:	C7H15-3<=>C4H8-1+NC3H7
+<=>	1524	1525
+	C7H15-3:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	NC3H7:1	
+	NC3H7:1	-->	C7H15-3:1	
+
+763:	C7H15-3<=>C6H12-1+CH3
+<=>	1526	1527
+	C7H15-3:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	CH3:1	
+	CH3:1	-->	C7H15-3:1	
+
+764:	C7H15-3<=>C7H14-2+H
+<=>	1528	1529
+	C7H15-3:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	H:1	
+	H:1	-->	C7H15-3:1	
+
+765:	C7H15-3<=>C7H14-3+H
+<=>	1530	1531
+	C7H15-3:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	H:1	
+	H:1	-->	C7H15-3:1	
+
+766:	C7H15-4<=>C2H5+C5H10-1
+<=>	1532	1533
+	C7H15-4:1	-->	C2H5:1	
+	C2H5:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H15-4:1	
+
+767:	C7H15-4<=>C7H14-3+H
+<=>	1534	1535
+	C7H15-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	H:1	
+	H:1	-->	C7H15-4:1	
+
+768:	C7H15-1+O2<=>C7H14-1+HO2
+<=>	1536	1537
+	C7H15-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	HO2:1	
+	HO2:1	-->	C7H15-1:1	
+
+	O2:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+769:	C7H15-2+O2<=>C7H14-1+HO2
+<=>	1538	1539
+	C7H15-2:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	HO2:1	
+	HO2:1	-->	C7H15-2:1	
+
+	O2:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+770:	C7H15-2+O2<=>C7H14-2+HO2
+<=>	1540	1541
+	C7H15-2:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	HO2:1	
+	HO2:1	-->	C7H15-2:1	
+
+	O2:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+771:	C7H15-3+O2<=>C7H14-2+HO2
+<=>	1542	1543
+	C7H15-3:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	HO2:1	
+	HO2:1	-->	C7H15-3:1	
+
+	O2:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+772:	C7H15-3+O2<=>C7H14-3+HO2
+<=>	1544	1545
+	C7H15-3:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	HO2:1	
+	HO2:1	-->	C7H15-3:1	
+
+	O2:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+773:	C7H15-4+O2<=>C7H14-3+HO2
+<=>	1546	1547
+	C7H15-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	HO2:1	
+	HO2:1	-->	C7H15-4:1	
+
+	O2:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+
+774:	C7H15-1<=>C7H15-3
+<=>	1548	1549
+	C7H15-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15-1:1	
+
+775:	C7H15-1<=>C7H15-4
+<=>	1550	1551
+	C7H15-1:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15-1:1	
+
+776:	C7H15-2<=>C7H15-3
+<=>	1552	1553
+	C7H15-2:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15-2:1	
+
+777:	C7H15-1<=>C7H15-2
+<=>	1554	1555
+	C7H15-1:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C7H15-1:1	
+
+778:	C7H14-2+H<=>C7H132-4+H2
+<=>	1556	1557
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	H2:1	
+	H2:1	-->	C7H14-2:1	
+
+	H:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+779:	C7H14-2+OH<=>C7H132-4+H2O
+<=>	1558	1559
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	H2O:1	
+	H2O:1	-->	C7H14-2:1	
+
+	OH:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+780:	C7H14-2+CH3<=>C7H132-4+CH4
+<=>	1560	1561
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	CH4:1	
+	CH4:1	-->	C7H14-2:1	
+
+	CH3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+781:	C7H14-2+HO2<=>C7H132-4+H2O2
+<=>	1562	1563
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14-2:1	
+
+	HO2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+782:	C7H14-2+CH3O2<=>C7H132-4+CH3OOH
+<=>	1564	1565
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C7H14-2:1	
+
+	CH3O2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+783:	C7H14-2+CH3O<=>C7H132-4+CH3OH
+<=>	1566	1567
+	C7H14-2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	CH3OH:1	
+	CH3OH:1	-->	C7H14-2:1	
+
+	CH3O:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+784:	C7H14-3+H<=>C7H132-4+H2
+<=>	1568	1569
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	H2:1	
+	H2:1	-->	C7H14-3:1	
+
+	H:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	H:1	
+	H:1	-->	H2:1	
+	H2:1	-->	H:1	
+
+785:	C7H14-3+OH<=>C7H132-4+H2O
+<=>	1570	1571
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	H2O:1	
+	H2O:1	-->	C7H14-3:1	
+
+	OH:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+786:	C7H14-3+CH3<=>C7H132-4+CH4
+<=>	1572	1573
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	CH4:1	
+	CH4:1	-->	C7H14-3:1	
+
+	CH3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3:1	
+	CH3:1	-->	CH4:1	
+	CH4:1	-->	CH3:1	
+
+787:	C7H14-3+HO2<=>C7H132-4+H2O2
+<=>	1574	1575
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14-3:1	
+
+	HO2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+788:	C7H14-3+CH3O2<=>C7H132-4+CH3OOH
+<=>	1576	1577
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	C7H14-3:1	
+
+	CH3O2:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3OOH:1	
+	CH3OOH:1	-->	CH3O2:1	
+
+789:	C7H14-3+CH3O<=>C7H132-4+CH3OH
+<=>	1578	1579
+	C7H14-3:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	CH3OH:1	
+	CH3OH:1	-->	C7H14-3:1	
+
+	CH3O:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3O:1	
+	CH3O:1	-->	CH3OH:1	
+	CH3OH:1	-->	CH3O:1	
+
+790:	C7H132-4+HO2<=>C7H13O2-4+OH
+<=>	1580	1581
+	C7H132-4:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	OH:1	
+	OH:1	-->	C7H132-4:1	
+
+	HO2:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+791:	C7H132-4+CH3O2<=>C7H13O2-4+CH3O
+<=>	1582	1583
+	C7H132-4:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	CH3O:1	
+	CH3O:1	-->	C7H132-4:1	
+
+	CH3O2:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+792:	C7H132-4+C2H5O2<=>C7H13O2-4+C2H5O
+<=>	1584	1585
+	C2H5O2:1	-->	C2H5O:1	
+	C2H5O:1	-->	C2H5O2:1	
+	C2H5O2:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	C2H5O2:1	
+
+	C7H132-4:1	-->	C2H5O:1	
+	C2H5O:1	-->	C7H132-4:1	
+	C7H132-4:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	C7H132-4:1	
+
+793:	C7H13O2-4<=>NC3H7CHO+C3H5-S
+<=>	1586	1587
+	C7H13O2-4:1	-->	C3H5-S:1	
+	C3H5-S:1	-->	C7H13O2-4:1	
+	C7H13O2-4:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	C7H13O2-4:1	
+
+794:	C7H14-1+OH<=>CH2O+C6H13-1
+<=>	1588	1589
+	C7H14-1:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	CH2O:1	
+	CH2O:1	-->	C7H14-1:1	
+
+	OH:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	OH:1	
+	OH:1	-->	CH2O:1	
+	CH2O:1	-->	OH:1	
+
+795:	C7H14-1+OH<=>CH3CHO+C5H11-1
+<=>	1590	1591
+	C7H14-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C7H14-1:1	
+
+	OH:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	OH:1	
+	OH:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+
+796:	C7H14-2+OH<=>CH3CHO+C5H11-1
+<=>	1592	1593
+	C7H14-2:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C7H14-2:1	
+
+	OH:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	OH:1	
+	OH:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	OH:1	
+
+797:	C7H14-2+OH<=>C2H5CHO+PC4H9
+<=>	1594	1595
+	C7H14-2:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	PC4H9:1	
+	PC4H9:1	-->	C7H14-2:1	
+
+	OH:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	OH:1	
+	OH:1	-->	PC4H9:1	
+	PC4H9:1	-->	OH:1	
+
+798:	C7H14-3+OH<=>C2H5CHO+PC4H9
+<=>	1596	1597
+	C7H14-3:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	PC4H9:1	
+	PC4H9:1	-->	C7H14-3:1	
+
+	OH:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	OH:1	
+	OH:1	-->	PC4H9:1	
+	PC4H9:1	-->	OH:1	
+
+799:	C7H14-1+O<=>CH2CHO+C5H11-1
+<=>	1598	1599
+	C7H14-1:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C7H14-1:1	
+
+	O:1	-->	C5H11-1:1	
+	C5H11-1:1	-->	O:1	
+	O:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	O:1	
+
+800:	C7H14-2+O<=>CH3CHO+C5H10-1
+<=>	1600	1601
+	C7H14-2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C7H14-2:1	
+
+	O:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	O:1	
+	O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O:1	
+
+801:	C7H14-3+O<=>CH3CHO+C5H10-1
+<=>	1602	1603
+	C7H14-3:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C7H14-3:1	
+
+	O:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	O:1	
+	O:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	O:1	
+
+802:	C7H14-1<=>PC4H9+C3H5-A
+<=>	1604	1605
+	C7H14-1:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	PC4H9:1	
+	PC4H9:1	-->	C7H14-1:1	
+
+803:	C7H14-2<=>C4H71-3+NC3H7
+<=>	1606	1607
+	C7H14-2:1	-->	C4H71-3:1	
+	C4H71-3:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	NC3H7:1	
+	NC3H7:1	-->	C7H14-2:1	
+
+804:	C7H15O2-1<=>C7H15-1+O2
+<=>	1608	1609
+	C7H15O2-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	O2:1	
+	O2:1	-->	C7H15O2-1:1	
+
+805:	C7H15O2-2<=>C7H15-2+O2
+<=>	1610	1611
+	C7H15O2-2:1	-->	C7H15-2:1	
+	C7H15-2:1	-->	C7H15O2-2:1	
+	C7H15O2-2:1	-->	O2:1	
+	O2:1	-->	C7H15O2-2:1	
+
+806:	C7H15O2-3<=>C7H15-3+O2
+<=>	1612	1613
+	C7H15O2-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	O2:1	
+	O2:1	-->	C7H15O2-3:1	
+
+807:	C7H15O2-4<=>C7H15-4+O2
+<=>	1614	1615
+	C7H15O2-4:1	-->	C7H15-4:1	
+	C7H15-4:1	-->	C7H15O2-4:1	
+	C7H15O2-4:1	-->	O2:1	
+	O2:1	-->	C7H15O2-4:1	
+
+808:	C7H15-1+C7H15O2-1<=>C7H15O-1+C7H15O-1
+<=>	1616	1617
+	C7H15-1:1	-->	C7H15O-1:2	
+	C7H15O-1:2	-->	C7H15-1:1	
+
+	C7H15O2-1:1	-->	C7H15O-1:2	
+	C7H15O-1:2	-->	C7H15O2-1:1	
+
+809:	C7H15-1+C7H15O2-3<=>C7H15O-1+C7H15O-3
+<=>	1618	1619
+	C7H15-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15-1:1	
+
+	C7H15O2-3:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2-3:1	
+
+810:	C7H15-3+C7H15O2-1<=>C7H15O-3+C7H15O-1
+<=>	1620	1621
+	C7H15-3:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15-3:1	
+
+	C7H15O2-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2-1:1	
+
+811:	C7H15-3+C7H15O2-3<=>C7H15O-3+C7H15O-3
+<=>	1622	1623
+	C7H15-3:1	-->	C7H15O-3:2	
+	C7H15O-3:2	-->	C7H15-3:1	
+
+	C7H15O2-3:1	-->	C7H15O-3:2	
+	C7H15O-3:2	-->	C7H15O2-3:1	
+
+812:	C7H15-1+HO2<=>C7H15O-1+OH
+<=>	1624	1625
+	C7H15-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	OH:1	
+	OH:1	-->	C7H15-1:1	
+
+	HO2:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+813:	C7H15-3+HO2<=>C7H15O-3+OH
+<=>	1626	1627
+	C7H15-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	OH:1	
+	OH:1	-->	C7H15-3:1	
+
+	HO2:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	HO2:1	
+	HO2:1	-->	OH:1	
+	OH:1	-->	HO2:1	
+
+814:	C7H15-1+CH3O2<=>C7H15O-1+CH3O
+<=>	1628	1629
+	C7H15-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15-1:1	
+	C7H15-1:1	-->	CH3O:1	
+	CH3O:1	-->	C7H15-1:1	
+
+	CH3O2:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+815:	C7H15-3+CH3O2<=>C7H15O-3+CH3O
+<=>	1630	1631
+	C7H15-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15-3:1	
+	C7H15-3:1	-->	CH3O:1	
+	CH3O:1	-->	C7H15-3:1	
+
+	CH3O2:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+
+816:	C7H15O2-1<=>C7H14-1+HO2
+<=>	1632	1633
+	C7H15O2-1:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-1:1	
+
+817:	C7H15O2-2<=>C7H14-1+HO2
+<=>	1634	1635
+	C7H15O2-2:1	-->	C7H14-1:1	
+	C7H14-1:1	-->	C7H15O2-2:1	
+	C7H15O2-2:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-2:1	
+
+818:	C7H15O2-2<=>C7H14-2+HO2
+<=>	1636	1637
+	C7H15O2-2:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15O2-2:1	
+	C7H15O2-2:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-2:1	
+
+819:	C7H15O2-3<=>C7H14-2+HO2
+<=>	1638	1639
+	C7H15O2-3:1	-->	C7H14-2:1	
+	C7H14-2:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-3:1	
+
+820:	C7H15O2-3<=>C7H14-3+HO2
+<=>	1640	1641
+	C7H15O2-3:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-3:1	
+
+821:	C7H15O2-4<=>C7H14-3+HO2
+<=>	1642	1643
+	C7H15O2-4:1	-->	C7H14-3:1	
+	C7H14-3:1	-->	C7H15O2-4:1	
+	C7H15O2-4:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-4:1	
+
+822:	C7H15O2-1<=>C7H14OOH1-3
+<=>	1644	1645
+	C7H15O2-1:1	-->	C7H14OOH1-3:1	
+	C7H14OOH1-3:1	-->	C7H15O2-1:1	
+
+823:	C7H15O2-1<=>C7H14OOH1-4
+<=>	1646	1647
+	C7H15O2-1:1	-->	C7H14OOH1-4:1	
+	C7H14OOH1-4:1	-->	C7H15O2-1:1	
+
+824:	C7H15O2-2<=>C7H14OOH2-3
+<=>	1648	1649
+	C7H15O2-2:1	-->	C7H14OOH2-3:1	
+	C7H14OOH2-3:1	-->	C7H15O2-2:1	
+
+825:	C7H15O2-2<=>C7H14OOH2-4
+<=>	1650	1651
+	C7H15O2-2:1	-->	C7H14OOH2-4:1	
+	C7H14OOH2-4:1	-->	C7H15O2-2:1	
+
+826:	C7H15O2-2<=>C7H14OOH2-5
+<=>	1652	1653
+	C7H15O2-2:1	-->	C7H14OOH2-5:1	
+	C7H14OOH2-5:1	-->	C7H15O2-2:1	
+
+827:	C7H15O2-3<=>C7H14OOH3-1
+<=>	1654	1655
+	C7H15O2-3:1	-->	C7H14OOH3-1:1	
+	C7H14OOH3-1:1	-->	C7H15O2-3:1	
+
+828:	C7H15O2-3<=>C7H14OOH3-5
+<=>	1656	1657
+	C7H15O2-3:1	-->	C7H14OOH3-5:1	
+	C7H14OOH3-5:1	-->	C7H15O2-3:1	
+
+829:	C7H15O2-3<=>C7H14OOH3-6
+<=>	1658	1659
+	C7H15O2-3:1	-->	C7H14OOH3-6:1	
+	C7H14OOH3-6:1	-->	C7H15O2-3:1	
+
+830:	C7H15O2-4<=>C7H14OOH4-2
+<=>	1660	1661
+	C7H15O2-4:1	-->	C7H14OOH4-2:1	
+	C7H14OOH4-2:1	-->	C7H15O2-4:1	
+
+831:	C7H15O2-1+HO2<=>C7H15O2H-1+O2
+<=>	1662	1663
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	O2:1	
+	O2:1	-->	C7H15O2-1:1	
+
+	HO2:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+832:	C7H15O2-3+HO2<=>C7H15O2H-3+O2
+<=>	1664	1665
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	O2:1	
+	O2:1	-->	C7H15O2-3:1	
+
+	HO2:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	HO2:1	
+	HO2:1	-->	O2:1	
+	O2:1	-->	HO2:1	
+
+833:	H2O2+C7H15O2-1<=>HO2+C7H15O2H-1
+<=>	1666	1667
+	C7H15O2-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-1:1	
+
+	H2O2:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+
+834:	H2O2+C7H15O2-3<=>HO2+C7H15O2H-3
+<=>	1668	1669
+	C7H15O2-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	HO2:1	
+	HO2:1	-->	C7H15O2-3:1	
+
+	H2O2:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+
+835:	C7H15O2-1+CH3O2<=>C7H15O-1+CH3O+O2
+<=>	1670	1671
+	C7H15O2-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	CH3O:1	
+	CH3O:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	O2:1	
+	O2:1	-->	C7H15O2-1:1	
+
+	CH3O2:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+836:	C7H15O2-3+CH3O2<=>C7H15O-3+CH3O+O2
+<=>	1672	1673
+	C7H15O2-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	CH3O:1	
+	CH3O:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	O2:1	
+	O2:1	-->	C7H15O2-3:1	
+
+	CH3O2:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	CH3O2:1	
+	CH3O2:1	-->	CH3O:1	
+	CH3O:1	-->	CH3O2:1	
+	CH3O2:1	-->	O2:1	
+	O2:1	-->	CH3O2:1	
+
+837:	C7H15O2-1+C7H15O2-1<=>O2+C7H15O-1+C7H15O-1
+<=>	1674	1675
+	C7H15O2-1:2	-->	C7H15O-1:2	
+	C7H15O-1:2	-->	C7H15O2-1:2	
+	C7H15O2-1:2	-->	O2:1	
+	O2:1	-->	C7H15O2-1:2	
+
+838:	C7H15O2-1+C7H15O2-3<=>C7H15O-1+C7H15O-3+O2
+<=>	1676	1677
+	C7H15O2-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2-1:1	
+	C7H15O2-1:1	-->	O2:1	
+	O2:1	-->	C7H15O2-1:1	
+
+	C7H15O2-3:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2-3:1	
+	C7H15O2-3:1	-->	O2:1	
+	O2:1	-->	C7H15O2-3:1	
+
+839:	C7H15O2-3+C7H15O2-3<=>O2+C7H15O-3+C7H15O-3
+<=>	1678	1679
+	C7H15O2-3:2	-->	C7H15O-3:2	
+	C7H15O-3:2	-->	C7H15O2-3:2	
+	C7H15O2-3:2	-->	O2:1	
+	O2:1	-->	C7H15O2-3:2	
+
+840:	C7H15O2H-1<=>C7H15O-1+OH
+<=>	1680	1681
+	C7H15O2H-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	C7H15O2H-1:1	
+	C7H15O2H-1:1	-->	OH:1	
+	OH:1	-->	C7H15O2H-1:1	
+
+841:	C7H15O2H-3<=>C7H15O-3+OH
+<=>	1682	1683
+	C7H15O2H-3:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	C7H15O2H-3:1	
+	C7H15O2H-3:1	-->	OH:1	
+	OH:1	-->	C7H15O2H-3:1	
+
+842:	C7H15O-1<=>CH2O+C6H13-1
+<=>	1684	1685
+	C7H15O-1:1	-->	C6H13-1:1	
+	C6H13-1:1	-->	C7H15O-1:1	
+	C7H15O-1:1	-->	CH2O:1	
+	CH2O:1	-->	C7H15O-1:1	
+
+843:	C7H15O-3<=>C2H5CHO+PC4H9
+<=>	1686	1687
+	C7H15O-3:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C7H15O-3:1	
+	C7H15O-3:1	-->	PC4H9:1	
+	PC4H9:1	-->	C7H15O-3:1	
+
+844:	C7H14-2+HO2=C7H14OOH2-3
+=	1688	1689
+	C7H14-2:1	-->	C7H14OOH2-3:1	
+	C7H14OOH2-3:1	-->	C7H14-2:1	
+
+	HO2:1	-->	C7H14OOH2-3:1	
+	C7H14OOH2-3:1	-->	HO2:1	
+
+845:	C7H14OOH1-4<=>C7H14O1-4+OH
+<=>	1690	1691
+	C7H14OOH1-4:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	C7H14OOH1-4:1	
+	C7H14OOH1-4:1	-->	OH:1	
+	OH:1	-->	C7H14OOH1-4:1	
+
+846:	C7H14OOH2-4<=>C7H14O2-4+OH
+<=>	1692	1693
+	C7H14OOH2-4:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	C7H14OOH2-4:1	
+	C7H14OOH2-4:1	-->	OH:1	
+	OH:1	-->	C7H14OOH2-4:1	
+
+847:	C7H14OOH2-5<=>C7H14O2-5+OH
+<=>	1694	1695
+	C7H14OOH2-5:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	C7H14OOH2-5:1	
+	C7H14OOH2-5:1	-->	OH:1	
+	OH:1	-->	C7H14OOH2-5:1	
+
+848:	C7H14OOH3-6<=>C7H14O2-5+OH
+<=>	1696	1697
+	C7H14OOH3-6:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	C7H14OOH3-6:1	
+	C7H14OOH3-6:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-6:1	
+
+849:	C7H14OOH4-2<=>C7H14O2-4+OH
+<=>	1698	1699
+	C7H14OOH4-2:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	C7H14OOH4-2:1	
+	C7H14OOH4-2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH4-2:1	
+
+850:	C7H14OOH1-3<=>OH+CH2O+C6H12-1
+<=>	1700	1701
+	C7H14OOH1-3:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C7H14OOH1-3:1	
+	C7H14OOH1-3:1	-->	CH2O:1	
+	CH2O:1	-->	C7H14OOH1-3:1	
+	C7H14OOH1-3:1	-->	OH:1	
+	OH:1	-->	C7H14OOH1-3:1	
+
+851:	C7H14OOH2-4<=>OH+CH3CHO+C5H10-1
+<=>	1702	1703
+	C7H14OOH2-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14OOH2-4:1	
+	C7H14OOH2-4:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	C7H14OOH2-4:1	
+	C7H14OOH2-4:1	-->	OH:1	
+	OH:1	-->	C7H14OOH2-4:1	
+
+852:	C7H14OOH3-1<=>OH+NC4H9CHO+C2H4
+<=>	1704	1705
+	C7H14OOH3-1:1	-->	C2H4:1	
+	C2H4:1	-->	C7H14OOH3-1:1	
+	C7H14OOH3-1:1	-->	NC4H9CHO:1	
+	NC4H9CHO:1	-->	C7H14OOH3-1:1	
+	C7H14OOH3-1:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-1:1	
+
+853:	C7H14OOH3-5<=>OH+C2H5CHO+C4H8-1
+<=>	1706	1707
+	C7H14OOH3-5:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	C7H14OOH3-5:1	
+	C7H14OOH3-5:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C7H14OOH3-5:1	
+	C7H14OOH3-5:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-5:1	
+
+854:	C7H14OOH4-2<=>OH+NC3H7CHO+C3H6
+<=>	1708	1709
+	C7H14OOH4-2:1	-->	C3H6:1	
+	C3H6:1	-->	C7H14OOH4-2:1	
+	C7H14OOH4-2:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	C7H14OOH4-2:1	
+	C7H14OOH4-2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH4-2:1	
+
+855:	C7H14OOH1-3<=>C4H7OOH1-4+NC3H7
+<=>	1710	1711
+	C7H14OOH1-3:1	-->	C4H7OOH1-4:1	
+	C4H7OOH1-4:1	-->	C7H14OOH1-3:1	
+	C7H14OOH1-3:1	-->	NC3H7:1	
+	NC3H7:1	-->	C7H14OOH1-3:1	
+
+856:	C7H14OOH1-4<=>C5H10-1+C2H4+HO2
+<=>	1712	1713
+	C7H14OOH1-4:1	-->	C2H4:1	
+	C2H4:1	-->	C7H14OOH1-4:1	
+	C7H14OOH1-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14OOH1-4:1	
+	C7H14OOH1-4:1	-->	HO2:1	
+	HO2:1	-->	C7H14OOH1-4:1	
+
+857:	C7H14OOH1-3O2<=>C7H14OOH1-3+O2
+<=>	1714	1715
+	C7H14OOH1-3O2:1	-->	C7H14OOH1-3:1	
+	C7H14OOH1-3:1	-->	C7H14OOH1-3O2:1	
+	C7H14OOH1-3O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH1-3O2:1	
+
+858:	C7H14OOH1-4O2<=>C7H14OOH1-4+O2
+<=>	1716	1717
+	C7H14OOH1-4O2:1	-->	C7H14OOH1-4:1	
+	C7H14OOH1-4:1	-->	C7H14OOH1-4O2:1	
+	C7H14OOH1-4O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH1-4O2:1	
+
+859:	C7H14OOH2-3O2<=>C7H14OOH2-3+O2
+<=>	1718	1719
+	C7H14OOH2-3O2:1	-->	C7H14OOH2-3:1	
+	C7H14OOH2-3:1	-->	C7H14OOH2-3O2:1	
+	C7H14OOH2-3O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH2-3O2:1	
+
+860:	C7H14OOH2-4O2<=>C7H14OOH2-4+O2
+<=>	1720	1721
+	C7H14OOH2-4O2:1	-->	C7H14OOH2-4:1	
+	C7H14OOH2-4:1	-->	C7H14OOH2-4O2:1	
+	C7H14OOH2-4O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH2-4O2:1	
+
+861:	C7H14OOH2-5O2<=>C7H14OOH2-5+O2
+<=>	1722	1723
+	C7H14OOH2-5O2:1	-->	C7H14OOH2-5:1	
+	C7H14OOH2-5:1	-->	C7H14OOH2-5O2:1	
+	C7H14OOH2-5O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH2-5O2:1	
+
+862:	C7H14OOH3-1O2<=>C7H14OOH3-1+O2
+<=>	1724	1725
+	C7H14OOH3-1O2:1	-->	C7H14OOH3-1:1	
+	C7H14OOH3-1:1	-->	C7H14OOH3-1O2:1	
+	C7H14OOH3-1O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH3-1O2:1	
+
+863:	C7H14OOH3-5O2<=>C7H14OOH3-5+O2
+<=>	1726	1727
+	C7H14OOH3-5O2:1	-->	C7H14OOH3-5:1	
+	C7H14OOH3-5:1	-->	C7H14OOH3-5O2:1	
+	C7H14OOH3-5O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH3-5O2:1	
+
+864:	C7H14OOH3-6O2<=>C7H14OOH3-6+O2
+<=>	1728	1729
+	C7H14OOH3-6O2:1	-->	C7H14OOH3-6:1	
+	C7H14OOH3-6:1	-->	C7H14OOH3-6O2:1	
+	C7H14OOH3-6O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH3-6O2:1	
+
+865:	C7H14OOH4-2O2<=>C7H14OOH4-2+O2
+<=>	1730	1731
+	C7H14OOH4-2O2:1	-->	C7H14OOH4-2:1	
+	C7H14OOH4-2:1	-->	C7H14OOH4-2O2:1	
+	C7H14OOH4-2O2:1	-->	O2:1	
+	O2:1	-->	C7H14OOH4-2O2:1	
+
+866:	C7H14OOH1-3O2<=>NC7KET13+OH
+<=>	1732	1733
+	C7H14OOH1-3O2:1	-->	NC7KET13:1	
+	NC7KET13:1	-->	C7H14OOH1-3O2:1	
+	C7H14OOH1-3O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH1-3O2:1	
+
+867:	C7H14OOH2-4O2<=>NC7KET24+OH
+<=>	1734	1735
+	C7H14OOH2-4O2:1	-->	NC7KET24:1	
+	NC7KET24:1	-->	C7H14OOH2-4O2:1	
+	C7H14OOH2-4O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH2-4O2:1	
+
+868:	C7H14OOH2-5O2<=>NC7KET25+OH
+<=>	1736	1737
+	C7H14OOH2-5O2:1	-->	NC7KET25:1	
+	NC7KET25:1	-->	C7H14OOH2-5O2:1	
+	C7H14OOH2-5O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH2-5O2:1	
+
+869:	C7H14OOH3-1O2<=>NC7KET31+OH
+<=>	1738	1739
+	C7H14OOH3-1O2:1	-->	NC7KET31:1	
+	NC7KET31:1	-->	C7H14OOH3-1O2:1	
+	C7H14OOH3-1O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-1O2:1	
+
+870:	C7H14OOH3-5O2<=>NC7KET35+OH
+<=>	1740	1741
+	C7H14OOH3-5O2:1	-->	NC7KET35:1	
+	NC7KET35:1	-->	C7H14OOH3-5O2:1	
+	C7H14OOH3-5O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-5O2:1	
+
+871:	C7H14OOH3-6O2<=>NC7KET36+OH
+<=>	1742	1743
+	C7H14OOH3-6O2:1	-->	NC7KET36:1	
+	NC7KET36:1	-->	C7H14OOH3-6O2:1	
+	C7H14OOH3-6O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH3-6O2:1	
+
+872:	C7H14OOH4-2O2<=>NC7KET42+OH
+<=>	1744	1745
+	C7H14OOH4-2O2:1	-->	NC7KET42:1	
+	NC7KET42:1	-->	C7H14OOH4-2O2:1	
+	C7H14OOH4-2O2:1	-->	OH:1	
+	OH:1	-->	C7H14OOH4-2O2:1	
+
+873:	NC7KET13<=>NC4H9CHO+CH2CHO+OH
+<=>	1746	1747
+	NC7KET13:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	NC7KET13:1	
+	NC7KET13:1	-->	NC4H9CHO:1	
+	NC4H9CHO:1	-->	NC7KET13:1	
+	NC7KET13:1	-->	OH:1	
+	OH:1	-->	NC7KET13:1	
+
+874:	NC7KET24<=>NC3H7CHO+CH3COCH2+OH
+<=>	1748	1749
+	NC7KET24:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	NC7KET24:1	
+	NC7KET24:1	-->	NC3H7CHO:1	
+	NC3H7CHO:1	-->	NC7KET24:1	
+	NC7KET24:1	-->	OH:1	
+	OH:1	-->	NC7KET24:1	
+
+875:	NC7KET25<=>C2H5CHO+CH2CH2COCH3+OH
+<=>	1750	1751
+	NC7KET25:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	NC7KET25:1	
+	NC7KET25:1	-->	CH2CH2COCH3:1	
+	CH2CH2COCH3:1	-->	NC7KET25:1	
+	NC7KET25:1	-->	OH:1	
+	OH:1	-->	NC7KET25:1	
+
+876:	NC7KET31<=>CH2O+NC4H9COCH2+OH
+<=>	1752	1753
+	NC7KET31:1	-->	CH2O:1	
+	CH2O:1	-->	NC7KET31:1	
+	NC7KET31:1	-->	NC4H9COCH2:1	
+	NC4H9COCH2:1	-->	NC7KET31:1	
+	NC7KET31:1	-->	OH:1	
+	OH:1	-->	NC7KET31:1	
+
+877:	NC7KET35<=>C2H5CHO+C2H5COCH2+OH
+<=>	1754	1755
+	NC7KET35:1	-->	C2H5CHO:1	
+	C2H5CHO:1	-->	NC7KET35:1	
+	NC7KET35:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	NC7KET35:1	
+	NC7KET35:1	-->	OH:1	
+	OH:1	-->	NC7KET35:1	
+
+878:	NC7KET42<=>CH3CHO+NC3H7COCH2+OH
+<=>	1756	1757
+	NC7KET42:1	-->	CH3CHO:1	
+	CH3CHO:1	-->	NC7KET42:1	
+	NC7KET42:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	NC7KET42:1	
+	NC7KET42:1	-->	OH:1	
+	OH:1	-->	NC7KET42:1	
+
+879:	C7H14O1-4+OH<=>C5H10-1+CH2CHO+H2O
+<=>	1758	1759
+	C7H14O1-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	H2O:1	
+	H2O:1	-->	C7H14O1-4:1	
+
+	OH:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	OH:1	
+	OH:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+880:	C7H14O2-4+OH<=>CH3CO+C5H10-1+H2O
+<=>	1760	1761
+	C7H14O2-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	CH3CO:1	
+	CH3CO:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	H2O:1	
+	H2O:1	-->	C7H14O2-4:1	
+
+	OH:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	OH:1	
+	OH:1	-->	CH3CO:1	
+	CH3CO:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+881:	C7H14O2-5+OH<=>CH3COCH2+C4H8-1+H2O
+<=>	1762	1763
+	C7H14O2-5:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	H2O:1	
+	H2O:1	-->	C7H14O2-5:1	
+
+	OH:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	OH:1	
+	OH:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+882:	C7H14O1-4+OH<=>C2H4+NC3H7COCH2+H2O
+<=>	1764	1765
+	C7H14O1-4:1	-->	C2H4:1	
+	C2H4:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	H2O:1	
+	H2O:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	C7H14O1-4:1	
+
+	OH:1	-->	C2H4:1	
+	C2H4:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	OH:1	
+
+883:	C7H14O2-4+OH<=>C3H6+NC3H7CO+H2O
+<=>	1766	1767
+	C7H14O2-4:1	-->	C3H6:1	
+	C3H6:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	H2O:1	
+	H2O:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	C7H14O2-4:1	
+
+	OH:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+	OH:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	OH:1	
+
+884:	C7H14O2-5+OH<=>C3H6+C2H5COCH2+H2O
+<=>	1768	1769
+	C7H14O2-5:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	C3H6:1	
+	C3H6:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	H2O:1	
+	H2O:1	-->	C7H14O2-5:1	
+
+	OH:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	OH:1	
+	OH:1	-->	C3H6:1	
+	C3H6:1	-->	OH:1	
+	OH:1	-->	H2O:1	
+	H2O:1	-->	OH:1	
+
+885:	C7H14O1-4+HO2<=>C5H10-1+CH2CHO+H2O2
+<=>	1770	1771
+	C7H14O1-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O1-4:1	
+
+	HO2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	HO2:1	
+	HO2:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+886:	C7H14O2-4+HO2<=>CH3CO+C5H10-1+H2O2
+<=>	1772	1773
+	C7H14O2-4:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	CH3CO:1	
+	CH3CO:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O2-4:1	
+
+	HO2:1	-->	C5H10-1:1	
+	C5H10-1:1	-->	HO2:1	
+	HO2:1	-->	CH3CO:1	
+	CH3CO:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+887:	C7H14O2-5+HO2<=>CH3COCH2+C4H8-1+H2O2
+<=>	1774	1775
+	C7H14O2-5:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O2-5:1	
+
+	HO2:1	-->	C4H8-1:1	
+	C4H8-1:1	-->	HO2:1	
+	HO2:1	-->	CH3COCH2:1	
+	CH3COCH2:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+888:	C7H14O1-4+HO2<=>C2H4+NC3H7COCH2+H2O2
+<=>	1776	1777
+	C7H14O1-4:1	-->	C2H4:1	
+	C2H4:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O1-4:1	
+	C7H14O1-4:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	C7H14O1-4:1	
+
+	HO2:1	-->	C2H4:1	
+	C2H4:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	NC3H7COCH2:1	
+	NC3H7COCH2:1	-->	HO2:1	
+
+889:	C7H14O2-4+HO2<=>C3H6+NC3H7CO+H2O2
+<=>	1778	1779
+	C7H14O2-4:1	-->	C3H6:1	
+	C3H6:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O2-4:1	
+	C7H14O2-4:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	C7H14O2-4:1	
+
+	HO2:1	-->	C3H6:1	
+	C3H6:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+	HO2:1	-->	NC3H7CO:1	
+	NC3H7CO:1	-->	HO2:1	
+
+890:	C7H14O2-5+HO2<=>C3H6+C2H5COCH2+H2O2
+<=>	1780	1781
+	C7H14O2-5:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	C3H6:1	
+	C3H6:1	-->	C7H14O2-5:1	
+	C7H14O2-5:1	-->	H2O2:1	
+	H2O2:1	-->	C7H14O2-5:1	
+
+	HO2:1	-->	C2H5COCH2:1	
+	C2H5COCH2:1	-->	HO2:1	
+	HO2:1	-->	C3H6:1	
+	C3H6:1	-->	HO2:1	
+	HO2:1	-->	H2O2:1	
+	H2O2:1	-->	HO2:1	
+
+891:	NC4H9COCH2<=>PC4H9+CH2CO
+<=>	1782	1783
+	NC4H9COCH2:1	-->	CH2CO:1	
+	CH2CO:1	-->	NC4H9COCH2:1	
+	NC4H9COCH2:1	-->	PC4H9:1	
+	PC4H9:1	-->	NC4H9COCH2:1	
+
+892:	C4H7OOH1-4<=>C4H7O1-4+OH
+<=>	1784	1785
+	C4H7OOH1-4:1	-->	C4H7O1-4:1	
+	C4H7O1-4:1	-->	C4H7OOH1-4:1	
+	C4H7OOH1-4:1	-->	OH:1	
+	OH:1	-->	C4H7OOH1-4:1	
+
+893:	C4H7O1-4<=>CH2O+C3H5-A
+<=>	1786	1787
+	C4H7O1-4:1	-->	C3H5-A:1	
+	C3H5-A:1	-->	C4H7O1-4:1	
+	C4H7O1-4:1	-->	CH2O:1	
+	CH2O:1	-->	C4H7O1-4:1	
+
+894:	CHCHCHO+OH<=>CH2CHO+HCO
+<=>	1788	1789
+	CHCHCHO:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	CHCHCHO:1	
+	CHCHCHO:1	-->	HCO:1	
+	HCO:1	-->	CHCHCHO:1	
+
+	OH:1	-->	CH2CHO:1	
+	CH2CHO:1	-->	OH:1	
+	OH:1	-->	HCO:1	
+	HCO:1	-->	OH:1	
+
+895:	O2+C6H12-1=>CH2O+NC4H9CHO
+=>	1790
+	C6H12-1:1	-->	CH2O:1	
+	C6H12-1:1	-->	NC4H9CHO:1	
+
+	O2:1	-->	CH2O:1	
+	O2:1	-->	NC4H9CHO:1	
+
+896:	C6H12-1<=>C3H6+C3H6
+<=>	1791	1792
+	C6H12-1:1	-->	C3H6:2	
+	C3H6:2	-->	C6H12-1:1	
+
+897:	PC4H9+C2H3<=>C6H12-1
+<=>	1793	1794
+	C2H3:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	C2H3:1	
+
+	PC4H9:1	-->	C6H12-1:1	
+	C6H12-1:1	-->	PC4H9:1	
+
+898:	C6H102OOH4-5=>ETES1+OH
+=>	1795
+	C6H102OOH4-5:1	-->	ETES1:1	
+	C6H102OOH4-5:1	-->	OH:1	
+
+899:	O2+ETES1=>HO2+C2H3COCH3+C2H3
+=>	1796
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	HO2:1	
+
+	O2:1	-->	C2H3:1	
+	O2:1	-->	C2H3COCH3:1	
+	O2:1	-->	HO2:1	
+
+900:	H+ETES1=>H2+C2H3COCH3+C2H3
+=>	1797
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	H2:1	
+
+	H:1	-->	C2H3:1	
+	H:1	-->	C2H3COCH3:1	
+	H:1	-->	H2:1	
+
+901:	OH+ETES1=>H2O+C2H3COCH3+C2H3
+=>	1798
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	H2O:1	
+
+	OH:1	-->	C2H3:1	
+	OH:1	-->	C2H3COCH3:1	
+	OH:1	-->	H2O:1	
+
+902:	O+ETES1=>OH+C2H3COCH3+C2H3
+=>	1799
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	OH:1	
+
+	O:1	-->	C2H3:1	
+	O:1	-->	C2H3COCH3:1	
+	O:1	-->	OH:1	
+
+903:	HO2+ETES1=>H2O2+C2H3COCH3+C2H3
+=>	1800
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	H2O2:1	
+
+	HO2:1	-->	C2H3:1	
+	HO2:1	-->	C2H3COCH3:1	
+	HO2:1	-->	H2O2:1	
+
+904:	HCO+ETES1=>CH2O+C2H3COCH3+C2H3
+=>	1801
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	CH2O:1	
+
+	HCO:1	-->	C2H3:1	
+	HCO:1	-->	C2H3COCH3:1	
+	HCO:1	-->	CH2O:1	
+
+905:	CH3+ETES1=>CH4+C2H3COCH3+C2H3
+=>	1802
+	CH3:1	-->	C2H3:1	
+	CH3:1	-->	C2H3COCH3:1	
+	CH3:1	-->	CH4:1	
+
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	CH4:1	
+
+906:	C2H5+ETES1=>C2H6+C2H3COCH3+C2H3
+=>	1803
+	C2H5:1	-->	C2H3:1	
+	C2H5:1	-->	C2H3COCH3:1	
+	C2H5:1	-->	C2H6:1	
+
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	C2H6:1	
+
+907:	CH3O+ETES1=>CH3OH+C2H3COCH3+C2H3
+=>	1804
+	CH3O:1	-->	C2H3:1	
+	CH3O:1	-->	C2H3COCH3:1	
+	CH3O:1	-->	CH3OH:1	
+
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	CH3OH:1	
+
+908:	CH3O2+ETES1=>CH3OOH+C2H3COCH3+C2H3
+=>	1805
+	CH3O2:1	-->	C2H3:1	
+	CH3O2:1	-->	C2H3COCH3:1	
+	CH3O2:1	-->	CH3OOH:1	
+
+	ETES1:1	-->	C2H3:1	
+	ETES1:1	-->	C2H3COCH3:1	
+	ETES1:1	-->	CH3OOH:1	
+
