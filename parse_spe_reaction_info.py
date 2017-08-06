@@ -103,6 +103,13 @@ if __name__ == '__main__':
     file_dir = os.path.abspath(os.path.realpath(
         os.path.join(sys.argv[0], os.pardir, os.pardir, os.pardir)))
     print(file_dir)
-    
+
     # convert symbolic pathway to real pathway with real species name and real reactin name
-    read_pathname_convert_2_real_spe_reaction(os.path.join(file_dir, "output", "species_labelling.csv"), os.path.join(file_dir, "output", "reaction_labelling.csv"), os.path.join(file_dir, "output", "pathway_stat.csv"), os.path.join(file_dir, "output", "pathname_prob.csv"), topN=50)
+    read_pathname_convert_2_real_spe_reaction(os.path.join(file_dir, "output", "species_labelling.csv"),
+                                              os.path.join(
+                                                  file_dir, "output", "reaction_labelling.csv"),
+                                              os.path.join(
+                                                  file_dir, "output", "pathway_stat.csv"),
+                                              os.path.join(
+                                                  file_dir, "output", "pathname_prob.csv"),
+                                              topN=50)
