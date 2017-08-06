@@ -93,8 +93,7 @@ def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50)
 
     # load spe and reaction info
     spe_ind_name_dict, _ = parse_spe_info(f_n_spe)
-    _, new_ind_reaction_dict = parse_reaction_and_its_index(
-        f_n_reaction)
+    _, new_ind_reaction_dict = parse_reaction_and_its_index(f_n_reaction)
 
     # convert species reaction index to real species and reactions
     path_data['path'] = path_data['path'].apply(
