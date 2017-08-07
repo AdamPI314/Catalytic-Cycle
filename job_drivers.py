@@ -40,9 +40,9 @@ def delete_non_dlsode_files(file_dir):
 
     # Open/Create the output file
     out_file = open(os.path.join(
-        file_dir, 'output', 'output_all.txt'), 'a+')
+        file_dir, 'output', 'output_all.txt'), 'ab+')
     error_file = open(os.path.join(
-        file_dir, 'output', 'error_all.txt'), 'a+')
+        file_dir, 'output', 'error_all.txt'), 'ab+')
 
     try:
         result = subprocess.Popen(
@@ -68,9 +68,9 @@ def make_run(file_dir):
 
     # Open/Create the output file
     out_file = open(os.path.join(
-        file_dir, 'output', 'output_all.txt'), 'a+')
+        file_dir, 'output', 'output_all.txt'), 'ab+')
     error_file = open(os.path.join(
-        file_dir, 'output', 'error_all.txt'), 'a+')
+        file_dir, 'output', 'error_all.txt'), 'ab+')
 
     try:
         result = subprocess.Popen(
@@ -121,9 +121,9 @@ def make_a_figure(file_dir, ind):
 
     # Open/Create the output file
     out_file = open(os.path.join(
-        file_dir, 'output', 'output_all.txt'), 'a+')
+        file_dir, 'output', 'output_all.txt'), 'ab+')
     error_file = open(os.path.join(
-        file_dir, 'output', 'error_all.txt'), 'a+')
+        file_dir, 'output', 'error_all.txt'), 'ab+')
 
     try:
         result = subprocess.Popen(
@@ -159,9 +159,9 @@ def send_email(file_dir):
 
     # Open/Create the output file
     out_file = open(os.path.join(
-        file_dir, 'output', 'output_all.txt'), 'a+')
+        file_dir, 'output', 'output_all.txt'), 'ab+')
     error_file = open(os.path.join(
-        file_dir, 'output', 'error_all.txt'), 'a+')
+        file_dir, 'output', 'error_all.txt'), 'ab+')
 
     try:
         result = subprocess.Popen(
