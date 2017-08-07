@@ -6,6 +6,7 @@ import subprocess
 import os
 import update_settings as us
 import parse_spe_reaction_info as psri
+import prepare_path_name_time as ppnt
 
 
 def symbolic_path_2_real_path(file_dir, top_n=50, flag=""):
@@ -103,6 +104,18 @@ def run_mc_trajectory(file_dir, time):
     os.chdir(file_dir)
     us.update_mc_trajectory_setting(file_dir, time)
     make_run(file_dir)
+
+
+def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag=""):
+    """
+    evaluate pathway probability
+    """
+    os.chdir(file_dir)
+    us.update_eval_path_integral(file_dir)
+    ppnt.prepare_pathway_name(file_dir, top_n=top_n, flag=flag)
+    ppnt.prepare_pathway_time(file_dir, top_n=top_n, num=num, flag=flag)
+    make_run(file_dir)
+
 
 # http://stackoverflow.com/questions/3000724/running-matlab-in-the-background
 
