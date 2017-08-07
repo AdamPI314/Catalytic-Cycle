@@ -1,65 +1,53 @@
+"""
+update settings.json
+"""
+
 import os
-import sys
+from shutil import copy2
 import read_write_configuration as rwc
-import read_last_line as rll
 
 
-def update_dlsode_settings(file_dir, time=None):
+def update_dlsode_setting(file_dir, time=1.0):
+    """
+    update settings.json, primarily for dlsode run and pathway generating
+    """
     # there will always be a current setting
-    curr_settings = rwc.read_configuration(os.path.join(file_dir, 'input', 'setting.json'))
-    settings_0 = rwc.read_configuration(os.path.join(file_dir, 'input', 'setting_0.json'))
-    settings_0['SOHR_init']['timeIterationNumber'] = curr_settings['SOHR_init']['timeIterationNumber']
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if time is not None:
-        time_n = time
-    else:
-        time_n = rll.read_time(os.path.join(file_dir, 'output', 'time_SOHR_fraction_all.csv'))
+    if not os.path.isfile(fn0):
+        copy2(fn1, fn0)
 
-    settings_0['time']['critical_time'] = time_n
-    settings_0['time']['max_time'] = time_n
-    settings_0['time']['path_end_time'] = time_n
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
 
-    settings_0['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
-    rwc.write_configuration(settings_0, os.path.join(file_dir, 'input', 'setting.json'))
+    setting['time']['critical_time'] = time
+    setting['time']['max_time'] = time
+    setting['time']['path_end_time'] = time
+
+    setting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))
 
 
-# time iteration number t_iter_N
-def update_settings(file_dir, t_iter_N=None, dt=None):
+def update_mc_trajectory_setting(file_dir, time=1.0):
+    """
+    update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
+    """
     # there will always be a current setting
-    curr_settings = rwc.read_configuration(os.path.join(file_dir, 'input', 'setting.json'))
-    if t_iter_N == 0:
-        tin = 0
-    else:
-        tin = curr_settings['SOHR_init']['timeIterationNumber']
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    # the zero time interval
-    if tin == 0:
-        settings_0 = rwc.read_configuration(os.path.join(file_dir, 'input', 'setting_0.json'))
-        curr_settings = settings_0
-        # other time intervals
-    else:
-        concentration = rll.read_concentration(
-                os.path.join(file_dir, 'output', 'concentration_SOHR_fraction_all.csv'))
-        curr_settings['chem_init']['species_index_concentration'] = concentration
+    if not os.path.isfile(fn0):
+        copy2(fn1, fn0)
 
-        temperature = rll.read_temperature(
-                os.path.join(file_dir, 'output', 'temperature_SOHR_fraction_all.csv'))
-        curr_settings['chem_init']['init_temperature'] = temperature
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
 
-        pressure = rll.read_pressure(
-                os.path.join(file_dir, 'output', 'pressure_SOHR_fraction_all.csv'))
-        curr_settings['chem_init']['pressure_atm'] = pressure
+    setting['time']['critical_time'] = time
+    setting['time']['max_time'] = time
+    setting['time']['path_end_time'] = time
 
-    curr_settings['SOHR_init']['timeIterationNumber'] += 1
-
-    if dt is not None:
-        curr_settings['time']['critical_time'] = dt
-        curr_settings['time']['max_time'] = dt
-        curr_settings['time']['path_end_time'] = dt
-
-    rwc.write_configuration(curr_settings, os.path.join(file_dir, 'input', 'setting.json'))
-
-
-if __name__ == '__main__':
-    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
-    update_settings(file_dir)
+    setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))

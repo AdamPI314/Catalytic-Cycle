@@ -59,7 +59,7 @@ def delete_non_dlsode_files(file_dir):
     error_file.close()
 
 
-def path_ode_run(file_dir):
+def make_run(file_dir):
     """
     make run
     """
@@ -87,13 +87,22 @@ def path_ode_run(file_dir):
     error_file.close()
 
 
-def run_dlsode(file_dir):
+def run_dlsode(file_dir, time):
     """
     Run dlsode
     """
     os.chdir(file_dir)
-    us.update_dlsode_settings(file_dir, time=None)
-    path_ode_run(file_dir)
+    us.update_dlsode_setting(file_dir, time)
+    make_run(file_dir)
+
+
+def run_mc_trajectory(file_dir, time):
+    """
+    Run mc trajectory
+    """
+    os.chdir(file_dir)
+    us.update_mc_trajectory_setting(file_dir, time)
+    make_run(file_dir)
 
 # http://stackoverflow.com/questions/3000724/running-matlab-in-the-background
 
