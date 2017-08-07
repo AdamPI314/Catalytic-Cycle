@@ -68,5 +68,6 @@ def update_eval_path_integral(file_dir):
         os.path.join(file_dir, 'input', 'setting.json'))
 
     setting['job']['job_type'] = "evaluate_path_integral_over_time"
+    setting['pathway']['pathwayEndWith'] = "ALL"
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
