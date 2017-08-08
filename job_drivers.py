@@ -11,7 +11,7 @@ import prepare_path_name_time as ppnt
 
 def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
     """
-    convert symbolic pathway to real pathway with real species name and real reactin name
+    convert symbolic pathway to real pathway with real species name and real reaction name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
     any unique symbol shall work
     """
