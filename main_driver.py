@@ -25,9 +25,10 @@ if __name__ == '__main__':
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
-    job_drivers.symbolic_path_2_real_path(FILE_DIR, top_n=50, flag="", end_spe="S9")
+    job_drivers.symbolic_path_2_real_path(
+        FILE_DIR, top_n=50, flag="", end_spe="S9")
 
-    ## evaluate path integral-->pathway probability
+    # evaluate path integral-->pathway probability
     # job_drivers.evaluate_pathway_probability(FILE_DIR, top_n=5, num=1, flag="")
 
     # # send email
