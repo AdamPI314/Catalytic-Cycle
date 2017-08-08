@@ -78,7 +78,7 @@ def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, path
     return str_t
 
 
-def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50):
+def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50, end_spe=""):
     """
     read species and reaction info,
     convert path info into real species and reaction instead of index and write to file
@@ -90,6 +90,10 @@ def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50)
     # map(lambda x:x/total_prob, path_data['prob'])
     # renormalize
     path_data['prob'] /= total_prob
+
+    # filter
+    if end_spe is not "" and end_spe is not "ALL":
+        path_data = path_data[path_data['path'].str.endswith(end_spe)]
 
     # load spe and reaction info
     spe_ind_name_dict, _ = parse_spe_info(f_n_spe)

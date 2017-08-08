@@ -9,7 +9,7 @@ import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
 
 
-def symbolic_path_2_real_path(file_dir, top_n=50, flag=""):
+def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
     """
     convert symbolic pathway to real pathway with real species name and real reactin name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
@@ -28,7 +28,7 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag=""):
             file_dir, "output", "pathway_stat.csv"),
         os.path.join(
             file_dir, "output", out_file_name),
-        top_n)
+        top_n, end_spe)
 
 
 def delete_non_dlsode_files(file_dir):
