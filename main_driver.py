@@ -29,6 +29,8 @@ if __name__ == '__main__':
 
     ## evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(FILE_DIR, top_n=5, num=1, flag="")
+    job_drivers.symbolic_path_2_real_path(
+        FILE_DIR, top_n=50, flag="", end_spe="S9")
 
     # # send email
     job_drivers.send_email(FILE_DIR)
