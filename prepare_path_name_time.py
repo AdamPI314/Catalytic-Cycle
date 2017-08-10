@@ -35,7 +35,6 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag=""):
     prepare pathway_time.csv
     num represents number of points
     """
-    print("hello")
     if flag == "":
         f_n_pt = os.path.join(file_dir, "input", "pathway_time.csv")
     else:
@@ -52,7 +51,7 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag=""):
     for idx, _ in enumerate(t_mat):
         t_mat[idx] = np.linspace(0.0, 1.0, num + 1)
 
-    np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.15e')
+    np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.7f')
 
 
 # if __name__ == '__main__':

@@ -47,13 +47,14 @@ def update_mc_trajectory_setting(file_dir, time=1.0):
     setting['time']['critical_time'] = time
     setting['time']['max_time'] = time
     setting['time']['path_end_time'] = time
+    setting['pathway']['trajectoryNumber'] = 1000000
 
     setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_integral(file_dir):
+def update_eval_path_integral(file_dir, top_n=5):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -69,5 +70,7 @@ def update_eval_path_integral(file_dir):
 
     setting['job']['job_type'] = "evaluate_path_integral_over_time"
     setting['pathway']['pathwayEndWith'] = "ALL"
+    setting['pathway']['topN'] = [top_n]
+    setting['pathway']['trajectoryNumber'] = 10000
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))

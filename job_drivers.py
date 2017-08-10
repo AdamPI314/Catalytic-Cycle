@@ -111,7 +111,7 @@ def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag=""):
     evaluate pathway probability
     """
     os.chdir(file_dir)
-    us.update_eval_path_integral(file_dir)
+    us.update_eval_path_integral(file_dir, top_n=top_n)
     ppnt.prepare_pathway_name(file_dir, top_n=top_n, flag=flag)
     ppnt.prepare_pathway_time(file_dir, top_n=top_n, num=num, flag=flag)
     make_run(file_dir)
