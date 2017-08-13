@@ -28,7 +28,7 @@ def parse_species(path):
 
 def parse_species_cycle(path):
     """
-    parse sepcies name, return a dictionary of species and count
+    parse sepcies name, return a dictionary of species cycle and count
     """
     matched_tmp = re.findall(r"(S\d+)", path)
     d_map = dict()
