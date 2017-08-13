@@ -16,6 +16,7 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     END_TIME = 3.51e-4
+    TOP_N = 1000
 
     # # run dlosde
     job_drivers.run_dlsode(FILE_DIR, END_TIME)
@@ -25,12 +26,20 @@ if __name__ == '__main__':
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
-    job_drivers.symbolic_path_2_real_path(FILE_DIR, top_n=5, flag="", end_spe="")
-
-    ## evaluate path integral-->pathway probability
-    job_drivers.evaluate_pathway_probability(FILE_DIR, top_n=5, num=1, flag="")
     job_drivers.symbolic_path_2_real_path(
-        FILE_DIR, top_n=50, flag="", end_spe="S9")
+        FILE_DIR, top_n=TOP_N, flag="", end_spe="")
+
+    # # evaluate path integral-->pathway probability
+    job_drivers.evaluate_pathway_probability(
+        FILE_DIR, top_n=TOP_N, num=1, flag="")
+    job_drivers.symbolic_path_2_real_path(
+        FILE_DIR, top_n=TOP_N, flag="", end_spe="")
+
+    # species count
+    job_drivers.species_count(FILE_DIR, top_n=TOP_N)
+
+    # species cycle
+    job_drivers.species_cycle(FILE_DIR, top_n=TOP_N)
 
     # # send email
     job_drivers.send_email(FILE_DIR)

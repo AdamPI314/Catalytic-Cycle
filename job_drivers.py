@@ -7,6 +7,21 @@ import os
 import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
+import parse_pattern as pp
+
+
+def species_count(file_dir, top_n=50):
+    """
+    count species occurence in pathway, multiply by accurate pathwap probability
+    """
+    pp.species_count(file_dir, top_n=top_n)
+
+
+def species_cycle(file_dir, top_n=50):
+    """
+    count species cycle in pathway, multiply by accurate pathwap probability
+    """
+    pp.species_cycle(file_dir, top_n=top_n)
 
 
 def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):

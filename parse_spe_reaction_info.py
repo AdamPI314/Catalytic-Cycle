@@ -105,4 +105,4 @@ def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50,
 
     # write to file
     path_data[0:top_n].to_csv(f_n_p_out, header=False,
-                              index=False, sep=';', columns=['path', 'prob'])
+                              index=False, sep=',', columns=['path', 'prob'])
