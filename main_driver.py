@@ -38,6 +38,9 @@ if __name__ == '__main__':
     # species count
     job_drivers.species_count(FILE_DIR, top_n=TOP_N)
 
+    # reaction count
+    job_drivers.reaction_count(FILE_DIR, top_n=TOP_N)
+
     # species cycle
     job_drivers.species_cycle(FILE_DIR, top_n=TOP_N)
 

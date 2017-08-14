@@ -32,7 +32,7 @@ def parse_reaction(path):
     """
     matched_tmp = re.findall(r"(R\d+)", path)
     d_map = dict()
-    # not the first and last element
+    # include all reactions
     for _, val in enumerate(matched_tmp):
         if val not in d_map:
             d_map[val] = 1

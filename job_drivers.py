@@ -17,6 +17,13 @@ def species_count(file_dir, top_n=50):
     pp.species_count(file_dir, top_n=top_n)
 
 
+def reaction_count(file_dir, top_n=50):
+    """
+    count reaction occurence in pathway, multiply by accurate pathwap probability
+    """
+    pp.reaction_count(file_dir, top_n=top_n)
+
+
 def species_cycle(file_dir, top_n=50):
     """
     count species cycle in pathway, multiply by accurate pathwap probability
