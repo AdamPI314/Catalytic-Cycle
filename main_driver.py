@@ -41,6 +41,9 @@ if __name__ == '__main__':
     # reaction count
     job_drivers.reaction_count(FILE_DIR, top_n=TOP_N)
 
+    # initiation reaction count
+    job_drivers.initiation_reaction_count(FILE_DIR, top_n=TOP_N)
+
     # species cycle
     job_drivers.species_cycle(FILE_DIR, top_n=TOP_N)
 
