@@ -140,7 +140,7 @@ def reaction_count(file_dir, top_n=50):
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
         .strip())
-    #print(d_f['reaction'])
+    # print(d_f['reaction'])
     f_n_out2 = os.path.join(file_dir, "output", "reaction_count_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
