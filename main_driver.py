@@ -22,7 +22,8 @@ if __name__ == '__main__':
     job_drivers.run_dlsode(FILE_DIR, END_TIME)
 
     # # run monte carlo trajectory
-    job_drivers.run_mc_trajectory(FILE_DIR, END_TIME, n_traj=1000000)
+    job_drivers.run_mc_trajectory(
+        FILE_DIR, END_TIME, n_traj=1000000, atom_followed="C")
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
@@ -31,7 +32,7 @@ if __name__ == '__main__':
 
     # # evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000)
+        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed="C")
     job_drivers.symbolic_path_2_real_path(
         FILE_DIR, top_n=TOP_N, flag="", end_spe="")
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     # species production path
     job_drivers.species_production_path(FILE_DIR, spe='OH', top_n=TOP_N)
 
-    # species production reaction 
+    # species production reaction
     job_drivers.species_production_reaction(FILE_DIR, spe='OH', top_n=TOP_N)
 
     # # # send email
