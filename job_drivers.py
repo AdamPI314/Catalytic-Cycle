@@ -46,6 +46,14 @@ def species_production_path(file_dir, spe='OH', top_n=50):
     pp.species_production_path(file_dir, spe=spe, top_n=top_n)
 
 
+def species_production_reaction(file_dir, spe='OH', top_n=50):
+    """
+    count species production reactions in pathway,
+    multiply by accurate pathwap probability
+    """
+    pp.species_production_reaction(file_dir, spe=spe, top_n=top_n)
+
+
 def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
     """
     convert symbolic pathway to real pathway with real species name and real reaction name
