@@ -30,7 +30,7 @@ def update_dlsode_setting(file_dir, time=1.0):
         file_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_followed="C"):
+def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_followed="C", init_spe=114):
     """
     update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
@@ -49,13 +49,14 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
     setting['time']['path_end_time'] = time
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
+    setting['pathway']['init_spe'] = init_spe
 
     setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"):
+def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -74,5 +75,7 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
+    setting['pathway']['init_spe'] = init_spe
+
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))

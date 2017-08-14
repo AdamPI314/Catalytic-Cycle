@@ -305,7 +305,7 @@ def species_production_path(file_dir, spe='OH', top_n=50):
                 species_production_map[key] = value * p_p
             else:
                 species_production_map[key] += value * p_p
-
+    print(species_production_map)
     d_f = pd.DataFrame(list(sorted(species_production_map.items(), key=lambda x: x[1], reverse=True)),
                        columns=['species', 'frequency'])
     f_n_out1 = os.path.join(
@@ -377,4 +377,4 @@ if __name__ == "__main__":
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
     species_production_path(FILE_DIR, spe='OH', top_n=50)
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
-    species_production_reaction(FILE_DIR, spe='OH', top_n=50)
+    # species_production_reaction(FILE_DIR, spe='OH', top_n=50)
