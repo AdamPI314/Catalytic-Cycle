@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
     # # run monte carlo trajectory
     job_drivers.run_mc_trajectory(
-        FILE_DIR, END_TIME, n_traj=1000000, atom_followed="C")
+        FILE_DIR, END_TIME, n_traj=1000000, atom_followed="O")
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
@@ -32,7 +32,9 @@ if __name__ == '__main__':
 
     # # evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed="C")
+        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed="O")
+    
+    # sybolic path name
     job_drivers.symbolic_path_2_real_path(
         FILE_DIR, top_n=TOP_N, flag="", end_spe="")
 
