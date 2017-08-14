@@ -5,10 +5,10 @@ parse species patten, find catalytic cycle
 import os
 import sys
 import re
+from itertools import combinations
 import numpy as np
 import pandas as pd
 import parse_spe_reaction_info as psri
-from itertools import combinations
 
 
 def parse_species(path):
@@ -19,6 +19,21 @@ def parse_species(path):
     d_map = dict()
     # not the first and last element
     for _, val in enumerate(matched_tmp[1:-1]):
+        if val not in d_map:
+            d_map[val] = 1
+        else:
+            d_map[val] += 1
+    return d_map
+
+
+def parse_reaction(path):
+    """
+    parse reactions, return a dictionary of reactions and their count
+    """
+    matched_tmp = re.findall(r"(R\d+)", path)
+    d_map = dict()
+    # not the first and last element
+    for _, val in enumerate(matched_tmp):
         if val not in d_map:
             d_map[val] = 1
         else:
@@ -93,6 +108,45 @@ def species_count(file_dir, top_n=50):
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
+def reaction_count(file_dir, top_n=50):
+    """
+    reaction occurence in a path multiply by pathway probability
+    """
+    print(file_dir)
+    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+
+    pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
+    pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
+
+    spe_map = dict()
+    for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
+        map_tmp = parse_reaction(p_n)
+        for key, value in map_tmp.items():
+            if key not in spe_map:
+                spe_map[key] = value * p_p
+            else:
+                spe_map[key] += value * p_p
+    d_f = pd.DataFrame(list(sorted(spe_map.items(), key=lambda x: x[1], reverse=True)), columns=[
+        'reaction', 'frequency'])
+    f_n_out1 = os.path.join(file_dir, "output", "reaction_count_index.csv")
+    d_f[0:top_n].to_csv(f_n_out1, header=False,
+                        index=False, sep=',', columns=['reaction', 'frequency'])
+
+    # load reaction info
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
+        file_dir, "output", "reaction_labelling.csv"))
+
+    # convert species reaction index to real species and reactions
+    d_f['reaction'] = d_f['reaction'].apply(
+        lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
+        .strip())
+    print(d_f['reaction'])
+    f_n_out2 = os.path.join(file_dir, "output", "reaction_count_name.csv")
+    d_f[0:top_n].to_csv(f_n_out2, header=False,
+                        index=False, sep=',', columns=['reaction', 'frequency'])
+
+
 def species_cycle(file_dir, top_n=50):
     """
     species cycle in a path multiply by pathway probability
@@ -140,4 +194,5 @@ if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     # species_count(FILE_DIR)
-    species_cycle(FILE_DIR)
+    reaction_count(FILE_DIR)
+    # species_cycle(FILE_DIR)

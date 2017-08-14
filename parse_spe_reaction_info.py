@@ -62,6 +62,20 @@ def parse_reaction_and_its_index(f_n):
     return new_old_index_dict, new_ind_reaction_dict
 
 
+def reaction_name_to_real_reaction(new_ind_reaction_dict, pathway_name):
+    """
+    converted reaction name to their reaction format instead of index
+    """
+    matched_reaction = re.findall(r"R(\d+)", pathway_name)
+    # only reactions
+    str_t = '['
+    for _, val in enumerate(matched_reaction):
+        str_t += new_ind_reaction_dict[val]
+    str_t = ']'
+
+    return str_t
+
+
 def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, pathway_name):
     """
     converted path to their real species name and reaction format instead of index
