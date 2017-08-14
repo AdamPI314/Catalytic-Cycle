@@ -31,7 +31,7 @@ def parse_species_production_reaction(path, spe):
     parse sepcies name production, return a dictionary of species and count
     reactions ends with spe
     """
-    matched_tmp = re.findall("(R\d+)" + spe, path)
+    matched_tmp = re.findall("(R\d+)" + spe + "[$R]?", path)
     d_map = dict()
     for _, val in enumerate(matched_tmp):
         if val not in d_map:
@@ -46,7 +46,8 @@ def parse_species_production_path(path, spe):
     parse sepcies name production, return a dictionary of species and count
     pathway or sub-pathway ends with spe
     """
-    idx_tmp = [(m.start(0), m.end(0)) for m in re.finditer(spe, path)]
+    idx_tmp = [(m.start(0), m.end(0))
+               for m in re.finditer(spe + "[$R]?", path)]
     d_map = dict()
     # from intitial species to that species
     for _, val in enumerate(idx_tmp):
