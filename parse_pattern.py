@@ -26,6 +26,23 @@ def parse_species(path):
     return d_map
 
 
+def parse_species_production_path(path, spe):
+    """
+    parse sepcies name production, return a dictionary of species and count
+    pathway or sub-pathway ends with spe
+    """
+    idx_tmp = [(m.start(0), m.end(0)) for m in re.finditer(spe, path)]
+    d_map = dict()
+    # from intitial species to that species
+    for _, val in enumerate(idx_tmp):
+        sub_path = path[0:val[1]]
+        if sub_path not in d_map:
+            d_map[sub_path] = 1
+        else:
+            d_map[sub_path] += 1
+    return d_map
+
+
 def parse_reaction(path):
     """
     parse reactions, return a dictionary of reactions and their count
@@ -245,10 +262,57 @@ def species_cycle(file_dir, top_n=50):
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
+def species_production_path(file_dir, spe='OH', top_n=50):
+    """
+    species production in a path multiply by pathway probability, count pathway
+    or sub-pathway ends with a species
+    """
+    print(file_dir)
+    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+
+    pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
+    pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
+
+    # load spe and reaction info
+    spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
+        file_dir, "output", "reaction_labelling.csv"))
+
+    species_production_map = dict()
+    for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
+        map_tmp = parse_species_production_path(
+            p_n, 'S' + spe_name_ind_dict[spe])
+        for key, value in map_tmp.items():
+            if key not in species_production_map:
+                species_production_map[key] = value * p_p
+            else:
+                species_production_map[key] += value * p_p
+
+    d_f = pd.DataFrame(list(sorted(species_production_map.items(), key=lambda x: x[1], reverse=True)),
+                       columns=['species', 'frequency'])
+    f_n_out1 = os.path.join(
+        file_dir, "output", spe + "_production_index.csv")
+    d_f[0:top_n].to_csv(f_n_out1, header=False,
+                        index=False, sep=',', columns=['species', 'frequency'])
+
+    # convert species reaction index to real species and reactions
+    d_f['species'] = d_f['species'].apply(
+        lambda x: psri.pathname_to_real_spe_reaction(
+            spe_ind_name_dict, new_ind_reaction_dict, x)
+        .strip())
+    f_n_out2 = os.path.join(file_dir, "output", spe + "_production_name.csv")
+    d_f[0:top_n].to_csv(f_n_out2, header=False,
+                        index=False, sep=',', columns=['species', 'frequency'])
+
+
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     # species_count(FILE_DIR)
     # reaction_count(FILE_DIR)
-    initiation_reaction_count(FILE_DIR)
+    # initiation_reaction_count(FILE_DIR)
     # species_cycle(FILE_DIR)
+    # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
+    species_production_path(FILE_DIR, spe='OH', top_n=50)

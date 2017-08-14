@@ -47,6 +47,9 @@ if __name__ == '__main__':
     # species cycle
     job_drivers.species_cycle(FILE_DIR, top_n=TOP_N)
 
+    # species production path
+    job_drivers.species_production_path(FILE_DIR, spe='OH', top_n=TOP_N)
+
     # # # send email
     # job_drivers.send_email(FILE_DIR)
 
