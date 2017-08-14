@@ -126,21 +126,21 @@ def run_dlsode(file_dir, time):
     make_run(file_dir)
 
 
-def run_mc_trajectory(file_dir, time):
+def run_mc_trajectory(file_dir, time, n_traj=1000000):
     """
     Run mc trajectory
     """
     os.chdir(file_dir)
-    us.update_mc_trajectory_setting(file_dir, time)
+    us.update_mc_trajectory_setting(file_dir, time, n_traj=n_traj)
     make_run(file_dir)
 
 
-def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag=""):
+def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000):
     """
     evaluate pathway probability
     """
     os.chdir(file_dir)
-    us.update_eval_path_integral(file_dir, top_n=top_n)
+    us.update_eval_path_integral(file_dir, top_n=top_n, n_traj=n_traj)
     ppnt.prepare_pathway_name(file_dir, top_n=top_n, flag=flag)
     ppnt.prepare_pathway_time(file_dir, top_n=top_n, num=num, flag=flag)
     make_run(file_dir)
@@ -197,7 +197,7 @@ def send_email(file_dir):
     os.chdir(file_dir)
     cmd = ["sendemail", "-f", "elliot.srbai@gmail.com", "-t", "bunnysirah@hotmail.com",
            "-u", "RUNNING JOB", "-m", "JOB FINISHED." + "\n" + file_dir,
-           "-a", "./output/general_output.out"]
+           "-a", "./log.txt"]
 
     # Open/Create the output file
     out_file = open(os.path.join(
