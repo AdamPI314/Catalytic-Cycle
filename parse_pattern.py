@@ -180,8 +180,8 @@ def reaction_count(file_dir, top_n=50, norm=False):
                 reaction_map[key] = value * p_p
             else:
                 reaction_map[key] += value * p_p
-    d_f = pd.DataFrame(list(sorted(reaction_map.items(), key=lambda x: x[1], reverse=True)), columns=[
-        'reaction', 'frequency'])
+    d_f = pd.DataFrame(list(sorted(reaction_map.items(), key=lambda x: x[1], reverse=True)),
+                       columns=['reaction', 'frequency'])
     if norm is True:
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
@@ -318,12 +318,11 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
                 species_production_map[key] = value * p_p
             else:
                 species_production_map[key] += value * p_p
-    # print(species_production_map)
+    d_f = pd.DataFrame(list(sorted(species_production_map.items(), key=lambda x: x[1], reverse=True)),
+                       columns=['species', 'frequency'])
     if norm is True:
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
-    d_f = pd.DataFrame(list(sorted(species_production_map.items(), key=lambda x: x[1], reverse=True)),
-                       columns=['species', 'frequency'])
     f_n_out1 = os.path.join(
         file_dir, "output", spe + "_production_path_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
