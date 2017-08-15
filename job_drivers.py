@@ -10,48 +10,48 @@ import prepare_path_name_time as ppnt
 import parse_pattern as pp
 
 
-def species_count(file_dir, top_n=50):
+def species_count(file_dir, top_n=50, norm=False):
     """
     count species occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.species_count(file_dir, top_n=top_n)
+    pp.species_count(file_dir, top_n=top_n, norm=norm)
 
 
-def reaction_count(file_dir, top_n=50):
+def reaction_count(file_dir, top_n=50, norm=False):
     """
     count reaction occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.reaction_count(file_dir, top_n=top_n)
+    pp.reaction_count(file_dir, top_n=top_n, norm=norm)
 
 
-def initiation_reaction_count(file_dir, top_n=50):
+def initiation_reaction_count(file_dir, top_n=50, norm=False):
     """
     count initiation reaction occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.initiation_reaction_count(file_dir, top_n=top_n)
+    pp.initiation_reaction_count(file_dir, top_n=top_n, norm=norm)
 
 
-def species_cycle(file_dir, top_n=50):
+def species_cycle(file_dir, top_n=50, norm=False):
     """
     count species cycle in pathway, multiply by accurate pathwap probability
     """
-    pp.species_cycle(file_dir, top_n=top_n)
+    pp.species_cycle(file_dir, top_n=top_n, norm=norm)
 
 
-def species_production_path(file_dir, spe='OH', top_n=50):
+def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
     """
     count species production pathway or sub-pathway in pathway,
     multiply by accurate pathwap probability
     """
-    pp.species_production_path(file_dir, spe=spe, top_n=top_n)
+    pp.species_production_path(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
-def species_production_reaction(file_dir, spe='OH', top_n=50):
+def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     """
     count species production reactions in pathway,
     multiply by accurate pathwap probability
     """
-    pp.species_production_reaction(file_dir, spe=spe, top_n=top_n)
+    pp.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
 def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):

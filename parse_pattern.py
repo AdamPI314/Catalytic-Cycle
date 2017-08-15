@@ -116,7 +116,7 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def species_count(file_dir, top_n=50):
+def species_count(file_dir, top_n=50, norm=False):
     """
     species occurence in a path multiply by pathway probability
     """
@@ -137,6 +137,10 @@ def species_count(file_dir, top_n=50):
                 spe_map[key] += value * p_p
     d_f = pd.DataFrame(list(sorted(spe_map.items(), key=lambda x: x[1], reverse=True)), columns=[
         'species', 'frequency'])
+
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     f_n_out1 = os.path.join(file_dir, "output", "species_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
@@ -157,7 +161,7 @@ def species_count(file_dir, top_n=50):
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def reaction_count(file_dir, top_n=50):
+def reaction_count(file_dir, top_n=50, norm=False):
     """
     reaction occurence in a path multiply by pathway probability
     """
@@ -178,6 +182,9 @@ def reaction_count(file_dir, top_n=50):
                 reaction_map[key] += value * p_p
     d_f = pd.DataFrame(list(sorted(reaction_map.items(), key=lambda x: x[1], reverse=True)), columns=[
         'reaction', 'frequency'])
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     f_n_out1 = os.path.join(file_dir, "output", "reaction_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
@@ -195,7 +202,7 @@ def reaction_count(file_dir, top_n=50):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
-def initiation_reaction_count(file_dir, top_n=50):
+def initiation_reaction_count(file_dir, top_n=50, norm=False):
     """
     initiation reaction occurence in a path multiply by pathway probability
     """
@@ -216,6 +223,9 @@ def initiation_reaction_count(file_dir, top_n=50):
                 spe_map[key] += value * p_p
     d_f = pd.DataFrame(list(sorted(spe_map.items(), key=lambda x: x[1], reverse=True)), columns=[
         'reaction', 'frequency'])
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     f_n_out1 = os.path.join(
         file_dir, "output", "initiation_reaction_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
@@ -235,7 +245,7 @@ def initiation_reaction_count(file_dir, top_n=50):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
-def species_cycle(file_dir, top_n=50):
+def species_cycle(file_dir, top_n=50, norm=False):
     """
     species cycle in a path multiply by pathway probability
     """
@@ -257,6 +267,9 @@ def species_cycle(file_dir, top_n=50):
 
     d_f = pd.DataFrame(list(sorted(spe_cycle_map.items(), key=lambda x: x[1], reverse=True)),
                        columns=['species', 'frequency'])
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     f_n_out1 = os.path.join(
         file_dir, "output", "species_cycle_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
@@ -278,7 +291,7 @@ def species_cycle(file_dir, top_n=50):
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def species_production_path(file_dir, spe='OH', top_n=50):
+def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
     """
     species production in a path multiply by pathway probability, count pathway
     or sub-pathway ends with a species
@@ -305,7 +318,10 @@ def species_production_path(file_dir, spe='OH', top_n=50):
                 species_production_map[key] = value * p_p
             else:
                 species_production_map[key] += value * p_p
-    print(species_production_map)
+    # print(species_production_map)
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     d_f = pd.DataFrame(list(sorted(species_production_map.items(), key=lambda x: x[1], reverse=True)),
                        columns=['species', 'frequency'])
     f_n_out1 = os.path.join(
@@ -324,7 +340,7 @@ def species_production_path(file_dir, spe='OH', top_n=50):
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def species_production_reaction(file_dir, spe='OH', top_n=50):
+def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     """
     species production reaction in a path multiply by pathway probability
     """
@@ -348,6 +364,9 @@ def species_production_reaction(file_dir, spe='OH', top_n=50):
                 reaction_map[key] += value * p_p
     d_f = pd.DataFrame(list(sorted(reaction_map.items(), key=lambda x: x[1], reverse=True)), columns=[
         'reaction', 'frequency'])
+    if norm is True:
+        total = sum(d_f['frequency'])
+        d_f['frequency'] /= total
     f_n_out1 = os.path.join(file_dir, "output", spe +
                             "_production_reaction_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
