@@ -21,22 +21,22 @@ if __name__ == '__main__':
     # # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, END_TIME)
 
-    # # # run monte carlo trajectory
-    # job_drivers.run_mc_trajectory(
-    #     FILE_DIR, END_TIME, n_traj=1000000, atom_followed="H", init_spe=114)
+    # # run monte carlo trajectory
+    job_drivers.run_mc_trajectory(
+        FILE_DIR, END_TIME, n_traj=1000000, atom_followed="O", init_spe=10)
 
-    # # # convert symbolic pathway to real pathway
-    # # # with real species names and real reaction expression
-    # job_drivers.symbolic_path_2_real_path(
-    #     FILE_DIR, top_n=TOP_N, flag="", end_spe="")
+    # # convert symbolic pathway to real pathway
+    # # with real species names and real reaction expression
+    job_drivers.symbolic_path_2_real_path(
+        FILE_DIR, top_n=TOP_N, flag="", end_spe="")
 
-    # # # evaluate path integral-->pathway probability
-    # job_drivers.evaluate_pathway_probability(
-    #     FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed="H", init_spe=114)
+    # # evaluate path integral-->pathway probability
+    job_drivers.evaluate_pathway_probability(
+        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed="O", init_spe=10)
     
-    # # sybolic path name
-    # job_drivers.symbolic_path_2_real_path(
-    #     FILE_DIR, top_n=TOP_N, flag="", end_spe="")
+    # sybolic path name
+    job_drivers.symbolic_path_2_real_path(
+        FILE_DIR, top_n=TOP_N, flag="", end_spe="")
 
     # species count
     job_drivers.species_count(FILE_DIR, top_n=TOP_N, norm=True)
