@@ -152,7 +152,7 @@ def run_mc_trajectory(file_dir, time, n_traj=1000000, atom_followed="C", init_sp
     make_run(file_dir)
 
 
-def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000, atom_followed="C", init_spe=114):
+def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0):
     """
     evaluate pathway probability
     """
@@ -160,7 +160,8 @@ def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000
     us.update_eval_path_integral(
         file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe)
     ppnt.prepare_pathway_name(file_dir, top_n=top_n, flag=flag)
-    ppnt.prepare_pathway_time(file_dir, top_n=top_n, num=num, flag=flag)
+    ppnt.prepare_pathway_time(file_dir, top_n=top_n,
+                              num=num, flag=flag, max_tau=max_tau)
     make_run(file_dir)
 
 
