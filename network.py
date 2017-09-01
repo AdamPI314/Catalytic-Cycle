@@ -76,10 +76,10 @@ def init_network(file_dir, top_n=10):
                         d_g[src][des][rxn]['weight'] += 1.0 * prob
                     else:
                         d_g[src][des].update(
-                            {rxn: {'Label': rxn, 'weight': 1.0 * prob}})
+                            {rxn: {'name': rxn, 'weight': 1.0 * prob}})
                 else:
                     d_g.add_edge(src, des, key=rxn,
-                                 Label=rxn, weight=1.0 * prob)
+                                 name=rxn, weight=1.0 * prob)
 
     # print(d_g.edges())
     # for idx, val in enumerate(d_g.nodes()):
@@ -104,9 +104,10 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
+    TOP_N = 1000
 
-    nx_obj = init_network(FILE_DIR, top_n=10)
-    network_to_gephi_input_file(nx_obj, FILE_DIR, "network.gexf")
+    RN_OBJ = init_network(FILE_DIR, top_n=TOP_N)
+    network_to_gephi_input_file(RN_OBJ, FILE_DIR, "network_"+str(TOP_N)+".gexf")
 
     END_TIME = time.time()
 
