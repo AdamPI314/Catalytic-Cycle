@@ -76,10 +76,10 @@ def init_network(file_dir, top_n=10):
                         d_g[src][des][rxn]['weight'] += 1.0 * prob
                     else:
                         d_g[src][des].update(
-                            {rxn: {'label': rxn, 'weight': 1.0 * prob}})
+                            {rxn: {'Label': rxn, 'weight': 1.0 * prob}})
                 else:
                     d_g.add_edge(src, des, key=rxn,
-                                 label=rxn, weight=1.0 * prob)
+                                 Label=rxn, weight=1.0 * prob)
 
     # print(d_g.edges())
     # for idx, val in enumerate(d_g.nodes()):
