@@ -142,13 +142,13 @@ def run_dlsode(file_dir, time):
     make_run(file_dir)
 
 
-def run_mc_trajectory(file_dir, time, n_traj=1000000, atom_followed="C", init_spe=114):
+def run_mc_trajectory(file_dir, time, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=1.0):
     """
     Run mc trajectory
     """
     os.chdir(file_dir)
     us.update_mc_trajectory_setting(
-        file_dir, time, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe)
+        file_dir, time, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, max_tau=max_tau)
     make_run(file_dir)
 
 

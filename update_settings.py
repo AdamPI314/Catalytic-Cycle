@@ -30,7 +30,7 @@ def update_dlsode_setting(file_dir, time=1.0):
         file_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_followed="C", init_spe=114):
+def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=1.0):
     """
     update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
@@ -50,6 +50,7 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
+    setting['pathway']['tau'] = max_tau
 
     setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
     rwc.write_configuration(setting, os.path.join(
