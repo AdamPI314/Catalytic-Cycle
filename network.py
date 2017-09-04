@@ -6,10 +6,34 @@ import os
 import time
 import sys
 import re
+import json
 import numpy as np
 import pandas as pd
 import networkx as nx
 import parse_spe_reaction_info as psri
+
+
+def read_spe_alias(filename=None):
+    """
+    read species alias
+    """
+    if filename is None:
+        return None
+    with open(filename, 'r') as f_h:
+        spe_alias = json.load(f_h)
+    return spe_alias
+
+
+def update_species_idx_name_dict(dict_s, spe_alias=None):
+    """
+    update species idx name using alias
+    """
+    if spe_alias is None:
+        return
+    for _, val in enumerate(dict_s):
+        if dict_s[val] in spe_alias.keys():
+            dict_s[val] = spe_alias[dict_s[val]]
+    return dict_s
 
 
 def change_spe_name(spe, dict_s=None):
@@ -51,6 +75,11 @@ def init_directed_network(file_dir, top_n=10):
     """
     spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
+
+    spe_alias = read_spe_alias(os.path.join(
+        file_dir, "input", "spe_alias.json"))
+    spe_idx_name_dict = update_species_idx_name_dict(
+        spe_idx_name_dict, spe_alias=spe_alias)
 
     f_n_path_name = os.path.join(file_dir, "output", "pathway_name.csv")
     f_n_path_prob = os.path.join(file_dir, "output", "pathway_prob.csv")
@@ -106,7 +135,7 @@ def init_directed_network(file_dir, top_n=10):
     for _, val in enumerate(d_g_tmp.edges()):
         edge_weight.append(d_g_tmp[val[0]][val[1]]['weight'])
     node_weight = rescale_array(node_weight, 1.0, 5.0)
-    edge_weight = rescale_array(edge_weight, 1.0, 5.0)
+    edge_weight = rescale_array(edge_weight, 3.0, 15.0)
     # final directed graph
     di_graph = nx.DiGraph()
     for idx, val in enumerate(d_g_tmp.nodes()):
@@ -139,7 +168,7 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    TOP_N = 1000
+    TOP_N = 100
 
     RN_OBJ = init_directed_network(FILE_DIR, top_n=TOP_N)
     network_to_gephi_input_file(
