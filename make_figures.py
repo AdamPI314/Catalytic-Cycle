@@ -55,7 +55,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0):
     #     r'$\clubsuit$',
     #     r'$\checkmark$']
 
-    colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')
+    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
     # linestyles = Line2D.lineStyles.keys()
 
     s_n_idx = {"-1": "Temp", "0": "HE", "10": "OH", "12": "HO2",
@@ -81,11 +81,11 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0):
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
             a_x_right.plot(time[0:end_point], temp[0:end_point],
-                           color=colors[counter % len(colors)], label=s_n_idx[str(s_idx)])
+                           color=colors[-1], label=s_n_idx[str(s_idx)])
         else:
             a_x_left.semilogy(time[0:end_point], conc[0:end_point, s_idx],
                               color=colors[counter % len(colors)], label=s_n_idx[str(s_idx)])
-        counter += 1
+            counter += 1
     a_x_left.legend(loc=0, prop={'size': 10.0})
     a_x_right.legend(loc=1, prop={'size': 10.0})
 
@@ -106,10 +106,10 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0):
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    # plot_concentrations(FILE_DIR, [10, 12, -1])
-    # plot_concentrations(FILE_DIR, [10, 12, -1])
+    plot_concentrations(FILE_DIR, [10, 12, -1])
+    plot_concentrations(FILE_DIR, [10, 12, -1])
     plot_concentrations(FILE_DIR, [14, 15, -1])
-    # plot_concentrations(FILE_DIR, [13, 17, 62, -1])
-    # plot_concentrations(FILE_DIR, [46, 50, 51, 52, -1])
-    # plot_pathway_prob(FILE_DIR, max_tau=0.2)
+    plot_concentrations(FILE_DIR, [13, 17, 62, -1])
+    plot_concentrations(FILE_DIR, [46, 50, 51, 52, -1])
+    plot_pathway_prob(FILE_DIR, max_tau=0.2)
     print(FILE_DIR)
