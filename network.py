@@ -60,11 +60,15 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
     """
     min_val = min(arr)
     max_val = max(arr)
-    ratio = (max_t - min_t) / (max_val - min_val)
-
-    for idx, val in enumerate(arr):
-        arr[idx] = (val - min_val) * ratio + min_t
-    return arr
+    if max_val == min_val:
+        for idx, val in enumerate(arr):
+            arr[idx] = (max_t + min_t) / 2.0
+        return arr
+    else:
+        ratio = (max_t - min_t) / (max_val - min_val)
+        for idx, val in enumerate(arr):
+            arr[idx] = (val - min_val) * ratio + min_t
+        return arr
 
 
 def init_directed_network(file_dir, top_n=10):
@@ -88,7 +92,8 @@ def init_directed_network(file_dir, top_n=10):
                         delimiter=',', max_rows=top_n)
     p_p = np.genfromtxt(f_n_path_prob, dtype=float,
                         delimiter=',', max_rows=top_n)
-
+    p_n = p_n[1::]
+    p_p = p_p[1::]
     d_f = pd.DataFrame(np.transpose([p_n, p_p]), columns=['name', 'prob'])
 
     # temporary directed graph
@@ -168,11 +173,12 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    TOP_N = 100
+    TOP_N = 75 + 1
+    ATOM_FOLLOWED = "H"
 
     RN_OBJ = init_directed_network(FILE_DIR, top_n=TOP_N)
     network_to_gephi_input_file(
-        RN_OBJ, FILE_DIR, "network_" + str(TOP_N) + ".gexf")
+        RN_OBJ, FILE_DIR, "network_" + str(ATOM_FOLLOWED) + "_" + str(TOP_N - 1) + ".gexf")
 
     END_TIME = time.time()
 
