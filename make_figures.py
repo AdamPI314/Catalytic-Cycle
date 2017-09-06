@@ -195,11 +195,12 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=1.0, tag="fraction"
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    plot_pathway_prob(FILE_DIR, max_tau=0.2)
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
-    # SPE_IDX = trajectory.get_species_concentration(
-    #     FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
-    # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, tag="M")
+    SPE_IDX = trajectory.get_species_concentration(
+        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
+    plot_concentrations(
+        FILE_DIR, spe_idx=SPE_IDX, tag="M")
     plot_reaction_rates(
         FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
 

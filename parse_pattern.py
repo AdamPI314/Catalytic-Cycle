@@ -11,6 +11,30 @@ import pandas as pd
 import parse_spe_reaction_info as psri
 
 
+def parse_path_prob_terminating_with_spe(file_dir, spe="C3H8"):
+    """
+    get pathway and their pathway probability, path ending with spe
+    """
+    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+
+    pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
+    pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
+
+    d_f = pd.DataFrame(np.transpose([pathway_name, pathway_prob]), columns=[
+        'species', 'frequency'])
+    print(d_f.head())
+    _, spe_name_idx_dict = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    spe_idx = spe_name_idx_dict[spe]
+    # print(spe_idx)
+
+    d_f = d_f.loc[lambda x : x['species'].str.endswith("S" + str(spe_idx))]
+    # print(d_f.head())
+
+    return d_f
+
+
 def parse_species(path):
     """
     parse sepcies name, return a dictionary of species and count
@@ -393,6 +417,8 @@ if __name__ == "__main__":
     # initiation_reaction_count(FILE_DIR)
     # species_cycle(FILE_DIR)
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
-    species_production_path(FILE_DIR, spe='OH', top_n=50)
+    # species_production_path(FILE_DIR, spe='OH', top_n=50)
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
     # species_production_reaction(FILE_DIR, spe='OH', top_n=50)
+
+    parse_path_prob_terminating_with_spe(FILE_DIR, spe="C3H8")
