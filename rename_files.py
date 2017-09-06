@@ -27,8 +27,8 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
 
-    RE_EXPR = "Temp"
-    FMT = "jpg"
+    RE_EXPR = "straight_"
+    FMT = "png"
     PREFIX = "C3H8_H_"
     parse_filename(os.path.join(FILE_DIR, "output"), RE_EXPR, FMT, PREFIX)
 
