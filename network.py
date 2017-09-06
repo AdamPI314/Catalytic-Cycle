@@ -172,12 +172,15 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    TOP_N = 75 + 1
-    ATOM_FOLLOWED = "H"
+    # TOP_N = 75 + 1
+    # ATOM_FOLLOWED = "H"
+    PREFIX = "C3H8"
+    TOP_N = 100 + 1
+    ATOM_FOLLOWED = "C"
 
     RN_OBJ = init_directed_network(FILE_DIR, top_n=TOP_N)
     network_to_gephi_input_file(
-        RN_OBJ, FILE_DIR, "network_" + str(ATOM_FOLLOWED) + "_" + str(TOP_N - 1) + ".gexf")
+        RN_OBJ, FILE_DIR, PREFIX + "_" + ATOM_FOLLOWED + "_network_" + str(TOP_N - 1) + ".gexf")
 
     END_TIME = time.time()
 

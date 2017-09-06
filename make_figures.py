@@ -79,7 +79,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
     temp = np.loadtxt(os.path.join(file_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
-        
+
     counter = 0
     delta_n = 20
     end_point = int(max_tau * len(time))
@@ -117,13 +117,90 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     plt.close()
 
 
+def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=1.0, tag="fraction"):
+    """
+    plot reaction rates give reaction index list
+    """
+    markers_tmp = []
+    for m_k in Line2D.markers:
+        try:
+            if len(m_k) == 1 and m_k != ' ':
+                markers_tmp.append(m_k)
+        except TypeError:
+            pass
+    markers = markers_tmp[2::]
+    markers.append(markers_tmp[0])
+    markers.append(markers_tmp[1])
+
+    # styles = markers + [
+    #     r'$\lambda$',
+    #     r'$\bowtie$',
+    #     r'$\circlearrowleft$',
+    #     r'$\clubsuit$',
+    #     r'$\checkmark$']
+
+    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
+    # linestyles = Line2D.lineStyles.keys()
+
+    _, rxn_n_idx = psri.parse_reaction_and_its_index(os.path.join(
+        file_dir, "output", "reaction_labelling.csv"))
+    rxn_n_idx["-1"] = "Temp"
+    reaction_idx.append(-1)
+
+    if reaction_idx is None:
+        reaction_idx = [0]
+    time = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+                                        "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(file_dir, "output",
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    counter = 0
+    delta_n = 20
+    end_point = int(max_tau * len(time))
+
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    for s_idx in reaction_idx:
+        if s_idx == -1:
+            a_x_right = a_x_left.twinx()
+            a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
+                           color=colors[-1], label=rxn_n_idx[str(s_idx)])
+        else:
+            if counter < len(colors) - 1:
+                m_k = None
+            else:
+                m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+            a_x_left.semilogy(time[0:end_point:delta_n], rxn_rates[0:end_point:delta_n, s_idx], marker=m_k,
+                              color=colors[counter % (len(colors) - 1)], label=rxn_n_idx[str(s_idx)])
+            counter += 1
+    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left.get_frame().set_alpha(0.7)
+    leg_right.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+
+    a_x_left.set_xlabel("Time/sec")
+
+    a_x_left.set_ylabel("R")
+    a_x_right.set_ylabel("T/K")
+
+    rxn_idx_str = "_".join(str(x) for x in reaction_idx)
+    plt.title("reaction rates and Temp")
+
+    fig.savefig(os.path.join(file_dir, "output",
+                             "reaction_rate_" + rxn_idx_str + ".jpg"), dpi=500)
+    plt.close()
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
-    SPE_IDX = trajectory.get_species_concentration(
-        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
-    plot_concentrations(
-        FILE_DIR, spe_idx=SPE_IDX, tag="M")
+    # SPE_IDX = trajectory.get_species_concentration(
+    #     FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=SPE_IDX, tag="M")
+    plot_reaction_rates(
+        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
 
     print(FILE_DIR)
