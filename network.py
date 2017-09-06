@@ -79,7 +79,6 @@ def init_directed_network(file_dir, top_n=10):
     """
     spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-
     spe_alias = read_spe_alias(os.path.join(
         file_dir, "input", "spe_alias.json"))
     spe_idx_name_dict = update_species_idx_name_dict(
