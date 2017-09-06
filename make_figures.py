@@ -3,13 +3,15 @@ plot jobs
 """
 import os
 import sys
+from copy import deepcopy
 import numpy as np
 
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pylab as plt
 from matplotlib.lines import Line2D
-from copy import deepcopy
+
+import parse_spe_reaction_info as psri
 
 
 def plot_pathway_prob(file_dir, max_tau=1.0):
@@ -38,7 +40,7 @@ def plot_pathway_prob(file_dir, max_tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0):
+def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     """
     plot concentrations give species index list
     """
@@ -59,21 +61,18 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0):
     colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
     # linestyles = Line2D.lineStyles.keys()
 
-    s_n_idx = {"-1": "Temp", "0": "HE", "10": "OH", "12": "HO2", "11": "H2O",
-               "62": "C3H8", "9": "O2", "2": "N2", "1": "Ar",
-               "13": "H2O2", "17": "CH2O", "59": "C3H6",
-               "46": "CH2CHO", "50": "CH3CH2OO",
-               "51": "CH3CH2OOH", "52": "CH2CH2OOH",
-               "14": "CO", "15": "CO2",
-               "66": "Acetone", "86": "propoxide"}
+    s_n_idx, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    s_n_idx["-1"] = "Temp"
+
     if spe_idx is None:
         spe_idx = [0]
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_fraction.csv"), delimiter=",")
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
     conc = np.loadtxt(os.path.join(file_dir, "output",
-                                   "concentration_dlsode_fraction.csv"), delimiter=",")
+                                   "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
     temp = np.loadtxt(os.path.join(file_dir, "output",
-                                   "temperature_dlsode_fraction.csv"), delimiter=",")
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
     delta_n = 20
@@ -127,6 +126,6 @@ if __name__ == '__main__':
     # plot_concentrations(FILE_DIR, [62, 46, 50, 51, 52, -1])
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
     plot_concentrations(
-        FILE_DIR, [11, 59, 17, 13, 14, 10, 62, 12, 15, 66, 86, 46, 50, 51, 52, -1])
+        FILE_DIR, spe_idx=[11, 59, 17, 13, 14, 10, 62, 12, 15, 66, 86, 46, 50, 51, 52, -1], tag="M")
 
     print(FILE_DIR)
