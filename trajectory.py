@@ -9,10 +9,12 @@ import numpy as np
 import parse_spe_reaction_info as psri
 
 
-def get_species_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="fraction"):
+def get_species_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="fraction", atoms=None):
     """
     get species concentration at a tau, where tau is the ratio of the time_wanted/end_time
     """
+    if atoms is None:
+        atoms = ["C"]
     conc = np.loadtxt(os.path.join(file_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
     time_idx = int(tau * len(conc))
@@ -27,16 +29,25 @@ def get_species_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="fractio
 
     spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
+    spe_composition = psri.read_spe_composition(
+        os.path.join(file_dir, "input", "spe_composition.json"))
+
     spe_idx_list = []
     counter = 0
     for _, val in enumerate(c_idx_map):
         if counter < top_n:
             spe_idx = next(iter(c_idx_map[val]))
-            if spe_idx_name_dict[spe_idx] not in exclude:
+            indicator = False
+            for _, atom in enumerate(atoms):
+                if atom in spe_composition[spe_idx_name_dict[spe_idx]]:
+                    indicator = True
+                    break
+            if spe_idx_name_dict[spe_idx] not in exclude and indicator:
                 print(val, spe_idx, spe_idx_name_dict[spe_idx])
                 spe_idx_list.append(int(spe_idx))
                 counter += 1
-    print(spe_idx_list)
+    # print(spe_idx_list)
+    return spe_idx_list
 
 
 if __name__ == '__main__':
@@ -44,4 +55,4 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
     get_species_concentration(
-        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M")
+        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])

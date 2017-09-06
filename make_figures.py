@@ -12,6 +12,7 @@ from matplotlib import pylab as plt
 from matplotlib.lines import Line2D
 
 import parse_spe_reaction_info as psri
+import trajectory
 
 
 def plot_pathway_prob(file_dir, max_tau=1.0):
@@ -44,13 +45,17 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     """
     plot concentrations give species index list
     """
-    markers = []
-    for m in Line2D.markers:
+    markers_tmp = []
+    for m_k in Line2D.markers:
         try:
-            if len(m) == 1 and m != ' ':
-                markers.append(m)
+            if len(m_k) == 1 and m_k != ' ':
+                markers_tmp.append(m_k)
         except TypeError:
             pass
+    markers = markers_tmp[2::]
+    markers.append(markers_tmp[0])
+    markers.append(markers_tmp[1])
+
     # styles = markers + [
     #     r'$\lambda$',
     #     r'$\bowtie$',
@@ -64,6 +69,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     s_n_idx, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     s_n_idx["-1"] = "Temp"
+    spe_idx.append(-1)
 
     if spe_idx is None:
         spe_idx = [0]
@@ -73,7 +79,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
     temp = np.loadtxt(os.path.join(file_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
-
+        
     counter = 0
     delta_n = 20
     end_point = int(max_tau * len(time))
@@ -114,18 +120,10 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    # plot_concentrations(FILE_DIR, [10, 12, -1])
-    # plot_concentrations(FILE_DIR, [14, 15, -1])
-    # plot_concentrations(FILE_DIR, [13, 17, 62, -1])
-    # plot_concentrations(FILE_DIR, [46, 50, 51, 52, -1])
-    # plot_concentrations(FILE_DIR, [62, -1])
-    # plot_concentrations(FILE_DIR, [66, -1])
-    # plot_concentrations(FILE_DIR, [86, -1])
-    # plot_pathway_prob(FILE_DIR, max_tau=0.2)
-    # plot_concentrations(FILE_DIR, [62, 10, 12, 13, 14, 15, -1])
-    # plot_concentrations(FILE_DIR, [62, 46, 50, 51, 52, -1])
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
+    SPE_IDX = trajectory.get_species_concentration(
+        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
     plot_concentrations(
-        FILE_DIR, spe_idx=[11, 59, 17, 13, 14, 10, 62, 12, 15, 66, 86, 46, 50, 51, 52, -1], tag="M")
+        FILE_DIR, spe_idx=SPE_IDX, tag="M")
 
     print(FILE_DIR)

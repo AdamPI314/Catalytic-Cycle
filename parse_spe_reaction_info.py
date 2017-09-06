@@ -5,7 +5,7 @@ parse species and reaction information
 import re
 # import os
 # import sys
-
+import json
 import pandas as pd
 import numpy as np
 
@@ -26,7 +26,15 @@ def parse_spe_info(f_n):
     return spe_ind_name_dict, spe_name_ind_dict
 
 
-# parse reactions
+def read_spe_composition(f_n):
+    """
+    read species composition
+    """
+    with open(f_n, 'r') as f_h:
+        data = json.load(f_h)
+    return data
+
+
 def parse_reaction_and_its_index(f_n):
     """
     parse reaction info from file= "os.path.join(file_dir, "output", "reaction_labelling.csv")"
