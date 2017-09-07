@@ -13,6 +13,7 @@ from matplotlib.lines import Line2D
 
 import parse_spe_reaction_info as psri
 import trajectory
+import parse_pattern
 
 
 def plot_pathway_prob(file_dir, max_tau=1.0):
@@ -41,10 +42,14 @@ def plot_pathway_prob(file_dir, max_tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
+def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction", exclude=None):
     """
-    plot concentrations give species index list
+    plot concentrations give species index list, if exclude is not None, means we are going
+    to renormalize the molelar fraction
     """
+    if exclude is None:
+        exclude = []
+
     markers_tmp = []
     for m_k in Line2D.markers:
         try:
@@ -66,9 +71,9 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
     # linestyles = Line2D.lineStyles.keys()
 
-    s_n_idx, _ = psri.parse_spe_info(os.path.join(
+    s_idx_n, s_n_idx = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    s_n_idx["-1"] = "Temp"
+    s_idx_n["-1"] = "Temp"
     spe_idx.append(-1)
 
     if spe_idx is None:
@@ -80,6 +85,15 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     temp = np.loadtxt(os.path.join(file_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
+    # renormalization
+    # print(exclude, s_idx_n)
+    exclude_idx_list = [int(s_n_idx[x]) for x in exclude]
+    # set the concentration of these species to be zero
+    for _, idx in enumerate(exclude_idx_list):
+        conc[:, idx] = 0.0
+    # normalize
+    for idx, _ in enumerate(conc):
+        conc[idx, :] /= np.sum(conc[idx])
     counter = 0
     delta_n = 20
     end_point = int(max_tau * len(time))
@@ -89,14 +103,14 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
             a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
-                           color=colors[-1], label=s_n_idx[str(s_idx)])
+                           color=colors[-1], label=s_idx_n[str(s_idx)])
         else:
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
             a_x_left.semilogy(time[0:end_point:delta_n], conc[0:end_point:delta_n, s_idx], marker=m_k,
-                              color=colors[counter % (len(colors) - 1)], label=s_n_idx[str(s_idx)])
+                              color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
@@ -109,7 +123,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=1.0, tag="fraction"):
     a_x_left.set_ylabel("[X]")
     a_x_right.set_ylabel("T/K")
 
-    s_n_str = "_".join(s_n_idx[str(x)] for x in spe_idx)
+    s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx)
     # plt.title(s_n_str)
 
     fig.savefig(os.path.join(file_dir, "output",
@@ -142,9 +156,9 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=1.0, tag="fraction"
     colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
     # linestyles = Line2D.lineStyles.keys()
 
-    _, rxn_n_idx = psri.parse_reaction_and_its_index(os.path.join(
+    _, rxn_idx_n = psri.parse_reaction_and_its_index(os.path.join(
         file_dir, "output", "reaction_labelling.csv"))
-    rxn_n_idx["-1"] = "Temp"
+    rxn_idx_n["-1"] = "Temp"
     reaction_idx.append(-1)
 
     if reaction_idx is None:
@@ -165,14 +179,14 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=1.0, tag="fraction"
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
             a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
-                           color=colors[-1], label=rxn_n_idx[str(s_idx)])
+                           color=colors[-1], label=rxn_idx_n[str(s_idx)])
         else:
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
             a_x_left.semilogy(time[0:end_point:delta_n], rxn_rates[0:end_point:delta_n, s_idx], marker=m_k,
-                              color=colors[counter % (len(colors) - 1)], label=rxn_n_idx[str(s_idx)])
+                              color=colors[counter % (len(colors) - 1)], label=rxn_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
@@ -192,16 +206,62 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=1.0, tag="fraction"
                              "reaction_rate_" + rxn_idx_str + ".jpg"), dpi=500)
     plt.close()
 
+
+def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10):
+    """
+    plot spe_path_prob give species name 
+    """
+    markers_tmp = []
+    for m_k in Line2D.markers:
+        try:
+            if len(m_k) == 1 and m_k != ' ':
+                markers_tmp.append(m_k)
+        except TypeError:
+            pass
+
+    markers_tmp = markers_tmp + [
+        r'$\lambda$',
+        r'$\bowtie$',
+        r'$\circlearrowleft$',
+        r'$\clubsuit$',
+        r'$\checkmark$']
+
+    markers = markers_tmp[2::]
+    markers.append(markers_tmp[0])
+    markers.append(markers_tmp[1])
+
+    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
+    # linestyles = Line2D.lineStyles.keys()
+
+    d_f = parse_pattern.parse_path_prob_terminating_with_spe(
+        file_dir, spe_name=spe_name)
+    data = [float(x) for x in d_f['frequency']][0:top_n]
+    data_c = deepcopy(data)
+    for idx, _ in enumerate(data_c):
+        if idx >= 1:
+            data_c[idx] += data_c[idx - 1]
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
+    a_x.plot(data_c, color=colors[-1], marker=markers[0])
+    a_x.grid()
+
+    fig.savefig(os.path.join(file_dir, "output",
+                             "path_prob_cumulative_" + spe_name + ".jpg"), dpi=500)
+    plt.close()
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    plot_pathway_prob(FILE_DIR, max_tau=0.2)
+    # plot_pathway_prob(FILE_DIR, max_tau=0.2)
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
-    SPE_IDX = trajectory.get_species_concentration(
-        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
-    plot_concentrations(
-        FILE_DIR, spe_idx=SPE_IDX, tag="M")
-    plot_reaction_rates(
-        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-
+    SPE_IDX, SPE_EXCLUDE_IDX = trajectory.get_species_with_top_n_concentration(
+        FILE_DIR, exclude=None, top_n=10, tau=0.9, tag="M", atoms=["C"])
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=SPE_IDX, tag="M", renormalization=False)
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude=SPE_EXCLUDE_IDX)
+    # plot_reaction_rates(
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
+    plot_spe_path_prob(FILE_DIR, spe_name="C3H6")
     print(FILE_DIR)

@@ -11,7 +11,7 @@ import pandas as pd
 import parse_spe_reaction_info as psri
 
 
-def parse_path_prob_terminating_with_spe(file_dir, spe="C3H8"):
+def parse_path_prob_terminating_with_spe(file_dir, spe_name="C3H8"):
     """
     get pathway and their pathway probability, path ending with spe
     """
@@ -22,14 +22,13 @@ def parse_path_prob_terminating_with_spe(file_dir, spe="C3H8"):
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
     d_f = pd.DataFrame(np.transpose([pathway_name, pathway_prob]), columns=[
-        'species', 'frequency'])
-    print(d_f.head())
+        'pathway', 'frequency'])
     _, spe_name_idx_dict = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    spe_idx = spe_name_idx_dict[spe]
-    # print(spe_idx)
+    spe_idx = spe_name_idx_dict[spe_name]
 
-    d_f = d_f.loc[lambda x : x['species'].str.endswith("S" + str(spe_idx))]
+    d_f = d_f.loc[lambda x: x['pathway'].str.endswith("S" + str(spe_idx))]
+    d_f.reset_index(drop=True, inplace=True)
     # print(d_f.head())
 
     return d_f
@@ -421,4 +420,4 @@ if __name__ == "__main__":
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
     # species_production_reaction(FILE_DIR, spe='OH', top_n=50)
 
-    parse_path_prob_terminating_with_spe(FILE_DIR, spe="C3H8")
+    parse_path_prob_terminating_with_spe(FILE_DIR, spe_name="C3H8")
