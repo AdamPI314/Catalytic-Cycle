@@ -51,16 +51,38 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, t
                 counter += 1
 
     # species doesn't contain atom we are interested in
-    exclude_spe_idx_list = []
+    exclude_spe_name_list = []
     for idx, s_n_t in enumerate(spe_composition):
         indicator = False
         for _, atom in enumerate(atoms):
             if atom in spe_composition[s_n_t]:
                 indicator = True
         if indicator is False:
-            exclude_spe_idx_list.append(s_n_t)
+            exclude_spe_name_list.append(s_n_t)
 
-    return spe_idx_list, exclude_spe_idx_list
+    return spe_idx_list, exclude_spe_name_list
+
+
+def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None):
+    """
+    return normalized concentration
+    """
+    if exclude_names is None:
+        exclude_names = []
+    conc = np.loadtxt(os.path.join(file_dir, "output",
+                                   "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    _, s_n_idx = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    # renormalization
+    exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
+    # set the concentration of these species to be zero
+    for _, idx in enumerate(exclude_idx_list):
+        conc[:, idx] = 0.0
+    # normalize
+    for idx, _ in enumerate(conc):
+        conc[idx, :] /= np.sum(conc[idx])
+
+    return conc
 
 
 if __name__ == '__main__':
