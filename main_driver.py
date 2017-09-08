@@ -16,14 +16,14 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     END_TIME = 0.800000099855441071
-    TOP_N = 5000
-    TAU = 0.9
+    TOP_N = 50000
+    TAU = 0.5
     ATOM_FOLLOWED = "C"
     INIT_SPE = 62
     END_SPE = ""
 
-    # run dlosde
-    job_drivers.run_dlsode(FILE_DIR, END_TIME)
+    # # run dlosde
+    # job_drivers.run_dlsode(FILE_DIR, END_TIME)
 
     # write specie concentration at a time to file
     job_drivers.spe_concentration_at_time_w2f(FILE_DIR, tau=TAU)
@@ -38,8 +38,8 @@ if __name__ == '__main__':
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
-    job_drivers.symbolic_path_2_real_path(
-        FILE_DIR, top_n=TOP_N, flag="", end_spe=END_SPE)
+    # job_drivers.symbolic_path_2_real_path(
+    #     FILE_DIR, top_n=TOP_N, flag="", end_spe=END_SPE)
 
     # # species count
     # job_drivers.species_count(FILE_DIR, top_n=TOP_N, norm=True)

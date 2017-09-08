@@ -235,7 +235,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
-    print(spe_name,"#path:\t", len(data))
+    print(spe_name, "#path:\t", len(data))
     delta_n = int(len(data_c) / 25)
     if delta_n is 0:
         delta_n = 1
@@ -290,7 +290,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
-                             "path_prob_cumulative_" + spe_name + ".jpg"), dpi=500)
+                             "path_prob_cumulative_" + spe_name + "_" + str(tau) + ".jpg"), dpi=500)
     plt.close()
 
 
@@ -301,28 +301,29 @@ if __name__ == '__main__':
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
     SPE_IDX, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
         FILE_DIR, exclude=None, top_n=10, tau=0.9, tag="M", atoms=["C"])
+    TAU = 0.9
     # plot_concentrations(
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
     #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
     plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="CO", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="CO2", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="C3H6", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="CH2O", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="C2H4", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="acetaldehyde", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="propoxide", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="acrolein", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="propen1ol", top_n=10000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+                       exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
     print(FILE_DIR)
