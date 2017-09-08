@@ -37,6 +37,34 @@ def write_spe_composition_2_file(file_dir, spe_composition, tag=None):
         json.dump(spe_composition, f_h, indent=4, sort_keys=False)
 
 
+def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
+    """
+    f_n is path of "chem.xml" mechanism file
+    temp is temperature
+    buffer a dict store buffer gas and thier pressure
+    rxn_idx is reaction index
+    """
+    if buffer is None:
+        buffer = dict()
+
+    S = ct.Species.listFromFile(f_n)
+    R = ct.Reaction.listFromFile(f_n)
+    print(S)
+    print(R)
+    gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
+                      species=S, reactions=R)
+
+    gas.TPY = 650, 3 * ct.one_atm, 'npropyl:1.0, O2:1.0 HE:1.0'
+
+    print(gas.reactant_stoich_coeffs())
+    print(gas.product_stoich_coeffs())
+
+    print(gas.reverse_rate_constants)
+    print(gas.forward_rates_of_progress)
+
+    return
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
