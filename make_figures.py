@@ -235,23 +235,60 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
+    print(spe_name,"#path:\t", len(data))
+    delta_n = int(len(data_c) / 25)
+    if delta_n is 0:
+        delta_n = 1
+    data_c = data_c[::delta_n]
 
     _, s_n_idx = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        FILE_DIR, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+        FILE_DIR, tag="M", tau=tau, exclude_names=exclude_names, renormalization=False)
+    trajectory.convert_concentration_to_path_prob(
+        FILE_DIR, atom_followed="C", spe_conc=spe_conc, renormalization=True)
     spe_conc_const = spe_conc[int(s_n_idx[spe_name])]
 
-    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
-    a_x.plot(data_c, color=colors[0], marker=markers[0], label="pathway prob")
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    a_x_right = a_x_left.twinx()
 
-    a_x.plot([0, len(data_c) - 1], [spe_conc_const, spe_conc_const],
-             color=colors[-1], marker=markers[1], label="exact")
+    a_x_left.plot(data_c, color=colors[0],
+                  marker=markers[0], label="pathway prob")
 
-    a_x.grid()
-    a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    a_x_left.plot([0, len(data_c) - 1], [spe_conc_const, spe_conc_const],
+                  color=colors[-1], marker=markers[1], label="exact")
 
+    a_x_right.plot(spe_conc_const - data_c,
+                   color=colors[1], marker=markers[2], label="$\Delta$")
+
+    leg_left = a_x_left.legend(loc=10, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=8, fancybox=True, prop={'size': 10.0})
+
+    a_x_left.yaxis.get_major_formatter().set_powerlimits((0, 1))
+    a_x_right.yaxis.get_major_formatter().set_powerlimits((0, 1))
+    a_x_left.ticklabel_format(useOffset=False)
+    a_x_right.ticklabel_format(useOffset=False)
+
+    x_ticks = [x for x in range(len(data_c))]
+    x_tick_labels = [str(delta_n * x + 1) for x in x_ticks]
+    a_x_left.set_xticks(x_ticks)
+    # a_x_left.set_xticklabels(x_tick_labels, rotation='vertical')
+    a_x_left.set_xticklabels(x_tick_labels, rotation=45)
+
+    a_x_left.set_xlim([0 - 0.5, len(data_c) - 0.5])
+
+    leg_left.get_frame().set_alpha(0.7)
+    leg_right.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+
+    a_x_left.set_xlabel("#path")
+    a_x_left.set_ylabel("$\Sigma P_i$ and $\widetilde{X}$")
+    a_x_right.set_ylabel("$\Delta$")
+
+    a_x_left.set_title(spe_name)
+
+    fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
                              "path_prob_cumulative_" + spe_name + ".jpg"), dpi=500)
     plt.close()
@@ -265,11 +302,13 @@ if __name__ == '__main__':
     SPE_IDX, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
         FILE_DIR, exclude=None, top_n=10, tau=0.9, tag="M", atoms=["C"])
     # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, tag="M", renormalization=False)
-    # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    # FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
     #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-    plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=1000,
+    plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="CO", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="CO2", top_n=10000,
                        exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
     print(FILE_DIR)
