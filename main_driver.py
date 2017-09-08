@@ -16,7 +16,7 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     END_TIME = 0.800000099855441071
-    TOP_N = 50000
+    TOP_N = 5000
     TAU = 0.5
     ATOM_FOLLOWED = "C"
     INIT_SPE = 62

@@ -286,7 +286,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     a_x_left.set_ylabel("$\Sigma P_i$ and $\widetilde{X}$")
     a_x_right.set_ylabel("$\Delta$")
 
-    a_x_left.set_title(spe_name)
+    a_x_left.set_title(spe_name + " @" + str(tau) + " tau")
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
@@ -303,7 +303,8 @@ if __name__ == '__main__':
     SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
         FILE_DIR, exclude=None, top_n=10, tau=TAU, tag="M", atoms=["C"])
     # plot_concentrations(
-    # FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
+    # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     plot_reaction_rates(
         FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
     for spe_n in SPE_NAMES:
