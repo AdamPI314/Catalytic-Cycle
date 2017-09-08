@@ -9,7 +9,7 @@ try:
     sys.path.append('/opt/cantera/v2.4.0/lib/python3.5/site-packages')
     import cantera as ct
 except ImportError:
-    print("CANTERA NO AVAILABLE")
+    print("CANTERA NOT AVAILABLE")
 
 
 def get_species_from_file(file_dir):
@@ -54,7 +54,7 @@ def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
                       species=S, reactions=R)
 
-    gas.TPY = 650, 3 * ct.one_atm, 'npropyl:1.0, O2:1.0 HE:1.0'
+    gas.TPY = 650, 3 * ct.one_atm, 'npropyl:1.0, O2:1.0, HE:1.0'
 
     print(gas.reactant_stoich_coeffs())
     print(gas.product_stoich_coeffs())
