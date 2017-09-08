@@ -91,7 +91,7 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, t
                     indicator = True
                     break
             if spe_idx_name_dict[spe_idx] not in exclude and indicator:
-                # print(val, spe_idx, spe_idx_name_dict[spe_idx])
+                print(val, spe_idx, spe_idx_name_dict[spe_idx])
                 spe_idx_list.append(int(spe_idx))
                 counter += 1
 

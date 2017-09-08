@@ -311,4 +311,18 @@ if __name__ == '__main__':
                        exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
     plot_spe_path_prob(FILE_DIR, spe_name="CO2", top_n=10000,
                        exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="C3H6", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="CH2O", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="C2H4", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="acetaldehyde", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="propoxide", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="acrolein", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="propen1ol", top_n=10000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
     print(FILE_DIR)
