@@ -68,6 +68,9 @@ def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    S_C = get_species_from_file(FILE_DIR)
-    write_spe_composition_2_file(FILE_DIR, S_C, tag="")
+    # S_C = get_species_from_file(FILE_DIR)
+    # write_spe_composition_2_file(FILE_DIR, S_C, tag="")
+    BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
+    evaluate_rate_constant(os.path.join(
+        FILE_DIR, "input", "chem.xml"), temp=650, buffer=BUFFER, rxn_idx=0)
     print(FILE_DIR)
