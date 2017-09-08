@@ -259,8 +259,8 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     a_x_left.plot([0, len(data_c) - 1], [spe_conc_const, spe_conc_const],
                   color=colors[-1], marker=markers[1], label="exact")
 
-    a_x_right.plot(spe_conc_const - data_c,
-                   color=colors[1], marker=markers[2], label="$\Delta$")
+    a_x_right.plot((spe_conc_const - data_c) / spe_conc_const,
+                   color=colors[1], marker=markers[2], label="Error Percentage")
 
     leg_left = a_x_left.legend(loc=10, fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc=8, fancybox=True, prop={'size': 10.0})
@@ -284,7 +284,9 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
 
     a_x_left.set_xlabel("#path")
     a_x_left.set_ylabel("$\Sigma P_i$ and $\widetilde{X}$")
-    a_x_right.set_ylabel("$\Delta$")
+    a_x_right.set_ylabel("Error")
+    ytick_vals = a_x_right.get_yticks()
+    a_x_right.set_yticklabels(['{:3.2f}%'.format(x * 100) for x in ytick_vals])
 
     a_x_left.set_title(spe_name + " @" + str(tau) + " tau")
 
