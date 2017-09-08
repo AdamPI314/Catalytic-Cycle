@@ -104,8 +104,8 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, t
                 indicator = True
         if indicator is False:
             exclude_spe_name_list.append(s_n_t)
-
-    return spe_idx_list, exclude_spe_name_list
+    spe_name_list = [str(spe_idx_name_dict[str(x)]) for x in spe_idx_list]
+    return spe_idx_list, spe_name_list, exclude_spe_name_list
 
 
 def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None, renormalization=True):

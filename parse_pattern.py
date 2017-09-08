@@ -11,12 +11,19 @@ import pandas as pd
 import parse_spe_reaction_info as psri
 
 
-def parse_path_prob_terminating_with_spe(file_dir, spe_name="C3H8"):
+def parse_path_prob_terminating_with_spe(file_dir, spe_name="C3H8", init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL"):
     """
     get pathway and their pathway probability, path ending with spe
     """
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+
+    suffix = ""
+    suffix += "_S" + str(init_spe)
+    suffix += "_" + str(atom_followed)
+    suffix += "_" + str(tau)
+    suffix += "_" + str(pathwayEndWith)
+
+    f_n_n = os.path.join(file_dir, "output", "pathway_name" + suffix + ".csv")
+    f_n_p = os.path.join(file_dir, "output", "pathway_prob" + suffix + ".csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')

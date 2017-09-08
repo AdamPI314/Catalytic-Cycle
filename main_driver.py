@@ -36,6 +36,9 @@ if __name__ == '__main__':
     job_drivers.evaluate_pathway_probability(
         FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU)
 
+    # copy SOHR/C++ routine files
+    job_drivers.copy_sohr_files(FILE_DIR)
+
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
     # job_drivers.symbolic_path_2_real_path(

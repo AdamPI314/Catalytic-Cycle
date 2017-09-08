@@ -8,6 +8,14 @@ import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
 import parse_pattern as pp
+import naming
+
+
+def copy_sohr_files(file_dir):
+    """
+    copy SOHR files from C++ routine
+    """
+    naming.copy_sohr_files(file_dir)
 
 
 def species_count(file_dir, top_n=50, norm=False):
