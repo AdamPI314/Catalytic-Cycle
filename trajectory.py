@@ -88,9 +88,36 @@ def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None, r
     return conc
 
 
+def get_normalized_concentration_at_time(file_dir, tag="fraction", tau=1.0, exclude_names=None, renormalization=True):
+    """
+    return normalized species concentration at time
+    """
+    if exclude_names is None:
+        exclude_names = []
+
+    f_n = os.path.join(file_dir, "output", "spe_concentration_" +
+                       str(tau) + "_dlsode_" + str(tag) + ".csv")
+    conc = np.loadtxt(f_n, delimiter=",")
+
+    if renormalization is False:
+        return conc
+
+    _, s_n_idx = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    # renormalization
+    exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
+    # set the concentration of these species to be zero
+    for _, idx in enumerate(exclude_idx_list):
+        conc[idx] = 0.0
+    conc /= np.sum(conc)
+    return conc
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    get_species_with_top_n_concentration(
-        FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
+    # get_species_with_top_n_concentration(
+    #     FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
+    get_normalized_concentration_at_time(
+        FILE_DIR, tag="M", tau=0.9, exclude_names=None, renormalization=True)

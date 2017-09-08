@@ -239,9 +239,9 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     _, s_n_idx = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
 
-    spe_conc = trajectory.get_normalized_concentration(
-        file_dir, tag="fraction", exclude_names=exclude_names, renormalization=renormalization)
-    spe_conc_const = spe_conc[int(tau * len(spe_conc)), int(s_n_idx[spe_name])]
+    spe_conc = trajectory.get_normalized_concentration_at_time(
+        FILE_DIR, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+    spe_conc_const = spe_conc[int(s_n_idx[spe_name])]
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
     a_x.plot(data_c, color=colors[0], marker=markers[0], label="pathway prob")
@@ -266,10 +266,10 @@ if __name__ == '__main__':
         FILE_DIR, exclude=None, top_n=10, tau=0.9, tag="M", atoms=["C"])
     # plot_concentrations(
     #     FILE_DIR, spe_idx=SPE_IDX, tag="M", renormalization=False)
-    plot_concentrations(
-        FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
     #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-    # plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=1000,
-    #                    exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
+    plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=1000,
+                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
     print(FILE_DIR)
