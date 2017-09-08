@@ -63,7 +63,7 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, t
     return spe_idx_list, exclude_spe_name_list
 
 
-def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None):
+def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None, renormalization=True):
     """
     return normalized concentration
     """
@@ -71,6 +71,9 @@ def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None):
         exclude_names = []
     conc = np.loadtxt(os.path.join(file_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    if renormalization is False:
+        return conc
+
     _, s_n_idx = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     # renormalization
@@ -80,7 +83,7 @@ def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None):
         conc[:, idx] = 0.0
     # normalize
     for idx, _ in enumerate(conc):
-        conc[idx, :] /= np.sum(conc[idx])
+        conc[idx, :] /= np.sum(conc[idx, :])
 
     return conc
 

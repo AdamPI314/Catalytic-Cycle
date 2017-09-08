@@ -42,7 +42,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude_names=None):
+def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -71,7 +71,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
     colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
     # linestyles = Line2D.lineStyles.keys()
 
-    s_idx_n, s_n_idx = psri.parse_spe_info(os.path.join(
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     s_idx_n["-1"] = "Temp"
     spe_idx.append(-1)
@@ -84,7 +84,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     conc = trajectory.get_normalized_concentration(
-        file_dir, tag=tag, exclude_names=exclude_names)
+        file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
 
     counter = 0
     delta_n = 20
@@ -199,7 +199,7 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, tau=1.0):
+def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, tau=1.0, renormalization=True):
     """
     plot spe_path_prob give species name 
     """
@@ -240,7 +240,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
         file_dir, "output", "species_labelling.csv"))
 
     spe_conc = trajectory.get_normalized_concentration(
-        file_dir, tag="fraction", exclude_names=exclude_names)
+        file_dir, tag="fraction", exclude_names=exclude_names, renormalization=renormalization)
     spe_conc_const = spe_conc[int(tau * len(spe_conc)), int(s_n_idx[spe_name])]
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
@@ -266,10 +266,10 @@ if __name__ == '__main__':
         FILE_DIR, exclude=None, top_n=10, tau=0.9, tag="M", atoms=["C"])
     # plot_concentrations(
     #     FILE_DIR, spe_idx=SPE_IDX, tag="M", renormalization=False)
-    # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME)
+    plot_concentrations(
+        FILE_DIR, spe_idx=SPE_IDX, tag="fraction", exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
     #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-    plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=1000,
-                       exclude_names=SPE_EXCLUDE_NAME, tau=0.9)
+    # plot_spe_path_prob(FILE_DIR, spe_name="C3H8", top_n=1000,
+    #                    exclude_names=SPE_EXCLUDE_NAME, tau=0.9, renormalization=True)
     print(FILE_DIR)
