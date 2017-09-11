@@ -378,9 +378,9 @@ if __name__ == '__main__':
     # plot_concentrations(
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
     # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    plot_reaction_rates(
-        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=TAU, tag="M")
+    # plot_reaction_rates(
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=TAU, tag="M")
     for spe_n in SPE_NAMES:
         plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
                            exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
-    plot_rxn_rate_constant(FILE_DIR)
+    # plot_rxn_rate_constant(FILE_DIR)
