@@ -49,7 +49,8 @@ def evaluate_rate_constant(f_n, temp=1000, pressure=1.0, buffer=None, rxn_idx=0)
     spe = ct.Species.listFromFile(f_n)
     rxn = ct.Reaction.listFromFile(f_n)
     # print(S)
-    print(rxn[rxn_idx])
+    for r in rxn_idx:
+        print(rxn[r])
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
                       species=spe, reactions=rxn)
 
@@ -59,8 +60,13 @@ def evaluate_rate_constant(f_n, temp=1000, pressure=1.0, buffer=None, rxn_idx=0)
     # print(gas.reactant_stoich_coeffs())
     # print(gas.product_stoich_coeffs())
 
+    # Units are a combination of kmol, m^3 and s, convert to cm^3/molecule/s
+    # 10^6/(10^3 * 6.022 * 10^23)
+    # kmol_m_s_to_molecule_cm_s = 10**6/(10**3 * 6.022 * 10**23) 
+    kmol_m_s_to_molecule_cm_s = 1e6/(1e3 * 6.022e23) 
+    print(gas.forward_rate_constants[rxn_idx] * kmol_m_s_to_molecule_cm_s)
     # print(gas.reverse_rate_constants)
-    print(gas.forward_rates_of_progress[rxn_idx])
+    # print(gas.forward_rates_of_progress[rxn_idx])
 
     return
 
@@ -72,6 +78,7 @@ if __name__ == '__main__':
     # write_spe_composition_2_file(FILE_DIR, S_C, tag="")
     BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
     RXN_IDX = [548, 549, 550, 551, 552, 553]
+    TEMP = 666.66666666
     evaluate_rate_constant(os.path.join(
-        FILE_DIR, "input", "chem.xml"), pressure=1.0, temp=650, buffer=BUFFER, rxn_idx=RXN_IDX)
+        FILE_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
     print(FILE_DIR)
