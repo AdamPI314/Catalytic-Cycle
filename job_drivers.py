@@ -183,7 +183,7 @@ def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000
         file_dir, exclude=None, top_n=top_s_n, tau=max_tau, tag="M", atoms=[atom_followed])
     ppnt.prepare_pathway_name(file_dir, top_n=top_n,
                               flag=flag, spe_idx=spe_idx)
-    ppnt.prepare_pathway_time(file_dir, top_n=top_n,
+    ppnt.prepare_pathway_time(file_dir, top_n=top_n * top_s_n,
                               num=num, flag=flag, max_tau=max_tau)
     make_run(file_dir)
 
