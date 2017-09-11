@@ -36,7 +36,7 @@ def write_spe_composition_2_file(file_dir, spe_composition, tag=None):
         json.dump(spe_composition, f_h, indent=4, sort_keys=False)
 
 
-def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
+def evaluate_rate_constant(f_n, temp=1000, pressure=1.0, buffer=None, rxn_idx=0):
     """
     f_n is path of "chem.xml" mechanism file
     temp is temperature
@@ -46,20 +46,21 @@ def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
     if buffer is None:
         buffer = dict()
 
-    S = ct.Species.listFromFile(f_n)
-    R = ct.Reaction.listFromFile(f_n)
-    #print(S)
-    #print(R)
+    spe = ct.Species.listFromFile(f_n)
+    rxn = ct.Reaction.listFromFile(f_n)
+    # print(S)
+    print(rxn[rxn_idx])
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
-                      species=S, reactions=R)
+                      species=spe, reactions=rxn)
 
-    gas.TPY = 650, 3 * ct.one_atm, 'npropyl:1.0, O2:1.0, HE:1.0'
+    # gas.TPY = temp, pressure * ct.one_atm, 'npropyl:1.0, O2:1.0, HE:1.0'
+    gas.TPY = temp, pressure * ct.one_atm, buffer
 
-    print(gas.reactant_stoich_coeffs())
-    print(gas.product_stoich_coeffs())
+    # print(gas.reactant_stoich_coeffs())
+    # print(gas.product_stoich_coeffs())
 
-    print(gas.reverse_rate_constants)
-    print(gas.forward_rates_of_progress)
+    # print(gas.reverse_rate_constants)
+    print(gas.forward_rates_of_progress[rxn_idx])
 
     return
 
@@ -70,6 +71,7 @@ if __name__ == '__main__':
     # S_C = get_species_from_file(FILE_DIR)
     # write_spe_composition_2_file(FILE_DIR, S_C, tag="")
     BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
+    RXN_IDX = [548, 549, 550, 551, 552, 553]
     evaluate_rate_constant(os.path.join(
-        FILE_DIR, "input", "chem.xml"), temp=650, buffer=BUFFER, rxn_idx=0)
+        FILE_DIR, "input", "chem.xml"), pressure=1.0, temp=650, buffer=BUFFER, rxn_idx=RXN_IDX)
     print(FILE_DIR)
