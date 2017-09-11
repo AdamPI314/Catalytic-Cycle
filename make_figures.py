@@ -359,7 +359,7 @@ def plot_rxn_rate_costant(file_dir):
 
     a_x.set_xlabel("1000/T(K$^{-1}$)")
     a_x.set_ylabel("k(cm$^{3}$ molecule$^{-1}$s$^{-1}$)")
-    a_x.set_title("O$_2$ + npropyl")
+    a_x.set_title("O$_2$ + ipropyl")
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
