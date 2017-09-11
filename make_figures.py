@@ -336,8 +336,10 @@ def plot_rxn_rate_costant(file_dir):
             rxn_name_map[val].append(idx)
 
     # print(rxn_name_map)
-    rxn_name_list = ['O2 + npropyl <=> npropyloo', 'O2 + npropyl <=> C3H6 + HO2',
-                     'O2 + npropyl <=> QOOH_1', 'O2 + npropyl <=> OH + propoxide',  'O2 + npropyl <=> QOOH_2']
+    # rxn_name_list = ['O2 + npropyl <=> npropyloo', 'O2 + npropyl <=> C3H6 + HO2',
+    #                  'O2 + npropyl <=> QOOH_1', 'O2 + npropyl <=> OH + propoxide',  'O2 + npropyl <=> QOOH_2']
+    rxn_name_list = ['O2 + ipropyl <=> ipropyloo', 'O2 + ipropyl <=> C3H6 + HO2',
+                     'O2 + ipropyl <=> OH + propoxide', 'O2 + ipropyl <=> QOOH_3']
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
     counter = 0
