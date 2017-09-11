@@ -296,6 +296,75 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     plt.close()
 
 
+def plot_rxn_rate_costant(file_dir):
+    """
+    plot reaction rate constant, read data from files
+    """
+    markers_tmp = []
+    for m_k in Line2D.markers:
+        try:
+            if len(m_k) == 1 and m_k != ' ':
+                markers_tmp.append(m_k)
+        except TypeError:
+            pass
+
+    markers_tmp = markers_tmp + [
+        r'$\lambda$',
+        r'$\bowtie$',
+        r'$\circlearrowleft$',
+        r'$\clubsuit$',
+        r'$\checkmark$']
+
+    markers = markers_tmp[2::]
+    markers.append(markers_tmp[0])
+    markers.append(markers_tmp[1])
+    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
+
+    beta = np.loadtxt(os.path.join(file_dir, "output",
+                                   "beta.csv"), dtype=float, delimiter=",")
+    rxn_name = np.loadtxt(os.path.join(
+        file_dir, "output", "rxn_name.csv"), dtype=str, delimiter=",")
+    rxn_rate_constant = np.loadtxt(os.path.join(
+        file_dir, "output", "rate_constant.csv"), dtype=float, delimiter=",")
+
+    # combine duplicated reactions, same reaction name
+    rxn_name_map = dict()
+    for idx, val in enumerate(rxn_name):
+        if val not in rxn_name_map:
+            rxn_name_map[val] = [idx]
+        else:
+            rxn_name_map[val].append(idx)
+
+    # print(rxn_name_map)
+    rxn_name_list = ['O2 + npropyl <=> npropyloo', 'O2 + npropyl <=> C3H6 + HO2',
+                     'O2 + npropyl <=> QOOH_1', 'O2 + npropyl <=> OH + propoxide',  'O2 + npropyl <=> QOOH_2']
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
+    counter = 0
+    for _, r_n in enumerate(rxn_name_list):
+        for idx2, val2 in enumerate(rxn_name_map[r_n]):
+            if idx2 == 0:
+                y_value = np.array(rxn_rate_constant[:, int(val2)])
+            else:
+                y_value += np.array(rxn_rate_constant[:, int(val2)])
+        counter += 1
+        a_x.semilogy(
+            beta, y_value, color=colors[counter], marker=markers[counter], label=r_n)
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg.get_frame().set_alpha(0.7)
+    a_x.grid()
+
+    a_x.set_xlabel("1000/T(K$^{-1}$)")
+    a_x.set_ylabel("k(cm$^{3}$ molecule$^{-1}$s$^{-1}$)")
+    a_x.set_title("rate constant")
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output",
+                             "reaction_rate_constant.jpg"), dpi=500)
+    plt.close()
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
@@ -307,8 +376,9 @@ if __name__ == '__main__':
     # plot_concentrations(
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
     # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    plot_reaction_rates(
-        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-    for spe_n in SPE_NAMES:
-        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
-                           exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
+    # plot_reaction_rates(
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
+    # for spe_n in SPE_NAMES:
+    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
+    #                        exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
+    plot_rxn_rate_costant(FILE_DIR)

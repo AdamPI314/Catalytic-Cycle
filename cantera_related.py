@@ -56,7 +56,7 @@ def eval_2nd_order_rate_const(f_n, temp=None, pressure=1.0, buffer=None, rxn_idx
     rxn_str = []
     for r_t in rxn_idx:
         rxn_str.append(str(rxn[r_t]))
-        #print(rxn[r_t])
+        # print(rxn[r_t])
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
                       species=spe, reactions=rxn)
 
@@ -99,10 +99,12 @@ if __name__ == '__main__':
     # write_spe_composition_2_file(FILE_DIR, S_C, tag="")
     BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
     RXN_IDX = [548, 549, 550, 551, 552, 553]
-    TEMP = [666.66666666]
-    BETA = [0.5, 1.0, 1.5, 2.0, 2.5]
-    eval_2nd_order_rate_const(os.path.join(
-        FILE_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
+    # TEMP = [666.66666666]
+    # BETA = [0.5, 1.0, 1.5, 2.0, 2.5]
+    BETA = np.linspace(0.5, 2.5, num=25, endpoint=True)
+
+    # eval_2nd_order_rate_const(os.path.join(
+    #     FILE_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
     beta_1000_rate_constant_w2f(
         FILE_DIR, beta=BETA, pressure=3.0, buffer=BUFFER, rxn_idx=RXN_IDX)
     print(FILE_DIR)
