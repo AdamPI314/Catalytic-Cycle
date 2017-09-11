@@ -9,6 +9,7 @@ import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
 import parse_pattern as pp
 import naming
+import trajectory
 
 
 def copy_sohr_files(file_dir):
@@ -169,22 +170,25 @@ def run_mc_trajectory(file_dir, time, n_traj=1000000, atom_followed="C", init_sp
     make_run(file_dir)
 
 
-def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0):
+def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0, top_s_n=10):
     """
     evaluate pathway probability
+    top_s_n is top N species number
     """
     os.chdir(file_dir)
     us.update_eval_path_integral(
-        file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe)
-    ppnt.prepare_pathway_name(file_dir, top_n=top_n, flag=flag)
+        file_dir, top_n=top_n * top_s_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe)
+
+    spe_idx, _, _ = trajectory.get_species_with_top_n_concentration(
+        file_dir, exclude=None, top_n=top_s_n, tau=max_tau, tag="M", atoms=[atom_followed])
+    ppnt.prepare_pathway_name(file_dir, top_n=top_n,
+                              flag=flag, spe_idx=spe_idx)
     ppnt.prepare_pathway_time(file_dir, top_n=top_n,
                               num=num, flag=flag, max_tau=max_tau)
     make_run(file_dir)
 
 
 # http://stackoverflow.com/questions/3000724/running-matlab-in-the-background
-
-
 def make_a_figure(file_dir, ind):
     """
     make a figure

@@ -2,10 +2,12 @@
 prepare pathway name and pathway time for pathway-probability evaluation
 """
 import os
+import sys
 import numpy as np
+import pandas as pd
 
 
-def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=","):
+def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", spe_idx=None):
     """
     prepare pathway_name.csv
     """
@@ -23,8 +25,15 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=","):
         pass
 
     # read
-    data = np.genfromtxt(f_n_ps, dtype=str, delimiter=delimiter)
-    path_list = [val[0] for idx, val in enumerate(data) if idx < top_n]
+    if spe_idx is None:
+        data = np.genfromtxt(f_n_ps, dtype=str, delimiter=delimiter)
+        path_list = [val[0] for idx, val in enumerate(data) if idx < top_n]
+    else:
+        path_list = []
+        d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
+        for s_i in spe_idx:
+            path_list.extend(d_f[d_f['pathway'].str.endswith(
+                "S" + str(s_i))]['pathway'][0:top_n])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
@@ -54,11 +63,11 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", max_tau=1.0):
     np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.7f')
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 #     print("hello")
-#     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-#         sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir))
 #     print(FILE_DIR)
 
-#     prepare_pathway_name(FILE_DIR)
-#     prepare_pathway_time(FILE_DIR, top_n=50, num=1)
+    prepare_pathway_name(FILE_DIR, top_n=5, flag="", delimiter=",", spe_idx=[62, 59])
+    # prepare_pathway_time(FILE_DIR, top_n=50, num=1)

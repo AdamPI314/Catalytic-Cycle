@@ -16,7 +16,7 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     END_TIME = 0.800000099855441071
-    TOP_N = 5000
+    TOP_N = 2000
     TAU = 0.5
     ATOM_FOLLOWED = "C"
     INIT_SPE = 62
@@ -25,16 +25,16 @@ if __name__ == '__main__':
     # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, END_TIME)
 
-    # write specie concentration at a time to file
-    job_drivers.spe_concentration_at_time_w2f(FILE_DIR, tau=TAU)
+    # # write specie concentration at a time to file
+    # job_drivers.spe_concentration_at_time_w2f(FILE_DIR, tau=TAU)
 
-    # run monte carlo trajectory
-    job_drivers.run_mc_trajectory(
-        FILE_DIR, END_TIME, n_traj=10000000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU)
+    # # run monte carlo trajectory
+    # job_drivers.run_mc_trajectory(
+    #     FILE_DIR, END_TIME, n_traj=10000000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU)
 
     # # evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU)
+        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU, top_s_n=10)
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR)

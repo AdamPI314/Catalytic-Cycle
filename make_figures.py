@@ -195,7 +195,7 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
     plt.title("reaction rates and Temp")
 
     fig.savefig(os.path.join(file_dir, "output",
-                             "reaction_rate_" + rxn_idx_str + ".jpg"), dpi=500)
+                             "reaction_rate_" + rxn_idx_str + "_" + str(tau) + ".jpg"), dpi=500)
     plt.close()
 
 
@@ -296,7 +296,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     plt.close()
 
 
-def plot_rxn_rate_costant(file_dir):
+def plot_rxn_rate_constant(file_dir):
     """
     plot reaction rate constant, read data from files
     """
@@ -336,10 +336,10 @@ def plot_rxn_rate_costant(file_dir):
             rxn_name_map[val].append(idx)
 
     # print(rxn_name_map)
-    # rxn_name_list = ['O2 + npropyl <=> npropyloo', 'O2 + npropyl <=> C3H6 + HO2',
-    #                  'O2 + npropyl <=> QOOH_1', 'O2 + npropyl <=> OH + propoxide',  'O2 + npropyl <=> QOOH_2']
-    rxn_name_list = ['O2 + ipropyl <=> ipropyloo', 'O2 + ipropyl <=> C3H6 + HO2',
-                     'O2 + ipropyl <=> OH + propoxide', 'O2 + ipropyl <=> QOOH_3']
+    rxn_name_list = ['O2 + npropyl <=> npropyloo', 'O2 + npropyl <=> C3H6 + HO2',
+                     'O2 + npropyl <=> QOOH_1', 'O2 + npropyl <=> OH + propoxide',  'O2 + npropyl <=> QOOH_2']
+    # rxn_name_list = ['O2 + ipropyl <=> ipropyloo', 'O2 + ipropyl <=> C3H6 + HO2',
+    #                  'O2 + ipropyl <=> OH + propoxide', 'O2 + ipropyl <=> QOOH_3']
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=True)
     counter = 0
@@ -359,7 +359,7 @@ def plot_rxn_rate_costant(file_dir):
 
     a_x.set_xlabel("1000/T(K$^{-1}$)")
     a_x.set_ylabel("k(cm$^{3}$ molecule$^{-1}$s$^{-1}$)")
-    a_x.set_title("O$_2$ + ipropyl")
+    a_x.set_title("O$_2$ + npropyl")
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
@@ -378,9 +378,9 @@ if __name__ == '__main__':
     # plot_concentrations(
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
     # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tag="M")
-    # for spe_n in SPE_NAMES:
-    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
-    #                        exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
-    plot_rxn_rate_costant(FILE_DIR)
+    plot_reaction_rates(
+        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=TAU, tag="M")
+    for spe_n in SPE_NAMES:
+        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
+                           exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
+    plot_rxn_rate_constant(FILE_DIR)
