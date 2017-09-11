@@ -9,11 +9,11 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pylab as plt
-from matplotlib.lines import Line2D
 
 import parse_spe_reaction_info as psri
 import trajectory
 import parse_pattern
+from tools import get_colors_markers_linestyles
 
 
 def plot_pathway_prob(file_dir, tau=1.0):
@@ -50,26 +50,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
     if exclude_names is None:
         exclude_names = []
 
-    markers_tmp = []
-    for m_k in Line2D.markers:
-        try:
-            if len(m_k) == 1 and m_k != ' ':
-                markers_tmp.append(m_k)
-        except TypeError:
-            pass
-    markers = markers_tmp[2::]
-    markers.append(markers_tmp[0])
-    markers.append(markers_tmp[1])
-
-    # styles = markers + [
-    #     r'$\lambda$',
-    #     r'$\bowtie$',
-    #     r'$\circlearrowleft$',
-    #     r'$\clubsuit$',
-    #     r'$\checkmark$']
-
-    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
-    # linestyles = Line2D.lineStyles.keys()
+    colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
@@ -127,26 +108,8 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
     """
     plot reaction rates give reaction index list
     """
-    markers_tmp = []
-    for m_k in Line2D.markers:
-        try:
-            if len(m_k) == 1 and m_k != ' ':
-                markers_tmp.append(m_k)
-        except TypeError:
-            pass
-    markers = markers_tmp[2::]
-    markers.append(markers_tmp[0])
-    markers.append(markers_tmp[1])
 
-    # styles = markers + [
-    #     r'$\lambda$',
-    #     r'$\bowtie$',
-    #     r'$\circlearrowleft$',
-    #     r'$\clubsuit$',
-    #     r'$\checkmark$']
-
-    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
-    # linestyles = Line2D.lineStyles.keys()
+    colors, markers, _ = get_colors_markers_linestyles()
 
     _, rxn_idx_n = psri.parse_reaction_and_its_index(os.path.join(
         file_dir, "output", "reaction_labelling.csv"))
@@ -206,27 +169,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     if exclude_names is None:
         exclude_names = []
 
-    markers_tmp = []
-    for m_k in Line2D.markers:
-        try:
-            if len(m_k) == 1 and m_k != ' ':
-                markers_tmp.append(m_k)
-        except TypeError:
-            pass
-
-    markers_tmp = markers_tmp + [
-        r'$\lambda$',
-        r'$\bowtie$',
-        r'$\circlearrowleft$',
-        r'$\clubsuit$',
-        r'$\checkmark$']
-
-    markers = markers_tmp[2::]
-    markers.append(markers_tmp[0])
-    markers.append(markers_tmp[1])
-
-    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
-    # linestyles = Line2D.lineStyles.keys()
+    colors, markers, _ = get_colors_markers_linestyles()
 
     d_f = parse_pattern.parse_path_prob_terminating_with_spe(file_dir, spe_name=spe_name, init_spe=init_spe,
                                                              atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
@@ -300,25 +243,8 @@ def plot_rxn_rate_constant(file_dir):
     """
     plot reaction rate constant, read data from files
     """
-    markers_tmp = []
-    for m_k in Line2D.markers:
-        try:
-            if len(m_k) == 1 and m_k != ' ':
-                markers_tmp.append(m_k)
-        except TypeError:
-            pass
 
-    markers_tmp = markers_tmp + [
-        r'$\lambda$',
-        r'$\bowtie$',
-        r'$\circlearrowleft$',
-        r'$\clubsuit$',
-        r'$\checkmark$']
-
-    markers = markers_tmp[2::]
-    markers.append(markers_tmp[0])
-    markers.append(markers_tmp[1])
-    colors = ('b', 'g', 'k', 'c', 'm', 'y', 'r')
+    colors, markers, _ = get_colors_markers_linestyles()
 
     beta = np.loadtxt(os.path.join(file_dir, "output",
                                    "beta.csv"), dtype=float, delimiter=",")
@@ -379,7 +305,7 @@ if __name__ == '__main__':
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
     # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=TAU, tag="M")
+    # FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=TAU, tag="M")
     for spe_n in SPE_NAMES:
         plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=10000,
                            exclude_names=SPE_EXCLUDE_NAME, tau=TAU, renormalization=True)
