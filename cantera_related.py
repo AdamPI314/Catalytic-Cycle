@@ -53,8 +53,10 @@ def eval_2nd_order_rate_const(f_n, temp=None, pressure=1.0, buffer=None, rxn_idx
     spe = ct.Species.listFromFile(f_n)
     rxn = ct.Reaction.listFromFile(f_n)
     # print(S)
+    rxn_str = []
     for r_t in rxn_idx:
-        print(rxn[r_t])
+        rxn_str.append(str(rxn[r_t]))
+        #print(rxn[r_t])
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
                       species=spe, reactions=rxn)
 
@@ -69,7 +71,7 @@ def eval_2nd_order_rate_const(f_n, temp=None, pressure=1.0, buffer=None, rxn_idx
         # print(gas.forward_rates_of_progress[rxn_idx])
         result.append(
             gas.forward_rate_constants[rxn_idx] * kmol_m_s_to_molecule_cm_s)
-    return result
+    return rxn_str, result
 
 
 def beta_1000_rate_constant_w2f(file_dir, beta=None, pressure=1.0, buffer=None, rxn_idx=0):
@@ -82,8 +84,10 @@ def beta_1000_rate_constant_w2f(file_dir, beta=None, pressure=1.0, buffer=None, 
     np.savetxt(os.path.join(file_dir, "output", "beta.csv"),
                beta, fmt="%.15f", delimiter=",")
     temp = [1000.0 / b for b in beta]
-    r_c = eval_2nd_order_rate_const(os.path.join(
+    r_n, r_c = eval_2nd_order_rate_const(os.path.join(
         file_dir, "input", "chem.xml"), temp=temp, pressure=pressure, buffer=buffer, rxn_idx=rxn_idx)
+    np.savetxt(os.path.join(file_dir, "output", "rxn_name.csv"),
+               r_n, fmt="%s", delimiter=",")
     np.savetxt(os.path.join(file_dir, "output", "rate_constant.csv"),
                r_c, fmt="%1.15e", delimiter=",")
 
