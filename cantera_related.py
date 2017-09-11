@@ -6,7 +6,6 @@ import sys
 import json
 from collections import defaultdict
 try:
-    sys.path.append('/opt/cantera/v2.4.0/lib/python3.5/site-packages')
     import cantera as ct
 except ImportError:
     print("CANTERA NOT AVAILABLE")
@@ -17,7 +16,7 @@ def get_species_from_file(file_dir):
     get species composition
     """
     all_species = ct.Species.listFromFile(
-        os.path.join(file_dir, "input", "chem.xml"))
+        os.path.join(file_dir, "input", "chem.cti"))
     spe_composition = defaultdict(dict)
 
     for spe in all_species:
@@ -49,8 +48,8 @@ def evaluate_rate_constant(f_n, temp=1000, buffer=None, rxn_idx=0):
 
     S = ct.Species.listFromFile(f_n)
     R = ct.Reaction.listFromFile(f_n)
-    print(S)
-    print(R)
+    #print(S)
+    #print(R)
     gas = ct.Solution(thermo='IdealGas', kinetics='GasKinetics',
                       species=S, reactions=R)
 
