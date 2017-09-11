@@ -80,12 +80,12 @@ def beta_1000_rate_constant_w2f(file_dir, beta=None, pressure=1.0, buffer=None, 
     if beta is None:
         beta = [1.0]
     np.savetxt(os.path.join(file_dir, "output", "beta.csv"),
-               beta, fmt=".15f", delimiter=",")
+               beta, fmt="%.15f", delimiter=",")
     temp = [1000.0 / b for b in beta]
     r_c = eval_2nd_order_rate_const(os.path.join(
         file_dir, "input", "chem.xml"), temp=temp, pressure=pressure, buffer=buffer, rxn_idx=rxn_idx)
     np.savetxt(os.path.join(file_dir, "output", "rate_constant.csv"),
-               r_c, fmt=".15f", delimiter=",")
+               r_c, fmt="%.15f", delimiter=",")
 
 
 if __name__ == '__main__':
