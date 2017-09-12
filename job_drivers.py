@@ -170,21 +170,22 @@ def run_mc_trajectory(file_dir, time, n_traj=1000000, atom_followed="C", init_sp
     make_run(file_dir)
 
 
-def evaluate_pathway_probability(file_dir, top_n=5, num=1, flag="", n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0, top_s_n=10):
+def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0, top_n_s=10):
     """
     evaluate pathway probability
-    top_s_n is top N species number
+    top_n_s is top N species number
+    num_t is number of time points
     """
     os.chdir(file_dir)
     us.update_eval_path_integral(
-        file_dir, top_n=top_n * top_s_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe)
+        file_dir, top_n=top_n * top_n_s, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, max_tau=max_tau)
 
     spe_idx, _, _ = trajectory.get_species_with_top_n_concentration(
-        file_dir, exclude=None, top_n=top_s_n, tau=max_tau, tag="M", atoms=[atom_followed])
+        file_dir, exclude=None, top_n=top_n_s, tau=max_tau, tag="M", atoms=[atom_followed])
     ppnt.prepare_pathway_name(file_dir, top_n=top_n,
                               flag=flag, spe_idx=spe_idx)
-    ppnt.prepare_pathway_time(file_dir, top_n=top_n * top_s_n,
-                              num=num, flag=flag, max_tau=max_tau)
+    ppnt.prepare_pathway_time(file_dir, top_n=top_n * top_n_s,
+                              num=num_t, flag=flag, max_tau=max_tau)
     make_run(file_dir)
 
 

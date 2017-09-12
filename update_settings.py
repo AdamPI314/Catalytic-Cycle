@@ -78,7 +78,7 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114):
+def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -98,6 +98,7 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
+    setting['pathway']['tau'] = max_tau
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))

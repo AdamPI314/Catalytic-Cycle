@@ -31,6 +31,7 @@ def copy_sohr_files(file_dir):
     3. input/pathway_time.csv
     4. output/pathway_name.csv
     5. output/pathway_prob.csv
+    6. output/pathname_prob.csv
     """
     suffix = get_suffix(file_dir)
 

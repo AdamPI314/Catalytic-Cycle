@@ -7,6 +7,16 @@ import sys
 from collections import defaultdict, OrderedDict
 import numpy as np
 import parse_spe_reaction_info as psri
+import read_write_configuration as rwc
+
+
+def get_settings(file_dir):
+    """
+    return setting as a dict from input/setting.json
+    """
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
+    return setting
 
 
 def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=None, renormalization=True):
@@ -16,14 +26,14 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     atom, then the corresponding total pathway probability should be
     1.0 * 3, since each C3H8 has 3 "C" atoms
     Warning: spe_conc should be read from dlsode calculation, it is
-    guaranteed outside that dimensions of spe_conc matches the mechanism
+    guaranteed outside that dimensions of spe_conc match the mechanism
     """
     if spe_conc is None:
         return None
     if spe_conc is []:
         return None
 
-    _, spe_name_idx_dict = psri.parse_spe_info(os.path.join(
+    _, spe_n_i_d = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     spe_composition = psri.read_spe_composition(
         os.path.join(file_dir, "input", "spe_composition.json"))
@@ -31,11 +41,11 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     spe_idx_coefficient = dict()
     for _, val in enumerate(spe_composition):
         if atom_followed in spe_composition[val]:
-            spe_idx_coefficient[spe_name_idx_dict[val]
-                                ] = spe_composition[val][atom_followed]
+            spe_idx_coefficient[spe_n_i_d[val]] = float(
+                spe_composition[val][atom_followed])
         else:
-            spe_idx_coefficient[spe_name_idx_dict[val]] = 0.0
-
+            spe_idx_coefficient[spe_n_i_d[val]] = 0.0
+    #print(spe_composition, spe_idx_coefficient)
     if np.shape(spe_conc)[0] > 0:
         if np.shape(spe_conc[0]) is ():
             print("1D array", "shape:\t", len(spe_conc))
