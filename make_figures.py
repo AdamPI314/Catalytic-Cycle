@@ -300,7 +300,7 @@ if __name__ == '__main__':
     # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
     TAU = 0.5
     SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
-        FILE_DIR, exclude=None, top_n=10, tau=TAU, tag="M", atoms=["C"])
+        FILE_DIR, exclude=None, top_n=5, tau=TAU, tag="M", atoms=["C"])
     # plot_concentrations(
     # FILE_DIR, spe_idx=SPE_IDX, tag="fraction",
     # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)

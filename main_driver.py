@@ -16,7 +16,7 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     END_TIME = 0.800000099855441071
-    TOP_N = 2000
+    TOP_N = 5000
     TAU = 0.5
     ATOM_FOLLOWED = "C"
     INIT_SPE = 62
@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     # # evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU, top_s_n=10)
+        FILE_DIR, top_n=TOP_N, num=1, flag="", n_traj=10000, atom_followed=ATOM_FOLLOWED, init_spe=INIT_SPE, max_tau=TAU, top_s_n=5)
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR)
