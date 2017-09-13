@@ -1,0 +1,143 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      4434,        135]
+NotebookOptionsPosition[      3931,        117]
+NotebookOutlinePosition[      4372,        134]
+CellTagsIndexPosition[      4329,        131]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Global", " ", "viarables"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"h", "=", 
+     RowBox[{"6.626068", "\[Times]", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "34"}]]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"planck", " ", "constant"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"hbar", "=", 
+     FractionBox["h", 
+      RowBox[{"2", "\[Pi]"}]]}], ";"}], 
+   RowBox[{"(*", "\[HBar]", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"c", "=", "299792458"}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"speed", " ", "of", " ", "light"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NA", "=", 
+     RowBox[{"6.02", "\[Times]", 
+      SuperscriptBox["10", "23"]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Avogadro", "'"}], "s", " ", "Number"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"amu", "=", 
+     RowBox[{"1.660538921", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "27"}]]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"Atomic", " ", "mass", " ", "unit"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"epsilon", "=", 
+     RowBox[{"8.854187817", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{
+    "Vacuum", " ", "permittivity", " ", "or", " ", "electric", " ", 
+     "constant"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"mu", "=", 
+     RowBox[{"1.2566370614", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "6"}]]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{
+    "Vacuum", " ", "permeability", " ", "or", " ", "magnetic", " ", 
+     "constant"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ec", "=", 
+     RowBox[{"1.60217646", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "19"}]]}]}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"elementary", " ", "charge"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["k", "B"], "=", 
+     RowBox[{"1.3806503", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "23"}]]}]}], ";"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.5718618951345634`*^9, 3.5718620670322976`*^9}, {
+  3.5718621031153765`*^9, 3.571862142700803*^9}, {3.571862192768216*^9, 
+  3.571862200251215*^9}, {3.571862241281601*^9, 3.571862316971116*^9}, {
+  3.57186244840184*^9, 3.57186249380515*^9}, {3.5718625290406666`*^9, 
+  3.571862603540388*^9}, {3.5718695942311134`*^9, 
+  3.571869602883887*^9}},ExpressionUUID->"33a47b37-8e19-43ca-a78e-\
+24dfcedbf3c8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"function", "[", "E_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"i", ",", "j", ",", "ls", ",", "s", ",", "ZPE", ",", "Freq"}], 
+     "}"}], ",", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"Variables", " ", "declaration"}], "\[Rule]", " ", 
+      RowBox[{"local", " ", "viriables"}]}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"output", "=", "0"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "output", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.5718625711097417`*^9, 3.5718625727838593`*^9}, {
+  3.71038644413801*^9, 
+  3.7103864549096746`*^9}},ExpressionUUID->"95c0e2c5-7939-43b4-94f4-\
+838669784068"]
+},
+WindowSize->{1584, 803},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>FEPrivate`If[
+  FEPrivate`Equal[FEPrivate`$VersionNumber, 6.], 1.5, 1.5 Inherited],
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 2590, 74, 362, "Input", "ExpressionUUID" -> \
+"33a47b37-8e19-43ca-a78e-24dfcedbf3c8"],
+Cell[3150, 96, 777, 19, 163, "Input", "ExpressionUUID" -> \
+"95c0e2c5-7939-43b4-94f4-838669784068"]
+}
+]
+*)
+
