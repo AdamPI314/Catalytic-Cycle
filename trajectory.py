@@ -19,6 +19,42 @@ def get_settings(file_dir):
     return setting
 
 
+def convert_path_prob_to_concentration(file_dir, atom_followed="C", path_prob=None):
+    """
+    convert total pathway probability to concentration
+    for example, C3H8, suppose [C3H8] = 1.0 and we are following "C"
+    atom, then the corresponding total pathway probability should be
+    1.0 * 3, since each C3H8 has 3 "C" atoms, in other word, concentration
+    should be pathway probability divide by 3.0
+    """
+    if path_prob is None:
+        return None
+    if path_prob is []:
+        return None
+
+    _, spe_n_i_d = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    spe_composition = psri.read_spe_composition(
+        os.path.join(file_dir, "input", "spe_composition.json"))
+
+    spe_idx_coefficient = dict()
+    for _, val in enumerate(spe_composition):
+        if atom_followed in spe_composition[val]:
+            spe_idx_coefficient[spe_n_i_d[val]] = float(
+                spe_composition[val][atom_followed])
+        else:
+            spe_idx_coefficient[spe_n_i_d[val]] = 0.0
+    #print(spe_composition, spe_idx_coefficient)
+    if np.shape(path_prob)[0] > 0:
+        if np.shape(path_prob[0]) is ():
+            print("1D array", "shape:\t", len(path_prob))
+            for idx, _ in enumerate(path_prob):
+                if float(spe_idx_coefficient[str(idx)]) != 0:
+                    path_prob[idx] /= float(spe_idx_coefficient[str(idx)])
+
+    return path_prob
+
+
 def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=None, renormalization=True):
     """
     convert concentration to corresponding total pathway probability
@@ -64,7 +100,7 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     return spe_conc
 
 
-def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="fraction", atoms=None):
+def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="M", atoms=None):
     """
     get species concentration at a tau, where tau is the ratio of the time_wanted/end_time
     """

@@ -37,7 +37,7 @@ if __name__ == '__main__':
     # convert symbolic pathway to real pathway
     # with real species names and real reaction expression
     job_drivers.symbolic_path_2_real_path(
-        FILE_DIR, top_n=G_S['top_n_p'], flag="", end_spe=G_S['end_s'])
+        FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="", end_spe=G_S['end_s'])
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR)

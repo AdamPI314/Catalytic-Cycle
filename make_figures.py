@@ -165,7 +165,7 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", renormalization=True):
+def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL"):
     """
     plot spe_path_prob give species name 
     """
@@ -181,7 +181,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
-    print(spe_name, "#path:\t", len(data))
+    print(spe_name, "#path:\t", len(data_c))
     delta_n = int(len(data_c) / 25)
     if delta_n is 0:
         delta_n = 1
@@ -192,8 +192,10 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
         FILE_DIR, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
-    trajectory.convert_concentration_to_path_prob(
+    spe_conc = trajectory.convert_concentration_to_path_prob(
         FILE_DIR, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+    # data_c = trajectory.convert_path_prob_to_concentration(
+    #     FILE_DIR, atom_followed=atom_followed, path_prob=data_c)
     spe_conc_const = spe_conc[int(s_n_idx[spe_name])]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
@@ -300,18 +302,19 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     # plot_pathway_prob(FILE_DIR, tau=0.2)
-    # plot_concentrations(FILE_DIR, [62, 17, 66, 86, -1])
-
     G_S = global_settings.get_setting()
 
     SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
         FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
-    plot_concentrations(
-        FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
-        exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    plot_reaction_rates(
-        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
-    # for spe_n in SPE_NAMES:
-    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
-    #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'], renormalization=True)
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=[62, 17, 66, 86], tag=G_S['tag'],
+    #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    # plot_concentrations(
+    #     FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
+    #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    # plot_reaction_rates(
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
+    for spe_n in SPE_NAMES:
+        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
+                           exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
     # plot_rxn_rate_constant(FILE_DIR)

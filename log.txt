@@ -1,0 +1,19 @@
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+7.31181353007e-06 62 C3H8
+8.76254228839e-08 17 CH2O
+5.20697181609e-08 59 C3H6
+3.43624091818e-08 14 CO
+1.99366465181e-08 44 acetaldehyde
+1.51241093332e-08 28 CH3OOH
+6.43304479557e-09 51 CH3CH2OOH
+5.50062742866e-09 38 C2H4
+4.34787826265e-09 94 prod_1
+2.00587253574e-09 81 ipropylooh
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_stat.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_name.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathname_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_name.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_time.csv found
+running time:	0.08 hours
+

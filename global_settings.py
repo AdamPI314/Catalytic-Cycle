@@ -1,6 +1,21 @@
 """
 global settings
 """
+import sys
+import os
+from collections import OrderedDict
+
+
+def get_fast_rxn_trapped_spe(file_dir):
+    """
+    get_fast_rxn_trapped_spe
+    """
+    try:
+        sys.path.append(os.path.join(file_dir, "input"))
+        import fast_transitions
+        return fast_transitions.get_fast_rxn_trapped_spe()
+    except Exception:
+        return OrderedDict(), OrderedDict()
 
 
 def get_setting():
@@ -16,7 +31,7 @@ def get_setting():
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 5000,
+        "top_n_p": 100,
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
