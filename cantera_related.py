@@ -17,7 +17,7 @@ def get_species_from_file(file_dir):
     get species composition
     """
     all_species = ct.Species.listFromFile(
-        os.path.join(file_dir, "input", "chem.cti"))
+        os.path.join(file_dir, "input", "chem.xml"))
     spe_composition = defaultdict(dict)
 
     for spe in all_species:
@@ -97,15 +97,15 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     # S_C = get_species_from_file(FILE_DIR)
     # write_spe_composition_2_file(FILE_DIR, S_C, tag="")
-    BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
-    RXN_IDX = [548, 549, 550, 551, 552, 553]
+    # BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
+    # RXN_IDX = [548, 549, 550, 551, 552, 553]
     # RXN_IDX = [564,565,566,567]
     # TEMP = [666.66666666]
     # BETA = [0.5, 1.0, 1.5, 2.0, 2.5]
-    BETA = np.linspace(0.65, 2.5, num=25, endpoint=True)
+    # BETA = np.linspace(0.65, 2.5, num=25, endpoint=True)
 
     # eval_2nd_order_rate_const(os.path.join(
     #     FILE_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
-    beta_1000_rate_constant_w2f(
-        FILE_DIR, beta=BETA, pressure=3.0, buffer=BUFFER, rxn_idx=RXN_IDX)
+    # beta_1000_rate_constant_w2f(
+    #     FILE_DIR, beta=BETA, pressure=3.0, buffer=BUFFER, rxn_idx=RXN_IDX)
     print(FILE_DIR)

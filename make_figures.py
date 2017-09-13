@@ -69,8 +69,10 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
         file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
 
     counter = 0
-    delta_n = 20
     end_point = int(tau * len(time))
+    delta_n = int(end_point / 25)
+    if delta_n is 0:
+        delta_n = 1
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     for s_idx in spe_idx:
@@ -304,12 +306,12 @@ if __name__ == '__main__':
 
     SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
         FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
-    # plot_concentrations(
-    # FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
-    # exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    # plot_reaction_rates(
-    # FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag])
-    for spe_n in SPE_NAMES:
-        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
-                           exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'], renormalization=True)
+    plot_concentrations(
+        FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
+        exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
+    plot_reaction_rates(
+        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
+    # for spe_n in SPE_NAMES:
+    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
+    #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'], renormalization=True)
     # plot_rxn_rate_constant(FILE_DIR)
