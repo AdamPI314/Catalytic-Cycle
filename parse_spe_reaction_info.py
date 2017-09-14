@@ -41,10 +41,10 @@ def parse_reaction_and_its_index(f_n):
     """
     # load data
     line_content = np.genfromtxt(f_n, dtype=str, delimiter='\n')
-    matched_tmp = [re.findall(r"(\d+)\s+([-]?\d+)\s+([\w|+|=|>|<|(|)|\-|,]+)", line)
+    # matched_tmp = [re.findall(r"(\d+)\s+([-]?\d+)\s+([\w|+|=|>|<|(|)|\-|\_|,]+)", line)
+    matched_tmp = [re.findall(r"([\d]+)\s+([\-\d]+)\s+([\w\(\)\-\_,\+]+\<?={1}\>?[\w\(\)\-\_,\+]+)", line)
                    for line in line_content]
     matched_ind1_ind2_str = [x[0] for x in matched_tmp if len(x) != 0]
-
     # map the new old reaction index
     new_old_index_dict = dict()
     for _, val in enumerate(matched_ind1_ind2_str):
@@ -52,7 +52,7 @@ def parse_reaction_and_its_index(f_n):
             {val[0]: str(val[1])})
 
     # reactant arrow product
-    reactant_product = [re.findall(r"([\w|+|(|)|\-|,]+)[=|>|<]+([\w|+|(|)|\-|,]+)",
+    reactant_product = [re.findall(r"([\w|+|(|)|\-|\_|,]+)[=|>|<]+([\w|+|(|)|\-|\_|,]+)",
                                    ind1_ind2_reaction[2])[0]
                         for ind1_ind2_reaction in matched_ind1_ind2_str]
     reactant = [x[0] for x in reactant_product]
@@ -66,7 +66,6 @@ def parse_reaction_and_its_index(f_n):
         elif int(matched_ind1_ind2_str[i][1]) < 0:
             new_ind_reaction_dict.update(
                 {matched_ind1_ind2_str[i][0]: product[i] + '=>' + reactant[i]})
-
     return new_old_index_dict, new_ind_reaction_dict
 
 

@@ -73,7 +73,6 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
         out_file_name = "pathname_prob.csv"
     else:
         out_file_name = "pathname_prob_" + str(flag) + ".csv"
-
     psri.symbolic_path_2_real_path(
         os.path.join(file_dir, "output", "species_labelling.csv"),
         os.path.join(

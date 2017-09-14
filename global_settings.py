@@ -25,13 +25,13 @@ def get_setting():
     setting = {
         # end time
         "end_t": 0.800000099855441071,
-        "tau": 0.5,
+        "tau": 0.9,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 100,
+        "top_n_p": 1000,
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation

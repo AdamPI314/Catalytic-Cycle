@@ -312,8 +312,8 @@ if __name__ == '__main__':
     # plot_concentrations(
     #     FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
+    plot_reaction_rates(
+        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
     for spe_n in SPE_NAMES:
         plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
                            exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
