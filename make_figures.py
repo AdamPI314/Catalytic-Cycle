@@ -5,6 +5,7 @@ import os
 import sys
 from copy import deepcopy
 import numpy as np
+from collections import OrderedDict
 
 import matplotlib
 matplotlib.use('Agg')
@@ -129,8 +130,10 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
-    delta_n = 20
     end_point = int(tau * len(time))
+    delta_n = int(end_point / 25)
+    if delta_n is 0:
+        delta_n = 1
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     for s_idx in reaction_idx:
@@ -162,6 +165,62 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
 
     fig.savefig(os.path.join(file_dir, "output",
                              "reaction_rate_" + rxn_idx_str + "_" + str(tau) + ".jpg"), dpi=500)
+    plt.close()
+
+
+def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, tau=1.0, tag="M"):
+    """
+    plot reaction rates ratios given reaction index pair
+    """
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    _, rxn_idx_n = psri.parse_reaction_and_its_index(os.path.join(
+        file_dir, "output", "reaction_labelling.csv"))
+
+    if rxn_idx_pair is None:
+        rxn_idx_pair = OrderedDict()
+    if spe_idx_pair is None:
+        spe_idx_pair = OrderedDict()
+
+    time = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+                                        "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    conc = np.loadtxt(os.path.join(file_dir, "output",
+                                   "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    end_point = int(tau * len(time))
+    if end_point >= len(time):
+        end_point = len(time) - 1
+    delta_n = int(end_point / 25)
+    if delta_n is 0:
+        delta_n = 1
+
+    # specify label for lines
+    labels = [str(rxn_idx_n[i]) for i in rxn_idx_pair]
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    for idx, (r_idx, s_idx) in enumerate(zip(rxn_idx_pair, spe_idx_pair)):
+        data_y = (rxn_rates[::delta_n, int(r_idx)] * conc[::delta_n, int(spe_idx_pair[s_idx])])  \
+            / (rxn_rates[::delta_n, rxn_idx_pair[r_idx]] * conc[::delta_n, int(s_idx)])
+        a_x.semilogy(time[::delta_n], data_y,
+                     color=colors[idx], marker=markers[idx], label=labels[idx])
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg.get_frame().set_alpha(0.7)
+
+    a_x.set_xlim([time[0], time[end_point]])
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s")
+    a_x.set_ylabel("Ratio")
+    a_x.set_title("")
+
+    fig.tight_layout()
+    # figure name
+    fig_name = "reaction_rate_pair_ratios.jpg"
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
@@ -304,17 +363,20 @@ if __name__ == '__main__':
     # plot_pathway_prob(FILE_DIR, tau=0.2)
     G_S = global_settings.get_setting()
 
-    SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
-        FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
+    # SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
+    #     FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
     # plot_concentrations(
     #     FILE_DIR, spe_idx=[62, 17, 66, 86], tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_concentrations(
     #     FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    plot_reaction_rates(
-        FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
-    for spe_n in SPE_NAMES:
-        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
-                           exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
+    # plot_reaction_rates(
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
+    # for spe_n in SPE_NAMES:
+    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
+    #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
     # plot_rxn_rate_constant(FILE_DIR)
+    R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
+    plot_reaction_pair_rate_ratio(
+        FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, tau=1.0, tag="M")

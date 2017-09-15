@@ -73,7 +73,7 @@ def make_figure_template(file_dir):
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
     leg.get_frame().set_alpha(0.7)
 
-    a_x.set_xlimit([data_x[0], data_x[-1]])
+    a_x.set_xlim([data_x[0], data_x[-1]])
     a_x.grid()
 
     a_x.set_xlabel("1000/T(K$^{-1}$)")
