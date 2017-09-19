@@ -250,9 +250,9 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
         file_dir, "output", "species_labelling.csv"))
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        FILE_DIR, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+        file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
-        FILE_DIR, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+        file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
     # data_c = trajectory.convert_path_prob_to_concentration(
     #     FILE_DIR, atom_followed=atom_followed, path_prob=data_c)
     spe_conc_const = spe_conc[int(s_n_idx[spe_name])]
@@ -301,6 +301,47 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
     fig.savefig(os.path.join(file_dir, "output",
                              "path_prob_cumulative_" + spe_name + "_" + str(tau) + ".jpg"), dpi=500)
     plt.close()
+
+
+def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C", tau=0.5, top_n=10):
+    """
+    plot_top_n_spe_concentration
+    """
+    if exclude_names is None:
+        exclude_names = []
+    spe_conc = trajectory.get_normalized_concentration_at_time(
+        file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+    spe_conc = trajectory.convert_concentration_to_path_prob(
+        file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+
+    spe_top_n_idx_list = spe_conc.argsort()[-top_n:][::-1]
+
+    top_n_spe_conc = [spe_conc[x] for x in spe_top_n_idx_list]
+    top_n_spe_name = [s_idx_n[x] for x in spe_top_n_idx_list]
+
+    # figure name
+    fig_name = "top_n_spe_concentration_" + \
+        str(tau) + "_" + str(top_n) + ".jpg"
+
+    # specify label for lines
+    bins = [x for x in range(top_n_spe_conc)]
+    labels = top_n_spe_name
+
+    colors, markers, _ = get_colors_markers_linestyles()
+    # print(markers)
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    a_x.bar(bins, height=top_n_spe_conc)
+    a_x.set_xticks(bins + 0.5, labels)
+
+    # background
+    a_x.axis('off')
+
+    # fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
 
 
 def plot_rxn_rate_constant(file_dir):
