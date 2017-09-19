@@ -11,6 +11,13 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 import parse_spe_reaction_info as psri
+import global_settings
+from naming import get_suffix
+import tools
+
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pylab as plt
 
 
 def read_spe_alias(filename=None):
@@ -34,6 +41,18 @@ def update_species_idx_name_dict(dict_s, spe_alias=None):
         if dict_s[val] in spe_alias.keys():
             dict_s[val] = spe_alias[dict_s[val]]
     return dict_s
+
+
+def back_2_old_name(filename):
+    """
+    new name back to old name
+    """
+    spe_alias = read_spe_alias(filename)
+    new_2_old = dict()
+    for _, val in enumerate(spe_alias):
+        new_2_old[spe_alias[val]] = val
+
+    return new_2_old
 
 
 def change_spe_name(spe, dict_s=None):
@@ -71,7 +90,42 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def init_directed_network(file_dir, top_n=10):
+def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
+    """
+    get top n path
+    """
+    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    spe_alias = read_spe_alias(os.path.join(
+        file_dir, "input", "spe_alias.json"))
+    spe_idx_name_dict = update_species_idx_name_dict(
+        spe_idx_name_dict, spe_alias=spe_alias)
+
+    suffix = get_suffix(file_dir, init_spe=init_spe,
+                        atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+
+    f_n_path_name = os.path.join(
+        file_dir, "output", "pathway_name" + suffix + ".csv")
+    f_n_path_prob = os.path.join(
+        file_dir, "output", "pathway_prob" + suffix + ".csv")
+
+    p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
+    p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
+    p_n = p_n[1::]
+    p_p = p_p[1::]
+    # set the data type seperately
+    d_f_n = pd.DataFrame(p_n, columns=['name'], dtype=str)
+    d_f_p = pd.DataFrame(p_p, columns=['prob'], dtype=float)
+    d_f = pd.concat([d_f_n, d_f_p], axis=1)
+
+    d_f.sort_values(by='prob', ascending=False,
+                    inplace=True, na_position='last')
+    d_f.reset_index(drop=True, inplace=True)
+
+    return list(d_f['name'])[0:top_n]
+
+
+def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
     """
     init directed network
     without parallel edges
@@ -84,16 +138,28 @@ def init_directed_network(file_dir, top_n=10):
     spe_idx_name_dict = update_species_idx_name_dict(
         spe_idx_name_dict, spe_alias=spe_alias)
 
-    f_n_path_name = os.path.join(file_dir, "output", "pathway_name.csv")
-    f_n_path_prob = os.path.join(file_dir, "output", "pathway_prob.csv")
+    suffix = get_suffix(file_dir, init_spe=init_spe,
+                        atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
 
-    p_n = np.genfromtxt(f_n_path_name, dtype=str,
-                        delimiter=',', max_rows=top_n)
-    p_p = np.genfromtxt(f_n_path_prob, dtype=float,
-                        delimiter=',', max_rows=top_n)
+    f_n_path_name = os.path.join(
+        file_dir, "output", "pathway_name" + suffix + ".csv")
+    f_n_path_prob = os.path.join(
+        file_dir, "output", "pathway_prob" + suffix + ".csv")
+
+    p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
+    p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
     p_n = p_n[1::]
     p_p = p_p[1::]
-    d_f = pd.DataFrame(np.transpose([p_n, p_p]), columns=['name', 'prob'])
+    # set the data type seperately
+    d_f_n = pd.DataFrame(p_n, columns=['name'], dtype=str)
+    d_f_p = pd.DataFrame(p_p, columns=['prob'], dtype=float)
+    d_f = pd.concat([d_f_n, d_f_p], axis=1)
+
+    d_f.sort_values(by='prob', ascending=False,
+                    inplace=True, na_position='last')
+    d_f.reset_index(drop=True, inplace=True)
+    print(d_f.head())
+    d_f = d_f.loc[0:top_n]
 
     # temporary directed graph
     d_g_tmp = nx.DiGraph()
@@ -166,21 +232,125 @@ def network_to_gephi_input_file(networkx_obj, file_dir, fname="network.gexf"):
     return
 
 
+def get_names_coordinates(file_dir, fname=""):
+    """
+    read nodes names and corresponding coordinates
+    """
+    with open(os.path.join(file_dir, "output", fname), 'br') as f_h:
+        data = json.load(f_h)
+
+    # naming thing
+    new_2_old = back_2_old_name(os.path.join(
+        file_dir, "input", "spe_alias.json"))
+
+    # we only need names and coordinates
+    n_coordinate = dict()
+    for _, node in enumerate(data['nodes']):
+        if node['label'] in new_2_old:
+            n_coordinate[new_2_old[node['label']]] = (node['x'], node['y'])
+        else:
+            n_coordinate[node['label']] = (node['x'], node['y'])
+
+    # print(n_coordinate)
+    return n_coordinate
+
+
+def plot_network(file_dir, fname="", pathway="", flag=""):
+    """
+    plot network manually
+    """
+    n_coordinate = get_names_coordinates(file_dir, fname)
+
+    # figure name
+    if flag is "":
+        fig_name = "network_test" + ".jpg"
+    else:
+        fig_name = "network_test_" + str(flag) + ".jpg"
+
+    # specify label for lines
+    labels = []
+    x = []
+    y = []
+    name_idx_dict = dict()
+    for idx, val in enumerate(n_coordinate):
+        labels.append(val)
+        name_idx_dict[val] = idx
+        x.append(float(n_coordinate[val][0]))
+        y.append(float(n_coordinate[val][1]))
+
+    colors, markers, _ = tools.get_colors_markers_linestyles()
+    # print(markers)
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+
+    # background
+    a_x.scatter(x, y,
+                color=colors[0], marker=markers[0], alpha=0.5)
+    for idx, _ in enumerate(x):
+        t_h = a_x.annotate(labels[idx], (x[idx], y[idx]))
+        t_h.set_alpha(0.3)
+
+    # parse pathway
+    matched_spe = re.findall(r"S(\d+)", pathway)
+    # matched_reaction = re.findall(r"R(\d+)", pathway)
+    # read in species index name
+    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    node_list = [name_idx_dict[spe_idx_name_dict[str(x)]] for x in matched_spe]
+    # print(node_list)
+    for idx, curr_idx in enumerate(node_list):
+        if idx >= 1:
+            pre_idx = node_list[idx - 1]
+            a_h = a_x.annotate('', xy=(x[curr_idx], y[curr_idx]), xytext=(x[pre_idx], y[pre_idx]),
+                               arrowprops={'arrowstyle': '->',
+                                           'lw': 4, 'color': 'red'},
+                               va='center')
+            a_h.set_alpha(0.9)
+
+    # re-draw points and labels on canvas
+    for _, val in enumerate(node_list):
+        a_x.scatter(x[val], y[val],
+                    color='r', marker=markers[0], alpha=0.9)
+        t_h = a_x.annotate(labels[val], (x[val], y[val]))
+        t_h.set_alpha(0.9)
+
+    a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
+                  np.max(x) + 0.1 * (np.max(x) - np.min(x))])
+    # a_x.grid('on')
+    a_x.axis('off')
+    a_x.set_title(flag)
+
+    # fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+    return
+
+
 if __name__ == '__main__':
     INIT_TIME = time.time()
 
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    # TOP_N = 75 + 1
-    # ATOM_FOLLOWED = "H"
-    PREFIX = "C3H8"
-    TOP_N = 100 + 1
-    ATOM_FOLLOWED = "C"
 
-    RN_OBJ = init_directed_network(FILE_DIR, top_n=TOP_N)
-    network_to_gephi_input_file(
-        RN_OBJ, FILE_DIR, PREFIX + "_" + ATOM_FOLLOWED + "_network_" + str(TOP_N - 1) + ".gexf")
+    G_S = global_settings.get_setting()
+
+    ATOM_FOLLOWED = G_S['atom_f']
+    # PREFIX = "C3H8"
+    PREFIX = "S" + str(G_S['init_s'])
+    TOP_N = 50 + 1
+
+    # RN_OBJ = init_directed_network(
+    #     FILE_DIR, top_n=TOP_N, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
+    # network_to_gephi_input_file(
+    #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(TOP_N - 1) + ".gexf")
+
+    PATH_TOP_N = get_top_n_pathway(
+        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
+    for idx, path in enumerate(PATH_TOP_N):
+        plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
+                     G_S['atom_f'] + "_network_" + str(TOP_N - 1) + ".json", pathway=path, flag="P" + str(idx+1))
 
     END_TIME = time.time()
 

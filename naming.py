@@ -8,17 +8,29 @@ from shutil import copyfile
 import read_write_configuration as rwc
 
 
-def get_suffix(file_dir):
+def get_suffix(file_dir, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
     """
     get suffix
     """
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
     suffix = ""
-    suffix += "_S" + str(setting['pathway']['init_spe'])
-    suffix += "_" + str(setting['pathway']['atom_followed'])
-    suffix += "_" + str(setting['pathway']['tau'])
-    suffix += "_" + str(setting['pathway']['pathwayEndWith'])
+    if init_spe is None:
+        suffix += "_S" + str(setting['pathway']['init_spe'])
+    else:
+        suffix += "_S" + str(init_spe)
+    if atom_followed is None:
+        suffix += "_" + str(setting['pathway']['atom_followed'])
+    else:
+        suffix += "_" + str(atom_followed)
+    if tau is None:
+        suffix += "_" + str(setting['pathway']['tau'])
+    else:
+        suffix += "_" + str(tau)
+    if pathwayEndWith is None:
+        suffix += "_" + str(setting['pathway']['pathwayEndWith'])
+    else:
+        suffix += "_" + str(pathwayEndWith)
 
     return suffix
 
