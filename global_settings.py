@@ -87,7 +87,8 @@ def get_setting():
         # end time
         "end_t": 0.800000099855441071,
         # reference time, to a combustion system, this is gonna be the ignition delay time
-        "max_tau": 0.70,
+        # for Propane, time when temperature=1800K
+        "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
         "tau": 0.5,
         # atom followed
