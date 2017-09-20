@@ -369,7 +369,10 @@ if __name__ == '__main__':
         FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
     for idx, pathname in enumerate(PATH_NAME_TOP_N):
         plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
-                     G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".json", pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1))
+                     G_S['atom_f'] + "_network_" +
+                     str(G_S['top_n_p_gephi']) + "_" +
+                     str(G_S['tau']) + ".json",
+                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1))
 
     END_TIME = time.time()
 

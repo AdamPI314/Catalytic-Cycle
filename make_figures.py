@@ -44,7 +44,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
+def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -70,7 +70,9 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
         file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
 
     counter = 0
-    end_point = int(tau * len(time))
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
     delta_n = int(end_point / 25)
     if delta_n is 0:
         delta_n = 1
@@ -108,7 +110,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=1.0, tag="fraction", exclude
     plt.close()
 
 
-def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
+def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
     """
     plot reaction rates give reaction index list
     """
@@ -130,7 +132,9 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
-    end_point = int(tau * len(time))
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
     delta_n = int(end_point / 25)
     if delta_n is 0:
         delta_n = 1
@@ -168,7 +172,7 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=1.0, tag="fraction"):
     plt.close()
 
 
-def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, tau=1.0, tag="M"):
+def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, max_tau=10.0, tau=1.0, tag="M"):
     """
     plot reaction rates ratios given reaction index pair
     """
@@ -190,7 +194,9 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     conc = np.loadtxt(os.path.join(file_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-    end_point = int(tau * len(time))
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
     if end_point >= len(time):
         end_point = len(time) - 1
     delta_n = int(end_point / 25)
@@ -356,12 +362,12 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
     a_x.spines['left'].set_visible(False)
     a_x.spines['right'].set_visible(False)
 
-    a_x.tick_params(
-        axis='x',          # changes apply to the x-axis
-        which='both',      # both major and minor ticks are affected
-        bottom='off',      # ticks along the bottom edge are off
-        top='off',         # ticks along the top edge are off
-        labelbottom='off')  # labels along the bottom edge are off
+    # a_x.tick_params(
+    #     axis='x',          # changes apply to the x-axis
+    #     which='both',      # both major and minor ticks are affected
+    #     bottom='off',      # ticks along the bottom edge are off
+    #     top='off',         # ticks along the top edge are off
+    #     labelbottom='off')  # labels along the bottom edge are off
 
     a_x.set_title("$\\tau$ = " + str(tau))
 
@@ -459,21 +465,19 @@ if __name__ == '__main__':
     G_S = global_settings.get_setting()
 
     SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
-        FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
+        FILE_DIR, exclude=None, top_n=G_S['top_n_s'], traj_end_time=G_S['end_t'],
+        max_tau=G_S['max_tau'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
     # plot_concentrations(
-    #     FILE_DIR, spe_idx=[62, 17, 66, 86], tag=G_S['tag'],
-    #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
+    #     FILE_DIR, spe_idx=SPE_IDX, max_tau=G_S['max_tau'], tau=G_S['tau'], tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=1.0, tag=G_S['tag'])
-    # for spe_n in SPE_NAMES:
-    #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
-    #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], max_tau=G_S['max_tau'], tau=1.0, tag=G_S['tag'])
+    for spe_n in SPE_NAMES:
+        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
+                           exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
     # plot_rxn_rate_constant(FILE_DIR)
     # R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
     # plot_reaction_pair_rate_ratio(
-    #     FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, tau=1.0, tag="M")
-    # plot_top_n_spe_concentration(
-    #     FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)
+    #     FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, max_tau=G_S['max_tau'], tau=1.0, tag="M")
+    plot_top_n_spe_concentration(
+        FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)

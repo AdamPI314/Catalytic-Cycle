@@ -72,7 +72,8 @@ def get_union_find_group(file_dir):
         if idx in unique_labels_group:
             idx_group[str(label_spe_idx[idx])] = unique_labels_group[idx]
         else:
-            idx_group[str(label_spe_idx[idx])] = unique_labels_group[int(wqnpc.root(int(idx)))]
+            idx_group[str(label_spe_idx[idx])
+                      ] = unique_labels_group[int(wqnpc.root(int(idx)))]
     print(idx_group)
 
     return idx_group
@@ -85,6 +86,9 @@ def get_setting():
     setting = {
         # end time
         "end_t": 0.800000099855441071,
+        # reference time, to a combustion system, this is gonna be the ignition delay time
+        "max_tau": 0.70,
+        # exact time = tau*max_tau
         "tau": 0.5,
         # atom followed
         "atom_f": "C",

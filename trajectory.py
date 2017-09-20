@@ -100,7 +100,7 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     return spe_conc
 
 
-def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, tag="M", atoms=None):
+def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_end_time=100.0, max_tau=10.0, tau=1.0, tag="M", atoms=None):
     """
     get species concentration at a tau, where tau is the ratio of the time_wanted/end_time
     """
@@ -110,7 +110,9 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, tau=1.0, t
         exclude = []
     conc = np.loadtxt(os.path.join(file_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    time_idx = int(tau * len(conc))
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / traj_end_time * len(conc)
+    time_idx = int(tau * tau_time_point)
     if time_idx >= len(conc):
         time_idx = (len(conc) - 1)
 
@@ -208,8 +210,6 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
-    # get_species_with_top_n_concentration(
-    #     FILE_DIR, exclude=["N2", "AR"], top_n=10, tau=0.9, tag="M", atoms=["C"])
     # get_normalized_concentration_at_time(
     #     FILE_DIR, tag="M", tau=0.9, exclude_names=None, renormalization=True)
     convert_concentration_to_path_prob(

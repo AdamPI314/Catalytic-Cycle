@@ -24,14 +24,13 @@ def update_dlsode_setting(file_dir, time=1.0):
 
     setting['time']['critical_time'] = time
     setting['time']['max_time'] = time
-    setting['time']['tau'] = time
 
     setting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_spe_concentration_at_time_w2f(file_dir, tau=1.0):
+def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
     """
     update settings.json, primarily for update_spe_concentration_at_time_w2f
     """
@@ -46,13 +45,14 @@ def update_spe_concentration_at_time_w2f(file_dir, tau=1.0):
         os.path.join(file_dir, 'input', 'setting.json'))
 
     setting['job']['job_type'] = "write_concentration_at_time_to_file"
+    setting['time']['tau'] = max_tau 
     setting['pathway']['tau'] = tau
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=1.0):
+def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
     """
     update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
@@ -70,9 +70,8 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
-    setting['time']['critical_time'] = time
-    setting['time']['max_time'] = time
-    setting['time']['tau'] = time
+    setting['time']['tau'] = max_tau
+
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
@@ -84,7 +83,7 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
     return
 
 
-def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=1.0):
+def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -108,7 +107,9 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
-    setting['pathway']['tau'] = max_tau
+
+    setting['time']['tau'] = max_tau
+    setting['pathway']['tau'] = tau
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
