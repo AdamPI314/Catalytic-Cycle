@@ -24,7 +24,7 @@ def update_dlsode_setting(file_dir, time=1.0):
 
     setting['time']['critical_time'] = time
     setting['time']['max_time'] = time
-    setting['time']['path_end_time'] = time
+    setting['time']['tau'] = time
 
     setting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
     rwc.write_configuration(setting, os.path.join(
@@ -72,7 +72,7 @@ def update_mc_trajectory_setting(file_dir, time=1.0, n_traj=1000000, atom_follow
 
     setting['time']['critical_time'] = time
     setting['time']['max_time'] = time
-    setting['time']['path_end_time'] = time
+    setting['time']['tau'] = time
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
