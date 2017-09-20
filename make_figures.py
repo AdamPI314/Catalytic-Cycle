@@ -320,25 +320,72 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
     spe_top_n_idx_list = spe_conc.argsort()[-top_n:][::-1]
 
     top_n_spe_conc = [spe_conc[x] for x in spe_top_n_idx_list]
-    top_n_spe_name = [s_idx_n[x] for x in spe_top_n_idx_list]
+    top_n_spe_name = [s_idx_n[str(x)] for x in spe_top_n_idx_list]
 
     # figure name
     fig_name = "top_n_spe_concentration_" + \
         str(tau) + "_" + str(top_n) + ".jpg"
 
     # specify label for lines
-    bins = [x for x in range(top_n_spe_conc)]
+    bins = np.array([x for x in range(len(top_n_spe_conc))])
+    height = top_n_spe_conc
     labels = top_n_spe_name
 
-    colors, markers, _ = get_colors_markers_linestyles()
-    # print(markers)
-
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
-    a_x.bar(bins, height=top_n_spe_conc)
-    a_x.set_xticks(bins + 0.5, labels)
+    rects = a_x.bar(bins, height=height)
+
+    # add number above
+    def autolabel(rects):
+        """
+        Attach a text label above each bar displaying its height
+        """
+        for rect in rects:
+            height = rect.get_height()
+            a_x.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
+                     '%.2e' % float(height),
+                     ha='center', va='bottom', size=6.0)
+    autolabel(rects)
+
+    a_x.set_xticks(bins)
+    a_x.set_xticklabels(labels, rotation=-15)
+
+    a_x.get_yaxis().set_visible(False)
+
+    a_x.spines['right'].set_visible(False)
+    a_x.spines['top'].set_visible(False)
+    a_x.spines['left'].set_visible(False)
+    a_x.spines['right'].set_visible(False)
+
+    a_x.set_title("$\\tau$ = " + str(tau))
 
     # background
-    a_x.axis('off')
+    a_x.axis('on')
+    # a_x.axis('off')
+
+    # These are in unitless percentages of the figure size. (0,0 is bottom left)
+    left, bottom, width, height = [0.30, 0.30, 0.6, 0.5]
+    a_x_2 = fig.add_axes([left, bottom, width, height])
+
+    # specify label for lines
+    bins = bins[0:-1]
+    height = top_n_spe_conc[1::]
+    labels = top_n_spe_name[1::]
+
+    rects_2 = a_x_2.bar(bins, height=height, color='r')
+
+    # add number above
+    def autolabel_2(rects):
+        """
+        Attach a text label above each bar displaying its height
+        """
+        for rect in rects:
+            height = rect.get_height()
+            a_x_2.text(rect.get_x() + rect.get_width() / 2., 1.05 * height,
+                       '%.2e' % float(height),
+                       ha='center', va='bottom', size=6.0, color='r')
+    autolabel_2(rects_2)
+
+    a_x_2.axis('off')
 
     # fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
@@ -418,6 +465,8 @@ if __name__ == '__main__':
     #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
     #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
     # plot_rxn_rate_constant(FILE_DIR)
-    R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
-    plot_reaction_pair_rate_ratio(
-        FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, tau=1.0, tag="M")
+    # R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
+    # plot_reaction_pair_rate_ratio(
+    #     FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, tau=1.0, tag="M")
+    plot_top_n_spe_concentration(
+        FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)

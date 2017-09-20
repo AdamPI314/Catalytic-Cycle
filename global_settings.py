@@ -25,7 +25,7 @@ def get_setting():
     setting = {
         # end time
         "end_t": 0.800000099855441071,
-        "tau": 0.9,
+        "tau": 0.5,
         # atom followed
         "atom_f": "C",
         "init_s": 62,

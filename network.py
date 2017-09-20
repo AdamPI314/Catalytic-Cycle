@@ -297,7 +297,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
     spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     node_list = [name_idx_dict[spe_idx_name_dict[str(x)]] for x in matched_spe]
-    # print(node_list)
+    print(node_list)
     for idx, curr_idx in enumerate(node_list):
         if idx >= 1:
             pre_idx = node_list[idx - 1]
