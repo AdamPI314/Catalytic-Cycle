@@ -356,6 +356,13 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
     a_x.spines['left'].set_visible(False)
     a_x.spines['right'].set_visible(False)
 
+    a_x.tick_params(
+        axis='x',          # changes apply to the x-axis
+        which='both',      # both major and minor ticks are affected
+        bottom='off',      # ticks along the bottom edge are off
+        top='off',         # ticks along the top edge are off
+        labelbottom='off')  # labels along the bottom edge are off
+
     a_x.set_title("$\\tau$ = " + str(tau))
 
     # background
@@ -451,8 +458,8 @@ if __name__ == '__main__':
     # plot_pathway_prob(FILE_DIR, tau=0.2)
     G_S = global_settings.get_setting()
 
-    # SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
-    #     FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
+    SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
+        FILE_DIR, exclude=None, top_n=G_S['top_n_s'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
     # plot_concentrations(
     #     FILE_DIR, spe_idx=[62, 17, 66, 86], tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
@@ -460,7 +467,7 @@ if __name__ == '__main__':
     #     FILE_DIR, spe_idx=SPE_IDX, tag=G_S['tag'],
     #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
     # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=G_S['tau'], tag=G_S['tag'])
+    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=1.0, tag=G_S['tag'])
     # for spe_n in SPE_NAMES:
     #     plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
     #                        exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
@@ -468,5 +475,5 @@ if __name__ == '__main__':
     # R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
     # plot_reaction_pair_rate_ratio(
     #     FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, tau=1.0, tag="M")
-    plot_top_n_spe_concentration(
-        FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)
+    # plot_top_n_spe_concentration(
+    #     FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)

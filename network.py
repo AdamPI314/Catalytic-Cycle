@@ -159,7 +159,7 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None,
                     inplace=True, na_position='last')
     d_f.reset_index(drop=True, inplace=True)
     print(d_f.head())
-    d_f = d_f.loc[0:top_n]
+    d_f = d_f.loc[0:(top_n + 1)]
 
     # temporary directed graph
     d_g_tmp = nx.DiGraph()
@@ -236,7 +236,7 @@ def get_names_coordinates(file_dir, fname=""):
     """
     read nodes names and corresponding coordinates
     """
-    with open(os.path.join(file_dir, "output", fname), 'br') as f_h:
+    with open(os.path.join(file_dir, "output", fname), 'r') as f_h:
         data = json.load(f_h)
 
     # naming thing
@@ -272,30 +272,40 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
     x = []
     y = []
     name_idx_dict = dict()
-    for idx, val in enumerate(n_coordinate):
+    for i_tmp, val in enumerate(n_coordinate):
         labels.append(val)
-        name_idx_dict[val] = idx
+        name_idx_dict[val] = i_tmp
         x.append(float(n_coordinate[val][0]))
         y.append(float(n_coordinate[val][1]))
 
-    colors, markers, _ = tools.get_colors_markers_linestyles()
-    # print(markers)
+    # read in species index name
+    spe_idx_name_dict, spe_name_idx_dict = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
+        file_dir, "output", "reaction_labelling.csv"))
+
+    # modify labels
+    spe_union_find_group = global_settings.get_union_find_group(FILE_DIR)
+    for idx, val in enumerate(labels):
+        spe_i = spe_name_idx_dict[val]
+        if spe_i in spe_union_find_group:
+            labels[idx] = ",".join([str(spe_idx_name_dict[str(x)])
+                                    for x in spe_union_find_group[spe_i]])
+    print(labels)
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
     # background
     a_x.scatter(x, y,
-                color=colors[0], marker=markers[0], alpha=0.5)
-    for idx, _ in enumerate(x):
-        t_h = a_x.annotate(labels[idx], (x[idx], y[idx]))
+                color='b', marker="o", alpha=0.5)
+    for i, _ in enumerate(x):
+        t_h = a_x.annotate(labels[i], (x[i], y[i]))
         t_h.set_alpha(0.3)
 
     # parse pathway
     matched_spe = re.findall(r"S(\d+)", pathname)
-    # matched_reaction = re.findall(r"R(\d+)", pathway)
-    # read in species index name
-    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+    matched_reaction = re.findall(r"R(\d+)", pathname)
+    print(matched_reaction)
     node_list = [name_idx_dict[spe_idx_name_dict[str(x)]] for x in matched_spe]
     print(node_list)
     for idx, curr_idx in enumerate(node_list):
@@ -310,9 +320,19 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
     # re-draw points and labels on canvas
     for _, val in enumerate(node_list):
         a_x.scatter(x[val], y[val],
-                    color='r', marker=markers[0], alpha=0.9)
+                    color='r', marker="o", alpha=0.9)
         t_h = a_x.annotate(labels[val], (x[val], y[val]))
         t_h.set_alpha(0.9)
+
+    # draw reaction along path
+    for idx, curr_idx in enumerate(node_list):
+        if idx >= 1:
+            pre_idx = node_list[idx - 1]
+            rxn_name = str(new_ind_reaction_dict[matched_reaction[idx - 1]])
+
+            t_h = a_x.annotate(rxn_name,
+                               (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
+            t_h.set_alpha(0.5)
 
     a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
                   np.max(x) + 0.1 * (np.max(x) - np.min(x))])
@@ -339,19 +359,17 @@ if __name__ == '__main__':
     ATOM_FOLLOWED = G_S['atom_f']
     # PREFIX = "C3H8"
     PREFIX = "S" + str(G_S['init_s'])
-    TOP_N = 50 + 1
 
     # RN_OBJ = init_directed_network(
-    #     FILE_DIR, top_n=TOP_N, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
+    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
     # network_to_gephi_input_file(
-    # RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(TOP_N
-    # - 1) + ".gexf")
+    # RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + ".gexf")
 
     PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
-        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
+        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
     for idx, pathname in enumerate(PATH_NAME_TOP_N):
         plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
-                     G_S['atom_f'] + "_network_" + str(TOP_N - 1) + ".json", pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1))
+                     G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".json", pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1))
 
     END_TIME = time.time()
 
