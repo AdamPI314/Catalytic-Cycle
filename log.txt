@@ -9,21 +9,19 @@
 {'rxn': [132, 133], 'spe': [25, 27]}
 {'rxn': [1116, 1117], 'spe': [87, 90]}
 {'rxn': [348, 349], 'spe': [39, 50]}
-7.31181353007e-06 62 C3H8
-8.76254228839e-08 17 CH2O
-5.20697181609e-08 59 C3H6
-3.43624091818e-08 14 CO
-1.99366465181e-08 44 acetaldehyde
-1.51241093332e-08 28 CH3OOH
-6.43304479557e-09 51 CH3CH2OOH
-5.50062742866e-09 38 C2H4
-4.34787826265e-09 94 prod_1
-2.00587253574e-09 81 ipropylooh
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_stat.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_name.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathname_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_name.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_time.csv found
-running time:	0.44 hours
-
+7.33103217085e-06 62 C3H8
+7.35041015301e-08 17 CH2O
+4.50200399035e-08 59 C3H6
+2.87393093192e-08 14 CO
+1.63599875736e-08 44 acetaldehyde
+1.25308474605e-08 28 CH3OOH
+5.30188279766e-09 51 CH3CH2OOH
+4.53756664978e-09 38 C2H4
+4.17814595111e-09 94 prod_1
+1.85897056424e-09 81 ipropylooh
+Traceback (most recent call last):
+  File "./main_driver.py", line 37, in <module>
+    traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'], top_n_s=G_S['top_n_s'])
+  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/projects/catalytic_cycle/job_drivers.py", line 187, in evaluate_pathway_probability
+    num=num_t, flag=flag, max_tau=max_tau, tau=tau)
+TypeError: prepare_pathway_time() got an unexpected keyword argument 'max_tau'
