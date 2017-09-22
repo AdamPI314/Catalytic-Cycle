@@ -184,7 +184,7 @@ def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=100
     ppnt.prepare_pathway_name(file_dir, top_n=top_n,
                               flag=flag, spe_idx=spe_idx)
     ppnt.prepare_pathway_time(file_dir, top_n=top_n * top_n_s,
-                              num=num_t, flag=flag, max_tau=max_tau, tau=tau)
+                              num=num_t, flag=flag, tau=tau)
     make_run(file_dir)
 
 

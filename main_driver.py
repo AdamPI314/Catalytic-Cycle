@@ -64,8 +64,8 @@ if __name__ == '__main__':
     # job_drivers.species_production_reaction(
     #     FILE_DIR, spe='OH', top_n=G_S['top_n_p'], norm=True)
 
-    # # send email
-    # job_drivers.send_email(FILE_DIR)
+    # send email
+    job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +

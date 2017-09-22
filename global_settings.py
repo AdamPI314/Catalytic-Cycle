@@ -90,7 +90,7 @@ def get_setting():
         # for Propane, time when temperature=1800K
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
-        "tau": 0.5,
+        "tau": 0.9,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
