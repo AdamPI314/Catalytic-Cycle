@@ -21,28 +21,33 @@ if __name__ == '__main__':
     # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'])
 
-    # write specie concentration at a time to file
-    job_drivers.spe_concentration_at_time_w2f(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
+    # update trapped species and fast reactions
+    job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
 
-    # run monte carlo trajectory
-    job_drivers.run_mc_trajectory(
-        FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'])
+    # # write specie concentration at a time to file
+    # job_drivers.spe_concentration_at_time_w2f(
+    #     FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
 
-    # evaluate path integral-->pathway probability
-    job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
-        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-        traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'], top_n_s=G_S['top_n_s'])
+    # # run monte carlo trajectory
+    # job_drivers.run_mc_trajectory(
+    #     FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+    #     init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'])
 
-    # convert symbolic pathway to real pathway
-    # with real species names and real reaction expression
-    job_drivers.symbolic_path_2_real_path(
-        FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="", end_spe=G_S['end_s'])
+    # # evaluate path integral-->pathway probability
+    # job_drivers.evaluate_pathway_probability(
+    #     FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+    # traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    # top_n_s=G_S['top_n_s'])
 
-    # copy SOHR/C++ routine files
-    job_drivers.copy_sohr_files(FILE_DIR)
+    # # convert symbolic pathway to real pathway
+    # # with real species names and real reaction expression
+    # job_drivers.symbolic_path_2_real_path(
+    # FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="",
+    # end_spe=G_S['end_s'])
+
+    # # copy SOHR/C++ routine files
+    # job_drivers.copy_sohr_files(FILE_DIR)
 
     # # species count
     # job_drivers.species_count(FILE_DIR, top_n=G_S['top_n_p'], norm=True)
@@ -64,8 +69,8 @@ if __name__ == '__main__':
     # job_drivers.species_production_reaction(
     #     FILE_DIR, spe='OH', top_n=G_S['top_n_p'], norm=True)
 
-    # send email
-    job_drivers.send_email(FILE_DIR)
+    # # send email
+    # job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +

@@ -30,6 +30,30 @@ def update_dlsode_setting(file_dir, time=1.0):
         file_dir, 'input', 'setting.json'))
 
 
+def update_trapped_species_fast_reaction_setting(file_dir):
+    """
+    update settings.json, primarily for trapped species and fast reactions
+    """
+    # there will always be a current setting
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
+
+    if not os.path.isfile(fn0):
+        copy2(fn1, fn0)
+
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
+
+    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+        file_dir)
+    setting['pathway']['fast_reaction'] = fast_reaction
+    setting['pathway']['trapped_species'] = trapped_spe
+
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))
+    return
+
+
 def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
     """
     update settings.json, primarily for update_spe_concentration_at_time_w2f
@@ -45,7 +69,7 @@ def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
         os.path.join(file_dir, 'input', 'setting.json'))
 
     setting['job']['job_type'] = "write_concentration_at_time_to_file"
-    setting['time']['tau'] = max_tau 
+    setting['time']['tau'] = max_tau
     setting['pathway']['tau'] = tau
 
     rwc.write_configuration(setting, os.path.join(
@@ -66,7 +90,8 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(file_dir)
+    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+        file_dir)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -97,7 +122,8 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(file_dir)
+    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+        file_dir)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 

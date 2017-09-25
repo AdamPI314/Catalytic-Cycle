@@ -12,6 +12,13 @@ import naming
 import trajectory
 
 
+def update_trapped_species_fast_reaction_setting(file_dir):
+    """
+    update settings.json, primarily for trapped species and fast reactions
+    """
+    us.update_trapped_species_fast_reaction_setting(file_dir)
+
+
 def copy_sohr_files(file_dir):
     """
     copy SOHR files from C++ routine
