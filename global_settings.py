@@ -43,7 +43,7 @@ def get_union_find_group(file_dir):
             label_spe_idx[counter] = int(trapped_species[val])
             counter += 1
     # print(spe_idx_label, label_spe_idx)
-    wqnpc = union_find.WeightedQuickUnionWithPathCompression(10)
+    wqnpc = union_find.WeightedQuickUnionWithPathCompression(len(u_set))
     for _, val in enumerate(trapped_species):
         idx1 = int(spe_idx_label[int(val)])
         idx2 = int(spe_idx_label[int(trapped_species[val])])
@@ -96,7 +96,7 @@ def get_setting():
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 1000,
+        "top_n_p": 2000,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species

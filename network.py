@@ -263,9 +263,9 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
 
     # figure name
     if flag is "":
-        fig_name = "network_test" + ".jpg"
+        fig_name = "network_path" + ".jpg"
     else:
-        fig_name = "network_test_" + str(flag) + ".jpg"
+        fig_name = "network_path_" + str(flag) + ".jpg"
 
     # specify label for lines
     labels = []
@@ -297,10 +297,10 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
 
     # background
     a_x.scatter(x, y,
-                color='b', marker="o", alpha=0.5)
+                color='b', marker="o", alpha=0.3)
     for i, _ in enumerate(x):
         t_h = a_x.annotate(labels[i], (x[i], y[i]))
-        t_h.set_alpha(0.3)
+        t_h.set_alpha(0.15)
 
     # parse pathway
     matched_spe = re.findall(r"S(\d+)", pathname)
@@ -335,7 +335,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag=""):
             t_h.set_alpha(0.5)
 
     a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
-                  np.max(x) + 0.1 * (np.max(x) - np.min(x))])
+                  np.max(x) + 0.25 * (np.max(x) - np.min(x))])
     # a_x.grid('on')
     a_x.axis('off')
     a_x.set_title(flag + " = " + "{:.2e}".format(float(pathprob)))
@@ -361,9 +361,9 @@ if __name__ == '__main__':
     PREFIX = "S" + str(G_S['init_s'])
 
     # RN_OBJ = init_directed_network(
-    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.5, pathwayEndWith=None)
+    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
     # network_to_gephi_input_file(
-    # RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + ".gexf")
+    #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".gexf")
 
     PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
         FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
@@ -372,7 +372,7 @@ if __name__ == '__main__':
                      G_S['atom_f'] + "_network_" +
                      str(G_S['top_n_p_gephi']) + "_" +
                      str(G_S['tau']) + ".json",
-                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1))
+                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag=str(G_S['tau']) + "tau_P" + str(idx + 1))
 
     END_TIME = time.time()
 
