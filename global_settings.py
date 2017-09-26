@@ -96,13 +96,13 @@ def get_setting():
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 2000,
+        "top_n_p": 10000,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 10000000,
+        "mc_n_traj": 100000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
