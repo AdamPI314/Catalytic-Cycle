@@ -28,7 +28,8 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_name.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathname_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/chattering_group_info.json found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_name.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_time.csv found
-running time:	0.56 hours
+running time:	0.30 hours
 

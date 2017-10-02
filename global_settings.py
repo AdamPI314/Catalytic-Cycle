@@ -91,12 +91,14 @@ def get_setting():
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
         "tau": 0.65,
+        # species oriented, if true, pick pathways ending with top_n species, if False, just top n pathway
+        "spe_oriented": True,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 500,
+        "top_n_p": 100,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species
