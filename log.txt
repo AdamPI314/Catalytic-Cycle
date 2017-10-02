@@ -1,0 +1,34 @@
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+{'rxn': [1068, 1069], 'spe': [60, 78]}
+{'rxn': [1096, 1097], 'spe': [61, 80]}
+{'rxn': [132, 133], 'spe': [25, 27]}
+{'rxn': [1116, 1117], 'spe': [87, 90]}
+{'rxn': [348, 349], 'spe': [39, 50]}
+{'rxn': [1068, 1069], 'spe': [60, 78]}
+{'rxn': [1096, 1097], 'spe': [61, 80]}
+{'rxn': [132, 133], 'spe': [25, 27]}
+{'rxn': [1116, 1117], 'spe': [87, 90]}
+{'rxn': [348, 349], 'spe': [39, 50]}
+{'rxn': [1068, 1069], 'spe': [60, 78]}
+{'rxn': [1096, 1097], 'spe': [61, 80]}
+{'rxn': [132, 133], 'spe': [25, 27]}
+{'rxn': [1116, 1117], 'spe': [87, 90]}
+{'rxn': [348, 349], 'spe': [39, 50]}
+6.99545553493e-06 62 C3H8
+3.19076840887e-07 17 CH2O
+1.67986573296e-07 59 C3H6
+1.5007916519e-07 14 CO
+7.84668026972e-08 44 acetaldehyde
+5.12924400228e-08 28 CH3OOH
+2.40223168212e-08 38 C2H4
+2.2389217155e-08 51 CH3CH2OOH
+4.01770478246e-09 94 prod_1
+3.99788319043e-09 86 propoxide
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_stat.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_name.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathway_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/output/pathname_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_name.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/pathway_time.csv found
+running time:	0.56 hours
+

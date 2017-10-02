@@ -41,7 +41,6 @@ def parse_reaction_and_its_index(f_n):
     """
     # load data
     line_content = np.genfromtxt(f_n, dtype=str, delimiter='\n')
-    # matched_tmp = [re.findall(r"(\d+)\s+([-]?\d+)\s+([\w|+|=|>|<|(|)|\-|\_|,]+)", line)
     matched_tmp = [re.findall(r"([\d]+)\s+([\-\d]+)\s+([\w\(\)\-\_,\+]+\<?={1}\>?[\w\(\)\-\_,\+]+)", line)
                    for line in line_content]
     matched_ind1_ind2_str = [x[0] for x in matched_tmp if len(x) != 0]
@@ -73,11 +72,14 @@ def reaction_name_to_real_reaction(new_ind_reaction_dict, pathway_name):
     """
     converted reaction name to their reaction format instead of index
     """
-    matched_reaction = re.findall(r"R(\d+)", pathway_name)
+    matched_reaction = re.findall(r"R([-]?\d+)", pathway_name)
     # only reactions
     str_t = '['
     for _, val in enumerate(matched_reaction):
-        str_t += new_ind_reaction_dict[val]
+        if '-' not in val:
+            str_t += new_ind_reaction_dict[val]
+        else:
+            str_t += "<-chattering->"
     str_t += ']'
     return str_t
 
@@ -87,12 +89,15 @@ def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, path
     converted path to their real species name and reaction format instead of index
     """
     matched_spe = re.findall(r"S(\d+)", pathway_name)
-    matched_reaction = re.findall(r"R(\d+)", pathway_name)
+    matched_reaction = re.findall(r"R([-]?\d+)", pathway_name)
     # always starts from species
     str_t = '[' + spe_ind_name_dict[matched_spe[0]] + '] '
     for idx, val in enumerate(matched_reaction):
-        str_t += new_ind_reaction_dict[val]
-        str_t += "-->"
+        if '-' not in val:
+            str_t += new_ind_reaction_dict[val]
+            str_t += "--> "
+        else:
+            str_t += "<-chattering-> "
         str_t += '[' + spe_ind_name_dict[matched_spe[idx + 1]] + '] '
     return str_t
 

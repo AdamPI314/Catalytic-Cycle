@@ -90,13 +90,13 @@ def get_setting():
         # for Propane, time when temperature=1800K
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
-        "tau": 0.9,
+        "tau": 0.65,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 10000,
+        "top_n_p": 500,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species
