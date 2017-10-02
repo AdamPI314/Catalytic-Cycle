@@ -44,6 +44,7 @@ def copy_sohr_files(file_dir):
     4. output/pathway_name.csv
     5. output/pathway_prob.csv
     6. output/pathname_prob.csv
+    7. output/chattering_group_info.json
     """
     suffix = get_suffix(file_dir)
 
@@ -67,6 +68,12 @@ def copy_sohr_files(file_dir):
 
     f_n_1 = os.path.join(file_dir, "output", "pathname_prob.csv")
     f_n_2 = os.path.join(file_dir, "output", "pathname_prob" + suffix + ".csv")
+    if os.path.isfile(f_n_1):
+        print(f_n_1, "found")
+        copyfile(f_n_1, f_n_2)
+
+    f_n_1 = os.path.join(file_dir, "output", "chattering_group_info.json")
+    f_n_2 = os.path.join(file_dir, "output", "chattering_group_info" + suffix + ".json")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
