@@ -33,12 +33,12 @@ if __name__ == '__main__':
         FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
         init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'])
 
-    # # evaluate path integral-->pathway probability
-    # job_drivers.evaluate_pathway_probability(
-    #     FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
-    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
-    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'])
+    # evaluate path integral-->pathway probability
+    job_drivers.evaluate_pathway_probability(
+        FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+        traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'])
 
     # convert symbolic pathway to real pathway
     # with real species names and real reaction expression
@@ -74,8 +74,8 @@ if __name__ == '__main__':
     # job_drivers.species_production_reaction(
     #     FILE_DIR, spe='OH', top_n=G_S['top_n_p'], norm=True)
 
-    # # send email
-    # job_drivers.send_email(FILE_DIR)
+    # send email
+    job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +

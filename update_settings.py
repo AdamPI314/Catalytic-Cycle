@@ -100,7 +100,7 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
-    setting['pathway']['tau'] = max_tau
+    setting['pathway']['tau'] = tau
 
     setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
     rwc.write_configuration(setting, os.path.join(

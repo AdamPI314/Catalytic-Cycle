@@ -90,21 +90,21 @@ def get_setting():
         # for Propane, time when temperature=1800K
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
-        "tau": 0.63,
+        "tau": 0.50001,
         # species oriented, if true, pick pathways ending with top_n species, if False, just top n pathway
-        "spe_oriented": False,
+        "spe_oriented": True,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         "end_s": "",
         # top n path
-        "top_n_p": 50,
+        "top_n_p": 1000,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 1000000,
+        "mc_n_traj": 100000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
