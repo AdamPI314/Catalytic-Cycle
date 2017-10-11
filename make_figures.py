@@ -16,6 +16,59 @@ import trajectory
 import parse_pattern
 import global_settings
 from tools import get_colors_markers_linestyles
+import naming
+
+
+def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None):
+    """
+    plot path length statistics
+    """
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    if suffix is not None:
+        suffix += "_S" + str(end_spe)
+    in_f_n = os.path.join(file_dir, "output", "path_length" + suffix + ".csv")
+    fig_name = os.path.join(
+        file_dir, "output", "path_length" + suffix + ".jpg")
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    data = np.loadtxt(in_f_n, dtype=float, delimiter=',')
+
+    data_x = [int(x) for x in data[:, 0]]
+    data_y = data[:, 1]
+    # data_y /= np.sum(data_y)
+
+    spe_idx_n_dict, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    # specify label for lines
+    labels = [spe_idx_n_dict[str(end_spe)]]
+
+    delta_n = int(len(data_x) / 50)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+
+    idx = 0
+    a_x.plot(data_x[::delta_n], data_y[::delta_n],
+             color=colors[idx], marker=markers[idx], label=labels[idx])
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg.get_frame().set_alpha(0.7)
+
+    a_x.set_xlim([data_x[0], data_x[-1]])
+    a_x.grid()
+
+    a_x.set_xlabel("path length measured by number of species")
+    a_x.set_ylabel("frequency")
+    a_x.set_title("path length distribution")
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, fig_name), dpi=500)
+    plt.close()
+
+    return
 
 
 def plot_pathway_prob(file_dir, tau=1.0):
@@ -461,23 +514,8 @@ def plot_rxn_rate_constant(file_dir):
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    # plot_pathway_prob(FILE_DIR, tau=0.2)
     G_S = global_settings.get_setting()
-
-    SPE_IDX, SPE_NAMES, SPE_EXCLUDE_NAME = trajectory.get_species_with_top_n_concentration(
-        FILE_DIR, exclude=None, top_n=G_S['top_n_s'], traj_end_time=G_S['end_t'],
-        max_tau=G_S['max_tau'], tau=G_S['tau'], tag=G_S['tag'], atoms=[G_S['atom_f']])
-    # plot_concentrations(
-    #     FILE_DIR, spe_idx=SPE_IDX, max_tau=G_S['max_tau'], tau=G_S['tau'], tag=G_S['tag'],
-    #     exclude_names=SPE_EXCLUDE_NAME, renormalization=True)
-    # plot_reaction_rates(
-    #     FILE_DIR, reaction_idx=[1068, 1070, 1072, 1074, 1076], max_tau=G_S['max_tau'], tau=1.0, tag=G_S['tag'])
-    for spe_n in SPE_NAMES:
-        plot_spe_path_prob(FILE_DIR, spe_name=spe_n, top_n=G_S['top_n_p'],
-                           exclude_names=SPE_EXCLUDE_NAME, tau=G_S['tau'])
-    # plot_rxn_rate_constant(FILE_DIR)
-    # R_IDX_PAIR, S_IDX_PAIR = global_settings.get_fast_rxn_trapped_spe(FILE_DIR)
-    # plot_reaction_pair_rate_ratio(
-    #     FILE_DIR, rxn_idx_pair=R_IDX_PAIR, spe_idx_pair=S_IDX_PAIR, max_tau=G_S['max_tau'], tau=1.0, tag="M")
-    plot_top_n_spe_concentration(
-        FILE_DIR, exclude_names=None, atom_followed=G_S['atom_f'], tau=G_S['tau'], top_n=10)
+    SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
+    for es in SPE_LIST:
+        plot_path_length_statistics(
+            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)

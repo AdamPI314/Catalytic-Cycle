@@ -10,6 +10,8 @@ import prepare_path_name_time as ppnt
 import parse_pattern as pp
 import naming
 import trajectory
+import make_figures as mf
+import global_settings
 
 
 def update_trapped_species_fast_reaction_setting(file_dir):
@@ -245,6 +247,31 @@ def make_figures(file_dir):
     """
     for i in range(1, 9):
         make_a_figure(file_dir, i)
+
+
+def propane_make_figures(file_dir):
+    """
+    make figures for propane system
+    """
+    g_s = global_settings.get_setting()
+
+    spe_idx, spe_names, spe_exclude_name = trajectory.get_species_with_top_n_concentration(
+        file_dir, exclude=None, top_n=g_s['top_n_s'], traj_end_time=g_s['end_t'],
+        max_tau=g_s['max_tau'], tau=g_s['tau'], tag=g_s['tag'], atoms=[g_s['atom_f']])
+    mf.plot_concentrations(
+        file_dir, spe_idx=spe_idx, max_tau=g_s['max_tau'], tau=g_s['tau'], tag=g_s['tag'],
+        exclude_names=spe_exclude_name, renormalization=True)
+    mf.plot_reaction_rates(
+        file_dir, reaction_idx=[1068, 1070, 1072, 1074, 1076], max_tau=g_s['max_tau'], tau=1.0, tag=g_s['tag'])
+    for spe_n in spe_names:
+        mf.plot_spe_path_prob(file_dir, spe_name=spe_n, top_n=g_s['top_n_p'],
+                              exclude_names=spe_exclude_name, tau=g_s['tau'])
+    mf.plot_rxn_rate_constant(file_dir)
+    r_idx_pair, s_idx_pair = global_settings.get_fast_rxn_trapped_spe(file_dir)
+    mf.plot_reaction_pair_rate_ratio(
+        file_dir, rxn_idx_pair=r_idx_pair, spe_idx_pair=s_idx_pair, max_tau=g_s['max_tau'], tau=1.0, tag="M")
+    mf.plot_top_n_spe_concentration(
+        file_dir, exclude_names=None, atom_followed=g_s['atom_f'], tau=g_s['tau'], top_n=10)
 
 
 def send_email(file_dir):
