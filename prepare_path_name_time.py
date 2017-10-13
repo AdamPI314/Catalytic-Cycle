@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 
-def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", spe_idx=None):
+def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=None):
     """
     prepare pathway_name.csv
     """
@@ -25,13 +25,13 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", spe_idx=None
         pass
 
     # read
-    if spe_idx is None:
+    if end_s_idx is None:
         data = np.genfromtxt(f_n_ps, dtype=str, delimiter=delimiter)
         path_list = [val[0] for idx, val in enumerate(data) if idx < top_n]
     else:
         path_list = []
         d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
-        for s_i in spe_idx:
+        for s_i in end_s_idx:
             path_list.extend(d_f[d_f['pathway'].str.endswith(
                 "S" + str(s_i))]['pathway'][0:top_n])
 
@@ -69,4 +69,4 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
 #     print(FILE_DIR)
 
-    prepare_pathway_name(FILE_DIR, top_n=5, flag="", delimiter=",", spe_idx=[62, 59])
+    prepare_pathway_name(FILE_DIR, top_n=5, flag="", delimiter=",", end_s_idx=[62, 59])
