@@ -9,7 +9,7 @@ import pandas as pd
 
 def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=None):
     """
-    prepare pathway_name.csv
+    prepare pathway_name_candidate.csv
     """
     # read from pathway_stat.csv
     f_n_ps = os.path.join(file_dir, "output", "pathway_stat.csv")

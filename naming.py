@@ -39,9 +39,9 @@ def copy_sohr_files(file_dir):
     """
     make a copy of SOHR files
     1. output/pathway_stat.csv
-    2. input/pathway_name.csv
-    3. input/pathway_time.csv
-    4. output/pathway_name.csv
+    2. output/pathway_name_candidate.csv
+    3. output/pathway_time_candidate.csv
+    4. output/pathway_name_selected.csv
     5. output/pathway_prob.csv
     6. output/pathname_prob.csv
     7. output/chattering_group_info.json
@@ -54,8 +54,8 @@ def copy_sohr_files(file_dir):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_name.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_name" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", "pathway_name_selected.csv")
+    f_n_2 = os.path.join(file_dir, "output", "pathway_name_selected" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
@@ -78,14 +78,14 @@ def copy_sohr_files(file_dir):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "input", "pathway_name.csv")
-    f_n_2 = os.path.join(file_dir, "input", "pathway_name" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", "pathway_name_candidate.csv")
+    f_n_2 = os.path.join(file_dir, "output", "pathway_name_candidate" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "input", "pathway_time.csv")
-    f_n_2 = os.path.join(file_dir, "input", "pathway_time" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", "pathway_time_candidate.csv")
+    f_n_2 = os.path.join(file_dir, "output", "pathway_time_candidate" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)

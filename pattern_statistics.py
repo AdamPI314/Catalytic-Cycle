@@ -19,7 +19,7 @@ def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", tau
     suffix = naming.get_suffix(file_dir=file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
 
-    f_n_n = os.path.join(file_dir, "output", "pathway_name" + suffix + ".csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected" + suffix + ".csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob" + suffix + ".csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -71,7 +71,7 @@ def species_count(file_dir, top_n=50, norm=False):
     species occurence in a path multiply by pathway probability
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -116,7 +116,7 @@ def reaction_count(file_dir, top_n=50, norm=False):
     reaction occurence in a path multiply by pathway probability
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -157,7 +157,7 @@ def initiation_reaction_count(file_dir, top_n=50, norm=False):
     initiation reaction occurence in a path multiply by pathway probability
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -200,7 +200,7 @@ def species_cycle(file_dir, top_n=50, norm=False):
     species cycle in a path multiply by pathway probability
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -247,7 +247,7 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
     or sub-pathway ends with a species
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -294,7 +294,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     species production reaction in a path multiply by pathway probability
     """
     print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name.csv")
+    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
     f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
