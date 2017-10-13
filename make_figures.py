@@ -13,7 +13,7 @@ from matplotlib import pylab as plt
 
 import parse_spe_reaction_info as psri
 import trajectory
-import parse_pattern
+import pattern_statistics
 import global_settings
 from tools import get_colors_markers_linestyles
 import naming
@@ -283,7 +283,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL"):
+def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=62):
     """
     plot spe_path_prob give species name 
     """
@@ -292,21 +292,21 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    d_f = parse_pattern.parse_path_prob_terminating_with_spe(file_dir, spe_name=spe_name, init_spe=init_spe,
-                                                             atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    d_f = pattern_statistics.path_prob_terminating_with_spe(file_dir, init_spe=init_spe,
+                                                            atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith, end_spe=end_spe)
     data = [float(x) for x in d_f['frequency']][0:top_n]
     data_c = deepcopy(data)
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
-    print(spe_name, "#path:\t", len(data_c))
     delta_n = int(len(data_c) / 25)
     if delta_n is 0:
         delta_n = 1
     data_c = data_c[::delta_n]
 
-    _, s_n_idx = psri.parse_spe_info(os.path.join(
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
+    spe_name = s_idx_n[end_spe]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
         file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
@@ -314,7 +314,7 @@ def plot_spe_path_prob(file_dir, spe_name="C3H8", top_n=10, exclude_names=None, 
         file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
     # data_c = trajectory.convert_path_prob_to_concentration(
     #     FILE_DIR, atom_followed=atom_followed, path_prob=data_c)
-    spe_conc_const = spe_conc[int(s_n_idx[spe_name])]
+    spe_conc_const = spe_conc[int(end_spe)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     a_x_right = a_x_left.twinx()

@@ -264,9 +264,9 @@ def propane_make_figures(file_dir):
         exclude_names=spe_exclude_name, renormalization=True)
     mf.plot_reaction_rates(
         file_dir, reaction_idx=[1068, 1070, 1072, 1074, 1076], max_tau=g_s['max_tau'], tau=1.0, tag=g_s['tag'])
-    for spe_n in spe_names:
-        mf.plot_spe_path_prob(file_dir, spe_name=spe_n, top_n=g_s['top_n_p'],
-                              exclude_names=spe_exclude_name, tau=g_s['tau'])
+    for s_i in spe_idx:
+        mf.plot_spe_path_prob(file_dir, top_n=g_s['top_n_p'],
+                              exclude_names=spe_exclude_name, tau=g_s['tau'], end_spe=s_i)
     mf.plot_rxn_rate_constant(file_dir)
     r_idx_pair, s_idx_pair = global_settings.get_fast_rxn_trapped_spe(file_dir)
     mf.plot_reaction_pair_rate_ratio(
