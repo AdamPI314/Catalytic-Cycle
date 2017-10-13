@@ -72,7 +72,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     pp.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
-def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
+def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_idx=None):
     """
     convert symbolic pathway to real pathway with real species name and real reaction name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
@@ -90,7 +90,7 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_spe=""):
             file_dir, "output", "pathway_stat.csv"),
         os.path.join(
             file_dir, "output", out_file_name),
-        top_n, end_spe)
+        top_n, end_idx)
 
 
 def delete_non_dlsode_files(file_dir):
@@ -179,7 +179,7 @@ def run_mc_trajectory(file_dir, n_traj=1000000, atom_followed="C", init_spe=114,
 
 
 def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=10000,
-                                 atom_followed="C", init_spe=114, traj_end_time=100.0, max_tau=10.0, tau=1.0, top_n_s=10, spe_oriented=True):
+                                 atom_followed="C", init_spe=114, traj_end_time=100.0, max_tau=10.0, tau=1.0, top_n_s=10, spe_oriented=True, spe_idx=None):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -200,7 +200,7 @@ def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=100
         us.update_eval_path_integral(
             file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, max_tau=max_tau, tau=tau)
         ppnt.prepare_pathway_name(
-            file_dir, top_n=top_n, flag=flag, spe_idx=None)
+            file_dir, top_n=top_n, flag=flag, spe_idx=spe_idx)
         ppnt.prepare_pathway_time(
             file_dir, top_n=top_n, num=num_t, flag=flag, tau=tau)
 

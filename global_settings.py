@@ -96,7 +96,8 @@ def get_setting():
         # atom followed
         "atom_f": "C",
         "init_s": 62,
-        "end_s": "ALL",
+        # end species index, either None, or [] or [14, 15]
+        "end_idx": [14],
         # top n path
         "top_n_p": 10000,
         # top n path for gephi to generate coordinates
@@ -104,7 +105,7 @@ def get_setting():
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 100000000,
+        "mc_n_traj": 10000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points

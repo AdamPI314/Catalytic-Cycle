@@ -35,7 +35,7 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.
 
     data = np.loadtxt(in_f_n, dtype=float, delimiter=',')
 
-    data_x = [int(x) for x in data[:, 0]]
+    data_x = data[:, 0]
     data_y = data[:, 1]
     # data_y /= np.sum(data_y)
 

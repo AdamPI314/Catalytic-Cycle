@@ -46,7 +46,7 @@ def path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.0, pa
         file_dir, init_spe, atom_followed, tau, pathwayEndWith, end_spe)
 
     count_map = OrderedDict()
-    for _, val in enumerate(d_f['pathway']):
+    for _, val in enumerate(d_f['pathway'][0:20]):
         count = int(parse_pattern.parse_path_length(val))
         if count in count_map:
             count_map[count] += 1

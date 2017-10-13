@@ -38,18 +38,18 @@ if __name__ == '__main__':
         FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
         n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
         traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
-        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'])
+        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'], spe_idx=G_S['spe_idx'])
 
     # convert symbolic pathway to real pathway
     # with real species names and real reaction expression
     if G_S['spe_oriented'] is True:
         job_drivers.symbolic_path_2_real_path(
             FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="",
-            end_spe=G_S['end_s'])
+            end_idx=G_S['end_idx'])
     else:
         job_drivers.symbolic_path_2_real_path(
             FILE_DIR, top_n=G_S['top_n_p'], flag="",
-            end_spe=G_S['end_s'])
+            end_idx=None)
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR)
