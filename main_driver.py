@@ -45,11 +45,11 @@ if __name__ == '__main__':
     if G_S['spe_oriented'] is True:
         job_drivers.symbolic_path_2_real_path(
             FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="",
-            end_idx=G_S['end_idx'])
+            end_s_idx=G_S['end_s_idx'])
     else:
         job_drivers.symbolic_path_2_real_path(
             FILE_DIR, top_n=G_S['top_n_p'], flag="",
-            end_idx=None)
+            end_s_idx=None)
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR)

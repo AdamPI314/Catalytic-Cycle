@@ -99,7 +99,7 @@ def get_setting():
         # end species index, either None, or [] or [14, 15]
         "end_s_idx": [14],
         # top n path
-        "top_n_p": 10000,
+        "top_n_p": 100,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species

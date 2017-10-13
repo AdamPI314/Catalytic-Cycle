@@ -14,10 +14,10 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     # read from pathway_stat.csv
     f_n_ps = os.path.join(file_dir, "output", "pathway_stat.csv")
     if flag == "":
-        f_n_pn = os.path.join(file_dir, "input", "pathway_name.csv")
+        f_n_pn = os.path.join(file_dir, "output", "pathway_name_candidate.csv")
     else:
-        f_n_pn = os.path.join(file_dir, "input",
-                              "pathway_name_" + str(flag) + ".csv")
+        f_n_pn = os.path.join(file_dir, "output",
+                              "pathway_name_candidate_" + str(flag) + ".csv")
 
     try:
         os.remove(f_n_pn)
@@ -45,10 +45,10 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", tau=1.0):
     num represents number of points
     """
     if flag == "":
-        f_n_pt = os.path.join(file_dir, "input", "pathway_time.csv")
+        f_n_pt = os.path.join(file_dir, "output", "pathway_time_candidate.csv")
     else:
-        f_n_pt = os.path.join(file_dir, "input",
-                              "pathway_time_" + str(flag) + ".csv")
+        f_n_pt = os.path.join(file_dir, "output",
+                              "pathway_time_candidate_" + str(flag) + ".csv")
 
     try:
         os.remove(f_n_pt)

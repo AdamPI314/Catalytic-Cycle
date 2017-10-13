@@ -72,7 +72,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     pp.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
-def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_idx=None):
+def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None):
     """
     convert symbolic pathway to real pathway with real species name and real reaction name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
@@ -90,7 +90,7 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_idx=None):
             file_dir, "output", "pathway_stat.csv"),
         os.path.join(
             file_dir, "output", out_file_name),
-        top_n, end_idx)
+        top_n, end_s_idx)
 
 
 def delete_non_dlsode_files(file_dir):
