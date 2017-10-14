@@ -267,7 +267,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
         data_y = (rxn_rates[::delta_n, int(r_idx)] * conc[::delta_n, int(spe_idx_pair[s_idx])])  \
             / (rxn_rates[::delta_n, rxn_idx_pair[r_idx]] * conc[::delta_n, int(s_idx)])
         a_x.semilogy(time[::delta_n], data_y,
-                     color=colors[idx], marker=markers[idx], label=labels[idx])
+                     color=colors[idx%len(colors)], marker=markers[idx%len(markers)], label=labels[idx%len(labels)])
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
     leg.get_frame().set_alpha(0.7)
