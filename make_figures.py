@@ -105,15 +105,18 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     if exclude_names is None:
         exclude_names = []
 
+    spe_idx_tmp = deepcopy(spe_idx)
+    if spe_idx_tmp is None:
+        spe_idx_tmp = [0]
+
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
     s_idx_n["-1"] = "Temp"
-    spe_idx.append(-1)
 
-    if spe_idx is None:
-        spe_idx = [0]
+    spe_idx_tmp.append(-1)
+
     time = np.loadtxt(os.path.join(
         file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
     temp = np.loadtxt(os.path.join(file_dir, "output",
@@ -131,7 +134,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
         delta_n = 1
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
-    for s_idx in spe_idx:
+    for s_idx in spe_idx_tmp:
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
             a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
@@ -155,7 +158,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     a_x_left.set_ylabel("[X]")
     a_x_right.set_ylabel("T/K")
 
-    s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx)
+    s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
     fig.savefig(os.path.join(file_dir, "output",
@@ -306,7 +309,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    spe_name = s_idx_n[int(end_spe)]
+    spe_name = s_idx_n[str(end_spe)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
         file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
