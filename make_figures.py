@@ -306,7 +306,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    spe_name = s_idx_n[end_spe]
+    spe_name = s_idx_n[int(end_spe)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
         file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)

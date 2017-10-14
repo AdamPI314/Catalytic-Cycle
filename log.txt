@@ -27,12 +27,11 @@
 {'rxn': [1042, 1043], 'spe': [72, 108]}
 {'rxn': [434, 435], 'spe': [45, 47]}
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/input/pathway_name.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/input/pathway_time.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
 5.68008532964e-06 62 C3H8
 1.09409509463e-06 14 CO
 8.25859837802e-07 59 C3H6
@@ -47,7 +46,15 @@ Traceback (most recent call last):
   File "./main_driver.py", line 78, in <module>
     job_drivers.propane_make_figures(FILE_DIR)
   File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/job_drivers.py", line 269, in propane_make_figures
-    exclude_names=spe_exclude_name, tau=g_s['tau'])
-  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/make_figures.py", line 295, in plot_spe_path_prob
-    d_f = parse_pattern.parse_path_prob_terminating_with_spe(file_dir, spe_name=spe_name, init_spe=init_spe,
-AttributeError: module 'parse_pattern' has no attribute 'parse_path_prob_terminating_with_spe'
+    exclude_names=spe_exclude_name, tau=g_s['tau'], end_spe=s_i)
+  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/make_figures.py", line 296, in plot_spe_path_prob
+    atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith, end_spe=end_spe)
+  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/pattern_statistics.py", line 25, in path_prob_terminating_with_spe
+    pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
+  File "/opt/anaconda/lib/python3.6/site-packages/numpy/lib/npyio.py", line 1551, in genfromtxt
+    fhd = iter(np.lib._datasource.open(fname, 'rb'))
+  File "/opt/anaconda/lib/python3.6/site-packages/numpy/lib/_datasource.py", line 151, in open
+    return ds.open(path, mode)
+  File "/opt/anaconda/lib/python3.6/site-packages/numpy/lib/_datasource.py", line 501, in open
+    raise IOError("%s not found." % path)
+OSError: /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_selected_S62_C_0.90009_ALL.csv not found.
