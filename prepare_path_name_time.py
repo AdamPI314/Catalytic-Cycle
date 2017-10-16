@@ -7,17 +7,31 @@ import numpy as np
 import pandas as pd
 
 
-def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=None):
+def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False):
     """
     prepare pathway_name_candidate.csv
     """
     # read from pathway_stat.csv
-    f_n_ps = os.path.join(file_dir, "output", "pathway_stat.csv")
-    if flag == "":
-        f_n_pn = os.path.join(file_dir, "output", "pathway_name_candidate.csv")
+    if species_path is False:
+        f_n_ps = os.path.join(file_dir, "output", "pathway_stat.csv")
     else:
-        f_n_pn = os.path.join(file_dir, "output",
-                              "pathway_name_candidate_" + str(flag) + ".csv")
+        f_n_ps = os.path.join(file_dir, "output", "species_pathway_stat.csv")
+
+    if flag == "":
+        if species_path is False:
+            f_n_pn = os.path.join(file_dir, "output",
+                                  "pathway_name_candidate.csv")
+        else:
+            f_n_pn = os.path.join(file_dir, "output",
+                                  "species_pathway_name_candidate.csv")
+
+    else:
+        if species_path is False:
+            f_n_pn = os.path.join(file_dir, "output",
+                                  "pathway_name_candidate_" + str(flag) + ".csv")
+        else:
+            f_n_pn = os.path.join(file_dir, "output",
+                                  "species_pathway_name_candidate_" + str(flag) + ".csv")
 
     try:
         os.remove(f_n_pn)
@@ -39,16 +53,26 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     np.savetxt(f_n_pn, path_list, fmt="%s")
 
 
-def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", tau=1.0):
+def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", tau=1.0, species_path=False):
     """
     prepare pathway_time.csv
     num represents number of points
     """
     if flag == "":
-        f_n_pt = os.path.join(file_dir, "output", "pathway_time_candidate.csv")
+        if species_path is False:
+            f_n_pt = os.path.join(file_dir, "output",
+                                  "pathway_time_candidate.csv")
+        else:
+            f_n_pt = os.path.join(file_dir, "output",
+                                  "species_pathway_time_candidate.csv")
+
     else:
-        f_n_pt = os.path.join(file_dir, "output",
-                              "pathway_time_candidate_" + str(flag) + ".csv")
+        if species_path is False:
+            f_n_pt = os.path.join(file_dir, "output",
+                                  "pathway_time_candidate_" + str(flag) + ".csv")
+        else:
+            f_n_pt = os.path.join(file_dir, "output",
+                                  "species_pathway_time_candidate_" + str(flag) + ".csv")
 
     try:
         os.remove(f_n_pt)
@@ -64,9 +88,10 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", tau=1.0):
 
 
 if __name__ == '__main__':
-#     print("hello")
+    #     print("hello")
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
 #     print(FILE_DIR)
 
-    prepare_pathway_name(FILE_DIR, top_n=5, flag="", delimiter=",", end_s_idx=[62, 59])
+    prepare_pathway_name(FILE_DIR, top_n=5, flag="",
+                         delimiter=",", end_s_idx=[62, 59])

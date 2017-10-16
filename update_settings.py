@@ -76,7 +76,7 @@ def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
         file_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0, species_path=False):
     """
     update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
@@ -102,13 +102,17 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     setting['pathway']['init_spe'] = init_spe
     setting['pathway']['tau'] = tau
 
-    setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
+    if species_path is True:
+        setting['job']['job_type'] = "generate_species_pathway_running_Monte_carlo_trajectory"
+    else:
+        setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
+
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
     return
 
 
-def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0, species_path=False):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -127,7 +131,10 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
-    setting['job']['job_type'] = "evaluate_path_integral_over_time"
+    if species_path is True:
+        setting['job']['job_type'] = "evaluate_species_path_integral_over_time"
+    else:
+        setting['job']['job_type'] = "evaluate_path_integral_over_time"
     setting['pathway']['pathwayEndWith'] = "ALL"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj

@@ -93,6 +93,8 @@ def get_setting():
         "tau": 0.90009,
         # species oriented, if true, pick pathways ending with top_n species, if False, just top n pathway
         "spe_oriented": True,
+        # condense species path, no reactions
+        "species_path": True,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
