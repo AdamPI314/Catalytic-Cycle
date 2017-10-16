@@ -78,22 +78,16 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, speci
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
     any unique symbol shall work
     """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
     if flag == "":
-        if species_path is False:
-            out_file_name = "pathname_prob.csv"
-        else:
-            out_file_name = "species_pathname_prob.csv"
-
+        out_file_name = prefix + "pathname_prob.csv"
     else:
-        if species_path is False:
-            out_file_name = "pathname_prob_" + str(flag) + ".csv"
-        else:
-            out_file_name = "species_pathname_prob_" + str(flag) + ".csv"
+        out_file_name = prefix + "pathname_prob_" + str(flag) + ".csv"
 
-    if species_path is False:
-        path_stat_fn = "pathway_stat.csv"
-    else:
-        path_stat_fn = "species_pathway_stat.csv"
+    path_stat_fn = prefix + "pathway_stat.csv"
 
     psri.symbolic_path_2_real_path(
         os.path.join(file_dir, "output", "species_labelling.csv"),

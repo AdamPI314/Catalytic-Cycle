@@ -127,8 +127,8 @@ def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50,
     # filter
     if end_s_idx is not None and end_s_idx is not []:
         end_spe_str = ['S' + str(x) for x in end_s_idx]
-        path_data = path_data[path_data['path'].str.endswith(
-            '|'.join(end_spe_str))]
+        end_spe_tuple = tuple(end_spe_str)
+        path_data = path_data[path_data['path'].str.endswith(end_spe_tuple)]
 
     # load spe and reaction info
     spe_ind_name_dict, _ = parse_spe_info(f_n_spe)
