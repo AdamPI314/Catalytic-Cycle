@@ -79,7 +79,7 @@ if __name__ == '__main__':
         FILE_DIR, species_path=G_S['species_path'])
 
     # send email
-    # job_drivers.send_email(FILE_DIR)
+    job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +
