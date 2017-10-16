@@ -88,17 +88,26 @@ def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, path
     """
     converted path to their real species name and reaction format instead of index
     """
-    matched_spe = re.findall(r"S(\d+)", pathway_name)
-    matched_reaction = re.findall(r"R([-]?\d+)", pathway_name)
     # always starts from species
-    str_t = '[' + spe_ind_name_dict[matched_spe[0]] + '] '
-    for idx, val in enumerate(matched_reaction):
-        if '-' not in val:
-            str_t += new_ind_reaction_dict[val]
-            str_t += "--> "
-        else:
-            str_t += "<-chattering-> "
-        str_t += '[' + spe_ind_name_dict[matched_spe[idx + 1]] + '] '
+    str_t = ""
+    matched_s_r = re.findall(r"S\d+(?:R[-]?\d+)?", pathway_name)
+    for idx, val in enumerate(matched_s_r):
+        m_s = re.findall(r"S(\d+)", val)
+        m_r = re.findall(r"R([-]?\d+)", val)
+
+        m_s_idx = m_s[0]
+        str_t += '[' + spe_ind_name_dict[m_s_idx] + ']'
+        if (len(m_r) == 0):
+            if idx != len(matched_s_r) - 1:
+                str_t += "-->"
+        elif len(m_r) > 0:
+            m_r_idx = m_r[0]
+            if '-' not in m_r_idx:
+                str_t += new_ind_reaction_dict[m_r_idx]
+                str_t += "-->"
+            else:
+                str_t += "<-chattering->"
+
     return str_t
 
 

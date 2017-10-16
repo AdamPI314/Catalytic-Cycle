@@ -35,7 +35,7 @@ def get_suffix(file_dir, init_spe=None, atom_followed=None, tau=None, pathwayEnd
     return suffix
 
 
-def copy_sohr_files(file_dir):
+def copy_sohr_files(file_dir, species_path=False):
     """
     make a copy of SOHR files
     1. output/pathway_stat.csv
@@ -46,46 +46,59 @@ def copy_sohr_files(file_dir):
     6. output/pathname_prob.csv
     7. output/chattering_group_info.json
     """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
     suffix = get_suffix(file_dir)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_stat.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_stat" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix + "pathway_stat.csv")
+    f_n_2 = os.path.join(file_dir, "output", prefix +
+                         "pathway_stat" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_name_selected" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix +
+                         "pathway_name_selected.csv")
+    f_n_2 = os.path.join(file_dir, "output",
+                         prefix + "pathway_name_selected" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_prob.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_prob" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix + "pathway_prob.csv")
+    f_n_2 = os.path.join(file_dir, "output", prefix +
+                         "pathway_prob" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathname_prob.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathname_prob" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix + "pathname_prob.csv")
+    f_n_2 = os.path.join(file_dir, "output", prefix +
+                         "pathname_prob" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
     f_n_1 = os.path.join(file_dir, "output", "chattering_group_info.json")
-    f_n_2 = os.path.join(file_dir, "output", "chattering_group_info" + suffix + ".json")
+    f_n_2 = os.path.join(file_dir, "output",
+                         "chattering_group_info" + suffix + ".json")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_name_candidate.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_name_candidate" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix +
+                         "pathway_name_candidate.csv")
+    f_n_2 = os.path.join(file_dir, "output",
+                         prefix + "pathway_name_candidate" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(file_dir, "output", "pathway_time_candidate.csv")
-    f_n_2 = os.path.join(file_dir, "output", "pathway_time_candidate" + suffix + ".csv")
+    f_n_1 = os.path.join(file_dir, "output", prefix +
+                         "pathway_time_candidate.csv")
+    f_n_2 = os.path.join(file_dir, "output",
+                         prefix + "pathway_time_candidate" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)

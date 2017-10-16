@@ -267,7 +267,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
         data_y = (rxn_rates[::delta_n, int(r_idx)] * conc[::delta_n, int(spe_idx_pair[s_idx])])  \
             / (rxn_rates[::delta_n, rxn_idx_pair[r_idx]] * conc[::delta_n, int(s_idx)])
         a_x.semilogy(time[::delta_n], data_y,
-                     color=colors[idx%len(colors)], marker=markers[idx%len(markers)], label=labels[idx%len(labels)])
+                     color=colors[idx % len(colors)], marker=markers[idx % len(markers)], label=labels[idx % len(labels)])
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
     leg.get_frame().set_alpha(0.7)
@@ -286,7 +286,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=62):
+def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
     """
     plot spe_path_prob give species name 
     """
@@ -294,9 +294,13 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
         exclude_names = []
 
     colors, markers, _ = get_colors_markers_linestyles()
-
+    if species_path is False:
+        prefix = ""
+    else:
+        prefix = "species_"
     d_f = pattern_statistics.path_prob_terminating_with_spe(file_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith, end_spe=end_spe)
+                                                            atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith,
+                                                            end_spe=end_spe, species_path=species_path)
     data = [float(x) for x in d_f['frequency']][0:top_n]
     data_c = deepcopy(data)
     for idx, _ in enumerate(data_c):
@@ -361,7 +365,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
-                             "path_prob_cumulative_" + spe_name + "_" + str(tau) + ".jpg"), dpi=500)
+                             prefix + "path_prob_cumulative_" + spe_name + "_" + str(tau) + ".jpg"), dpi=500)
     plt.close()
 
 

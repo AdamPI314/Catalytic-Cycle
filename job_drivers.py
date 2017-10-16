@@ -21,11 +21,11 @@ def update_trapped_species_fast_reaction_setting(file_dir):
     us.update_trapped_species_fast_reaction_setting(file_dir)
 
 
-def copy_sohr_files(file_dir):
+def copy_sohr_files(file_dir, species_path=False):
     """
     copy SOHR files from C++ routine
     """
-    naming.copy_sohr_files(file_dir)
+    naming.copy_sohr_files(file_dir, species_path=species_path)
 
 
 def species_count(file_dir, top_n=50, norm=False):
@@ -72,22 +72,35 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     pp.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
-def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None):
+def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, species_path=False):
     """
     convert symbolic pathway to real pathway with real species name and real reaction name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
     any unique symbol shall work
     """
     if flag == "":
-        out_file_name = "pathname_prob.csv"
+        if species_path is False:
+            out_file_name = "pathname_prob.csv"
+        else:
+            out_file_name = "species_pathname_prob.csv"
+
     else:
-        out_file_name = "pathname_prob_" + str(flag) + ".csv"
+        if species_path is False:
+            out_file_name = "pathname_prob_" + str(flag) + ".csv"
+        else:
+            out_file_name = "species_pathname_prob_" + str(flag) + ".csv"
+
+    if species_path is False:
+        path_stat_fn = "pathway_stat.csv"
+    else:
+        path_stat_fn = "species_pathway_stat.csv"
+
     psri.symbolic_path_2_real_path(
         os.path.join(file_dir, "output", "species_labelling.csv"),
         os.path.join(
             file_dir, "output", "reaction_labelling.csv"),
         os.path.join(
-            file_dir, "output", "pathway_stat.csv"),
+            file_dir, "output", path_stat_fn),
         os.path.join(
             file_dir, "output", out_file_name),
         top_n, end_s_idx)
@@ -253,13 +266,13 @@ def make_figures(file_dir):
         make_a_figure(file_dir, i)
 
 
-def propane_make_figures(file_dir):
+def propane_make_figures(file_dir, species_path=False):
     """
     make figures for propane system
     """
     g_s = global_settings.get_setting()
 
-    spe_idx, spe_names, spe_exclude_name = trajectory.get_species_with_top_n_concentration(
+    spe_idx, _, spe_exclude_name = trajectory.get_species_with_top_n_concentration(
         file_dir, exclude=None, top_n=g_s['top_n_s'], traj_end_time=g_s['end_t'],
         max_tau=g_s['max_tau'], tau=g_s['tau'], tag=g_s['tag'], atoms=[g_s['atom_f']])
     mf.plot_concentrations(
@@ -270,7 +283,7 @@ def propane_make_figures(file_dir):
     for s_i in spe_idx:
         print(spe_idx)
         mf.plot_spe_path_prob(file_dir, top_n=g_s['top_n_p'],
-                              exclude_names=spe_exclude_name, tau=g_s['tau'], end_spe=s_i)
+                              exclude_names=spe_exclude_name, tau=g_s['tau'], end_spe=s_i, species_path=species_path)
     mf.plot_rxn_rate_constant(file_dir)
     r_idx_pair, s_idx_pair = global_settings.get_fast_rxn_trapped_spe(file_dir)
     mf.plot_reaction_pair_rate_ratio(

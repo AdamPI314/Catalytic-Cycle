@@ -12,15 +12,21 @@ import naming
 import parse_pattern
 
 
-def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None):
+def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None, species_path=False):
     """
     get pathway and their pathway probability, path ending with spe
     """
     suffix = naming.get_suffix(file_dir=file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    if species_path is False:
+        prefix = ""
+    else:
+        prefix = "species_"
 
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected" + suffix + ".csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob" + suffix + ".csv")
+    f_n_n = os.path.join(file_dir, "output",
+                         prefix + "pathway_name_selected" + suffix + ".csv")
+    f_n_p = os.path.join(file_dir, "output", prefix +
+                         "pathway_prob" + suffix + ".csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
