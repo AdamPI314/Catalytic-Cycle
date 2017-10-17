@@ -75,8 +75,8 @@ if __name__ == '__main__':
     # #     FILE_DIR, spe='OH', top_n=G_S['top_n_p'], norm=True)
 
     # propane make figures
-    job_drivers.propane_make_figures(
-        FILE_DIR, species_path=G_S['species_path'])
+    # job_drivers.propane_make_figures(
+    #    FILE_DIR, species_path=G_S['species_path'])
 
     # send email
     job_drivers.send_email(FILE_DIR)
