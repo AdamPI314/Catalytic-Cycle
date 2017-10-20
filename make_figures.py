@@ -518,11 +518,70 @@ def plot_rxn_rate_constant(file_dir):
     plt.close()
 
 
+def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None, top_n=1, species_path=True):
+    """
+    plot pathway probability vs. time
+    """
+    if top_n is None:
+        top_n = 1
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    f_n_pn = os.path.join(file_dir, "output",
+                          prefix + "pathway_name_selected" + suffix + ".csv")
+    f_n_pt = os.path.join(file_dir, "output",
+                          prefix + "pathway_time_candidate" + suffix + ".csv")
+    f_n_pp = os.path.join(file_dir, "output",
+                          prefix + "pathway_prob" + suffix + ".csv")
+    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pt = np.loadtxt(f_n_pt, dtype=float, delimiter=",")
+    data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    data_x = data_pt[0, 0:top_n]
+    data_y = data_pp[0:top_n, :]
+    labels = data_pn[0:top_n]
+    fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
+
+    delta_n = int(len(data_x) / 50)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+
+    for idx in range(len(data_y)):
+        a_x.plot(data_x[::delta_n], data_y[idx, ::delta_n],
+                 color=colors[idx % len(colors)], marker=markers[idx % len(colors)], label=labels[idx % len(colors)])
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg.get_frame().set_alpha(0.7)
+
+    y_vals = a_x.get_yticks()
+    a_x.set_yticklabels(['{:.2e}'.format(x) for x in y_vals])
+
+    a_x.set_xlim([data_x[0], data_x[-1]])
+    a_x.grid()
+
+    a_x.set_xlabel("time/$\\tau$")
+    a_x.set_ylabel("pathway probability")
+    a_x.set_title("pathway probability vs. time")
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting()
     SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
-    for es in SPE_LIST:
-        plot_path_length_statistics(
-            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
+    # for es in SPE_LIST:
+    #     plot_path_length_statistics(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
+    plot_pathway_prob_vs_time(
+        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+        pathwayEndWith="ALL", end_spe=G_S['end_s_idx'], top_n=10, species_path=True)
