@@ -18,8 +18,8 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting()
 
-    # # run dlosde
-    # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'])
+    # run dlosde
+    job_drivers.run_dlsode(FILE_DIR, G_S['end_t'])
 
     # update trapped species and fast reactions
     job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
@@ -38,7 +38,8 @@ if __name__ == '__main__':
         FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
         n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
         traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
-        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'], end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # convert symbolic pathway to real pathway
     # with real species names and real reaction expression

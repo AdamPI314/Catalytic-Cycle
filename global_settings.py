@@ -90,7 +90,7 @@ def get_setting():
         # for Propane, time when temperature=1800K
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
-        "tau": 1.0001,
+        "tau": 0.99999,
         # species oriented, if true, pick pathways ending with top_n species, if False, just top n pathway
         "spe_oriented": True,
         # condense species path, no reactions
@@ -99,9 +99,9 @@ def get_setting():
         "atom_f": "C",
         "init_s": 62,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [15],
+        "end_s_idx": [59],
         # top n path
-        "top_n_p": 100,
+        "top_n_p": 10,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 100,
         # top n species
