@@ -14,7 +14,7 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     # read from pathway_stat.csv
     prefix = ""
     if species_path is True:
-        species_path = "species_"
+        prefix = "species_"
     f_n_ps = os.path.join(file_dir, "output", prefix + "pathway_stat.csv")
 
     if flag == "":
