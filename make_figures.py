@@ -596,7 +596,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
     # arguments are passed to np.histogram
-    a_x.hist(data_pa[path_idx, :], bins='auto')
+    a_x.hist(data_pa[path_idx, :], bins='auto', normed=1, facecolor='green')
 
     y_vals = a_x.get_yticks()
     a_x.set_yticklabels(['{:.2e}'.format(x) for x in y_vals])
