@@ -626,6 +626,6 @@ if __name__ == '__main__':
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
-    plot_pathway_AT_vs_time(
+    plot_pathway_AT(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
         pathwayEndWith="ALL", path_idx=0, species_path=True)
