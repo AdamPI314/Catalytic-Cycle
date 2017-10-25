@@ -598,7 +598,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     # arguments are passed to np.histogram
     data_hist = data_pa[path_idx, :]
     weights = np.ones_like(data_hist)/float(len(data_hist))
-    a_x.hist(data_hist, bins='auto', weights=weights, facecolor='green')
+    a_x.hist(data_hist, bins=25, weights=weights, facecolor='green')
 
     a_x.grid()
 
