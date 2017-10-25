@@ -6,6 +6,7 @@ import sys
 import re
 from copy import deepcopy
 import numpy as np
+import json
 from collections import OrderedDict
 
 import matplotlib
@@ -130,7 +131,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     # the time point where reference time tau is
     tau_time_point = float(max_tau) / time[-1] * len(time)
     end_point = int(tau * tau_time_point)
-    delta_n = int(end_point / 25)
+    delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
 
@@ -138,14 +139,14 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     for s_idx in spe_idx_tmp:
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
-            a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
+            a_x_right.plot(time[0:end_point], temp[0:end_point],
                            color=colors[-1], label=s_idx_n[str(s_idx)])
         else:
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point:delta_n], conc[0:end_point:delta_n, s_idx], marker=m_k,
+            a_x_left.semilogy(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
@@ -167,7 +168,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     plt.close()
 
 
-def plot_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
+def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
     """
     plot species destruction rate constant, give species index list
     """
@@ -194,7 +195,7 @@ def plot_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
     # the time point where reference time tau is
     tau_time_point = float(max_tau) / time[-1] * len(time)
     end_point = int(tau * tau_time_point)
-    delta_n = int(end_point / 50)
+    delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
 
@@ -202,18 +203,18 @@ def plot_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
     for s_idx in spe_idx_tmp:
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
-            a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
+            a_x_right.plot(time[0:end_point], temp[0:end_point], markevery=delta_n,
                            color=colors[-1], label=s_idx_n[str(s_idx)])
         else:
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point:delta_n], spe_drc[0:end_point:delta_n, s_idx], marker=m_k,
+            a_x_left.semilogy(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
-    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
-    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
@@ -227,7 +228,78 @@ def plot_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
     # plt.title(s_n_str)
 
     fig.savefig(os.path.join(file_dir, "output",
-                             "drc_" + s_n_str + ".jpg"), dpi=500)
+                             "spe_drc_" + s_n_str + ".jpg"), dpi=500)
+    plt.close()
+
+
+def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction"):
+    """
+    plot chattering group destruction rate constant
+    """
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    with open(os.path.join(file_dir, "output", "chattering_group_info.json"), 'r') as f_h:
+        chattering_group_info = json.load(f_h)
+
+    chattering_group_idx_n = dict()
+    for idx1, val1 in enumerate(chattering_group_info):
+        label_tmp = ""
+        for idx2, val2 in enumerate(chattering_group_info[val1]):
+            s_idx_tmp = chattering_group_info[val1][val2]
+            label_tmp += s_idx_n[s_idx_tmp]
+            if idx2 < len(chattering_group_info[val1]) - 1:
+                label_tmp += "+"
+        chattering_group_idx_n[str(idx1)] = label_tmp
+    chattering_group_idx_n["-1"] = "Temp"
+
+    time = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(file_dir, "output",
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    c_g_drc = np.loadtxt(os.path.join(file_dir, "output",
+                                      "chattering_group_drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    group_id_temp = [i for i in range(np.shape(c_g_drc)[1])]
+    group_id_temp.append(-1)
+
+    counter = 0
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
+    delta_n = int(end_point / 10)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    for s_idx in group_id_temp:
+        if s_idx == -1:
+            a_x_right = a_x_left.twinx()
+            a_x_right.plot(time[0:end_point], temp[0:end_point],
+                           color=colors[-1], label=chattering_group_idx_n[str(s_idx)])
+        else:
+            if counter < len(colors) - 1:
+                m_k = None
+            else:
+                m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+            a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                              color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+            counter += 1
+    leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+    leg_left.get_frame().set_alpha(0.7)
+    leg_right.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+
+    a_x_left.set_xlabel("Time/sec")
+
+    a_x_left.set_ylabel("[k]")
+    a_x_right.set_ylabel("T/K")
+
+    fig.savefig(os.path.join(file_dir, "output",
+                             "chattering_group_drc" + ".jpg"), dpi=500)
     plt.close()
 
 
@@ -733,8 +805,10 @@ if __name__ == '__main__':
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
-    plot_drc(FILE_DIR, spe_idx=[62, 60, 59, 14, 15],
-             max_tau=G_S['max_tau'], tau=1.0, tag="M")
+    plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
+                 max_tau=G_S['max_tau'], tau=0.99, tag="M")
+    plot_chattering_group_drc(
+        FILE_DIR, max_tau=G_S['max_tau'], tau=0.99, tag="M")
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
