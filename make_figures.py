@@ -518,7 +518,7 @@ def plot_rxn_rate_constant(file_dir):
     plt.close()
 
 
-def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None, top_n=1, species_path=True):
+def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", top_n=1, species_path=True):
     """
     plot pathway probability vs. time
     """
@@ -574,6 +574,47 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
     plt.close()
 
 
+def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+    """
+    plot pathway arrival time
+    """
+    if path_idx is None:
+        path_idx = 0
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    f_n_pn = os.path.join(file_dir, "output",
+                          prefix + "pathway_name_selected" + suffix + ".csv")
+    f_n_pa = os.path.join(file_dir, "output",
+                          prefix + "pathway_AT" + suffix + ".csv")
+    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
+
+    fig_name = prefix + "pathway_AT" + suffix + ".jpg"
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    # arguments are passed to np.histogram
+    a_x.hist(data_pa[path_idx, :], bins='auto')
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg.get_frame().set_alpha(0.7)
+
+    y_vals = a_x.get_yticks()
+    a_x.set_yticklabels(['{:.2e}'.format(x) for x in y_vals])
+
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s")
+    a_x.set_ylabel("Frequency")
+    a_x.set_title(data_pn[path_idx])
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
@@ -584,4 +625,4 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
     plot_pathway_prob_vs_time(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-        pathwayEndWith="ALL", end_spe=G_S['end_s_idx'], top_n=10, species_path=True)
+        pathwayEndWith="ALL", top_n=10, species_path=True)
