@@ -21,12 +21,12 @@ if __name__ == '__main__':
     # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'])
 
-    # update trapped species and fast reactions
-    job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
+    # # update trapped species and fast reactions
+    # job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
 
-    # write specie concentration at a time to file
-    job_drivers.spe_concentration_at_time_w2f(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
+    # # write specie concentration at a time to file
+    # job_drivers.spe_concentration_at_time_w2f(
+    #     FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
 
     # # run monte carlo trajectory
     # job_drivers.run_mc_trajectory(
@@ -34,24 +34,31 @@ if __name__ == '__main__':
     #     init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'],
     #     species_path=G_S['species_path'])
 
-    # evaluate path integral-->pathway probability
-    job_drivers.evaluate_pathway_probability(
-        FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+    # # evaluate path integral-->pathway probability
+    # job_drivers.evaluate_pathway_probability(
+    #     FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+
+    job_drivers.evaluate_pathway_AT(
+        FILE_DIR, top_n=G_S['top_n_p'], flag="",
         n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
         traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
         top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
         end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
-    # convert symbolic pathway to real pathway
-    # with real species names and real reaction expression
-    if G_S['spe_oriented'] is True:
-        job_drivers.symbolic_path_2_real_path(
-            FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="",
-            end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
-    else:
-        job_drivers.symbolic_path_2_real_path(
-            FILE_DIR, top_n=G_S['top_n_p'], flag="",
-            end_s_idx=None, species_path=G_S['species_path'])
+    # # convert symbolic pathway to real pathway
+    # # with real species names and real reaction expression
+    # if G_S['spe_oriented'] is True:
+    #     job_drivers.symbolic_path_2_real_path(
+    #         FILE_DIR, top_n=G_S['top_n_p'] * G_S['top_n_s'], flag="",
+    #         end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    # else:
+    #     job_drivers.symbolic_path_2_real_path(
+    #         FILE_DIR, top_n=G_S['top_n_p'], flag="",
+    #         end_s_idx=None, species_path=G_S['species_path'])
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR, species_path=G_S['species_path'])
@@ -80,8 +87,8 @@ if __name__ == '__main__':
     # job_drivers.propane_make_figures(
     #    FILE_DIR, species_path=G_S['species_path'])
 
-    # send email
-    job_drivers.send_email(FILE_DIR)
+    # # send email
+    # job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +
