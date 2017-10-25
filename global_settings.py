@@ -90,7 +90,7 @@ def get_setting():
         # for Propane, time when temperature=1800K
         "max_tau": 0.777705872994694,
         # exact time = tau*max_tau
-        "tau": 0.99999,
+        "tau": 0.95,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
         "spe_oriented": True,
