@@ -5,6 +5,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
+from copy import deepcopy
 
 
 def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False):
@@ -39,6 +40,41 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
         for s_i in end_s_idx:
             path_list.extend(d_f[d_f['pathway'].str.endswith(
                 "S" + str(s_i))]['pathway'][0:top_n])
+
+    # save
+    np.savetxt(f_n_pn, path_list, fmt="%s")
+
+
+def prepare_pathway_name_for_first_passage_time(file_dir, flag="", init_s_idx=None, species_path=False):
+    """
+    prepare pathway_name_candidate.csv
+    """
+    # read from pathway_stat.csv
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    if flag == "":
+        f_n_pn = os.path.join(file_dir, "output",
+                              prefix + "pathway_name_candidate.csv")
+    else:
+        f_n_pn = os.path.join(file_dir, "output",
+                              prefix + "pathway_name_candidate_" + str(flag) + ".csv")
+
+    try:
+        os.remove(f_n_pn)
+    except OSError:
+        pass
+
+    # read
+    if init_s_idx is None:
+        init_s_idx_tmp = [62]
+    else:
+        init_s_idx_tmp = deepcopy(init_s_idx)
+
+    path_list = []
+    for s_i in init_s_idx_tmp:
+        path_list.extend(["S" + str(s_i) + "R100S100"])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")

@@ -3,6 +3,7 @@ plot jobs
 """
 import os
 import sys
+import re
 from copy import deepcopy
 import numpy as np
 from collections import OrderedDict
@@ -163,6 +164,70 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
 
     fig.savefig(os.path.join(file_dir, "output",
                              "trajectory_" + s_n_str + ".jpg"), dpi=500)
+    plt.close()
+
+
+def plot_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
+    """
+    plot species destruction rate constant, give species index list
+    """
+    spe_idx_tmp = deepcopy(spe_idx)
+    if spe_idx_tmp is None:
+        spe_idx_tmp = [0]
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    s_idx_n["-1"] = "Temp"
+
+    spe_idx_tmp.append(-1)
+
+    time = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(file_dir, "output",
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    spe_drc = np.loadtxt(os.path.join(file_dir, "output",
+                                      "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    counter = 0
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
+    delta_n = int(end_point / 50)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    for s_idx in spe_idx_tmp:
+        if s_idx == -1:
+            a_x_right = a_x_left.twinx()
+            a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
+                           color=colors[-1], label=s_idx_n[str(s_idx)])
+        else:
+            if counter < len(colors) - 1:
+                m_k = None
+            else:
+                m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+            a_x_left.semilogy(time[0:end_point:delta_n], spe_drc[0:end_point:delta_n, s_idx], marker=m_k,
+                              color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            counter += 1
+    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left.get_frame().set_alpha(0.7)
+    leg_right.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+
+    a_x_left.set_xlabel("Time/sec")
+
+    a_x_left.set_ylabel("[k]")
+    a_x_right.set_ylabel("T/K")
+
+    s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
+    # plt.title(s_n_str)
+
+    fig.savefig(os.path.join(file_dir, "output",
+                             "drc_" + s_n_str + ".jpg"), dpi=500)
     plt.close()
 
 
@@ -586,25 +651,71 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
-                          prefix + "pathway_name_selected" + suffix + ".csv")
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
                           prefix + "pathway_AT" + suffix + ".csv")
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
 
-    fig_name = prefix + "pathway_AT" + suffix + "_" + str(path_idx) + ".jpg"
+    fig_name = prefix + "pathway_AT" + \
+        suffix + "_" + str(path_idx + 1) + ".jpg"
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
     # arguments are passed to np.histogram
     data_hist = data_pa[path_idx, :]
-    weights = np.ones_like(data_hist)/float(len(data_hist))
-    a_x.hist(data_hist, bins=25, weights=weights, facecolor='green')
+    weights = np.ones_like(data_hist) / float(len(data_hist))
+    a_x.hist(data_hist, bins=50, weights=weights, facecolor='green')
 
     a_x.grid()
 
     a_x.set_xlabel("Time/s")
     a_x.set_ylabel("Probability")
     a_x.set_title(data_pn[path_idx])
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
+def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+    """
+    plot pathway arrival time
+    """
+    if path_idx is None:
+        path_idx = 0
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    f_n_pn = os.path.join(file_dir, "output",
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
+    f_n_pa = os.path.join(file_dir, "output",
+                          prefix + "pathway_AT" + suffix + ".csv")
+    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
+
+    fig_name = prefix + "first_passage_time" + \
+        suffix + "_" + str(path_idx + 1) + ".jpg"
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    # arguments are passed to np.histogram
+    data_hist = data_pa[path_idx, :]
+    average_time = np.average(data_hist)
+
+    weights = np.ones_like(data_hist) / float(len(data_hist))
+    a_x.hist(data_hist, bins=100, weights=weights, facecolor='blue')
+
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s")
+    a_x.set_ylabel("Probability")
+    a_x.set_title("S" + re.search(r'\d+', data_pn[path_idx]).group())
+
+    xmin, xmax = a_x.get_xlim()
+    ymin, ymax = a_x.get_ylim()
+    a_x.text(xmin + 0.1 * (xmax - xmin), ymin + 0.9 * (ymax - ymin),
+             "Average Passage Time:  " + '{:1.3f}'.format(float(average_time)))
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
@@ -622,7 +733,13 @@ if __name__ == '__main__':
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
-    for p_i in range(10):
-        plot_pathway_AT(
-            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    plot_drc(FILE_DIR, spe_idx=[62, 60, 59, 14, 15],
+             max_tau=G_S['max_tau'], tau=1.0, tag="M")
+    # for p_i in range(10):
+    #     plot_pathway_AT(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    # for p_i in range(len(G_S['end_s_idx'])):
+    #     plot_first_passage_time(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
