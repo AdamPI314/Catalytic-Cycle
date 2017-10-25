@@ -592,7 +592,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
 
-    fig_name = prefix + "pathway_AT" + suffix + ".jpg"
+    fig_name = prefix + "pathway_AT" + suffix + "_" + str(path_idx) + ".jpg"
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
     # arguments are passed to np.histogram
@@ -623,6 +623,7 @@ if __name__ == '__main__':
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
-    plot_pathway_AT(
-        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-        pathwayEndWith="ALL", path_idx=0, species_path=True)
+    for p_i in range(10):
+        plot_pathway_AT(
+            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
