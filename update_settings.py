@@ -8,7 +8,7 @@ import read_write_configuration as rwc
 import global_settings
 
 
-def update_dlsode_setting(file_dir, time=1.0):
+def update_dlsode_setting(file_dir, max_time=1.0, critical_time=0.9):
     """
     update settings.json, primarily for dlsode run and pathway generating
     """
@@ -22,8 +22,8 @@ def update_dlsode_setting(file_dir, time=1.0):
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    setting['time']['critical_time'] = time
-    setting['time']['max_time'] = time
+    setting['time']['critical_time'] = critical_time
+    setting['time']['max_time'] = max_time
 
     setting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
     rwc.write_configuration(setting, os.path.join(

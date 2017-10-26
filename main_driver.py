@@ -18,8 +18,8 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting()
 
-    # # run dlosde
-    # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'])
+    # run dlosde
+    job_drivers.run_dlsode(FILE_DIR, G_S['end_t'], G_S['critical_t'])
 
     # update trapped species and fast reactions
     job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
@@ -91,8 +91,8 @@ if __name__ == '__main__':
     # job_drivers.propane_make_figures(
     #    FILE_DIR, species_path=G_S['species_path'])
 
-    # # send email
-    # job_drivers.send_email(FILE_DIR)
+    # send email
+    job_drivers.send_email(FILE_DIR)
 
     TIME_E = time.time()
     print("running time:\t" +

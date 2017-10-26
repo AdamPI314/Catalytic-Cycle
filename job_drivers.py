@@ -157,12 +157,12 @@ def make_run(file_dir):
     error_file.close()
 
 
-def run_dlsode(file_dir, time):
+def run_dlsode(file_dir, max_time, critical_time):
     """
     Run dlsode
     """
     os.chdir(file_dir)
-    us.update_dlsode_setting(file_dir, time)
+    us.update_dlsode_setting(file_dir, max_time, critical_time)
     make_run(file_dir)
 
 
