@@ -45,7 +45,7 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     np.savetxt(f_n_pn, path_list, fmt="%s")
 
 
-def prepare_pathway_name_for_first_passage_time(file_dir, flag="", init_s_idx=None, species_path=False):
+def prepare_pathway_name_for_passage_time(file_dir, flag="", init_s_idx=None, species_path=False):
     """
     prepare pathway_name_candidate.csv
     """
