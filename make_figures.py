@@ -806,9 +806,9 @@ if __name__ == '__main__':
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
     plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-                 max_tau=G_S['max_tau'], tau=0.99, tag="M")
+                 max_tau=G_S['max_tau'], tau=0.95, tag="M")
     plot_chattering_group_drc(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=0.99, tag="M")
+        FILE_DIR, max_tau=G_S['max_tau'], tau=0.95, tag="M")
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
