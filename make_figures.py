@@ -798,7 +798,8 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting()
-    SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
+    plot_concentrations(FILE_DIR, spe_idx=[45, 47], max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
+    # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
@@ -806,9 +807,9 @@ if __name__ == '__main__':
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
     plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-                 max_tau=G_S['max_tau'], tau=0.95, tag="M")
+                 max_tau=G_S['max_tau'], tau=0.80, tag="M")
     plot_chattering_group_drc(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=0.95, tag="M")
+        FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M")
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
