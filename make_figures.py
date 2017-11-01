@@ -168,7 +168,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     plt.close()
 
 
-def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
+def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", reciprocal=False):
     """
     plot species destruction rate constant, give species index list
     """
@@ -210,29 +210,46 @@ def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
-                              color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            if reciprocal is False:
+                a_x_left.semilogy(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                  color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            else:
+                a_x_left.semilogy(time[0:end_point], 1.0 / spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                  color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
-    leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    if reciprocal is False:
+        leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    else:
+        leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    
     leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
+    a_x_left.set_xlim([0.05, time[end_point]])
 
-    a_x_left.set_xlabel("Time/sec")
+    a_x_left.set_xlabel("time/s")
+    if reciprocal is False:
+        a_x_left.set_ylabel("k/s$^{-1}$")
+    else:
+        a_x_left.set_ylabel("k$^{-1}/s$")
 
-    a_x_left.set_ylabel("[k]")
     a_x_right.set_ylabel("T/K")
 
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
-    fig.savefig(os.path.join(file_dir, "output",
-                             "spe_drc_" + s_n_str + ".jpg"), dpi=500)
+    if reciprocal is False:
+        fig.savefig(os.path.join(file_dir, "output",
+                                 "spe_drc_" + s_n_str + ".jpg"), dpi=500)
+    else:
+        fig.savefig(os.path.join(file_dir, "output",
+                                 "spe_drc_reciprocal" + s_n_str + ".jpg"), dpi=500)
+
     plt.close()
 
 
-def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction"):
+def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", reciprocal=False):
     """
     plot chattering group destruction rate constant
     """
@@ -284,22 +301,41 @@ def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction"):
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
-                              color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+            if reciprocal is False:
+                a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+            else:
+                a_x_left.semilogy(time[0:end_point], 1.0/c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+
             counter += 1
-    leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    if reciprocal is False:
+        leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
+    else:
+        leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+
     leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
+    a_x_left.set_xlim([0.05, time[end_point]])
 
-    a_x_left.set_xlabel("Time/sec")
+    a_x_left.set_xlabel("time/s")
 
-    a_x_left.set_ylabel("[k]")
+    if reciprocal is False:
+        a_x_left.set_ylabel("k/s$^{-1}$")
+    else:
+        a_x_left.set_ylabel("k$^{-1}$/s")
+
     a_x_right.set_ylabel("T/K")
 
-    fig.savefig(os.path.join(file_dir, "output",
-                             "chattering_group_drc" + ".jpg"), dpi=500)
+    if reciprocal is False:
+        fig.savefig(os.path.join(file_dir, "output",
+                                "chattering_group_drc" + ".jpg"), dpi=500)
+    else:
+        fig.savefig(os.path.join(file_dir, "output",
+                                "chattering_group_drc_reciprocal" + ".jpg"), dpi=500)
+
     plt.close()
 
 
@@ -736,7 +772,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     # arguments are passed to np.histogram
     data_hist = data_pa[path_idx, :]
     weights = np.ones_like(data_hist) / float(len(data_hist))
-    a_x.hist(data_hist, bins=50, weights=weights, facecolor='green')
+    a_x.hist(data_hist, bins=75, weights=weights, facecolor='green')
 
     a_x.grid()
 
@@ -798,7 +834,8 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting()
-    plot_concentrations(FILE_DIR, spe_idx=[45, 47], max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
+    plot_concentrations(FILE_DIR, spe_idx=[45, 47],
+                        max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
@@ -807,9 +844,9 @@ if __name__ == '__main__':
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
     plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-                 max_tau=G_S['max_tau'], tau=0.80, tag="M")
+                 max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     plot_chattering_group_drc(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M")
+        FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],

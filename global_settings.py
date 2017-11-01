@@ -90,9 +90,10 @@ def get_setting():
         "critical_t": 0.751999999880706205,
         # reference time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "max_tau": 0.763215792447318,
+        # "max_tau": 0.763215792447318,
+        "max_tau": 0.763449999652352496,
         # exact time = tau*max_tau
-        "tau": 0.95,
+        "tau": 1.0,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
         "spe_oriented": True,
