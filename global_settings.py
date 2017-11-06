@@ -102,7 +102,7 @@ def get_setting():
         "atom_f": "C",
         "init_s": 62,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [14],
+        "end_s_idx": [14, 59],
         # top n path
         "top_n_p": 10,
         # top n path for gephi to generate coordinates

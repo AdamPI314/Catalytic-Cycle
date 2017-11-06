@@ -222,7 +222,7 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, max_tau=10.0, tau
             a_x_left.plot(time[0:end_point], data_y[0:end_point], marker=m_k, markevery=delta_n,
                           color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
-    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
@@ -858,6 +858,48 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     plt.close()
 
 
+def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+    """
+    plot pathway arrival time with terminal species survial probability
+    """
+    if path_idx is None:
+        path_idx = 0
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    f_n_pn = os.path.join(file_dir, "output",
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
+    f_n_pa = os.path.join(file_dir, "output",
+                          prefix + "pathway_AT_with_SP" + suffix + ".csv")
+    f_n_psp = os.path.join(file_dir, "output",
+                           prefix + "pathway_SP" + suffix + ".csv")
+    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
+    data_psp = np.loadtxt(f_n_psp, dtype=float, delimiter=",")
+
+    fig_name = prefix + "pathway_AT_with_SP" + \
+        suffix + "_" + str(path_idx + 1) + ".jpg"
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    # arguments are passed to np.histogram
+    data_hist = data_pa[path_idx, :]
+    data_weights = data_psp[path_idx, :]
+    weights = data_weights / float(np.sum(data_weights))
+    a_x.hist(data_hist, bins=75, weights=weights, facecolor='green')
+
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s")
+    a_x.set_ylabel("Probability")
+    a_x.set_title(data_pn[path_idx])
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
 def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
@@ -909,7 +951,7 @@ if __name__ == '__main__':
     G_S = global_settings.get_setting()
     # plot_concentrations(FILE_DIR, spe_idx=[45, 47],
     #                     max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
-    plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[14],
+    plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
                                        max_tau=G_S['max_tau'], tau=0.95, tag="M",
                                        exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
@@ -923,14 +965,18 @@ if __name__ == '__main__':
     #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
     #     FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
-    plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 14],
-                 max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
-    plot_chattering_group_drc(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
-    for p_i in range(10):
-        plot_pathway_AT(
-            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 14],
+    #              max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    # plot_chattering_group_drc(
+    #     FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    # for p_i in range(10):
+    #     plot_pathway_AT(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    # for p_i in range(20):
+    #     plot_pathway_AT_with_SP(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(len(G_S['end_s_idx'])):
     #     plot_first_passage_time(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],

@@ -81,6 +81,20 @@ def copy_sohr_files(file_dir, species_path=False):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
+    f_n_1 = os.path.join(file_dir, "output", prefix + "pathway_AT_with_SP.csv")
+    f_n_2 = os.path.join(file_dir, "output", prefix +
+                         "pathway_AT_with_SP" + suffix + ".csv")
+    if os.path.isfile(f_n_1):
+        print(f_n_1, "found")
+        copyfile(f_n_1, f_n_2)
+
+    f_n_1 = os.path.join(file_dir, "output", prefix + "pathway_SP.csv")
+    f_n_2 = os.path.join(file_dir, "output", prefix +
+                         "pathway_SP" + suffix + ".csv")
+    if os.path.isfile(f_n_1):
+        print(f_n_1, "found")
+        copyfile(f_n_1, f_n_2)
+
     f_n_1 = os.path.join(file_dir, "output", prefix + "pathname_prob.csv")
     f_n_2 = os.path.join(file_dir, "output", prefix +
                          "pathname_prob" + suffix + ".csv")
