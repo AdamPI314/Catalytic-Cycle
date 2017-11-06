@@ -168,6 +168,79 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     plt.close()
 
 
+def plot_spe_concentrations_derivative(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
+    """
+    plot concentrations give species index list, if exclude is not None, means we are going
+    to renormalize the molelar fraction
+    """
+    if exclude_names is None:
+        exclude_names = []
+
+    spe_idx_tmp = deepcopy(spe_idx)
+    if spe_idx_tmp is None:
+        spe_idx_tmp = [0]
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    s_idx_n, _ = psri.parse_spe_info(os.path.join(
+        file_dir, "output", "species_labelling.csv"))
+    s_idx_n["-1"] = "Temp"
+
+    spe_idx_tmp.append(-1)
+
+    time = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(file_dir, "output",
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    conc = trajectory.get_normalized_concentration(
+        file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
+
+    counter = 0
+    # the time point where reference time tau is
+    tau_time_point = float(max_tau) / time[-1] * len(time)
+    end_point = int(tau * tau_time_point)
+    delta_n = int(end_point / 10)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    for s_idx in spe_idx_tmp:
+        if s_idx == -1:
+            a_x_right = a_x_left.twinx()
+            a_x_right.plot(time[0:end_point], temp[0:end_point],
+                           color=colors[-1], label=s_idx_n[str(s_idx)])
+        else:
+            if counter < len(colors) - 1:
+                m_k = None
+            else:
+                m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+
+            data_y = np.gradient(conc[:, s_idx], time)
+            # a_x_left.semilogy(time[0:end_point], data_y[0:end_point], marker=m_k, markevery=delta_n,
+            #                   color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            a_x_left.plot(time[0:end_point], data_y[0:end_point], marker=m_k, markevery=delta_n,
+                          color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            counter += 1
+    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left.get_frame().set_alpha(0.7)
+    leg_right.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+
+    a_x_left.set_xlabel("Time/sec")
+
+    a_x_left.set_ylabel("[$\dot X$]")
+    a_x_right.set_ylabel("T/K")
+
+    s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
+    # plt.title(s_n_str)
+
+    fig.savefig(os.path.join(file_dir, "output",
+                             "spe_concentrations_derivative_" + s_n_str + ".jpg"), dpi=500)
+    plt.close()
+
+
 def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", reciprocal=False):
     """
     plot species destruction rate constant, give species index list
@@ -221,7 +294,7 @@ def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", 
         leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
     else:
         leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
-    
+
     leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
@@ -244,7 +317,7 @@ def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", 
                                  "spe_drc_" + s_n_str + ".jpg"), dpi=500)
     else:
         fig.savefig(os.path.join(file_dir, "output",
-                                 "spe_drc_reciprocal" + s_n_str + ".jpg"), dpi=500)
+                                 "spe_drc_reciprocal_" + s_n_str + ".jpg"), dpi=500)
 
     plt.close()
 
@@ -303,10 +376,10 @@ def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", r
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
             if reciprocal is False:
                 a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
-                                color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+                                  color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
             else:
-                a_x_left.semilogy(time[0:end_point], 1.0/c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
-                                color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+                a_x_left.semilogy(time[0:end_point], 1.0 / c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                  color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
 
             counter += 1
     if reciprocal is False:
@@ -331,10 +404,10 @@ def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", r
 
     if reciprocal is False:
         fig.savefig(os.path.join(file_dir, "output",
-                                "chattering_group_drc" + ".jpg"), dpi=500)
+                                 "chattering_group_drc" + ".jpg"), dpi=500)
     else:
         fig.savefig(os.path.join(file_dir, "output",
-                                "chattering_group_drc_reciprocal" + ".jpg"), dpi=500)
+                                 "chattering_group_drc_reciprocal" + ".jpg"), dpi=500)
 
     plt.close()
 
@@ -834,8 +907,11 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting()
-    plot_concentrations(FILE_DIR, spe_idx=[45, 47],
-                        max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
+    # plot_concentrations(FILE_DIR, spe_idx=[45, 47],
+    #                     max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
+    plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[14],
+                                       max_tau=G_S['max_tau'], tau=0.95, tag="M",
+                                       exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
@@ -843,14 +919,18 @@ if __name__ == '__main__':
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #     pathwayEndWith="ALL", top_n=10, species_path=True)
-    plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-                 max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
+    # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
+    #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
+    # plot_chattering_group_drc(
+    #     FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
+    plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 14],
+                 max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
     plot_chattering_group_drc(
-        FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
-    # for p_i in range(10):
-    #     plot_pathway_AT(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+        FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    for p_i in range(10):
+        plot_pathway_AT(
+            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(len(G_S['end_s_idx'])):
     #     plot_first_passage_time(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
