@@ -858,6 +858,44 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     plt.close()
 
 
+def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+    """
+    plot pathway arrival time
+    """
+    if path_idx is None:
+        path_idx = 0
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+    f_n_pn = os.path.join(file_dir, "output",
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
+    f_n_pa = os.path.join(file_dir, "output",
+                          prefix + "pathway_AT_no_IT" + suffix + ".csv")
+    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
+
+    fig_name = prefix + "pathway_AT_no_IT" + \
+        suffix + "_" + str(path_idx + 1) + ".jpg"
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+    # arguments are passed to np.histogram
+    data_hist = data_pa[path_idx, :]
+    weights = np.ones_like(data_hist) / float(len(data_hist))
+    a_x.hist(data_hist, bins=75, weights=weights, facecolor='green')
+
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s")
+    a_x.set_ylabel("Probability")
+    a_x.set_title(data_pn[path_idx])
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
 def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time with terminal species survial probability
@@ -973,6 +1011,10 @@ if __name__ == '__main__':
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    for p_i in range(20):
+        plot_pathway_AT_no_IT(
+            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_with_SP(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],

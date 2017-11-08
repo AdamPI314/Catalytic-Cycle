@@ -182,6 +182,40 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
         file_dir, 'input', 'setting.json'))
 
 
+def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+    """
+    update settings.json, primarily for evaluate pathway arrival time without IT (initiation time)
+    """
+    # there will always be a current setting
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
+
+    if not os.path.isfile(fn0):
+        copy2(fn1, fn0)
+
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
+
+    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+        file_dir)
+    setting['pathway']['fast_reaction'] = fast_reaction
+    setting['pathway']['trapped_species'] = trapped_spe
+
+    setting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
+
+    setting['pathway']['pathwayEndWith'] = "ALL"
+    setting['pathway']['topN'] = [top_n]
+    setting['pathway']['trajectoryNumber'] = n_traj
+    setting['pathway']['atom_followed'] = atom_followed
+    setting['pathway']['init_spe'] = init_spe
+
+    setting['time']['tau'] = max_tau
+    setting['pathway']['tau'] = tau
+
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))
+
+
 def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time 
