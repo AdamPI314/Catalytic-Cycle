@@ -4,6 +4,7 @@ Job drivers
 
 import subprocess
 import os
+import sys
 import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
@@ -98,6 +99,24 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, speci
         os.path.join(
             file_dir, "output", out_file_name),
         top_n, end_s_idx)
+
+
+# path from file
+def symbolic_path_2_real_path_pff(file_dir, fn):
+    """
+    convert symbolic pathway to real pathway with real species name and real reaction name
+    """
+    out_fn = fn[0:-4] + "_real_path" + ".csv"
+
+    psri.symbolic_path_2_real_path(
+        os.path.join(file_dir, "output", "species_labelling.csv"),
+        os.path.join(
+            file_dir, "output", "reaction_labelling.csv"),
+        os.path.join(
+            file_dir, "output", fn),
+        os.path.join(
+            file_dir, "output", out_fn),
+        10000000, None)
 
 
 def delete_non_dlsode_files(file_dir):
@@ -420,3 +439,10 @@ def send_email(file_dir):
 
     out_file.close()
     error_file.close()
+
+
+if __name__ == '__main__':
+    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    print("test")
+    symbolic_path_2_real_path_pff(FILE_DIR, "heuristic_pathname_O_10_10_3.csv")
