@@ -889,9 +889,20 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pat
 
     a_x.set_xlabel("Time/s")
     a_x.set_ylabel("Probability")
-    a_x.set_title(data_pn[path_idx])
 
-    fig.tight_layout()
+    title_n = data_pn[path_idx]
+
+    f_n_spe = os.path.join(file_dir, "output", "species_labelling.csv")
+    f_n_rxn = os.path.join(file_dir, "output", "reaction_labelling.csv")
+    # load spe and reaction info
+    spe_idx_n, _ = psri.parse_spe_info(f_n_spe)
+    _, idx_rxn_n = psri.parse_reaction_and_its_index(f_n_rxn)
+    # convert species reaction index to real species and reactions
+    title_n = psri.pathname_to_real_spe_reaction(spe_idx_n, idx_rxn_n, title_n)
+
+    a_x.set_title(title_n, fontsize=6)
+
+    # fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1003,8 +1014,8 @@ if __name__ == '__main__':
     #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
     #     FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
-    # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 14],
-    #              max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
+                 max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
     #     FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
     # for p_i in range(10):
