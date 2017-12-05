@@ -140,7 +140,7 @@ def get_setting():
         #  if False, just top n pathway
         "spe_oriented": True,
         # condense species path, no reactions
-        "species_path": True,
+        "species_path": False,
         # atom followed
         "atom_f": "H",
         "init_s": 3,
