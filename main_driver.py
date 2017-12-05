@@ -18,21 +18,21 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting()
 
-    # # run dlosde
-    # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'], G_S['critical_t'])
+    # run dlosde
+    job_drivers.run_dlsode(FILE_DIR, G_S['end_t'], G_S['critical_t'])
 
-    # # update trapped species and fast reactions
-    # job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
+    # update trapped species and fast reactions
+    job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
 
-    # # write specie concentration at a time to file
-    # job_drivers.spe_concentration_at_time_w2f(
-    #     FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
+    # write specie concentration at a time to file
+    job_drivers.spe_concentration_at_time_w2f(
+        FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
 
-    # # run monte carlo trajectory
-    # job_drivers.run_mc_trajectory(
-    #     FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-    #     init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'],
-    #     species_path=G_S['species_path'])
+    # run monte carlo trajectory
+    job_drivers.run_mc_trajectory(
+        FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+        init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+        species_path=G_S['species_path'])
 
     # # evaluate path integral-->pathway probability
     # job_drivers.evaluate_pathway_probability(
@@ -49,12 +49,12 @@ if __name__ == '__main__':
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
-    job_drivers.evaluate_pathway_AT_no_IT(
-        FILE_DIR, top_n=G_S['top_n_p'], flag="",
-        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-        traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
-        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    # job_drivers.evaluate_pathway_AT_no_IT(
+    #     FILE_DIR, top_n=G_S['top_n_p'], flag="",
+    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # job_drivers.evaluate_pathway_AT_with_SP(
     #     FILE_DIR, top_n=G_S['top_n_p'], flag="",
