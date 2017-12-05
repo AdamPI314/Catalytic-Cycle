@@ -78,31 +78,74 @@ def get_union_find_group(file_dir):
 
     return idx_group
 
+# def get_setting():
+#     """
+#     for propane problem
+#     return global settings
+#     """
+#     setting = {
+#         # end time
+#         "end_t": 0.763449999652352496,
+#         # critical time, after which print out more data points
+#         "critical_t": 0.751999999880706205,
+#         # reference time, to a combustion system, this is gonna be the ignition delay time
+#         # for Propane, time when temperature=1800K
+#         "max_tau": 0.763215792447318,
+#         # exact time = tau*max_tau
+#         "tau": 0.98,
+#         # species oriented, if true, pick pathways ending with top_n species,
+#         #  if False, just top n pathway
+#         "spe_oriented": True,
+#         # condense species path, no reactions
+#         "species_path": True,
+#         # atom followed
+#         "atom_f": "C",
+#         "init_s": 62,
+#         # end species index, either None, or [] or [14, 15]
+#         "end_s_idx": [14, 59],
+#         # top n path
+#         "top_n_p": 10,
+#         # top n path for gephi to generate coordinates
+#         "top_n_p_gephi": 100,
+#         # top n species
+#         "top_n_s": 10,
+#         # number of trajectory used to generate pathway list running mc simulation
+#         "mc_n_traj": 10000000,
+#         # path integral number of trajectory
+#         "pi_n_traj": 10000,
+#         # number of time points when prepare path integral time points
+#         "pi_n_time": 10,
+#         # tag, M or fraction
+#         "tag": "M"
+#     }
+#     return setting
+
 
 def get_setting():
     """
+    for HBrO problem
     return global settings
     """
     setting = {
         # end time
-        "end_t": 0.763449999652352496,
+        "end_t": 10.0,
         # critical time, after which print out more data points
-        "critical_t": 0.751999999880706205,
+        "critical_t": 10.0,
         # reference time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "max_tau": 0.763215792447318,
+        "max_tau": 10.0,
         # exact time = tau*max_tau
-        "tau": 0.98,
+        "tau": 1.0,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
         "spe_oriented": True,
         # condense species path, no reactions
         "species_path": True,
         # atom followed
-        "atom_f": "C",
-        "init_s": 62,
+        "atom_f": "H",
+        "init_s": 3,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [14, 59],
+        "end_s_idx": [6],
         # top n path
         "top_n_p": 10,
         # top n path for gephi to generate coordinates
