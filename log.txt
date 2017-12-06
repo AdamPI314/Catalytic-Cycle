@@ -3,6 +3,5 @@
 {}
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
-running time:	0.00 hours
+running time:	0.04 hours
 
