@@ -998,11 +998,11 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
-    # plot_concentrations(FILE_DIR, spe_idx=[45, 47],
-    #                     max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
-    plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
-                                       max_tau=G_S['max_tau'], tau=0.95, tag="M",
-                                       exclude_names=None, renormalization=False)
+    plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
+                        max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None, renormalization=False)
+    # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
+    #                                    max_tau=G_S['max_tau'], tau=0.95, tag="M",
+    #                                    exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
@@ -1014,18 +1014,18 @@ if __name__ == '__main__':
     #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
     #     FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
-    plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
-                 max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
+    #              max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
     #     FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
-    for p_i in range(20):
-        plot_pathway_AT_no_IT(
-            FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-            pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    # for p_i in range(20):
+    #     plot_pathway_AT_no_IT(
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_with_SP(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
