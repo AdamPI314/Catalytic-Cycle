@@ -142,8 +142,8 @@ def get_setting():
         # condense species path, no reactions
         "species_path": False,
         # atom followed
-        "atom_f": "H",
-        "init_s": 3,
+        "atom_f": "X",
+        "init_s": 8,
         # end species index, either None, or [] or [14, 15]
         "end_s_idx": [6],
         # top n path
@@ -153,7 +153,7 @@ def get_setting():
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 10000000,
+        "mc_n_traj": 10000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
