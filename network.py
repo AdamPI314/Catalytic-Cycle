@@ -354,7 +354,7 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
 
-    G_S = global_settings.get_setting()
+    G_S = global_settings.get_setting(FILE_DIR)
 
     ATOM_FOLLOWED = G_S['atom_f']
     # PREFIX = "C3H8"

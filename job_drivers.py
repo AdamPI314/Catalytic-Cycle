@@ -389,7 +389,7 @@ def propane_make_figures(file_dir, species_path=False):
     """
     make figures for propane system
     """
-    g_s = global_settings.get_setting()
+    g_s = global_settings.get_setting(file_dir)
 
     spe_idx, _, spe_exclude_name = trajectory.get_species_with_top_n_concentration(
         file_dir, exclude=None, top_n=g_s['top_n_s'], traj_end_time=g_s['end_t'],

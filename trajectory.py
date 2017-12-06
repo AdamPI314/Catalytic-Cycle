@@ -10,15 +10,6 @@ import parse_spe_reaction_info as psri
 import read_write_configuration as rwc
 
 
-def get_settings(file_dir):
-    """
-    return setting as a dict from input/setting.json
-    """
-    setting = rwc.read_configuration(
-        os.path.join(file_dir, 'input', 'setting.json'))
-    return setting
-
-
 def convert_path_prob_to_concentration(file_dir, atom_followed="C", path_prob=None):
     """
     convert total pathway probability to concentration

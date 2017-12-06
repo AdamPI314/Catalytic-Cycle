@@ -13,8 +13,8 @@ def get_fast_rxn_trapped_spe(file_dir):
     """
     try:
         sys.path.append(os.path.join(file_dir, "input"))
-        import fast_transitions
-        return fast_transitions.get_fast_rxn_trapped_spe()
+        import local_settings
+        return local_settings.get_fast_rxn_trapped_spe()
     except Exception:
         return OrderedDict(), OrderedDict()
 
@@ -78,87 +78,15 @@ def get_union_find_group(file_dir):
 
     return idx_group
 
-# def get_setting():
-#     """
-#     for propane problem
-#     return global settings
-#     """
-#     setting = {
-#         # end time
-#         "end_t": 0.763449999652352496,
-#         # critical time, after which print out more data points
-#         "critical_t": 0.751999999880706205,
-#         # reference time, to a combustion system, this is gonna be the ignition delay time
-#         # for Propane, time when temperature=1800K
-#         "max_tau": 0.763215792447318,
-#         # exact time = tau*max_tau
-#         "tau": 0.98,
-#         # species oriented, if true, pick pathways ending with top_n species,
-#         #  if False, just top n pathway
-#         "spe_oriented": True,
-#         # condense species path, no reactions
-#         "species_path": True,
-#         # atom followed
-#         "atom_f": "C",
-#         "init_s": 62,
-#         # end species index, either None, or [] or [14, 15]
-#         "end_s_idx": [14, 59],
-#         # top n path
-#         "top_n_p": 10,
-#         # top n path for gephi to generate coordinates
-#         "top_n_p_gephi": 100,
-#         # top n species
-#         "top_n_s": 10,
-#         # number of trajectory used to generate pathway list running mc simulation
-#         "mc_n_traj": 10000000,
-#         # path integral number of trajectory
-#         "pi_n_traj": 10000,
-#         # number of time points when prepare path integral time points
-#         "pi_n_time": 10,
-#         # tag, M or fraction
-#         "tag": "M"
-#     }
-#     return setting
 
-
-def get_setting():
+def get_setting(file_dir):
     """
-    for HBrO problem
     return global settings
     """
-    setting = {
-        # end time
-        "end_t": 1.0,
-        # critical time, after which print out more data points
-        "critical_t": 1.0,
-        # reference time, to a combustion system, this is gonna be the ignition delay time
-        # for Propane, time when temperature=1800K
-        "max_tau": 1.0,
-        # exact time = tau*max_tau
-        "tau": 1.0,
-        # species oriented, if true, pick pathways ending with top_n species,
-        #  if False, just top n pathway
-        "spe_oriented": True,
-        # condense species path, no reactions
-        "species_path": False,
-        # atom followed
-        "atom_f": "X",
-        "init_s": 8,
-        # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [6],
-        # top n path
-        "top_n_p": 10,
-        # top n path for gephi to generate coordinates
-        "top_n_p_gephi": 100,
-        # top n species
-        "top_n_s": 10,
-        # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 10000,
-        # path integral number of trajectory
-        "pi_n_traj": 10000,
-        # number of time points when prepare path integral time points
-        "pi_n_time": 10,
-        # tag, M or fraction
-        "tag": "M"
-    }
-    return setting
+    setting = {}
+    try:
+        sys.path.append(os.path.join(file_dir, "input"))
+        import local_settings
+        return local_settings.get_local_settings()
+    except Exception:
+        return setting

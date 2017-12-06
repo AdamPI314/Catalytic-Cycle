@@ -16,7 +16,7 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
 
-    G_S = global_settings.get_setting()
+    G_S = global_settings.get_setting(FILE_DIR)
 
     # run dlosde
     job_drivers.run_dlsode(FILE_DIR, G_S['end_t'], G_S['critical_t'])

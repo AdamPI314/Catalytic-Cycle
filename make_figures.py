@@ -997,7 +997,7 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, p
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    G_S = global_settings.get_setting()
+    G_S = global_settings.get_setting(FILE_DIR)
     # plot_concentrations(FILE_DIR, spe_idx=[45, 47],
     #                     max_tau=G_S['max_tau'], tau=0.025, tag="M", exclude_names=None, renormalization=False)
     plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
