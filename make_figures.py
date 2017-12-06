@@ -99,7 +99,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
+def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -146,7 +146,11 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+            if semilogy is True:
+                a_x_left.semilogy(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            else: 
+                a_x_left.plot(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
