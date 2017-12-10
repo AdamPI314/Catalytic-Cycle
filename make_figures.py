@@ -99,7 +99,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False):
+def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False, hasTemp=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -115,9 +115,10 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    s_idx_n["-1"] = "Temp"
-
-    spe_idx_tmp.append(-1)
+    
+    if hasTemp is True:
+        s_idx_n["-1"] = "Temp"
+        spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
         file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
@@ -154,15 +155,16 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
-    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
-    leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
 
     a_x_left.set_xlabel("Time/sec")
-
     a_x_left.set_ylabel("[X]")
-    a_x_right.set_ylabel("T/K")
+    
+    if hasTemp is True:
+        leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+        leg_right.get_frame().set_alpha(0.7)
+        a_x_right.set_ylabel("T/K")
 
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
@@ -1003,7 +1005,8 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
     plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
-                        max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None, renormalization=False)
+                        max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None,
+                        renormalization=False, semilogy=False, hasTemp=False)
     # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
     #                                    max_tau=G_S['max_tau'], tau=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
