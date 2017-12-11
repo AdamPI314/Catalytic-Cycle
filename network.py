@@ -145,7 +145,7 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None,
         file_dir, "output", "pathway_name_selected" + suffix + ".csv")
     f_n_path_prob = os.path.join(
         file_dir, "output", "pathway_prob" + suffix + ".csv")
-
+    print(f_n_path_name, f_n_path_prob)
     p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
     p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
     p_n = p_n[1::]
@@ -360,19 +360,19 @@ if __name__ == '__main__':
     # PREFIX = "C3H8"
     PREFIX = "S" + str(G_S['init_s'])
 
-    # RN_OBJ = init_directed_network(
-    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
-    # network_to_gephi_input_file(
-    #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".gexf")
+    RN_OBJ = init_directed_network(
+        FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
+    network_to_gephi_input_file(
+        RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".gexf")
 
-    PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
-        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
-    for idx, pathname in enumerate(PATH_NAME_TOP_N):
-        plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
-                     G_S['atom_f'] + "_network_" +
-                     str(G_S['top_n_p_gephi']) + "_" +
-                     str(G_S['tau']) + ".json",
-                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag=str(G_S['tau']) + "tau_P" + str(idx + 1))
+    # PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
+    #     FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
+    # for idx, pathname in enumerate(PATH_NAME_TOP_N):
+    #     plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
+    #                  G_S['atom_f'] + "_network_" +
+    #                  str(G_S['top_n_p_gephi']) + "_" +
+    #                  str(G_S['tau']) + ".json",
+    #                  pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag=str(G_S['tau']) + "tau_P" + str(idx + 1))
 
     END_TIME = time.time()
 

@@ -115,7 +115,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
         file_dir, "output", "species_labelling.csv"))
-    
+
     if hasTemp is True:
         s_idx_n["-1"] = "Temp"
         spe_idx_tmp.append(-1)
@@ -149,8 +149,8 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
             if semilogy is True:
                 a_x_left.semilogy(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
-                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
-            else: 
+                                  color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+            else:
                 a_x_left.plot(time[0:end_point], conc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
@@ -160,7 +160,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
 
     a_x_left.set_xlabel("Time/sec")
     a_x_left.set_ylabel("[X]")
-    
+
     if hasTemp is True:
         leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
         leg_right.get_frame().set_alpha(0.7)
@@ -795,7 +795,8 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
 
     data_x = data_pt[0, 0:top_n]
     data_y = data_pp[0:top_n, :]
-    labels = data_pn[0:top_n]
+    # labels = data_pn[0:top_n]
+    labels = ["P" + str(i + 1) for i in range(top_n)]
     fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
 
     delta_n = int(len(data_x) / 50)
@@ -805,21 +806,24 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
     for idx in range(len(data_y)):
-        a_x.plot(data_x[::delta_n], data_y[idx, ::delta_n],
-                 color=colors[idx % len(colors)], marker=markers[idx % len(colors)], label=labels[idx % len(colors)])
+        a_x.plot(data_x, data_y[idx, :],
+                 color=colors[idx %len(colors)], 
+                 marker=markers[idx % len(markers)],
+                 label=labels[idx % len(labels)], 
+                 markevery=delta_n)
 
-    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
 
     y_vals = a_x.get_yticks()
-    a_x.set_yticklabels(['{:.2e}'.format(x) for x in y_vals])
+    a_x.set_yticklabels(['{:.1e}'.format(x) for x in y_vals])
 
     a_x.set_xlim([data_x[0], data_x[-1]])
     a_x.grid()
 
-    a_x.set_xlabel("time/$\\tau$")
-    a_x.set_ylabel("pathway probability")
-    a_x.set_title("pathway probability vs. time")
+    a_x.set_xlabel("Time/$\\tau$", fontsize=15.0)
+    a_x.set_ylabel("Pathway Probability", fontsize=15.0)
+    a_x.set_title("CO", fontsize=15.0)
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
@@ -1004,9 +1008,9 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
-    plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
-                        max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None,
-                        renormalization=False, semilogy=False, hasTemp=False)
+    # plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
+    #                     max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None,
+    #                     renormalization=False, semilogy=False, hasTemp=False)
     # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
     #                                    max_tau=G_S['max_tau'], tau=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
@@ -1014,9 +1018,9 @@ if __name__ == '__main__':
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
-    # plot_pathway_prob_vs_time(
-    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-    #     pathwayEndWith="ALL", top_n=10, species_path=True)
+    plot_pathway_prob_vs_time(
+        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+        pathwayEndWith="ALL", top_n=10, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
