@@ -1018,9 +1018,9 @@ if __name__ == '__main__':
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
-    plot_pathway_prob_vs_time(
-        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
-        pathwayEndWith="ALL", top_n=10, species_path=G_S['species_path'])
+    # plot_pathway_prob_vs_time(
+    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #     pathwayEndWith="ALL", top_n=10, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(

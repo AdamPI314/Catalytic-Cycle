@@ -90,7 +90,7 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
+def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None, norm=False):
     """
     get top n path
     """
@@ -122,7 +122,11 @@ def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau
                     inplace=True, na_position='last')
     d_f.reset_index(drop=True, inplace=True)
 
-    return list(d_f['name'])[0:top_n], list(d_f['prob'])[0:top_n]
+    data_tmp = list(d_f['prob'])[0:top_n]
+    if norm is True:
+        data_tmp /= np.sum(data_tmp)
+
+    return list(d_f['name'])[0:top_n], data_tmp
 
 
 def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
@@ -374,7 +378,8 @@ if __name__ == '__main__':
     #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".gexf")
 
     PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
-        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
+        FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+        tau=G_S['tau'], pathwayEndWith=None, norm=True)
     for idx, pathname in enumerate(PATH_NAME_TOP_N):
         plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
                      G_S['atom_f'] + "_network_" +
