@@ -7,7 +7,7 @@ import sys
 from collections import defaultdict, OrderedDict
 import numpy as np
 import parse_spe_reaction_info as psri
-import read_write_configuration as rwc
+# import read_write_configuration as rwc
 
 
 def convert_path_prob_to_concentration(file_dir, atom_followed="C", path_prob=None):
@@ -91,7 +91,8 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     return spe_conc
 
 
-def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_max_t=100.0, tau=10.0, end_t=1.0, tag="M", atoms=None):
+def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_max_t=100.0,
+                                         tau=10.0, end_t=1.0, tag="M", atoms=None):
     """
     get species concentration at a tau, where tau is the ratio of the time_wanted/end_time
     """

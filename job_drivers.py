@@ -9,6 +9,7 @@ import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
 import parse_pattern as pp
+import pattern_statistics as ps
 import naming
 import trajectory
 import make_figures as mf
@@ -33,28 +34,28 @@ def species_count(file_dir, top_n=50, norm=False):
     """
     count species occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.species_count(file_dir, top_n=top_n, norm=norm)
+    ps.species_count(file_dir, top_n=top_n, norm=norm)
 
 
 def reaction_count(file_dir, top_n=50, norm=False):
     """
     count reaction occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.reaction_count(file_dir, top_n=top_n, norm=norm)
+    ps.reaction_count(file_dir, top_n=top_n, norm=norm)
 
 
 def initiation_reaction_count(file_dir, top_n=50, norm=False):
     """
     count initiation reaction occurence in pathway, multiply by accurate pathwap probability
     """
-    pp.initiation_reaction_count(file_dir, top_n=top_n, norm=norm)
+    ps.initiation_reaction_count(file_dir, top_n=top_n, norm=norm)
 
 
 def species_cycle(file_dir, top_n=50, norm=False):
     """
     count species cycle in pathway, multiply by accurate pathwap probability
     """
-    pp.species_cycle(file_dir, top_n=top_n, norm=norm)
+    ps.species_cycle(file_dir, top_n=top_n, norm=norm)
 
 
 def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
@@ -62,7 +63,7 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
     count species production pathway or sub-pathway in pathway,
     multiply by accurate pathwap probability
     """
-    pp.species_production_path(file_dir, spe=spe, top_n=top_n, norm=norm)
+    ps.species_production_path(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
 def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
@@ -70,7 +71,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     count species production reactions in pathway,
     multiply by accurate pathwap probability
     """
-    pp.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
+    ps.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
 def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, species_path=False):
@@ -194,19 +195,22 @@ def spe_concentration_at_time_w2f(file_dir, tau=10.0, end_t=1.0):
     make_run(file_dir)
 
 
-def run_mc_trajectory(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, tau=10.0, begin_t=0.0, end_t=1.0, species_path=False):
+def run_mc_trajectory(file_dir, n_traj=1000000, atom_followed="C", init_spe=114,
+                      tau=10.0, begin_t=0.0, end_t=1.0, species_path=False):
     """
     Run mc trajectory
     """
     os.chdir(file_dir)
     us.update_mc_trajectory_setting(
-        file_dir, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
+        file_dir, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+        tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
     make_run(file_dir)
 
 
 def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=10000,
                                  atom_followed="C", init_spe=114, traj_max_t=100.0,
-                                 tau=10.0, end_t=1.0, top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
+                                 tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
+                                 spe_oriented=True, end_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -217,29 +221,34 @@ def evaluate_pathway_probability(file_dir, top_n=5, num_t=1, flag="", n_traj=100
     if spe_oriented is True:
         us.update_eval_path_integral(
             file_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t, species_path=species_path)
+            atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
 
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
-                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t, tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
+                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
+                tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
         ppnt.prepare_pathway_time(
-            file_dir, top_n=top_n * top_n_s, num=num_t, flag=flag, end_t=end_t, species_path=species_path)
+            file_dir, top_n=top_n * top_n_s, num=num_t, flag=flag,
+            begin_t=begin_t, end_t=end_t, species_path=species_path)
     else:
         us.update_eval_path_integral(
-            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t, species_path=species_path)
+            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
         ppnt.prepare_pathway_time(
-            file_dir, top_n=top_n, num=num_t, flag=flag, end_t=end_t, species_path=species_path)
+            file_dir, top_n=top_n, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
 
     make_run(file_dir)
 
 
 def evaluate_pathway_AT(file_dir, top_n=5, flag="", n_traj=10000,
                         atom_followed="C", init_spe=114, traj_max_t=100.0,
-                        tau=10.0, end_t=1.0, top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
+                        tau=10.0, begin_t=0.0, end_t=1.0,
+                        top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -250,16 +259,18 @@ def evaluate_pathway_AT(file_dir, top_n=5, flag="", n_traj=10000,
     if spe_oriented is True:
         us.update_eval_path_AT(
             file_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
 
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
-                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t, tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
+                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
+                tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
     else:
         us.update_eval_path_AT(
-            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
 
@@ -268,7 +279,8 @@ def evaluate_pathway_AT(file_dir, top_n=5, flag="", n_traj=10000,
 
 def evaluate_pathway_AT_no_IT(file_dir, top_n=5, flag="", n_traj=10000,
                               atom_followed="C", init_spe=114, traj_max_t=100.0,
-                              tau=10.0, end_t=1.0, top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
+                              tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
+                              spe_oriented=True, end_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -279,16 +291,18 @@ def evaluate_pathway_AT_no_IT(file_dir, top_n=5, flag="", n_traj=10000,
     if spe_oriented is True:
         us.update_eval_path_AT_no_IT(
             file_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
 
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
-                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t, tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
+                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
+                tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
     else:
         us.update_eval_path_AT_no_IT(
-            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
 
@@ -297,7 +311,8 @@ def evaluate_pathway_AT_no_IT(file_dir, top_n=5, flag="", n_traj=10000,
 
 def evaluate_pathway_AT_with_SP(file_dir, top_n=5, flag="", n_traj=10000,
                                 atom_followed="C", init_spe=114, traj_max_t=100.0,
-                                tau=10.0, end_t=1.0, top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
+                                tau=10.0, begin_t=0.0, end_t=1.0,
+                                top_n_s=10, spe_oriented=True, end_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -308,16 +323,18 @@ def evaluate_pathway_AT_with_SP(file_dir, top_n=5, flag="", n_traj=10000,
     if spe_oriented is True:
         us.update_eval_path_AT_with_SP(
             file_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
 
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
-                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t, tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
+                file_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
+                tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
     else:
         us.update_eval_path_AT_with_SP(
-            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe, tau=tau, end_t=end_t)
+            file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
         ppnt.prepare_pathway_name(
             file_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
 
@@ -326,7 +343,7 @@ def evaluate_pathway_AT_with_SP(file_dir, top_n=5, flag="", n_traj=10000,
 
 def evaluate_passage_time_of_species(file_dir, top_n=5, flag="", n_traj=10000,
                                      atom_followed="C", init_spe=114, tau=10.0,
-                                     end_t=1.0, end_s_idx=None, species_path=False):
+                                     begin_t=0.0, end_t=1.0, end_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -336,7 +353,7 @@ def evaluate_passage_time_of_species(file_dir, top_n=5, flag="", n_traj=10000,
 
     us.update_eval_path_AT(
         file_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed,
-        init_spe=init_spe, tau=tau, end_t=end_t)
+        init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
     ppnt.prepare_pathway_name_for_passage_time(
         file_dir, flag=flag, init_s_idx=end_s_idx, species_path=species_path)
 
@@ -402,7 +419,8 @@ def propane_make_figures(file_dir, species_path=False):
     for s_i in spe_idx:
         print(spe_idx)
         mf.plot_spe_path_prob(file_dir, top_n=g_s['top_n_p'],
-                              exclude_names=spe_exclude_name, end_t=g_s['end_t'], end_spe=s_i, species_path=species_path)
+                              exclude_names=spe_exclude_name, end_t=g_s['end_t'],
+                              end_spe=s_i, species_path=species_path)
     mf.plot_rxn_rate_constant(file_dir)
     r_idx_pair, s_idx_pair = global_settings.get_fast_rxn_trapped_spe(file_dir)
     mf.plot_reaction_pair_rate_ratio(

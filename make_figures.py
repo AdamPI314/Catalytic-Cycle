@@ -21,7 +21,8 @@ from tools import get_colors_markers_linestyles
 import naming
 
 
-def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=None):
+def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
+                                end_t=1.0, pathwayEndWith="ALL", end_spe=None):
     """
     plot path length statistics
     """
@@ -99,7 +100,8 @@ def plot_pathway_prob(file_dir, end_t=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False, hasTemp=True):
+def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None,
+                        renormalization=True, semilogy=False, hasTemp=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -174,7 +176,8 @@ def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     plt.close()
 
 
-def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None, renormalization=True):
+def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1.0,
+                                       tag="fraction", exclude_names=None, renormalization=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -538,7 +541,8 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
+def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
+                       end_t=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
     """
     plot spe_path_prob give species name 
     """
@@ -770,7 +774,8 @@ def plot_rxn_rate_constant(file_dir):
     plt.close()
 
 
-def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", top_n=1, species_path=True):
+def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+                              pathwayEndWith="ALL", top_n=1, species_path=True):
     """
     plot pathway probability vs. time
     """
@@ -830,7 +835,8 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
     plt.close()
 
 
-def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+                    pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -868,7 +874,8 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathway
     plt.close()
 
 
-def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+                          pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -917,7 +924,8 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, p
     plt.close()
 
 
-def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+                            pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time with terminal species survial probability
     """
@@ -959,7 +967,8 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     plt.close()
 
 
-def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+                            pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """

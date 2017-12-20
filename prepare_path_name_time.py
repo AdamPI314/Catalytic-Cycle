@@ -80,7 +80,7 @@ def prepare_pathway_name_for_passage_time(file_dir, flag="", init_s_idx=None, sp
     np.savetxt(f_n_pn, path_list, fmt="%s")
 
 
-def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", beg_t=0.0, end_t=1.0, species_path=False):
+def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", begin_t=0.0, end_t=1.0, species_path=False):
     """
     prepare pathway_time.csv
     num represents number of points
@@ -103,7 +103,7 @@ def prepare_pathway_time(file_dir, top_n=5, num=1, flag="", beg_t=0.0, end_t=1.0
     # time matrix
     t_mat = np.empty((top_n, num + 1, ))
     for idx, _ in enumerate(t_mat):
-        t_mat[idx] = np.linspace(beg_t, end_t, num + 1)
+        t_mat[idx] = np.linspace(begin_t, end_t, num + 1)
 
     np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.7f')
 
