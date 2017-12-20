@@ -90,7 +90,7 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None, norm=False):
+def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, end_t=None, pathwayEndWith=None, norm=False):
     """
     get top n path
     """
@@ -102,7 +102,7 @@ def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau
         spe_idx_name_dict, spe_alias=spe_alias)
 
     suffix = get_suffix(file_dir, init_spe=init_spe,
-                        atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                        atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
 
     f_n_path_name = os.path.join(
         file_dir, "output", "pathway_name_selected" + suffix + ".csv")
@@ -129,7 +129,7 @@ def get_top_n_pathway(file_dir, top_n=10, init_spe=None, atom_followed=None, tau
     return list(d_f['name'])[0:top_n], data_tmp
 
 
-def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None, tau=None, pathwayEndWith=None):
+def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None, end_t=None, pathwayEndWith=None):
     """
     init directed network
     without parallel edges
@@ -143,7 +143,7 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None,
         spe_idx_name_dict, spe_alias=spe_alias)
 
     suffix = get_suffix(file_dir, init_spe=init_spe,
-                        atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                        atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
 
     f_n_path_name = os.path.join(
         file_dir, "output", "pathway_name_selected" + suffix + ".csv")
@@ -263,7 +263,7 @@ def get_names_coordinates(file_dir, fname=""):
     return n_coordinate
 
 
-def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag="", tau=1.0):
+def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag="", end_t=1.0):
     """
     plot network manually
     """
@@ -349,7 +349,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, flag="", tau=1.0
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
     # a_x.grid('on')
     a_x.axis('off')
-    a_x.set_title(flag + "(" + str(tau) + "$\\tau$" + ")" +
+    a_x.set_title(flag + "(" + str(end_t) + "$\\tau$" + ")" +
                   " = " + "{:.2e}".format(float(pathprob)))
 
     # fig.tight_layout()
@@ -373,19 +373,19 @@ if __name__ == '__main__':
     PREFIX = "S" + str(G_S['init_s'])
 
     # RN_OBJ = init_directed_network(
-    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'], pathwayEndWith=None)
+    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], pathwayEndWith=None)
     # network_to_gephi_input_file(
-    #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['tau']) + ".gexf")
+    #     RN_OBJ, FILE_DIR, PREFIX + "_" + G_S['atom_f'] + "_network_" + str(G_S['top_n_p_gephi']) + "_" + str(G_S['end_t']) + ".gexf")
 
     PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(
         FILE_DIR, top_n=50, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-        tau=G_S['tau'], pathwayEndWith=None, norm=True)
+        end_t=G_S['end_t'], pathwayEndWith=None, norm=True)
     for idx, pathname in enumerate(PATH_NAME_TOP_N):
         plot_network(file_dir=FILE_DIR, fname=PREFIX + "_" +
                      G_S['atom_f'] + "_network_" +
                      str(G_S['top_n_p_gephi']) + "_" +
-                     str(G_S['tau']) + ".json",
-                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1), tau=G_S['tau'])
+                     str(G_S['end_t']) + ".json",
+                     pathname=pathname, pathprob=PATH_PROB_TOP_N[idx], flag="P" + str(idx + 1), end_t=G_S['end_t'])
 
     END_TIME = time.time()
 

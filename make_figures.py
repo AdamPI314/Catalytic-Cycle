@@ -21,12 +21,12 @@ from tools import get_colors_markers_linestyles
 import naming
 
 
-def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None):
+def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=None):
     """
     plot path length statistics
     """
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     if suffix is not None:
         suffix += "_S" + str(end_spe)
     in_f_n = os.path.join(file_dir, "output", "path_length" + suffix + ".csv")
@@ -73,7 +73,7 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.
     return
 
 
-def plot_pathway_prob(file_dir, tau=1.0):
+def plot_pathway_prob(file_dir, end_t=1.0):
     """
     plot pathway prob
     """
@@ -89,7 +89,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     #                         "pathway_c_prob.csv"), data_c, fmt="%.15f", delimiter=',')
 
     fig, a_x = plt.subplots(1, 1, sharex=False, sharey=False)
-    end_point = int(tau * len(data))
+    end_point = int(end_t * len(data))
     a_x.plot(data[1:end_point:1], "-.")
     a_x.plot(data_c[1:end_point:1], "-*")
     a_x.grid()
@@ -99,7 +99,7 @@ def plot_pathway_prob(file_dir, tau=1.0):
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False, hasTemp=True):
+def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None, renormalization=True, semilogy=False, hasTemp=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -130,8 +130,8 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -174,7 +174,7 @@ def plot_concentrations(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="frac
     plt.close()
 
 
-def plot_spe_concentrations_derivative(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", exclude_names=None, renormalization=True):
+def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None, renormalization=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
     to renormalize the molelar fraction
@@ -204,8 +204,8 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, max_tau=10.0, tau
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -247,7 +247,7 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, max_tau=10.0, tau
     plt.close()
 
 
-def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", reciprocal=False):
+def plot_spe_drc(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
     """
     plot species destruction rate constant, give species index list
     """
@@ -272,8 +272,8 @@ def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", 
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -328,7 +328,7 @@ def plot_spe_drc(file_dir, spe_idx=None, max_tau=10.0, tau=1.0, tag="fraction", 
     plt.close()
 
 
-def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", reciprocal=False):
+def plot_chattering_group_drc(file_dir, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
     """
     plot chattering group destruction rate constant
     """
@@ -363,8 +363,8 @@ def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", r
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -418,7 +418,7 @@ def plot_chattering_group_drc(file_dir, max_tau=10.0, tau=1.0, tag="fraction", r
     plt.close()
 
 
-def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=10.0, tau=1.0, tag="fraction"):
+def plot_reaction_rates(file_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="fraction"):
     """
     plot reaction rates give reaction index list
     """
@@ -441,8 +441,8 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=10.0, tau=1.0, tag=
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     delta_n = int(end_point / 25)
     if delta_n is 0:
         delta_n = 1
@@ -476,11 +476,11 @@ def plot_reaction_rates(file_dir, reaction_idx=None, max_tau=10.0, tau=1.0, tag=
     plt.title("reaction rates and Temp")
 
     fig.savefig(os.path.join(file_dir, "output",
-                             "reaction_rate_" + rxn_idx_str + "_" + str(tau) + ".jpg"), dpi=500)
+                             "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, max_tau=10.0, tau=1.0, tag="M"):
+def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, tau=10.0, end_t=1.0, tag="M"):
     """
     plot reaction rates ratios given reaction index pair
     """
@@ -503,8 +503,8 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / time[-1] * len(time)
-    end_point = int(tau * tau_time_point)
+    tau_time_point = float(tau) / time[-1] * len(time)
+    end_point = int(end_t * tau_time_point)
     if end_point >= len(time):
         end_point = len(time) - 1
     delta_n = int(end_point / 25)
@@ -538,7 +538,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
+def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
     """
     plot spe_path_prob give species name 
     """
@@ -551,7 +551,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     else:
         prefix = "species_"
     d_f = pattern_statistics.path_prob_terminating_with_spe(file_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith,
+                                                            atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith,
                                                             end_spe=end_spe, species_path=species_path)
     data = [float(x) for x in d_f['frequency']][0:top_n]
     data_c = deepcopy(data)
@@ -568,7 +568,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     spe_name = s_idx_n[str(end_spe)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+        file_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
         file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
     # data_c = trajectory.convert_path_prob_to_concentration(
@@ -613,22 +613,22 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     ytick_vals = a_x_right.get_yticks()
     a_x_right.set_yticklabels(['{:3.2f}%'.format(x * 100) for x in ytick_vals])
 
-    a_x_left.set_title(spe_name + " @" + str(tau) + " tau")
+    a_x_left.set_title(spe_name + " @" + str(end_t) + " tau")
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output",
-                             prefix + "path_prob_cumulative_" + spe_name + "_" + str(tau) + ".jpg"), dpi=500)
+                             prefix + "path_prob_cumulative_" + spe_name + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C", tau=0.5, top_n=10):
+def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C", end_t=0.5, top_n=10):
     """
     plot_top_n_spe_concentration
     """
     if exclude_names is None:
         exclude_names = []
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        file_dir, tag="M", tau=tau, exclude_names=exclude_names, renormalization=True)
+        file_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
         file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
 
@@ -642,7 +642,7 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
 
     # figure name
     fig_name = "top_n_spe_concentration_" + \
-        str(tau) + "_" + str(top_n) + ".jpg"
+        str(end_t) + "_" + str(top_n) + ".jpg"
 
     # specify label for lines
     bins = np.array([x for x in range(len(top_n_spe_conc))])
@@ -681,7 +681,7 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
     #     top='off',         # ticks along the top edge are off
     #     labelbottom='off')  # labels along the bottom edge are off
 
-    a_x.set_title("$\\tau$ = " + str(tau))
+    a_x.set_title("Time = " + str(end_t) + "$\\tau$")
 
     # background
     a_x.axis('on')
@@ -770,7 +770,7 @@ def plot_rxn_rate_constant(file_dir):
     plt.close()
 
 
-def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", top_n=1, species_path=True):
+def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", top_n=1, species_path=True):
     """
     plot pathway probability vs. time
     """
@@ -780,7 +780,7 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_pt = os.path.join(file_dir, "output",
@@ -807,9 +807,9 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
 
     for idx in range(len(data_y)):
         a_x.plot(data_x, data_y[idx, :],
-                 color=colors[idx %len(colors)], 
+                 color=colors[idx % len(colors)],
                  marker=markers[idx % len(markers)],
-                 label=labels[idx % len(labels)], 
+                 label=labels[idx % len(labels)],
                  markevery=delta_n)
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
@@ -830,7 +830,7 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", tau=1.0,
     plt.close()
 
 
-def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -840,7 +840,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -868,7 +868,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEn
     plt.close()
 
 
-def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -878,7 +878,7 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pat
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -917,7 +917,7 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", tau=1.0, pat
     plt.close()
 
 
-def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time with terminal species survial probability
     """
@@ -927,7 +927,7 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", tau=1.0, p
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -959,7 +959,7 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", tau=1.0, p
     plt.close()
 
 
-def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
+def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -969,7 +969,7 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", tau=1.0, p
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -1009,39 +1009,39 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
     # plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
-    #                     max_tau=G_S['max_tau'], tau=1.0, tag="M", exclude_names=None,
+    #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=False, hasTemp=False)
     # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
-    #                                    max_tau=G_S['max_tau'], tau=0.95, tag="M",
+    #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=0.9, pathwayEndWith="ALL", end_spe=es)
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, pathwayEndWith="ALL", end_spe=es)
     # plot_pathway_prob_vs_time(
-    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #     pathwayEndWith="ALL", top_n=10, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-    #              max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
+    #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
-    #     FILE_DIR, max_tau=G_S['max_tau'], tau=0.80, tag="M", reciprocal=True)
+    #     FILE_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
-    #              max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    #              tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
-    #     FILE_DIR, max_tau=G_S['max_tau'], tau=1.0, tag="M", reciprocal=True)
+    #     FILE_DIR, tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_no_IT(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_with_SP(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
     # for p_i in range(len(G_S['end_s_idx'])):
     #     plot_first_passage_time(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], tau=G_S['tau'],
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)

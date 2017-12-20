@@ -6,6 +6,7 @@ import os
 import sys
 import time
 
+import update_settings as us
 import job_drivers
 import global_settings
 
@@ -17,54 +18,55 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     G_S = global_settings.get_setting(FILE_DIR)
+    us.update_basic_setting(FILE_DIR, G_S)
 
-    # # run dlosde
-    # job_drivers.run_dlsode(FILE_DIR, G_S['end_t'], G_S['critical_t'])
+    # run dlosde
+    job_drivers.run_dlsode(FILE_DIR, G_S['traj_max_t'], G_S['traj_critical_t'])
 
     # # update trapped species and fast reactions
     # job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
 
     # # write specie concentration at a time to file
     # job_drivers.spe_concentration_at_time_w2f(
-    #     FILE_DIR, max_tau=G_S['max_tau'], tau=G_S['tau'])
+    #     FILE_DIR, tau=G_S['tau'], end_t=G_S['end_t'])
 
     # # run monte carlo trajectory
     # job_drivers.run_mc_trajectory(
     #     FILE_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-    #     init_spe=G_S['init_s'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
     #     species_path=G_S['species_path'])
 
     # # evaluate path integral-->pathway probability
     # job_drivers.evaluate_pathway_probability(
     #     FILE_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
     #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # job_drivers.evaluate_pathway_AT(
     #     FILE_DIR, top_n=G_S['top_n_p'], flag="",
     #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # job_drivers.evaluate_pathway_AT_no_IT(
     #     FILE_DIR, top_n=G_S['top_n_p'], flag="",
     #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # job_drivers.evaluate_pathway_AT_with_SP(
     #     FILE_DIR, top_n=G_S['top_n_p'], flag="",
     #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_end_time=G_S['end_t'], max_tau=G_S['max_tau'], tau=G_S['tau'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
     # job_drivers.evaluate_passage_time_of_species(FILE_DIR, top_n=G_S['top_n_p'], flag="", n_traj=G_S['pi_n_traj'],
-    #                                              atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], max_tau=G_S['max_tau'],
-    #                                              tau=G_S['tau'], end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    #                                              atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], tau=G_S['tau'],
+    #                                              end_t=G_S['end_t'], end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression

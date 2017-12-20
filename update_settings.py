@@ -8,6 +8,33 @@ import read_write_configuration as rwc
 import global_settings
 
 
+def update_basic_setting(file_dir, g_s):
+    """
+    update settings.json, the basic information that's will not change for this system
+    """
+    # there will always be a current setting
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
+
+    if not os.path.isfile(fn0):
+        copy2(fn1, fn0)
+
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
+
+    setting['system']['condition'] = g_s['system']['condition']
+    setting['system']['initializer'] = g_s['system']['initializer']
+    setting['network']['merge_chatterings'] = g_s['network']['merge_chatterings']
+    setting['propagator']['primary_type'] = g_s['propagator']['primary_type']
+    setting['propagator']['type'] = g_s['propagator']['type']
+    setting['propagator']['sub_type'] = g_s['propagator']['sub_type']
+    setting['propagator']['convert_molar_concentration_to_mole_fraction'] = g_s['propagator']['convert_molar_concentration_to_mole_fraction']
+    setting['propagator']['normalize_initial_concentration'] = g_s['propagator']['normalize_initial_concentration']
+
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))
+
+
 def update_dlsode_setting(file_dir, max_time=1.0, critical_time=0.9):
     """
     update settings.json, primarily for dlsode run and pathway generating
@@ -54,7 +81,7 @@ def update_trapped_species_fast_reaction_setting(file_dir):
     return
 
 
-def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
+def update_spe_concentration_at_time_w2f(file_dir, tau=10.0, end_t=1.0):
     """
     update settings.json, primarily for update_spe_concentration_at_time_w2f
     """
@@ -69,14 +96,14 @@ def update_spe_concentration_at_time_w2f(file_dir, max_tau=10.0, tau=1.0):
         os.path.join(file_dir, 'input', 'setting.json'))
 
     setting['job']['job_type'] = "write_concentration_at_time_to_file"
-    setting['time']['tau'] = max_tau
-    setting['pathway']['tau'] = tau
+    setting['time']['tau'] = tau
+    setting['pathway']['end_t'] = end_t
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0, species_path=False):
+def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", init_spe=114, tau=10.0, begin_t=0.0, end_t=1.0, species_path=False):
     """
     update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
@@ -95,12 +122,13 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
-    setting['time']['tau'] = max_tau
+    setting['time']['tau'] = tau
 
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
-    setting['pathway']['tau'] = tau
+    setting['pathway']['begin_t'] = begin_t
+    setting['pathway']['end_t'] = end_t
 
     if species_path is True:
         setting['job']['job_type'] = "generate_species_pathway_running_Monte_carlo_trajectory"
@@ -112,7 +140,7 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     return
 
 
-def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0, species_path=False):
+def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, tau=10.0, end_t=1.0, species_path=False):
     """
     update settings.json, primarily for evaluate path integral
     """
@@ -141,14 +169,14 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = max_tau
-    setting['pathway']['tau'] = tau
+    setting['time']['tau'] = tau
+    setting['pathway']['end_t'] = end_t
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, tau=10.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time 
     """
@@ -175,14 +203,14 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = max_tau
-    setting['pathway']['tau'] = tau
+    setting['time']['tau'] = tau
+    setting['pathway']['end_t'] = end_t
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, tau=10.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time without IT (initiation time)
     """
@@ -209,14 +237,14 @@ def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = max_tau
-    setting['pathway']['tau'] = tau
+    setting['time']['tau'] = tau
+    setting['pathway']['end_t'] = end_t
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, max_tau=10.0, tau=1.0):
+def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114, tau=10.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time 
     """
@@ -243,8 +271,8 @@ def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="
     setting['pathway']['atom_followed'] = atom_followed
     setting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = max_tau
-    setting['pathway']['tau'] = tau
+    setting['time']['tau'] = tau
+    setting['pathway']['end_t'] = end_t
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))

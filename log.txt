@@ -1,7 +1,0 @@
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR
-{}
-{}
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
-running time:	0.04 hours
-

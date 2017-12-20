@@ -91,7 +91,7 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     return spe_conc
 
 
-def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_end_time=100.0, max_tau=10.0, tau=1.0, tag="M", atoms=None):
+def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_max_t=100.0, tau=10.0, end_t=1.0, tag="M", atoms=None):
     """
     get species concentration at a tau, where tau is the ratio of the time_wanted/end_time
     """
@@ -102,8 +102,8 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_end_t
     conc = np.loadtxt(os.path.join(file_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
     # the time point where reference time tau is
-    tau_time_point = float(max_tau) / traj_end_time * len(conc)
-    time_idx = int(tau * tau_time_point)
+    tau_time_point = float(tau) / traj_max_t * len(conc)
+    time_idx = int(end_t * tau_time_point)
     if time_idx >= len(conc):
         time_idx = (len(conc) - 1)
 
@@ -172,7 +172,7 @@ def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None, r
     return conc
 
 
-def get_normalized_concentration_at_time(file_dir, tag="fraction", tau=1.0, exclude_names=None, renormalization=True):
+def get_normalized_concentration_at_time(file_dir, tag="fraction", end_t=1.0, exclude_names=None, renormalization=True):
     """
     return normalized species concentration at time
     """
@@ -180,7 +180,7 @@ def get_normalized_concentration_at_time(file_dir, tag="fraction", tau=1.0, excl
         exclude_names = []
 
     f_n = os.path.join(file_dir, "output", "spe_concentration_" +
-                       str(tau) + "_dlsode_" + str(tag) + ".csv")
+                       str(end_t) + "_dlsode_" + str(tag) + ".csv")
     conc = np.loadtxt(f_n, delimiter=",")
 
     if renormalization is False:
@@ -202,6 +202,6 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
     # get_normalized_concentration_at_time(
-    #     FILE_DIR, tag="M", tau=0.9, exclude_names=None, renormalization=True)
+    #     FILE_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
     convert_concentration_to_path_prob(
         FILE_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)

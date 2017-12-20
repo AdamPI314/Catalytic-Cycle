@@ -12,12 +12,12 @@ import naming
 import parse_pattern
 
 
-def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None, species_path=False):
+def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=None, species_path=False):
     """
     get pathway and their pathway probability, path ending with spe
     """
     suffix = naming.get_suffix(file_dir=file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
     if species_path is False:
         prefix = ""
     else:
@@ -44,12 +44,12 @@ def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", tau
         return d_f
 
 
-def path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.0, pathwayEndWith="ALL", end_spe=None):
+def path_length_statistics(file_dir, init_spe=62, atom_followed="C", end_t=1.0, pathwayEndWith="ALL", end_spe=None):
     """
     path length statistics
     """
     d_f = path_prob_terminating_with_spe(
-        file_dir, init_spe, atom_followed, tau, pathwayEndWith, end_spe)
+        file_dir, init_spe, atom_followed, end_t, pathwayEndWith, end_spe)
 
     count_map = OrderedDict()
     for _, val in enumerate(d_f['pathway'][0:20]):
@@ -63,7 +63,7 @@ def path_length_statistics(file_dir, init_spe=62, atom_followed="C", tau=1.0, pa
     for key, value in count_map.items():
         mat.append([int(key), int(value)])
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, tau=tau, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
 
     if end_spe is not None:
         suffix += "_S" + str(end_spe)
@@ -355,4 +355,4 @@ if __name__ == "__main__":
     SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     for es in SPE_LIST:
         path_length_statistics(
-            FILE_DIR, init_spe=62, atom_followed="C", tau=0.9, pathwayEndWith="ALL", end_spe=es)
+            FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, pathwayEndWith="ALL", end_spe=es)
