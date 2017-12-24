@@ -17,5 +17,10 @@
 {'rxn': [586, 587], 'spe': [85, 54]}
 {'rxn': [1042, 1043], 'spe': [72, 108]}
 {'rxn': [434, 435], 'spe': [45, 47]}
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
 running time:	0.00 hours
 

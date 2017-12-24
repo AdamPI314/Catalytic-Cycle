@@ -81,8 +81,8 @@ if __name__ == '__main__':
             FILE_DIR, top_n=G_S['top_n_p'], flag="",
             end_s_idx=None, species_path=G_S['species_path'])
 
-    # # copy SOHR/C++ routine files
-    # job_drivers.copy_sohr_files(FILE_DIR, species_path=G_S['species_path'])
+    # copy SOHR/C++ routine files
+    job_drivers.copy_sohr_files(FILE_DIR, species_path=G_S['species_path'])
 
     # # # species count
     # # job_drivers.species_count(FILE_DIR, top_n=G_S['top_n_p'], norm=True)
