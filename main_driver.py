@@ -20,15 +20,15 @@ if __name__ == '__main__':
     G_S = global_settings.get_setting(FILE_DIR)
     us.update_basic_setting(FILE_DIR, G_S)
 
-    # run dlosde
-    job_drivers.run_dlsode(FILE_DIR, G_S['traj_max_t'], G_S['traj_critical_t'])
+    # # run dlosde
+    # job_drivers.run_dlsode(FILE_DIR, G_S['traj_max_t'], G_S['traj_critical_t'])
 
-    # update trapped species and fast reactions
-    job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
+    # # update trapped species and fast reactions
+    # job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
 
-    # write specie concentration at a time to file
-    job_drivers.spe_concentration_at_time_w2f(
-        FILE_DIR, tau=G_S['tau'], end_t=G_S['end_t'])
+    # # write specie concentration at a time to file
+    # job_drivers.spe_concentration_at_time_w2f(
+    #     FILE_DIR, tau=G_S['tau'], end_t=G_S['end_t'])
 
     # run monte carlo trajectory
     job_drivers.run_mc_trajectory(
