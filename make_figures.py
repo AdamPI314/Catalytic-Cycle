@@ -22,12 +22,12 @@ import naming
 
 
 def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
-                                end_t=1.0, pathwayEndWith="ALL", end_spe=None):
+                                end_t=1.0, end_spe=None):
     """
     plot path length statistics
     """
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     if suffix is not None:
         suffix += "_S" + str(end_spe)
     in_f_n = os.path.join(file_dir, "output", "path_length" + suffix + ".csv")
@@ -159,6 +159,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
+    a_x_left.set_xlim([0, tau * end_t])
 
     a_x_left.set_xlabel("Time/sec")
     a_x_left.set_ylabel("[X]")
@@ -542,7 +543,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
 
 
 def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
-                       end_t=1.0, pathwayEndWith="ALL", end_spe=62, species_path=False):
+                       end_t=1.0, end_spe=62, species_path=False):
     """
     plot spe_path_prob give species name 
     """
@@ -555,7 +556,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     else:
         prefix = "species_"
     d_f = pattern_statistics.path_prob_terminating_with_spe(file_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith,
+                                                            atom_followed=atom_followed, end_t=end_t,
                                                             end_spe=end_spe, species_path=species_path)
     data = [float(x) for x in d_f['frequency']][0:top_n]
     data_c = deepcopy(data)
@@ -775,7 +776,7 @@ def plot_rxn_rate_constant(file_dir):
 
 
 def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                              pathwayEndWith="ALL", top_n=1, species_path=True):
+                              top_n=1, species_path=True):
     """
     plot pathway probability vs. time
     """
@@ -785,7 +786,7 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_pt = os.path.join(file_dir, "output",
@@ -836,7 +837,7 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
 
 
 def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                    pathwayEndWith="ALL", path_idx=0, species_path=True):
+                    path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -846,7 +847,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -875,7 +876,7 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
 
 def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                          pathwayEndWith="ALL", path_idx=0, species_path=True):
+                          path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -885,7 +886,7 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -925,7 +926,7 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
 
 def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                            pathwayEndWith="ALL", path_idx=0, species_path=True):
+                            path_idx=0, species_path=True):
     """
     plot pathway arrival time with terminal species survial probability
     """
@@ -935,7 +936,7 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -968,7 +969,7 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
 
 def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                            pathwayEndWith="ALL", path_idx=0, species_path=True):
+                            path_idx=0, species_path=True):
     """
     plot pathway arrival time
     """
@@ -978,7 +979,7 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     if species_path is True:
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t, pathwayEndWith=pathwayEndWith)
+                               atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(file_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pa = os.path.join(file_dir, "output",
@@ -1017,19 +1018,31 @@ if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
-    # plot_concentrations(FILE_DIR, spe_idx=[0, 1, 2, 3],
+
+    # SPE_LIST = [62, 59, 9, 10, 12, 13, 59]
+    # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
+    #     FILE_DIR, exclude=None, top_n=10,
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
+    #     tag="M", atoms=["C", "O"])
+    # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
+    #                     tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
+    #                     renormalization=False, semilogy=True, hasTemp=True)
+    # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
     #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
-    #                     renormalization=False, semilogy=False, hasTemp=False)
+    #                     renormalization=False, semilogy=True, hasTemp=True)
+    plot_concentrations(FILE_DIR, spe_idx=[10],
+                        tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
+                        renormalization=False, semilogy=True, hasTemp=True)
     # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
     #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, pathwayEndWith="ALL", end_spe=es)
+    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
     # plot_pathway_prob_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     pathwayEndWith="ALL", top_n=10, species_path=G_S['species_path'])
+    #     top_n=10, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
@@ -1041,16 +1054,16 @@ if __name__ == '__main__':
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    #         path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_no_IT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    #         path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_with_SP(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    #         path_idx=p_i, species_path=True)
     # for p_i in range(len(G_S['end_s_idx'])):
     #     plot_first_passage_time(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #         pathwayEndWith="ALL", path_idx=p_i, species_path=True)
+    #         path_idx=p_i, species_path=True)

@@ -165,7 +165,6 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
         setting['job']['job_type'] = "evaluate_species_path_integral_over_time"
     else:
         setting['job']['job_type'] = "evaluate_path_integral_over_time"
-    setting['pathway']['pathwayEndWith'] = "ALL"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
@@ -201,7 +200,6 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
 
     setting['job']['job_type'] = "evaluate_path_AT_over_time"
 
-    setting['pathway']['pathwayEndWith'] = "ALL"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
@@ -237,7 +235,6 @@ def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C"
 
     setting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
 
-    setting['pathway']['pathwayEndWith'] = "ALL"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed
@@ -273,7 +270,6 @@ def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="
 
     setting['job']['job_type'] = "evaluate_path_AT_with_SP_over_time"
 
-    setting['pathway']['pathwayEndWith'] = "ALL"
     setting['pathway']['topN'] = [top_n]
     setting['pathway']['trajectoryNumber'] = n_traj
     setting['pathway']['atom_followed'] = atom_followed

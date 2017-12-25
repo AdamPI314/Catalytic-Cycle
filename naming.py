@@ -8,7 +8,7 @@ from shutil import copyfile
 import read_write_configuration as rwc
 
 
-def get_suffix(file_dir, init_spe=None, atom_followed=None, end_t=None, pathwayEndWith=None):
+def get_suffix(file_dir, init_spe=None, atom_followed=None, end_t=None):
     """
     get suffix
     """
@@ -27,10 +27,6 @@ def get_suffix(file_dir, init_spe=None, atom_followed=None, end_t=None, pathwayE
         suffix += "_" + str(setting['pathway']['end_t'])
     else:
         suffix += "_" + str(end_t)
-    if pathwayEndWith is None:
-        suffix += "_" + str(setting['pathway']['pathwayEndWith'])
-    else:
-        suffix += "_" + str(pathwayEndWith)
 
     return suffix
 
