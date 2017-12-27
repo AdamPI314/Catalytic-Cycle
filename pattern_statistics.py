@@ -103,9 +103,9 @@ def species_count(file_dir, top_n=50, norm=False):
 
     # load spe and reaction info
     spe_ind_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
@@ -147,7 +147,7 @@ def reaction_count(file_dir, top_n=50, norm=False):
 
     # load reaction info
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
@@ -189,7 +189,7 @@ def initiation_reaction_count(file_dir, top_n=50, norm=False):
 
     # load reaction info
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
@@ -233,9 +233,9 @@ def species_cycle(file_dir, top_n=50, norm=False):
 
     # load spe and reaction info
     spe_ind_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
@@ -261,9 +261,9 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
 
     # load spe and reaction info
     spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
 
     species_production_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
@@ -307,7 +307,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
     _, spe_name_ind_dict = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     reaction_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
         map_tmp = parse_pattern.parse_species_production_reaction(
@@ -329,7 +329,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
 
     # load reaction info
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)

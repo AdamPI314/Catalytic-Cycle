@@ -92,9 +92,9 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, speci
     path_stat_fn = prefix + "pathway_stat.csv"
 
     psri.symbolic_path_2_real_path(
-        os.path.join(file_dir, "output", "species_labelling.csv"),
+        os.path.join(file_dir, "input", "species_labelling.csv"),
         os.path.join(
-            file_dir, "output", "reaction_labelling.csv"),
+            file_dir, "input", "reaction_labelling.csv"),
         os.path.join(
             file_dir, "output", path_stat_fn),
         os.path.join(
@@ -110,9 +110,9 @@ def symbolic_path_2_real_path_pff(file_dir, fn):
     out_fn = fn[0:-4] + "_real_path" + ".csv"
 
     psri.symbolic_path_2_real_path(
-        os.path.join(file_dir, "output", "species_labelling.csv"),
+        os.path.join(file_dir, "input", "species_labelling.csv"),
         os.path.join(
-            file_dir, "output", "reaction_labelling.csv"),
+            file_dir, "input", "reaction_labelling.csv"),
         os.path.join(
             file_dir, "output", fn),
         os.path.join(

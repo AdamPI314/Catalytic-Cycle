@@ -37,7 +37,7 @@ def read_spe_composition(f_n):
 
 def parse_reaction_and_its_index(f_n):
     """
-    parse reaction info from file= "os.path.join(file_dir, "output", "reaction_labelling.csv")"
+    parse reaction info from file= "os.path.join(file_dir, "input", "reaction_labelling.csv")"
     """
     # load data
     line_content = np.genfromtxt(f_n, dtype=str, delimiter='\n')

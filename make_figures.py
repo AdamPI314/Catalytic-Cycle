@@ -43,7 +43,7 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
     # data_y /= np.sum(data_y)
 
     spe_idx_n_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     # specify label for lines
     labels = [spe_idx_n_dict[str(end_spe)]]
 
@@ -116,7 +116,7 @@ def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
 
     if hasTemp is True:
         s_idx_n["-1"] = "Temp"
@@ -193,7 +193,7 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     s_idx_n["-1"] = "Temp"
 
     spe_idx_tmp.append(-1)
@@ -262,7 +262,7 @@ def plot_spe_drc(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     s_idx_n["-1"] = "Temp"
 
     spe_idx_tmp.append(-1)
@@ -339,7 +339,7 @@ def plot_chattering_group_drc(file_dir, tau=10.0, end_t=1.0, tag="fraction", rec
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     with open(os.path.join(file_dir, "output", "chattering_group_info.json"), 'r') as f_h:
         chattering_group_info = json.load(f_h)
 
@@ -430,7 +430,7 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     colors, markers, _ = get_colors_markers_linestyles()
 
     _, rxn_idx_n = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
     rxn_idx_n["-1"] = "Temp"
     reaction_idx.append(-1)
 
@@ -492,7 +492,7 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     colors, markers, _ = get_colors_markers_linestyles()
 
     _, rxn_idx_n = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "output", "reaction_labelling.csv"))
+        file_dir, "input", "reaction_labelling.csv"))
 
     if rxn_idx_pair is None:
         rxn_idx_pair = OrderedDict()
@@ -569,7 +569,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     data_c = data_c[::delta_n]
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
     spe_name = s_idx_n[str(end_spe)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
@@ -638,7 +638,7 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
         file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
 
     s_idx_n, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "output", "species_labelling.csv"))
+        file_dir, "input", "species_labelling.csv"))
 
     spe_top_n_idx_list = spe_conc.argsort()[-top_n:][::-1]
 
@@ -910,8 +910,8 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
     title_n = data_pn[path_idx]
 
-    f_n_spe = os.path.join(file_dir, "output", "species_labelling.csv")
-    f_n_rxn = os.path.join(file_dir, "output", "reaction_labelling.csv")
+    f_n_spe = os.path.join(file_dir, "input", "species_labelling.csv")
+    f_n_rxn = os.path.join(file_dir, "input", "reaction_labelling.csv")
     # load spe and reaction info
     spe_idx_n, _ = psri.parse_spe_info(f_n_spe)
     _, idx_rxn_n = psri.parse_reaction_and_its_index(f_n_rxn)
