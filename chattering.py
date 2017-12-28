@@ -6,6 +6,7 @@ import sys
 import os
 import time
 from shutil import copy2
+from collections import OrderedDict
 import numpy as np
 import parse_spe_reaction_info as psri
 import read_write_configuration as rwc
@@ -133,28 +134,64 @@ def fast_reaction_w2f(file_dir, threshold=-7):
 
 def generate_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
     """
-    generate fast reaction and trapped species based on three files
+    generate fast reaction and trapped species based on four files
+    0) species_information.json
     1) reaction_information.json
     2) atom_scheme.json
     3) fast_reaction_base.json
     """
+    f_n_si = os.path.join(file_dir, "input", "species_information.json")
     f_n_ri = os.path.join(file_dir, "input", "reaction_information.json")
     f_n_as = os.path.join(file_dir, "input", "atom_scheme.json")
     f_n_frb = os.path.join(file_dir, "input", "fast_reaction_base.json")
 
+    spe_info = rwc.read_configuration(f_n_si)
     rxn_info = rwc.read_configuration(f_n_ri)
     atom_scheme = rwc.read_configuration(f_n_as)
     fast_rxn_base = rwc.read_configuration(f_n_frb)
 
+    if atom_followed not in atom_scheme:
+        return OrderedDict(), OrderedDict()
+
+    fast_reaction_list = []
+    trapped_species_list = []
+
     for _, val1 in enumerate(fast_rxn_base):
-        rxn1 = fast_rxn_base[val1]["reaction1"]
-        rxn2 = fast_rxn_base[val1]["reaction2"]
+        rxn_1_idx = fast_rxn_base[val1]["reaction1"]
+        rxn_2_idx = fast_rxn_base[val1]["reaction2"]
 
-        reactant1 = rxn_info[str(rxn1)]["net_reactant"]
-        reactant2 = rxn_info[str(rxn2)]["net_reactant"]
+        reactant1 = rxn_info[str(rxn_1_idx)]["net_reactant"]
+        reactant2 = rxn_info[str(rxn_2_idx)]["net_reactant"]
 
-        print(reactant1, reactant2)
-    print("test")
+        s_1_idx = "None"
+        s_2_idx = "None"
+        for _, val2 in enumerate(reactant1):
+            spe_idx = reactant1[val2]["species_index"]
+            spe_name = spe_info[spe_idx]["name"]
+            # print(spe_idx, spe_name)
+            if spe_name in atom_scheme[atom_followed]:
+                s_1_idx = str(spe_idx)
+                # only one species allowed
+                break
+        for _, val2 in enumerate(reactant2):
+            spe_idx = reactant2[val2]["species_index"]
+            spe_name = spe_info[spe_idx]["name"]
+            # print(spe_idx, spe_name)
+            if spe_name in atom_scheme[atom_followed]:
+                s_2_idx = str(spe_idx)
+                # only one species allowed
+                break
+        print(s_1_idx, s_2_idx)
+        if s_1_idx != "None" and s_2_idx != "None":
+            fast_reaction_list.append(
+                tuple([str(rxn_1_idx), int(rxn_2_idx)]))
+            trapped_species_list.append(
+                tuple([str(s_1_idx), int(s_2_idx)]))
+
+    fast_reaction = OrderedDict(fast_reaction_list)
+    trapped_species = OrderedDict(trapped_species_list)
+    print(fast_reaction, trapped_species)
+    return fast_reaction, trapped_species
 
 
 if __name__ == '__main__':
