@@ -133,7 +133,7 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0):
     return list(d_f['name'])[0:top_n], data_tmp
 
 
-def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None, end_t=None):
+def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C", end_t=None):
     """
     init directed network
     without parallel edges
@@ -169,7 +169,8 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed=None,
     d_g_tmp = nx.DiGraph()
 
     # modify labels
-    spe_union_find_group = global_settings.get_union_find_group(FILE_DIR)
+    spe_union_find_group = global_settings.get_union_find_group(
+        FILE_DIR, atom_followed)
 
     # record all nodes
     nodes = set()
@@ -269,7 +270,7 @@ def get_names_coordinates(file_dir, fname=""):
     return n_coordinate
 
 
-def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, end_t=1.0, suffix=""):
+def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, end_t=1.0, suffix="", atom_followed="C"):
     """
     plot network manually
     """
@@ -299,7 +300,8 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         file_dir, "input", "reaction_labelling.csv"))
 
     # modify labels
-    spe_union_find_group = global_settings.get_union_find_group(FILE_DIR)
+    spe_union_find_group = global_settings.get_union_find_group(
+        FILE_DIR, atom_followed)
     for idx, val in enumerate(labels):
         spe_i = spe_name_idx_dict[val]
         if spe_i in spe_union_find_group:
@@ -365,7 +367,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
     return
 
 
-10if __name__ == '__main__':
+if __name__ == '__main__':
     INIT_TIME = time.time()
 
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
@@ -393,7 +395,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
     for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
         plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
                      pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
-                     path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX)
+                     path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX, atom_followed=G_S["atom_f"])
 
     END_TIME = time.time()
 

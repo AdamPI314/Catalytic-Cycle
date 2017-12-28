@@ -57,7 +57,7 @@ def update_dlsode_setting(file_dir, max_time=1.0, critical_time=0.9):
         file_dir, 'input', 'setting.json'))
 
 
-def update_trapped_species_fast_reaction_setting(file_dir):
+def update_trapped_species_fast_reaction_setting(file_dir, atom_followed="C"):
     """
     update settings.json, primarily for trapped species and fast reactions
     """
@@ -72,7 +72,7 @@ def update_trapped_species_fast_reaction_setting(file_dir):
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -119,7 +119,7 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -157,7 +157,7 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -194,7 +194,7 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -229,7 +229,7 @@ def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C"
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 
@@ -264,7 +264,7 @@ def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="
         os.path.join(file_dir, 'input', 'setting.json'))
 
     fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
-        file_dir)
+        file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
     setting['pathway']['trapped_species'] = trapped_spe
 

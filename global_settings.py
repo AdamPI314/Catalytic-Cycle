@@ -7,23 +7,23 @@ from collections import OrderedDict, defaultdict
 import union_find
 
 
-def get_fast_rxn_trapped_spe(file_dir):
+def get_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
     """
     get_fast_rxn_trapped_spe
     """
     try:
         sys.path.append(os.path.join(file_dir, "input"))
         import local_settings
-        return local_settings.get_fast_rxn_trapped_spe()
+        return local_settings.get_fast_rxn_trapped_spe(atom_followed)
     except IOError:
         return OrderedDict(), OrderedDict()
 
 
-def get_union_find_group(file_dir):
+def get_union_find_group(file_dir, atom_followed="C"):
     """
     return union_find_groups
     """
-    _, trapped_species = get_fast_rxn_trapped_spe(file_dir)
+    _, trapped_species = get_fast_rxn_trapped_spe(file_dir, atom_followed)
 
     counter = 0
     spe_idx_label = dict()
@@ -88,5 +88,5 @@ def get_setting(file_dir):
         sys.path.append(os.path.join(file_dir, "input"))
         import local_settings
         return local_settings.get_local_settings()
-    except Exception:
+    except IOError:
         return setting

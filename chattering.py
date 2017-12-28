@@ -6,7 +6,6 @@ import sys
 import os
 import time
 from shutil import copy2
-from collections import OrderedDict
 import numpy as np
 import parse_spe_reaction_info as psri
 import read_write_configuration as rwc
@@ -132,13 +131,16 @@ def fast_reaction_w2f(file_dir, threshold=-7):
     rwc.write_configuration(fast_transition, fn_frb1)
 
 
-def generate_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
+def generate_fast_rxn_trapped_spe(file_dir):
     """
     generate fast reaction and trapped species based on four files
     0) species_information.json
     1) reaction_information.json
     2) atom_scheme.json
     3) fast_reaction_base.json
+
+    save file named "fast_transition.json", this file will be used to update file
+    "local_settings.py" manually
     """
     f_n_si = os.path.join(file_dir, "input", "species_information.json")
     f_n_ri = os.path.join(file_dir, "input", "reaction_information.json")
@@ -150,48 +152,51 @@ def generate_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
     atom_scheme = rwc.read_configuration(f_n_as)
     fast_rxn_base = rwc.read_configuration(f_n_frb)
 
-    if atom_followed not in atom_scheme:
-        return OrderedDict(), OrderedDict()
-
-    fast_reaction_list = []
-    trapped_species_list = []
+    fast_transition = []
 
     for _, val1 in enumerate(fast_rxn_base):
+        entry = {}
+
         rxn_1_idx = fast_rxn_base[val1]["reaction1"]
         rxn_2_idx = fast_rxn_base[val1]["reaction2"]
 
         reactant1 = rxn_info[str(rxn_1_idx)]["net_reactant"]
         reactant2 = rxn_info[str(rxn_2_idx)]["net_reactant"]
 
+        entry.update({"formula1": fast_rxn_base[val1]["formula1"]})
+        entry.update({"formula2": fast_rxn_base[val1]["formula2"]})
+        entry.update({"rxn": [int(rxn_1_idx), int(rxn_2_idx)]})
+        entry.update({"spe": {}})
+
         s_1_idx = "None"
         s_2_idx = "None"
-        for _, val2 in enumerate(reactant1):
-            spe_idx = reactant1[val2]["species_index"]
-            spe_name = spe_info[spe_idx]["name"]
-            # print(spe_idx, spe_name)
-            if spe_name in atom_scheme[atom_followed]:
-                s_1_idx = str(spe_idx)
-                # only one species allowed
-                break
-        for _, val2 in enumerate(reactant2):
-            spe_idx = reactant2[val2]["species_index"]
-            spe_name = spe_info[spe_idx]["name"]
-            # print(spe_idx, spe_name)
-            if spe_name in atom_scheme[atom_followed]:
-                s_2_idx = str(spe_idx)
-                # only one species allowed
-                break
-        print(s_1_idx, s_2_idx)
-        if s_1_idx != "None" and s_2_idx != "None":
-            fast_reaction_list.append(
-                tuple([str(rxn_1_idx), int(rxn_2_idx)]))
-            trapped_species_list.append(
-                tuple([str(s_1_idx), int(s_2_idx)]))
+        for atom_followed in atom_scheme:
+            for _, val2 in enumerate(reactant1):
+                spe_idx = reactant1[val2]["species_index"]
+                spe_name = spe_info[spe_idx]["name"]
+                if spe_name in atom_scheme[atom_followed]:
+                    s_1_idx = str(spe_idx)
+                    # only one species allowed
+                    break
+            for _, val2 in enumerate(reactant2):
+                spe_idx = reactant2[val2]["species_index"]
+                spe_name = spe_info[spe_idx]["name"]
+                if spe_name in atom_scheme[atom_followed]:
+                    s_2_idx = str(spe_idx)
+                    # only one species allowed
+                    break
+            if s_1_idx != "None" and s_2_idx != "None":
+                entry["spe"].update(
+                    {atom_followed: [int(s_1_idx), int(s_2_idx)]})
 
-    fast_reaction = OrderedDict(fast_reaction_list)
-    trapped_species = OrderedDict(trapped_species_list)
-    print(fast_reaction, trapped_species)
-    return fast_reaction, trapped_species
+        fast_transition.append(entry)
+
+    fn_ft0 = os.path.join(file_dir, "input", "fast_transition_backup.json")
+    fn_ft1 = os.path.join(file_dir, "input", "fast_transition.json")
+    if os.path.isfile(fn_ft1):
+        copy2(fn_ft1, fn_ft0)
+
+    rwc.write_configuration(fast_transition, fn_ft1)
 
 
 if __name__ == '__main__':
