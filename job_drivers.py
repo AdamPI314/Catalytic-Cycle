@@ -16,11 +16,11 @@ import make_figures as mf
 import global_settings
 
 
-def update_trapped_species_fast_reaction_setting(file_dir):
+def update_trapped_species_fast_reaction_setting(file_dir, atom_followed="C"):
     """
     update settings.json, primarily for trapped species and fast reactions
     """
-    us.update_trapped_species_fast_reaction_setting(file_dir)
+    us.update_trapped_species_fast_reaction_setting(file_dir, atom_followed)
 
 
 def copy_sohr_files(file_dir, species_path=False):

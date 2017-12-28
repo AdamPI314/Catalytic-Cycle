@@ -23,8 +23,9 @@ if __name__ == '__main__':
     # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, G_S['traj_max_t'], G_S['traj_critical_t'])
 
-    # # update trapped species and fast reactions
-    # job_drivers.update_trapped_species_fast_reaction_setting(FILE_DIR)
+    # update trapped species and fast reactions
+    job_drivers.update_trapped_species_fast_reaction_setting(
+        FILE_DIR, G_S['atom_f'])
 
     # # write specie concentration at a time to file
     # job_drivers.spe_concentration_at_time_w2f(
