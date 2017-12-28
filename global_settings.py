@@ -15,7 +15,7 @@ def get_fast_rxn_trapped_spe(file_dir):
         sys.path.append(os.path.join(file_dir, "input"))
         import local_settings
         return local_settings.get_fast_rxn_trapped_spe()
-    except Exception:
+    except IOError:
         return OrderedDict(), OrderedDict()
 
 

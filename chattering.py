@@ -131,6 +131,32 @@ def fast_reaction_w2f(file_dir, threshold=-7):
     rwc.write_configuration(fast_transition, fn_frb1)
 
 
+def generate_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
+    """
+    generate fast reaction and trapped species based on three files
+    1) reaction_information.json
+    2) atom_scheme.json
+    3) fast_reaction_base.json
+    """
+    f_n_ri = os.path.join(file_dir, "input", "reaction_information.json")
+    f_n_as = os.path.join(file_dir, "input", "atom_scheme.json")
+    f_n_frb = os.path.join(file_dir, "input", "fast_reaction_base.json")
+
+    rxn_info = rwc.read_configuration(f_n_ri)
+    atom_scheme = rwc.read_configuration(f_n_as)
+    fast_rxn_base = rwc.read_configuration(f_n_frb)
+
+    for _, val1 in enumerate(fast_rxn_base):
+        rxn1 = fast_rxn_base[val1]["reaction1"]
+        rxn2 = fast_rxn_base[val1]["reaction2"]
+
+        reactant1 = rxn_info[str(rxn1)]["net_reactant"]
+        reactant2 = rxn_info[str(rxn2)]["net_reactant"]
+
+        print(reactant1, reactant2)
+    print("test")
+
+
 if __name__ == '__main__':
     INIT_TIME = time.time()
 
@@ -138,8 +164,10 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
 
+    # initiate_fast_reaction(FILE_DIR)
     # update_fast_reaction(FILE_DIR, tau=0.7, end_t=0.25)
-    fast_reaction_w2f(FILE_DIR, threshold=-8)
+    # fast_reaction_w2f(FILE_DIR, threshold=-8)
+    generate_fast_rxn_trapped_spe(FILE_DIR)
 
     END_TIME = time.time()
 
