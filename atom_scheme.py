@@ -11,7 +11,7 @@ import read_write_configuration as rwc
 
 def spe_composition_2_atom_scheme(file_dir):
     """
-    convert species grouped atom scheme, which refers file named
+    convert species grouped atom scheme, which refers to file named
     "spe_composition.json" generated from cantera to a new file named
     "atom_scheme.json"
     """
@@ -30,7 +30,7 @@ def spe_composition_2_atom_scheme(file_dir):
     fn0 = os.path.join(file_dir, "input", "atom_scheme_backup.json")
     fn1 = os.path.join(file_dir, "input", "atom_scheme.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     rwc.write_configuration(atom_scheme, fn1)

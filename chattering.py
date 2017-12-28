@@ -5,16 +5,130 @@ to deal with chattering
 import sys
 import os
 import time
+from shutil import copy2
+import numpy as np
 import parse_spe_reaction_info as psri
+import read_write_configuration as rwc
+import interpolation
 
 
 def initiate_fast_reaction(file_dir):
     """
-    intiate file named "reaction_info.json" based on file named "reaction_labelling.csv"
+    intiate file named "reaction_info_base.json" based on file named "reaction_labelling.csv"
     """
     new_old_index_dict, new_ind_reaction_dict = psri.parse_reaction_and_its_index(
         os.path.join(file_dir, "input", "reaction_labelling.csv"))
-    print(new_old_index_dict, new_ind_reaction_dict)
+
+    rxn_pair_dict = dict()
+
+    # un-paired species
+    unpaired = dict()
+    for _, val1 in enumerate(new_old_index_dict):
+        # print(idx, val1, new_old_index_dict[val1])
+        this_value = int(new_old_index_dict[val1])
+        neg_value = -1 * this_value
+        if (neg_value in unpaired):
+            # print(int(val1), unpaired[neg_value])
+            rxn_pair_dict.update({int(val1): unpaired[neg_value]})
+            rxn_pair_dict.update({unpaired[neg_value]: int(val1)})
+            unpaired.pop(neg_value)
+        else:
+            unpaired.update({this_value: int(val1)})
+
+    rxn_info = {}
+    for _, val1 in enumerate(new_ind_reaction_dict):
+        entry = {
+            str(val1): {
+                "formula": new_ind_reaction_dict[val1],
+                # default value, 10^-100, assume the reaction is super slow
+                "time_scale": -100,
+                "reverse_reaction": "None"
+            }
+        }
+        if int(val1) in rxn_pair_dict:
+            entry[str(val1)]["reverse_reaction"] = \
+                str(rxn_pair_dict[int(val1)])
+        rxn_info.update(entry)
+
+    fn0 = os.path.join(file_dir, "input", "reaction_info_base_backup.json")
+    fn1 = os.path.join(file_dir, "input", "reaction_info_base.json")
+
+    if os.path.isfile(fn1):
+        copy2(fn1, fn0)
+
+    rwc.write_configuration(rxn_info, fn1)
+
+
+def update_fast_reaction(file_dir, tau=0.7, end_t=1.0, tag="M"):
+    """
+    update fast reaction based on reference trajectory
+    """
+    fn0 = os.path.join(file_dir, "input", "reaction_info_base_backup.json")
+    fn1 = os.path.join(file_dir, "input", "reaction_info_base.json")
+
+    rxn_info = rwc.read_configuration(fn1)
+
+    time_v = np.loadtxt(os.path.join(
+        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+                                        "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    actual_time = float(tau) * float(end_t)
+    for _, val in enumerate(rxn_info):
+        actual_rate = interpolation.interp1d(
+            time_v, rxn_rates[:, int(val)], actual_time)
+        if actual_rate != 0:
+            time_scale = np.log10(actual_rate)
+            if time_scale >= -100 and time_scale <= 100:
+                # print(time_scale)
+                rxn_info[val]["time_scale"] = time_scale
+
+    if os.path.isfile(fn1):
+        copy2(fn1, fn0)
+
+    rwc.write_configuration(rxn_info, fn1)
+
+
+def fast_reaction_w2f(file_dir, threshold=-7):
+    """
+    prepare "fast_reaction.json" file, this file will be
+    1) manually changed later
+    2) used to generate chattering information later
+    """
+    fast_transition = {}
+    counter = 0
+
+    fn_rib = os.path.join(file_dir, "input", "reaction_info_base.json")
+    rxn_info = rwc.read_configuration(fn_rib)
+
+    # care fast reaction pair only, both forward and backward reactions are fast
+    unpaired_fast_rxn = set()
+    for _, val in enumerate(rxn_info):
+        if rxn_info[val]["reverse_reaction"] != "None" \
+                and float(rxn_info[val]["time_scale"]) >= threshold:
+            # print(rxn_info[val]["formula"])
+            this_rxn = str(val)
+            paired_rxn = rxn_info[val]["reverse_reaction"]
+            if paired_rxn not in unpaired_fast_rxn:
+                unpaired_fast_rxn.add(this_rxn)
+            else:
+                entry = {
+                    str(counter): {
+                        "formula1": rxn_info[paired_rxn]["formula"],
+                        "formula2": rxn_info[this_rxn]["formula"],
+                        "reaction1": int(paired_rxn),
+                        "reaction2": int(this_rxn)
+                    }
+                }
+                fast_transition.update(entry)
+                counter += 1
+
+    fn_frb0 = os.path.join(file_dir, "input", "fast_reaction_base_backup.json")
+    fn_frb1 = os.path.join(file_dir, "input", "fast_reaction_base.json")
+    if os.path.isfile(fn_frb1):
+        copy2(fn_frb1, fn_frb0)
+
+    rwc.write_configuration(fast_transition, fn_frb1)
 
 
 if __name__ == '__main__':
@@ -24,7 +138,8 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     print(FILE_DIR)
 
-    initiate_fast_reaction(FILE_DIR)
+    # update_fast_reaction(FILE_DIR, tau=0.7, end_t=0.25)
+    fast_reaction_w2f(FILE_DIR, threshold=-8)
 
     END_TIME = time.time()
 

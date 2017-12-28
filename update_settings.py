@@ -16,7 +16,7 @@ def update_basic_setting(file_dir, g_s):
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -43,7 +43,7 @@ def update_dlsode_setting(file_dir, max_time=1.0, critical_time=0.9):
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -65,7 +65,7 @@ def update_trapped_species_fast_reaction_setting(file_dir):
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -89,7 +89,7 @@ def update_spe_concentration_at_time_w2f(file_dir, tau=10.0, end_t=1.0):
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -112,7 +112,7 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -150,7 +150,7 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -187,7 +187,7 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -222,7 +222,7 @@ def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
@@ -257,7 +257,7 @@ def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
     fn1 = os.path.join(file_dir, "input", "setting.json")
 
-    if not os.path.isfile(fn0):
+    if os.path.isfile(fn1):
         copy2(fn1, fn0)
 
     setting = rwc.read_configuration(
