@@ -1,19 +1,22 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR
-{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78]}}
-{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80]}}
-{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90]}}
-[('1068', 1069), ('1096', 1097), ('1116', 1117)] [('78', 9), ('80', 9), ('90', 9)]
-OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117)]) OrderedDict([('78', 9), ('80', 9), ('90', 9)])
-{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78]}}
-{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80]}}
-{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90]}}
-[('1068', 1069), ('1096', 1097), ('1116', 1117)] [('78', 9), ('80', 9), ('90', 9)]
-OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117)]) OrderedDict([('78', 9), ('80', 9), ('90', 9)])
-{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78]}}
-{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80]}}
-{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90]}}
-[('1068', 1069), ('1096', 1097), ('1116', 1117)] [('78', 9), ('80', 9), ('90', 9)]
-OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117)]) OrderedDict([('78', 9), ('80', 9), ('90', 9)])
+{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78]}}
+{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80], 'HA1': [61, 80]}}
+{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90]}}
+{'formula1': 'npropyloo=QOOH_1', 'formula2': 'QOOH_1=>npropyloo', 'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'HA1': [78, 87]}}
+[('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)] [('60', 78), ('61', 80), ('87', 90), ('78', 87)]
+OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)]) OrderedDict([('60', 78), ('61', 80), ('87', 90), ('78', 87)])
+{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78]}}
+{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80], 'HA1': [61, 80]}}
+{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90]}}
+{'formula1': 'npropyloo=QOOH_1', 'formula2': 'QOOH_1=>npropyloo', 'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'HA1': [78, 87]}}
+[('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)] [('60', 78), ('61', 80), ('87', 90), ('78', 87)]
+OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)]) OrderedDict([('60', 78), ('61', 80), ('87', 90), ('78', 87)])
+{'formula1': 'O2+npropyl=>npropyloo', 'formula2': 'npropyloo=>O2+npropyl', 'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78]}}
+{'formula1': 'O2+ipropyl=>ipropyloo', 'formula2': 'ipropyloo=>O2+ipropyl', 'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80], 'HA1': [61, 80]}}
+{'formula1': 'O2+QOOH_1=>well_1', 'formula2': 'well_1=>O2+QOOH_1', 'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90]}}
+{'formula1': 'npropyloo=QOOH_1', 'formula2': 'QOOH_1=>npropyloo', 'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'HA1': [78, 87]}}
+[('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)] [('60', 78), ('61', 80), ('87', 90), ('78', 87)]
+OrderedDict([('1068', 1069), ('1096', 1097), ('1116', 1117), ('1080', 1081)]) OrderedDict([('60', 78), ('61', 80), ('87', 90), ('78', 87)])
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_selected.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_prob.csv found
