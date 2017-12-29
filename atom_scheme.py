@@ -13,7 +13,7 @@ def spe_composition_2_atom_scheme(file_dir):
     """
     convert species grouped atom scheme, which refers to file named
     "spe_composition.json" generated from cantera to a new file named
-    "atom_scheme.json"
+    "atom_scheme_base.json"
     """
     spe_comp = rwc.read_configuration(os.path.join(
         file_dir, "input", "spe_composition.json"))
@@ -27,8 +27,8 @@ def spe_composition_2_atom_scheme(file_dir):
             else:
                 atom_scheme[atom_1].update({str(s_1): spe_comp[s_1][atom_1]})
 
-    fn0 = os.path.join(file_dir, "input", "atom_scheme_backup.json")
-    fn1 = os.path.join(file_dir, "input", "atom_scheme.json")
+    fn0 = os.path.join(file_dir, "input", "atom_scheme_base_backup.json")
+    fn1 = os.path.join(file_dir, "input", "atom_scheme_base.json")
 
     if os.path.isfile(fn1):
         copy2(fn1, fn0)
@@ -40,7 +40,7 @@ def spe_information_2_atom_scheme(file_dir):
     """
     convert species information
     "species_information.json" to a new file named
-    "atom_scheme.json"
+    "atom_scheme_base.json"
     """
     spe_comp = rwc.read_configuration(os.path.join(
         file_dir, "input", "species_information.json"))
@@ -57,8 +57,8 @@ def spe_information_2_atom_scheme(file_dir):
             else:
                 atom_scheme[atom_1].update({str(s_1): float(atom_number)})
 
-    fn0 = os.path.join(file_dir, "input", "atom_scheme_backup.json")
-    fn1 = os.path.join(file_dir, "input", "atom_scheme.json")
+    fn0 = os.path.join(file_dir, "input", "atom_scheme_base_backup.json")
+    fn1 = os.path.join(file_dir, "input", "atom_scheme_base.json")
 
     if os.path.isfile(fn1):
         copy2(fn1, fn0)
