@@ -23,6 +23,9 @@ if __name__ == '__main__':
     # # run dlosde
     # job_drivers.run_dlsode(FILE_DIR, G_S['traj_max_t'], G_S['traj_critical_t'])
 
+    # update terminal species
+    job_drivers.update_terminal_species_setting(FILE_DIR, G_S['terminal_spe'])
+
     # update trapped species and fast reactions
     job_drivers.update_trapped_species_fast_reaction_setting(
         FILE_DIR, G_S['atom_f'])

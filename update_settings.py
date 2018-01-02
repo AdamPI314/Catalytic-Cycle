@@ -57,6 +57,32 @@ def update_dlsode_setting(file_dir, max_time=1.0, critical_time=0.9):
         file_dir, 'input', 'setting.json'))
 
 
+def update_terminal_species_setting(file_dir, terminal_spe=None):
+    """
+    update settings.json, primarily for terminal species
+    """
+    # there will always be a current setting
+    fn0 = os.path.join(file_dir, "input", "setting_backup.json")
+    fn1 = os.path.join(file_dir, "input", "setting.json")
+
+    if os.path.isfile(fn1):
+        copy2(fn1, fn0)
+
+    setting = rwc.read_configuration(
+        os.path.join(file_dir, 'input', 'setting.json'))
+
+    t_s = []
+    if terminal_spe is not None and terminal_spe is not []:
+        for _, val in enumerate(terminal_spe):
+            t_s.append(val)
+
+    setting['pathway']['terminal_species'] = t_s
+
+    rwc.write_configuration(setting, os.path.join(
+        file_dir, 'input', 'setting.json'))
+    return
+
+
 def update_trapped_species_fast_reaction_setting(file_dir, atom_followed="C"):
     """
     update settings.json, primarily for trapped species and fast reactions
