@@ -97,7 +97,7 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0):
+def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, species_path=False):
     """
     get top n path
     """
@@ -108,10 +108,14 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0):
     spe_idx_name_dict = update_species_idx_name_dict(
         spe_idx_name_dict, spe_alias=spe_alias)
 
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
     f_n_path_name = os.path.join(
-        file_dir, "output", "pathway_name_selected" + suffix + ".csv")
+        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_path_prob = os.path.join(
-        file_dir, "output", "pathway_prob" + suffix + ".csv")
+        file_dir, "output", prefix + "pathway_prob" + suffix + ".csv")
 
     p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
     p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
@@ -133,7 +137,8 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0):
     return list(d_f['name'])[0:top_n], data_tmp
 
 
-def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C", end_t=None):
+def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
+                          end_t=None, start_idx=0, species_path=False):
     """
     init directed network
     without parallel edges
@@ -145,15 +150,21 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C", 
     suffix = get_suffix(file_dir, init_spe=init_spe,
                         atom_followed=atom_followed, end_t=end_t)
 
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
     f_n_path_name = os.path.join(
-        file_dir, "output", "pathway_name_selected" + suffix + ".csv")
+        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_path_prob = os.path.join(
-        file_dir, "output", "pathway_prob" + suffix + ".csv")
+        file_dir, "output", prefix + "pathway_prob" + suffix + ".csv")
+
     print(f_n_path_name, f_n_path_prob)
     p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
     p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
-    p_n = p_n[1::]
-    p_p = p_p[1::]
+    p_n = p_n[start_idx::]
+    p_p = p_p[start_idx::]
+
     # set the data type seperately
     d_f_n = pd.DataFrame(p_n, columns=['name'], dtype=str)
     d_f_p = pd.DataFrame(p_p, columns=['prob'], dtype=float)
@@ -191,23 +202,42 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C", 
         path_name_tmp = re.sub(r"R-\d+S\d+", r'', val['name'])
         print(path_name_tmp)
 
-        matched_spe = re.findall(r"S(\d+)", path_name_tmp)
-        matched_reaction = re.findall(r"R(\d+)", path_name_tmp)
-        for idx, spe in enumerate(matched_spe):
-            d_g_tmp.node[change_spe_name(
-                spe, spe_idx_name_dict, union_find=spe_union_find_group)]['weight'] += 1.0 * prob
-            if idx > 0:
-                src = change_spe_name(
-                    matched_spe[idx - 1], spe_idx_name_dict, union_find=spe_union_find_group)
-                dest = change_spe_name(
-                    spe, spe_idx_name_dict, union_find=spe_union_find_group)
-                rxn = change_rxn_name(matched_reaction[idx - 1])
-                if d_g_tmp.has_edge(src, dest):
-                    d_g_tmp[src][dest]['weight'] += 1.0 * prob
-                    d_g_tmp[src][dest]['reactions'].add(rxn)
-                else:
-                    d_g_tmp.add_edge(src, dest,
-                                     reactions=set([rxn]), weight=1.0 * prob)
+        # pathway contains both reaction and species
+        if species_path is False:
+            matched_spe = re.findall(r"S(\d+)", path_name_tmp)
+            matched_reaction = re.findall(r"R(\d+)", path_name_tmp)
+            for idx, spe in enumerate(matched_spe):
+                d_g_tmp.node[change_spe_name(
+                    spe, spe_idx_name_dict, union_find=spe_union_find_group)]['weight'] += 1.0 * prob
+                if idx > 0:
+                    src = change_spe_name(
+                        matched_spe[idx - 1], spe_idx_name_dict, union_find=spe_union_find_group)
+                    dest = change_spe_name(
+                        spe, spe_idx_name_dict, union_find=spe_union_find_group)
+                    rxn = change_rxn_name(matched_reaction[idx - 1])
+                    if d_g_tmp.has_edge(src, dest):
+                        d_g_tmp[src][dest]['weight'] += 1.0 * prob
+                        d_g_tmp[src][dest]['reactions'].add(rxn)
+                    else:
+                        d_g_tmp.add_edge(src, dest,
+                                         reactions=set([rxn]), weight=1.0 * prob)
+        else:
+            matched_spe = re.findall(r"S(\d+)", path_name_tmp)
+            for idx, spe in enumerate(matched_spe):
+                d_g_tmp.node[change_spe_name(
+                    spe, spe_idx_name_dict, union_find=spe_union_find_group)]['weight'] += 1.0 * prob
+                if idx > 0:
+                    src = change_spe_name(
+                        matched_spe[idx - 1], spe_idx_name_dict, union_find=spe_union_find_group)
+                    dest = change_spe_name(
+                        spe, spe_idx_name_dict, union_find=spe_union_find_group)
+                    rxn = '-1'
+                    if d_g_tmp.has_edge(src, dest):
+                        d_g_tmp[src][dest]['weight'] += 1.0 * prob
+                        d_g_tmp[src][dest]['reactions'].add(rxn)
+                    else:
+                        d_g_tmp.add_edge(src, dest,
+                                         reactions=set([rxn]), weight=1.0 * prob)
 
     # update directed graph, for example,
     # 1. reactions is originally a set, combine to get a string of reactions
@@ -221,6 +251,7 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C", 
         edge_weight.append(d_g_tmp[val[0]][val[1]]['weight'])
     node_weight = rescale_array(node_weight, 1.0, 5.0)
     edge_weight = rescale_array(edge_weight, 3.0, 15.0)
+
     # final directed graph
     di_graph = nx.DiGraph()
     for idx, val in enumerate(d_g_tmp.nodes()):
@@ -270,17 +301,23 @@ def get_names_coordinates(file_dir, fname=""):
     return n_coordinate
 
 
-def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, end_t=1.0, suffix="", atom_followed="C"):
+def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, end_t=1.0, suffix="", atom_followed="C", species_path=False):
     """
     plot network manually
     """
     print(fname)
     n_coordinate = get_names_coordinates(file_dir, fname)
+
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
     # figure name
     if suffix is "":
-        fig_name = "network_path_" + str(path_idx) + ".jpg"
+        fig_name = prefix + "network_path_" + str(path_idx) + ".jpg"
     else:
-        fig_name = "network_path_" + str(path_idx) + str(suffix) + ".jpg"
+        fig_name = prefix + "network_path_" + \
+            str(path_idx) + str(suffix) + ".jpg"
 
     # specify label for lines
     labels = []
@@ -320,6 +357,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
 
     # get rid of R-1000003S90, don't need it here
     pathname = re.sub(r"R-\d+S\d+", r'', pathname)
+
     # parse pathway
     matched_spe = re.findall(r"S(\d+)", pathname)
     matched_reaction = re.findall(r"R(\d+)", pathname)
@@ -343,15 +381,17 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         t_h = a_x.annotate(labels[val], (x[val], y[val]))
         t_h.set_alpha(0.9)
 
-    # draw reaction along path
-    for idx, curr_idx in enumerate(node_list):
-        if idx >= 1:
-            pre_idx = node_list[idx - 1]
-            rxn_name = str(new_ind_reaction_dict[matched_reaction[idx - 1]])
+    if species_path is False:
+        # draw reaction along path
+        for idx, curr_idx in enumerate(node_list):
+            if idx >= 1:
+                pre_idx = node_list[idx - 1]
+                rxn_name = str(
+                    new_ind_reaction_dict[matched_reaction[idx - 1]])
 
-            t_h = a_x.annotate(rxn_name,
-                               (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
-            t_h.set_alpha(0.5)
+                t_h = a_x.annotate(rxn_name,
+                                   (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
+                t_h.set_alpha(0.5)
 
     a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
@@ -376,24 +416,28 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting(FILE_DIR)
 
+    PREFIX = ""
+    if G_S['species_path'] is True:
+        PREFIX = "species_"
     SUFFIX = get_suffix(FILE_DIR, init_spe=G_S['init_s'],
                         atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
-
     # filename without type appendix
-    NETWORK_FILENAME = "network_" + str(G_S['top_n_p_gephi']) + SUFFIX
+    NETWORK_FILENAME = PREFIX + "network_" + str(G_S['top_n_p_gephi']) + SUFFIX
 
-    RN_OBJ = init_directed_network(
-        FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
-        atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
-    network_to_gephi_input_file(
-        RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
+    # RN_OBJ = init_directed_network(
+    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
+    #     atom_followed=G_S['atom_f'], end_t=G_S['end_t'], start_idx=1, species_path=G_S['species_path'])
+    # network_to_gephi_input_file(
+    #     RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
 
-    # PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
-    #                                                      suffix=SUFFIX, norm=True, start_idx=1)
-    # for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
-    #     plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
-    #                  pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
-    #                  path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX, atom_followed=G_S["atom_f"])
+    PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
+                                                         suffix=SUFFIX, norm=True, start_idx=1,
+                                                         species_path=G_S['species_path'])
+    for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
+        plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
+                     pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
+                     path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
+                     atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
     END_TIME = time.time()
 
