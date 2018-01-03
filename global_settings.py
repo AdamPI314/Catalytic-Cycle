@@ -7,23 +7,23 @@ from collections import OrderedDict, defaultdict
 import union_find
 
 
-def get_fast_rxn_chattering_spe(file_dir, atom_followed="C"):
+def get_chattering_species(file_dir, atom_followed="C"):
     """
-    get_fast_rxn_chattering_spe
+    get_chattering_species
     """
     try:
         sys.path.append(os.path.join(file_dir, "input"))
         import local_settings
-        return local_settings.get_fast_rxn_chattering_spe(atom_followed)
+        return local_settings.get_chattering_species(atom_followed)
     except IOError:
-        return OrderedDict(), OrderedDict()
+        return OrderedDict()
 
 
 def get_union_find_group(file_dir, atom_followed="C"):
     """
     return union_find_groups
     """
-    _, chattering_species = get_fast_rxn_chattering_spe(file_dir, atom_followed)
+    chattering_species = get_chattering_species(file_dir, atom_followed)
 
     counter = 0
     spe_idx_label = dict()
@@ -31,22 +31,27 @@ def get_union_find_group(file_dir, atom_followed="C"):
 
     u_set = set()
 
-    for _, val in enumerate(chattering_species):
-        if int(val) not in u_set:
-            u_set.add(int(val))
-            spe_idx_label[int(val)] = counter
-            label_spe_idx[counter] = int(val)
+    for _, pair_label in enumerate(chattering_species):
+        idx1 = chattering_species[pair_label][0]
+        idx2 = chattering_species[pair_label][1]
+        if int(idx1) not in u_set:
+            u_set.add(int(idx1))
+            spe_idx_label[int(idx1)] = counter
+            label_spe_idx[counter] = int(idx1)
             counter += 1
-        if chattering_species[val] not in u_set:
-            u_set.add(int(chattering_species[val]))
-            spe_idx_label[int(chattering_species[val])] = counter
-            label_spe_idx[counter] = int(chattering_species[val])
+        if int(idx2) not in u_set:
+            u_set.add(int(idx2))
+            spe_idx_label[int(idx2)] = counter
+            label_spe_idx[counter] = int(idx2)
             counter += 1
-    # print(spe_idx_label, label_spe_idx)
+    print(spe_idx_label, label_spe_idx)
     wqnpc = union_find.WeightedQuickUnionWithPathCompression(len(u_set))
-    for _, val in enumerate(chattering_species):
-        idx1 = int(spe_idx_label[int(val)])
-        idx2 = int(spe_idx_label[int(chattering_species[val])])
+    for _, pair_label in enumerate(chattering_species):
+        idx1 = chattering_species[pair_label][0]
+        idx2 = chattering_species[pair_label][1]
+
+        idx1 = int(spe_idx_label[int(idx1)])
+        idx2 = int(spe_idx_label[int(idx2)])
         wqnpc.unite(idx1, idx2)
 
     # unique labels
@@ -90,3 +95,10 @@ def get_setting(file_dir):
         return local_settings.get_local_settings()
     except IOError:
         return setting
+
+
+if __name__ == '__main__':
+    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    get_union_find_group(FILE_DIR, atom_followed="C")
+    print("test")

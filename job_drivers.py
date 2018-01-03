@@ -23,11 +23,11 @@ def update_terminal_species_setting(file_dir, terminal_spe=None):
     us.update_terminal_species_setting(file_dir, terminal_spe=terminal_spe)
 
 
-def update_chattering_species_fast_reaction_setting(file_dir, atom_followed="C"):
+def update_chattering_species_setting(file_dir, atom_followed="C"):
     """
     update settings.json, primarily for chattering species and fast reactions
     """
-    us.update_chattering_species_fast_reaction_setting(file_dir, atom_followed)
+    us.update_chattering_species_setting(file_dir, atom_followed)
 
 
 def copy_sohr_files(file_dir, species_path=False):
@@ -429,10 +429,6 @@ def propane_make_figures(file_dir, species_path=False):
                               exclude_names=spe_exclude_name, end_t=g_s['end_t'],
                               end_spe=s_i, species_path=species_path)
     mf.plot_rxn_rate_constant(file_dir)
-    r_idx_pair, s_idx_pair = global_settings.get_fast_rxn_chattering_spe(
-        file_dir, g_s["atom_f"])
-    mf.plot_reaction_pair_rate_ratio(
-        file_dir, rxn_idx_pair=r_idx_pair, spe_idx_pair=s_idx_pair, tau=g_s['tau'], end_t=1.0, tag="M")
     mf.plot_top_n_spe_concentration(
         file_dir, exclude_names=None, atom_followed=g_s['atom_f'], end_t=g_s['end_t'], top_n=10)
 
