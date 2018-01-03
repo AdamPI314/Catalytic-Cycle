@@ -7,14 +7,14 @@ from collections import OrderedDict, defaultdict
 import union_find
 
 
-def get_fast_rxn_trapped_spe(file_dir, atom_followed="C"):
+def get_fast_rxn_chattering_spe(file_dir, atom_followed="C"):
     """
-    get_fast_rxn_trapped_spe
+    get_fast_rxn_chattering_spe
     """
     try:
         sys.path.append(os.path.join(file_dir, "input"))
         import local_settings
-        return local_settings.get_fast_rxn_trapped_spe(atom_followed)
+        return local_settings.get_fast_rxn_chattering_spe(atom_followed)
     except IOError:
         return OrderedDict(), OrderedDict()
 
@@ -23,7 +23,7 @@ def get_union_find_group(file_dir, atom_followed="C"):
     """
     return union_find_groups
     """
-    _, trapped_species = get_fast_rxn_trapped_spe(file_dir, atom_followed)
+    _, chattering_species = get_fast_rxn_chattering_spe(file_dir, atom_followed)
 
     counter = 0
     spe_idx_label = dict()
@@ -31,22 +31,22 @@ def get_union_find_group(file_dir, atom_followed="C"):
 
     u_set = set()
 
-    for _, val in enumerate(trapped_species):
+    for _, val in enumerate(chattering_species):
         if int(val) not in u_set:
             u_set.add(int(val))
             spe_idx_label[int(val)] = counter
             label_spe_idx[counter] = int(val)
             counter += 1
-        if trapped_species[val] not in u_set:
-            u_set.add(int(trapped_species[val]))
-            spe_idx_label[int(trapped_species[val])] = counter
-            label_spe_idx[counter] = int(trapped_species[val])
+        if chattering_species[val] not in u_set:
+            u_set.add(int(chattering_species[val]))
+            spe_idx_label[int(chattering_species[val])] = counter
+            label_spe_idx[counter] = int(chattering_species[val])
             counter += 1
     # print(spe_idx_label, label_spe_idx)
     wqnpc = union_find.WeightedQuickUnionWithPathCompression(len(u_set))
-    for _, val in enumerate(trapped_species):
+    for _, val in enumerate(chattering_species):
         idx1 = int(spe_idx_label[int(val)])
-        idx2 = int(spe_idx_label[int(trapped_species[val])])
+        idx2 = int(spe_idx_label[int(chattering_species[val])])
         wqnpc.unite(idx1, idx2)
 
     # unique labels

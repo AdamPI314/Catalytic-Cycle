@@ -83,9 +83,9 @@ def update_terminal_species_setting(file_dir, terminal_spe=None):
     return
 
 
-def update_trapped_species_fast_reaction_setting(file_dir, atom_followed="C"):
+def update_chattering_species_fast_reaction_setting(file_dir, atom_followed="C"):
     """
-    update settings.json, primarily for trapped species and fast reactions
+    update settings.json, primarily for chattering species and fast reactions
     """
     # there will always be a current setting
     fn0 = os.path.join(file_dir, "input", "setting_backup.json")
@@ -97,10 +97,10 @@ def update_trapped_species_fast_reaction_setting(file_dir, atom_followed="C"):
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     rwc.write_configuration(setting, os.path.join(
         file_dir, 'input', 'setting.json'))
@@ -144,10 +144,10 @@ def update_mc_trajectory_setting(file_dir, n_traj=1000000, atom_followed="C", in
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     setting['time']['tau'] = tau
 
@@ -182,10 +182,10 @@ def update_eval_path_integral(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     if species_path is True:
         setting['job']['job_type'] = "evaluate_species_path_integral_over_time"
@@ -219,10 +219,10 @@ def update_eval_path_AT(file_dir, top_n=5, n_traj=10000, atom_followed="C", init
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     setting['job']['job_type'] = "evaluate_path_AT_over_time"
 
@@ -254,10 +254,10 @@ def update_eval_path_AT_no_IT(file_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     setting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
 
@@ -289,10 +289,10 @@ def update_eval_path_AT_with_SP(file_dir, top_n=5, n_traj=10000, atom_followed="
     setting = rwc.read_configuration(
         os.path.join(file_dir, 'input', 'setting.json'))
 
-    fast_reaction, trapped_spe = global_settings.get_fast_rxn_trapped_spe(
+    fast_reaction, chattering_spe = global_settings.get_fast_rxn_chattering_spe(
         file_dir, atom_followed)
     setting['pathway']['fast_reaction'] = fast_reaction
-    setting['pathway']['trapped_species'] = trapped_spe
+    setting['pathway']['chattering_species'] = chattering_spe
 
     setting['job']['job_type'] = "evaluate_path_AT_with_SP_over_time"
 

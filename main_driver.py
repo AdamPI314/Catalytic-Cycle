@@ -26,8 +26,8 @@ if __name__ == '__main__':
     # update terminal species
     job_drivers.update_terminal_species_setting(FILE_DIR, G_S['terminal_spe'])
 
-    # update trapped species and fast reactions
-    job_drivers.update_trapped_species_fast_reaction_setting(
+    # update chattering species and fast reactions
+    job_drivers.update_chattering_species_fast_reaction_setting(
         FILE_DIR, G_S['atom_f'])
 
     # # write specie concentration at a time to file

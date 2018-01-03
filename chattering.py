@@ -131,9 +131,9 @@ def fast_reaction_w2f(file_dir, threshold=-7):
     rwc.write_configuration(fast_transition, fn_frb1)
 
 
-def generate_fast_rxn_trapped_spe(file_dir):
+def generate_fast_rxn_chattering_spe(file_dir):
     """
-    generate fast reaction and trapped species based on four files
+    generate fast reaction and chattering species based on four files
     0) species_information.json
     1) reaction_information.json
     2) atom_scheme.json
@@ -209,7 +209,7 @@ if __name__ == '__main__':
     # initiate_fast_reaction(FILE_DIR)
     # update_fast_reaction(FILE_DIR, tau=0.7, end_t=0.25)
     # fast_reaction_w2f(FILE_DIR, threshold=-8)
-    generate_fast_rxn_trapped_spe(FILE_DIR)
+    generate_fast_rxn_chattering_spe(FILE_DIR)
 
     END_TIME = time.time()
 
