@@ -382,18 +382,36 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         t_h.set_alpha(0.9)
 
     # draw reaction along path
-    for idx, curr_idx in enumerate(node_list):
-        if idx >= 1:
-            pre_idx = node_list[idx - 1]
-            if species_path is False:
+    if species_path is False:
+        for idx, curr_idx in enumerate(node_list):
+            if idx >= 1:
+                pre_idx = node_list[idx - 1]
                 rxn_name = str(idx) + ": " + str(
                     new_ind_reaction_dict[matched_reaction[idx - 1]])
-            else:
-                rxn_name = str(idx)
 
-            t_h = a_x.annotate(rxn_name,
-                               (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
-            t_h.set_alpha(0.5)
+                t_h = a_x.annotate(rxn_name,
+                                   (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
+                t_h.set_alpha(0.5)
+    else:
+        # build idx->label
+        idx_label_dict = {}
+        for idx, curr_idx in enumerate(node_list):
+            if idx >= 1:
+                pre_idx = node_list[idx - 1]
+                if tuple({pre_idx, curr_idx}) in idx_label_dict:
+                    idx_label_dict[tuple({pre_idx, curr_idx})
+                                   ] += "," + str(idx)
+                else:
+                    idx_label_dict[tuple({pre_idx, curr_idx})] = str(idx)
+
+        for idx, curr_idx in enumerate(node_list):
+            if idx >= 1:
+                pre_idx = node_list[idx - 1]
+                rxn_name = idx_label_dict[tuple({pre_idx, curr_idx})]
+
+                t_h = a_x.annotate(rxn_name,
+                                   (x[pre_idx] * 0.7 + x[curr_idx] * 0.3, y[pre_idx] * 0.7 + y[curr_idx] * 0.3), color='g', size=8.0)
+                t_h.set_alpha(0.5)
 
     a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
