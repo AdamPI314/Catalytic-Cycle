@@ -381,17 +381,19 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         t_h = a_x.annotate(labels[val], (x[val], y[val]))
         t_h.set_alpha(0.9)
 
-    if species_path is False:
-        # draw reaction along path
-        for idx, curr_idx in enumerate(node_list):
-            if idx >= 1:
-                pre_idx = node_list[idx - 1]
-                rxn_name = str(
+    # draw reaction along path
+    for idx, curr_idx in enumerate(node_list):
+        if idx >= 1:
+            pre_idx = node_list[idx - 1]
+            if species_path is False:
+                rxn_name = str(idx) + ": " + str(
                     new_ind_reaction_dict[matched_reaction[idx - 1]])
+            else:
+                rxn_name = str(idx)
 
-                t_h = a_x.annotate(rxn_name,
-                                   (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
-                t_h.set_alpha(0.5)
+            t_h = a_x.annotate(rxn_name,
+                               (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
+            t_h.set_alpha(0.5)
 
     a_x.set_xlim([np.min(x) - 0.01 * (np.max(x) - np.min(x)),
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
@@ -424,20 +426,20 @@ if __name__ == '__main__':
     # filename without type appendix
     NETWORK_FILENAME = PREFIX + "network_" + str(G_S['top_n_p_gephi']) + SUFFIX
 
-    RN_OBJ = init_directed_network(
-        FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
-        atom_followed=G_S['atom_f'], end_t=G_S['end_t'], start_idx=1, species_path=G_S['species_path'])
-    network_to_gephi_input_file(
-        RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
+    # RN_OBJ = init_directed_network(
+    #     FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
+    #     atom_followed=G_S['atom_f'], end_t=G_S['end_t'], start_idx=1, species_path=G_S['species_path'])
+    # network_to_gephi_input_file(
+    #     RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
 
-    # PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
-    #                                                      suffix=SUFFIX, norm=True, start_idx=1,
-    #                                                      species_path=G_S['species_path'])
-    # for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
-    #     plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
-    #                  pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
-    #                  path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
-    #                  atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
+    PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
+                                                         suffix=SUFFIX, norm=True, start_idx=1,
+                                                         species_path=G_S['species_path'])
+    for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
+        plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
+                     pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
+                     path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
+                     atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
     END_TIME = time.time()
 
