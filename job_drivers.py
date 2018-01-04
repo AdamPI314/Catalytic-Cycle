@@ -81,7 +81,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     ps.species_production_reaction(file_dir, spe=spe, top_n=top_n, norm=norm)
 
 
-def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, species_path=False):
+def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, species_path=False, max_rows=5000):
     """
     convert symbolic pathway to real pathway with real species name and real reaction name
     flag indicates a specific job, for example, pathway end time = 1.0, the j-th run,
@@ -106,7 +106,7 @@ def symbolic_path_2_real_path(file_dir, top_n=50, flag="", end_s_idx=None, speci
             file_dir, "output", path_stat_fn),
         os.path.join(
             file_dir, "output", out_file_name),
-        top_n, end_s_idx)
+        top_n, end_s_idx, max_rows=max_rows)
 
 
 # path from file
