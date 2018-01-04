@@ -111,13 +111,20 @@ def pathname_to_real_spe_reaction(spe_ind_name_dict, new_ind_reaction_dict, path
     return str_t
 
 
-def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50, end_s_idx=None, accurate_prob=None):
+def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50, end_s_idx=None, max_rows=5000):
     """
     read species and reaction info,
     convert path info into real species and reaction instead of index and write to file
     """
+
     # load path data
-    path_data = pd.read_csv(f_n_p, names=['path', 'prob'])
+    if end_s_idx is None or end_s_idx is []:
+        path_data = pd.read_csv(f_n_p, names=['path', 'prob'], nrows=top_n + 1)
+    elif end_s_idx is not None and end_s_idx is not []:
+        n_spe = len(end_s_idx)
+        path_data = pd.read_csv(
+            f_n_p, names=['path', 'prob'], nrows=top_n * n_spe + max_rows)
+
     total_prob = sum(path_data['prob'])
     # map will return a new array, will not change the value of pandas frame in situ
     # map(lambda x:x/total_prob, path_data['prob'])

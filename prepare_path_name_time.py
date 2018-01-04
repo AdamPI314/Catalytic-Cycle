@@ -32,7 +32,8 @@ def prepare_pathway_name(file_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
 
     # read
     if end_s_idx is None or end_s_idx == []:
-        data = np.genfromtxt(f_n_ps, dtype=str, delimiter=delimiter)
+        data = np.genfromtxt(
+            f_n_ps, dtype=str, delimiter=delimiter, max_rows=top_n + 1)
         path_list = [val[0] for idx, val in enumerate(data) if idx < top_n]
     else:
         path_list = []
