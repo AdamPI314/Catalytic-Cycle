@@ -389,8 +389,14 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
                 rxn_name = str(idx) + ": " + str(
                     new_ind_reaction_dict[matched_reaction[idx - 1]])
 
+                if x[pre_idx] <= x[curr_idx]:
+                    x_tmp = x[pre_idx]
+                else:
+                    x_tmp = x[curr_idx]
+                y_tmp = y[pre_idx] * 0.7 + y[curr_idx] * 0.3
+
                 t_h = a_x.annotate(rxn_name,
-                                   (x[pre_idx], y[pre_idx] * 0.5 + y[curr_idx] * 0.5), color='g', size=8.0)
+                                   (x_tmp, y_tmp), color='g', size=8.0)
                 t_h.set_alpha(0.5)
     else:
         # build idx->label
