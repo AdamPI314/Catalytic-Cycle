@@ -66,6 +66,25 @@ def spe_information_2_atom_scheme(file_dir):
     rwc.write_configuration(atom_scheme, fn1)
 
 
+def atom_scheme_set_atom_number(file_dir, followed_atom="C", number=1.0):
+    """
+    modify "atom_scheme_base.json", change atom number to number
+    """
+    fn1 = os.path.join(file_dir, "input", "atom_scheme_base.json")
+
+    atom_scheme = rwc.read_configuration(fn1)
+
+    for key in atom_scheme[followed_atom]:
+        atom_scheme[followed_atom][key] = number
+
+    fn0 = os.path.join(file_dir, "input", "atom_scheme_base_backup.json")
+
+    if os.path.isfile(fn1):
+        copy2(fn1, fn0)
+
+    rwc.write_configuration(atom_scheme, fn1)
+
+
 if __name__ == '__main__':
     INIT_TIME = time.time()
 
@@ -74,7 +93,8 @@ if __name__ == '__main__':
     print(FILE_DIR)
 
     # spe_composition_2_atom_scheme(FILE_DIR)
-    spe_information_2_atom_scheme(FILE_DIR)
+    # spe_information_2_atom_scheme(FILE_DIR)
+    atom_scheme_set_atom_number(FILE_DIR, followed_atom="HA3", number=1.0)
 
     END_TIME = time.time()
 
