@@ -450,17 +450,17 @@ if __name__ == '__main__':
     # filename without type appendix
     NETWORK_FILENAME = PREFIX + "network_" + str(G_S['top_n_p_gephi']) + SUFFIX
 
-    SWITCH = False
-    if SWITCH is True:
+    if not os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".gexf")):
         RN_OBJ = init_directed_network(
             FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
             atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
             start_idx=1, species_path=G_S['species_path'])
         network_to_gephi_input_file(
             RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
-    else:
+
+    elif os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".json")):
         PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
-                                                             suffix=SUFFIX, norm=True, start_idx=1,
+                                                             suffix=SUFFIX, norm=True, start_idx=0,
                                                              species_path=G_S['species_path'])
         for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
             plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",

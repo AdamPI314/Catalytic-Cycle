@@ -1,4 +1,4 @@
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR
 {'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78], 'HA2': [60, 78], 'HA3': [60, 78]}}
 {'rxn': [1096, 1097], 'spe': {'H': [61, 80], 'O': [80, 9], 'C': [61, 80], 'HA1': [61, 80], 'HA2': [61, 80], 'HA3': [61, 80]}}
 {'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90], 'HA2': [87, 90], 'HA3': [87, 90]}}
@@ -59,12 +59,12 @@ OrderedDict([('1', [60, 78]), ('2', [61, 80]), ('3', [87, 90]), ('4', [78, 87]),
 7 [72, 108]
 8 [39, 50]
 OrderedDict([('1', [60, 78]), ('2', [61, 80]), ('3', [87, 90]), ('4', [78, 87]), ('5', [88, 91]), ('6', [89, 92]), ('7', [94, 101]), ('8', [72, 108]), ('9', [39, 50])])
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_selected.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_selected.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_prob.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
+/home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
 running time:	0.02 hours
 

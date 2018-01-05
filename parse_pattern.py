@@ -6,6 +6,7 @@ import os
 import sys
 import re
 from itertools import combinations
+import parse_spe_reaction_info as psri
 
 
 def parse_path_length(path):
@@ -121,7 +122,35 @@ def parse_species_cycle(path):
     return cycle_map
 
 
+def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_product=None, spe_idx=10):
+    """
+    calculate number of species being produced along a path
+    notice OH might be not directly shown on a path, but can be side products of reactions from path
+    """
+    if net_product is None:
+        return 0
+
+    number = 0
+    # get rid of R-1000003S90, don't need it here
+    pathname = re.sub(r"R-\d+S\d+", r'', pathname)
+
+    # parse pathway
+    matched_reaction = re.findall(r"R(\d+)", pathname)
+
+    for _, r_idx in enumerate(matched_reaction):
+        print(r_idx)
+        if str(r_idx) in net_product:
+            # print(net_product[r_idx])
+            if str(spe_idx) in net_product[str(r_idx)]:
+                # print([net_product[r_idx][str(spe_idx)]])
+                number += int(net_product[r_idx][str(spe_idx)])
+
+    return number
+
+
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
-    print(parse_path_length("S10"))
+    # print(parse_path_length("S10"))
+    NET_PRODUCT = psri.parse_reaction_net_product(FILE_DIR)
+    parse_spe_production_along_path(net_product=NET_PRODUCT)
