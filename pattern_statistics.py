@@ -10,6 +10,7 @@ import pandas as pd
 import parse_spe_reaction_info as psri
 import naming
 import parse_pattern
+import global_settings
 
 
 def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None, species_path=False):
@@ -341,9 +342,45 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
+def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
+                                    atom_followed="C", end_t=1.0, species_path=False, axis=0):
+    """
+    parse species peoduction along path, note species might not explictly shown on path
+    but are side products of reaction on pathway
+    """
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    f_n_path_name = os.path.join(
+        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+    pathname_data = np.genfromtxt(f_n_path_name, dtype=str, max_rows=top_n + 1)
+
+    # in case of two dimensional pathway name
+    if len(np.shape(pathname_data)) == 2:
+        pathname_data = pathname_data[:, axis]
+
+    net_product = psri.parse_reaction_net_product(file_dir)
+
+    s_p_c = []
+    for _, p in enumerate(pathname_data):
+        s_p_c.append(parse_pattern.parse_spe_production_along_path(
+            p, net_product, spe_idx))
+
+    f_n_spe_production_count = os.path.join(
+        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+
+    np.savetxt(f_n_spe_production_count, s_p_c, fmt='%d')
+
+
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    G_S = global_settings.get_setting(FILE_DIR)
+
     # species_count(FILE_DIR)
     # reaction_count(FILE_DIR)
     # initiation_reaction_count(FILE_DIR)
@@ -352,7 +389,11 @@ if __name__ == "__main__":
     # species_production_path(FILE_DIR, spe='OH', top_n=50)
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
     # species_production_reaction(FILE_DIR, spe='OH', top_n=50)
-    SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
-    for es in SPE_LIST:
-        path_length_statistics(
-            FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
+    # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
+    # for es in SPE_LIST:
+    #     path_length_statistics(
+    #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
+    parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
+                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
+                                    axis=0)

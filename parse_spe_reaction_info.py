@@ -3,11 +3,13 @@ parse species and reaction information
 """
 
 import re
-# import os
-# import sys
+import os
+import sys
 import json
 import pandas as pd
 import numpy as np
+import read_write_configuration as rwc
+# import time
 
 
 def parse_spe_info(f_n):
@@ -148,3 +150,30 @@ def symbolic_path_2_real_path(f_n_spe, f_n_reaction, f_n_p, f_n_p_out, top_n=50,
     # write to file
     path_data[0:top_n].to_csv(f_n_p_out, header=False,
                               index=False, sep=',', columns=['path', 'prob'])
+
+
+def parse_reaction_net_product(file_dir):
+    """
+    return a dict of "species": number based on reaction product
+    """
+    f_n = os.path.join(file_dir, "input", "reaction_information.json")
+
+    data = rwc.read_configuration(f_n)
+
+    net_product = {}
+    for _, r_idx in enumerate(data):
+        entry = {}
+        for val1 in data[r_idx]['net_product']:
+            entry.update({data[r_idx]['net_product'][val1]['species_index']:
+                          data[r_idx]['net_product'][val1]['coefficient']})
+        net_product.update({r_idx: entry})
+
+    return net_product
+
+
+if __name__ == '__main__':
+    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    print(FILE_DIR)
+
+    parse_reaction_net_product(FILE_DIR)
