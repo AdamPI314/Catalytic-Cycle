@@ -101,8 +101,7 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, sp
     """
     get top n path
     """
-    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    spe_idx_name_dict, _ = psri.parse_spe_info(file_dir)
     spe_alias = read_spe_alias(os.path.join(
         file_dir, "input", "spe_alias.json"))
     spe_idx_name_dict = update_species_idx_name_dict(
@@ -144,8 +143,7 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
     without parallel edges
     return networkx.DiGraph
     """
-    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    spe_idx_name_dict, _ = psri.parse_spe_info(file_dir)
 
     suffix = get_suffix(file_dir, init_spe=init_spe,
                         atom_followed=atom_followed, end_t=end_t)
@@ -331,10 +329,8 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         y.append(float(n_coordinate[val][1]))
 
     # read in species index name
-    spe_idx_name_dict, spe_name_idx_dict = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    spe_idx_name_dict, spe_name_idx_dict = psri.parse_spe_info(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
 
     # modify labels
     spe_union_find_group = global_settings.get_union_find_group(

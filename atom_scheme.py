@@ -85,6 +85,17 @@ def atom_scheme_set_atom_number(file_dir, followed_atom="C", number=1.0):
     rwc.write_configuration(atom_scheme, fn1)
 
 
+def get_atom_scheme(file_dir):
+    """
+    read "atom_scheme.json" and return a dictionary
+    """
+
+    f_n_as = os.path.join(file_dir, "input", "atom_scheme.json")
+    atom_scheme = rwc.read_configuration(f_n_as)
+
+    return atom_scheme
+
+
 if __name__ == '__main__':
     INIT_TIME = time.time()
 
