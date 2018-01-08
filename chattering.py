@@ -17,7 +17,7 @@ def initiate_fast_reaction(file_dir):
     intiate file named "reaction_info_base.json" based on file named "reaction_labelling.csv"
     """
     new_old_index_dict, new_ind_reaction_dict = psri.parse_reaction_and_its_index(
-        os.path.join(file_dir, "input", "reaction_labelling.csv"))
+        file_dir)
 
     rxn_pair_dict = dict()
 

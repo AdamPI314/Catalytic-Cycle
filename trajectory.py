@@ -23,8 +23,7 @@ def convert_path_prob_to_concentration(file_dir, atom_followed="C", path_prob=No
     if path_prob is []:
         return None
 
-    _, spe_n_i_d = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    _, spe_n_i_d = psri.parse_spe_info(file_dir)
     spe_composition = psri.read_spe_composition(
         os.path.join(file_dir, "input", "spe_composition.json"))
 
@@ -60,8 +59,7 @@ def convert_concentration_to_path_prob(file_dir, atom_followed="C", spe_conc=Non
     if spe_conc is []:
         return None
 
-    _, spe_n_i_d = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    _, spe_n_i_d = psri.parse_spe_info(file_dir)
     spe_composition = psri.read_spe_composition(
         os.path.join(file_dir, "input", "spe_composition.json"))
 
@@ -114,8 +112,7 @@ def get_species_with_top_n_concentration(file_dir, exclude, top_n=10, traj_max_t
         c_idx_map[val].add(str(idx))
     c_idx_map = OrderedDict(sorted(c_idx_map.items(), reverse=True))
 
-    spe_idx_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    spe_idx_name_dict, _ = psri.parse_spe_info(file_dir)
     spe_composition = psri.read_spe_composition(
         os.path.join(file_dir, "input", "spe_composition.json"))
 
@@ -159,8 +156,7 @@ def get_normalized_concentration(file_dir, tag="fraction", exclude_names=None, r
     if renormalization is False:
         return conc
 
-    _, s_n_idx = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    _, s_n_idx = psri.parse_spe_info(file_dir)
     # renormalization
     exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
     # set the concentration of these species to be zero
@@ -187,8 +183,7 @@ def get_normalized_concentration_at_time(file_dir, tag="fraction", end_t=1.0, ex
     if renormalization is False:
         return conc
 
-    _, s_n_idx = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    _, s_n_idx = psri.parse_spe_info(file_dir)
     # renormalization
     exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
     # set the concentration of these species to be zero

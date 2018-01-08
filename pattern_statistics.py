@@ -8,6 +8,7 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 import parse_spe_reaction_info as psri
+import atom_scheme as asch
 import naming
 import parse_pattern
 import global_settings
@@ -103,10 +104,8 @@ def species_count(file_dir, top_n=50, norm=False):
                         index=False, sep=',', columns=['species', 'frequency'])
 
     # load spe and reaction info
-    spe_ind_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    spe_ind_name_dict, _ = psri.parse_spe_info(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
@@ -147,8 +146,7 @@ def reaction_count(file_dir, top_n=50, norm=False):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
@@ -189,8 +187,7 @@ def initiation_reaction_count(file_dir, top_n=50, norm=False):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
@@ -233,10 +230,8 @@ def species_cycle(file_dir, top_n=50, norm=False):
                         index=False, sep=',', columns=['species', 'frequency'])
 
     # load spe and reaction info
-    spe_ind_name_dict, _ = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    spe_ind_name_dict, _ = psri.parse_spe_info(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
@@ -261,10 +256,8 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
     # load spe and reaction info
-    spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
 
     species_production_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
@@ -307,8 +300,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
-    _, spe_name_ind_dict = psri.parse_spe_info(os.path.join(
-        file_dir, "input", "species_labelling.csv"))
+    _, spe_name_ind_dict = psri.parse_spe_info(file_dir)
     reaction_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
         map_tmp = parse_pattern.parse_species_production_reaction(
@@ -329,8 +321,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(os.path.join(
-        file_dir, "input", "reaction_labelling.csv"))
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
@@ -343,7 +334,8 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
 
 
 def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
-                                    atom_followed="C", end_t=1.0, species_path=False, axis=0):
+                                    atom_followed="C", end_t=1.0, species_path=False,
+                                    axis=0, path_branching_factor=False):
     """
     parse species peoduction along path, note species might not explictly shown on path
     but are side products of reaction on pathway
@@ -365,10 +357,23 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
 
     net_product = psri.parse_reaction_net_product(file_dir)
 
+    if path_branching_factor is True:
+        net_reactant = psri.parse_reaction_net_reactant(FILE_DIR)
+        atom_scheme = asch.get_atom_scheme(FILE_DIR)
+        s_idx_name, _ = psri.parse_spe_info(FILE_DIR)
+
     s_p_c = []
     for _, p in enumerate(pathname_data):
-        s_p_c.append(parse_pattern.parse_spe_production_along_path(
-            p, net_product, spe_idx))
+        spe_production_count = parse_pattern.parse_spe_production_along_path(
+            p, net_product, spe_idx)
+
+        path_branching_number = 1
+        if path_branching_factor is True:
+            path_branching_number = parse_pattern.calculate_path_branching_number(
+                pathname=p, net_reactant=net_reactant, net_product=net_product,
+                s_idx_name=s_idx_name, atom_scheme=atom_scheme, atom_followed=atom_followed)
+
+        s_p_c.append(spe_production_count * path_branching_number)
 
     f_n_spe_production_count = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
@@ -396,4 +401,4 @@ if __name__ == "__main__":
     parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
                                     init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                                     end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0)
+                                    axis=0, path_branching_factor=True)
