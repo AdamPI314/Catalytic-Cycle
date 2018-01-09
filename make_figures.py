@@ -1012,6 +1012,8 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
+    s_idx_n, _ = psri.parse_spe_info(file_dir)
+
     f_n_p_p = os.path.join(file_dir, "output", prefix +
                            "pathway_prob" + suffix + ".csv")
     p_1 = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
@@ -1037,7 +1039,7 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
-    a_x.plot(time_v, p_3, label=str(init_spe))
+    a_x.plot(time_v, p_3, label=s_idx_n[str(init_spe)])
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
