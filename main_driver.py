@@ -9,6 +9,7 @@ import time
 import update_settings as us
 import job_drivers
 import global_settings
+import pattern_statistics as ps
 
 if __name__ == '__main__':
     TIME_I = time.time()
@@ -81,6 +82,11 @@ if __name__ == '__main__':
 
     # copy SOHR/C++ routine files
     job_drivers.copy_sohr_files(FILE_DIR, species_path=G_S['species_path'])
+
+    ps.parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
+                                       init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                       end_t=G_S['end_t'], species_path=G_S['species_path'],
+                                       axis=0, path_branching_factor=False)
 
     # # # species count
     # # job_drivers.species_count(FILE_DIR, top_n=G_S['top_n_p'], norm=True)

@@ -85,8 +85,6 @@ def plot_pathway_prob(file_dir, end_t=1.0):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
     print(data_c[-1])
-    # np.savetxt(os.path.join(file_dir, "output",
-    #                         "pathway_c_prob.csv"), data_c, fmt="%.15f", delimiter=',')
 
     fig, a_x = plt.subplots(1, 1, sharex=False, sharey=False)
     end_point = int(end_t * len(data))
@@ -1003,6 +1001,63 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     plt.close()
 
 
+def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
+                          begin_t=0.0, end_t=1.0, tau=10.0, species_path=True):
+    """
+    plot pathway arrival time
+    """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    f_n_p_p = os.path.join(file_dir, "output", prefix +
+                           "pathway_prob" + suffix + ".csv")
+    p_1 = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
+
+    dim = len(np.shape(p_1))
+    if dim != 2:
+        return
+    # at least 2 points
+    n_points = np.shape(p_1)[1]
+    if n_points < 2:
+        return
+
+    f_n_s_p_c = os.path.join(
+        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+    p_2 = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
+
+    p_3 = [np.dot(p_1[:, col], p_2) for col in range(np.shape(p_1)[1])]
+    print(p_3)
+
+    time_v = np.linspace(begin_t * tau, end_t * tau, n_points + 1)
+    time_v = time_v[1::]
+    print(time_v)
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+
+    a_x.plot(time_v, p_3, label=str(init_spe))
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
+    leg.get_frame().set_alpha(0.7)
+
+    y_vals = a_x.get_yticks()
+    a_x.set_yticklabels(['{:.2f}'.format(x) for x in y_vals])
+
+    a_x.set_xlim([time_v[0], time_v[-1]])
+    a_x.grid()
+
+    a_x.set_xlabel("Time", fontsize=15.0)
+    a_x.set_ylabel("f", fontsize=15.0)
+    a_x.set_title("Merchant f", fontsize=15.0)
+
+    fig.tight_layout()
+    fig_name = prefix + "Merchant_f_vs_time" + suffix + ".jpg"
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
@@ -1019,9 +1074,9 @@ if __name__ == '__main__':
     # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
     #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=True, hasTemp=True)
-    plot_concentrations(FILE_DIR, spe_idx=[10],
-                        tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
-                        renormalization=False, semilogy=True, hasTemp=True)
+    # plot_concentrations(FILE_DIR, spe_idx=[10],
+    #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
+    #                     renormalization=False, semilogy=True, hasTemp=True)
     # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
     #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
@@ -1056,3 +1111,6 @@ if __name__ == '__main__':
     #     plot_first_passage_time(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
+
+    plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'])
