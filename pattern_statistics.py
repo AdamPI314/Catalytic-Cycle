@@ -356,6 +356,7 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
         pathname_data = pathname_data[:, axis]
 
     net_product = psri.parse_reaction_net_product(file_dir)
+    s_p_r_c = psri.parse_species_pair_reaction(file_dir)
 
     if path_branching_factor is True:
         net_reactant = psri.parse_reaction_net_reactant(FILE_DIR)
@@ -365,7 +366,7 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     s_p_c = []
     for _, p in enumerate(pathname_data):
         spe_production_count = parse_pattern.parse_spe_production_along_path(
-            p, net_product, spe_idx)
+            p, net_product, spe_idx, s_p_r_c)
 
         path_branching_number = 1
         if path_branching_factor is True:
@@ -398,11 +399,7 @@ if __name__ == "__main__":
     # for es in SPE_LIST:
     #     path_length_statistics(
     #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
-    # parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
-    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
-    #                                 axis=0, path_branching_factor=False)
-
-    spe_union_find_group = global_settings.get_union_find_group(
-        FILE_DIR, atom_followed="C")
-    print("test")
+    parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
+                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
+                                    axis=0, path_branching_factor=False)

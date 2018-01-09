@@ -123,7 +123,7 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_product=None, spe_idx=10):
+def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_product=None, spe_idx=10, s_p_r_c=None):
     """
     calculate number of species being produced along a path
     notice OH might be not directly shown on a path, but can be side products of reactions from path
@@ -132,6 +132,23 @@ def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_produ
         return 0
 
     number = 0
+
+    # chattering might produce desired spe_idx as well
+    # match S1R-1000S2 combination
+    m_srs = re.findall(r"(S\d+R-\d+S\d+)", pathname)
+    for _, s_r_s in enumerate(m_srs):
+        # print(s_r_s)
+        s_1 = next(iter(re.findall(r"S(\d+)R-\d+S\d+", s_r_s)), 0)
+        s_2 = next(iter(re.findall(r"S\d+R-\d+S(\d+)", s_r_s)), 0)
+        if s_1 != s_2 and s_1 in s_p_r_c:
+            if s_2 in s_p_r_c[s_1]:
+                for pair_idx in s_p_r_c[s_1][s_2]:
+                    r_idx_c = s_p_r_c[s_1][s_2][pair_idx]['r_idx']
+                    # print(r_idx_c)
+                    if str(spe_idx) in net_product[r_idx_c]:
+                        # print("bingo")
+                        number += int(net_product[r_idx_c][str(spe_idx)])
+
     # get rid of R-1000003S90, don't need it here
     pathname = re.sub(r"R-\d+S\d+", r'', pathname)
 
@@ -230,12 +247,16 @@ if __name__ == "__main__":
     NET_PRODUCT = psri.parse_reaction_net_product(FILE_DIR)
     ATOM_SCHEME = asch.get_atom_scheme(FILE_DIR)
     S_IDX_NAME, _ = psri.parse_spe_info(FILE_DIR)
+    S_P_R_C = psri.parse_species_pair_reaction(FILE_DIR)
     # parse_spe_production_along_path(net_product=NET_PRODUCT)
 
     # calculate_reaction_branching_number(
     #     r_idx=452, net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
     #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
 
-    calculate_path_branching_number(
-        pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
-        s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
+    # calculate_path_branching_number(
+    #     pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
+    #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
+
+    # parse_spe_production_along_path(
+    #     pathname="S90R1162S94R-100006S101R1222S46R452S14", net_product=NET_PRODUCT, spe_idx=10, s_p_r_c=S_P_R_C)

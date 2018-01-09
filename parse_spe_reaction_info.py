@@ -29,6 +29,16 @@ def parse_spe_info(file_dir):
     return spe_ind_name_dict, spe_name_ind_dict
 
 
+def parse_species_pair_reaction(file_dir):
+    """
+    parse species pairs and associated reactions, coefficients
+    """
+    f_n = os.path.join(file_dir, "input", "species_pairs_reactions_coefs.json")
+
+    s_p_r_c = rwc.read_configuration(f_n)
+    return s_p_r_c
+
+
 def read_spe_composition(f_n):
     """
     read species composition
