@@ -66,5 +66,5 @@ OrderedDict([('1', [60, 78]), ('2', [61, 80]), ('3', [87, 90]), ('4', [78, 87]),
 /home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
 /home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
 /home/invictus/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
-running time:	0.01 hours
+running time:	0.02 hours
 
