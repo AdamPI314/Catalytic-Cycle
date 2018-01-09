@@ -197,17 +197,17 @@ def calculate_path_branching_number(pathname="S60R-100001S90R1162S94", net_react
     calculate path branching number
     """
     if net_reactant is None:
-        return 0
+        return 1.0
     if net_product is None:
-        return 0
+        return 1.0
     if s_idx_name is None:
-        return 0
+        return 1.0
     if atom_scheme is None:
-        return 0
+        return 1.0
     if atom_followed not in atom_scheme:
-        return 0
+        return 1.0
 
-    number = 0
+    number = 1.0
     # get rid of R-1000003S90, don't need it here
     pathname = re.sub(r"R-\d+S\d+", r'', pathname)
 
@@ -216,7 +216,7 @@ def calculate_path_branching_number(pathname="S60R-100001S90R1162S94", net_react
 
     for _, r_idx in enumerate(matched_reaction):
         print(r_idx)
-        number += calculate_reaction_branching_number(r_idx=r_idx, net_reactant=net_reactant, net_product=net_product,
+        number *= calculate_reaction_branching_number(r_idx=r_idx, net_reactant=net_reactant, net_product=net_product,
                                                       s_idx_name=s_idx_name, atom_scheme=atom_scheme, atom_followed=atom_followed)
 
     return number
@@ -232,6 +232,10 @@ if __name__ == "__main__":
     S_IDX_NAME, _ = psri.parse_spe_info(FILE_DIR)
     # parse_spe_production_along_path(net_product=NET_PRODUCT)
 
-    calculate_reaction_branching_number(
-        r_idx=452, net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
+    # calculate_reaction_branching_number(
+    #     r_idx=452, net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
+    #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
+
+    calculate_path_branching_number(
+        pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
         s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")

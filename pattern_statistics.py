@@ -398,7 +398,11 @@ if __name__ == "__main__":
     # for es in SPE_LIST:
     #     path_length_statistics(
     #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
-    parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
-                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=True)
+    # parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=10,
+    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #                                 axis=0, path_branching_factor=False)
+
+    spe_union_find_group = global_settings.get_union_find_group(
+        FILE_DIR, atom_followed="C")
+    print("test")
