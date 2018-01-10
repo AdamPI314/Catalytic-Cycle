@@ -123,12 +123,14 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_product=None, spe_idx=10, s_p_r_c=None):
+def parse_species_along_path(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
     """
-    calculate number of species being produced along a path
+    calculate number of species being used or produced along a path, depends on net_r_p,
+    if net_r_p is net_reactant, return net species be consumed
+    if net_r_p is net_product, return net species be produced
     notice OH might be not directly shown on a path, but can be side products of reactions from path
     """
-    if net_product is None:
+    if net_r_p is None:
         return 0
 
     number = 0
@@ -145,9 +147,9 @@ def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_produ
                 for pair_idx in s_p_r_c[s_1][s_2]:
                     r_idx_c = s_p_r_c[s_1][s_2][pair_idx]['r_idx']
                     # print(r_idx_c)
-                    if str(spe_idx) in net_product[r_idx_c]:
+                    if str(spe_idx) in net_r_p[r_idx_c]:
                         # print("bingo")
-                        number += int(net_product[r_idx_c][str(spe_idx)])
+                        number += int(net_r_p[r_idx_c][str(spe_idx)])
 
     # get rid of R-1000003S90, don't need it here
     pathname = re.sub(r"R-\d+S\d+", r'', pathname)
@@ -157,11 +159,11 @@ def parse_spe_production_along_path(pathname="S60R-100001S90R1162S94", net_produ
 
     for _, r_idx in enumerate(matched_reaction):
         print(r_idx)
-        if str(r_idx) in net_product:
-            # print(net_product[r_idx])
-            if str(spe_idx) in net_product[str(r_idx)]:
-                # print([net_product[r_idx][str(spe_idx)]])
-                number += int(net_product[r_idx][str(spe_idx)])
+        if str(r_idx) in net_r_p:
+            # print(net_r_p[r_idx])
+            if str(spe_idx) in net_r_p[str(r_idx)]:
+                # print([net_r_p[r_idx][str(spe_idx)]])
+                number += int(net_r_p[r_idx][str(spe_idx)])
 
     return number
 
@@ -258,5 +260,5 @@ if __name__ == "__main__":
     #     pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
     #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
 
-    # parse_spe_production_along_path(
-    #     pathname="S90R1162S94R-100006S101R1222S46R452S14", net_product=NET_PRODUCT, spe_idx=10, s_p_r_c=S_P_R_C)
+    parse_species_along_path(
+        pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
