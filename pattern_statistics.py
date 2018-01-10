@@ -355,17 +355,19 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     if len(np.shape(pathname_data)) == 2:
         pathname_data = pathname_data[:, axis]
 
+    net_reactant = psri.parse_reaction_net_reactant(file_dir)
     net_product = psri.parse_reaction_net_product(file_dir)
     s_p_r_c = psri.parse_species_pair_reaction(file_dir)
 
     if path_branching_factor is True:
-        net_reactant = psri.parse_reaction_net_reactant(FILE_DIR)
-        atom_scheme = asch.get_atom_scheme(FILE_DIR)
-        s_idx_name, _ = psri.parse_spe_info(FILE_DIR)
+        atom_scheme = asch.get_atom_scheme(file_dir)
+        s_idx_name, _ = psri.parse_spe_info(file_dir)
 
     s_p_c = []
     for _, p in enumerate(pathname_data):
-        spe_production_count = parse_pattern.parse_spe_production_along_path(
+        spe_consumption_count = parse_pattern.parse_species_along_path(
+            p, net_reactant, spe_idx, s_p_r_c)
+        spe_production_count = parse_pattern.parse_species_along_path(
             p, net_product, spe_idx, s_p_r_c)
 
         path_branching_number = 1
@@ -374,7 +376,8 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
                 pathname=p, net_reactant=net_reactant, net_product=net_product,
                 s_idx_name=s_idx_name, atom_scheme=atom_scheme, atom_followed=atom_followed)
 
-        s_p_c.append(spe_production_count * path_branching_number)
+        s_p_c.append((spe_production_count - spe_consumption_count)
+                     * path_branching_number)
 
     f_n_spe_production_count = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
