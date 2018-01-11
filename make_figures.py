@@ -1011,7 +1011,8 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
 
 def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
-                          begin_t=0.0, end_t=1.0, tau=10.0, species_path=True):
+                          begin_t=0.0, end_t=1.0, tau=10.0,
+                          species_path=True, spe_idx=None):
     """
     plot pathway arrival time
     """
@@ -1020,6 +1021,17 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
+    id_tmp = ""
+    if spe_idx is None or spe_idx is []:
+        id_tmp = ""
+    elif isinstance(spe_idx, int):
+        id_tmp = str(spe_idx)
+    else:
+        for x_t in spe_idx:
+            if id_tmp == "":
+                id_tmp = str(x_t)
+            else:
+                id_tmp += "_" + str(x_t)
 
     s_idx_n, _ = psri.parse_spe_info(file_dir)
 
@@ -1034,6 +1046,9 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
     n_points = np.shape(p_1)[1]
     if n_points < 2:
         return
+
+    if id_tmp != "":
+        suffix += "_" + id_tmp
 
     f_n_s_p_c = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
@@ -1095,9 +1110,9 @@ if __name__ == '__main__':
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
-    plot_pathway_prob_vs_time(
-        FILE_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        top_n=6, species_path=G_S['species_path'])
+    # plot_pathway_prob_vs_time(
+    #     FILE_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     top_n=6, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
@@ -1123,5 +1138,6 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    # plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'])
+    plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                          species_path=G_S['species_path'], spe_idx=[10])

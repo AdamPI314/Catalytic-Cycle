@@ -340,6 +340,19 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     parse species peoduction along path, note species might not explictly shown on path
     but are side products of reaction on pathway
     """
+    id_tmp = ""
+    if spe_idx is None or spe_idx is []:
+        return
+    elif isinstance(spe_idx, int):
+        id_tmp = str(spe_idx)
+        spe_idx = [spe_idx]
+    else:
+        for x_t in spe_idx:
+            if id_tmp == "":
+                id_tmp = str(x_t)
+            else:
+                id_tmp += "_" + str(x_t)
+
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
@@ -364,21 +377,26 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
         s_idx_name, _ = psri.parse_spe_info(file_dir)
 
     s_p_c = []
-    for _, p in enumerate(pathname_data):
-        spe_consumption_count = parse_pattern.parse_species_along_path(
-            p, net_reactant, spe_idx, s_p_r_c)
-        spe_production_count = parse_pattern.parse_species_along_path(
-            p, net_product, spe_idx, s_p_r_c)
+    for _, p_n in enumerate(pathname_data):
+        spe_consumption_count = 0
+        spe_production_count = 0
+        for s_i in spe_idx:
+            spe_consumption_count += parse_pattern.parse_species_along_path(
+                p_n, net_reactant, s_i, s_p_r_c)
+            spe_production_count += parse_pattern.parse_species_along_path(
+                p_n, net_product, s_i, s_p_r_c)
 
         path_branching_number = 1
         if path_branching_factor is True:
             path_branching_number = parse_pattern.calculate_path_branching_number(
-                pathname=p, net_reactant=net_reactant, net_product=net_product,
+                pathname=p_n, net_reactant=net_reactant, net_product=net_product,
                 s_idx_name=s_idx_name, atom_scheme=atom_scheme, atom_followed=atom_followed)
 
         s_p_c.append((spe_production_count - spe_consumption_count)
                      * path_branching_number)
 
+    if id_tmp != "":
+        suffix += "_" + id_tmp
     f_n_spe_production_count = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
 
