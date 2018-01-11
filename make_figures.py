@@ -776,20 +776,29 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
         prefix = "species_"
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(file_dir, "output",
-                          prefix + "pathway_name_selected" + suffix + ".csv")
+    # f_n_pn = os.path.join(file_dir, "output",
+    #                       prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_pt = os.path.join(file_dir, "output",
                           prefix + "pathway_time_candidate" + suffix + ".csv")
     f_n_pp = os.path.join(file_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
-    data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    # data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pt = np.loadtxt(f_n_pt, dtype=float, delimiter=",")
     data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    data_x = data_pt[0, 0:top_n]
-    data_y = data_pp[0:top_n, :]
+    dim_n = len(np.shape(data_pp))
+
+    if dim_n == 1:
+        data_x = data_pt
+        data_y = data_pp
+    elif dim_n == 2:
+        data_x = data_pt[0, :]
+        data_y = data_pp[0:top_n, :]
+
+    data_x = data_x * end_t
+
     # labels = data_pn[0:top_n]
     labels = ["P" + str(i + 1) for i in range(top_n)]
     fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
@@ -818,7 +827,7 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
 
     a_x.set_xlabel("Time/$\\tau$", fontsize=15.0)
     a_x.set_ylabel("Pathway Probability", fontsize=15.0)
-    a_x.set_title("CO", fontsize=15.0)
+    # a_x.set_title("CO", fontsize=15.0)
 
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
@@ -1086,9 +1095,9 @@ if __name__ == '__main__':
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
-    # plot_pathway_prob_vs_time(
-    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     top_n=10, species_path=G_S['species_path'])
+    plot_pathway_prob_vs_time(
+        FILE_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+        top_n=6, species_path=G_S['species_path'])
     # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
@@ -1114,5 +1123,5 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'])
+    # plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'])
