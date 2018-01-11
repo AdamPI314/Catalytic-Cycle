@@ -66,6 +66,35 @@ def spe_information_2_atom_scheme(file_dir):
     rwc.write_configuration(atom_scheme, fn1)
 
 
+def update_a_atom_entry(file_dir, source_atoms=None, entry_name="HA4", number=1.0):
+    """
+    update a atom entry based on atoms list
+    """
+    if source_atoms is None or source_atoms is []:
+        return
+
+    f_n_as = os.path.join(file_dir, "input", "atom_scheme.json")
+    atom_scheme = rwc.read_configuration(f_n_as)
+
+    new_entry = {}
+    for atom in source_atoms:
+        if atom not in atom_scheme:
+            continue
+        for key in atom_scheme[atom]:
+            if key not in new_entry:
+                new_entry.update({key: number})
+
+    atom_scheme.update({entry_name: new_entry})
+
+    fn0 = os.path.join(file_dir, "input", "atom_scheme_base_backup.json")
+    fn1 = os.path.join(file_dir, "input", "atom_scheme_base.json")
+
+    if os.path.isfile(fn1):
+        copy2(fn1, fn0)
+
+    rwc.write_configuration(atom_scheme, fn1)
+
+
 def atom_scheme_set_atom_number(file_dir, followed_atom="C", number=1.0):
     """
     modify "atom_scheme_base.json", change atom number to number
@@ -105,7 +134,8 @@ if __name__ == '__main__':
 
     # spe_composition_2_atom_scheme(FILE_DIR)
     # spe_information_2_atom_scheme(FILE_DIR)
-    atom_scheme_set_atom_number(FILE_DIR, followed_atom="HA3", number=1.0)
+    # atom_scheme_set_atom_number(FILE_DIR, followed_atom="HA3", number=1.0)
+    update_a_atom_entry(FILE_DIR, source_atoms=["C", "O", "H"], entry_name="HA4", number=1.0)
 
     END_TIME = time.time()
 
