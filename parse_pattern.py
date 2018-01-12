@@ -197,13 +197,15 @@ def calculate_reaction_branching_number(r_idx=0, net_reactant=None, net_product=
         if str(s_name) in atom_scheme[atom_followed]:
             if int(atom_scheme[atom_followed][str(s_name)]) >= 1:
                 print(s_name, atom_scheme[atom_followed][str(s_name)])
-                num_r += 1
+                # num_r += 1
+                num_r += float(n_r[s_idx])
     for _, s_idx in enumerate(n_p):
         s_name = s_idx_name[str(s_idx)]
         if str(s_name) in atom_scheme[atom_followed]:
             if int(atom_scheme[atom_followed][str(s_name)]) >= 1:
                 print(s_name, atom_scheme[atom_followed][str(s_name)])
-                num_p += 1
+                # num_p += 1
+                num_p += float(n_p[s_idx])
 
     if num_r == 0:
         return 0
