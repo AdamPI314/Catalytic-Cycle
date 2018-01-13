@@ -123,7 +123,7 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def parse_species_along_path(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
+def parse_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
     """
     calculate number of species being used or produced along a path, depends on net_r_p,
     if net_r_p is net_reactant, return net species be consumed
@@ -262,5 +262,5 @@ if __name__ == "__main__":
     #     pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
     #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
 
-    parse_species_along_path(
+    parse_species_along_path_using_reaction(
         pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)

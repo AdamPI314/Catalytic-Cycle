@@ -73,12 +73,31 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
     return
 
 
-def plot_pathway_prob(file_dir, end_t=1.0):
+def plot_cumulative_pathway_prob(file_dir, init_spe=62, atom_followed="C", end_t=1.0, tau=10.0, species_path=True, top_n=10, time_axis=0):
     """
-    plot pathway prob
+    plot cumulative pathway probability at a time point
     """
-    data = np.genfromtxt(os.path.join(file_dir, "output",
-                                      "pathway_prob.csv"), delimiter=",")
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    f_n_pp = os.path.join(file_dir, "output",
+                          prefix + "pathway_prob" + suffix + ".csv")
+    data = np.genfromtxt(f_n_pp, delimiter=",", dtype=float)
+
+    # data dimensions, could be array or matrix
+    dim_n = len(np.shape(data))
+    if dim_n == 1:
+        data = data
+    elif dim_n == 2:
+        data = data[:, time_axis]
+    else:
+        return
+
+    data = sorted(data, reverse=True)[0:top_n]
+
     data_c = deepcopy(data)
     data_c[0] = 0.0
     for idx, _ in enumerate(data_c):
@@ -87,12 +106,16 @@ def plot_pathway_prob(file_dir, end_t=1.0):
     print(data_c[-1])
 
     fig, a_x = plt.subplots(1, 1, sharex=False, sharey=False)
+
     end_point = int(end_t * len(data))
     a_x.plot(data[1:end_point:1], "-.")
     a_x.plot(data_c[1:end_point:1], "-*")
     a_x.grid()
-    fig.savefig(os.path.join(file_dir, "output",
-                             "pathway_probability.jpg"), dpi=500)
+
+    suffix += "_top_" + str(top_n)
+    f_n_out = os.path.join(file_dir, "output", prefix +
+                           "pathway_probability" + suffix + ".jpg")
+    fig.savefig(f_n_out, dpi=500)
 
     return
 
@@ -1141,3 +1164,6 @@ if __name__ == '__main__':
     plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                           begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
                           species_path=G_S['species_path'], spe_idx=[10])
+
+    plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=100, time_axis=9)
