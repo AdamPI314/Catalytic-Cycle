@@ -383,10 +383,10 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
         spe_production_count = 0
         for s_i in spe_idx:
             if s_consumption is True:
-                spe_consumption_count += parse_pattern.parse_species_along_path(
+                spe_consumption_count += parse_pattern.parse_species_along_path_using_reaction(
                     p_n, net_reactant, s_i, s_p_r_c)
             if s_production is True:
-                spe_production_count += parse_pattern.parse_species_along_path(
+                spe_production_count += parse_pattern.parse_species_along_path_using_reaction(
                     p_n, net_product, s_i, s_p_r_c)
 
         path_branching_number = 1
@@ -426,4 +426,4 @@ if __name__ == "__main__":
     parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
                                     init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                                     end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=True)
+                                    axis=0, path_branching_factor=False)
