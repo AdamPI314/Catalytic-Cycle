@@ -1166,4 +1166,4 @@ if __name__ == '__main__':
                           species_path=G_S['species_path'], spe_idx=[10])
 
     plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=100, time_axis=9)
+                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=1000, time_axis=9)
