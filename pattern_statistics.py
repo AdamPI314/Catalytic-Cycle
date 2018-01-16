@@ -428,20 +428,20 @@ def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end
 
     n_points = np.shape(spe_conc_mat)[0]
     spe_total_sink_rate_vec = np.zeros(n_points)
-    Merchant_alpha_vec = np.zeros(n_points)
+    merchant_alpha_v = np.zeros(n_points)
 
     for i in range(1, n_points):
         spe_total_sink_rate_vec[i] = spe_conc_mat[i,
                                                   s_idx] * spe_k_mat[i, s_idx]
         if spe_total_sink_rate_vec[i] > 0:
-            Merchant_alpha_vec[i] = reaction_rate_mat[i,
+            merchant_alpha_v[i] = reaction_rate_mat[i,
                                                       r_idx] / spe_total_sink_rate_vec[i]
     # set the first value at time zero to be the same as value at time one
-    Merchant_alpha_vec[0] = Merchant_alpha_vec[1]
+    merchant_alpha_v[0] = merchant_alpha_v[1]
 
-    Merchant_alpha_fn = os.path.join(
+    merchant_alpha_fn = os.path.join(
         file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
-    np.savetxt(Merchant_alpha_fn, Merchant_alpha_vec, fmt='%.15e')
+    np.savetxt(merchant_alpha_fn, merchant_alpha_v, fmt='%.15e')
 
     return
 

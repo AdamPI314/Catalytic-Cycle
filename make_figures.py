@@ -19,6 +19,7 @@ import pattern_statistics
 import global_settings
 from tools import get_colors_markers_linestyles
 import naming
+import interpolation
 
 
 def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
@@ -1120,14 +1121,14 @@ def plot_Merchant_alpha_value_vs_time(file_dir, init_spe=10, atom_followed="C", 
     time_v = np.loadtxt(os.path.join(file_dir, "output",
                                      "time_dlsode_M.csv"), dtype=float, delimiter=',')
 
-    Merchant_alpha_fn = os.path.join(
+    merchant_alpha_fn = os.path.join(
         file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
-    Merchant_alpha_v = np.loadtxt(
-        Merchant_alpha_fn, dtype=float, delimiter=',')
+    merchant_alpha_v = np.loadtxt(
+        merchant_alpha_fn, dtype=float, delimiter=',')
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
-    a_x.plot(time_v, Merchant_alpha_v, label='$\\alpha$')
+    a_x.plot(time_v, merchant_alpha_v, label='$\\alpha$')
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
@@ -1143,8 +1144,91 @@ def plot_Merchant_alpha_value_vs_time(file_dir, init_spe=10, atom_followed="C", 
     a_x.set_title("Merchant $\\alpha$", fontsize=15.0)
 
     fig.tight_layout()
-    fig_name = prefix + "Merchant_alpha_vs_time" + "S" + \
+    fig_name = prefix + "Merchant_alpha_vs_time" + "_S" + \
         str(s_idx) + "_R" + str(r_idx) + suffix + ".jpg"
+    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    plt.close()
+
+
+def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
+                                    begin_t=0.0, end_t=1.0, tau=10.0,
+                                    species_path=True, s_idx=10, r_idx=736):
+    """
+    plot pathway arrival time
+    """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+    suffix_ref = deepcopy(suffix)
+    id_tmp = str(s_idx)
+
+    s_idx_n, _ = psri.parse_spe_info(file_dir)
+
+    f_n_p_p = os.path.join(file_dir, "output", prefix +
+                           "pathway_prob" + suffix + ".csv")
+    p_1 = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
+
+    dim = len(np.shape(p_1))
+    if dim != 2:
+        return
+    # at least 2 points
+    n_points = np.shape(p_1)[1]
+    if n_points < 2:
+        return
+
+    if id_tmp != "":
+        suffix += "_" + id_tmp
+
+    f_n_s_p_c = os.path.join(
+        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+    p_2 = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
+
+    merchant_f_v = [np.dot(p_1[:, col], p_2)
+                    for col in range(np.shape(p_1)[1])]
+    print(merchant_f_v)
+
+    time_v = np.linspace(begin_t * tau, end_t * tau, n_points + 1)
+    time_v = time_v[1::]
+    print(time_v)
+
+    time_ref = np.loadtxt(os.path.join(file_dir, "output",
+                                       "time_dlsode_M.csv"), dtype=float, delimiter=',')
+    merchant_alpha_fn = os.path.join(
+        file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix_ref + ".csv")
+    alpha_ref = np.loadtxt(
+        merchant_alpha_fn, dtype=float, delimiter=',')
+
+    alpha_f_v = np.zeros(n_points)
+    for i in range(n_points):
+        alpha_f_v[i] = merchant_f_v[i] * \
+            interpolation.interp1d(time_ref, alpha_ref, time_v[i])
+
+    fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
+
+    delta_n1 = int(len(time_v) / 25)
+    a_x.plot(time_v, merchant_f_v, label='$f$', marker='*', markevery=delta_n1)
+    delta_n2 = int(len(time_ref) / 25)
+    a_x.plot(time_ref, alpha_ref, label='$\\alpha$',
+             markevery=delta_n2, marker='o')
+    a_x.plot(time_v, alpha_f_v, label='$\\alpha$ corrected $f$', marker='+', markevery=delta_n1)
+
+    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
+    leg.get_frame().set_alpha(0.7)
+
+    y_vals = a_x.get_yticks()
+    a_x.set_yticklabels(['{:.2f}'.format(x) for x in y_vals])
+
+    a_x.set_xlim([time_v[0], time_v[-1]])
+    a_x.grid()
+
+    a_x.set_xlabel("Time/s", fontsize=15.0)
+    a_x.set_ylabel("f", fontsize=15.0)
+    a_x.set_title("Merchant f", fontsize=15.0)
+
+    fig.tight_layout()
+    fig_name = prefix + "Merchant_alpha_and_f_vs_time" + suffix + ".jpg"
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1208,8 +1292,12 @@ if __name__ == '__main__':
     #                       species_path=G_S['species_path'], spe_idx=[10])
 
     # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=500, time_axis=24)
+    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=500, time_axis=6)
 
-    plot_Merchant_alpha_value_vs_time(
-        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], s_idx=10, r_idx=736)
+    # plot_Merchant_alpha_value_vs_time(
+    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], s_idx=10, r_idx=736)
+
+    plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                    begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                                    species_path=G_S['species_path'], s_idx=10)
