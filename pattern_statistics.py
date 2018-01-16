@@ -406,6 +406,46 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     np.savetxt(f_n_spe_production_count, s_p_c, fmt='%d')
 
 
+def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
+                                   s_idx=10, r_idx=736):
+    """
+    calculate Merchat alpha value at time point as in time.csv, not at time zero
+    """
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    spe_conc_mat = np.loadtxt(os.path.join(file_dir, "output",
+                                           "concentration_dlsode_M.csv"), dtype=float, delimiter=',')
+    spe_k_mat = np.loadtxt(os.path.join(file_dir, "output",
+                                        "drc_dlsode_M.csv"), dtype=float, delimiter=',')
+
+    reaction_rate_mat = np.loadtxt(os.path.join(file_dir, "output",
+                                                "reaction_rate_dlsode_M.csv"), dtype=float, delimiter=',')
+
+    n_points = np.shape(spe_conc_mat)[0]
+    spe_total_sink_rate_vec = np.zeros(n_points)
+    Merchant_alpha_vec = np.zeros(n_points)
+
+    for i in range(1, n_points):
+        spe_total_sink_rate_vec[i] = spe_conc_mat[i,
+                                                  s_idx] * spe_k_mat[i, s_idx]
+        if spe_total_sink_rate_vec[i] > 0:
+            Merchant_alpha_vec[i] = reaction_rate_mat[i,
+                                                      r_idx] / spe_total_sink_rate_vec[i]
+    # set the first value at time zero to be the same as value at time one
+    Merchant_alpha_vec[0] = Merchant_alpha_vec[1]
+
+    Merchant_alpha_fn = os.path.join(
+        file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
+    np.savetxt(Merchant_alpha_fn, Merchant_alpha_vec, fmt='%.15e')
+
+    return
+
+
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
@@ -423,7 +463,11 @@ if __name__ == "__main__":
     # for es in SPE_LIST:
     #     path_length_statistics(
     #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
-    parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
-                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=False)
+    # parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #                                 axis=0, path_branching_factor=False)
+
+    calculate_Merchant_alpha_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                   end_t=G_S['end_t'], species_path=G_S['species_path'],
+                                   s_idx=10, r_idx=736)
