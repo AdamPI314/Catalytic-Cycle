@@ -1212,7 +1212,8 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
     delta_n2 = int(len(time_ref) / 25)
     a_x.plot(time_ref, alpha_ref, label='$\\alpha$',
              markevery=delta_n2, marker='o')
-    a_x.plot(time_v, alpha_f_v, label='$\\alpha$ corrected $f$', marker='+', markevery=delta_n1)
+    a_x.plot(time_v, alpha_f_v, label='$\\alpha$ corrected $f$',
+             marker='+', markevery=delta_n1)
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
@@ -1268,8 +1269,10 @@ if __name__ == '__main__':
     #     FILE_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
     #              tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
-    # plot_chattering_group_drc(
-    #     FILE_DIR, tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
+    plot_spe_drc(FILE_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
+                 tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
+    plot_chattering_group_drc(
+        FILE_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
@@ -1292,12 +1295,12 @@ if __name__ == '__main__':
     #                       species_path=G_S['species_path'], spe_idx=[10])
 
     # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=500, time_axis=6)
+    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=6)
 
     # plot_Merchant_alpha_value_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #     species_path=G_S['species_path'], s_idx=10, r_idx=736)
 
-    plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                                    species_path=G_S['species_path'], s_idx=10)
+    # plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                                 species_path=G_S['species_path'], s_idx=10)
