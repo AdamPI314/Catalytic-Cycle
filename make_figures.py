@@ -1269,10 +1269,10 @@ if __name__ == '__main__':
     #     FILE_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
     #              tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
-    plot_spe_drc(FILE_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
-                 tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
-    plot_chattering_group_drc(
-        FILE_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
+    # plot_spe_drc(FILE_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
+    #              tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
+    # plot_chattering_group_drc(
+    #     FILE_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
@@ -1290,12 +1290,12 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    # plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-    #                       species_path=G_S['species_path'], spe_idx=[10])
+    plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                          species_path=G_S['species_path'], spe_idx=[12])
 
     # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=6)
+    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=5)
 
     # plot_Merchant_alpha_value_vs_time(
     #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
