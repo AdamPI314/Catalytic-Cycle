@@ -1036,7 +1036,7 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
 def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
                           begin_t=0.0, end_t=1.0, tau=10.0,
-                          species_path=True, spe_idx=None):
+                          species_path=True, spe_idx=None, path_idx=None):
     """
     plot pathway arrival time
     """
@@ -1061,13 +1061,13 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
 
     f_n_p_p = os.path.join(file_dir, "output", prefix +
                            "pathway_prob" + suffix + ".csv")
-    p_1 = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
+    path_prob = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
 
-    dim = len(np.shape(p_1))
+    dim = len(np.shape(path_prob))
     if dim != 2:
         return
     # at least 2 points
-    n_points = np.shape(p_1)[1]
+    n_points = np.shape(path_prob)[1]
     if n_points < 2:
         return
 
@@ -1076,10 +1076,11 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
 
     f_n_s_p_c = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
-    p_2 = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
+    spe_numbers = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
 
-    p_3 = [np.dot(p_1[:, col], p_2) for col in range(np.shape(p_1)[1])]
-    print(p_3)
+    f_full = [np.dot(path_prob[:, col], spe_numbers)
+              for col in range(np.shape(path_prob)[1])]
+    print(f_full)
 
     time_v = np.linspace(begin_t * tau, end_t * tau, n_points + 1)
     time_v = time_v[1::]
@@ -1087,7 +1088,19 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
-    a_x.plot(time_v, p_3, label=s_idx_n[str(init_spe)])
+    delta_1 = int(len(f_full) / 5)
+    a_x.plot(time_v, f_full, label=s_idx_n[str(
+        init_spe)], marker='+', markevery=delta_1)
+
+    if path_idx is not None and isinstance(path_idx, list):
+        spe_numbers_selected = np.zeros(len(spe_numbers))
+        for p_idx in path_idx:
+            spe_numbers_selected[p_idx] = spe_numbers[p_idx]
+        f_selected = [np.dot(path_prob[:, col], spe_numbers_selected)
+                      for col in range(np.shape(path_prob)[1])]
+        delta_2 = int(len(f_selected) / 5)
+        a_x.plot(time_v, f_selected, label="selected pathways",
+                 marker='o', markevery=delta_2)
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
@@ -1103,6 +1116,8 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
     a_x.set_title("Merchant f", fontsize=15.0)
 
     fig.tight_layout()
+    if path_idx is not None:
+        suffix += "_selected"
     fig_name = prefix + "Merchant_f_vs_time" + suffix + ".jpg"
     fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
     plt.close()
@@ -1292,7 +1307,7 @@ if __name__ == '__main__':
 
     plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                           begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                          species_path=G_S['species_path'], spe_idx=[12])
+                          species_path=G_S['species_path'], spe_idx=[10], path_idx=[1, 2])
 
     # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=5)

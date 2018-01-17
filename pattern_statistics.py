@@ -336,7 +336,7 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
 def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
                                     atom_followed="C", end_t=1.0, species_path=False,
                                     axis=0, path_branching_factor=False,
-                                    s_consumption=False, s_production=True, path_idx=None):
+                                    s_consumption=False, s_production=True):
     """
     parse species peoduction along path, note species might not explictly shown on path
     but are side products of reaction on pathway
@@ -366,11 +366,8 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
 
     f_n_path_name = os.path.join(
         file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
-    if path_idx is None:
-        pathname_data = np.genfromtxt(
-            f_n_path_name, dtype=str, max_rows=top_n + 1)
-    else:
-        pathname_data = np.genfromtxt(f_n_path_name, dtype=str)
+    pathname_data = np.genfromtxt(
+        f_n_path_name, dtype=str, max_rows=top_n + 1)
 
     # in case of two dimensional pathway name
     if len(np.shape(pathname_data)) == 2:
@@ -385,11 +382,7 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
         s_idx_name, _ = psri.parse_spe_info(file_dir)
 
     s_p_c = []
-    for p_idx, p_n in enumerate(pathname_data):
-        if path_idx is not None and isinstance(path_idx, list):
-            if p_idx not in path_idx:
-                s_p_c.append(0.0)
-                continue
+    for _, p_n in enumerate(pathname_data):
         spe_consumption_count = 0
         spe_production_count = 0
         for s_i in spe_idx:
@@ -411,8 +404,6 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
 
     if id_tmp != "":
         suffix += "_" + id_tmp
-    if path_idx is not None:
-        suffix += "_" + "selected_path"
     f_n_spe_production_count = os.path.join(
         file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
 
@@ -480,8 +471,7 @@ if __name__ == "__main__":
                                     init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                                     end_t=G_S['end_t'], species_path=G_S['species_path'],
                                     axis=0, path_branching_factor=False,
-                                    s_consumption=False, s_production=True,
-                                    path_idx=[0, 1])
+                                    s_consumption=False, s_production=True)
 
     # calculate_Merchant_alpha_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],
