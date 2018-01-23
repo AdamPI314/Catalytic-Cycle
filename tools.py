@@ -9,6 +9,8 @@ from matplotlib import pylab as plt
 from matplotlib.lines import Line2D
 
 import numpy as np
+from naming import get_suffix
+import interpolation
 
 
 def get_colors_markers_linestyles():
@@ -83,3 +85,36 @@ def make_figure_template(file_dir):
     fig.tight_layout()
     fig.savefig(os.path.join(file_dir, fig_name), dpi=500)
     plt.close()
+
+
+def pathway_time_2_array_index(file_dir, init_spe=None, atom_followed="C",
+                               end_t=1.0, species_path=False, time=1.0):
+    """
+    pathway time converted to array index, pathway time read from pathway_time_canditate*
+    """
+    suffix = get_suffix(file_dir, init_spe=init_spe,
+                        atom_followed=atom_followed, end_t=end_t)
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    f_n_path_time = os.path.join(
+        file_dir, "output", prefix + "pathway_time_candidate" + suffix + ".csv")
+
+    p_time = np.genfromtxt(f_n_path_time, dtype=float, delimiter=',')
+
+    # in case of two dimensional pathway time
+    if len(np.shape(p_time)) == 2:
+        p_time = p_time[0, :]
+
+    y_idx = [float(i) for i in range(len(p_time))]
+    array_idx = interpolation.interp1d(p_time, y_idx, time)
+
+    array_idx = int(array_idx)
+
+    if array_idx >= len(p_time):
+        array_idx = len(p_time) - 1
+    if array_idx < 0:
+        array_idx = 0
+
+    return array_idx
