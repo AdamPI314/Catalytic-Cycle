@@ -450,6 +450,24 @@ def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end
     return
 
 
+def parse_pathway_contains_species(file_dir, s_idx_l=None, init_spe=60,
+                                   atom_followed="C", end_t=1.0, species_path=False):
+    """
+    parse pathway contains only species from list
+    """
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    f_n_path_name = os.path.join(
+        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+    p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
+    print(p_name)
+
+
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
@@ -467,12 +485,17 @@ if __name__ == "__main__":
     # for es in SPE_LIST:
     #     path_length_statistics(
     #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
-    parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
-                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=False,
-                                    s_consumption=False, s_production=True)
+
+    # parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #                                 axis=0, path_branching_factor=False,
+    #                                 s_consumption=False, s_production=True)
 
     # calculate_Merchant_alpha_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],
     #                                s_idx=10, r_idx=736)
+
+    parse_pathway_contains_species(FILE_DIR, s_idx_l=[60],
+                                   init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                   end_t=G_S['end_t'], species_path=G_S['species_path'])
