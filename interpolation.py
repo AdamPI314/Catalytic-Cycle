@@ -7,11 +7,11 @@ import os
 import sys
 
 
-def interp1d(t, something, x):
+def interp1d(x, y, target):
     """
     return 1d linear interpolation
     """
-    return np.interp(x, t, something)
+    return np.interp(target, x, y)
 
 
 if __name__ == '__main__':

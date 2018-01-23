@@ -17,7 +17,7 @@ import parse_spe_reaction_info as psri
 import trajectory
 import pattern_statistics
 import global_settings
-from tools import get_colors_markers_linestyles
+from tools import get_colors_markers_linestyles, pathway_time_2_array_index
 import naming
 import interpolation
 
@@ -1309,8 +1309,11 @@ if __name__ == '__main__':
                           begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
                           species_path=G_S['species_path'], spe_idx=[10], path_idx=[1, 2])
 
+    TIME_AXIS = pathway_time_2_array_index(
+        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+        species_path=G_S['species_path'], time=G_S['mc_t'])
     plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=5)
+                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=TIME_AXIS)
 
     plot_Merchant_alpha_value_vs_time(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],

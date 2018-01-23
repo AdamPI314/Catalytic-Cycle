@@ -97,7 +97,7 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, species_path=False):
+def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, species_path=False, time_axis=0):
     """
     get top n path
     """
@@ -118,6 +118,13 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, sp
 
     p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
     p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
+
+    # in case of two dimensional pathway name
+    if len(np.shape(p_n)) == 2:
+        p_n = p_n[:, time_axis]
+    if len(np.shape(p_p)) == 2:
+        p_p = p_p[:, time_axis]
+
     p_n = p_n[start_idx::]
     p_p = p_p[start_idx::]
     # set the data type seperately
@@ -137,7 +144,7 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, sp
 
 
 def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
-                          end_t=None, start_idx=0, species_path=False):
+                          end_t=None, start_idx=0, species_path=False, time_axis=0):
     """
     init directed network
     without parallel edges
@@ -160,6 +167,13 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
     print(f_n_path_name, f_n_path_prob)
     p_n = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
     p_p = np.genfromtxt(f_n_path_prob, dtype=float, delimiter=',')
+
+    # in case of two dimensional pathway name
+    if len(np.shape(p_n)) == 2:
+        p_n = p_n[:, time_axis]
+    if len(np.shape(p_p)) == 2:
+        p_p = p_p[:, time_axis]
+
     p_n = p_n[start_idx::]
     p_p = p_p[start_idx::]
 
@@ -443,21 +457,26 @@ if __name__ == '__main__':
         PREFIX = "species_"
     SUFFIX = get_suffix(FILE_DIR, init_spe=G_S['init_s'],
                         atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
+
+    TIME_AXIS = tools.pathway_time_2_array_index(
+        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+        species_path=G_S['species_path'], time=G_S['mc_t'])
+    TOP_N = 10
     # filename without type appendix
-    NETWORK_FILENAME = PREFIX + "network_" + str(G_S['top_n_p_gephi']) + SUFFIX
+    NETWORK_FILENAME = PREFIX + "network_" + str(TOP_N) + SUFFIX
 
     if not os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".gexf")):
         RN_OBJ = init_directed_network(
-            FILE_DIR, top_n=G_S['top_n_p_gephi'], init_spe=G_S['init_s'],
+            FILE_DIR, top_n=TOP_N, init_spe=G_S['init_s'],
             atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-            start_idx=1, species_path=G_S['species_path'])
+            start_idx=1, species_path=G_S['species_path'], time_axis=TIME_AXIS)
         network_to_gephi_input_file(
             RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
 
     elif os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".json")):
-        PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p_gephi'],
+        PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=TOP_N,
                                                              suffix=SUFFIX, norm=True, start_idx=0,
-                                                             species_path=G_S['species_path'])
+                                                             species_path=G_S['species_path'], time_axis=TIME_AXIS)
         for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
             plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
                          pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
