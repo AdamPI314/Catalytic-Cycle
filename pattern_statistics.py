@@ -7,6 +7,7 @@ import sys
 from collections import OrderedDict
 import numpy as np
 import pandas as pd
+import re
 import parse_spe_reaction_info as psri
 import atom_scheme as asch
 import naming
@@ -450,11 +451,14 @@ def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end
     return
 
 
-def parse_pathway_contains_species(file_dir, s_idx_l=None, init_spe=60,
-                                   atom_followed="C", end_t=1.0, species_path=False):
+def parse_species_from_pathway(file_dir, p_idx_l=None, init_spe=60,
+                               atom_followed="C", end_t=1.0, species_path=False):
     """
-    parse pathway contains only species from list
+    parse unique species list from pathway list
     """
+    if p_idx_l is None:
+        return
+
     suffix = naming.get_suffix(file_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
@@ -465,7 +469,53 @@ def parse_pathway_contains_species(file_dir, s_idx_l=None, init_spe=60,
     f_n_path_name = os.path.join(
         file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
-    print(p_name)
+
+    unique_spe = set()
+
+    for p_idx in p_idx_l:
+        matched_spe = re.findall(r"S(\d+)", p_name[p_idx])
+        for _, s_idx in enumerate(matched_spe):
+            unique_spe.add(s_idx)
+
+    return unique_spe
+
+
+def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
+                                   atom_followed="C", end_t=1.0, species_path=False):
+    """
+    parse pathway contains only species from list or set
+    ds --> data structure
+    """
+    if s_idx_ds is None:
+        return
+
+    s_idx_set = set(s_idx_ds)
+
+    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    f_n_path_name = os.path.join(
+        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+    p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
+
+    path_list = []
+    for idx, path in enumerate(p_name):
+        # Contains Species Only From Species List
+        c_s_o_f_s_l = True
+        matched_spe = re.findall(r"S(\d+)", path)
+        for _, s_idx in enumerate(matched_spe):
+            if s_idx not in s_idx_set:
+                c_s_o_f_s_l = False
+                break
+        if c_s_o_f_s_l is True:
+            path_list.append(idx)
+
+    print(path_list)
+    return path_list
 
 
 if __name__ == "__main__":
@@ -496,6 +546,11 @@ if __name__ == "__main__":
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],
     #                                s_idx=10, r_idx=736)
 
-    parse_pathway_contains_species(FILE_DIR, s_idx_l=[60],
+    # S_IDX_SET = parse_species_from_pathway(FILE_DIR, p_idx_l=[0, 1, 2, 3, 4, 6],
+    #                                        init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                        end_t=G_S['end_t'], species_path=G_S['species_path'])
+    S_IDX_SET = {'78', '94', '101', '46', '90',
+                 '59', '61', '14', '60', '17', '80'}
+    parse_pathway_contains_species(FILE_DIR, s_idx_ds=S_IDX_SET,
                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                                    end_t=G_S['end_t'], species_path=G_S['species_path'])
