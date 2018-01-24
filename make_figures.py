@@ -1305,15 +1305,19 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
+    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+                68, 93, 115, 138, 153, 165, 166, 245, 477]
     plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                           begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                          species_path=G_S['species_path'], spe_idx=[10], path_idx=[1, 2])
+                          species_path=G_S['species_path'], spe_idx=[10],
+                          path_idx=PATH_IDX)
 
     TIME_AXIS = pathway_time_2_array_index(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
     plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'], top_n=25, time_axis=TIME_AXIS)
+                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
+                                 top_n=25, time_axis=TIME_AXIS)
 
     plot_Merchant_alpha_value_vs_time(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],

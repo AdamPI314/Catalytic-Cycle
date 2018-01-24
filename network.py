@@ -97,7 +97,7 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         return arr
 
 
-def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, species_path=False, time_axis=0):
+def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, species_path=False, time_axis=0, sort_by_p=False):
     """
     get top n path
     """
@@ -125,15 +125,14 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, sp
     if len(np.shape(p_p)) == 2:
         p_p = p_p[:, time_axis]
 
-    p_n = p_n[start_idx::]
-    p_p = p_p[start_idx::]
     # set the data type seperately
     d_f_n = pd.DataFrame(p_n, columns=['name'], dtype=str)
     d_f_p = pd.DataFrame(p_p, columns=['prob'], dtype=float)
     d_f = pd.concat([d_f_n, d_f_p], axis=1)
 
-    d_f.sort_values(by='prob', ascending=False,
-                    inplace=True, na_position='last')
+    if sort_by_p is True:
+        d_f.sort_values(by='prob', ascending=False,
+                        inplace=True, na_position='last')
     d_f.reset_index(drop=True, inplace=True)
 
     data_tmp = list(d_f['prob'])[0:top_n]
@@ -143,8 +142,8 @@ def get_top_n_pathway(file_dir, top_n=10, suffix="", norm=False, start_idx=0, sp
     return list(d_f['name'])[0:top_n], data_tmp
 
 
-def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
-                          end_t=None, start_idx=0, species_path=False, time_axis=0):
+def init_directed_network(file_dir, path_idx=None, init_spe=None, atom_followed="C",
+                          end_t=None, species_path=False, time_axis=0):
     """
     init directed network
     without parallel edges
@@ -174,8 +173,9 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
     if len(np.shape(p_p)) == 2:
         p_p = p_p[:, time_axis]
 
-    p_n = p_n[start_idx::]
-    p_p = p_p[start_idx::]
+    # retrieve pathway name and pathway probability before sort
+    p_n = [p_n[i] for i in path_idx]
+    p_p = [p_p[i] for i in path_idx]
 
     # set the data type seperately
     d_f_n = pd.DataFrame(p_n, columns=['name'], dtype=str)
@@ -186,7 +186,6 @@ def init_directed_network(file_dir, top_n=10, init_spe=None, atom_followed="C",
                     inplace=True, na_position='last')
     d_f.reset_index(drop=True, inplace=True)
     print(d_f.head())
-    d_f = d_f.loc[0:(top_n + 1)]
 
     # temporary directed graph
     d_g_tmp = nx.DiGraph()
@@ -371,7 +370,7 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
     # parse pathway
     matched_spe = re.findall(r"S(\d+)", pathname)
     matched_reaction = re.findall(r"R(\d+)", pathname)
-    print(matched_reaction)
+    print(matched_spe, matched_reaction)
     node_list = [name_idx_dict[change_spe_name(
         str(x), spe_idx_name_dict, spe_union_find_group)] for x in matched_spe]
     print(node_list)
@@ -393,10 +392,24 @@ def plot_network(file_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
 
     # draw reaction along path
     if species_path is False:
+        # check for duplicate transition
+        idx_label_dict = {}
         for idx, curr_idx in enumerate(node_list):
             if idx >= 1:
                 pre_idx = node_list[idx - 1]
-                rxn_name = str(idx) + ": " + str(
+                rxn_idx = matched_reaction[idx - 1]
+                if tuple([pre_idx, curr_idx, rxn_idx]) in idx_label_dict:
+                    idx_label_dict[tuple([pre_idx, curr_idx, rxn_idx])
+                                   ] += "," + str(idx)
+                else:
+                    idx_label_dict[tuple(
+                        [pre_idx, curr_idx, rxn_idx])] = str(idx)
+
+        for idx, curr_idx in enumerate(node_list):
+            if idx >= 1:
+                pre_idx = node_list[idx - 1]
+                rxn_idx = matched_reaction[idx - 1]
+                rxn_name = idx_label_dict[tuple([pre_idx, curr_idx, rxn_idx])] + ": " + str(
                     new_ind_reaction_dict[matched_reaction[idx - 1]])
 
                 if x[pre_idx] <= x[curr_idx]:
@@ -461,26 +474,43 @@ if __name__ == '__main__':
     TIME_AXIS = tools.pathway_time_2_array_index(
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
-    TOP_N = 10
+
+    # TOP_N = 10
+    # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(FILE_DIR, top_n=TOP_N,
+    #                                                            suffix=SUFFIX, norm=True, start_idx=0,
+    #                                                            species_path=G_S['species_path'],
+    #                                                            time_axis=TIME_AXIS)
+    # PATH_IDX = [i for i in range(TOP_N)]
+
+    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+                68, 93, 115, 138, 153, 165, 166, 245, 477]
+    PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p'],
+                                                     suffix=SUFFIX, norm=True,
+                                                     species_path=G_S['species_path'],
+                                                     time_axis=TIME_AXIS,
+                                                     sort_by_p=False)
+    PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
+    PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
+
     # filename without type appendix
-    NETWORK_FILENAME = PREFIX + "network_" + str(TOP_N) + SUFFIX
+    NETWORK_FILENAME = PREFIX + "network" + SUFFIX
 
     if not os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".gexf")):
         RN_OBJ = init_directed_network(
-            FILE_DIR, top_n=TOP_N, init_spe=G_S['init_s'],
+            FILE_DIR, path_idx=PATH_IDX, init_spe=G_S['init_s'],
             atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-            start_idx=1, species_path=G_S['species_path'], time_axis=TIME_AXIS)
+            species_path=G_S['species_path'], time_axis=TIME_AXIS)
         network_to_gephi_input_file(
             RN_OBJ, FILE_DIR, NETWORK_FILENAME + ".gexf")
 
-    elif os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".json")):
-        PATH_NAME_TOP_N, PATH_PROB_TOP_N = get_top_n_pathway(FILE_DIR, top_n=TOP_N,
-                                                             suffix=SUFFIX, norm=True, start_idx=0,
-                                                             species_path=G_S['species_path'], time_axis=TIME_AXIS)
-        for IDX, PATHNAME in enumerate(PATH_NAME_TOP_N):
+    if os.path.isfile(os.path.join(FILE_DIR, "output", NETWORK_FILENAME + ".json")):
+        for IDX_TMP, P_IDX in enumerate(PATH_IDX):
+            PATHNAME = PATH_NAME_SELECTED[IDX_TMP]
+            PATHPROB = PATH_PROB_SELECTED[IDX_TMP]
+
             plot_network(file_dir=FILE_DIR, fname=NETWORK_FILENAME + ".json",
-                         pathname=PATHNAME, pathprob=PATH_PROB_TOP_N[IDX],
-                         path_idx=IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
+                         pathname=PATHNAME, pathprob=PATHPROB,
+                         path_idx=P_IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
                          atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
     END_TIME = time.time()
