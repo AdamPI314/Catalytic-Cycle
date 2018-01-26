@@ -1254,14 +1254,14 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir))
     G_S = global_settings.get_setting(FILE_DIR)
 
-    # SPE_LIST = [62, 59, 9, 10, 12, 13, 59]
+    SPE_LIST = [59, 10, 12, 13, 59]
     # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
     #     FILE_DIR, exclude=None, top_n=10,
     #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     tag="M", atoms=["C", "O"])
-    # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
-    #                     tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
-    #                     renormalization=False, semilogy=True, hasTemp=True)
+    plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
+                        tau=G_S['tau'], end_t=0.01, tag="M", exclude_names=None,
+                        renormalization=False, semilogy=True, hasTemp=True)
     # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
     #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=True, hasTemp=True)
@@ -1305,24 +1305,24 @@ if __name__ == '__main__':
     #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
-                68, 93, 115, 138, 153, 165, 166, 245, 477]
-    plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                          species_path=G_S['species_path'], spe_idx=[10],
-                          path_idx=PATH_IDX)
+    # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+    #             68, 93, 115, 138, 153, 165, 166, 245, 477]
+    # plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                       species_path=G_S['species_path'], spe_idx=[10],
+    #                       path_idx=PATH_IDX)
 
-    TIME_AXIS = pathway_time_2_array_index(
-        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], time=G_S['mc_t'])
-    plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                 end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
-                                 top_n=25, time_axis=TIME_AXIS)
+    # TIME_AXIS = pathway_time_2_array_index(
+    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], time=G_S['mc_t'])
+    # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
+    #                              top_n=25, time_axis=TIME_AXIS)
 
-    plot_Merchant_alpha_value_vs_time(
-        FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], s_idx=10, r_idx=736)
+    # plot_Merchant_alpha_value_vs_time(
+    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], s_idx=10, r_idx=736)
 
-    plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                                    species_path=G_S['species_path'], s_idx=10)
+    # plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                                 species_path=G_S['species_path'], s_idx=10)
