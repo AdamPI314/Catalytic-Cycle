@@ -475,22 +475,23 @@ if __name__ == '__main__':
         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
 
-    # TOP_N = 10
-    # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(FILE_DIR, top_n=TOP_N,
-    #                                                            suffix=SUFFIX, norm=True, start_idx=0,
-    #                                                            species_path=G_S['species_path'],
-    #                                                            time_axis=TIME_AXIS)
-    # PATH_IDX = [i for i in range(TOP_N)]
+    TOP_N = 10
+    PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(FILE_DIR, top_n=TOP_N,
+                                                               suffix=SUFFIX, norm=True,
+                                                               species_path=G_S['species_path'],
+                                                               time_axis=TIME_AXIS,
+                                                               sort_by_p=True)
+    PATH_IDX = [i for i in range(TOP_N)]
 
-    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
-                68, 93, 115, 138, 153, 165, 166, 245, 477]
-    PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p'],
-                                                     suffix=SUFFIX, norm=True,
-                                                     species_path=G_S['species_path'],
-                                                     time_axis=TIME_AXIS,
-                                                     sort_by_p=False)
-    PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
-    PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
+    # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+    #             68, 93, 115, 138, 153, 165, 166, 245, 477]
+    # PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(FILE_DIR, top_n=G_S['top_n_p'],
+    #                                                  suffix=SUFFIX, norm=True,
+    #                                                  species_path=G_S['species_path'],
+    #                                                  time_axis=TIME_AXIS,
+    #                                                  sort_by_p=False)
+    # PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
+    # PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
 
     # filename without type appendix
     NETWORK_FILENAME = PREFIX + "network" + SUFFIX

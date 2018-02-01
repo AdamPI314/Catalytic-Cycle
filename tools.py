@@ -116,5 +116,5 @@ def pathway_time_2_array_index(file_dir, init_spe=None, atom_followed="C",
         array_idx = len(p_time) - 1
     if array_idx < 0:
         array_idx = 0
-
+    print("time idx:\t", array_idx, "time:\t", p_time[array_idx])
     return array_idx
