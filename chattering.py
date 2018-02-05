@@ -203,7 +203,7 @@ if __name__ == '__main__':
     INIT_TIME = time.time()
 
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(FILE_DIR)
 
     # initiate_fast_reaction(FILE_DIR)

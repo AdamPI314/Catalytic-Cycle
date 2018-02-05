@@ -94,7 +94,7 @@ def beta_1000_rate_constant_w2f(file_dir, beta=None, pressure=1.0, buffer=None, 
 
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     S_C = get_species_from_file(FILE_DIR)
     write_spe_composition_2_file(FILE_DIR, S_C, tag="")
     # BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
