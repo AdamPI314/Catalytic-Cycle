@@ -1251,7 +1251,7 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
 
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     G_S = global_settings.get_setting(FILE_DIR)
 
     SPE_LIST = [59, 10, 12, 13, 59]

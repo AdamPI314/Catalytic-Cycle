@@ -245,7 +245,7 @@ def calculate_path_branching_number(pathname="S60R-100001S90R1162S94", net_react
 
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     # print(parse_path_length("S10"))
     NET_REACTANT = psri.parse_reaction_net_reactant(FILE_DIR)
     NET_PRODUCT = psri.parse_reaction_net_product(FILE_DIR)

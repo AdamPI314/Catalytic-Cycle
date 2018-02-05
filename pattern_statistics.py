@@ -520,7 +520,7 @@ def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
 
 if __name__ == "__main__":
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
-        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     G_S = global_settings.get_setting(FILE_DIR)
 
     # species_count(FILE_DIR)
