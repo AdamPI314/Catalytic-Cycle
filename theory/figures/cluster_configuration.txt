@@ -1,0 +1,27 @@
+Hostname
+node1
+password
+sohr666888314
+superuser
+sohr
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get autoremove
+
+sudo apt-get install vim
+sudo apt-get install build-essential
+sudo apt-get install gfortran
+
+sudo apt-get install openssh-server
+
+sudo apt-get install mpich
+sudo apt-get install openmpi-bin
+
+sudo apt-get install libboost-all-dev
+
+anaoncda
+/opt/anaconda/anaconda3
+
+
