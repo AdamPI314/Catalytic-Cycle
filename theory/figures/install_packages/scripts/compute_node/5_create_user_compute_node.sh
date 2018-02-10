@@ -16,11 +16,16 @@ echo "${USER_NAME}:${USER_PASSWD}" | sudo chpasswd
 getent group ${GROUP_NAME} || sudo groupadd ${GROUP_NAME}
 sudo usermod -a -G ${GROUP_NAME} ${USER_NAME}
 
-# add to compute-cluster : account
+# # add to sohr-cluster : account
+# # cluster name: sohr
+# # account name: sohr-account
 
-# in case cluster not exists
-# sudo sacctmgr add cluster compute-cluster
-# sudo sacctmgr add account compute-account description="Compute accounts" Organization=UCB
-# sudo sacctmgr create user ${USER_NAME} account=compute-account adminlevel=None
+# # add to sohr-cluster : account
+# # in case cluster not exists
+# # -i, commits change immediately
+
+# sudo sacctmgr -i add cluster sohr-cluster
+# sudo sacctmgr -i add account sohr-account description="Compute accounts" Organization=UCB
+# sudo sacctmgr -i create user ${USER_NAME} account=sohr-account adminlevel=None
 
 echo "user created successfull"
