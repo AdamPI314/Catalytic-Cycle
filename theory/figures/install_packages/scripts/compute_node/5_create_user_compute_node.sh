@@ -9,7 +9,7 @@ USER_PASSWD=$2
 GROUP_NAME=$3
 
 # create user if not exists
-id -u ${USER_NAME} &>/dev/null || sudo adduser ${USER_NAME} --gecos "${USER_NAME},RoomNumber,WorkPhone,HomePhone" --disabled-password
+id -u ${USER_NAME} >/dev/null 2>&1 || sudo adduser ${USER_NAME} --gecos "${USER_NAME},RoomNumber,WorkPhone,HomePhone" --disabled-password
 echo "${USER_NAME}:${USER_PASSWD}" | sudo chpasswd
 
 # create group if not exists
