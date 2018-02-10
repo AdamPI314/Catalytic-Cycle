@@ -8,25 +8,28 @@ echo /tmp/nfs_conf_compute_node.log.$$ > /tmp/nfs_conf_compute_node.log.$$ 2>&1
 #sudo vim /etc/exports, add two lines
 sudo apt-get -y install nfs-client >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
 
-pattern1="headnode:/ssd2t /ssd2t nfs"
+str1="headnode:/ssd2t /ssd2t nfs"
+pattern1="headnode:\/ssd2t \/ssd2t nfs"
 if grep -q "${pattern1}" /etc/fstab; then
-    echo $pattern1 found
+    echo $str1 found
 else
-    sudo echo $pattern1 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
+    sudo echo $str1 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
 fi
 
-pattern2="headnode:/hdd4t /hdd4t nfs"
+str2="headnode:/hdd4t /hdd4t nfs"
+pattern2="headnode:\/hdd4t \/hdd4t nfs"
 if grep -q "${pattern2}" /etc/fstab; then
-    echo $pattern2 found
+    echo $str2 found
 else
-    sudo echo $pattern2 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
+    sudo echo $str2 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
 fi
 
-pattern3="headnode:/home /home nfs"
+str3="headnode:/home /home nfs"
+pattern3="headnode:\/home \/home nfs"
 if grep -q "${pattern3}" /etc/fstab; then
-    echo $pattern3 found
+    echo $str3 found
 else
-    sudo echo $pattern3 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
+    sudo echo $str3 >> /etc/fstab | xargs >> /tmp/nfs_conf_compute_node.log.$$ 2>&1
 fi
 
 if ! [ -d /ssd2t ]; then
