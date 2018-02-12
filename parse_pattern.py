@@ -244,14 +244,14 @@ def calculate_path_branching_number(pathname="S60R-100001S90R1162S94", net_react
 
 
 if __name__ == "__main__":
-    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     # print(parse_path_length("S10"))
-    NET_REACTANT = psri.parse_reaction_net_reactant(FILE_DIR)
-    NET_PRODUCT = psri.parse_reaction_net_product(FILE_DIR)
-    ATOM_SCHEME = asch.get_atom_scheme(FILE_DIR)
-    S_IDX_NAME, _ = psri.parse_spe_info(FILE_DIR)
-    S_P_R_C = psri.parse_species_pair_reaction(FILE_DIR)
+    NET_REACTANT = psri.parse_reaction_net_reactant(DATA_DIR)
+    NET_PRODUCT = psri.parse_reaction_net_product(DATA_DIR)
+    ATOM_SCHEME = asch.get_atom_scheme(DATA_DIR)
+    S_IDX_NAME, _ = psri.parse_spe_info(DATA_DIR)
+    S_P_R_C = psri.parse_species_pair_reaction(DATA_DIR)
     # parse_spe_production_along_path(net_product=NET_PRODUCT)
 
     # calculate_reaction_branching_number(

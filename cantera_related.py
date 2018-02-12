@@ -12,12 +12,12 @@ except ImportError:
     print("CANTERA NOT AVAILABLE")
 
 
-def get_species_from_file(file_dir):
+def get_species_from_file(data_dir):
     """
     get species composition
     """
     all_species = ct.Species.listFromFile(
-        os.path.join(file_dir, "input", "chem.xml"))
+        os.path.join(data_dir, "input", "chem.xml"))
     spe_composition = defaultdict(dict)
 
     for spe in all_species:
@@ -25,7 +25,7 @@ def get_species_from_file(file_dir):
     return spe_composition
 
 
-def write_spe_composition_2_file(file_dir, spe_composition, tag=None):
+def write_spe_composition_2_file(data_dir, spe_composition, tag=None):
     """
     write to json file
     """
@@ -33,7 +33,7 @@ def write_spe_composition_2_file(file_dir, spe_composition, tag=None):
         f_n = "spe_composition" + str(tag) + ".json"
     else:
         f_n = "spe_composition.json"
-    with open(os.path.join(file_dir, "input", f_n), 'w') as f_h:
+    with open(os.path.join(data_dir, "input", f_n), 'w') as f_h:
         json.dump(spe_composition, f_h, indent=4, sort_keys=False)
 
 
@@ -74,29 +74,29 @@ def eval_2nd_order_rate_const(f_n, temp=None, pressure=1.0, buffer=None, rxn_idx
     return rxn_str, result
 
 
-def beta_1000_rate_constant_w2f(file_dir, beta=None, pressure=1.0, buffer=None, rxn_idx=0):
+def beta_1000_rate_constant_w2f(data_dir, beta=None, pressure=1.0, buffer=None, rxn_idx=0):
     """
     beta = 1000/T
     T = 1000/beta
     """
     if beta is None:
         beta = [1.0]
-    np.savetxt(os.path.join(file_dir, "output", "beta.csv"),
+    np.savetxt(os.path.join(data_dir, "output", "beta.csv"),
                beta, fmt="%.15f", delimiter=",")
     temp = [1000.0 / b for b in beta]
     r_n, r_c = eval_2nd_order_rate_const(os.path.join(
-        file_dir, "input", "chem.xml"), temp=temp, pressure=pressure, buffer=buffer, rxn_idx=rxn_idx)
-    np.savetxt(os.path.join(file_dir, "output", "rxn_name.csv"),
+        data_dir, "input", "chem.xml"), temp=temp, pressure=pressure, buffer=buffer, rxn_idx=rxn_idx)
+    np.savetxt(os.path.join(data_dir, "output", "rxn_name.csv"),
                r_n, fmt="%s", delimiter=",")
-    np.savetxt(os.path.join(file_dir, "output", "rate_constant.csv"),
+    np.savetxt(os.path.join(data_dir, "output", "rate_constant.csv"),
                r_c, fmt="%1.15e", delimiter=",")
 
 
 if __name__ == '__main__':
-    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
-    S_C = get_species_from_file(FILE_DIR)
-    write_spe_composition_2_file(FILE_DIR, S_C, tag="")
+    S_C = get_species_from_file(DATA_DIR)
+    write_spe_composition_2_file(DATA_DIR, S_C, tag="")
     # BUFFER = {"npropyl": 1.0, "O2": 1.0, "HE": 1.0}
     # RXN_IDX = [548, 549, 550, 551, 552, 553]
     # RXN_IDX = [564,565,566,567]
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     # BETA = np.linspace(0.65, 2.5, num=25, endpoint=True)
 
     # eval_2nd_order_rate_const(os.path.join(
-    #     FILE_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
+    #     DATA_DIR, "input", "chem.xml"), pressure=3.0, temp=TEMP, buffer=BUFFER, rxn_idx=RXN_IDX)
     # beta_1000_rate_constant_w2f(
-    #     FILE_DIR, beta=BETA, pressure=3.0, buffer=BUFFER, rxn_idx=RXN_IDX)
-    print(FILE_DIR)
+    #     DATA_DIR, beta=BETA, pressure=3.0, buffer=BUFFER, rxn_idx=RXN_IDX)
+    print(DATA_DIR)

@@ -22,18 +22,18 @@ import naming
 import interpolation
 
 
-def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
+def plot_path_length_statistics(data_dir, init_spe=62, atom_followed="C",
                                 end_t=1.0, end_spe=None):
     """
     plot path length statistics
     """
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     if suffix is not None:
         suffix += "_S" + str(end_spe)
-    in_f_n = os.path.join(file_dir, "output", "path_length" + suffix + ".csv")
+    in_f_n = os.path.join(data_dir, "output", "path_length" + suffix + ".csv")
     fig_name = os.path.join(
-        file_dir, "output", "path_length" + suffix + ".jpg")
+        data_dir, "output", "path_length" + suffix + ".jpg")
 
     colors, markers, _ = get_colors_markers_linestyles()
 
@@ -43,7 +43,7 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
     data_y = data[:, 1]
     # data_y /= np.sum(data_y)
 
-    spe_idx_n_dict, _ = psri.parse_spe_info(file_dir)
+    spe_idx_n_dict, _ = psri.parse_spe_info(data_dir)
     # specify label for lines
     labels = [spe_idx_n_dict[str(end_spe)]]
 
@@ -68,23 +68,23 @@ def plot_path_length_statistics(file_dir, init_spe=62, atom_followed="C",
     a_x.set_title("path length distribution")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, fig_name), dpi=500)
     plt.close()
 
     return
 
 
-def plot_cumulative_pathway_prob(file_dir, init_spe=62, atom_followed="C", end_t=1.0, tau=10.0, species_path=True, top_n=10, time_axis=0):
+def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", end_t=1.0, tau=10.0, species_path=True, top_n=10, time_axis=0):
     """
     plot cumulative pathway probability at a time point
     """
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
-    f_n_pp = os.path.join(file_dir, "output",
+    f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
     data = np.genfromtxt(f_n_pp, delimiter=",", dtype=float)
 
@@ -114,14 +114,14 @@ def plot_cumulative_pathway_prob(file_dir, init_spe=62, atom_followed="C", end_t
     a_x.grid()
 
     suffix += "_top_" + str(top_n)
-    f_n_out = os.path.join(file_dir, "output", prefix +
+    f_n_out = os.path.join(data_dir, "output", prefix +
                            "pathway_probability" + suffix + ".jpg")
     fig.savefig(f_n_out, dpi=500)
 
     return
 
 
-def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None,
+def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None,
                         renormalization=True, semilogy=False, hasTemp=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
@@ -136,19 +136,19 @@ def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
 
     if hasTemp is True:
         s_idx_n["-1"] = "Temp"
         spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(data_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     conc = trajectory.get_normalized_concentration(
-        file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
+        data_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
 
     counter = 0
     # the time point where reference time tau is
@@ -192,12 +192,12 @@ def plot_concentrations(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
-    fig.savefig(os.path.join(file_dir, "output",
+    fig.savefig(os.path.join(data_dir, "output",
                              "trajectory_" + s_n_str + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1.0,
+def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1.0,
                                        tag="fraction", exclude_names=None, renormalization=True):
     """
     plot concentrations give species index list, if exclude is not None, means we are going
@@ -212,18 +212,18 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
     s_idx_n["-1"] = "Temp"
 
     spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(data_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     conc = trajectory.get_normalized_concentration(
-        file_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
+        data_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
 
     counter = 0
     # the time point where reference time tau is
@@ -265,12 +265,12 @@ def plot_spe_concentrations_derivative(file_dir, spe_idx=None, tau=10.0, end_t=1
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
-    fig.savefig(os.path.join(file_dir, "output",
+    fig.savefig(os.path.join(data_dir, "output",
                              "spe_concentrations_derivative_" + s_n_str + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_spe_drc(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
+def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
     """
     plot species destruction rate constant, give species index list
     """
@@ -280,17 +280,17 @@ def plot_spe_drc(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
     s_idx_n["-1"] = "Temp"
 
     spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(data_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-    spe_drc = np.loadtxt(os.path.join(file_dir, "output",
+    spe_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
     counter = 0
     # the time point where reference time tau is
@@ -341,23 +341,23 @@ def plot_spe_drc(file_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
     # plt.title(s_n_str)
 
     if reciprocal is False:
-        fig.savefig(os.path.join(file_dir, "output",
+        fig.savefig(os.path.join(data_dir, "output",
                                  "spe_drc_" + s_n_str + ".jpg"), dpi=500)
     else:
-        fig.savefig(os.path.join(file_dir, "output",
+        fig.savefig(os.path.join(data_dir, "output",
                                  "spe_drc_reciprocal_" + s_n_str + ".jpg"), dpi=500)
 
     plt.close()
 
 
-def plot_chattering_group_drc(file_dir, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
+def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
     """
     plot chattering group destruction rate constant
     """
     colors, markers, _ = get_colors_markers_linestyles()
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
-    with open(os.path.join(file_dir, "output", "chattering_group_info.json"), 'r') as f_h:
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
+    with open(os.path.join(data_dir, "output", "chattering_group_info.json"), 'r') as f_h:
         chattering_group_info = json.load(f_h)
 
     chattering_group_idx_n = dict()
@@ -372,11 +372,11 @@ def plot_chattering_group_drc(file_dir, tau=10.0, end_t=1.0, tag="fraction", rec
     chattering_group_idx_n["-1"] = "Temp"
 
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(data_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-    c_g_drc = np.loadtxt(os.path.join(file_dir, "output",
+    c_g_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "chattering_group_drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     group_id_temp = [i for i in range(np.shape(c_g_drc)[1])]
@@ -430,33 +430,33 @@ def plot_chattering_group_drc(file_dir, tau=10.0, end_t=1.0, tag="fraction", rec
     a_x_right.set_ylabel("T/K")
 
     if reciprocal is False:
-        fig.savefig(os.path.join(file_dir, "output",
+        fig.savefig(os.path.join(data_dir, "output",
                                  "chattering_group_drc" + ".jpg"), dpi=500)
     else:
-        fig.savefig(os.path.join(file_dir, "output",
+        fig.savefig(os.path.join(data_dir, "output",
                                  "chattering_group_drc_reciprocal" + ".jpg"), dpi=500)
 
     plt.close()
 
 
-def plot_reaction_rates(file_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="fraction"):
+def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="fraction"):
     """
     plot reaction rates give reaction index list
     """
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    _, rxn_idx_n = psri.parse_reaction_and_its_index(file_dir)
+    _, rxn_idx_n = psri.parse_reaction_and_its_index(data_dir)
     rxn_idx_n["-1"] = "Temp"
     reaction_idx.append(-1)
 
     if reaction_idx is None:
         reaction_idx = [0]
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(data_dir, "output",
                                         "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(file_dir, "output",
+    temp = np.loadtxt(os.path.join(data_dir, "output",
                                    "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
@@ -495,19 +495,19 @@ def plot_reaction_rates(file_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     rxn_idx_str = "_".join(str(x) for x in reaction_idx)
     plt.title("reaction rates and Temp")
 
-    fig.savefig(os.path.join(file_dir, "output",
+    fig.savefig(os.path.join(data_dir, "output",
                              "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None, tau=10.0, end_t=1.0, tag="M"):
+def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None, tau=10.0, end_t=1.0, tag="M"):
     """
     plot reaction rates ratios given reaction index pair
     """
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    _, rxn_idx_n = psri.parse_reaction_and_its_index(file_dir)
+    _, rxn_idx_n = psri.parse_reaction_and_its_index(data_dir)
 
     if rxn_idx_pair is None:
         rxn_idx_pair = OrderedDict()
@@ -515,10 +515,10 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
         spe_idx_pair = OrderedDict()
 
     time = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(data_dir, "output",
                                         "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    conc = np.loadtxt(os.path.join(file_dir, "output",
+    conc = np.loadtxt(os.path.join(data_dir, "output",
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     # the time point where reference time tau is
@@ -553,11 +553,11 @@ def plot_reaction_pair_rate_ratio(file_dir, rxn_idx_pair=None, spe_idx_pair=None
     fig.tight_layout()
     # figure name
     fig_name = "reaction_rate_pair_ratios.jpg"
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
+def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
                        end_t=1.0, end_spe=62, species_path=False):
     """
     plot spe_path_prob give species name 
@@ -570,7 +570,7 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
         prefix = ""
     else:
         prefix = "species_"
-    d_f = pattern_statistics.path_prob_terminating_with_spe(file_dir, init_spe=init_spe,
+    d_f = pattern_statistics.path_prob_terminating_with_spe(data_dir, init_spe=init_spe,
                                                             atom_followed=atom_followed, end_t=end_t,
                                                             end_spe=end_spe, species_path=species_path)
     data = [float(x) for x in d_f['frequency']][0:top_n]
@@ -583,15 +583,15 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
         delta_n = 1
     data_c = data_c[::delta_n]
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
     spe_name = s_idx_n[str(end_spe)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        file_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
+        data_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
-        file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
     # data_c = trajectory.convert_path_prob_to_concentration(
-    #     FILE_DIR, atom_followed=atom_followed, path_prob=data_c)
+    #     DATA_DIR, atom_followed=atom_followed, path_prob=data_c)
     spe_conc_const = spe_conc[int(end_spe)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
@@ -635,23 +635,23 @@ def plot_spe_path_prob(file_dir, top_n=10, exclude_names=None, init_spe=62, atom
     a_x_left.set_title(spe_name + " @" + str(end_t) + " tau")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output",
+    fig.savefig(os.path.join(data_dir, "output",
                              prefix + "path_prob_cumulative_" + spe_name + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
 
 
-def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C", end_t=0.5, top_n=10):
+def plot_top_n_spe_concentration(data_dir, exclude_names=None, atom_followed="C", end_t=0.5, top_n=10):
     """
     plot_top_n_spe_concentration
     """
     if exclude_names is None:
         exclude_names = []
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        file_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
+        data_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
-        file_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
 
     spe_top_n_idx_list = spe_conc.argsort()[-top_n:][::-1]
 
@@ -731,22 +731,22 @@ def plot_top_n_spe_concentration(file_dir, exclude_names=None, atom_followed="C"
     a_x_2.axis('off')
 
     # fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
 
 
-def plot_rxn_rate_constant(file_dir):
+def plot_rxn_rate_constant(data_dir):
     """
     plot reaction rate constant, read data from files
     """
 
     colors, markers, _ = get_colors_markers_linestyles()
 
-    beta = np.loadtxt(os.path.join(file_dir, "output",
+    beta = np.loadtxt(os.path.join(data_dir, "output",
                                    "beta.csv"), dtype=float, delimiter=",")
     rxn_name = np.loadtxt(os.path.join(
-        file_dir, "output", "rxn_name.csv"), dtype=str, delimiter=",")
+        data_dir, "output", "rxn_name.csv"), dtype=str, delimiter=",")
     rxn_rate_constant = np.loadtxt(os.path.join(
-        file_dir, "output", "rate_constant.csv"), dtype=float, delimiter=",")
+        data_dir, "output", "rate_constant.csv"), dtype=float, delimiter=",")
 
     # combine duplicated reactions, same reaction name
     rxn_name_map = dict()
@@ -783,12 +783,12 @@ def plot_rxn_rate_constant(file_dir):
     a_x.set_title("O$_2$ + npropyl")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output",
+    fig.savefig(os.path.join(data_dir, "output",
                              "reaction_rate_constant.jpg"), dpi=500)
     plt.close()
 
 
-def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
                               top_n=1, species_path=True):
     """
     plot pathway probability vs. time
@@ -798,13 +798,13 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    # f_n_pn = os.path.join(file_dir, "output",
+    # f_n_pn = os.path.join(data_dir, "output",
     #                       prefix + "pathway_name_selected" + suffix + ".csv")
-    f_n_pt = os.path.join(file_dir, "output",
+    f_n_pt = os.path.join(data_dir, "output",
                           prefix + "pathway_time_candidate" + suffix + ".csv")
-    f_n_pp = os.path.join(file_dir, "output",
+    f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
     # data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pt = np.loadtxt(f_n_pt, dtype=float, delimiter=",")
@@ -854,11 +854,11 @@ def plot_pathway_prob_vs_time(file_dir, init_spe=62, atom_followed="C", end_t=1.
     # a_x.set_title("CO", fontsize=15.0)
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+def plot_pathway_AT(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
                     path_idx=0, species_path=True):
     """
     plot pathway arrival time
@@ -868,11 +868,11 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(file_dir, "output",
+    f_n_pn = os.path.join(data_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
-    f_n_pa = os.path.join(file_dir, "output",
+    f_n_pa = os.path.join(data_dir, "output",
                           prefix + "pathway_AT" + suffix + ".csv")
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
@@ -893,11 +893,11 @@ def plot_pathway_AT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     a_x.set_title(data_pn[path_idx])
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+def plot_pathway_AT_no_IT(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
                           path_idx=0, species_path=True):
     """
     plot pathway arrival time
@@ -907,11 +907,11 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(file_dir, "output",
+    f_n_pn = os.path.join(data_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
-    f_n_pa = os.path.join(file_dir, "output",
+    f_n_pa = os.path.join(data_dir, "output",
                           prefix + "pathway_AT_no_IT" + suffix + ".csv")
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
@@ -933,19 +933,19 @@ def plot_pathway_AT_no_IT(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     title_n = data_pn[path_idx]
 
     # load spe and reaction info
-    spe_idx_n, _ = psri.parse_spe_info(file_dir)
-    _, idx_rxn_n = psri.parse_reaction_and_its_index(file_dir)
+    spe_idx_n, _ = psri.parse_spe_info(data_dir)
+    _, idx_rxn_n = psri.parse_reaction_and_its_index(data_dir)
     # convert species reaction index to real species and reactions
     title_n = psri.pathname_to_real_spe_reaction(spe_idx_n, idx_rxn_n, title_n)
 
     a_x.set_title(title_n, fontsize=6)
 
     # fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+def plot_pathway_AT_with_SP(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
                             path_idx=0, species_path=True):
     """
     plot pathway arrival time with terminal species survial probability
@@ -955,13 +955,13 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(file_dir, "output",
+    f_n_pn = os.path.join(data_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
-    f_n_pa = os.path.join(file_dir, "output",
+    f_n_pa = os.path.join(data_dir, "output",
                           prefix + "pathway_AT_with_SP" + suffix + ".csv")
-    f_n_psp = os.path.join(file_dir, "output",
+    f_n_psp = os.path.join(data_dir, "output",
                            prefix + "pathway_SP" + suffix + ".csv")
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
@@ -984,11 +984,11 @@ def plot_pathway_AT_with_SP(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     a_x.set_title(data_pn[path_idx])
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
+def plot_first_passage_time(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
                             path_idx=0, species_path=True):
     """
     plot pathway arrival time
@@ -998,11 +998,11 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(file_dir, "output",
+    f_n_pn = os.path.join(data_dir, "output",
                           prefix + "pathway_name_candidate" + suffix + ".csv")
-    f_n_pa = os.path.join(file_dir, "output",
+    f_n_pa = os.path.join(data_dir, "output",
                           prefix + "pathway_AT" + suffix + ".csv")
     data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pa = np.loadtxt(f_n_pa, dtype=float, delimiter=",")
@@ -1030,11 +1030,11 @@ def plot_first_passage_time(file_dir, init_spe=62, atom_followed="C", end_t=1.0,
              "Average Passage Time:  " + '{:1.3f}'.format(float(average_time)))
 
     fig.tight_layout()
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
+def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
                           begin_t=0.0, end_t=1.0, tau=10.0,
                           species_path=True, spe_idx=None, path_idx=None):
     """
@@ -1043,7 +1043,7 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     id_tmp = ""
     if spe_idx is None or spe_idx is []:
@@ -1057,9 +1057,9 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
             else:
                 id_tmp += "_" + str(x_t)
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
 
-    f_n_p_p = os.path.join(file_dir, "output", prefix +
+    f_n_p_p = os.path.join(data_dir, "output", prefix +
                            "pathway_prob" + suffix + ".csv")
     path_prob = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
 
@@ -1075,7 +1075,7 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
         suffix += "_" + id_tmp
 
     f_n_s_p_c = os.path.join(
-        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
     spe_numbers = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
 
     f_full = [np.dot(path_prob[:, col], spe_numbers)
@@ -1119,25 +1119,25 @@ def plot_Merchant_f_value(file_dir, init_spe=62, atom_followed="C",
     if path_idx is not None:
         suffix += "_selected"
     fig_name = prefix + "Merchant_f_vs_time" + suffix + ".jpg"
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_Merchant_alpha_value_vs_time(file_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
+def plot_Merchant_alpha_value_vs_time(data_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
                                       s_idx=10, r_idx=736):
     """
     calculate Merchat alpha value at time point as in time.csv, not at time zero
     """
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    time_v = np.loadtxt(os.path.join(file_dir, "output",
+    time_v = np.loadtxt(os.path.join(data_dir, "output",
                                      "time_dlsode_M.csv"), dtype=float, delimiter=',')
 
     merchant_alpha_fn = os.path.join(
-        file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
+        data_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
     merchant_alpha_v = np.loadtxt(
         merchant_alpha_fn, dtype=float, delimiter=',')
 
@@ -1161,11 +1161,11 @@ def plot_Merchant_alpha_value_vs_time(file_dir, init_spe=10, atom_followed="C", 
     fig.tight_layout()
     fig_name = prefix + "Merchant_alpha_vs_time" + "_S" + \
         str(s_idx) + "_R" + str(r_idx) + suffix + ".jpg"
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
-def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
+def plot_Merchant_alpha_and_f_value(data_dir, init_spe=62, atom_followed="C",
                                     begin_t=0.0, end_t=1.0, tau=10.0,
                                     species_path=True, s_idx=10, r_idx=736):
     """
@@ -1174,14 +1174,14 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     suffix_ref = deepcopy(suffix)
     id_tmp = str(s_idx)
 
-    s_idx_n, _ = psri.parse_spe_info(file_dir)
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
 
-    f_n_p_p = os.path.join(file_dir, "output", prefix +
+    f_n_p_p = os.path.join(data_dir, "output", prefix +
                            "pathway_prob" + suffix + ".csv")
     p_1 = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
 
@@ -1197,7 +1197,7 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
         suffix += "_" + id_tmp
 
     f_n_s_p_c = os.path.join(
-        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
     p_2 = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
 
     merchant_f_v = [np.dot(p_1[:, col], p_2)
@@ -1208,10 +1208,10 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
     time_v = time_v[1::]
     print(time_v)
 
-    time_ref = np.loadtxt(os.path.join(file_dir, "output",
+    time_ref = np.loadtxt(os.path.join(data_dir, "output",
                                        "time_dlsode_M.csv"), dtype=float, delimiter=',')
     merchant_alpha_fn = os.path.join(
-        file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix_ref + ".csv")
+        data_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix_ref + ".csv")
     alpha_ref = np.loadtxt(
         merchant_alpha_fn, dtype=float, delimiter=',')
 
@@ -1245,84 +1245,84 @@ def plot_Merchant_alpha_and_f_value(file_dir, init_spe=62, atom_followed="C",
 
     fig.tight_layout()
     fig_name = prefix + "Merchant_alpha_and_f_vs_time" + suffix + ".jpg"
-    fig.savefig(os.path.join(file_dir, "output", fig_name), dpi=500)
+    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
 
 if __name__ == '__main__':
-    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
-    G_S = global_settings.get_setting(FILE_DIR)
+    G_S = global_settings.get_setting(DATA_DIR)
 
     SPE_LIST = [59, 10, 12, 13, 59]
     # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
-    #     FILE_DIR, exclude=None, top_n=10,
+    #     DATA_DIR, exclude=None, top_n=10,
     #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
     #     tag="M", atoms=["C", "O"])
-    plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
+    plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
                         tau=G_S['tau'], end_t=0.01, tag="M", exclude_names=None,
                         renormalization=False, semilogy=True, hasTemp=True)
-    # plot_concentrations(FILE_DIR, spe_idx=SPE_LIST,
+    # plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
     #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=True, hasTemp=True)
-    # plot_concentrations(FILE_DIR, spe_idx=[10],
+    # plot_concentrations(DATA_DIR, spe_idx=[10],
     #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=True, hasTemp=True)
-    # plot_spe_concentrations_derivative(FILE_DIR, spe_idx=[62, 14, 15, 59],
+    # plot_spe_concentrations_derivative(DATA_DIR, spe_idx=[62, 14, 15, 59],
     #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
     # plot_pathway_prob_vs_time(
-    #     FILE_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     DATA_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #     top_n=6, species_path=G_S['species_path'])
-    # plot_spe_drc(FILE_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
+    # plot_spe_drc(DATA_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
     #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
-    #     FILE_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
-    # plot_spe_drc(FILE_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
+    #     DATA_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
+    # plot_spe_drc(DATA_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
     #              tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
-    # plot_spe_drc(FILE_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
+    # plot_spe_drc(DATA_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
     #              tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
     # plot_chattering_group_drc(
-    #     FILE_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
+    #     DATA_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
     # for p_i in range(10):
     #     plot_pathway_AT(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_no_IT(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
     # for p_i in range(20):
     #     plot_pathway_AT_with_SP(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
     # for p_i in range(len(G_S['end_s_idx'])):
     #     plot_first_passage_time(
-    #         FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
     # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
     #             68, 93, 115, 138, 153, 165, 166, 245, 477]
-    # plot_Merchant_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    # plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
     #                       species_path=G_S['species_path'], spe_idx=[10],
     #                       path_idx=PATH_IDX)
 
     # TIME_AXIS = pathway_time_2_array_index(
-    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #     species_path=G_S['species_path'], time=G_S['mc_t'])
-    # plot_cumulative_pathway_prob(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    # plot_cumulative_pathway_prob(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
     #                              top_n=25, time_axis=TIME_AXIS)
 
     # plot_Merchant_alpha_value_vs_time(
-    #     FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #     species_path=G_S['species_path'], s_idx=10, r_idx=736)
 
-    # plot_Merchant_alpha_and_f_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    # plot_Merchant_alpha_and_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                 begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
     #                                 species_path=G_S['species_path'], s_idx=10)
