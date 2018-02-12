@@ -12,12 +12,12 @@ import read_write_configuration as rwc
 import interpolation
 
 
-def initiate_fast_reaction(file_dir):
+def initiate_fast_reaction(data_dir):
     """
     intiate file named "reaction_info_base.json" based on file named "reaction_labelling.csv"
     """
     new_old_index_dict, new_ind_reaction_dict = psri.parse_reaction_and_its_index(
-        file_dir)
+        data_dir)
 
     rxn_pair_dict = dict()
 
@@ -50,8 +50,8 @@ def initiate_fast_reaction(file_dir):
                 str(rxn_pair_dict[int(val1)])
         rxn_info.update(entry)
 
-    fn0 = os.path.join(file_dir, "input", "reaction_info_base_backup.json")
-    fn1 = os.path.join(file_dir, "input", "reaction_info_base.json")
+    fn0 = os.path.join(data_dir, "input", "reaction_info_base_backup.json")
+    fn1 = os.path.join(data_dir, "input", "reaction_info_base.json")
 
     if os.path.isfile(fn1):
         copy2(fn1, fn0)
@@ -59,18 +59,18 @@ def initiate_fast_reaction(file_dir):
     rwc.write_configuration(rxn_info, fn1)
 
 
-def update_fast_reaction(file_dir, tau=0.7, end_t=1.0, tag="M"):
+def update_fast_reaction(data_dir, tau=0.7, end_t=1.0, tag="M"):
     """
     update fast reaction based on reference trajectory
     """
-    fn0 = os.path.join(file_dir, "input", "reaction_info_base_backup.json")
-    fn1 = os.path.join(file_dir, "input", "reaction_info_base.json")
+    fn0 = os.path.join(data_dir, "input", "reaction_info_base_backup.json")
+    fn1 = os.path.join(data_dir, "input", "reaction_info_base.json")
 
     rxn_info = rwc.read_configuration(fn1)
 
     time_v = np.loadtxt(os.path.join(
-        file_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    rxn_rates = np.loadtxt(os.path.join(file_dir, "output",
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates = np.loadtxt(os.path.join(data_dir, "output",
                                         "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     actual_time = float(tau) * float(end_t)
@@ -89,7 +89,7 @@ def update_fast_reaction(file_dir, tau=0.7, end_t=1.0, tag="M"):
     rwc.write_configuration(rxn_info, fn1)
 
 
-def fast_reaction_w2f(file_dir, threshold=-7):
+def fast_reaction_w2f(data_dir, threshold=-7):
     """
     prepare "fast_reaction.json" file, this file will be
     1) manually changed later
@@ -98,7 +98,7 @@ def fast_reaction_w2f(file_dir, threshold=-7):
     fast_transition = {}
     counter = 0
 
-    fn_rib = os.path.join(file_dir, "input", "reaction_info_base.json")
+    fn_rib = os.path.join(data_dir, "input", "reaction_info_base.json")
     rxn_info = rwc.read_configuration(fn_rib)
 
     # care fast reaction pair only, both forward and backward reactions are fast
@@ -123,15 +123,15 @@ def fast_reaction_w2f(file_dir, threshold=-7):
                 fast_transition.update(entry)
                 counter += 1
 
-    fn_frb0 = os.path.join(file_dir, "input", "fast_reaction_base_backup.json")
-    fn_frb1 = os.path.join(file_dir, "input", "fast_reaction_base.json")
+    fn_frb0 = os.path.join(data_dir, "input", "fast_reaction_base_backup.json")
+    fn_frb1 = os.path.join(data_dir, "input", "fast_reaction_base.json")
     if os.path.isfile(fn_frb1):
         copy2(fn_frb1, fn_frb0)
 
     rwc.write_configuration(fast_transition, fn_frb1)
 
 
-def generate_fast_rxn_chattering_spe(file_dir):
+def generate_fast_rxn_chattering_spe(data_dir):
     """
     generate fast reaction and chattering species based on four files
     0) species_information.json
@@ -142,10 +142,10 @@ def generate_fast_rxn_chattering_spe(file_dir):
     save file named "fast_transition.json", this file will be used to update file
     "local_settings.py" manually
     """
-    f_n_si = os.path.join(file_dir, "input", "species_information.json")
-    f_n_ri = os.path.join(file_dir, "input", "reaction_information.json")
-    f_n_as = os.path.join(file_dir, "input", "atom_scheme.json")
-    f_n_frb = os.path.join(file_dir, "input", "fast_reaction_base.json")
+    f_n_si = os.path.join(data_dir, "input", "species_information.json")
+    f_n_ri = os.path.join(data_dir, "input", "reaction_information.json")
+    f_n_as = os.path.join(data_dir, "input", "atom_scheme.json")
+    f_n_frb = os.path.join(data_dir, "input", "fast_reaction_base.json")
 
     spe_info = rwc.read_configuration(f_n_si)
     rxn_info = rwc.read_configuration(f_n_ri)
@@ -191,8 +191,8 @@ def generate_fast_rxn_chattering_spe(file_dir):
 
         fast_transition.append(entry)
 
-    fn_ft0 = os.path.join(file_dir, "input", "fast_transition_backup.json")
-    fn_ft1 = os.path.join(file_dir, "input", "fast_transition.json")
+    fn_ft0 = os.path.join(data_dir, "input", "fast_transition_backup.json")
+    fn_ft1 = os.path.join(data_dir, "input", "fast_transition.json")
     if os.path.isfile(fn_ft1):
         copy2(fn_ft1, fn_ft0)
 
@@ -202,14 +202,14 @@ def generate_fast_rxn_chattering_spe(file_dir):
 if __name__ == '__main__':
     INIT_TIME = time.time()
 
-    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
-    print(FILE_DIR)
+    print(DATA_DIR)
 
-    # initiate_fast_reaction(FILE_DIR)
-    # update_fast_reaction(FILE_DIR, tau=0.7, end_t=0.25)
-    # fast_reaction_w2f(FILE_DIR, threshold=-8)
-    generate_fast_rxn_chattering_spe(FILE_DIR)
+    # initiate_fast_reaction(DATA_DIR)
+    # update_fast_reaction(DATA_DIR, tau=0.7, end_t=0.25)
+    # fast_reaction_w2f(DATA_DIR, threshold=-8)
+    generate_fast_rxn_chattering_spe(DATA_DIR)
 
     END_TIME = time.time()
 

@@ -15,20 +15,20 @@ import parse_pattern
 import global_settings
 
 
-def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None, species_path=False):
+def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None, species_path=False):
     """
     get pathway and their pathway probability, path ending with spe
     """
-    suffix = naming.get_suffix(file_dir=file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir=data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     if species_path is False:
         prefix = ""
     else:
         prefix = "species_"
 
-    f_n_n = os.path.join(file_dir, "output",
+    f_n_n = os.path.join(data_dir, "output",
                          prefix + "pathway_name_selected" + suffix + ".csv")
-    f_n_p = os.path.join(file_dir, "output", prefix +
+    f_n_p = os.path.join(data_dir, "output", prefix +
                          "pathway_prob" + suffix + ".csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -47,12 +47,12 @@ def path_prob_terminating_with_spe(file_dir, init_spe=62, atom_followed="C", end
         return d_f
 
 
-def path_length_statistics(file_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None):
+def path_length_statistics(data_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None):
     """
     path length statistics
     """
     d_f = path_prob_terminating_with_spe(
-        file_dir, init_spe, atom_followed, end_t, end_spe)
+        data_dir, init_spe, atom_followed, end_t, end_spe)
 
     count_map = OrderedDict()
     for _, val in enumerate(d_f['pathway'][0:20]):
@@ -65,23 +65,23 @@ def path_length_statistics(file_dir, init_spe=62, atom_followed="C", end_t=1.0, 
     count_map = OrderedDict(sorted(count_map.items()))
     for key, value in count_map.items():
         mat.append([int(key), int(value)])
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
     if end_spe is not None:
         suffix += "_S" + str(end_spe)
-    out_f_n = os.path.join(file_dir, "output", "path_length" + suffix + ".csv")
+    out_f_n = os.path.join(data_dir, "output", "path_length" + suffix + ".csv")
     np.savetxt(out_f_n, mat, fmt='%d', delimiter=',',
                newline='\n', header='', footer='', comments='# ')
 
 
-def species_count(file_dir, top_n=50, norm=False):
+def species_count(data_dir, top_n=50, norm=False):
     """
     species occurence in a path multiply by pathway probability
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
@@ -100,31 +100,31 @@ def species_count(file_dir, top_n=50, norm=False):
     if norm is True:
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
-    f_n_out1 = os.path.join(file_dir, "output", "species_count_index.csv")
+    f_n_out1 = os.path.join(data_dir, "output", "species_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
     # load spe and reaction info
-    spe_ind_name_dict, _ = psri.parse_spe_info(file_dir)
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    spe_ind_name_dict, _ = psri.parse_spe_info(data_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
         lambda x: psri.pathname_to_real_spe_reaction(
             spe_ind_name_dict, new_ind_reaction_dict, x)
         .strip())
-    f_n_out2 = os.path.join(file_dir, "output", "species_count_name.csv")
+    f_n_out2 = os.path.join(data_dir, "output", "species_count_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def reaction_count(file_dir, top_n=50, norm=False):
+def reaction_count(data_dir, top_n=50, norm=False):
     """
     reaction occurence in a path multiply by pathway probability
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
@@ -142,29 +142,29 @@ def reaction_count(file_dir, top_n=50, norm=False):
     if norm is True:
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
-    f_n_out1 = os.path.join(file_dir, "output", "reaction_count_index.csv")
+    f_n_out1 = os.path.join(data_dir, "output", "reaction_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
         .strip())
     # print(d_f['reaction'])
-    f_n_out2 = os.path.join(file_dir, "output", "reaction_count_name.csv")
+    f_n_out2 = os.path.join(data_dir, "output", "reaction_count_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
-def initiation_reaction_count(file_dir, top_n=50, norm=False):
+def initiation_reaction_count(data_dir, top_n=50, norm=False):
     """
     initiation reaction occurence in a path multiply by pathway probability
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
@@ -183,30 +183,30 @@ def initiation_reaction_count(file_dir, top_n=50, norm=False):
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
     f_n_out1 = os.path.join(
-        file_dir, "output", "initiation_reaction_count_index.csv")
+        data_dir, "output", "initiation_reaction_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
         .strip())
     # print(d_f['reaction'])
     f_n_out2 = os.path.join(
-        file_dir, "output", "initiation_reaction_count_name.csv")
+        data_dir, "output", "initiation_reaction_count_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
-def species_cycle(file_dir, top_n=50, norm=False):
+def species_cycle(data_dir, top_n=50, norm=False):
     """
     species cycle in a path multiply by pathway probability
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
@@ -226,39 +226,39 @@ def species_cycle(file_dir, top_n=50, norm=False):
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
     f_n_out1 = os.path.join(
-        file_dir, "output", "species_cycle_index.csv")
+        data_dir, "output", "species_cycle_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
     # load spe and reaction info
-    spe_ind_name_dict, _ = psri.parse_spe_info(file_dir)
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    spe_ind_name_dict, _ = psri.parse_spe_info(data_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
 
     # convert species reaction index to real species and reactions
     d_f['species'] = d_f['species'].apply(
         lambda x: psri.pathname_to_real_spe_reaction(
             spe_ind_name_dict, new_ind_reaction_dict, x)
         .strip())
-    f_n_out2 = os.path.join(file_dir, "output", "species_cycle_name.csv")
+    f_n_out2 = os.path.join(data_dir, "output", "species_cycle_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
+def species_production_path(data_dir, spe='OH', top_n=50, norm=False):
     """
     species production in a path multiply by pathway probability, count pathway
     or sub-pathway ends with a species
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
     # load spe and reaction info
-    spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(file_dir)
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    spe_ind_name_dict, spe_name_ind_dict = psri.parse_spe_info(data_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
 
     species_production_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
@@ -275,7 +275,7 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
     f_n_out1 = os.path.join(
-        file_dir, "output", spe + "_production_path_index.csv")
+        data_dir, "output", spe + "_production_path_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
@@ -284,24 +284,24 @@ def species_production_path(file_dir, spe='OH', top_n=50, norm=False):
         lambda x: psri.pathname_to_real_spe_reaction(
             spe_ind_name_dict, new_ind_reaction_dict, x)
         .strip())
-    f_n_out2 = os.path.join(file_dir, "output", spe +
+    f_n_out2 = os.path.join(data_dir, "output", spe +
                             "_production_path_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['species', 'frequency'])
 
 
-def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
+def species_production_reaction(data_dir, spe='OH', top_n=50, norm=False):
     """
     species production reaction in a path multiply by pathway probability
     """
-    print(file_dir)
-    f_n_n = os.path.join(file_dir, "output", "pathway_name_selected.csv")
-    f_n_p = os.path.join(file_dir, "output", "pathway_prob.csv")
+    print(data_dir)
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
     pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
 
-    _, spe_name_ind_dict = psri.parse_spe_info(file_dir)
+    _, spe_name_ind_dict = psri.parse_spe_info(data_dir)
     reaction_map = dict()
     for _, (p_n, p_p) in enumerate(zip(pathway_name, pathway_prob)):
         map_tmp = parse_pattern.parse_species_production_reaction(
@@ -316,25 +316,25 @@ def species_production_reaction(file_dir, spe='OH', top_n=50, norm=False):
     if norm is True:
         total = sum(d_f['frequency'])
         d_f['frequency'] /= total
-    f_n_out1 = os.path.join(file_dir, "output", spe +
+    f_n_out1 = os.path.join(data_dir, "output", spe +
                             "_production_reaction_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(file_dir)
+    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
         .strip())
     # print(d_f['reaction'])
-    f_n_out2 = os.path.join(file_dir, "output", spe +
+    f_n_out2 = os.path.join(data_dir, "output", spe +
                             "_production_reaction_name.csv")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
 
-def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
+def parse_spe_production_along_path(data_dir, top_n=10, spe_idx=10, init_spe=62,
                                     atom_followed="C", end_t=1.0, species_path=False,
                                     axis=0, path_branching_factor=False,
                                     s_consumption=False, s_production=True):
@@ -358,7 +358,7 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
             else:
                 id_tmp += "_" + str(x_t)
 
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
     prefix = ""
@@ -366,7 +366,7 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     pathname_data = np.genfromtxt(
         f_n_path_name, dtype=str, max_rows=top_n + 1)
 
@@ -374,13 +374,13 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     if len(np.shape(pathname_data)) == 2:
         pathname_data = pathname_data[:, axis]
 
-    net_reactant = psri.parse_reaction_net_reactant(file_dir)
-    net_product = psri.parse_reaction_net_product(file_dir)
-    s_p_r_c = psri.parse_species_pair_reaction(file_dir)
+    net_reactant = psri.parse_reaction_net_reactant(data_dir)
+    net_product = psri.parse_reaction_net_product(data_dir)
+    s_p_r_c = psri.parse_species_pair_reaction(data_dir)
 
     if path_branching_factor is True:
-        atom_scheme = asch.get_atom_scheme(file_dir)
-        s_idx_name, _ = psri.parse_spe_info(file_dir)
+        atom_scheme = asch.get_atom_scheme(data_dir)
+        s_idx_name, _ = psri.parse_spe_info(data_dir)
 
     s_p_c = []
     for _, p_n in enumerate(pathname_data):
@@ -406,29 +406,29 @@ def parse_spe_production_along_path(file_dir, top_n=10, spe_idx=10, init_spe=62,
     if id_tmp != "":
         suffix += "_" + id_tmp
     f_n_spe_production_count = os.path.join(
-        file_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
 
     np.savetxt(f_n_spe_production_count, s_p_c, fmt='%d')
 
 
-def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
+def calculate_Merchant_alpha_value(data_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
                                    s_idx=10, r_idx=736):
     """
     calculate Merchat alpha value at time point as in time.csv, not at time zero
     """
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
     prefix = ""
     if species_path is True:
         prefix = "species_"
 
-    spe_conc_mat = np.loadtxt(os.path.join(file_dir, "output",
+    spe_conc_mat = np.loadtxt(os.path.join(data_dir, "output",
                                            "concentration_dlsode_M.csv"), dtype=float, delimiter=',')
-    spe_k_mat = np.loadtxt(os.path.join(file_dir, "output",
+    spe_k_mat = np.loadtxt(os.path.join(data_dir, "output",
                                         "drc_dlsode_M.csv"), dtype=float, delimiter=',')
 
-    reaction_rate_mat = np.loadtxt(os.path.join(file_dir, "output",
+    reaction_rate_mat = np.loadtxt(os.path.join(data_dir, "output",
                                                 "reaction_rate_dlsode_M.csv"), dtype=float, delimiter=',')
 
     n_points = np.shape(spe_conc_mat)[0]
@@ -445,13 +445,13 @@ def calculate_Merchant_alpha_value(file_dir, init_spe=10, atom_followed="C", end
     merchant_alpha_v[0] = merchant_alpha_v[1]
 
     merchant_alpha_fn = os.path.join(
-        file_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
+        data_dir, "output", prefix + "Merchant_alpha_" + "S" + str(s_idx) + "_R" + str(r_idx) + suffix + ".csv")
     np.savetxt(merchant_alpha_fn, merchant_alpha_v, fmt='%.15e')
 
     return
 
 
-def parse_species_from_pathway(file_dir, p_idx_l=None, init_spe=60,
+def parse_species_from_pathway(data_dir, p_idx_l=None, init_spe=60,
                                atom_followed="C", end_t=1.0, species_path=False):
     """
     parse unique species list from pathway list
@@ -459,7 +459,7 @@ def parse_species_from_pathway(file_dir, p_idx_l=None, init_spe=60,
     if p_idx_l is None:
         return
 
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
     prefix = ""
@@ -467,7 +467,7 @@ def parse_species_from_pathway(file_dir, p_idx_l=None, init_spe=60,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
 
     unique_spe = set()
@@ -480,7 +480,7 @@ def parse_species_from_pathway(file_dir, p_idx_l=None, init_spe=60,
     return unique_spe
 
 
-def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
+def parse_pathway_contains_species(data_dir, s_idx_ds=None, init_spe=60,
                                    atom_followed="C", end_t=1.0, species_path=False):
     """
     parse pathway contains only species from list or set
@@ -491,7 +491,7 @@ def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
 
     s_idx_set = set(s_idx_ds)
 
-    suffix = naming.get_suffix(file_dir, init_spe=init_spe,
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
 
     prefix = ""
@@ -499,7 +499,7 @@ def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        file_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
     p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
 
     path_list = []
@@ -519,38 +519,38 @@ def parse_pathway_contains_species(file_dir, s_idx_ds=None, init_spe=60,
 
 
 if __name__ == "__main__":
-    FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
-    G_S = global_settings.get_setting(FILE_DIR)
+    G_S = global_settings.get_setting(DATA_DIR)
 
-    # species_count(FILE_DIR)
-    # reaction_count(FILE_DIR)
-    # initiation_reaction_count(FILE_DIR)
-    # species_cycle(FILE_DIR)
+    # species_count(DATA_DIR)
+    # reaction_count(DATA_DIR)
+    # initiation_reaction_count(DATA_DIR)
+    # species_cycle(DATA_DIR)
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
-    # species_production_path(FILE_DIR, spe='OH', top_n=50)
+    # species_production_path(DATA_DIR, spe='OH', top_n=50)
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
-    # species_production_reaction(FILE_DIR, spe='OH', top_n=50)
+    # species_production_reaction(DATA_DIR, spe='OH', top_n=50)
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     path_length_statistics(
-    #         FILE_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
+    #         DATA_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
 
-    # parse_spe_production_along_path(FILE_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    # parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
     #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
     #                                 axis=0, path_branching_factor=False,
     #                                 s_consumption=False, s_production=True)
 
-    # calculate_Merchant_alpha_value(FILE_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    # calculate_Merchant_alpha_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],
     #                                s_idx=10, r_idx=736)
 
-    # S_IDX_SET = parse_species_from_pathway(FILE_DIR, p_idx_l=[0, 1, 2, 3, 4, 6],
+    # S_IDX_SET = parse_species_from_pathway(DATA_DIR, p_idx_l=[0, 1, 2, 3, 4, 6],
     #                                        init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                        end_t=G_S['end_t'], species_path=G_S['species_path'])
     S_IDX_SET = {'78', '94', '101', '46', '90',
                  '59', '61', '14', '60', '17', '80'}
-    parse_pathway_contains_species(FILE_DIR, s_idx_ds=S_IDX_SET,
+    parse_pathway_contains_species(DATA_DIR, s_idx_ds=S_IDX_SET,
                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
                                    end_t=G_S['end_t'], species_path=G_S['species_path'])
