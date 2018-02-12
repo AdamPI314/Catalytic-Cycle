@@ -8,6 +8,8 @@ from collections import defaultdict, OrderedDict
 import numpy as np
 import parse_spe_reaction_info as psri
 # import read_write_configuration as rwc
+from scipy.interpolate import CubicSpline
+import scipy.optimize as opt
 
 
 def convert_path_prob_to_concentration(file_dir, atom_followed="C", path_prob=None):
@@ -193,11 +195,48 @@ def get_normalized_concentration_at_time(file_dir, tag="fraction", end_t=1.0, ex
     return conc
 
 
+def get_time_at_time_differential_maximum(file_dir, l_b=0.7, h_b=0.8):
+    """
+    return time at which the first order differential of temperature is maximum
+    l_b: lower bound
+    h_b: higher bound
+    """
+    print(file_dir)
+    f_n_time = os.path.join(file_dir, "output", "time_dlsode_M.csv")
+    f_n_temp = os.path.join(file_dir, "output", "temperature_dlsode_M.csv")
+
+    time = np.loadtxt(f_n_time, dtype=float, delimiter=',')
+    temp = np.loadtxt(f_n_temp, dtype=float, delimiter=',')
+    print(np.shape(time))
+
+    temp_gradient = np.gradient(temp, time)
+    print(temp_gradient)
+
+    # cubic spline function
+    func = CubicSpline(time, temp_gradient)
+
+    # maximum, multiply by -1, maximum --> minimum
+    # multivariate method
+    # https://docs.scipy.org/doc/scipy/reference/optimize.html
+    # be careful when setting the bounds, avoid stiffness problem
+    max_x = opt.fmin_l_bfgs_b(lambda x: -1*func(x), time[-1],
+                              bounds=[(l_b, h_b)], approx_grad=True)
+    print(max_x)
+    
+    if "CONVERGENCE" in str(max_x[-1]['task']):
+        print("convergence achieved\t", max_x[0][0])
+        return max_x[0][0]
+    else:
+        print("not converges\t")
+
+
+
 if __name__ == '__main__':
     FILE_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(FILE_DIR)
     # get_normalized_concentration_at_time(
     #     FILE_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
-    convert_concentration_to_path_prob(
-        FILE_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)
+    # convert_concentration_to_path_prob(
+    #     FILE_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)
+    get_time_at_time_differential_maximum(FILE_DIR)
