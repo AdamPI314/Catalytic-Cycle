@@ -425,7 +425,7 @@ def propane_make_figures(data_dir, species_path=False):
         mf.plot_spe_path_prob(data_dir, top_n=g_s['top_n_p'],
                               exclude_names=spe_exclude_name, end_t=g_s['end_t'],
                               end_spe=s_i, species_path=species_path)
-    mf.plot_rxn_rate_constant(data_dir)
+    mf.plot_reaction_rate_constant(data_dir)
     mf.plot_top_n_spe_concentration(
         data_dir, exclude_names=None, atom_followed=g_s['atom_f'], end_t=g_s['end_t'], top_n=10)
 

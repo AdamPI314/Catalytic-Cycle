@@ -531,10 +531,11 @@ if __name__ == "__main__":
     # species_production_path(DATA_DIR, spe='OH', top_n=50)
     # print(parse_species_production_reaction("S114R15S9R47S9", 'S9'))
     # species_production_reaction(DATA_DIR, spe='OH', top_n=50)
-    # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
-    # for es in SPE_LIST:
-    #     path_length_statistics(
-    #         DATA_DIR, init_spe=62, atom_followed="C", end_t=0.9, end_spe=es)
+
+    SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
+    for es in SPE_LIST:
+        path_length_statistics(
+            DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], end_spe=es)
 
     # parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
     #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
@@ -549,8 +550,8 @@ if __name__ == "__main__":
     # S_IDX_SET = parse_species_from_pathway(DATA_DIR, p_idx_l=[0, 1, 2, 3, 4, 6],
     #                                        init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                        end_t=G_S['end_t'], species_path=G_S['species_path'])
-    S_IDX_SET = {'78', '94', '101', '46', '90',
-                 '59', '61', '14', '60', '17', '80'}
-    parse_pathway_contains_species(DATA_DIR, s_idx_ds=S_IDX_SET,
-                                   init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                   end_t=G_S['end_t'], species_path=G_S['species_path'])
+    # S_IDX_SET = {'78', '94', '101', '46', '90',
+    #              '59', '61', '14', '60', '17', '80'}
+    # parse_pathway_contains_species(DATA_DIR, s_idx_ds=S_IDX_SET,
+    #                                init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                end_t=G_S['end_t'], species_path=G_S['species_path'])
