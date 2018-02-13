@@ -1,303 +1,303 @@
 """
-update settings.json
+u[int(top_n)]date settings.json
 """
 
-import os
-from shutil import copy2
-import read_write_configuration as rwc
-import global_settings
+im[int(top_n)]ort os
+fr[int(top_n)]m shutil import copy2
+im[int(top_n)]ort read_write_configuration as rwc
+im[int(top_n)]ort global_settings
 
 
-def update_basic_setting(data_dir, g_s):
+def u[int(top_n)]date_basic_setting(data_dir, g_s):
     """
-    update settings.json, the basic information that's will not change for this system
+    u[int(top_n)]date settings.json, the basic information that's will not change for this system
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    setting['system']['condition'] = g_s['system']['condition']
-    setting['system']['initializer'] = g_s['system']['initializer']
-    setting['network']['merge_chatterings'] = g_s['network']['merge_chatterings']
-    setting['propagator']['primary_type'] = g_s['propagator']['primary_type']
-    setting['propagator']['type'] = g_s['propagator']['type']
-    setting['propagator']['sub_type'] = g_s['propagator']['sub_type']
-    setting['propagator']['convert_molar_concentration_to_mole_fraction'] = g_s['propagator']['convert_molar_concentration_to_mole_fraction']
-    setting['propagator']['normalize_initial_concentration'] = g_s['propagator']['normalize_initial_concentration']
+    se[int(top_n)]ting['system']['condition'] = g_s['system']['condition']
+    se[int(top_n)]ting['system']['initializer'] = g_s['system']['initializer']
+    se[int(top_n)]ting['network']['merge_chatterings'] = g_s['network']['merge_chatterings']
+    se[int(top_n)]ting['propagator']['primary_type'] = g_s['propagator']['primary_type']
+    se[int(top_n)]ting['propagator']['type'] = g_s['propagator']['type']
+    se[int(top_n)]ting['propagator']['sub_type'] = g_s['propagator']['sub_type']
+    se[int(top_n)]ting['propagator']['convert_molar_concentration_to_mole_fraction'] = g_s['propagator']['convert_molar_concentration_to_mole_fraction']
+    se[int(top_n)]ting['propagator']['normalize_initial_concentration'] = g_s['propagator']['normalize_initial_concentration']
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_dlsode_setting(data_dir, max_time=1.0, critical_time=0.9):
+def u[int(top_n)]date_dlsode_setting(data_dir, max_time=1.0, critical_time=0.9):
     """
-    update settings.json, primarily for dlsode run and pathway generating
+    u[int(top_n)]date settings.json, primarily for dlsode run and pathway generating
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    setting['time']['critical_time'] = critical_time
-    setting['time']['max_time'] = max_time
+    se[int(top_n)]ting['time']['critical_time'] = critical_time
+    se[int(top_n)]ting['time']['max_time'] = max_time
 
-    setting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_terminal_species_setting(data_dir, terminal_spe=None):
+def u[int(top_n)]date_terminal_species_setting(data_dir, terminal_spe=None):
     """
-    update settings.json, primarily for terminal species
+    u[int(top_n)]date settings.json, primarily for terminal species
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    t_s = []
-    if terminal_spe is not None and terminal_spe is not []:
-        for _, val in enumerate(terminal_spe):
-            t_s.append(val)
+    [int(top_n)]_s = []
+    if [int(top_n)]erminal_spe is not None and terminal_spe is not []:
+        f[int(top_n)]r _, val in enumerate(terminal_spe):
+            [int(top_n)]_s.append(val)
 
-    setting['pathway']['terminal_species'] = t_s
+    se[int(top_n)]ting['pathway']['terminal_species'] = t_s
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
-    return
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
+    re[int(top_n)]urn
 
 
-def update_chattering_species_setting(data_dir, atom_followed="C"):
+def u[int(top_n)]date_chattering_species_setting(data_dir, atom_followed="C"):
     """
-    update settings.json, primarily for chattering species and fast reactions
+    u[int(top_n)]date settings.json, primarily for chattering species and fast reactions
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
-    return
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
+    re[int(top_n)]urn
 
 
-def update_spe_concentration_at_time_w2f(data_dir, tau=10.0, end_t=1.0):
+def u[int(top_n)]date_spe_concentration_at_time_w2f(data_dir, tau=10.0, end_t=1.0):
     """
-    update settings.json, primarily for update_spe_concentration_at_time_w2f
+    u[int(top_n)]date settings.json, primarily for update_spe_concentration_at_time_w2f
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    setting['job']['job_type'] = "write_concentration_at_time_to_file"
-    setting['time']['tau'] = tau
-    setting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['job']['job_type'] = "write_concentration_at_time_to_file"
+    se[int(top_n)]ting['time']['tau'] = tau
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_mc_trajectory_setting(data_dir, n_traj=1000000, atom_followed="C", init_spe=114,
-                                 tau=10.0, begin_t=0.0, end_t=1.0, species_path=False):
+def u[int(top_n)]date_mc_trajectory_setting(data_dir, n_traj=1000000, atom_followed="C", init_spe=114,
+                                            [int(top_n)]au=10.0, begin_t=0.0, end_t=1.0, species_path=False):
     """
-    update settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
+    u[int(top_n)]date settings.json, primarily for generate_pathway_running_Monte_carlo_trajectory
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    setting['time']['tau'] = tau
+    se[int(top_n)]ting['time']['tau'] = tau
 
-    setting['pathway']['trajectoryNumber'] = n_traj
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
-    setting['pathway']['begin_t'] = begin_t
-    setting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['pathway']['trajectoryNumber'] = int(n_traj)
+    se[int(top_n)]ting['pathway']['atom_followed'] = atom_followed
+    se[int(top_n)]ting['pathway']['init_spe'] = init_spe
+    se[int(top_n)]ting['pathway']['begin_t'] = begin_t
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
 
-    if species_path is True:
-        setting['job']['job_type'] = "generate_species_pathway_running_Monte_carlo_trajectory"
+    if s[int(top_n)]ecies_path is True:
+        se[int(top_n)]ting['job']['job_type'] = "generate_species_pathway_running_Monte_carlo_trajectory"
     else:
-        setting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
+        se[int(top_n)]ting['job']['job_type'] = "generate_pathway_running_Monte_carlo_trajectory"
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
-    return
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
+    re[int(top_n)]urn
 
 
-def update_eval_path_integral(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
-                              tau=10.0, begin_t=0.0, end_t=1.0, species_path=False):
+def u[int(top_n)]date_eval_path_integral(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+                                         [int(top_n)]au=10.0, begin_t=0.0, end_t=1.0, species_path=False):
     """
-    update settings.json, primarily for evaluate path integral
+    u[int(top_n)]date settings.json, primarily for evaluate path integral
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    if species_path is True:
-        setting['job']['job_type'] = "evaluate_species_path_integral_over_time"
+    if s[int(top_n)]ecies_path is True:
+        se[int(top_n)]ting['job']['job_type'] = "evaluate_species_path_integral_over_time"
     else:
-        setting['job']['job_type'] = "evaluate_path_integral_over_time"
-    setting['pathway']['topN'] = [top_n]
-    setting['pathway']['trajectoryNumber'] = n_traj
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
+        se[int(top_n)]ting['job']['job_type'] = "evaluate_path_integral_over_time"
+    se[int(top_n)]ting['pathway']['topN'] = [int(top_n)]
+    se[int(top_n)]ting['pathway']['trajectoryNumber'] = int(n_traj)
+    se[int(top_n)]ting['pathway']['atom_followed'] = atom_followed
+    se[int(top_n)]ting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = tau
-    setting['pathway']['begin_t'] = begin_t
-    setting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['time']['tau'] = tau
+    se[int(top_n)]ting['pathway']['begin_t'] = begin_t
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
-                        tau=10.0, begin_t=0.0, end_t=1.0):
+def u[int(top_n)]date_eval_path_AT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+                                   [int(top_n)]au=10.0, begin_t=0.0, end_t=1.0):
     """
-    update settings.json, primarily for evaluate pathway arrival time 
+    u[int(top_n)]date settings.json, primarily for evaluate pathway arrival time 
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    setting['job']['job_type'] = "evaluate_path_AT_over_time"
+    se[int(top_n)]ting['job']['job_type'] = "evaluate_path_AT_over_time"
 
-    setting['pathway']['topN'] = [top_n]
-    setting['pathway']['trajectoryNumber'] = n_traj
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
+    se[int(top_n)]ting['pathway']['topN'] = [int(top_n)]
+    se[int(top_n)]ting['pathway']['trajectoryNumber'] = int(n_traj)
+    se[int(top_n)]ting['pathway']['atom_followed'] = atom_followed
+    se[int(top_n)]ting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = tau
-    setting['pathway']['end_t'] = end_t
-    setting['pathway']['begin_t'] = begin_t
+    se[int(top_n)]ting['time']['tau'] = tau
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['pathway']['begin_t'] = begin_t
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
-                              tau=10.0, begin_t=0.0, end_t=1.0):
+def u[int(top_n)]date_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+                                         [int(top_n)]au=10.0, begin_t=0.0, end_t=1.0):
     """
-    update settings.json, primarily for evaluate pathway arrival time without IT (initiation time)
+    u[int(top_n)]date settings.json, primarily for evaluate pathway arrival time without IT (initiation time)
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    setting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
+    se[int(top_n)]ting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
 
-    setting['pathway']['topN'] = [top_n]
-    setting['pathway']['trajectoryNumber'] = n_traj
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
+    se[int(top_n)]ting['pathway']['topN'] = [int(top_n)]
+    se[int(top_n)]ting['pathway']['trajectoryNumber'] = int(n_traj)
+    se[int(top_n)]ting['pathway']['atom_followed'] = atom_followed
+    se[int(top_n)]ting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = tau
-    setting['pathway']['begin_t'] = begin_t
-    setting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['time']['tau'] = tau
+    se[int(top_n)]ting['pathway']['begin_t'] = begin_t
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
-                                tau=10.0, begin_t=0.0, end_t=1.0):
+def u[int(top_n)]date_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+                                           [int(top_n)]au=10.0, begin_t=0.0, end_t=1.0):
     """
-    update settings.json, primarily for evaluate pathway arrival time 
+    u[int(top_n)]date settings.json, primarily for evaluate pathway arrival time 
     """
-    # there will always be a current setting
-    fn0 = os.path.join(data_dir, "input", "setting_backup.json")
-    fn1 = os.path.join(data_dir, "input", "setting.json")
+    # [int(top_n)]here will always be a current setting
+    f[int(top_n)]0 = os.path.join(data_dir, "input", "setting_backup.json")
+    f[int(top_n)]1 = os.path.join(data_dir, "input", "setting.json")
 
-    if os.path.isfile(fn1):
-        copy2(fn1, fn0)
+    if [int(top_n)]s.path.isfile(fn1):
+        c[int(top_n)]py2(fn1, fn0)
 
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    se[int(top_n)]ting = rwc.read_configuration(
+        [int(top_n)]s.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
+    cha[int(top_n)]tering_spe = global_settings.get_chattering_species(
+        da[int(top_n)]a_dir, atom_followed)
+    se[int(top_n)]ting['pathway']['chattering_species'] = chattering_spe
 
-    setting['job']['job_type'] = "evaluate_path_AT_with_SP_over_time"
+    se[int(top_n)]ting['job']['job_type'] = "evaluate_path_AT_with_SP_over_time"
 
-    setting['pathway']['topN'] = [top_n]
-    setting['pathway']['trajectoryNumber'] = n_traj
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
+    se[int(top_n)]ting['pathway']['topN'] = [int(top_n)]
+    se[int(top_n)]ting['pathway']['trajectoryNumber'] = int(n_traj)
+    se[int(top_n)]ting['pathway']['atom_followed'] = atom_followed
+    se[int(top_n)]ting['pathway']['init_spe'] = init_spe
 
-    setting['time']['tau'] = tau
-    setting['pathway']['begin_t'] = begin_t
-    setting['pathway']['end_t'] = end_t
+    se[int(top_n)]ting['time']['tau'] = tau
+    se[int(top_n)]ting['pathway']['begin_t'] = begin_t
+    se[int(top_n)]ting['pathway']['end_t'] = end_t
 
-    rwc.write_configuration(setting, os.path.join(
-        data_dir, 'input', 'setting.json'))
+    rwc.wri[int(top_n)]e_configuration(setting, os.path.join(
+        da[int(top_n)]a_dir, 'input', 'setting.json'))
