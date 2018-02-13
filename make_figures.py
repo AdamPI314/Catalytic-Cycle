@@ -8,6 +8,7 @@ from copy import deepcopy
 import numpy as np
 import json
 from collections import OrderedDict
+import pandas as pd
 
 import matplotlib
 matplotlib.use('Agg')
@@ -38,9 +39,16 @@ def plot_path_length_statistics(data_dir, init_spe=62, atom_followed="C",
     colors, markers, _ = get_colors_markers_linestyles()
 
     data = np.loadtxt(in_f_n, dtype=float, delimiter=',')
+    if data is None or len(data) == 0:
+        return
 
-    data_x = data[:, 0]
-    data_y = data[:, 1]
+    dim_n = len(np.shape(data))
+    if dim_n == 1:
+        data_x = [data[0]]
+        data_y = [data[1]]
+    elif dim_n == 2:
+        data_x = data[:, 0]
+        data_y = data[:, 1]
     # data_y /= np.sum(data_y)
 
     spe_idx_n_dict, _ = psri.parse_spe_info(data_dir)
@@ -138,7 +146,7 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     s_idx_n, _ = psri.parse_spe_info(data_dir)
 
     if hasTemp is True:
-        s_idx_n["-1"] = "Temp"
+        s_idx_n["-1"] = "T"
         spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
@@ -178,6 +186,7 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
                               color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
             counter += 1
     leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    _, s_n_idx = psri.parse_spe_info(data_dir)
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
     a_x_left.set_xlim([0, tau * end_t])
@@ -215,7 +224,7 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(data_dir)
-    s_idx_n["-1"] = "Temp"
+    s_idx_n["-1"] = "T"
 
     spe_idx_tmp.append(-1)
 
@@ -275,7 +284,8 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
     plt.close()
 
 
-def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
+def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction",
+                     reciprocal=False, semilogy=True, hasTemp=True):
     """
     plot species destruction rate constant, give species index list
     """
@@ -286,14 +296,15 @@ def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
     colors, markers, _ = get_colors_markers_linestyles()
 
     s_idx_n, _ = psri.parse_spe_info(data_dir)
-    s_idx_n["-1"] = "Temp"
-
-    spe_idx_tmp.append(-1)
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(data_dir, "output",
-                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    if hasTemp is True:
+        s_idx_n["-1"] = "T"
+        spe_idx_tmp.append(-1)
+        temp = np.loadtxt(os.path.join(data_dir, "output",
+                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     spe_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
@@ -319,30 +330,42 @@ def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
             if reciprocal is False:
-                a_x_left.semilogy(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                if semilogy is True:
+                    a_x_left.semilogy(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                      color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+                else:
+                    a_x_left.plot(time[0:end_point], spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                                   color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+
             else:
-                a_x_left.semilogy(time[0:end_point], 1.0 / spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                if semilogy is True:
+                    a_x_left.semilogy(time[0:end_point], 1.0 / spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                      color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+                else:
+                    a_x_left.plot(time[0:end_point], 1.0 / spe_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                                   color=colors[counter % (len(colors) - 1)], label=s_idx_n[str(s_idx)])
+
             counter += 1
-    if reciprocal is False:
-        leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
-    else:
-        leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
 
-    leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+    if reciprocal is True:
+        leg_left = a_x_left.legend(loc=10, fancybox=True, prop={'size': 10.0})
+    else:
+        leg_left = a_x_left.legend(loc=2, fancybox=True, prop={'size': 10.0})
+
+    if hasTemp is True:
+        leg_right = a_x_right.legend(loc=1, fancybox=True, prop={'size': 10.0})
+        leg_right.get_frame().set_alpha(0.7)
+        a_x_right.set_ylabel("T (k)")
+
     leg_left.get_frame().set_alpha(0.7)
-    leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
-    a_x_left.set_xlim([0.05, time[end_point]])
+    a_x_left.set_xlim([time[0], tau*end_t])
 
-    a_x_left.set_xlabel("time/s")
-    if reciprocal is False:
-        a_x_left.set_ylabel("k/s$^{-1}$")
+    a_x_left.set_xlabel("Time (second)")
+    if reciprocal is True:
+        a_x_left.set_ylabel("k$^{-1}$ (second)")
     else:
-        a_x_left.set_ylabel("k$^{-1}/s$")
-
-    a_x_right.set_ylabel("T/K")
+        a_x_left.set_ylabel("k (second$^{-1}$)")
 
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
@@ -358,7 +381,8 @@ def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
     plt.close()
 
 
-def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", reciprocal=False):
+def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", group_idx=None,
+                              reciprocal=False, semilogy=True, hasTemp=True):
     """
     plot chattering group destruction rate constant
     """
@@ -377,18 +401,22 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", rec
             if idx2 < len(chattering_group_info[val1]) - 1:
                 label_tmp += "+"
         chattering_group_idx_n[str(idx1)] = label_tmp
-    chattering_group_idx_n["-1"] = "Temp"
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(data_dir, "output",
-                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    if hasTemp is True:
+        temp = np.loadtxt(os.path.join(data_dir, "output",
+                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     c_g_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "chattering_group_drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     group_id_temp = [i for i in range(np.shape(c_g_drc)[1])]
-    group_id_temp.append(-1)
+
+    if hasTemp is True:
+        group_id_temp.append(-1)
+        chattering_group_idx_n["-1"] = "T"
 
     counter = 0
     # the time point where reference time tau is
@@ -407,37 +435,47 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", rec
             a_x_right.plot(time[0:end_point], temp[0:end_point],
                            color=colors[-1], label=chattering_group_idx_n[str(s_idx)])
         else:
+            if group_idx is not None and s_idx not in group_idx:
+                continue
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            if reciprocal is False:
-                a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+            if reciprocal is True:
+                if semilogy is True:
+                    a_x_left.semilogy(time[0:end_point], 1.0 / c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                      color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+                else:
+                    a_x_left.plot(time[0:end_point], 1.0 / c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                                   color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+
             else:
-                a_x_left.semilogy(time[0:end_point], 1.0 / c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                if semilogy is True:
+                    a_x_left.semilogy(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
+                                      color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
+                else:
+                    a_x_left.plot(time[0:end_point], c_g_drc[0:end_point, s_idx], marker=m_k, markevery=delta_n,
                                   color=colors[counter % (len(colors) - 1)], label=chattering_group_idx_n[str(s_idx)])
 
             counter += 1
-    if reciprocal is False:
-        leg_left = a_x_left.legend(loc=9, fancybox=True, prop={'size': 10.0})
-    else:
-        leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
 
-    leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc=0, fancybox=True, prop={'size': 10.0})
+
+    if hasTemp is True:
+        leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+        leg_right.get_frame().set_alpha(0.7)
+        a_x_right.set_ylabel("T (k)")
+
     leg_left.get_frame().set_alpha(0.7)
-    leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
-    a_x_left.set_xlim([0.05, time[end_point]])
+    a_x_left.set_xlim([time[0], tau*end_t])
 
-    a_x_left.set_xlabel("time/s")
+    a_x_left.set_xlabel("Time (second)")
 
-    if reciprocal is False:
-        a_x_left.set_ylabel("k/s$^{-1}$")
+    if reciprocal is True:
+        a_x_left.set_ylabel("k$^{-1}$ (second)")
     else:
-        a_x_left.set_ylabel("k$^{-1}$/s")
-
-    a_x_right.set_ylabel("T/K")
+        a_x_left.set_ylabel("k (s$^{-1}$)")
 
     fig.tight_layout()
     if reciprocal is False:
@@ -450,7 +488,8 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", rec
     plt.close()
 
 
-def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="fraction"):
+def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
+                        tag="fraction", semilogy=False, hasTemp=False):
     """
     plot reaction rates give reaction index list
     """
@@ -458,8 +497,9 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     colors, markers, _ = get_colors_markers_linestyles()
 
     _, rxn_idx_n = psri.parse_reaction_and_its_index(data_dir)
-    rxn_idx_n["-1"] = "Temp"
-    reaction_idx.append(-1)
+    if hasTemp is True:
+        rxn_idx_n["-1"] = "T"
+        reaction_idx.append(-1)
 
     if reaction_idx is None:
         reaction_idx = [0]
@@ -467,8 +507,9 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
     rxn_rates = np.loadtxt(os.path.join(data_dir, "output",
                                         "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    temp = np.loadtxt(os.path.join(data_dir, "output",
-                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    if hasTemp is True:
+        temp = np.loadtxt(os.path.join(data_dir, "output",
+                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
     # the time point where reference time tau is
@@ -476,7 +517,7 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     idx_array = [i for i in range(len(time))]
     end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
 
-    delta_n = int(end_point / 25)
+    delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
 
@@ -484,33 +525,44 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     for s_idx in reaction_idx:
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
-            a_x_right.plot(time[0:end_point:delta_n], temp[0:end_point:delta_n],
+            a_x_right.plot(time[0:end_point], temp[0:end_point],
                            color=colors[-1], label=rxn_idx_n[str(s_idx)])
         else:
             if counter < len(colors) - 1:
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
-            a_x_left.semilogy(time[0:end_point:delta_n], rxn_rates[0:end_point:delta_n, s_idx], marker=m_k,
-                              color=colors[counter % (len(colors) - 1)], label=rxn_idx_n[str(s_idx)])
+            if semilogy is True:
+                a_x_left.semilogy(time[0:end_point], rxn_rates[0:end_point, s_idx], marker=m_k,
+                                  color=colors[counter % (
+                                      len(colors) - 1)], label=rxn_idx_n[str(s_idx)],
+                                  markevery=delta_n)
+            else:
+                a_x_left.plot(time[0:end_point], rxn_rates[0:end_point, s_idx], marker=m_k,
+                              color=colors[counter % (
+                                  len(colors) - 1)], label=rxn_idx_n[str(s_idx)],
+                              markevery=delta_n)
+
             counter += 1
-    leg_left = a_x_left.legend(loc=8, fancybox=True, prop={'size': 10.0})
-    leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc=2, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
-    leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
+    a_x_left.set_xlim([time[0], tau*end_t])
 
-    a_x_left.set_xlabel("Time/sec")
+    if hasTemp is True:
+        leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+        leg_right.get_frame().set_alpha(0.7)
+        a_x_right.set_ylabel("T (K)")
 
-    a_x_left.set_ylabel("R")
-    a_x_right.set_ylabel("T/K")
+    a_x_left.set_xlabel("Time (second)")
+    a_x_left.set_ylabel("R (mol$\cdot L^{-1}s^{-1}$)")
 
     rxn_idx_str = "_".join(str(x) for x in reaction_idx)
-    plt.title("reaction rates and Temp")
 
     fig.tight_layout()
-    fig.savefig(os.path.join(data_dir, "output",
-                             "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg"), dpi=500)
+    filename = os.path.join(data_dir, "output",
+                            "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg")
+    fig.savefig(filename, dpi=500)
     plt.close()
 
 
@@ -656,16 +708,18 @@ def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom
     plt.close()
 
 
-def plot_top_n_spe_concentration(data_dir, exclude_names=None, atom_followed="C", end_t=0.5, top_n=10):
+def plot_top_n_spe_concentration(data_dir, exclude_names=None, atom_followed="C",
+                                 tau=10, end_t=0.5, top_n=10, t_p_prob=False):
     """
     plot_top_n_spe_concentration
     """
     if exclude_names is None:
         exclude_names = []
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        data_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
-    spe_conc = trajectory.convert_concentration_to_path_prob(
-        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
+        data_dir, tag="M", tau=tau, end_t=end_t, exclude_names=exclude_names, renormalization=True)
+    if t_p_prob is True:
+        spe_conc = trajectory.convert_concentration_to_path_prob(
+            data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True, default_coef=1.0)
 
     s_idx_n, _ = psri.parse_spe_info(data_dir)
 
@@ -750,7 +804,7 @@ def plot_top_n_spe_concentration(data_dir, exclude_names=None, atom_followed="C"
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
 
 
-def plot_rxn_rate_constant(data_dir):
+def plot_reaction_rate_constant(data_dir):
     """
     plot reaction rate constant, read data from files
     """
@@ -804,11 +858,13 @@ def plot_rxn_rate_constant(data_dir):
     plt.close()
 
 
-def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
-                              top_n=1, species_path=True):
+def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0, end_t=1.0,
+                              top_n=1, species_path=True, exclude_idx=None, semilogy=False):
     """
     plot pathway probability vs. time
     """
+    if exclude_idx is None:
+        exclude_idx = []
     if top_n is None:
         top_n = 1
     prefix = ""
@@ -822,6 +878,7 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.
                           prefix + "pathway_time_candidate" + suffix + ".csv")
     f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
+
     # data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pt = np.loadtxt(f_n_pt, dtype=float, delimiter=",")
     data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
@@ -835,13 +892,22 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.
         data_y = data_pp
     elif dim_n == 2:
         data_x = data_pt[0, :]
-        data_y = data_pp[0:top_n, :]
+        data_y = data_pp
 
-    data_x = data_x * end_t
+    path_labels = ["P" + str(i + 1) for i in range(np.shape(data_y)[0])]
+    time_labels = ["t" + str(i + 1) for i in range(np.shape(data_y)[1])]
 
-    # labels = data_pn[0:top_n]
-    labels = ["P" + str(i + 1) for i in range(top_n)]
-    fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
+    # each pathway as a column
+    d_f = pd.DataFrame(data_y, index=path_labels, columns=time_labels)
+    d_f.sort_values(by=[time_labels[-1]], inplace=True, ascending=False)
+    data_y = d_f.as_matrix()[0:top_n, :]
+    path_labels = (d_f.index.values)[0:top_n]
+
+    data_x = data_x * tau
+    if semilogy is False:
+        fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
+    else:
+        fig_name = prefix + "pathway_prob_vs_time" + suffix + "_semilogy.jpg"
 
     delta_n = int(len(data_x) / 50)
     if delta_n is 0:
@@ -850,11 +916,20 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
 
     for idx in range(len(data_y)):
-        a_x.plot(data_x, data_y[idx, :],
-                 color=colors[idx % len(colors)],
-                 marker=markers[idx % len(markers)],
-                 label=labels[idx % len(labels)],
-                 markevery=delta_n)
+        if idx in exclude_idx:
+            continue
+        if semilogy is False:
+            a_x.plot(data_x, data_y[idx, :],
+                     color=colors[idx % len(colors)],
+                     marker=markers[idx % len(markers)],
+                     label=path_labels[idx % len(path_labels)],
+                     markevery=delta_n)
+        else:
+            a_x.semilogy(data_x, data_y[idx, :],
+                         color=colors[idx % len(colors)],
+                         marker=markers[idx % len(markers)],
+                         label=path_labels[idx % len(path_labels)],
+                         markevery=delta_n)
 
     leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
     leg.get_frame().set_alpha(0.7)
@@ -865,7 +940,7 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", end_t=1.
     a_x.set_xlim([data_x[0], data_x[-1]])
     a_x.grid()
 
-    a_x.set_xlabel("Time/$\\tau$", fontsize=15.0)
+    a_x.set_xlabel("Time (second)", fontsize=15.0)
     a_x.set_ylabel("Pathway Probability", fontsize=15.0)
     # a_x.set_title("CO", fontsize=15.0)
 
@@ -1286,34 +1361,71 @@ if __name__ == '__main__':
     # SPE_LIST = [89, 92]
     # SPE_LIST = [94, 101]
 
-    SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
-        DATA_DIR, exclude=["C3H8"], top_n=10,
-        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
-        tag="M", atoms=["C"])
-    plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
-                        tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
-                        renormalization=False, semilogy=True, hasTemp=True)
+    # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
+    #     DATA_DIR, exclude=None, top_n=10,
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
+    #     tag="M", atoms=["C"])
+    # plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
+    #                     tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
+    #                     renormalization=False, semilogy=True, hasTemp=True)
+
+    # plot_top_n_spe_concentration(DATA_DIR, exclude_names=None,
+    #                              atom_followed=G_S['atom_f'], tau=G_S['tau'], end_t=G_S['end_t'],
+    #                              top_n=10, t_p_prob=True)
 
     # plot_spe_concentrations_derivative(DATA_DIR, spe_idx=[62, 14, 15, 59],
     #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
+
+    # chattering reaction pairs
+    # REACTION_LIST = [1068, 1069]
+    # REACTION_LIST = [1096, 1097]
+    # REACTION_LIST = [1116, 1117]
+    # REACTION_LIST = [1080, 1081]
+    # REACTION_LIST = [1124, 1125]
+    # REACTION_LIST = [1146, 1147]
+    # REACTION_LIST = [1214, 1215]
+    # REACTION_LIST = [1042, 1043]
+    # REACTION_LIST = [348, 349]
+    # REACTION_LIST = [132, 133]
+    # REACTION_LIST = [586, 587]
+    # REACTION_LIST = [434, 435]
+
+    # chattering group together
+    # REACTION_LIST = [1068, 1069, 1080, 1081, 1116, 1117]
+
+    # out reaction of species
+    # well_1
+    # REACTION_LIST = [1117, 1162, 1164, 1166]
+    # REACTION_LIST = [1117, 1116]
+    # REACTION_LIST = [1162, 1163]
+    # REACTION_LIST = [1164, 1165]
+    # REACTION_LIST = [1166, 1167]
+
+    # plot_reaction_rates(DATA_DIR, reaction_idx=REACTION_LIST,
+    #                     tau=G_S['tau'], end_t=0.9, tag="M",
+    #                     semilogy=True, hasTemp=True)
+
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
     #     plot_path_length_statistics(
-    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=0.9, end_spe=es)
+    #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], end_spe=es)
+
     # plot_pathway_prob_vs_time(
-    #     DATA_DIR, init_spe=60, atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     top_n=6, species_path=G_S['species_path'])
-    # plot_spe_drc(DATA_DIR, spe_idx=[25, 39, 45, 60, 61, 72, 54],
-    #              tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #     tau=G_S['tau'], end_t=G_S['end_t'],
+    #     top_n=6, species_path=G_S['species_path'], exclude_idx=[0],
+    #     semilogy=True)
+
+    # SPE_LIST = [60, 78, 87, 90]
+    # SPE_LIST = [94, 101, 46, 14, 17]
+    # plot_species_drc(DATA_DIR, spe_idx=SPE_LIST,
+    #                  tau=G_S['tau'], end_t=0.90, tag="M", reciprocal=True)
+    # # check out chattering_group_info.json for more info
     # plot_chattering_group_drc(
-    #     DATA_DIR, tau=G_S['tau'], end_t=0.80, tag="M", reciprocal=True)
-    # plot_spe_drc(DATA_DIR, spe_idx=[62, 94, 101, 46, 17, 16, 14, 44, 47],
-    #              tau=G_S['tau'], end_t=1.0, tag="M", reciprocal=True)
-    # plot_spe_drc(DATA_DIR, spe_idx=[60, 61, 87, 90, 94, 101],
-    #              tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
-    # plot_chattering_group_drc(
-    #     DATA_DIR, tau=G_S['tau'], end_t=0.25, tag="M", reciprocal=True)
+    #     DATA_DIR, tau=G_S['tau'], end_t=0.90, tag="M", reciprocal=True, group_idx=[2],
+    #     semilogy=True, hasTemp=True)
+
     # for p_i in range(10):
     #     plot_pathway_AT(
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],

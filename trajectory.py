@@ -10,10 +10,12 @@ import parse_spe_reaction_info as psri
 # import read_write_configuration as rwc
 from scipy.interpolate import CubicSpline
 import scipy.optimize as opt
+import interpolation
 
 
-def convert_path_prob_to_concentration(data_dir, atom_followed="C", path_prob=None):
+def convert_path_prob_to_concentration(data_dir, atom_followed="C", path_prob=None, default_coef=None):
     """
+    if default_coef is not None, use it as default coefficient
     convert total pathway probability to concentration
     for example, C3H8, suppose [C3H8] = 1.0 and we are following "C"
     atom, then the corresponding total pathway probability should be
@@ -36,7 +38,12 @@ def convert_path_prob_to_concentration(data_dir, atom_followed="C", path_prob=No
                 spe_composition[val][atom_followed])
         else:
             spe_idx_coefficient[spe_n_i_d[val]] = 0.0
-    #print(spe_composition, spe_idx_coefficient)
+
+    if default_coef is not None:
+        for val in spe_idx_coefficient:
+            if spe_idx_coefficient[val] != 0:
+                spe_idx_coefficient[val] = default_coef
+
     if np.shape(path_prob)[0] > 0:
         if np.shape(path_prob[0]) is ():
             print("1D array", "shape:\t", len(path_prob))
@@ -47,8 +54,10 @@ def convert_path_prob_to_concentration(data_dir, atom_followed="C", path_prob=No
     return path_prob
 
 
-def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=None, renormalization=True):
+def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=None,
+                                       renormalization=True, default_coef=None):
     """
+    if default_coef is not None, use it as default coefficient
     convert concentration to corresponding total pathway probability
     for example, C3H8, suppose [C3H8] = 1.0 and we are following "C"
     atom, then the corresponding total pathway probability should be
@@ -73,6 +82,12 @@ def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=Non
         else:
             spe_idx_coefficient[spe_n_i_d[val]] = 0.0
     #print(spe_composition, spe_idx_coefficient)
+
+    if default_coef is not None:
+        for val in spe_idx_coefficient:
+            if spe_idx_coefficient[val] != 0:
+                spe_idx_coefficient[val] = default_coef
+
     if np.shape(spe_conc)[0] > 0:
         if np.shape(spe_conc[0]) is ():
             print("1D array", "shape:\t", len(spe_conc))
@@ -100,15 +115,18 @@ def get_species_with_top_n_concentration(data_dir, exclude, top_n=10, traj_max_t
         atoms = ["C"]
     if exclude is None:
         exclude = []
-    conc = np.loadtxt(os.path.join(data_dir, "output",
-                                   "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
-    # the time point where reference time tau is
-    tau_time_point = float(tau) / traj_max_t * len(conc)
-    time_idx = int(end_t * tau_time_point)
-    if time_idx >= len(conc):
-        time_idx = (len(conc) - 1)
 
-    data = conc[time_idx, :]
+    time = np.loadtxt(os.path.join(data_dir, "output",
+                                   "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    conc_all = np.loadtxt(os.path.join(data_dir, "output",
+                                       "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    n_spe = np.shape(conc_all)[1]
+
+    data = [float] * n_spe
+    for i in range(n_spe):
+        data[i] = interpolation.interp1d(time, conc_all[:, i], tau*end_t)
+
     c_idx_map = defaultdict(set)
     for idx, val in enumerate(data):
         c_idx_map[val].add(str(idx))
@@ -171,16 +189,28 @@ def get_normalized_concentration(data_dir, tag="fraction", exclude_names=None, r
     return conc
 
 
-def get_normalized_concentration_at_time(data_dir, tag="fraction", end_t=1.0, exclude_names=None, renormalization=True):
+def get_normalized_concentration_at_time(data_dir, tag="fraction", tau=10.0, end_t=1.0, exclude_names=None, renormalization=True):
     """
     return normalized species concentration at time
     """
     if exclude_names is None:
         exclude_names = []
+    time = np.loadtxt(os.path.join(data_dir, "output",
+                                   "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    conc_all = np.loadtxt(os.path.join(data_dir, "output",
+                                       "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-    f_n = os.path.join(data_dir, "output", "spe_concentration_" +
-                       str(end_t) + "_dlsode_" + str(tag) + ".csv")
-    conc = np.loadtxt(f_n, delimiter=",")
+    n_spe = np.shape(conc_all)[1]
+
+    conc = [float] * n_spe
+    for i in range(n_spe):
+        conc[i] = interpolation.interp1d(time, conc_all[:, i], tau*end_t)
+
+    _, s_n_idx = psri.parse_spe_info(data_dir)
+    exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
+    # set the concentration of these species to be zero
+    for _, idx in enumerate(exclude_idx_list):
+        conc[idx] = 0.0
 
     if renormalization is False:
         return conc
@@ -222,13 +252,12 @@ def get_time_at_time_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
     max_x = opt.fmin_l_bfgs_b(lambda x: -1*func(x), time[-1],
                               bounds=[(l_b, h_b)], approx_grad=True)
     print(max_x)
-    
+
     if "CONVERGENCE" in str(max_x[-1]['task']):
         print("convergence achieved\t", max_x[0][0])
         return max_x[0][0]
     else:
         print("not converges\t")
-
 
 
 if __name__ == '__main__':
