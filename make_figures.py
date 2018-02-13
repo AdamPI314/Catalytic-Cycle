@@ -74,7 +74,7 @@ def plot_path_length_statistics(data_dir, init_spe=62, atom_followed="C",
     return
 
 
-def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", end_t=1.0, tau=10.0, species_path=True, top_n=10, time_axis=0):
+def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", end_t=1.0, species_path=True, top_n=10, time_axis=0):
     """
     plot cumulative pathway probability at a time point
     """
@@ -108,9 +108,8 @@ def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", end_t
 
     fig, a_x = plt.subplots(1, 1, sharex=False, sharey=False)
 
-    end_point = int(end_t * len(data))
-    a_x.plot(data[1:end_point:1], "-.")
-    a_x.plot(data_c[1:end_point:1], "-*")
+    a_x.plot(data, "-.")
+    a_x.plot(data_c, "-*")
     a_x.grid()
 
     suffix += "_top_" + str(top_n)
@@ -152,8 +151,10 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -181,19 +182,20 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     a_x_left.grid()
     a_x_left.set_xlim([0, tau * end_t])
 
-    a_x_left.set_xlabel("Time/sec")
-    a_x_left.set_ylabel("[X]")
+    a_x_left.set_xlabel("Time (second)")
+    a_x_left.set_ylabel("[X] (mole$\cdot L^{-1}$)")
 
     if hasTemp is True:
         leg_right = a_x_right.legend(loc=2, fancybox=True, prop={'size': 10.0})
         leg_right.get_frame().set_alpha(0.7)
-        a_x_right.set_ylabel("T/K")
+        a_x_right.set_ylabel("T (K)")
 
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output",
-                             "trajectory_" + s_n_str + ".jpg"), dpi=500)
+                             "trajectory_" + s_n_str + "_" + str(end_t)+".jpg"), dpi=500)
     plt.close()
 
 
@@ -227,8 +229,10 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -265,6 +269,7 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output",
                              "spe_concentrations_derivative_" + s_n_str + ".jpg"), dpi=500)
     plt.close()
@@ -294,8 +299,10 @@ def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -340,6 +347,7 @@ def plot_spe_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction", re
     s_n_str = "_".join(s_idx_n[str(x)] for x in spe_idx_tmp)
     # plt.title(s_n_str)
 
+    fig.tight_layout()
     if reciprocal is False:
         fig.savefig(os.path.join(data_dir, "output",
                                  "spe_drc_" + s_n_str + ".jpg"), dpi=500)
@@ -384,8 +392,10 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", rec
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     delta_n = int(end_point / 10)
     if delta_n is 0:
         delta_n = 1
@@ -429,6 +439,7 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", rec
 
     a_x_right.set_ylabel("T/K")
 
+    fig.tight_layout()
     if reciprocal is False:
         fig.savefig(os.path.join(data_dir, "output",
                                  "chattering_group_drc" + ".jpg"), dpi=500)
@@ -461,8 +472,10 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
 
     counter = 0
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     delta_n = int(end_point / 25)
     if delta_n is 0:
         delta_n = 1
@@ -495,6 +508,7 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0, tag="f
     rxn_idx_str = "_".join(str(x) for x in reaction_idx)
     plt.title("reaction rates and Temp")
 
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output",
                              "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
@@ -522,8 +536,10 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
                                    "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     # the time point where reference time tau is
-    tau_time_point = float(tau) / time[-1] * len(time)
-    end_point = int(end_t * tau_time_point)
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+
     if end_point >= len(time):
         end_point = len(time) - 1
     delta_n = int(end_point / 25)
@@ -940,7 +956,7 @@ def plot_pathway_AT_no_IT(data_dir, init_spe=62, atom_followed="C", end_t=1.0,
 
     a_x.set_title(title_n, fontsize=6)
 
-    # fig.tight_layout()
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1115,10 +1131,11 @@ def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
     a_x.set_ylabel("f", fontsize=15.0)
     a_x.set_title("Merchant f", fontsize=15.0)
 
-    fig.tight_layout()
     if path_idx is not None:
         suffix += "_selected"
     fig_name = prefix + "Merchant_f_vs_time" + suffix + ".jpg"
+
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1158,9 +1175,10 @@ def plot_Merchant_alpha_value_vs_time(data_dir, init_spe=10, atom_followed="C", 
     a_x.set_ylabel("$\\alpha$", fontsize=15.0)
     a_x.set_title("Merchant $\\alpha$", fontsize=15.0)
 
-    fig.tight_layout()
     fig_name = prefix + "Merchant_alpha_vs_time" + "_S" + \
         str(s_idx) + "_R" + str(r_idx) + suffix + ".jpg"
+
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1243,8 +1261,9 @@ def plot_Merchant_alpha_and_f_value(data_dir, init_spe=62, atom_followed="C",
     a_x.set_ylabel("f", fontsize=15.0)
     a_x.set_title("Merchant f", fontsize=15.0)
 
-    fig.tight_layout()
     fig_name = prefix + "Merchant_alpha_and_f_vs_time" + suffix + ".jpg"
+
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
@@ -1254,20 +1273,27 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     G_S = global_settings.get_setting(DATA_DIR)
 
-    SPE_LIST = [59, 10, 12, 13, 59]
-    # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
-    #     DATA_DIR, exclude=None, top_n=10,
-    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
-    #     tag="M", atoms=["C", "O"])
+    # SPE_LIST = [10, 12, 13, 17]
+    # SPE_LIST = [60, 61]
+
+    # chattering groups
+    # SPE_LIST = [25, 27]
+    # SPE_LIST = [39, 50]
+    # SPE_LIST = [60, 78, 87, 90]
+    # SPE_LIST = [61, 80]
+    # SPE_LIST = [72, 108]
+    # SPE_LIST = [88, 91]
+    # SPE_LIST = [89, 92]
+    # SPE_LIST = [94, 101]
+
+    SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
+        DATA_DIR, exclude=["C3H8"], top_n=10,
+        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], end_t=G_S['end_t'],
+        tag="M", atoms=["C"])
     plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
-                        tau=G_S['tau'], end_t=0.01, tag="M", exclude_names=None,
+                        tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
                         renormalization=False, semilogy=True, hasTemp=True)
-    # plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
-    #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
-    #                     renormalization=False, semilogy=True, hasTemp=True)
-    # plot_concentrations(DATA_DIR, spe_idx=[10],
-    #                     tau=G_S['tau'], end_t=1.0, tag="M", exclude_names=None,
-    #                     renormalization=False, semilogy=True, hasTemp=True)
+
     # plot_spe_concentrations_derivative(DATA_DIR, spe_idx=[62, 14, 15, 59],
     #                                    tau=G_S['tau'], end_t=0.95, tag="M",
     #                                    exclude_names=None, renormalization=False)
