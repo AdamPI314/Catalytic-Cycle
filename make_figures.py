@@ -1417,6 +1417,13 @@ if __name__ == '__main__':
     #     top_n=6, species_path=G_S['species_path'], exclude_idx=[0],
     #     semilogy=True)
 
+    # TIME_AXIS = pathway_time_2_array_index(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], time=G_S['mc_t'])
+    # plot_cumulative_pathway_prob(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
+    #                              top_n=25, time_axis=TIME_AXIS)
+
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
     # plot_species_drc(DATA_DIR, spe_idx=SPE_LIST,
@@ -1449,13 +1456,6 @@ if __name__ == '__main__':
     #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
     #                       species_path=G_S['species_path'], spe_idx=[10],
     #                       path_idx=PATH_IDX)
-
-    # TIME_AXIS = pathway_time_2_array_index(
-    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     species_path=G_S['species_path'], time=G_S['mc_t'])
-    # plot_cumulative_pathway_prob(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                              end_t=G_S['end_t'], tau=G_S['tau'], species_path=G_S['species_path'],
-    #                              top_n=25, time_axis=TIME_AXIS)
 
     # plot_Merchant_alpha_value_vs_time(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
