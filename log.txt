@@ -1,27 +1,7 @@
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA
-{'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78], 'HA2': [60, 78], 'HA3': [60, 78], 'HA4': [60, 78]}}
-{'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90], 'HA2': [87, 90], 'HA3': [87, 90], 'HA4': [87, 90]}}
-{'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'HA1': [78, 87], 'HA2': [78, 87], 'HA3': [78, 87], 'HA4': [78, 87]}}
-[[60, 78], [87, 90], [78, 87]]
-0 [60, 78]
-1 [87, 90]
-2 [78, 87]
-OrderedDict([('1', [60, 78]), ('2', [87, 90]), ('3', [78, 87])])
-{'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'O': [78, 9], 'C': [60, 78], 'HA1': [60, 78], 'HA2': [60, 78], 'HA3': [60, 78], 'HA4': [60, 78]}}
-{'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'O': [90, 9], 'C': [87, 90], 'HA1': [87, 90], 'HA2': [87, 90], 'HA3': [87, 90], 'HA4': [87, 90]}}
-{'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'HA1': [78, 87], 'HA2': [78, 87], 'HA3': [78, 87], 'HA4': [78, 87]}}
-[[60, 78], [87, 90], [78, 87]]
-0 [60, 78]
-1 [87, 90]
-2 [78, 87]
-OrderedDict([('1', [60, 78]), ('2', [87, 90]), ('3', [78, 87])])
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_stat.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_selected.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_prob.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathname_prob.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/chattering_group_info.json found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_candidate.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_time_candidate.csv found
-running time:	0.00 hours
-
+Traceback (most recent call last):
+  File "./main_driver.py", line 9, in <module>
+    import update_settings as us
+  File "/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/update_settings.py", line 5
+    im[int(top_n)]ort os
+                    ^
+SyntaxError: invalid syntax
