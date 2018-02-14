@@ -97,40 +97,11 @@ def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", tau=1
         prefix = "species_"
     suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    f_n_pn = os.path.join(data_dir, "output",
-                          prefix + "pathway_name_selected" + suffix + ".csv")
-    f_n_pp = os.path.join(data_dir, "output",
-                          prefix + "pathway_prob" + suffix + ".csv")
-
-    path_names = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
-    data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
-
-    dim_n = len(np.shape(data_pp))
-
-    if dim_n == 1:
-        data_y = data_pp
-    elif dim_n == 2:
-        data_y = data_pp
-
-    path_labels = ["P" + str(i + 1) for i in range(np.shape(data_y)[0])]
-    time_label = "t" + str(time_axis)
-
-    # each pathway as a column
-    d_f_n = pd.DataFrame(path_names, columns=['name'], dtype=str)
-    d_f_p = pd.DataFrame(data_y[:, time_axis],
-                         columns=[time_label], dtype=float)
-    d_f = pd.concat([d_f_n, d_f_p], axis=1)
-    d_f.reindex(path_labels)
-    # filter
-    if end_s_idx is not None:
-        if isinstance(end_s_idx, int):
-            d_f = d_f.loc[lambda x: x['name'].str.endswith("S"+str(end_s_idx))]
-        elif isinstance(end_s_idx, list):
-            # got to be a tuple
-            mask_str = tuple(["S"+str(e_s) for e_s in end_s_idx])
-            d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
-
-    d_f.sort_values(by=time_label, inplace=True, ascending=False)
+    d_f = pattern_statistics.path_prob_terminating_with_spe(data_dir, init_spe=init_spe,
+                                                            atom_followed=atom_followed, tau=tau, end_t=end_t,
+                                                            species_path=species_path,
+                                                            end_s_idx=end_s_idx, exclude_idx=None,
+                                                            time_axis=time_axis)
     # the first column is pathway names
     data_y = d_f.as_matrix()[0:top_n, 1::]
     path_labels = d_f.index.values[0:top_n]
@@ -146,7 +117,7 @@ def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", tau=1
             str(time_axis) + suffix + ".jpg"
     else:
         fig_name = prefix + "cumulative_pathway_prob_at_time_" + \
-            str(time_axis)+suffix + "_semilogy.jpg"
+            str(time_axis) + suffix + "_semilogy.jpg"
 
     delta_n = int(len(data_y) / 5)
     if delta_n is 0:
@@ -218,7 +189,7 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -261,7 +232,7 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
 
     fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output",
-                             "trajectory_" + s_n_str + "_" + str(end_t)+".jpg"), dpi=500)
+                             "trajectory_" + s_n_str + "_" + str(end_t) + ".jpg"), dpi=500)
     plt.close()
 
 
@@ -297,7 +268,7 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -369,7 +340,7 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -416,7 +387,7 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
 
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
-    a_x_left.set_xlim([time[0], tau*end_t])
+    a_x_left.set_xlim([time[0], tau * end_t])
 
     a_x_left.set_xlabel("Time (second)")
     if reciprocal is True:
@@ -479,7 +450,7 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -525,7 +496,7 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
 
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
-    a_x_left.set_xlim([time[0], tau*end_t])
+    a_x_left.set_xlim([time[0], tau * end_t])
 
     a_x_left.set_xlabel("Time (second)")
 
@@ -572,7 +543,7 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -604,7 +575,7 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
     leg_left = a_x_left.legend(loc=2, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
-    a_x_left.set_xlim([time[0], tau*end_t])
+    a_x_left.set_xlim([time[0], tau * end_t])
 
     if hasTemp is True:
         leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
@@ -647,7 +618,7 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau*end_t))
+    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
 
     if end_point >= len(time):
         end_point = len(time) - 1
@@ -683,7 +654,7 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
 
 
 def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
-                       end_t=1.0, end_spe=62, species_path=False):
+                       tau=10.0, end_t=1.0, end_s_idx=62, species_path=False):
     """
     plot spe_path_prob give species name 
     """
@@ -696,40 +667,42 @@ def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom
     else:
         prefix = "species_"
     d_f = pattern_statistics.path_prob_terminating_with_spe(data_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, end_t=end_t,
-                                                            end_spe=end_spe, species_path=species_path)
+                                                            atom_followed=atom_followed, tau=tau, end_t=end_t,
+                                                            species_path=species_path,
+                                                            end_s_idx=end_s_idx, exclude_idx=None,
+                                                            time_axis=-1)
     data = [float(x) for x in d_f['frequency']][0:top_n]
     data_c = deepcopy(data)
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
-    delta_n = int(len(data_c) / 25)
+    delta_n = int(len(data_c) / 5)
     if delta_n is 0:
         delta_n = 1
-    data_c = data_c[::delta_n]
+    # data_c = data_c[::delta_n]
 
     s_idx_n, _ = psri.parse_spe_info(data_dir)
-    spe_name = s_idx_n[str(end_spe)]
+    spe_name = s_idx_n[str(end_s_idx)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        data_dir, tag="M", end_t=end_t, exclude_names=exclude_names, renormalization=True)
+        data_dir, tag="M", tau=tau, end_t=end_t, exclude_names=exclude_names, renormalization=True)
     spe_conc = trajectory.convert_concentration_to_path_prob(
         data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
     # data_c = trajectory.convert_path_prob_to_concentration(
     #     DATA_DIR, atom_followed=atom_followed, path_prob=data_c)
-    spe_conc_const = spe_conc[int(end_spe)]
+    spe_conc_const = spe_conc[int(end_s_idx)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     a_x_right = a_x_left.twinx()
 
     a_x_left.plot(data_c, color=colors[0],
-                  marker=markers[0], label="pathway prob")
+                  marker=markers[0], label="pathway prob", markevery=delta_n)
 
     a_x_left.plot([0, len(data_c) - 1], [spe_conc_const, spe_conc_const],
-                  color=colors[-1], marker=markers[1], label="exact")
+                  color=colors[-1], marker=markers[1], label="exact", markevery=delta_n)
 
     a_x_right.plot((spe_conc_const - data_c) / spe_conc_const,
-                   color=colors[1], marker=markers[2], label="Error Percentage")
+                   color=colors[1], marker=markers[2], label="Error Percentage", markevery=delta_n)
 
     leg_left = a_x_left.legend(loc=10, fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc=8, fancybox=True, prop={'size': 10.0})
@@ -739,11 +712,11 @@ def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom
     a_x_left.ticklabel_format(useOffset=False)
     a_x_right.ticklabel_format(useOffset=False)
 
-    x_ticks = [x for x in range(len(data_c))]
-    x_tick_labels = [str(delta_n * x + 1) for x in x_ticks]
-    a_x_left.set_xticks(x_ticks)
-    # a_x_left.set_xticklabels(x_tick_labels, rotation='vertical')
-    a_x_left.set_xticklabels(x_tick_labels, rotation=45)
+    # x_ticks = [x for x in range(len(data_c))]
+    # x_tick_labels = [str(delta_n * x + 1) for x in x_ticks]
+    # a_x_left.set_xticks(x_ticks)
+    # # a_x_left.set_xticklabels(x_tick_labels, rotation='vertical')
+    # a_x_left.set_xticklabels(x_tick_labels, rotation=45)
 
     a_x_left.set_xlim([0 - 0.5, len(data_c) - 0.5])
 
@@ -964,10 +937,11 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
     # filter
     if end_s_idx is not None:
         if isinstance(end_s_idx, int):
-            d_f = d_f.loc[lambda x: x['name'].str.endswith("S"+str(end_s_idx))]
+            d_f = d_f.loc[lambda x: x['name'].str.endswith(
+                "S" + str(end_s_idx))]
         elif isinstance(end_s_idx, list):
             # got to be a tuple
-            mask_str = tuple(["S"+str(e_s) for e_s in end_s_idx])
+            mask_str = tuple(["S" + str(e_s) for e_s in end_s_idx])
             d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
 
     d_f.sort_values(by=[time_labels[-1]], inplace=True, ascending=False)
@@ -1499,17 +1473,23 @@ if __name__ == '__main__':
     #     exclude_idx=None,
     #     semilogy=True, legend_on=False)
 
-    TIME_AXIS = pathway_time_2_array_index(
-        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], time=G_S['mc_t'])
-    plot_cumulative_pathway_prob(
-        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-        tau=G_S['tau'], end_t=G_S['end_t'],
-        top_n=10, species_path=G_S['species_path'],
-        end_s_idx=[14],
-        exclude_idx=None,
-        semilogy=True, legend_on=False,
-        time_axis=TIME_AXIS)
+    # TIME_AXIS = pathway_time_2_array_index(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], time=G_S['mc_t'])
+    # plot_cumulative_pathway_prob(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #     tau=G_S['tau'], end_t=G_S['end_t'],
+    #     top_n=10, species_path=G_S['species_path'],
+    #     end_s_idx=[14],
+    #     exclude_idx=None,
+    #     semilogy=True, legend_on=False,
+    #     time_axis=TIME_AXIS)
+
+    plot_spe_path_prob(DATA_DIR, top_n=10, exclude_names=None, init_spe=G_S['init_s'],
+                       atom_followed=G_S['atom_f'],
+                       tau=G_S['tau'], end_t=G_S['end_t'],
+                       end_s_idx=14,
+                       species_path=False)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]

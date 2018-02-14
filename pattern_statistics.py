@@ -15,36 +15,55 @@ import parse_pattern
 import global_settings
 
 
-def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None, species_path=False):
+def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau=10.0, end_t=1.0,
+                                   species_path=True, end_s_idx=None, exclude_idx=None,
+                                   time_axis=0):
     """
     get pathway and their pathway probability, path ending with spe
     """
-    suffix = naming.get_suffix(data_dir=data_dir, init_spe=init_spe,
-                               atom_followed=atom_followed, end_t=end_t)
-    if species_path is False:
-        prefix = ""
-    else:
+    if exclude_idx is None:
+        exclude_idx = []
+    prefix = ""
+    if species_path is True:
         prefix = "species_"
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+    f_n_pn = os.path.join(data_dir, "output",
+                          prefix + "pathway_name_selected" + suffix + ".csv")
+    f_n_pp = os.path.join(data_dir, "output",
+                          prefix + "pathway_prob" + suffix + ".csv")
 
-    f_n_n = os.path.join(data_dir, "output",
-                         prefix + "pathway_name_selected" + suffix + ".csv")
-    f_n_p = os.path.join(data_dir, "output", prefix +
-                         "pathway_prob" + suffix + ".csv")
+    path_names = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
 
-    pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
-    pathway_prob = np.genfromtxt(f_n_p, dtype=float, delimiter='\n')
+    dim_n = len(np.shape(data_pp))
 
-    d_f = pd.DataFrame(np.transpose([pathway_name, pathway_prob]), columns=[
-        'pathway', 'frequency'])
+    if dim_n == 1:
+        data_y = data_pp
+    elif dim_n == 2:
+        data_y = data_pp
 
-    if end_spe is None or end_spe is "ALL":
-        return d_f
-    else:
-        d_f = d_f.loc[lambda x: x['pathway'].str.endswith("S" + str(end_spe))]
-        d_f.reset_index(drop=True, inplace=True)
-        # print(d_f.head())
+    path_labels = ["P" + str(i + 1) for i in range(np.shape(data_y)[0])]
 
-        return d_f
+    # each pathway as a column
+    d_f_n = pd.DataFrame(path_names, columns=['name'], dtype=str)
+    d_f_p = pd.DataFrame(data_y[:, time_axis],
+                         columns=['frequency'], dtype=float)
+    d_f = pd.concat([d_f_n, d_f_p], axis=1)
+    d_f.reindex(path_labels)
+    # filter
+    if end_s_idx is not None:
+        if isinstance(end_s_idx, int):
+            d_f = d_f.loc[lambda x: x['name'].str.endswith(
+                "S" + str(end_s_idx))]
+        elif isinstance(end_s_idx, list):
+            # got to be a tuple
+            mask_str = tuple(["S" + str(e_s) for e_s in end_s_idx])
+            d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
+
+    d_f.sort_values(by='frequency', inplace=True, ascending=False)
+
+    return d_f
 
 
 def path_length_statistics(data_dir, init_spe=62, atom_followed="C", end_t=1.0, end_spe=None):
