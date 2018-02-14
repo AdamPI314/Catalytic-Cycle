@@ -6,14 +6,15 @@ import os
 import sys
 from collections import defaultdict, OrderedDict
 import numpy as np
-import parse_spe_reaction_info as psri
-# import read_write_configuration as rwc
 from scipy.interpolate import CubicSpline
 import scipy.optimize as opt
+import parse_spe_reaction_info as psri
 import interpolation
+import global_settings
 
 
-def convert_path_prob_to_concentration(data_dir, atom_followed="C", path_prob=None, default_coef=None):
+def convert_path_prob_to_concentration(data_dir, atom_followed="C",
+                                       path_prob=None, default_coef=None):
     """
     if default_coef is not None, use it as default coefficient
     convert total pathway probability to concentration
@@ -125,7 +126,7 @@ def get_species_with_top_n_concentration(data_dir, exclude, top_n=10, traj_max_t
 
     data = [float] * n_spe
     for i in range(n_spe):
-        data[i] = interpolation.interp1d(time, conc_all[:, i], tau*end_t)
+        data[i] = interpolation.interp1d(time, conc_all[:, i], tau * end_t)
 
     c_idx_map = defaultdict(set)
     for idx, val in enumerate(data):
@@ -204,7 +205,7 @@ def get_normalized_concentration_at_time(data_dir, tag="fraction", tau=10.0, end
 
     conc = [float] * n_spe
     for i in range(n_spe):
-        conc[i] = interpolation.interp1d(time, conc_all[:, i], tau*end_t)
+        conc[i] = interpolation.interp1d(time, conc_all[:, i], tau * end_t)
 
     _, s_n_idx = psri.parse_spe_info(data_dir)
     exclude_idx_list = [int(s_n_idx[x]) for x in exclude_names]
@@ -249,7 +250,7 @@ def get_time_at_time_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
     # multivariate method
     # https://docs.scipy.org/doc/scipy/reference/optimize.html
     # be careful when setting the bounds, avoid stiffness problem
-    max_x = opt.fmin_l_bfgs_b(lambda x: -1*func(x), time[-1],
+    max_x = opt.fmin_l_bfgs_b(lambda x: -1 * func(x), time[-1],
                               bounds=[(l_b, h_b)], approx_grad=True)
     print(max_x)
 
@@ -263,6 +264,7 @@ def get_time_at_time_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
 if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
+    G_S = global_settings.get_setting(DATA_DIR)
     print(DATA_DIR)
     # get_normalized_concentration_at_time(
     #     DATA_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
