@@ -859,9 +859,11 @@ def plot_reaction_rate_constant(data_dir):
 
 
 def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0, end_t=1.0,
-                              top_n=1, species_path=True, exclude_idx=None, semilogy=False):
+                              top_n=1, species_path=True, end_s_idx=None, exclude_idx=None,
+                              semilogy=False, legend_on=True):
     """
     plot pathway probability vs. time
+    end_s_idx can be None or a single species index 
     """
     if exclude_idx is None:
         exclude_idx = []
@@ -872,14 +874,14 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
         prefix = "species_"
     suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
-    # f_n_pn = os.path.join(data_dir, "output",
-    #                       prefix + "pathway_name_selected" + suffix + ".csv")
+    f_n_pn = os.path.join(data_dir, "output",
+                          prefix + "pathway_name_selected" + suffix + ".csv")
     f_n_pt = os.path.join(data_dir, "output",
                           prefix + "pathway_time_candidate" + suffix + ".csv")
     f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
 
-    # data_pn = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
+    path_names = np.loadtxt(f_n_pn, dtype=str, delimiter=",")
     data_pt = np.loadtxt(f_n_pt, dtype=float, delimiter=",")
     data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
 
@@ -898,18 +900,37 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
     time_labels = ["t" + str(i + 1) for i in range(np.shape(data_y)[1])]
 
     # each pathway as a column
-    d_f = pd.DataFrame(data_y, index=path_labels, columns=time_labels)
+    d_f_n = pd.DataFrame(path_names, columns=['name'], dtype=str)
+    d_f_p = pd.DataFrame(data_y, columns=time_labels, dtype=float)
+    d_f = pd.concat([d_f_n, d_f_p], axis=1)
+    d_f.reindex(path_labels)
+    # filter
+    if end_s_idx is not None:
+        if isinstance(end_s_idx, int):
+            d_f = d_f.loc[lambda x: x['name'].str.endswith("S"+str(end_s_idx))]
+        elif isinstance(end_s_idx, list):
+            # got to be a tuple
+            mask_str = tuple(["S"+str(e_s) for e_s in end_s_idx])
+            d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
+
     d_f.sort_values(by=[time_labels[-1]], inplace=True, ascending=False)
-    data_y = d_f.as_matrix()[0:top_n, :]
-    path_labels = (d_f.index.values)[0:top_n]
+    # the first column is pathway names
+    data_y = d_f.as_matrix()[0:top_n, 1::]
+    path_labels = d_f.index.values[0:top_n]
 
     data_x = data_x * tau
+
+    if end_s_idx is not None:
+        s_tmp = np.ravel([end_s_idx])
+        s_tmp = [str(x) for x in s_tmp]
+        s_tmp = '_'.join(s_tmp)
+        suffix += '_' + s_tmp
     if semilogy is False:
         fig_name = prefix + "pathway_prob_vs_time" + suffix + ".jpg"
     else:
         fig_name = prefix + "pathway_prob_vs_time" + suffix + "_semilogy.jpg"
 
-    delta_n = int(len(data_x) / 50)
+    delta_n = int(len(data_x) / 5)
     if delta_n is 0:
         delta_n = 1
 
@@ -931,8 +952,9 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
                          label=path_labels[idx % len(path_labels)],
                          markevery=delta_n)
 
-    leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
-    leg.get_frame().set_alpha(0.7)
+    if legend_on is True:
+        leg = a_x.legend(loc=0, fancybox=True, prop={'size': 15.0})
+        leg.get_frame().set_alpha(0.7)
 
     y_vals = a_x.get_yticks()
     a_x.set_yticklabels(['{:.1e}'.format(x) for x in y_vals])
@@ -1411,11 +1433,13 @@ if __name__ == '__main__':
     #     plot_path_length_statistics(
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], end_spe=es)
 
-    # plot_pathway_prob_vs_time(
-    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #     tau=G_S['tau'], end_t=G_S['end_t'],
-    #     top_n=6, species_path=G_S['species_path'], exclude_idx=[0],
-    #     semilogy=True)
+    plot_pathway_prob_vs_time(
+        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+        tau=G_S['tau'], end_t=G_S['end_t'],
+        top_n=10, species_path=G_S['species_path'],
+        end_s_idx=[17],
+        exclude_idx=None,
+        semilogy=True, legend_on=False)
 
     # TIME_AXIS = pathway_time_2_array_index(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
