@@ -152,6 +152,7 @@ def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", tau=1
 
     a_x.grid()
 
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     return
 
@@ -189,7 +190,8 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -268,7 +270,8 @@ def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -340,7 +343,8 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -450,7 +454,8 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -543,7 +548,8 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     delta_n = int(end_point / 10)
     if delta_n is 0:
@@ -618,7 +624,8 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
     # the time point where reference time tau is
     # use interpolation here
     idx_array = [i for i in range(len(time))]
-    end_point = int(interpolation.interp1d(time, idx_array, tau * end_t))
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
 
     if end_point >= len(time):
         end_point = len(time) - 1
@@ -653,8 +660,8 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
     plt.close()
 
 
-def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
-                       tau=10.0, end_t=1.0, end_s_idx=62, species_path=False):
+def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
+                              tau=10.0, end_t=1.0, end_s_idx=62, species_path=False, time_axis=0):
     """
     plot spe_path_prob give species name 
     """
@@ -670,26 +677,25 @@ def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom
                                                             atom_followed=atom_followed, tau=tau, end_t=end_t,
                                                             species_path=species_path,
                                                             end_s_idx=end_s_idx, exclude_idx=None,
-                                                            time_axis=-1)
+                                                            time_axis=time_axis)
     data = [float(x) for x in d_f['frequency']][0:top_n]
+    print(np.shape(data), data)
     data_c = deepcopy(data)
     for idx, _ in enumerate(data_c):
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
+
     delta_n = int(len(data_c) / 5)
     if delta_n is 0:
         delta_n = 1
-    # data_c = data_c[::delta_n]
-
     s_idx_n, _ = psri.parse_spe_info(data_dir)
     spe_name = s_idx_n[str(end_s_idx)]
 
     spe_conc = trajectory.get_normalized_concentration_at_time(
-        data_dir, tag="M", tau=tau, end_t=end_t, exclude_names=exclude_names, renormalization=True)
+        data_dir, tag="M", tau=tau, end_t=end_t, exclude_names=exclude_names, renormalization=False)
     spe_conc = trajectory.convert_concentration_to_path_prob(
-        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True)
-    # data_c = trajectory.convert_path_prob_to_concentration(
-    #     DATA_DIR, atom_followed=atom_followed, path_prob=data_c)
+        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True, default_coef=None)
+    print(spe_conc)
     spe_conc_const = spe_conc[int(end_s_idx)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
@@ -712,11 +718,9 @@ def plot_spe_path_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom
     a_x_left.ticklabel_format(useOffset=False)
     a_x_right.ticklabel_format(useOffset=False)
 
-    # x_ticks = [x for x in range(len(data_c))]
-    # x_tick_labels = [str(delta_n * x + 1) for x in x_ticks]
-    # a_x_left.set_xticks(x_ticks)
-    # # a_x_left.set_xticklabels(x_tick_labels, rotation='vertical')
-    # a_x_left.set_xticklabels(x_tick_labels, rotation=45)
+    x_ticks = a_x_left.get_xticks()
+    a_x_left.set_xticklabels(['{:d}'.format(int(x))
+                              for x in x_ticks], rotation=45)
 
     a_x_left.set_xlim([0 - 0.5, len(data_c) - 0.5])
 
@@ -1473,23 +1477,24 @@ if __name__ == '__main__':
     #     exclude_idx=None,
     #     semilogy=True, legend_on=False)
 
-    # TIME_AXIS = pathway_time_2_array_index(
-    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     species_path=G_S['species_path'], time=G_S['mc_t'])
+    TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
+        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+        species_path=G_S['species_path'], time=G_S['end_t'])
     # plot_cumulative_pathway_prob(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #     tau=G_S['tau'], end_t=G_S['end_t'],
-    #     top_n=10, species_path=G_S['species_path'],
+    #     top_n=100, species_path=G_S['species_path'],
     #     end_s_idx=[14],
     #     exclude_idx=None,
-    #     semilogy=True, legend_on=False,
+    #     semilogy=False, legend_on=False,
     #     time_axis=TIME_AXIS)
 
-    plot_spe_path_prob(DATA_DIR, top_n=10, exclude_names=None, init_spe=G_S['init_s'],
-                       atom_followed=G_S['atom_f'],
-                       tau=G_S['tau'], end_t=G_S['end_t'],
-                       end_s_idx=14,
-                       species_path=False)
+    plot_species_pathway_prob(DATA_DIR, top_n=100, exclude_names=None, init_spe=G_S['init_s'],
+                              atom_followed=G_S['atom_f'],
+                              tau=G_S['tau'], end_t=G_S['end_t'],
+                              end_s_idx=14,
+                              species_path=G_S['species_path'],
+                              time_axis=TIME_AXIS)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]

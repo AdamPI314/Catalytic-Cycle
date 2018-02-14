@@ -82,12 +82,13 @@ def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=Non
                 spe_composition[val][atom_followed])
         else:
             spe_idx_coefficient[spe_n_i_d[val]] = 0.0
-    #print(spe_composition, spe_idx_coefficient)
+    # print(spe_composition, spe_idx_coefficient)
 
     if default_coef is not None:
         for val in spe_idx_coefficient:
             if spe_idx_coefficient[val] != 0:
                 spe_idx_coefficient[val] = default_coef
+    # print(spe_composition, spe_idx_coefficient)
 
     if np.shape(spe_conc)[0] > 0:
         if np.shape(spe_conc[0]) is ():
@@ -226,7 +227,7 @@ def get_normalized_concentration_at_time(data_dir, tag="fraction", tau=10.0, end
     return conc
 
 
-def get_time_at_time_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
+def get_time_at_temperature_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
     """
     return time at which the first order differential of temperature is maximum
     l_b: lower bound
@@ -270,4 +271,4 @@ if __name__ == '__main__':
     #     DATA_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
     # convert_concentration_to_path_prob(
     #     DATA_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)
-    get_time_at_time_differential_maximum(DATA_DIR)
+    get_time_at_temperature_differential_maximum(DATA_DIR)
