@@ -109,12 +109,11 @@ def pathway_time_2_array_index(data_dir, init_spe=None, atom_followed="C",
 
     y_idx = [float(i) for i in range(len(p_time))]
     array_idx = interpolation.interp1d(p_time, y_idx, time)
-
-    array_idx = int(array_idx)
+    array_idx = int(round(array_idx))
 
     if array_idx >= len(p_time):
         array_idx = len(p_time) - 1
     if array_idx < 0:
         array_idx = 0
     print("time idx:\t", array_idx, "time:\t", p_time[array_idx])
-    return array_idx
+    return array_idx, p_time[array_idx]

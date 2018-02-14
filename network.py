@@ -471,7 +471,7 @@ if __name__ == '__main__':
     SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
                         atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
 
-    TIME_AXIS = tools.pathway_time_2_array_index(
+    TIME_AXIS, _ = tools.pathway_time_2_array_index(
         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
 

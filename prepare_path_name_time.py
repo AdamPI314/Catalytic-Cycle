@@ -106,7 +106,7 @@ def prepare_pathway_time(data_dir, top_n=5, num=1, flag="", begin_t=0.0, end_t=1
     for idx, _ in enumerate(t_mat):
         t_mat[idx] = np.linspace(begin_t, end_t, num + 1)
 
-    np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.7f')
+    np.savetxt(f_n_pt, t_mat[:, 1::], delimiter=',', fmt='%.15f')
 
 
 if __name__ == '__main__':
