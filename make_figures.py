@@ -720,10 +720,6 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     a_x_left.ticklabel_format(useOffset=False)
     a_x_right.ticklabel_format(useOffset=False)
 
-    x_ticks = a_x_left.get_xticks()
-    a_x_left.set_xticklabels(['{:d}'.format(int(x))
-                              for x in x_ticks], rotation=45)
-
     a_x_left.set_xlim([0 - 0.5, len(data_c) - 0.5])
 
     leg_left.get_frame().set_alpha(0.7)
