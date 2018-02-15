@@ -43,14 +43,11 @@ def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau
     elif dim_n == 2:
         data_y = data_pp
 
-    path_labels = ["P" + str(i + 1) for i in range(np.shape(data_y)[0])]
-
     # each pathway as a column
     d_f_n = pd.DataFrame(path_names, columns=['name'], dtype=str)
     d_f_p = pd.DataFrame(data_y[:, time_axis],
                          columns=['frequency'], dtype=float)
     d_f = pd.concat([d_f_n, d_f_p], axis=1)
-    d_f.reindex(path_labels)
     # filter
     if end_s_idx is not None:
         if isinstance(end_s_idx, int):
