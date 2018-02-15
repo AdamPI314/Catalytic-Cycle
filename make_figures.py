@@ -674,7 +674,8 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     else:
         prefix = "species_"
     d_f = pattern_statistics.path_prob_terminating_with_spe(data_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, tau=tau, end_t=end_t,
+                                                            atom_followed=atom_followed,
+                                                            tau=tau, end_t=end_t,
                                                             species_path=species_path,
                                                             end_s_idx=end_s_idx, exclude_idx=None,
                                                             time_axis=time_axis)
@@ -694,7 +695,8 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     spe_conc = trajectory.get_normalized_concentration_at_time(
         data_dir, tag="M", tau=tau, end_t=end_t, exclude_names=exclude_names, renormalization=False)
     spe_conc = trajectory.convert_concentration_to_path_prob(
-        data_dir, atom_followed=atom_followed, spe_conc=spe_conc, renormalization=True, default_coef=None)
+        data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
+        renormalization=True, default_coef=None)
     print(spe_conc)
     spe_conc_const = spe_conc[int(end_s_idx)]
 
