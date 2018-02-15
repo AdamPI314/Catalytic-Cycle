@@ -6,6 +6,7 @@ import os
 import sys
 from collections import defaultdict, OrderedDict
 import numpy as np
+from copy import deepcopy
 from scipy.interpolate import CubicSpline
 import scipy.optimize as opt
 import parse_spe_reaction_info as psri
@@ -71,6 +72,8 @@ def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=Non
     if spe_conc is []:
         return None
 
+    path_prob = deepcopy(spe_conc)
+
     _, spe_n_i_d = psri.parse_spe_info(data_dir)
     spe_composition = psri.read_spe_composition(
         os.path.join(data_dir, "input", "spe_composition.json"))
@@ -90,22 +93,28 @@ def convert_concentration_to_path_prob(data_dir, atom_followed="C", spe_conc=Non
                 spe_idx_coefficient[val] = default_coef
     # print(spe_composition, spe_idx_coefficient)
 
-    if np.shape(spe_conc)[0] > 0:
-        if np.shape(spe_conc[0]) is ():
-            print("1D array", "shape:\t", len(spe_conc))
-            for idx, _ in enumerate(spe_conc):
-                spe_conc[idx] *= float(spe_idx_coefficient[str(idx)])
+    if np.shape(path_prob)[0] > 0:
+        if np.shape(path_prob[0]) is ():
+            print("1D array", "shape:\t", len(path_prob))
+            for idx, _ in enumerate(path_prob):
+                if float(spe_idx_coefficient[str(idx)]) != 0:
+                    path_prob[idx] *= float(spe_idx_coefficient[str(idx)])
+                else:
+                    path_prob[idx] *= 0.0
             if renormalization is True:
-                spe_conc /= np.sum(spe_conc)
+                path_prob /= np.sum(path_prob)
         else:
-            print("2D array", "shape:\t", np.shape(spe_conc))
-            for idx in range(np.shape(spe_conc)[1]):
-                spe_conc[:, idx] *= float(spe_idx_coefficient[str(idx)])
+            print("2D array", "shape:\t", np.shape(path_prob))
+            for idx in range(np.shape(path_prob)[1]):
+                if float(spe_idx_coefficient[str(idx)]) != 0:
+                    path_prob[:, idx] *= float(spe_idx_coefficient[str(idx)])
+                else:
+                    path_prob[:, idx] *= 0.0
             if renormalization is True:
-                for idx, _ in enumerate(spe_conc):
-                    spe_conc[idx, :] /= np.sum(spe_conc[idx, :])
+                for idx, _ in enumerate(path_prob):
+                    path_prob[idx, :] /= np.sum(path_prob[idx, :])
 
-    return spe_conc
+    return path_prob
 
 
 def get_species_with_top_n_concentration(data_dir, exclude, top_n=10, traj_max_t=100.0,
