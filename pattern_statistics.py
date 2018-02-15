@@ -41,13 +41,13 @@ def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau
     if dim_n == 1:
         data_y = data_pp
     elif dim_n == 2:
-        data_y = data_pp
+        data_y = data_pp[:, time_axis]
 
     # each pathway as a column
     d_f_n = pd.DataFrame(path_names, columns=['name'], dtype=str)
-    d_f_p = pd.DataFrame(data_y[:, time_axis],
-                         columns=['frequency'], dtype=float)
+    d_f_p = pd.DataFrame(data_y, columns=['frequency'], dtype=float)
     d_f = pd.concat([d_f_n, d_f_p], axis=1)
+    # print(d_f.head())
     # filter
     if end_s_idx is not None:
         if isinstance(end_s_idx, int):
@@ -59,6 +59,9 @@ def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau
             d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
 
     d_f.sort_values(by='frequency', inplace=True, ascending=False)
+    print(d_f.head())
+    d_f.reset_index(drop=True, inplace=True)
+    print(d_f.head())
 
     return d_f
 
