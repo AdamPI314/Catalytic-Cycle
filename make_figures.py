@@ -1478,14 +1478,14 @@ if __name__ == '__main__':
     TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['end_t'])
-    plot_cumulative_pathway_prob(
-        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-        tau=G_S['tau'], end_t=G_S['end_t'],
-        top_n=1000, species_path=G_S['species_path'],
-        end_s_idx=[14],
-        exclude_idx=None,
-        semilogy=False, legend_on=False,
-        time_axis=TIME_AXIS)
+    # plot_cumulative_pathway_prob(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #     tau=G_S['tau'], end_t=G_S['end_t'],
+    #     top_n=1000, species_path=G_S['species_path'],
+    #     end_s_idx=[14],
+    #     exclude_idx=None,
+    #     semilogy=False, legend_on=False,
+    #     time_axis=TIME_AXIS)
 
     plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
                               atom_followed=G_S['atom_f'],
