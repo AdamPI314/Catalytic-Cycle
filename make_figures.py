@@ -680,7 +680,7 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
                                                             end_s_idx=end_s_idx, exclude_idx=None,
                                                             time_axis=time_axis)
     data = [float(x) for x in d_f['frequency']][0:top_n]
-    print(np.shape(data), data)
+    # print(np.shape(data), data)
     data_c = deepcopy(data)
     for idx, _ in enumerate(data_c):
         if idx >= 1:
@@ -697,7 +697,7 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     spe_conc = trajectory.convert_concentration_to_path_prob(
         data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
         renormalization=True, default_coef=None)
-    print(spe_conc)
+    # print(spe_conc)
     spe_conc_const = spe_conc[int(end_s_idx)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
