@@ -59,9 +59,8 @@ def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau
             d_f = d_f.loc[lambda x: x['name'].str.endswith(mask_str)]
 
     d_f.sort_values(by='frequency', inplace=True, ascending=False)
-    print(d_f.head())
     d_f.reset_index(drop=True, inplace=True)
-    print(d_f.head())
+    print(d_f)
 
     return d_f
 

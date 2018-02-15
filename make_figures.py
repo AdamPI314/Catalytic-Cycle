@@ -98,7 +98,8 @@ def plot_cumulative_pathway_prob(data_dir, init_spe=62, atom_followed="C", tau=1
     suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     d_f = pattern_statistics.path_prob_terminating_with_spe(data_dir, init_spe=init_spe,
-                                                            atom_followed=atom_followed, tau=tau, end_t=end_t,
+                                                            atom_followed=atom_followed,
+                                                            tau=tau, end_t=end_t,
                                                             species_path=species_path,
                                                             end_s_idx=end_s_idx, exclude_idx=None,
                                                             time_axis=time_axis)
@@ -1481,8 +1482,8 @@ if __name__ == '__main__':
     # plot_cumulative_pathway_prob(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #     tau=G_S['tau'], end_t=G_S['end_t'],
-    #     top_n=1000, species_path=G_S['species_path'],
-    #     end_s_idx=[14],
+    #     top_n=100, species_path=G_S['species_path'],
+    #     end_s_idx=[59],
     #     exclude_idx=None,
     #     semilogy=False, legend_on=False,
     #     time_axis=TIME_AXIS)
