@@ -1,0 +1,1 @@
+alias cpus='top -bn2 | grep Cpu | tail -n 1 | sed '\''s/\.*\([0-9.]*\) id\.*/\1/'\'' | awk '\''{print 100 - $1}'\'''
