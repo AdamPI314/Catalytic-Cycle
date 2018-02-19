@@ -422,9 +422,11 @@ def propane_make_figures(data_dir, species_path=False):
         data_dir, reaction_idx=[1068, 1070, 1072, 1074, 1076], tau=g_s['tau'], end_t=1.0, tag=g_s['tag'])
     for s_i in spe_idx:
         print(spe_idx)
-        mf.plot_species_pathway_probability(data_dir, top_n=g_s['top_n_p'],
-                              exclude_names=spe_exclude_name, end_t=g_s['end_t'],
-                              end_spe=s_i, species_path=species_path)
+        mf.plot_species_pathway_prob(data_dir, top_n=g_s['top_n_p'],
+                                     exclude_names=spe_exclude_name,
+                                     init_spe=g_s['init_s'], atom_followed=g_s['atom_f'],
+                                     tau=g_s['tau'], end_t=g_s['end_t'],
+                                     end_s_idx=s_i, species_path=species_path)
     mf.plot_reaction_rate_constant(data_dir)
     mf.plot_top_n_spe_concentration(
         data_dir, exclude_names=None, atom_followed=g_s['atom_f'], end_t=g_s['end_t'], top_n=10)
