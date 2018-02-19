@@ -1491,7 +1491,7 @@ if __name__ == '__main__':
     plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
                               atom_followed=G_S['atom_f'],
                               tau=G_S['tau'], end_t=G_S['end_t'],
-                              end_s_idx=17,
+                              end_s_idx=14,
                               species_path=G_S['species_path'],
                               time_axis=TIME_AXIS)
 
