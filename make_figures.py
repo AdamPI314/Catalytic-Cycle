@@ -331,6 +331,7 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+<<<<<<< HEAD
 
     if hasTemp is True:
         s_idx_n["-1"] = "T"
@@ -338,6 +339,15 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
         temp = np.loadtxt(os.path.join(data_dir, "output",
                                        "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
+=======
+
+    if hasTemp is True:
+        s_idx_n["-1"] = "T"
+        spe_idx_tmp.append(-1)
+        temp = np.loadtxt(os.path.join(data_dir, "output",
+                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+>>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
     spe_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
     counter = 0
@@ -437,11 +447,19 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+<<<<<<< HEAD
 
     if hasTemp is True:
         temp = np.loadtxt(os.path.join(data_dir, "output",
                                        "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
+=======
+
+    if hasTemp is True:
+        temp = np.loadtxt(os.path.join(data_dir, "output",
+                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+>>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
     c_g_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "chattering_group_drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
@@ -1272,6 +1290,7 @@ def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
     plt.close()
 
 
+<<<<<<< HEAD
 def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
                                        begin_t=0.0, end_t=1.0, tau=10.0,
                                        species_path=True, spe_idx=None, path_idx=None):
@@ -1343,6 +1362,8 @@ def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
                f_selected, fmt='%3.2e', delimiter=',', newline='\n')
 
 
+=======
+>>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
 def plot_Merchant_alpha_value_vs_time(data_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
                                       s_idx=10, r_idx=736):
     """
