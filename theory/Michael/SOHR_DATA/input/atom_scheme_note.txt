@@ -1,3 +1,0 @@
-"HA3":
-	all species contain carbon
-	atom number set to be 1.0
