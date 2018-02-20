@@ -1,0 +1,5648 @@
+(14,15)-->(CO,CO2)
+	(46,1,1)
+	CO+O(+M)=CO2(+M)
+	(48,1,1)
+	CO+O2=CO2+O
+	(50,1,1)
+	CO+HO2=CO2+OH
+	(52,1,1)
+	CO+OH=CO2+H
+	(192,1,1)
+	CH3O+CO=CH3+CO2
+	(271,1,1)
+	CH2(S)+CO2=CH2O+CO
+	(295,1,1)
+	CH+CO2<=>HCO+CO
+(14,16)-->(CO,HCO)
+	(55,1,1)
+	HCO+M=H+CO+M
+	(57,1,1)
+	HCO+O2=CO+HO2
+	(59,1,1)
+	HCO+H=CO+H2
+	(61,1,1)
+	HCO+O=CO+OH
+	(63,1,1)
+	HCO+OH=CO+H2O
+	(69,1,1)
+	HCO+CH3=CO+CH4
+	(71,2,2)
+	HCO+HCO=H2+CO+CO
+	(73,1,2)
+	HCO+HCO=CH2O+CO
+	(171,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(195,1,1)
+	CH3O+HCO=CH3OH+CO
+	(869,1,1)
+	allyl+HCO=C3H6+CO
+	(891,1,1)
+	propen1yl+HCO=C3H6+CO
+	(905,1,1)
+	propen2yl+HCO=C3H6+CO
+(14,17)-->(CO,CH2O)
+	(85,1,1)
+	CH2O+M=CO+H2+M
+(14,22)-->(CO,CH)
+	(289,1,1)
+	CH+O<=>CO+H
+	(295,1,1)
+	CH+CO2<=>HCO+CO
+	(301,1,1)
+	CH+HCCO=CO+C2H2
+(14,23)-->(CO,CH2(S))
+	(259,1,1)
+	CH2(S)+O=CO+H2
+	(267,1,1)
+	CH2(S)+O2=H+OH+CO
+	(269,1,1)
+	CH2(S)+O2=CO+H2O
+	(271,1,1)
+	CH2(S)+CO2=CH2O+CO
+	(275,1,1)
+	CH2(S)+ketene=C2H4+CO
+(14,25)-->(CO,CH3)
+	(69,1,1)
+	HCO+CH3=CO+CH4
+	(192,1,1)
+	CH3O+CO=CH3+CO2
+(14,29)-->(CO,CH2OH)
+	(171,1,1)
+	CH2OH+HCO=CH3OH+CO
+(14,30)-->(CO,CH3O)
+	(195,1,1)
+	CH3O+HCO=CH3OH+CO
+(14,36)-->(CO,C2H2)
+	(519,1,1)
+	C2H2+O=CH2+CO
+	(525,1,1)
+	C2H2+OH=CH3+CO
+(14,41)-->(CO,ketene)
+	(244,1,1)
+	CH2+CO(+M)=ketene(+M)
+	(275,1,1)
+	CH2(S)+ketene=C2H4+CO
+	(455,1,1)
+	ketene+H=CH3+CO
+	(465,1,1)
+	ketene+OH=CH2OH+CO
+(14,42)-->(CO,HCCO)
+	(277,1,1)
+	H+HCCO=CH2(S)+CO
+	(297,1,1)
+	HCCO+M=CH+CO+M
+	(301,1,1)
+	CH+HCCO=CO+C2H2
+	(467,2,1)
+	HCCO+OH=H2+CO+CO
+	(469,2,1)
+	HCCO+O=H+CO+CO
+	(471,2,1)
+	HCCO+O2=OH+CO+CO
+(14,45)-->(CO,acetyl)
+	(427,1,1)
+	acetyl(+M)=CH3+CO(+M)
+(14,46)-->(CO,vinoxy)
+	(453,1,1)
+	vinoxy+O2=CH2O+CO+OH
+(14,63)-->(CO,allyl)
+	(869,1,1)
+	allyl+HCO=C3H6+CO
+(14,64)-->(CO,propen1yl)
+	(891,1,1)
+	propen1yl+HCO=C3H6+CO
+(14,65)-->(CO,propen2yl)
+	(905,1,1)
+	propen2yl+HCO=C3H6+CO
+(14,70)-->(CO,CH2CHCO)
+	(642,1,1)
+	C2H3+CO=CH2CHCO
+(14,75)-->(CO,propionyl)
+	(676,1,1)
+	C2H5+CO=propionyl
+(15,14)-->(CO2,CO)
+	(47,1,1)
+	CO+O(+M)=CO2(+M)
+	(49,1,1)
+	CO+O2=CO2+O
+	(51,1,1)
+	CO+HO2=CO2+OH
+	(53,1,1)
+	CO+OH=CO2+H
+	(193,1,1)
+	CH3O+CO=CH3+CO2
+	(270,1,1)
+	CH2(S)+CO2=CH2O+CO
+	(294,1,1)
+	CH+CO2<=>HCO+CO
+(15,16)-->(CO2,HCO)
+	(65,1,1)
+	HCO+O=CO2+H
+	(67,1,1)
+	HCO+HO2=CO2+OH+H
+	(294,1,1)
+	CH+CO2<=>HCO+CO
+(15,17)-->(CO2,CH2O)
+	(270,1,1)
+	CH2(S)+CO2=CH2O+CO
+(15,18)-->(CO2,formyloxy)
+	(80,1,1)
+	H+CO2+M=formyloxy+M
+(15,30)-->(CO2,CH3O)
+	(193,1,1)
+	CH3O+CO=CH3+CO2
+(15,41)-->(CO2,ketene)
+	(459,1,1)
+	ketene+O=CH2+CO2
+(15,48)-->(CO2,acetyloxy)
+	(449,1,1)
+	acetyloxy+M=CH3+CO2+M
+(15,70)-->(CO2,CH2CHCO)
+	(645,1,1)
+	CH2CHCO+O2=vinoxy+CO2
+	(647,1,1)
+	CH2CHCO+O=C2H3+CO2
+(16,14)-->(HCO,CO)
+	(54,1,1)
+	HCO+M=H+CO+M
+	(56,1,1)
+	HCO+O2=CO+HO2
+	(58,1,1)
+	HCO+H=CO+H2
+	(60,1,1)
+	HCO+O=CO+OH
+	(62,1,1)
+	HCO+OH=CO+H2O
+	(68,1,1)
+	HCO+CH3=CO+CH4
+	(70,2,2)
+	HCO+HCO=H2+CO+CO
+	(72,2,1)
+	HCO+HCO=CH2O+CO
+	(170,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(194,1,1)
+	CH3O+HCO=CH3OH+CO
+	(868,1,1)
+	allyl+HCO=C3H6+CO
+	(890,1,1)
+	propen1yl+HCO=C3H6+CO
+	(904,1,1)
+	propen2yl+HCO=C3H6+CO
+(16,15)-->(HCO,CO2)
+	(64,1,1)
+	HCO+O=CO2+H
+	(66,1,1)
+	HCO+HO2=CO2+OH+H
+	(295,1,1)
+	CH+CO2<=>HCO+CO
+(16,17)-->(HCO,CH2O)
+	(72,2,1)
+	HCO+HCO=CH2O+CO
+	(77,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+	(83,1,1)
+	CH2O+M=HCO+H+M
+	(87,1,1)
+	CH2O+H=HCO+H2
+	(89,1,1)
+	CH2O+O=HCO+OH
+	(91,1,1)
+	CH2O+OH=HCO+H2O
+	(93,1,1)
+	CH2O+O2=HCO+HO2
+	(95,1,1)
+	CH2O+HO2=HCO+H2O2
+	(97,1,1)
+	CH2O+CH3=HCO+CH4
+	(135,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+	(172,1,2)
+	CH2OH+HCO=CH2O+CH2O
+	(216,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+	(351,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+	(443,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+	(703,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+	(915,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+	(919,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+	(1067,1,1)
+	C2H3+CH2O=C2H4+HCO
+(16,19)-->(HCO,formylperoxy)
+	(74,1,1)
+	HCO+O2=formylperoxy
+	(77,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+(16,22)-->(HCO,CH)
+	(285,1,1)
+	CH+O2<=>HCO+O
+	(291,1,1)
+	CH+OH<=>HCO+H
+	(295,1,1)
+	CH+CO2<=>HCO+CO
+(16,23)-->(HCO,CH2(S))
+	(261,1,1)
+	CH2(S)+O=HCO+H
+(16,24)-->(HCO,CH2)
+	(235,1,1)
+	CH2+O=HCO+H
+	(241,1,1)
+	CH2+O2=HCO+OH
+(16,25)-->(HCO,CH3)
+	(97,1,1)
+	CH2O+CH3=HCO+CH4
+(16,26)-->(HCO,CH4)
+	(68,1,1)
+	HCO+CH3=CO+CH4
+(16,27)-->(HCO,CH3OO)
+	(135,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+(16,29)-->(HCO,CH2OH)
+	(216,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+(16,31)-->(HCO,CH3OH)
+	(170,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(194,1,1)
+	CH3O+HCO=CH3OH+CO
+(16,37)-->(HCO,C2H3)
+	(505,1,1)
+	C2H3+O2=HCO+CH2O
+	(1067,1,1)
+	C2H3+CH2O=C2H4+HCO
+(16,38)-->(HCO,C2H4)
+	(479,1,1)
+	C2H4+O=CH3+HCO
+(16,44)-->(HCO,acetaldehyde)
+	(406,1,1)
+	CH3+HCO=acetaldehyde
+(16,47)-->(HCO,acetylperoxy)
+	(443,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+(16,50)-->(HCO,CH3CH2OO)
+	(351,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+(16,56)-->(HCO,oxirane)
+	(385,1,1)
+	oxirane=CH3+HCO
+(16,59)-->(HCO,C3H6)
+	(809,1,1)
+	C3H6+O=C2H5+HCO
+	(868,1,1)
+	allyl+HCO=C3H6+CO
+	(890,1,1)
+	propen1yl+HCO=C3H6+CO
+	(904,1,1)
+	propen2yl+HCO=C3H6+CO
+(16,64)-->(HCO,propen1yl)
+	(883,1,1)
+	propen1yl+O=C2H4+HCO
+	(885,1,1)
+	propen1yl+OH=C2H4+HCO+H
+	(887,1,1)
+	propen1yl+O2=acetaldehyde+HCO
+	(889,1,1)
+	propen1yl+HO2=C2H4+HCO+OH
+(16,68)-->(HCO,CH3OCH2)
+	(703,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+(16,69)-->(HCO,acrolein)
+	(618,1,1)
+	C2H3+HCO=acrolein
+	(625,1,1)
+	acrolein+H=C2H4+HCO
+	(627,1,1)
+	acrolein+O=ketene+HCO+H
+(16,72)-->(HCO,allyloxy)
+	(1049,1,1)
+	allyloxy=C2H4+HCO
+(16,74)-->(HCO,propanal)
+	(648,1,1)
+	C2H5+HCO=propanal
+(16,78)-->(HCO,npropyloo)
+	(915,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+(16,80)-->(HCO,ipropyloo)
+	(919,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+(16,104)-->(HCO,frag_5)
+	(1229,1,1)
+	frag_5=HCO+acetaldehyde
+(16,108)-->(HCO,vinoxylmethyl)
+	(1057,1,1)
+	vinoxylmethyl=C2H4+HCO
+(16,109)-->(HCO,formylethyl)
+	(1063,1,1)
+	formylethyl=C2H4+HCO
+(17,14)-->(CH2O,CO)
+	(84,1,1)
+	CH2O+M=CO+H2+M
+(17,15)-->(CH2O,CO2)
+	(271,1,1)
+	CH2(S)+CO2=CH2O+CO
+(17,16)-->(CH2O,HCO)
+	(73,1,2)
+	HCO+HCO=CH2O+CO
+	(76,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+	(82,1,1)
+	CH2O+M=HCO+H+M
+	(86,1,1)
+	CH2O+H=HCO+H2
+	(88,1,1)
+	CH2O+O=HCO+OH
+	(90,1,1)
+	CH2O+OH=HCO+H2O
+	(92,1,1)
+	CH2O+O2=HCO+HO2
+	(94,1,1)
+	CH2O+HO2=HCO+H2O2
+	(96,1,1)
+	CH2O+CH3=HCO+CH4
+	(134,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+	(173,2,1)
+	CH2OH+HCO=CH2O+CH2O
+	(217,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+	(350,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+	(442,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+	(702,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+	(914,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+	(918,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+	(1066,1,1)
+	C2H3+CH2O=C2H4+HCO
+(17,20)-->(CH2O,formylooh)
+	(76,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+(17,22)-->(CH2O,CH)
+	(293,1,1)
+	CH+H2O<=>H+CH2O
+(17,23)-->(CH2O,CH2(S))
+	(263,1,1)
+	CH2(S)+OH=CH2O+H
+	(271,1,1)
+	CH2(S)+CO2=CH2O+CO
+(17,24)-->(CH2O,CH2)
+	(237,1,1)
+	CH2+OH=CH2O+H
+	(243,1,1)
+	CH2+HO2=CH2O+OH
+(17,25)-->(CH2O,CH3)
+	(107,1,1)
+	CH3+O=CH2O+H
+	(129,1,1)
+	CH3O+CH3=CH2O+CH4
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(17,26)-->(CH2O,CH4)
+	(96,1,1)
+	CH2O+CH3=HCO+CH4
+(17,27)-->(CH2O,CH3OO)
+	(145,1,2)
+	CH3OO+CH3OO=CH2O+CH3OH+O2
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(17,28)-->(CH2O,CH3OOH)
+	(134,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+(17,29)-->(CH2O,CH2OH)
+	(157,1,1)
+	CH2OH+M=CH2O+H+M
+	(159,1,1)
+	CH2OH+H=CH2O+H2
+	(163,1,1)
+	CH2OH+O=CH2O+OH
+	(165,1,1)
+	CH2OH+OH=CH2O+H2O
+	(167,1,1)
+	CH2OH+O2=CH2O+HO2
+	(169,1,1)
+	CH2OH+HO2=CH2O+H2O2
+	(173,2,1)
+	CH2OH+HCO=CH2O+CH2O
+	(175,1,2)
+	2CH2OH=CH3OH+CH2O
+	(177,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+(17,30)-->(CH2O,CH3O)
+	(129,1,1)
+	CH3O+CH3=CH2O+CH4
+	(131,1,1)
+	CH3O+H=CH2O+H2
+	(177,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(181,1,1)
+	CH3O+M=CH2O+H+M
+	(185,1,1)
+	CH3O+O=CH2O+OH
+	(187,1,1)
+	CH3O+OH=CH2O+H2O
+	(189,1,1)
+	CH3O+O2=CH2O+HO2
+	(191,1,1)
+	CH3O+HO2=CH2O+H2O2
+	(197,1,2)
+	2CH3O=CH3OH+CH2O
+	(701,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(17,31)-->(CH2O,CH3OH)
+	(217,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+(17,32)-->(CH2O,OCH2OOH)
+	(98,1,1)
+	CH2O+HO2=OCH2OOH
+(17,37)-->(CH2O,C2H3)
+	(505,1,1)
+	C2H3+O2=HCO+CH2O
+(17,38)-->(CH2O,C2H4)
+	(1066,1,1)
+	C2H3+CH2O=C2H4+HCO
+(17,41)-->(CH2O,ketene)
+	(298,1,1)
+	CH+CH2O=H+ketene
+(17,46)-->(CH2O,vinoxy)
+	(453,1,1)
+	vinoxy+O2=CH2O+CO+OH
+(17,49)-->(CH2O,ethoxy)
+	(344,1,1)
+	CH3+CH2O=ethoxy
+(17,51)-->(CH2O,CH3CH2OOH)
+	(350,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+(17,63)-->(CH2O,allyl)
+	(865,1,1)
+	allyl+O2=acetyl+CH2O
+(17,65)-->(CH2O,propen2yl)
+	(901,1,1)
+	propen2yl+O2=acetyl+CH2O
+(17,67)-->(CH2O,CH3OCH3)
+	(702,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+(17,68)-->(CH2O,CH3OCH2)
+	(699,1,1)
+	CH3OCH2=CH2O+CH3
+	(701,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(17,69)-->(CH2O,acrolein)
+	(1064,1,1)
+	C2H3+CH2O=acrolein+H
+(17,72)-->(CH2O,allyloxy)
+	(1041,1,1)
+	allyloxy=C2H3+CH2O
+(17,76)-->(CH2O,npropyloxy)
+	(992,1,1)
+	C2H5+CH2O=npropyloxy
+(17,79)-->(CH2O,npropylooh)
+	(914,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+(17,81)-->(CH2O,ipropylooh)
+	(918,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+(17,82)-->(CH2O,propen1ol)
+	(1001,1,1)
+	propen1ol=C2H4+CH2O
+	(1003,1,1)
+	propen1ol+OH=CH2O+C2H3+H2O
+	(1005,1,1)
+	propen1ol+H=CH2O+C2H3+H2
+	(1007,1,1)
+	propen1ol+O=CH2O+C2H3+OH
+	(1009,1,1)
+	propen1ol+HO2=CH2O+C2H3+H2O2
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(17,84)-->(CH2O,CH3CO3H)
+	(442,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+(17,85)-->(CH2O,O2C2H4OH)
+	(589,2,1)
+	O2C2H4OH=OH+CH2O+CH2O
+(17,101)-->(CH2O,frag_1)
+	(1223,1,1)
+	frag_1=vinoxy+CH2O
+(17,103)-->(CH2O,frag_4)
+	(1225,1,1)
+	frag_4=acetyl+CH2O
+(17,108)-->(CH2O,vinoxylmethyl)
+	(1051,1,1)
+	vinoxylmethyl=C2H3+CH2O
+(17,109)-->(CH2O,formylethyl)
+	(1059,1,1)
+	formylethyl=C2H3+CH2O
+(18,15)-->(formyloxy,CO2)
+	(81,1,1)
+	H+CO2+M=formyloxy+M
+(18,20)-->(formyloxy,formylooh)
+	(79,1,1)
+	formylooh=formyloxy+OH
+(19,16)-->(formylperoxy,HCO)
+	(75,1,1)
+	HCO+O2=formylperoxy
+	(76,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+(19,20)-->(formylperoxy,formylooh)
+	(76,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+	(696,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+	(778,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(780,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(19,60)-->(formylperoxy,npropyl)
+	(778,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+(19,61)-->(formylperoxy,ipropyl)
+	(780,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(19,68)-->(formylperoxy,CH3OCH2)
+	(696,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+(20,17)-->(formylooh,CH2O)
+	(77,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+(20,18)-->(formylooh,formyloxy)
+	(78,1,1)
+	formylooh=formyloxy+OH
+(20,19)-->(formylooh,formylperoxy)
+	(77,1,1)
+	CH2O+formylperoxy=HCO+formylooh
+	(697,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+	(779,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(781,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(20,62)-->(formylooh,C3H8)
+	(779,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(781,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(20,67)-->(formylooh,CH3OCH3)
+	(697,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+(21,22)-->(C,CH)
+	(287,1,1)
+	CH+H<=>C+H2
+(22,14)-->(CH,CO)
+	(288,1,1)
+	CH+O<=>CO+H
+	(294,1,1)
+	CH+CO2<=>HCO+CO
+	(300,1,1)
+	CH+HCCO=CO+C2H2
+(22,16)-->(CH,HCO)
+	(284,1,1)
+	CH+O2<=>HCO+O
+	(290,1,1)
+	CH+OH<=>HCO+H
+	(294,1,1)
+	CH+CO2<=>HCO+CO
+(22,17)-->(CH,CH2O)
+	(292,1,1)
+	CH+H2O<=>H+CH2O
+(22,21)-->(CH,C)
+	(286,1,1)
+	CH+H<=>C+H2
+(22,23)-->(CH,CH2(S))
+	(279,1,1)
+	CH2(S)+H<=>CH+H2
+(22,24)-->(CH,CH2)
+	(281,1,1)
+	CH2+H<=>CH+H2
+	(283,1,1)
+	CH2+OH<=>CH+H2O
+	(304,1,1)
+	C2H6+CH=C2H5+CH2
+(22,36)-->(CH,C2H2)
+	(300,1,1)
+	CH+HCCO=CO+C2H2
+(22,38)-->(CH,C2H4)
+	(302,1,1)
+	CH+CH4=C2H4+H
+(22,39)-->(CH,C2H5)
+	(304,1,1)
+	C2H6+CH=C2H5+CH2
+(22,41)-->(CH,ketene)
+	(298,1,1)
+	CH+CH2O=H+ketene
+(22,42)-->(CH,HCCO)
+	(297,1,1)
+	HCCO+M=CH+CO+M
+(23,14)-->(CH2(S),CO)
+	(258,1,1)
+	CH2(S)+O=CO+H2
+	(266,1,1)
+	CH2(S)+O2=H+OH+CO
+	(268,1,1)
+	CH2(S)+O2=CO+H2O
+	(270,1,1)
+	CH2(S)+CO2=CH2O+CO
+	(274,1,1)
+	CH2(S)+ketene=C2H4+CO
+(23,16)-->(CH2(S),HCO)
+	(260,1,1)
+	CH2(S)+O=HCO+H
+(23,17)-->(CH2(S),CH2O)
+	(262,1,1)
+	CH2(S)+OH=CH2O+H
+	(270,1,1)
+	CH2(S)+CO2=CH2O+CO
+(23,22)-->(CH2(S),CH)
+	(278,1,1)
+	CH2(S)+H<=>CH+H2
+(23,24)-->(CH2(S),CH2)
+	(248,1,1)
+	CH2(S)+M=CH2+M
+	(250,1,1)
+	CH2(S)+H2O=CH2+H2O
+	(252,1,1)
+	CH2(S)+CO=CH2+CO
+	(254,1,1)
+	CH2(S)+CO2=CH2+CO2
+	(256,1,1)
+	CH2(S)+AR=CH2+AR
+(23,25)-->(CH2(S),CH3)
+	(264,1,1)
+	CH2(S)+H2=CH3+H
+	(272,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(23,38)-->(CH2(S),C2H4)
+	(274,1,1)
+	CH2(S)+ketene=C2H4+CO
+(23,39)-->(CH2(S),C2H5)
+	(272,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(23,42)-->(CH2(S),HCCO)
+	(277,1,1)
+	H+HCCO=CH2(S)+CO
+(24,16)-->(CH2,HCO)
+	(234,1,1)
+	CH2+O=HCO+H
+	(240,1,1)
+	CH2+O2=HCO+OH
+(24,17)-->(CH2,CH2O)
+	(236,1,1)
+	CH2+OH=CH2O+H
+	(242,1,1)
+	CH2+HO2=CH2O+OH
+(24,22)-->(CH2,CH)
+	(280,1,1)
+	CH2+H<=>CH+H2
+	(282,1,1)
+	CH2+OH<=>CH+H2O
+	(305,1,1)
+	C2H6+CH=C2H5+CH2
+(24,23)-->(CH2,CH2(S))
+	(249,1,1)
+	CH2(S)+M=CH2+M
+	(251,1,1)
+	CH2(S)+H2O=CH2+H2O
+	(253,1,1)
+	CH2(S)+CO=CH2+CO
+	(255,1,1)
+	CH2(S)+CO2=CH2+CO2
+	(257,1,1)
+	CH2(S)+AR=CH2+AR
+(24,25)-->(CH2,CH3)
+	(226,1,2)
+	CH4+CH2=CH3+CH3
+	(229,1,1)
+	CH3+OH=CH2+H2O
+	(232,1,1)
+	CH2+H(+M)=CH3(+M)
+	(238,1,1)
+	CH2+H2=H+CH3
+(24,36)-->(CH2,C2H2)
+	(246,2,1)
+	CH2+CH2=C2H2+H2
+	(519,1,1)
+	C2H2+O=CH2+CO
+(24,38)-->(CH2,C2H4)
+	(230,1,1)
+	CH3+CH2=C2H4+H
+(24,40)-->(CH2,C2H6)
+	(305,1,1)
+	C2H6+CH=C2H5+CH2
+(24,41)-->(CH2,ketene)
+	(244,1,1)
+	CH2+CO(+M)=ketene(+M)
+	(459,1,1)
+	ketene+O=CH2+CO2
+(25,14)-->(CH3,CO)
+	(68,1,1)
+	HCO+CH3=CO+CH4
+	(193,1,1)
+	CH3O+CO=CH3+CO2
+(25,16)-->(CH3,HCO)
+	(96,1,1)
+	CH2O+CH3=HCO+CH4
+(25,17)-->(CH3,CH2O)
+	(106,1,1)
+	CH3+O=CH2O+H
+	(128,1,1)
+	CH3O+CH3=CH2O+CH4
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(25,23)-->(CH3,CH2(S))
+	(265,1,1)
+	CH2(S)+H2=CH3+H
+	(273,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(25,24)-->(CH3,CH2)
+	(227,2,1)
+	CH4+CH2=CH3+CH3
+	(228,1,1)
+	CH3+OH=CH2+H2O
+	(233,1,1)
+	CH2+H(+M)=CH3(+M)
+	(239,1,1)
+	CH2+H2=H+CH3
+(25,26)-->(CH3,CH4)
+	(68,1,1)
+	HCO+CH3=CO+CH4
+	(96,1,1)
+	CH2O+CH3=HCO+CH4
+	(112,1,1)
+	CH3+HO2=CH4+O2
+	(116,1,1)
+	CH3+H(+M)=CH4(+M)
+	(119,1,1)
+	CH4+H=CH3+H2
+	(121,1,1)
+	CH4+O=CH3+OH
+	(123,1,1)
+	CH4+OH=CH3+H2O
+	(125,1,1)
+	CH4+HO2=CH3+H2O2
+	(126,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(128,1,1)
+	CH3O+CH3=CH2O+CH4
+	(137,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+	(220,1,1)
+	CH3OH+CH3=CH2OH+CH4
+	(227,2,1)
+	CH4+CH2=CH3+CH3
+	(316,1,1)
+	C2H6+CH3=C2H5+CH4
+	(332,1,1)
+	CH3+C2H5=CH4+C2H4
+	(353,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+	(398,1,1)
+	oxirane+CH3=oxiranyl+CH4
+	(416,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(432,1,1)
+	acetyl+CH3=ketene+CH4
+	(441,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+	(484,1,1)
+	C2H4+CH3=C2H3+CH4
+	(510,1,1)
+	CH3+C2H3=CH4+C2H2
+	(572,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(574,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(576,1,1)
+	ethanol+CH3=ethoxy+CH4
+	(600,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(634,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+	(656,1,1)
+	propanal+CH3=propionyl+CH4
+	(690,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(744,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(746,1,1)
+	CH3+C3H8=CH4+npropyl
+	(840,1,1)
+	C3H6+CH3=allyl+CH4
+	(842,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(844,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(939,1,1)
+	CH4+npropyloo=CH3+npropylooh
+	(941,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(25,27)-->(CH3,CH3OO)
+	(132,1,1)
+	CH3+O2(+M)=CH3OO(+M)
+	(137,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+(25,29)-->(CH3,CH2OH)
+	(161,1,1)
+	CH2OH+H=CH3+OH
+	(220,1,1)
+	CH3OH+CH3=CH2OH+CH4
+(25,30)-->(CH3,CH3O)
+	(108,1,1)
+	CH3+O2=CH3O+O
+	(110,1,1)
+	CH3+HO2=CH3O+OH
+	(126,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(140,1,2)
+	CH3OO+CH3=CH3O+CH3O
+	(183,1,1)
+	CH3O+H=CH3+OH
+	(193,1,1)
+	CH3O+CO=CH3+CO2
+	(972,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(982,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(25,31)-->(CH3,CH3OH)
+	(198,1,1)
+	OH+CH3(+M)=CH3OH(+M)
+(25,36)-->(CH3,C2H2)
+	(510,1,1)
+	CH3+C2H3=CH4+C2H2
+	(525,1,1)
+	C2H2+OH=CH3+CO
+(25,37)-->(CH3,C2H3)
+	(484,1,1)
+	C2H4+CH3=C2H3+CH4
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(25,38)-->(CH3,C2H4)
+	(230,1,1)
+	CH3+CH2=C2H4+H
+	(332,1,1)
+	CH3+C2H5=CH4+C2H4
+	(479,1,1)
+	C2H4+O=CH3+HCO
+(25,39)-->(CH3,C2H5)
+	(224,2,1)
+	CH3+CH3=H+C2H5
+	(316,1,1)
+	C2H6+CH3=C2H5+CH4
+(25,40)-->(CH3,C2H6)
+	(114,2,1)
+	CH3+CH3(+M)=C2H6(+M)
+	(273,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(25,41)-->(CH3,ketene)
+	(432,1,1)
+	acetyl+CH3=ketene+CH4
+	(455,1,1)
+	ketene+H=CH3+CO
+(25,44)-->(CH3,acetaldehyde)
+	(406,1,1)
+	CH3+HCO=acetaldehyde
+(25,45)-->(CH3,acetyl)
+	(416,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(427,1,1)
+	acetyl(+M)=CH3+CO(+M)
+(25,47)-->(CH3,acetylperoxy)
+	(441,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+(25,48)-->(CH3,acetyloxy)
+	(449,1,1)
+	acetyloxy+M=CH3+CO2+M
+(25,49)-->(CH3,ethoxy)
+	(344,1,1)
+	CH3+CH2O=ethoxy
+	(576,1,1)
+	ethanol+CH3=ethoxy+CH4
+(25,50)-->(CH3,CH3CH2OO)
+	(353,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+(25,53)-->(CH3,ethanol)
+	(531,1,1)
+	ethanol(+M)=CH2OH+CH3(+M)
+(25,54)-->(CH3,CH2CH2OH)
+	(572,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+(25,55)-->(CH3,CH3CHOH)
+	(574,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+(25,56)-->(CH3,oxirane)
+	(385,1,1)
+	oxirane=CH3+HCO
+(25,57)-->(CH3,oxiranyl)
+	(398,1,1)
+	oxirane+CH3=oxiranyl+CH4
+(25,59)-->(CH3,C3H6)
+	(802,1,1)
+	C2H3+CH3(+M)=C3H6(+M)
+	(811,1,1)
+	C3H6+O=ketene+CH3+H
+	(827,1,1)
+	C3H6+H=C2H4+CH3
+	(1023,1,1)
+	C3H6+OH=ethenol+CH3
+	(1029,1,1)
+	C3H6+OH=acetaldehyde+CH3
+(25,60)-->(CH3,npropyl)
+	(746,1,1)
+	CH3+C3H8=CH4+npropyl
+	(791,1,1)
+	npropyl=CH3+C2H4
+(25,61)-->(CH3,ipropyl)
+	(744,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(785,1,1)
+	ipropyl+H=C2H5+CH3
+	(789,1,1)
+	ipropyl+O=acetaldehyde+CH3
+(25,62)-->(CH3,C3H8)
+	(719,1,1)
+	C3H8(+M)=CH3+C2H5(+M)
+(25,63)-->(CH3,allyl)
+	(840,1,1)
+	C3H6+CH3=allyl+CH4
+	(874,1,1)
+	C2H2+CH3=allyl
+(25,64)-->(CH3,propen1yl)
+	(842,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(880,1,1)
+	C2H2+CH3=propen1yl
+(25,65)-->(CH3,propen2yl)
+	(844,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(892,1,1)
+	C2H2+CH3=propen2yl
+	(897,1,1)
+	propen2yl+O=CH3+ketene
+	(899,1,1)
+	propen2yl+OH=CH3+ketene+H
+	(903,1,1)
+	propen2yl+HO2=CH3+ketene+OH
+(25,66)-->(CH3,acetone)
+	(593,1,1)
+	acetone(+M)=acetyl+CH3(+M)
+(25,67)-->(CH3,CH3OCH3)
+	(679,1,1)
+	CH3OCH3(+M)<=>CH3+CH3O(+M)
+(25,68)-->(CH3,CH3OCH2)
+	(690,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(699,1,1)
+	CH3OCH2=CH2O+CH3
+(25,70)-->(CH3,CH2CHCO)
+	(634,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+(25,75)-->(CH3,propionyl)
+	(656,1,1)
+	propanal+CH3=propionyl+CH4
+(25,76)-->(CH3,npropyloxy)
+	(982,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(25,77)-->(CH3,ipropyloxy)
+	(972,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(996,1,1)
+	CH3+acetaldehyde=ipropyloxy
+(25,78)-->(CH3,npropyloo)
+	(939,1,1)
+	CH4+npropyloo=CH3+npropylooh
+(25,80)-->(CH3,ipropyloo)
+	(941,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+(25,104)-->(CH3,frag_5)
+	(1227,1,1)
+	frag_5=CH3+glyoxal
+(25,106)-->(CH3,propen2oxy)
+	(600,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(611,1,1)
+	propen2oxy=ketene+CH3
+(26,16)-->(CH4,HCO)
+	(69,1,1)
+	HCO+CH3=CO+CH4
+(26,17)-->(CH4,CH2O)
+	(97,1,1)
+	CH2O+CH3=HCO+CH4
+(26,25)-->(CH4,CH3)
+	(69,1,1)
+	HCO+CH3=CO+CH4
+	(97,1,1)
+	CH2O+CH3=HCO+CH4
+	(113,1,1)
+	CH3+HO2=CH4+O2
+	(117,1,1)
+	CH3+H(+M)=CH4(+M)
+	(118,1,1)
+	CH4+H=CH3+H2
+	(120,1,1)
+	CH4+O=CH3+OH
+	(122,1,1)
+	CH4+OH=CH3+H2O
+	(124,1,1)
+	CH4+HO2=CH3+H2O2
+	(127,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(129,1,1)
+	CH3O+CH3=CH2O+CH4
+	(136,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+	(221,1,1)
+	CH3OH+CH3=CH2OH+CH4
+	(226,1,2)
+	CH4+CH2=CH3+CH3
+	(317,1,1)
+	C2H6+CH3=C2H5+CH4
+	(333,1,1)
+	CH3+C2H5=CH4+C2H4
+	(352,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+	(399,1,1)
+	oxirane+CH3=oxiranyl+CH4
+	(417,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(433,1,1)
+	acetyl+CH3=ketene+CH4
+	(440,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+	(485,1,1)
+	C2H4+CH3=C2H3+CH4
+	(511,1,1)
+	CH3+C2H3=CH4+C2H2
+	(573,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(575,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(577,1,1)
+	ethanol+CH3=ethoxy+CH4
+	(601,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(635,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+	(657,1,1)
+	propanal+CH3=propionyl+CH4
+	(691,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(745,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(747,1,1)
+	CH3+C3H8=CH4+npropyl
+	(841,1,1)
+	C3H6+CH3=allyl+CH4
+	(843,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(845,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(938,1,1)
+	CH4+npropyloo=CH3+npropylooh
+	(940,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(26,28)-->(CH4,CH3OOH)
+	(136,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+(26,30)-->(CH4,CH3O)
+	(129,1,1)
+	CH3O+CH3=CH2O+CH4
+(26,31)-->(CH4,CH3OH)
+	(127,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(221,1,1)
+	CH3OH+CH3=CH2OH+CH4
+(26,37)-->(CH4,C2H3)
+	(511,1,1)
+	CH3+C2H3=CH4+C2H2
+(26,38)-->(CH4,C2H4)
+	(302,1,1)
+	CH+CH4=C2H4+H
+	(485,1,1)
+	C2H4+CH3=C2H3+CH4
+(26,39)-->(CH4,C2H5)
+	(333,1,1)
+	CH3+C2H5=CH4+C2H4
+(26,40)-->(CH4,C2H6)
+	(317,1,1)
+	C2H6+CH3=C2H5+CH4
+(26,44)-->(CH4,acetaldehyde)
+	(417,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+(26,45)-->(CH4,acetyl)
+	(433,1,1)
+	acetyl+CH3=ketene+CH4
+(26,51)-->(CH4,CH3CH2OOH)
+	(352,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+(26,53)-->(CH4,ethanol)
+	(573,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(575,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(577,1,1)
+	ethanol+CH3=ethoxy+CH4
+(26,56)-->(CH4,oxirane)
+	(399,1,1)
+	oxirane+CH3=oxiranyl+CH4
+(26,59)-->(CH4,C3H6)
+	(841,1,1)
+	C3H6+CH3=allyl+CH4
+	(843,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(845,1,1)
+	C3H6+CH3=propen2yl+CH4
+(26,62)-->(CH4,C3H8)
+	(745,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(747,1,1)
+	CH3+C3H8=CH4+npropyl
+(26,66)-->(CH4,acetone)
+	(601,1,1)
+	acetone+CH3=propen2oxy+CH4
+(26,67)-->(CH4,CH3OCH3)
+	(691,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+(26,69)-->(CH4,acrolein)
+	(635,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+(26,74)-->(CH4,propanal)
+	(657,1,1)
+	propanal+CH3=propionyl+CH4
+(26,79)-->(CH4,npropylooh)
+	(938,1,1)
+	CH4+npropyloo=CH3+npropylooh
+(26,81)-->(CH4,ipropylooh)
+	(940,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+(26,82)-->(CH4,propen1ol)
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(26,84)-->(CH4,CH3CO3H)
+	(440,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+(27,16)-->(CH3OO,HCO)
+	(134,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+(27,17)-->(CH3OO,CH2O)
+	(144,2,1)
+	CH3OO+CH3OO=CH2O+CH3OH+O2
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(27,25)-->(CH3OO,CH3)
+	(133,1,1)
+	CH3+O2(+M)=CH3OO(+M)
+	(136,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+(27,28)-->(CH3OO,CH3OOH)
+	(134,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+	(136,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+	(138,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+	(142,1,1)
+	CH3OO+HO2=CH3OOH+O2
+	(320,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+	(326,1,1)
+	H2+CH3OO=H+CH3OOH
+	(394,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+	(420,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+	(490,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(560,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(562,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(564,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+	(608,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+	(640,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+	(662,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+	(688,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+	(766,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(768,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+	(850,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(27,29)-->(CH3OO,CH2OH)
+	(138,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+(27,30)-->(CH3OO,CH3O)
+	(140,1,2)
+	CH3OO+CH3=CH3O+CH3O
+	(146,2,2)
+	CH3OO+CH3OO=O2+CH3O+CH3O
+	(148,1,1)
+	CH3OO+H=CH3O+OH
+	(150,1,1)
+	CH3OO+O=CH3O+O2
+	(340,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(496,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+	(876,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+	(910,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(912,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(942,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(944,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+(27,31)-->(CH3OO,CH3OH)
+	(144,2,1)
+	CH3OO+CH3OO=CH2O+CH3OH+O2
+	(152,1,1)
+	CH3OO+OH=CH3OH+O2
+(27,37)-->(CH3OO,C2H3)
+	(490,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(27,39)-->(CH3OO,C2H5)
+	(320,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+(27,45)-->(CH3OO,acetyl)
+	(420,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+(27,49)-->(CH3OO,ethoxy)
+	(340,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(564,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+(27,54)-->(CH3OO,CH2CH2OH)
+	(560,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+(27,55)-->(CH3OO,CH3CHOH)
+	(562,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+(27,56)-->(CH3OO,oxirane)
+	(496,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+(27,57)-->(CH3OO,oxiranyl)
+	(394,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+(27,60)-->(CH3OO,npropyl)
+	(766,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+(27,61)-->(CH3OO,ipropyl)
+	(768,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+(27,63)-->(CH3OO,allyl)
+	(850,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+(27,68)-->(CH3OO,CH3OCH2)
+	(688,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+(27,70)-->(CH3OO,CH2CHCO)
+	(640,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+(27,72)-->(CH3OO,allyloxy)
+	(876,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+(27,75)-->(CH3OO,propionyl)
+	(662,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+(27,76)-->(CH3OO,npropyloxy)
+	(910,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(942,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+(27,77)-->(CH3OO,ipropyloxy)
+	(912,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(944,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+(27,106)-->(CH3OO,propen2oxy)
+	(608,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(28,17)-->(CH3OOH,CH2O)
+	(135,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+(28,26)-->(CH3OOH,CH4)
+	(137,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+(28,27)-->(CH3OOH,CH3OO)
+	(135,1,1)
+	CH3OO+CH2O=CH3OOH+HCO
+	(137,1,1)
+	CH4+CH3OO=CH3+CH3OOH
+	(139,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+	(143,1,1)
+	CH3OO+HO2=CH3OOH+O2
+	(321,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+	(327,1,1)
+	H2+CH3OO=H+CH3OOH
+	(395,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+	(421,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+	(491,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(561,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(563,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(565,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+	(609,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+	(641,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+	(663,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+	(689,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+	(767,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(769,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+	(851,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(28,30)-->(CH3OOH,CH3O)
+	(154,1,1)
+	CH3OOH=CH3O+OH
+(28,31)-->(CH3OOH,CH3OH)
+	(139,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+(28,38)-->(CH3OOH,C2H4)
+	(491,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+(28,40)-->(CH3OOH,C2H6)
+	(321,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+(28,44)-->(CH3OOH,acetaldehyde)
+	(421,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+(28,53)-->(CH3OOH,ethanol)
+	(561,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(563,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(565,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+(28,56)-->(CH3OOH,oxirane)
+	(395,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+(28,59)-->(CH3OOH,C3H6)
+	(851,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+(28,62)-->(CH3OOH,C3H8)
+	(767,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(769,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+(28,66)-->(CH3OOH,acetone)
+	(609,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(28,67)-->(CH3OOH,CH3OCH3)
+	(689,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+(28,69)-->(CH3OOH,acrolein)
+	(641,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+(28,74)-->(CH3OOH,propanal)
+	(663,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+(28,82)-->(CH3OOH,propen1ol)
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(29,14)-->(CH2OH,CO)
+	(170,1,1)
+	CH2OH+HCO=CH3OH+CO
+(29,16)-->(CH2OH,HCO)
+	(217,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+(29,17)-->(CH2OH,CH2O)
+	(156,1,1)
+	CH2OH+M=CH2O+H+M
+	(158,1,1)
+	CH2OH+H=CH2O+H2
+	(162,1,1)
+	CH2OH+O=CH2O+OH
+	(164,1,1)
+	CH2OH+OH=CH2O+H2O
+	(166,1,1)
+	CH2OH+O2=CH2O+HO2
+	(168,1,1)
+	CH2OH+HO2=CH2O+H2O2
+	(172,1,2)
+	CH2OH+HCO=CH2O+CH2O
+	(174,2,1)
+	2CH2OH=CH3OH+CH2O
+	(176,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+(29,25)-->(CH2OH,CH3)
+	(160,1,1)
+	CH2OH+H=CH3+OH
+	(221,1,1)
+	CH3OH+CH3=CH2OH+CH4
+(29,27)-->(CH2OH,CH3OO)
+	(139,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+(29,30)-->(CH2OH,CH3O)
+	(223,1,1)
+	CH3O+CH3OH=CH3OH+CH2OH
+(29,31)-->(CH2OH,CH3OH)
+	(139,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+	(170,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(174,2,1)
+	2CH2OH=CH3OH+CH2O
+	(176,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(200,1,1)
+	H+CH2OH(+M)=CH3OH(+M)
+	(205,1,1)
+	CH3OH+H=CH2OH+H2
+	(209,1,1)
+	CH3OH+O=CH2OH+OH
+	(213,1,1)
+	CH3OH+OH=CH2OH+H2O
+	(215,1,1)
+	CH3OH+O2=CH2OH+HO2
+	(217,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+	(219,1,1)
+	CH3OH+HO2=CH2OH+H2O2
+	(221,1,1)
+	CH3OH+CH3=CH2OH+CH4
+	(355,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+	(931,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+	(933,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(29,35)-->(CH2OH,HOCH2O)
+	(178,1,1)
+	CH2OH+HO2=HOCH2O+OH
+(29,41)-->(CH2OH,ketene)
+	(465,1,1)
+	ketene+OH=CH2OH+CO
+(29,50)-->(CH2OH,CH3CH2OO)
+	(355,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+(29,53)-->(CH2OH,ethanol)
+	(531,1,1)
+	ethanol(+M)=CH2OH+CH3(+M)
+(29,78)-->(CH2OH,npropyloo)
+	(931,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+(29,80)-->(CH2OH,ipropyloo)
+	(933,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(30,14)-->(CH3O,CO)
+	(194,1,1)
+	CH3O+HCO=CH3OH+CO
+(30,15)-->(CH3O,CO2)
+	(192,1,1)
+	CH3O+CO=CH3+CO2
+(30,17)-->(CH3O,CH2O)
+	(128,1,1)
+	CH3O+CH3=CH2O+CH4
+	(130,1,1)
+	CH3O+H=CH2O+H2
+	(176,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(180,1,1)
+	CH3O+M=CH2O+H+M
+	(184,1,1)
+	CH3O+O=CH2O+OH
+	(186,1,1)
+	CH3O+OH=CH2O+H2O
+	(188,1,1)
+	CH3O+O2=CH2O+HO2
+	(190,1,1)
+	CH3O+HO2=CH2O+H2O2
+	(196,2,1)
+	2CH3O=CH3OH+CH2O
+	(700,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(30,25)-->(CH3O,CH3)
+	(109,1,1)
+	CH3+O2=CH3O+O
+	(111,1,1)
+	CH3+HO2=CH3O+OH
+	(127,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(141,2,1)
+	CH3OO+CH3=CH3O+CH3O
+	(182,1,1)
+	CH3O+H=CH3+OH
+	(192,1,1)
+	CH3O+CO=CH3+CO2
+	(973,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(983,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(30,26)-->(CH3O,CH4)
+	(128,1,1)
+	CH3O+CH3=CH2O+CH4
+(30,27)-->(CH3O,CH3OO)
+	(141,2,1)
+	CH3OO+CH3=CH3O+CH3O
+	(147,2,2)
+	CH3OO+CH3OO=O2+CH3O+CH3O
+	(149,1,1)
+	CH3OO+H=CH3O+OH
+	(151,1,1)
+	CH3OO+O=CH3O+O2
+	(341,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(497,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+	(877,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+	(911,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(913,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(943,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(945,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+(30,28)-->(CH3O,CH3OOH)
+	(155,1,1)
+	CH3OOH=CH3O+OH
+(30,29)-->(CH3O,CH2OH)
+	(222,1,1)
+	CH3O+CH3OH=CH3OH+CH2OH
+(30,31)-->(CH3O,CH3OH)
+	(127,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(176,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(194,1,1)
+	CH3O+HCO=CH3OH+CO
+	(196,2,1)
+	2CH3O=CH3OH+CH2O
+	(202,1,1)
+	H+CH3O(+M)=CH3OH(+M)
+	(207,1,1)
+	CH3OH+H=CH3O+H2
+	(211,1,1)
+	CH3OH+OH=CH3O+H2O
+	(322,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(400,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+	(488,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+	(602,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+	(638,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+	(660,1,1)
+	propanal+CH3O=propionyl+CH3OH
+	(694,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+	(762,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(764,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+(30,37)-->(CH3O,C2H3)
+	(488,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+(30,38)-->(CH3O,C2H4)
+	(497,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+(30,39)-->(CH3O,C2H5)
+	(322,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(341,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+(30,57)-->(CH3O,oxiranyl)
+	(400,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(30,60)-->(CH3O,npropyl)
+	(762,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(911,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+(30,61)-->(CH3O,ipropyl)
+	(764,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+	(913,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+(30,63)-->(CH3O,allyl)
+	(877,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+(30,67)-->(CH3O,CH3OCH3)
+	(679,1,1)
+	CH3OCH3(+M)<=>CH3+CH3O(+M)
+	(700,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(30,68)-->(CH3O,CH3OCH2)
+	(694,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+(30,70)-->(CH3O,CH2CHCO)
+	(638,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+(30,75)-->(CH3O,propionyl)
+	(660,1,1)
+	propanal+CH3O=propionyl+CH3OH
+(30,78)-->(CH3O,npropyloo)
+	(943,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(983,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(30,80)-->(CH3O,ipropyloo)
+	(945,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+	(973,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+(30,106)-->(CH3O,propen2oxy)
+	(602,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+(31,16)-->(CH3OH,HCO)
+	(171,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(195,1,1)
+	CH3O+HCO=CH3OH+CO
+(31,17)-->(CH3OH,CH2O)
+	(216,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+(31,25)-->(CH3OH,CH3)
+	(199,1,1)
+	OH+CH3(+M)=CH3OH(+M)
+(31,26)-->(CH3OH,CH4)
+	(126,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(220,1,1)
+	CH3OH+CH3=CH2OH+CH4
+(31,27)-->(CH3OH,CH3OO)
+	(145,1,2)
+	CH3OO+CH3OO=CH2O+CH3OH+O2
+	(153,1,1)
+	CH3OO+OH=CH3OH+O2
+(31,28)-->(CH3OH,CH3OOH)
+	(138,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+(31,29)-->(CH3OH,CH2OH)
+	(138,1,1)
+	CH3OH+CH3OO=CH2OH+CH3OOH
+	(171,1,1)
+	CH2OH+HCO=CH3OH+CO
+	(175,1,2)
+	2CH2OH=CH3OH+CH2O
+	(177,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(201,1,1)
+	H+CH2OH(+M)=CH3OH(+M)
+	(204,1,1)
+	CH3OH+H=CH2OH+H2
+	(208,1,1)
+	CH3OH+O=CH2OH+OH
+	(212,1,1)
+	CH3OH+OH=CH2OH+H2O
+	(214,1,1)
+	CH3OH+O2=CH2OH+HO2
+	(216,1,1)
+	CH3OH+HCO=CH2OH+CH2O
+	(218,1,1)
+	CH3OH+HO2=CH2OH+H2O2
+	(220,1,1)
+	CH3OH+CH3=CH2OH+CH4
+	(354,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+	(930,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+	(932,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(31,30)-->(CH3OH,CH3O)
+	(126,1,1)
+	CH3+CH3OH=CH4+CH3O
+	(177,1,1)
+	CH2OH+CH3O=CH3OH+CH2O
+	(195,1,1)
+	CH3O+HCO=CH3OH+CO
+	(197,1,2)
+	2CH3O=CH3OH+CH2O
+	(203,1,1)
+	H+CH3O(+M)=CH3OH(+M)
+	(206,1,1)
+	CH3OH+H=CH3O+H2
+	(210,1,1)
+	CH3OH+OH=CH3O+H2O
+	(323,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(401,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+	(489,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+	(603,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+	(639,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+	(661,1,1)
+	propanal+CH3O=propionyl+CH3OH
+	(695,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+	(763,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(765,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+(31,38)-->(CH3OH,C2H4)
+	(489,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+(31,40)-->(CH3OH,C2H6)
+	(323,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+(31,51)-->(CH3OH,CH3CH2OOH)
+	(354,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+(31,56)-->(CH3OH,oxirane)
+	(401,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(31,62)-->(CH3OH,C3H8)
+	(763,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(765,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+(31,66)-->(CH3OH,acetone)
+	(603,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+(31,67)-->(CH3OH,CH3OCH3)
+	(695,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+(31,69)-->(CH3OH,acrolein)
+	(639,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+(31,74)-->(CH3OH,propanal)
+	(661,1,1)
+	propanal+CH3O=propionyl+CH3OH
+(31,79)-->(CH3OH,npropylooh)
+	(930,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+(31,81)-->(CH3OH,ipropylooh)
+	(932,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(32,17)-->(OCH2OOH,CH2O)
+	(99,1,1)
+	CH2O+HO2=OCH2OOH
+(32,33)-->(OCH2OOH,HOCH2OO)
+	(100,1,1)
+	OCH2OOH=HOCH2OO
+(33,32)-->(HOCH2OO,OCH2OOH)
+	(101,1,1)
+	OCH2OOH=HOCH2OO
+(33,34)-->(HOCH2OO,HOCH2OOH)
+	(102,1,1)
+	HOCH2OO+HO2=HOCH2OOH+O2
+(34,33)-->(HOCH2OOH,HOCH2OO)
+	(103,1,1)
+	HOCH2OO+HO2=HOCH2OOH+O2
+(34,35)-->(HOCH2OOH,HOCH2O)
+	(105,1,1)
+	HOCH2O+OH=HOCH2OOH
+(35,29)-->(HOCH2O,CH2OH)
+	(179,1,1)
+	CH2OH+HO2=HOCH2O+OH
+(35,34)-->(HOCH2O,HOCH2OOH)
+	(104,1,1)
+	HOCH2O+OH=HOCH2OOH
+(36,14)-->(C2H2,CO)
+	(518,1,1)
+	C2H2+O=CH2+CO
+	(524,1,1)
+	C2H2+OH=CH3+CO
+(36,22)-->(C2H2,CH)
+	(301,1,1)
+	CH+HCCO=CO+C2H2
+(36,24)-->(C2H2,CH2)
+	(247,1,2)
+	CH2+CH2=C2H2+H2
+	(518,1,1)
+	C2H2+O=CH2+CO
+(36,25)-->(C2H2,CH3)
+	(511,1,1)
+	CH3+C2H3=CH4+C2H2
+	(524,1,1)
+	C2H2+OH=CH3+CO
+(36,37)-->(C2H2,C2H3)
+	(502,1,1)
+	C2H2+H(+M)=C2H3(+M)
+	(507,1,1)
+	C2H3+O2=HO2+C2H2
+	(511,1,1)
+	CH3+C2H3=CH4+C2H2
+	(513,1,1)
+	C2H3+H=C2H2+H2
+	(515,1,1)
+	C2H3+OH=C2H2+H2O
+(36,38)-->(C2H2,C2H4)
+	(475,1,1)
+	C2H4(+M)=C2H2+H2(+M)
+(36,41)-->(C2H2,ketene)
+	(522,1,1)
+	C2H2+OH=ketene+H
+(36,42)-->(C2H2,HCCO)
+	(301,1,1)
+	CH+HCCO=CO+C2H2
+	(516,1,1)
+	C2H2+O2=HCCO+OH
+	(520,1,1)
+	C2H2+O=HCCO+H
+(36,43)-->(C2H2,ethynol)
+	(526,1,1)
+	OH+C2H2=H+ethynol
+(36,63)-->(C2H2,allyl)
+	(874,1,1)
+	C2H2+CH3=allyl
+(36,64)-->(C2H2,propen1yl)
+	(880,1,1)
+	C2H2+CH3=propen1yl
+(36,65)-->(C2H2,propen2yl)
+	(892,1,1)
+	C2H2+CH3=propen2yl
+(37,16)-->(C2H3,HCO)
+	(504,1,1)
+	C2H3+O2=HCO+CH2O
+	(1066,1,1)
+	C2H3+CH2O=C2H4+HCO
+(37,17)-->(C2H3,CH2O)
+	(504,1,1)
+	C2H3+O2=HCO+CH2O
+(37,25)-->(C2H3,CH3)
+	(485,1,1)
+	C2H4+CH3=C2H3+CH4
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(37,26)-->(C2H3,CH4)
+	(510,1,1)
+	CH3+C2H3=CH4+C2H2
+(37,27)-->(C2H3,CH3OO)
+	(491,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(37,30)-->(C2H3,CH3O)
+	(489,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+(37,36)-->(C2H3,C2H2)
+	(503,1,1)
+	C2H2+H(+M)=C2H3(+M)
+	(506,1,1)
+	C2H3+O2=HO2+C2H2
+	(510,1,1)
+	CH3+C2H3=CH4+C2H2
+	(512,1,1)
+	C2H3+H=C2H2+H2
+	(514,1,1)
+	C2H3+OH=C2H2+H2O
+(37,38)-->(C2H3,C2H4)
+	(331,1,2)
+	C2H4+C2H4=C2H5+C2H3
+	(472,1,1)
+	C2H3+H(+M)=C2H4(+M)
+	(477,1,1)
+	C2H4+H=C2H3+H2
+	(483,1,1)
+	C2H4+OH=C2H3+H2O
+	(485,1,1)
+	C2H4+CH3=C2H3+CH4
+	(487,1,1)
+	C2H4+O2=C2H3+HO2
+	(489,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+	(491,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(493,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+	(495,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+	(636,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(674,1,1)
+	propanal+C2H3=propionyl+C2H4
+	(750,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(752,1,1)
+	C2H3+C3H8=C2H4+npropyl
+	(927,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+	(929,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+	(1066,1,1)
+	C2H3+CH2O=C2H4+HCO
+(37,46)-->(C2H3,vinoxy)
+	(508,1,1)
+	C2H3+O2=O+vinoxy
+(37,47)-->(C2H3,acetylperoxy)
+	(495,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+(37,50)-->(C2H3,CH3CH2OO)
+	(493,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+(37,59)-->(C2H3,C3H6)
+	(802,1,1)
+	C2H3+CH3(+M)=C3H6(+M)
+(37,60)-->(C2H3,npropyl)
+	(752,1,1)
+	C2H3+C3H8=C2H4+npropyl
+(37,61)-->(C2H3,ipropyl)
+	(750,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+(37,69)-->(C2H3,acrolein)
+	(618,1,1)
+	C2H3+HCO=acrolein
+	(1064,1,1)
+	C2H3+CH2O=acrolein+H
+(37,70)-->(C2H3,CH2CHCO)
+	(636,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(642,1,1)
+	C2H3+CO=CH2CHCO
+	(647,1,1)
+	CH2CHCO+O=C2H3+CO2
+(37,72)-->(C2H3,allyloxy)
+	(1041,1,1)
+	allyloxy=C2H3+CH2O
+(37,75)-->(C2H3,propionyl)
+	(674,1,1)
+	propanal+C2H3=propionyl+C2H4
+(37,78)-->(C2H3,npropyloo)
+	(927,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+(37,80)-->(C2H3,ipropyloo)
+	(929,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+(37,82)-->(C2H3,propen1ol)
+	(1003,1,1)
+	propen1ol+OH=CH2O+C2H3+H2O
+	(1005,1,1)
+	propen1ol+H=CH2O+C2H3+H2
+	(1007,1,1)
+	propen1ol+O=CH2O+C2H3+OH
+	(1009,1,1)
+	propen1ol+HO2=CH2O+C2H3+H2O2
+	(1011,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+	(1013,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(37,108)-->(C2H3,vinoxylmethyl)
+	(1051,1,1)
+	vinoxylmethyl=C2H3+CH2O
+(37,109)-->(C2H3,formylethyl)
+	(1059,1,1)
+	formylethyl=C2H3+CH2O
+(38,16)-->(C2H4,HCO)
+	(478,1,1)
+	C2H4+O=CH3+HCO
+(38,17)-->(C2H4,CH2O)
+	(1067,1,1)
+	C2H3+CH2O=C2H4+HCO
+(38,22)-->(C2H4,CH)
+	(303,1,1)
+	CH+CH4=C2H4+H
+(38,23)-->(C2H4,CH2(S))
+	(275,1,1)
+	CH2(S)+ketene=C2H4+CO
+(38,24)-->(C2H4,CH2)
+	(231,1,1)
+	CH3+CH2=C2H4+H
+(38,25)-->(C2H4,CH3)
+	(231,1,1)
+	CH3+CH2=C2H4+H
+	(333,1,1)
+	CH3+C2H5=CH4+C2H4
+	(478,1,1)
+	C2H4+O=CH3+HCO
+(38,26)-->(C2H4,CH4)
+	(303,1,1)
+	CH+CH4=C2H4+H
+	(484,1,1)
+	C2H4+CH3=C2H3+CH4
+(38,28)-->(C2H4,CH3OOH)
+	(490,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+(38,30)-->(C2H4,CH3O)
+	(496,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+(38,31)-->(C2H4,CH3OH)
+	(488,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+(38,36)-->(C2H4,C2H2)
+	(474,1,1)
+	C2H4(+M)=C2H2+H2(+M)
+(38,37)-->(C2H4,C2H3)
+	(330,2,1)
+	C2H4+C2H4=C2H5+C2H3
+	(473,1,1)
+	C2H3+H(+M)=C2H4(+M)
+	(476,1,1)
+	C2H4+H=C2H3+H2
+	(482,1,1)
+	C2H4+OH=C2H3+H2O
+	(484,1,1)
+	C2H4+CH3=C2H3+CH4
+	(486,1,1)
+	C2H4+O2=C2H3+HO2
+	(488,1,1)
+	C2H4+CH3O=C2H3+CH3OH
+	(490,1,1)
+	C2H4+CH3OO=C2H3+CH3OOH
+	(492,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+	(494,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+	(637,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(675,1,1)
+	propanal+C2H3=propionyl+C2H4
+	(751,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(753,1,1)
+	C2H3+C3H8=C2H4+npropyl
+	(926,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+	(928,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+	(1067,1,1)
+	C2H3+CH2O=C2H4+HCO
+(38,39)-->(C2H4,C2H5)
+	(324,1,1)
+	H+C2H4(+M)=C2H5(+M)
+	(330,2,1)
+	C2H4+C2H4=C2H5+C2H3
+	(333,1,1)
+	CH3+C2H5=CH4+C2H4
+	(335,1,1)
+	C2H5+H=C2H4+H2
+	(365,1,1)
+	C2H5+O2=C2H4+HO2
+	(879,1,1)
+	allyl+C2H5=C2H4+C3H6
+(38,41)-->(C2H4,ketene)
+	(275,1,1)
+	CH2(S)+ketene=C2H4+CO
+(38,46)-->(C2H4,vinoxy)
+	(480,1,1)
+	C2H4+O=vinoxy+H
+(38,49)-->(C2H4,ethoxy)
+	(498,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+(38,50)-->(C2H4,CH3CH2OO)
+	(375,1,1)
+	CH3CH2OO=C2H4+HO2
+(38,51)-->(C2H4,CH3CH2OOH)
+	(492,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+(38,52)-->(C2H4,CH2CH2OOH)
+	(381,1,1)
+	CH2CH2OOH=C2H4+HO2
+(38,53)-->(C2H4,ethanol)
+	(535,1,1)
+	ethanol(+M)=C2H4+H2O(+M)
+(38,54)-->(C2H4,CH2CH2OH)
+	(582,1,1)
+	C2H4+OH=CH2CH2OH
+(38,56)-->(C2H4,oxirane)
+	(496,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+	(498,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+	(500,1,1)
+	C2H4+HO2=oxirane+OH
+(38,59)-->(C2H4,C3H6)
+	(827,1,1)
+	C3H6+H=C2H4+CH3
+(38,60)-->(C2H4,npropyl)
+	(791,1,1)
+	npropyl=CH3+C2H4
+(38,62)-->(C2H4,C3H8)
+	(751,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(753,1,1)
+	C2H3+C3H8=C2H4+npropyl
+(38,63)-->(C2H4,allyl)
+	(879,1,1)
+	allyl+C2H5=C2H4+C3H6
+(38,64)-->(C2H4,propen1yl)
+	(883,1,1)
+	propen1yl+O=C2H4+HCO
+	(885,1,1)
+	propen1yl+OH=C2H4+HCO+H
+	(889,1,1)
+	propen1yl+HO2=C2H4+HCO+OH
+(38,69)-->(C2H4,acrolein)
+	(625,1,1)
+	acrolein+H=C2H4+HCO
+	(637,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+(38,72)-->(C2H4,allyloxy)
+	(1049,1,1)
+	allyloxy=C2H4+HCO
+(38,74)-->(C2H4,propanal)
+	(675,1,1)
+	propanal+C2H3=propionyl+C2H4
+(38,79)-->(C2H4,npropylooh)
+	(926,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+(38,81)-->(C2H4,ipropylooh)
+	(928,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+(38,82)-->(C2H4,propen1ol)
+	(1001,1,1)
+	propen1ol=C2H4+CH2O
+(38,84)-->(C2H4,CH3CO3H)
+	(494,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+(38,108)-->(C2H4,vinoxylmethyl)
+	(1057,1,1)
+	vinoxylmethyl=C2H4+HCO
+(38,109)-->(C2H4,formylethyl)
+	(1063,1,1)
+	formylethyl=C2H4+HCO
+(39,22)-->(C2H5,CH)
+	(305,1,1)
+	C2H6+CH=C2H5+CH2
+(39,23)-->(C2H5,CH2(S))
+	(273,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(39,25)-->(C2H5,CH3)
+	(225,1,2)
+	CH3+CH3=H+C2H5
+	(317,1,1)
+	C2H6+CH3=C2H5+CH4
+(39,26)-->(C2H5,CH4)
+	(332,1,1)
+	CH3+C2H5=CH4+C2H4
+(39,27)-->(C2H5,CH3OO)
+	(321,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+(39,30)-->(C2H5,CH3O)
+	(323,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(340,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+(39,38)-->(C2H5,C2H4)
+	(325,1,1)
+	H+C2H4(+M)=C2H5(+M)
+	(331,1,2)
+	C2H4+C2H4=C2H5+C2H3
+	(332,1,1)
+	CH3+C2H5=CH4+C2H4
+	(334,1,1)
+	C2H5+H=C2H4+H2
+	(364,1,1)
+	C2H5+O2=C2H4+HO2
+	(878,1,1)
+	allyl+C2H5=C2H4+C3H6
+(39,40)-->(C2H5,C2H6)
+	(273,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+	(305,1,1)
+	C2H6+CH=C2H5+CH2
+	(306,1,1)
+	C2H5+H(+M)=C2H6(+M)
+	(309,1,1)
+	C2H6+H=C2H5+H2
+	(311,1,1)
+	C2H6+O=C2H5+OH
+	(313,1,1)
+	C2H6+OH=C2H5+H2O
+	(315,1,1)
+	C2H6+O2=C2H5+HO2
+	(317,1,1)
+	C2H6+CH3=C2H5+CH4
+	(319,1,1)
+	C2H6+HO2=C2H5+H2O2
+	(321,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+	(323,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(359,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+	(445,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+	(578,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+	(580,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+	(664,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(754,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(756,1,1)
+	C2H5+C3H8=C2H6+npropyl
+	(846,1,1)
+	C3H6+C2H5=allyl+C2H6
+	(951,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+	(953,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(39,44)-->(C2H5,acetaldehyde)
+	(336,1,1)
+	C2H5+O=acetaldehyde+H
+	(368,1,1)
+	C2H5+O2=acetaldehyde+OH
+(39,47)-->(C2H5,acetylperoxy)
+	(445,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+(39,49)-->(C2H5,ethoxy)
+	(338,1,1)
+	C2H5+HO2=ethoxy+OH
+	(340,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(974,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+	(984,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+(39,50)-->(C2H5,CH3CH2OO)
+	(348,1,1)
+	C2H5+O2=CH3CH2OO
+	(359,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+(39,52)-->(C2H5,CH2CH2OOH)
+	(362,1,1)
+	C2H5+O2=CH2CH2OOH
+(39,53)-->(C2H5,ethanol)
+	(533,1,1)
+	ethanol(+M)=C2H5+OH(+M)
+(39,54)-->(C2H5,CH2CH2OH)
+	(578,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+(39,55)-->(C2H5,CH3CHOH)
+	(580,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(39,56)-->(C2H5,oxirane)
+	(366,1,1)
+	C2H5+O2=oxirane+OH
+(39,59)-->(C2H5,C3H6)
+	(809,1,1)
+	C3H6+O=C2H5+HCO
+	(878,1,1)
+	allyl+C2H5=C2H4+C3H6
+(39,60)-->(C2H5,npropyl)
+	(756,1,1)
+	C2H5+C3H8=C2H6+npropyl
+(39,61)-->(C2H5,ipropyl)
+	(754,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(785,1,1)
+	ipropyl+H=C2H5+CH3
+(39,62)-->(C2H5,C3H8)
+	(719,1,1)
+	C3H8(+M)=CH3+C2H5(+M)
+(39,63)-->(C2H5,allyl)
+	(846,1,1)
+	C3H6+C2H5=allyl+C2H6
+(39,74)-->(C2H5,propanal)
+	(648,1,1)
+	C2H5+HCO=propanal
+(39,75)-->(C2H5,propionyl)
+	(664,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(676,1,1)
+	C2H5+CO=propionyl
+(39,76)-->(C2H5,npropyloxy)
+	(984,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+	(992,1,1)
+	C2H5+CH2O=npropyloxy
+(39,77)-->(C2H5,ipropyloxy)
+	(974,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+(39,78)-->(C2H5,npropyloo)
+	(953,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(39,80)-->(C2H5,ipropyloo)
+	(951,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+(40,24)-->(C2H6,CH2)
+	(304,1,1)
+	C2H6+CH=C2H5+CH2
+(40,25)-->(C2H6,CH3)
+	(115,1,2)
+	CH3+CH3(+M)=C2H6(+M)
+	(272,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+(40,26)-->(C2H6,CH4)
+	(316,1,1)
+	C2H6+CH3=C2H5+CH4
+(40,28)-->(C2H6,CH3OOH)
+	(320,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+(40,31)-->(C2H6,CH3OH)
+	(322,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+(40,39)-->(C2H6,C2H5)
+	(272,1,1)
+	CH2(S)+C2H6=CH3+C2H5
+	(304,1,1)
+	C2H6+CH=C2H5+CH2
+	(307,1,1)
+	C2H5+H(+M)=C2H6(+M)
+	(308,1,1)
+	C2H6+H=C2H5+H2
+	(310,1,1)
+	C2H6+O=C2H5+OH
+	(312,1,1)
+	C2H6+OH=C2H5+H2O
+	(314,1,1)
+	C2H6+O2=C2H5+HO2
+	(316,1,1)
+	C2H6+CH3=C2H5+CH4
+	(318,1,1)
+	C2H6+HO2=C2H5+H2O2
+	(320,1,1)
+	C2H6+CH3OO=C2H5+CH3OOH
+	(322,1,1)
+	C2H6+CH3O=C2H5+CH3OH
+	(358,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+	(444,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+	(579,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+	(581,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+	(665,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(755,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(757,1,1)
+	C2H5+C3H8=C2H6+npropyl
+	(847,1,1)
+	C3H6+C2H5=allyl+C2H6
+	(950,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+	(952,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(40,51)-->(C2H6,CH3CH2OOH)
+	(358,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+(40,53)-->(C2H6,ethanol)
+	(579,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+	(581,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(40,59)-->(C2H6,C3H6)
+	(847,1,1)
+	C3H6+C2H5=allyl+C2H6
+(40,62)-->(C2H6,C3H8)
+	(755,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(757,1,1)
+	C2H5+C3H8=C2H6+npropyl
+(40,74)-->(C2H6,propanal)
+	(665,1,1)
+	propanal+C2H5=propionyl+C2H6
+(40,79)-->(C2H6,npropylooh)
+	(952,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(40,81)-->(C2H6,ipropylooh)
+	(950,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+(40,84)-->(C2H6,CH3CO3H)
+	(444,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+(41,14)-->(ketene,CO)
+	(245,1,1)
+	CH2+CO(+M)=ketene(+M)
+	(274,1,1)
+	CH2(S)+ketene=C2H4+CO
+	(454,1,1)
+	ketene+H=CH3+CO
+	(464,1,1)
+	ketene+OH=CH2OH+CO
+(41,15)-->(ketene,CO2)
+	(458,1,1)
+	ketene+O=CH2+CO2
+(41,17)-->(ketene,CH2O)
+	(299,1,1)
+	CH+CH2O=H+ketene
+(41,22)-->(ketene,CH)
+	(299,1,1)
+	CH+CH2O=H+ketene
+(41,24)-->(ketene,CH2)
+	(245,1,1)
+	CH2+CO(+M)=ketene(+M)
+	(458,1,1)
+	ketene+O=CH2+CO2
+(41,25)-->(ketene,CH3)
+	(433,1,1)
+	acetyl+CH3=ketene+CH4
+	(454,1,1)
+	ketene+H=CH3+CO
+(41,29)-->(ketene,CH2OH)
+	(464,1,1)
+	ketene+OH=CH2OH+CO
+(41,36)-->(ketene,C2H2)
+	(523,1,1)
+	C2H2+OH=ketene+H
+(41,38)-->(ketene,C2H4)
+	(274,1,1)
+	CH2(S)+ketene=C2H4+CO
+(41,42)-->(ketene,HCCO)
+	(456,1,1)
+	ketene+H=HCCO+H2
+	(460,1,1)
+	ketene+O=HCCO+OH
+	(462,1,1)
+	ketene+OH=HCCO+H2O
+(41,43)-->(ketene,ethynol)
+	(529,1,1)
+	H+ethynol=H+ketene
+(41,45)-->(ketene,acetyl)
+	(429,1,1)
+	acetyl+H=ketene+H2
+	(431,1,1)
+	acetyl+O=ketene+OH
+	(433,1,1)
+	acetyl+CH3=ketene+CH4
+(41,46)-->(ketene,vinoxy)
+	(450,1,1)
+	ketene+H=vinoxy
+(41,59)-->(ketene,C3H6)
+	(811,1,1)
+	C3H6+O=ketene+CH3+H
+(41,65)-->(ketene,propen2yl)
+	(897,1,1)
+	propen2yl+O=CH3+ketene
+	(899,1,1)
+	propen2yl+OH=CH3+ketene+H
+	(903,1,1)
+	propen2yl+HO2=CH3+ketene+OH
+(41,69)-->(ketene,acrolein)
+	(627,1,1)
+	acrolein+O=ketene+HCO+H
+(41,106)-->(ketene,propen2oxy)
+	(611,1,1)
+	propen2oxy=ketene+CH3
+(42,14)-->(HCCO,CO)
+	(276,1,1)
+	H+HCCO=CH2(S)+CO
+	(296,1,1)
+	HCCO+M=CH+CO+M
+	(300,1,1)
+	CH+HCCO=CO+C2H2
+	(466,1,2)
+	HCCO+OH=H2+CO+CO
+	(468,1,2)
+	HCCO+O=H+CO+CO
+	(470,1,2)
+	HCCO+O2=OH+CO+CO
+(42,22)-->(HCCO,CH)
+	(296,1,1)
+	HCCO+M=CH+CO+M
+(42,23)-->(HCCO,CH2(S))
+	(276,1,1)
+	H+HCCO=CH2(S)+CO
+(42,36)-->(HCCO,C2H2)
+	(300,1,1)
+	CH+HCCO=CO+C2H2
+	(517,1,1)
+	C2H2+O2=HCCO+OH
+	(521,1,1)
+	C2H2+O=HCCO+H
+(42,41)-->(HCCO,ketene)
+	(457,1,1)
+	ketene+H=HCCO+H2
+	(461,1,1)
+	ketene+O=HCCO+OH
+	(463,1,1)
+	ketene+OH=HCCO+H2O
+(43,36)-->(ethynol,C2H2)
+	(527,1,1)
+	OH+C2H2=H+ethynol
+(43,41)-->(ethynol,ketene)
+	(528,1,1)
+	H+ethynol=H+ketene
+(44,16)-->(acetaldehyde,HCO)
+	(407,1,1)
+	CH3+HCO=acetaldehyde
+(44,25)-->(acetaldehyde,CH3)
+	(407,1,1)
+	CH3+HCO=acetaldehyde
+(44,26)-->(acetaldehyde,CH4)
+	(416,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+(44,28)-->(acetaldehyde,CH3OOH)
+	(420,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+(44,39)-->(acetaldehyde,C2H5)
+	(337,1,1)
+	C2H5+O=acetaldehyde+H
+	(369,1,1)
+	C2H5+O2=acetaldehyde+OH
+(44,45)-->(acetaldehyde,acetyl)
+	(408,1,1)
+	acetaldehyde+H=acetyl+H2
+	(410,1,1)
+	acetaldehyde+O=acetyl+OH
+	(412,1,1)
+	acetaldehyde+OH=acetyl+H2O
+	(414,1,1)
+	acetaldehyde+O2=acetyl+HO2
+	(416,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(418,1,1)
+	acetaldehyde+HO2=acetyl+H2O2
+	(420,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+	(422,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(704,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+	(916,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+	(920,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(44,46)-->(acetaldehyde,vinoxy)
+	(424,1,1)
+	acetaldehyde+OH=vinoxy+H2O
+(44,49)-->(acetaldehyde,ethoxy)
+	(343,1,1)
+	ethoxy+O2=acetaldehyde+HO2
+	(346,1,1)
+	acetaldehyde+H=ethoxy
+(44,50)-->(acetaldehyde,CH3CH2OO)
+	(373,1,1)
+	CH3CH2OO=acetaldehyde+OH
+(44,52)-->(acetaldehyde,CH2CH2OOH)
+	(383,1,1)
+	CH2CH2OOH=acetaldehyde+OH
+(44,53)-->(acetaldehyde,ethanol)
+	(537,1,1)
+	ethanol(+M)=acetaldehyde+H2(+M)
+(44,55)-->(acetaldehyde,CH3CHOH)
+	(585,1,1)
+	CH3CHOH+M=acetaldehyde+H+M
+	(591,1,1)
+	CH3CHOH+O2=acetaldehyde+HO2
+(44,56)-->(acetaldehyde,oxirane)
+	(387,1,1)
+	oxirane=acetaldehyde
+(44,59)-->(acetaldehyde,C3H6)
+	(1029,1,1)
+	C3H6+OH=acetaldehyde+CH3
+(44,61)-->(acetaldehyde,ipropyl)
+	(789,1,1)
+	ipropyl+O=acetaldehyde+CH3
+(44,64)-->(acetaldehyde,propen1yl)
+	(887,1,1)
+	propen1yl+O2=acetaldehyde+HCO
+(44,67)-->(acetaldehyde,CH3OCH3)
+	(704,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(44,77)-->(acetaldehyde,ipropyloxy)
+	(996,1,1)
+	CH3+acetaldehyde=ipropyloxy
+(44,79)-->(acetaldehyde,npropylooh)
+	(916,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+(44,81)-->(acetaldehyde,ipropylooh)
+	(920,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(44,84)-->(acetaldehyde,CH3CO3H)
+	(422,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+(44,104)-->(acetaldehyde,frag_5)
+	(1229,1,1)
+	frag_5=HCO+acetaldehyde
+(45,14)-->(acetyl,CO)
+	(426,1,1)
+	acetyl(+M)=CH3+CO(+M)
+(45,25)-->(acetyl,CH3)
+	(417,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(426,1,1)
+	acetyl(+M)=CH3+CO(+M)
+(45,26)-->(acetyl,CH4)
+	(432,1,1)
+	acetyl+CH3=ketene+CH4
+(45,27)-->(acetyl,CH3OO)
+	(421,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+(45,41)-->(acetyl,ketene)
+	(428,1,1)
+	acetyl+H=ketene+H2
+	(430,1,1)
+	acetyl+O=ketene+OH
+	(432,1,1)
+	acetyl+CH3=ketene+CH4
+(45,44)-->(acetyl,acetaldehyde)
+	(409,1,1)
+	acetaldehyde+H=acetyl+H2
+	(411,1,1)
+	acetaldehyde+O=acetyl+OH
+	(413,1,1)
+	acetaldehyde+OH=acetyl+H2O
+	(415,1,1)
+	acetaldehyde+O2=acetyl+HO2
+	(417,1,1)
+	acetaldehyde+CH3=acetyl+CH4
+	(419,1,1)
+	acetaldehyde+HO2=acetyl+H2O2
+	(421,1,1)
+	CH3OO+acetaldehyde=CH3OOH+acetyl
+	(423,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(705,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+	(917,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+	(921,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(45,47)-->(acetyl,acetylperoxy)
+	(423,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(434,1,1)
+	acetyl+O2=acetylperoxy
+(45,57)-->(acetyl,oxiranyl)
+	(403,1,1)
+	oxiranyl=acetyl
+(45,63)-->(acetyl,allyl)
+	(865,1,1)
+	allyl+O2=acetyl+CH2O
+(45,65)-->(acetyl,propen2yl)
+	(901,1,1)
+	propen2yl+O2=acetyl+CH2O
+(45,66)-->(acetyl,acetone)
+	(593,1,1)
+	acetone(+M)=acetyl+CH3(+M)
+(45,68)-->(acetyl,CH3OCH2)
+	(705,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(45,78)-->(acetyl,npropyloo)
+	(917,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+(45,80)-->(acetyl,ipropyloo)
+	(921,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(45,103)-->(acetyl,frag_4)
+	(1225,1,1)
+	frag_4=acetyl+CH2O
+(46,14)-->(vinoxy,CO)
+	(452,1,1)
+	vinoxy+O2=CH2O+CO+OH
+(46,17)-->(vinoxy,CH2O)
+	(452,1,1)
+	vinoxy+O2=CH2O+CO+OH
+(46,37)-->(vinoxy,C2H3)
+	(509,1,1)
+	C2H3+O2=O+vinoxy
+(46,38)-->(vinoxy,C2H4)
+	(481,1,1)
+	C2H4+O=vinoxy+H
+(46,41)-->(vinoxy,ketene)
+	(451,1,1)
+	ketene+H=vinoxy
+(46,44)-->(vinoxy,acetaldehyde)
+	(425,1,1)
+	acetaldehyde+OH=vinoxy+H2O
+(46,57)-->(vinoxy,oxiranyl)
+	(405,1,1)
+	oxiranyl=vinoxy
+(46,70)-->(vinoxy,CH2CHCO)
+	(645,1,1)
+	CH2CHCO+O2=vinoxy+CO2
+(46,101)-->(vinoxy,frag_1)
+	(1223,1,1)
+	frag_1=vinoxy+CH2O
+(47,16)-->(acetylperoxy,HCO)
+	(442,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+(47,25)-->(acetylperoxy,CH3)
+	(440,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+(47,37)-->(acetylperoxy,C2H3)
+	(494,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+(47,39)-->(acetylperoxy,C2H5)
+	(444,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+(47,45)-->(acetylperoxy,acetyl)
+	(422,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(435,1,1)
+	acetyl+O2=acetylperoxy
+(47,48)-->(acetylperoxy,acetyloxy)
+	(958,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+	(960,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(47,60)-->(acetylperoxy,npropyl)
+	(776,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+(47,61)-->(acetylperoxy,ipropyl)
+	(774,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+(47,63)-->(acetylperoxy,allyl)
+	(848,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(47,75)-->(acetylperoxy,propionyl)
+	(672,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+(47,76)-->(acetylperoxy,npropyloxy)
+	(960,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(47,77)-->(acetylperoxy,ipropyloxy)
+	(958,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+(47,84)-->(acetylperoxy,CH3CO3H)
+	(422,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(436,1,1)
+	acetylperoxy+HO2=CH3CO3H+O2
+	(438,1,1)
+	H2O2+acetylperoxy=HO2+CH3CO3H
+	(440,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+	(442,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+	(444,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+	(494,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+	(672,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+	(774,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(776,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+	(848,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(48,15)-->(acetyloxy,CO2)
+	(448,1,1)
+	acetyloxy+M=CH3+CO2+M
+(48,25)-->(acetyloxy,CH3)
+	(448,1,1)
+	acetyloxy+M=CH3+CO2+M
+(48,47)-->(acetyloxy,acetylperoxy)
+	(959,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+	(961,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(48,78)-->(acetyloxy,npropyloo)
+	(961,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(48,80)-->(acetyloxy,ipropyloo)
+	(959,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+(48,84)-->(acetyloxy,CH3CO3H)
+	(447,1,1)
+	CH3CO3H=acetyloxy+OH
+(49,17)-->(ethoxy,CH2O)
+	(345,1,1)
+	CH3+CH2O=ethoxy
+(49,25)-->(ethoxy,CH3)
+	(345,1,1)
+	CH3+CH2O=ethoxy
+	(577,1,1)
+	ethanol+CH3=ethoxy+CH4
+(49,27)-->(ethoxy,CH3OO)
+	(341,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(565,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+(49,38)-->(ethoxy,C2H4)
+	(499,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+(49,39)-->(ethoxy,C2H5)
+	(339,1,1)
+	C2H5+HO2=ethoxy+OH
+	(341,1,1)
+	CH3OO+C2H5=CH3O+ethoxy
+	(975,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+	(985,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+(49,44)-->(ethoxy,acetaldehyde)
+	(342,1,1)
+	ethoxy+O2=acetaldehyde+HO2
+	(347,1,1)
+	acetaldehyde+H=ethoxy
+(49,50)-->(ethoxy,CH3CH2OO)
+	(499,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+	(963,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(965,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+(49,51)-->(ethoxy,CH3CH2OOH)
+	(361,1,1)
+	CH3CH2OOH=ethoxy+OH
+(49,53)-->(ethoxy,ethanol)
+	(547,1,1)
+	ethanol+OH=ethoxy+H2O
+	(553,1,1)
+	ethanol+H=ethoxy+H2
+	(559,1,1)
+	ethanol+HO2=ethoxy+H2O2
+	(565,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+	(571,1,1)
+	ethanol+O=ethoxy+OH
+	(577,1,1)
+	ethanol+CH3=ethoxy+CH4
+	(666,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(49,75)-->(ethoxy,propionyl)
+	(666,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(49,78)-->(ethoxy,npropyloo)
+	(965,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+	(985,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+(49,80)-->(ethoxy,ipropyloo)
+	(963,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(975,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+(50,16)-->(CH3CH2OO,HCO)
+	(350,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+(50,25)-->(CH3CH2OO,CH3)
+	(352,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+(50,29)-->(CH3CH2OO,CH2OH)
+	(354,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+(50,37)-->(CH3CH2OO,C2H3)
+	(492,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+(50,38)-->(CH3CH2OO,C2H4)
+	(374,1,1)
+	CH3CH2OO=C2H4+HO2
+(50,39)-->(CH3CH2OO,C2H5)
+	(349,1,1)
+	C2H5+O2=CH3CH2OO
+	(358,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+(50,44)-->(CH3CH2OO,acetaldehyde)
+	(372,1,1)
+	CH3CH2OO=acetaldehyde+OH
+(50,49)-->(CH3CH2OO,ethoxy)
+	(498,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+	(962,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(964,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+(50,51)-->(CH3CH2OO,CH3CH2OOH)
+	(328,1,1)
+	H2+CH3CH2OO=H+CH3CH2OOH
+	(350,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+	(352,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+	(354,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+	(356,1,1)
+	CH3CH2OO+HO2=CH3CH2OOH+O2
+	(358,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+	(396,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+	(492,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+	(668,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+	(770,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(772,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+	(854,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(50,52)-->(CH3CH2OO,CH2CH2OOH)
+	(371,1,1)
+	CH2CH2OOH=CH3CH2OO
+(50,56)-->(CH3CH2OO,oxirane)
+	(376,1,1)
+	CH3CH2OO=oxirane+OH
+	(498,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+(50,57)-->(CH3CH2OO,oxiranyl)
+	(396,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+(50,60)-->(CH3CH2OO,npropyl)
+	(770,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+(50,61)-->(CH3CH2OO,ipropyl)
+	(772,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+(50,63)-->(CH3CH2OO,allyl)
+	(854,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(50,75)-->(CH3CH2OO,propionyl)
+	(668,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+(50,76)-->(CH3CH2OO,npropyloxy)
+	(964,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+(50,77)-->(CH3CH2OO,ipropyloxy)
+	(962,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+(51,17)-->(CH3CH2OOH,CH2O)
+	(351,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+(51,26)-->(CH3CH2OOH,CH4)
+	(353,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+(51,31)-->(CH3CH2OOH,CH3OH)
+	(355,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+(51,38)-->(CH3CH2OOH,C2H4)
+	(493,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+(51,40)-->(CH3CH2OOH,C2H6)
+	(359,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+(51,49)-->(CH3CH2OOH,ethoxy)
+	(360,1,1)
+	CH3CH2OOH=ethoxy+OH
+(51,50)-->(CH3CH2OOH,CH3CH2OO)
+	(329,1,1)
+	H2+CH3CH2OO=H+CH3CH2OOH
+	(351,1,1)
+	CH3CH2OO+CH2O=CH3CH2OOH+HCO
+	(353,1,1)
+	CH4+CH3CH2OO=CH3+CH3CH2OOH
+	(355,1,1)
+	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH
+	(357,1,1)
+	CH3CH2OO+HO2=CH3CH2OOH+O2
+	(359,1,1)
+	C2H6+CH3CH2OO=C2H5+CH3CH2OOH
+	(397,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+	(493,1,1)
+	C2H4+CH3CH2OO=C2H3+CH3CH2OOH
+	(669,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+	(771,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(773,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+	(855,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(51,56)-->(CH3CH2OOH,oxirane)
+	(397,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+(51,59)-->(CH3CH2OOH,C3H6)
+	(855,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(51,62)-->(CH3CH2OOH,C3H8)
+	(771,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(773,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+(51,74)-->(CH3CH2OOH,propanal)
+	(669,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+(52,38)-->(CH2CH2OOH,C2H4)
+	(380,1,1)
+	CH2CH2OOH=C2H4+HO2
+(52,39)-->(CH2CH2OOH,C2H5)
+	(363,1,1)
+	C2H5+O2=CH2CH2OOH
+(52,44)-->(CH2CH2OOH,acetaldehyde)
+	(382,1,1)
+	CH2CH2OOH=acetaldehyde+OH
+(52,50)-->(CH2CH2OOH,CH3CH2OO)
+	(370,1,1)
+	CH2CH2OOH=CH3CH2OO
+(52,56)-->(CH2CH2OOH,oxirane)
+	(378,1,1)
+	CH2CH2OOH=oxirane+OH
+(53,25)-->(ethanol,CH3)
+	(530,1,1)
+	ethanol(+M)=CH2OH+CH3(+M)
+(53,26)-->(ethanol,CH4)
+	(572,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(574,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(576,1,1)
+	ethanol+CH3=ethoxy+CH4
+(53,28)-->(ethanol,CH3OOH)
+	(560,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(562,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(564,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+(53,29)-->(ethanol,CH2OH)
+	(530,1,1)
+	ethanol(+M)=CH2OH+CH3(+M)
+(53,38)-->(ethanol,C2H4)
+	(534,1,1)
+	ethanol(+M)=C2H4+H2O(+M)
+(53,39)-->(ethanol,C2H5)
+	(532,1,1)
+	ethanol(+M)=C2H5+OH(+M)
+(53,40)-->(ethanol,C2H6)
+	(578,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+	(580,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(53,44)-->(ethanol,acetaldehyde)
+	(536,1,1)
+	ethanol(+M)=acetaldehyde+H2(+M)
+(53,49)-->(ethanol,ethoxy)
+	(546,1,1)
+	ethanol+OH=ethoxy+H2O
+	(552,1,1)
+	ethanol+H=ethoxy+H2
+	(558,1,1)
+	ethanol+HO2=ethoxy+H2O2
+	(564,1,1)
+	ethanol+CH3OO=ethoxy+CH3OOH
+	(570,1,1)
+	ethanol+O=ethoxy+OH
+	(576,1,1)
+	ethanol+CH3=ethoxy+CH4
+	(667,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(53,54)-->(ethanol,CH2CH2OH)
+	(538,1,1)
+	ethanol+O2=CH2CH2OH+HO2
+	(542,1,1)
+	ethanol+OH=CH2CH2OH+H2O
+	(548,1,1)
+	ethanol+H=CH2CH2OH+H2
+	(554,1,1)
+	ethanol+HO2=CH2CH2OH+H2O2
+	(560,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(566,1,1)
+	ethanol+O=CH2CH2OH+OH
+	(572,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(578,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+(53,55)-->(ethanol,CH3CHOH)
+	(540,1,1)
+	ethanol+O2=CH3CHOH+HO2
+	(544,1,1)
+	ethanol+OH=CH3CHOH+H2O
+	(550,1,1)
+	ethanol+H=CH3CHOH+H2
+	(556,1,1)
+	ethanol+HO2=CH3CHOH+H2O2
+	(562,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(568,1,1)
+	ethanol+O=CH3CHOH+OH
+	(574,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(580,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(53,74)-->(ethanol,propanal)
+	(667,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(54,25)-->(CH2CH2OH,CH3)
+	(573,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+(54,27)-->(CH2CH2OH,CH3OO)
+	(561,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+(54,38)-->(CH2CH2OH,C2H4)
+	(583,1,1)
+	C2H4+OH=CH2CH2OH
+(54,39)-->(CH2CH2OH,C2H5)
+	(579,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+(54,53)-->(CH2CH2OH,ethanol)
+	(539,1,1)
+	ethanol+O2=CH2CH2OH+HO2
+	(543,1,1)
+	ethanol+OH=CH2CH2OH+H2O
+	(549,1,1)
+	ethanol+H=CH2CH2OH+H2
+	(555,1,1)
+	ethanol+HO2=CH2CH2OH+H2O2
+	(561,1,1)
+	ethanol+CH3OO=CH2CH2OH+CH3OOH
+	(567,1,1)
+	ethanol+O=CH2CH2OH+OH
+	(573,1,1)
+	ethanol+CH3=CH2CH2OH+CH4
+	(579,1,1)
+	ethanol+C2H5=CH2CH2OH+C2H6
+(54,85)-->(CH2CH2OH,O2C2H4OH)
+	(587,1,1)
+	O2C2H4OH=CH2CH2OH+O2
+(55,25)-->(CH3CHOH,CH3)
+	(575,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+(55,27)-->(CH3CHOH,CH3OO)
+	(563,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+(55,39)-->(CH3CHOH,C2H5)
+	(581,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(55,44)-->(CH3CHOH,acetaldehyde)
+	(584,1,1)
+	CH3CHOH+M=acetaldehyde+H+M
+	(590,1,1)
+	CH3CHOH+O2=acetaldehyde+HO2
+(55,53)-->(CH3CHOH,ethanol)
+	(541,1,1)
+	ethanol+O2=CH3CHOH+HO2
+	(545,1,1)
+	ethanol+OH=CH3CHOH+H2O
+	(551,1,1)
+	ethanol+H=CH3CHOH+H2
+	(557,1,1)
+	ethanol+HO2=CH3CHOH+H2O2
+	(563,1,1)
+	ethanol+CH3OO=CH3CHOH+CH3OOH
+	(569,1,1)
+	ethanol+O=CH3CHOH+OH
+	(575,1,1)
+	ethanol+CH3=CH3CHOH+CH4
+	(581,1,1)
+	ethanol+C2H5=CH3CHOH+C2H6
+(56,16)-->(oxirane,HCO)
+	(384,1,1)
+	oxirane=CH3+HCO
+(56,25)-->(oxirane,CH3)
+	(384,1,1)
+	oxirane=CH3+HCO
+(56,26)-->(oxirane,CH4)
+	(398,1,1)
+	oxirane+CH3=oxiranyl+CH4
+(56,27)-->(oxirane,CH3OO)
+	(497,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+(56,28)-->(oxirane,CH3OOH)
+	(394,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+(56,31)-->(oxirane,CH3OH)
+	(400,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(56,38)-->(oxirane,C2H4)
+	(497,1,1)
+	C2H4+CH3OO=oxirane+CH3O
+	(499,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+	(501,1,1)
+	C2H4+HO2=oxirane+OH
+(56,39)-->(oxirane,C2H5)
+	(367,1,1)
+	C2H5+O2=oxirane+OH
+(56,44)-->(oxirane,acetaldehyde)
+	(386,1,1)
+	oxirane=acetaldehyde
+(56,50)-->(oxirane,CH3CH2OO)
+	(377,1,1)
+	CH3CH2OO=oxirane+OH
+	(499,1,1)
+	C2H4+CH3CH2OO=oxirane+ethoxy
+(56,51)-->(oxirane,CH3CH2OOH)
+	(396,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+(56,52)-->(oxirane,CH2CH2OOH)
+	(379,1,1)
+	CH2CH2OOH=oxirane+OH
+(56,57)-->(oxirane,oxiranyl)
+	(388,1,1)
+	oxirane+OH=oxiranyl+H2O
+	(390,1,1)
+	oxirane+H=oxiranyl+H2
+	(392,1,1)
+	oxirane+HO2=oxiranyl+H2O2
+	(394,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+	(396,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+	(398,1,1)
+	oxirane+CH3=oxiranyl+CH4
+	(400,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(57,25)-->(oxiranyl,CH3)
+	(399,1,1)
+	oxirane+CH3=oxiranyl+CH4
+(57,27)-->(oxiranyl,CH3OO)
+	(395,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+(57,30)-->(oxiranyl,CH3O)
+	(401,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(57,45)-->(oxiranyl,acetyl)
+	(402,1,1)
+	oxiranyl=acetyl
+(57,46)-->(oxiranyl,vinoxy)
+	(404,1,1)
+	oxiranyl=vinoxy
+(57,50)-->(oxiranyl,CH3CH2OO)
+	(397,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+(57,56)-->(oxiranyl,oxirane)
+	(389,1,1)
+	oxirane+OH=oxiranyl+H2O
+	(391,1,1)
+	oxirane+H=oxiranyl+H2
+	(393,1,1)
+	oxirane+HO2=oxiranyl+H2O2
+	(395,1,1)
+	oxirane+CH3OO=oxiranyl+CH3OOH
+	(397,1,1)
+	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH
+	(399,1,1)
+	oxirane+CH3=oxiranyl+CH4
+	(401,1,1)
+	oxirane+CH3O=oxiranyl+CH3OH
+(58,59)-->(ethenol,C3H6)
+	(1023,1,1)
+	C3H6+OH=ethenol+CH3
+(59,16)-->(C3H6,HCO)
+	(808,1,1)
+	C3H6+O=C2H5+HCO
+	(869,1,1)
+	allyl+HCO=C3H6+CO
+	(891,1,1)
+	propen1yl+HCO=C3H6+CO
+	(905,1,1)
+	propen2yl+HCO=C3H6+CO
+(59,25)-->(C3H6,CH3)
+	(803,1,1)
+	C2H3+CH3(+M)=C3H6(+M)
+	(810,1,1)
+	C3H6+O=ketene+CH3+H
+	(826,1,1)
+	C3H6+H=C2H4+CH3
+	(1022,1,1)
+	C3H6+OH=ethenol+CH3
+	(1028,1,1)
+	C3H6+OH=acetaldehyde+CH3
+(59,26)-->(C3H6,CH4)
+	(840,1,1)
+	C3H6+CH3=allyl+CH4
+	(842,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(844,1,1)
+	C3H6+CH3=propen2yl+CH4
+(59,28)-->(C3H6,CH3OOH)
+	(850,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+(59,37)-->(C3H6,C2H3)
+	(803,1,1)
+	C2H3+CH3(+M)=C3H6(+M)
+(59,38)-->(C3H6,C2H4)
+	(826,1,1)
+	C3H6+H=C2H4+CH3
+(59,39)-->(C3H6,C2H5)
+	(808,1,1)
+	C3H6+O=C2H5+HCO
+	(879,1,1)
+	allyl+C2H5=C2H4+C3H6
+(59,40)-->(C3H6,C2H6)
+	(846,1,1)
+	C3H6+C2H5=allyl+C2H6
+(59,41)-->(C3H6,ketene)
+	(810,1,1)
+	C3H6+O=ketene+CH3+H
+(59,44)-->(C3H6,acetaldehyde)
+	(1028,1,1)
+	C3H6+OH=acetaldehyde+CH3
+(59,51)-->(C3H6,CH3CH2OOH)
+	(854,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(59,58)-->(C3H6,ethenol)
+	(1022,1,1)
+	C3H6+OH=ethenol+CH3
+(59,60)-->(C3H6,npropyl)
+	(793,1,1)
+	npropyl=H+C3H6
+	(1075,1,1)
+	O2+npropyl=HO2+C3H6
+(59,61)-->(C3H6,ipropyl)
+	(782,1,1)
+	H+C3H6=ipropyl
+	(787,1,1)
+	ipropyl+OH=C3H6+H2O
+	(1101,1,1)
+	O2+ipropyl=HO2+C3H6
+(59,62)-->(C3H6,C3H8)
+	(759,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(761,1,1)
+	C3H8+allyl=ipropyl+C3H6
+(59,63)-->(C3H6,allyl)
+	(759,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(761,1,1)
+	C3H8+allyl=ipropyl+C3H6
+	(799,1,1)
+	propanal+allyl=propionyl+C3H6
+	(801,1,1)
+	allyl+H(+M)=C3H6(+M)
+	(814,1,1)
+	C3H6+O=allyl+OH
+	(820,1,1)
+	C3H6+HO2=allyl+H2O2
+	(828,1,1)
+	C3H6+H=allyl+H2
+	(834,1,1)
+	C3H6+O2=allyl+HO2
+	(840,1,1)
+	C3H6+CH3=allyl+CH4
+	(846,1,1)
+	C3H6+C2H5=allyl+C2H6
+	(848,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+	(850,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+	(854,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+	(856,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+	(858,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+	(869,1,1)
+	allyl+HCO=C3H6+CO
+	(879,1,1)
+	allyl+C2H5=C2H4+C3H6
+	(1014,1,1)
+	C3H6+OH=allyl+H2O
+(59,64)-->(C3H6,propen1yl)
+	(804,1,1)
+	C3H6=propen1yl+H
+	(816,1,1)
+	C3H6+O=propen1yl+OH
+	(822,1,1)
+	C3H6+HO2=propen1yl+H2O2
+	(832,1,1)
+	C3H6+H=propen1yl+H2
+	(836,1,1)
+	C3H6+O2=propen1yl+HO2
+	(842,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(891,1,1)
+	propen1yl+HCO=C3H6+CO
+	(1016,1,1)
+	C3H6+OH=propen1yl+H2O
+(59,65)-->(C3H6,propen2yl)
+	(806,1,1)
+	C3H6=propen2yl+H
+	(818,1,1)
+	C3H6+O=propen2yl+OH
+	(824,1,1)
+	C3H6+HO2=propen2yl+H2O2
+	(830,1,1)
+	C3H6+H=propen2yl+H2
+	(838,1,1)
+	C3H6+O2=propen2yl+HO2
+	(844,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(905,1,1)
+	propen2yl+HCO=C3H6+CO
+	(1018,1,1)
+	C3H6+OH=propen2yl+H2O
+(59,71)-->(C3H6,CH3CHCO)
+	(812,1,1)
+	C3H6+O=CH3CHCO+H+H
+(59,73)-->(C3H6,allyl-alcohol)
+	(1020,1,1)
+	C3H6+OH=allyl-alcohol+H
+(59,74)-->(C3H6,propanal)
+	(799,1,1)
+	propanal+allyl=propionyl+C3H6
+(59,78)-->(C3H6,npropyloo)
+	(1083,1,1)
+	npropyloo=HO2+C3H6
+(59,79)-->(C3H6,npropylooh)
+	(856,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+(59,80)-->(C3H6,ipropyloo)
+	(1107,1,1)
+	ipropyloo=HO2+C3H6
+(59,81)-->(C3H6,ipropylooh)
+	(858,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+(59,82)-->(C3H6,propen1ol)
+	(852,1,1)
+	C3H6+HO2=propen1ol+OH
+	(1024,1,1)
+	C3H6+OH=propen1ol+H
+(59,83)-->(C3H6,propen2ol)
+	(1026,1,1)
+	C3H6+OH=propen2ol+H
+(59,84)-->(C3H6,CH3CO3H)
+	(848,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(59,86)-->(C3H6,propoxide)
+	(1114,1,1)
+	HO2+C3H6=OH+propoxide
+(59,87)-->(C3H6,QOOH_1)
+	(1093,1,1)
+	QOOH_1=HO2+C3H6
+(59,88)-->(C3H6,QOOH_2)
+	(1089,1,1)
+	QOOH_2=HO2+C3H6
+(59,89)-->(C3H6,QOOH_3)
+	(1111,1,1)
+	QOOH_3=HO2+C3H6
+(60,19)-->(npropyl,formylperoxy)
+	(779,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+(60,25)-->(npropyl,CH3)
+	(747,1,1)
+	CH3+C3H8=CH4+npropyl
+	(790,1,1)
+	npropyl=CH3+C2H4
+(60,27)-->(npropyl,CH3OO)
+	(767,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+(60,30)-->(npropyl,CH3O)
+	(763,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(910,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+(60,37)-->(npropyl,C2H3)
+	(753,1,1)
+	C2H3+C3H8=C2H4+npropyl
+(60,38)-->(npropyl,C2H4)
+	(790,1,1)
+	npropyl=CH3+C2H4
+(60,39)-->(npropyl,C2H5)
+	(757,1,1)
+	C2H5+C3H8=C2H6+npropyl
+(60,47)-->(npropyl,acetylperoxy)
+	(777,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+(60,50)-->(npropyl,CH3CH2OO)
+	(771,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+(60,59)-->(npropyl,C3H6)
+	(792,1,1)
+	npropyl=H+C3H6
+	(1074,1,1)
+	O2+npropyl=HO2+C3H6
+(60,61)-->(npropyl,ipropyl)
+	(749,1,1)
+	ipropyl+C3H8=npropyl+C3H8
+(60,62)-->(npropyl,C3H8)
+	(707,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(709,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(720,1,1)
+	npropyl+H=C3H8
+	(727,1,1)
+	C3H8+O2=npropyl+HO2
+	(731,1,1)
+	H+C3H8=H2+npropyl
+	(735,1,1)
+	C3H8+O=npropyl+OH
+	(737,1,1)
+	C3H8+OH=npropyl+H2O
+	(743,1,1)
+	C3H8+HO2=npropyl+H2O2
+	(747,1,1)
+	CH3+C3H8=CH4+npropyl
+	(753,1,1)
+	C2H3+C3H8=C2H4+npropyl
+	(757,1,1)
+	C2H5+C3H8=C2H6+npropyl
+	(759,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(763,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(767,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(771,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(777,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+	(779,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(794,1,1)
+	propanal+npropyl=propionyl+C3H8
+(60,63)-->(npropyl,allyl)
+	(759,1,1)
+	C3H8+allyl=npropyl+C3H6
+(60,75)-->(npropyl,propionyl)
+	(794,1,1)
+	propanal+npropyl=propionyl+C3H8
+(60,76)-->(npropyl,npropyloxy)
+	(906,1,1)
+	npropyl+HO2=npropyloxy+OH
+	(910,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(978,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+	(988,1,2)
+	npropyloo+npropyl=npropyloxy+npropyloxy
+(60,77)-->(npropyl,ipropyloxy)
+	(978,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+(60,78)-->(npropyl,npropyloo)
+	(707,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(1068,1,1)
+	O2+npropyl=npropyloo
+(60,80)-->(npropyl,ipropyloo)
+	(709,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+(60,86)-->(npropyl,propoxide)
+	(1076,1,1)
+	O2+npropyl=OH+propoxide
+(60,87)-->(npropyl,QOOH_1)
+	(1072,1,1)
+	O2+npropyl=QOOH_1
+(60,88)-->(npropyl,QOOH_2)
+	(1070,1,1)
+	O2+npropyl=QOOH_2
+(61,19)-->(ipropyl,formylperoxy)
+	(781,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(61,25)-->(ipropyl,CH3)
+	(745,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(784,1,1)
+	ipropyl+H=C2H5+CH3
+	(788,1,1)
+	ipropyl+O=acetaldehyde+CH3
+(61,27)-->(ipropyl,CH3OO)
+	(769,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+(61,30)-->(ipropyl,CH3O)
+	(765,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+	(912,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+(61,37)-->(ipropyl,C2H3)
+	(751,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+(61,39)-->(ipropyl,C2H5)
+	(755,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(784,1,1)
+	ipropyl+H=C2H5+CH3
+(61,44)-->(ipropyl,acetaldehyde)
+	(788,1,1)
+	ipropyl+O=acetaldehyde+CH3
+(61,47)-->(ipropyl,acetylperoxy)
+	(775,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+(61,50)-->(ipropyl,CH3CH2OO)
+	(773,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+(61,59)-->(ipropyl,C3H6)
+	(783,1,1)
+	H+C3H6=ipropyl
+	(786,1,1)
+	ipropyl+OH=C3H6+H2O
+	(1100,1,1)
+	O2+ipropyl=HO2+C3H6
+(61,60)-->(ipropyl,npropyl)
+	(748,1,1)
+	ipropyl+C3H8=npropyl+C3H8
+(61,62)-->(ipropyl,C3H8)
+	(711,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+	(713,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(722,1,1)
+	ipropyl+H=C3H8
+	(725,1,1)
+	C3H8+O2=ipropyl+HO2
+	(729,1,1)
+	H+C3H8=H2+ipropyl
+	(733,1,1)
+	C3H8+O=ipropyl+OH
+	(739,1,1)
+	C3H8+OH=ipropyl+H2O
+	(741,1,1)
+	C3H8+HO2=ipropyl+H2O2
+	(745,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(751,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(755,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(761,1,1)
+	C3H8+allyl=ipropyl+C3H6
+	(765,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+	(769,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+	(773,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+	(775,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(781,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+	(796,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(61,63)-->(ipropyl,allyl)
+	(761,1,1)
+	C3H8+allyl=ipropyl+C3H6
+(61,66)-->(ipropyl,acetone)
+	(612,1,1)
+	ipropyl+O=acetone+H
+(61,75)-->(ipropyl,propionyl)
+	(796,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(61,76)-->(ipropyl,npropyloxy)
+	(986,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(61,77)-->(ipropyl,ipropyloxy)
+	(908,1,1)
+	ipropyl+HO2=ipropyloxy+OH
+	(912,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(976,1,2)
+	ipropyloo+ipropyl=ipropyloxy+ipropyloxy
+	(986,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(61,78)-->(ipropyl,npropyloo)
+	(711,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+(61,80)-->(ipropyl,ipropyloo)
+	(713,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(1096,1,1)
+	O2+ipropyl=ipropyloo
+(61,86)-->(ipropyl,propoxide)
+	(1102,1,1)
+	O2+ipropyl=OH+propoxide
+(61,89)-->(ipropyl,QOOH_3)
+	(1098,1,1)
+	O2+ipropyl=QOOH_3
+(62,20)-->(C3H8,formylooh)
+	(778,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(780,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+(62,25)-->(C3H8,CH3)
+	(718,1,1)
+	C3H8(+M)=CH3+C2H5(+M)
+(62,26)-->(C3H8,CH4)
+	(744,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(746,1,1)
+	CH3+C3H8=CH4+npropyl
+(62,28)-->(C3H8,CH3OOH)
+	(766,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(768,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+(62,31)-->(C3H8,CH3OH)
+	(762,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(764,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+(62,38)-->(C3H8,C2H4)
+	(750,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(752,1,1)
+	C2H3+C3H8=C2H4+npropyl
+(62,39)-->(C3H8,C2H5)
+	(718,1,1)
+	C3H8(+M)=CH3+C2H5(+M)
+(62,40)-->(C3H8,C2H6)
+	(754,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(756,1,1)
+	C2H5+C3H8=C2H6+npropyl
+(62,51)-->(C3H8,CH3CH2OOH)
+	(770,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(772,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+(62,59)-->(C3H8,C3H6)
+	(758,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(760,1,1)
+	C3H8+allyl=ipropyl+C3H6
+(62,60)-->(C3H8,npropyl)
+	(706,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(708,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(721,1,1)
+	npropyl+H=C3H8
+	(726,1,1)
+	C3H8+O2=npropyl+HO2
+	(730,1,1)
+	H+C3H8=H2+npropyl
+	(734,1,1)
+	C3H8+O=npropyl+OH
+	(736,1,1)
+	C3H8+OH=npropyl+H2O
+	(742,1,1)
+	C3H8+HO2=npropyl+H2O2
+	(746,1,1)
+	CH3+C3H8=CH4+npropyl
+	(752,1,1)
+	C2H3+C3H8=C2H4+npropyl
+	(756,1,1)
+	C2H5+C3H8=C2H6+npropyl
+	(758,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(762,1,1)
+	C3H8+CH3O=npropyl+CH3OH
+	(766,1,1)
+	CH3OO+C3H8=CH3OOH+npropyl
+	(770,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+npropyl
+	(776,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+	(778,1,1)
+	C3H8+formylperoxy=npropyl+formylooh
+	(795,1,1)
+	propanal+npropyl=propionyl+C3H8
+(62,61)-->(C3H8,ipropyl)
+	(710,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+	(712,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(723,1,1)
+	ipropyl+H=C3H8
+	(724,1,1)
+	C3H8+O2=ipropyl+HO2
+	(728,1,1)
+	H+C3H8=H2+ipropyl
+	(732,1,1)
+	C3H8+O=ipropyl+OH
+	(738,1,1)
+	C3H8+OH=ipropyl+H2O
+	(740,1,1)
+	C3H8+HO2=ipropyl+H2O2
+	(744,1,1)
+	CH3+C3H8=CH4+ipropyl
+	(750,1,1)
+	C2H3+C3H8=C2H4+ipropyl
+	(754,1,1)
+	C2H5+C3H8=C2H6+ipropyl
+	(760,1,1)
+	C3H8+allyl=ipropyl+C3H6
+	(764,1,1)
+	C3H8+CH3O=ipropyl+CH3OH
+	(768,1,1)
+	CH3OO+C3H8=CH3OOH+ipropyl
+	(772,1,1)
+	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl
+	(774,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(780,1,1)
+	C3H8+formylperoxy=ipropyl+formylooh
+	(797,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(62,74)-->(C3H8,propanal)
+	(795,1,1)
+	propanal+npropyl=propionyl+C3H8
+	(797,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(62,79)-->(C3H8,npropylooh)
+	(706,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(710,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+(62,81)-->(C3H8,ipropylooh)
+	(708,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(712,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+(62,84)-->(C3H8,CH3CO3H)
+	(774,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(776,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+(63,14)-->(allyl,CO)
+	(868,1,1)
+	allyl+HCO=C3H6+CO
+(63,17)-->(allyl,CH2O)
+	(864,1,1)
+	allyl+O2=acetyl+CH2O
+(63,25)-->(allyl,CH3)
+	(841,1,1)
+	C3H6+CH3=allyl+CH4
+	(875,1,1)
+	C2H2+CH3=allyl
+(63,27)-->(allyl,CH3OO)
+	(851,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+(63,30)-->(allyl,CH3O)
+	(876,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+(63,36)-->(allyl,C2H2)
+	(875,1,1)
+	C2H2+CH3=allyl
+(63,38)-->(allyl,C2H4)
+	(878,1,1)
+	allyl+C2H5=C2H4+C3H6
+(63,39)-->(allyl,C2H5)
+	(847,1,1)
+	C3H6+C2H5=allyl+C2H6
+(63,45)-->(allyl,acetyl)
+	(864,1,1)
+	allyl+O2=acetyl+CH2O
+(63,47)-->(allyl,acetylperoxy)
+	(849,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(63,50)-->(allyl,CH3CH2OO)
+	(855,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+(63,59)-->(allyl,C3H6)
+	(758,1,1)
+	C3H8+allyl=npropyl+C3H6
+	(760,1,1)
+	C3H8+allyl=ipropyl+C3H6
+	(798,1,1)
+	propanal+allyl=propionyl+C3H6
+	(800,1,1)
+	allyl+H(+M)=C3H6(+M)
+	(815,1,1)
+	C3H6+O=allyl+OH
+	(821,1,1)
+	C3H6+HO2=allyl+H2O2
+	(829,1,1)
+	C3H6+H=allyl+H2
+	(835,1,1)
+	C3H6+O2=allyl+HO2
+	(841,1,1)
+	C3H6+CH3=allyl+CH4
+	(847,1,1)
+	C3H6+C2H5=allyl+C2H6
+	(849,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+	(851,1,1)
+	C3H6+CH3OO=allyl+CH3OOH
+	(855,1,1)
+	C3H6+CH3CH2OO=allyl+CH3CH2OOH
+	(857,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+	(859,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+	(868,1,1)
+	allyl+HCO=C3H6+CO
+	(878,1,1)
+	allyl+C2H5=C2H4+C3H6
+	(1015,1,1)
+	C3H6+OH=allyl+H2O
+(63,60)-->(allyl,npropyl)
+	(758,1,1)
+	C3H8+allyl=npropyl+C3H6
+(63,61)-->(allyl,ipropyl)
+	(760,1,1)
+	C3H8+allyl=ipropyl+C3H6
+(63,64)-->(allyl,propen1yl)
+	(872,1,1)
+	allyl=propen1yl
+(63,65)-->(allyl,propen2yl)
+	(870,1,1)
+	allyl=propen2yl
+(63,69)-->(allyl,acrolein)
+	(860,1,1)
+	allyl+O=acrolein+H
+	(862,1,1)
+	allyl+OH=acrolein+H+H
+	(866,1,1)
+	allyl+O2=acrolein+OH
+	(1032,1,1)
+	allyl+HO2=acrolein+H2O
+(63,72)-->(allyl,allyloxy)
+	(876,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+	(980,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+	(990,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+	(1034,1,1)
+	allyl+HO2=allyloxy+OH
+(63,75)-->(allyl,propionyl)
+	(798,1,1)
+	propanal+allyl=propionyl+C3H6
+(63,76)-->(allyl,npropyloxy)
+	(990,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(63,77)-->(allyl,ipropyloxy)
+	(980,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(63,78)-->(allyl,npropyloo)
+	(857,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+(63,80)-->(allyl,ipropyloo)
+	(859,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+(63,95)-->(allyl,prod_2)
+	(1030,1,1)
+	allyl+HO2=prod_2
+(64,14)-->(propen1yl,CO)
+	(890,1,1)
+	propen1yl+HCO=C3H6+CO
+(64,16)-->(propen1yl,HCO)
+	(882,1,1)
+	propen1yl+O=C2H4+HCO
+	(884,1,1)
+	propen1yl+OH=C2H4+HCO+H
+	(886,1,1)
+	propen1yl+O2=acetaldehyde+HCO
+	(888,1,1)
+	propen1yl+HO2=C2H4+HCO+OH
+(64,25)-->(propen1yl,CH3)
+	(843,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(881,1,1)
+	C2H2+CH3=propen1yl
+(64,36)-->(propen1yl,C2H2)
+	(881,1,1)
+	C2H2+CH3=propen1yl
+(64,38)-->(propen1yl,C2H4)
+	(882,1,1)
+	propen1yl+O=C2H4+HCO
+	(884,1,1)
+	propen1yl+OH=C2H4+HCO+H
+	(888,1,1)
+	propen1yl+HO2=C2H4+HCO+OH
+(64,44)-->(propen1yl,acetaldehyde)
+	(886,1,1)
+	propen1yl+O2=acetaldehyde+HCO
+(64,59)-->(propen1yl,C3H6)
+	(805,1,1)
+	C3H6=propen1yl+H
+	(817,1,1)
+	C3H6+O=propen1yl+OH
+	(823,1,1)
+	C3H6+HO2=propen1yl+H2O2
+	(833,1,1)
+	C3H6+H=propen1yl+H2
+	(837,1,1)
+	C3H6+O2=propen1yl+HO2
+	(843,1,1)
+	C3H6+CH3=propen1yl+CH4
+	(890,1,1)
+	propen1yl+HCO=C3H6+CO
+	(1017,1,1)
+	C3H6+OH=propen1yl+H2O
+(64,63)-->(propen1yl,allyl)
+	(873,1,1)
+	allyl=propen1yl
+(64,65)-->(propen1yl,propen2yl)
+	(895,1,1)
+	propen2yl=propen1yl
+(65,14)-->(propen2yl,CO)
+	(904,1,1)
+	propen2yl+HCO=C3H6+CO
+(65,17)-->(propen2yl,CH2O)
+	(900,1,1)
+	propen2yl+O2=acetyl+CH2O
+(65,25)-->(propen2yl,CH3)
+	(845,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(893,1,1)
+	C2H2+CH3=propen2yl
+	(896,1,1)
+	propen2yl+O=CH3+ketene
+	(898,1,1)
+	propen2yl+OH=CH3+ketene+H
+	(902,1,1)
+	propen2yl+HO2=CH3+ketene+OH
+(65,36)-->(propen2yl,C2H2)
+	(893,1,1)
+	C2H2+CH3=propen2yl
+(65,41)-->(propen2yl,ketene)
+	(896,1,1)
+	propen2yl+O=CH3+ketene
+	(898,1,1)
+	propen2yl+OH=CH3+ketene+H
+	(902,1,1)
+	propen2yl+HO2=CH3+ketene+OH
+(65,45)-->(propen2yl,acetyl)
+	(900,1,1)
+	propen2yl+O2=acetyl+CH2O
+(65,59)-->(propen2yl,C3H6)
+	(807,1,1)
+	C3H6=propen2yl+H
+	(819,1,1)
+	C3H6+O=propen2yl+OH
+	(825,1,1)
+	C3H6+HO2=propen2yl+H2O2
+	(831,1,1)
+	C3H6+H=propen2yl+H2
+	(839,1,1)
+	C3H6+O2=propen2yl+HO2
+	(845,1,1)
+	C3H6+CH3=propen2yl+CH4
+	(904,1,1)
+	propen2yl+HCO=C3H6+CO
+	(1019,1,1)
+	C3H6+OH=propen2yl+H2O
+(65,63)-->(propen2yl,allyl)
+	(871,1,1)
+	allyl=propen2yl
+(65,64)-->(propen2yl,propen1yl)
+	(894,1,1)
+	propen2yl=propen1yl
+(66,25)-->(acetone,CH3)
+	(592,1,1)
+	acetone(+M)=acetyl+CH3(+M)
+(66,26)-->(acetone,CH4)
+	(600,1,1)
+	acetone+CH3=propen2oxy+CH4
+(66,28)-->(acetone,CH3OOH)
+	(608,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(66,31)-->(acetone,CH3OH)
+	(602,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+(66,45)-->(acetone,acetyl)
+	(592,1,1)
+	acetone(+M)=acetyl+CH3(+M)
+(66,61)-->(acetone,ipropyl)
+	(613,1,1)
+	ipropyl+O=acetone+H
+(66,77)-->(acetone,ipropyloxy)
+	(614,1,1)
+	acetone+H=ipropyloxy
+	(617,1,1)
+	ipropyloxy+O2=acetone+HO2
+(66,106)-->(acetone,propen2oxy)
+	(594,1,1)
+	acetone+OH=propen2oxy+H2O
+	(596,1,1)
+	acetone+H=propen2oxy+H2
+	(598,1,1)
+	acetone+O=propen2oxy+OH
+	(600,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(602,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+	(604,1,1)
+	acetone+O2=propen2oxy+HO2
+	(606,1,1)
+	acetone+HO2=propen2oxy+H2O2
+	(608,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(67,17)-->(CH3OCH3,CH2O)
+	(703,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+(67,20)-->(CH3OCH3,formylooh)
+	(696,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+(67,25)-->(CH3OCH3,CH3)
+	(678,1,1)
+	CH3OCH3(+M)<=>CH3+CH3O(+M)
+(67,26)-->(CH3OCH3,CH4)
+	(690,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+(67,28)-->(CH3OCH3,CH3OOH)
+	(688,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+(67,30)-->(CH3OCH3,CH3O)
+	(678,1,1)
+	CH3OCH3(+M)<=>CH3+CH3O(+M)
+	(701,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(67,31)-->(CH3OCH3,CH3OH)
+	(694,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+(67,44)-->(CH3OCH3,acetaldehyde)
+	(705,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(67,68)-->(CH3OCH3,CH3OCH2)
+	(680,1,1)
+	CH3OCH3+OH<=>CH3OCH2+H2O
+	(682,1,1)
+	CH3OCH3+H<=>CH3OCH2+H2
+	(684,1,1)
+	CH3OCH3+O<=>CH3OCH2+OH
+	(686,1,1)
+	CH3OCH3+HO2<=>CH3OCH2+H2O2
+	(688,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+	(690,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(692,1,1)
+	CH3OCH3+O2=CH3OCH2+HO2
+	(694,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+	(696,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+	(701,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+	(703,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+	(705,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(68,16)-->(CH3OCH2,HCO)
+	(702,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+(68,17)-->(CH3OCH2,CH2O)
+	(698,1,1)
+	CH3OCH2=CH2O+CH3
+	(700,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+(68,19)-->(CH3OCH2,formylperoxy)
+	(697,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+(68,25)-->(CH3OCH2,CH3)
+	(691,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(698,1,1)
+	CH3OCH2=CH2O+CH3
+(68,27)-->(CH3OCH2,CH3OO)
+	(689,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+(68,30)-->(CH3OCH2,CH3O)
+	(695,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+(68,45)-->(CH3OCH2,acetyl)
+	(704,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(68,67)-->(CH3OCH2,CH3OCH3)
+	(681,1,1)
+	CH3OCH3+OH<=>CH3OCH2+H2O
+	(683,1,1)
+	CH3OCH3+H<=>CH3OCH2+H2
+	(685,1,1)
+	CH3OCH3+O<=>CH3OCH2+OH
+	(687,1,1)
+	CH3OCH3+HO2<=>CH3OCH2+H2O2
+	(689,1,1)
+	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH
+	(691,1,1)
+	CH3OCH3+CH3=CH3OCH2+CH4
+	(693,1,1)
+	CH3OCH3+O2=CH3OCH2+HO2
+	(695,1,1)
+	CH3OCH3+CH3O=CH3OCH2+CH3OH
+	(697,1,1)
+	CH3OCH3+formylperoxy=CH3OCH2+formylooh
+	(700,1,1)
+	CH3OCH2+CH3O=CH3OCH3+CH2O
+	(702,1,1)
+	CH3OCH2+CH2O=CH3OCH3+HCO
+	(704,1,1)
+	CH3OCH2+acetaldehyde=CH3OCH3+acetyl
+(69,16)-->(acrolein,HCO)
+	(619,1,1)
+	C2H3+HCO=acrolein
+	(624,1,1)
+	acrolein+H=C2H4+HCO
+	(626,1,1)
+	acrolein+O=ketene+HCO+H
+(69,17)-->(acrolein,CH2O)
+	(1065,1,1)
+	C2H3+CH2O=acrolein+H
+(69,26)-->(acrolein,CH4)
+	(634,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+(69,28)-->(acrolein,CH3OOH)
+	(640,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+(69,31)-->(acrolein,CH3OH)
+	(638,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+(69,37)-->(acrolein,C2H3)
+	(619,1,1)
+	C2H3+HCO=acrolein
+	(1065,1,1)
+	C2H3+CH2O=acrolein+H
+(69,38)-->(acrolein,C2H4)
+	(624,1,1)
+	acrolein+H=C2H4+HCO
+	(636,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+(69,41)-->(acrolein,ketene)
+	(626,1,1)
+	acrolein+O=ketene+HCO+H
+(69,63)-->(acrolein,allyl)
+	(861,1,1)
+	allyl+O=acrolein+H
+	(863,1,1)
+	allyl+OH=acrolein+H+H
+	(867,1,1)
+	allyl+O2=acrolein+OH
+	(1033,1,1)
+	allyl+HO2=acrolein+H2O
+(69,70)-->(acrolein,CH2CHCO)
+	(620,1,1)
+	acrolein+H=CH2CHCO+H2
+	(622,1,1)
+	acrolein+O=CH2CHCO+OH
+	(628,1,1)
+	acrolein+OH=CH2CHCO+H2O
+	(630,1,1)
+	acrolein+O2=CH2CHCO+HO2
+	(632,1,1)
+	acrolein+HO2=CH2CHCO+H2O2
+	(634,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+	(636,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(638,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+	(640,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+	(934,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+	(936,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(69,72)-->(acrolein,allyloxy)
+	(999,1,1)
+	allyloxy+O2=acrolein+HO2
+	(1047,1,1)
+	allyloxy=acrolein+H
+(69,79)-->(acrolein,npropylooh)
+	(934,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+(69,81)-->(acrolein,ipropylooh)
+	(936,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(69,95)-->(acrolein,prod_2)
+	(1037,1,1)
+	prod_2=acrolein+H2O
+(69,108)-->(acrolein,vinoxylmethyl)
+	(1055,1,1)
+	vinoxylmethyl=acrolein+H
+(69,109)-->(acrolein,formylethyl)
+	(1061,1,1)
+	formylethyl=acrolein+H
+(70,14)-->(CH2CHCO,CO)
+	(643,1,1)
+	C2H3+CO=CH2CHCO
+(70,15)-->(CH2CHCO,CO2)
+	(644,1,1)
+	CH2CHCO+O2=vinoxy+CO2
+	(646,1,1)
+	CH2CHCO+O=C2H3+CO2
+(70,25)-->(CH2CHCO,CH3)
+	(635,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+(70,27)-->(CH2CHCO,CH3OO)
+	(641,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+(70,30)-->(CH2CHCO,CH3O)
+	(639,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+(70,37)-->(CH2CHCO,C2H3)
+	(637,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(643,1,1)
+	C2H3+CO=CH2CHCO
+	(646,1,1)
+	CH2CHCO+O=C2H3+CO2
+(70,46)-->(CH2CHCO,vinoxy)
+	(644,1,1)
+	CH2CHCO+O2=vinoxy+CO2
+(70,69)-->(CH2CHCO,acrolein)
+	(621,1,1)
+	acrolein+H=CH2CHCO+H2
+	(623,1,1)
+	acrolein+O=CH2CHCO+OH
+	(629,1,1)
+	acrolein+OH=CH2CHCO+H2O
+	(631,1,1)
+	acrolein+O2=CH2CHCO+HO2
+	(633,1,1)
+	acrolein+HO2=CH2CHCO+H2O2
+	(635,1,1)
+	acrolein+CH3=CH2CHCO+CH4
+	(637,1,1)
+	acrolein+C2H3=CH2CHCO+C2H4
+	(639,1,1)
+	acrolein+CH3O=CH2CHCO+CH3OH
+	(641,1,1)
+	acrolein+CH3OO=CH2CHCO+CH3OOH
+	(935,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+	(937,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(70,78)-->(CH2CHCO,npropyloo)
+	(935,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+(70,80)-->(CH2CHCO,ipropyloo)
+	(937,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(71,59)-->(CH3CHCO,C3H6)
+	(813,1,1)
+	C3H6+O=CH3CHCO+H+H
+(72,16)-->(allyloxy,HCO)
+	(1048,1,1)
+	allyloxy=C2H4+HCO
+(72,17)-->(allyloxy,CH2O)
+	(1040,1,1)
+	allyloxy=C2H3+CH2O
+(72,27)-->(allyloxy,CH3OO)
+	(877,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+(72,37)-->(allyloxy,C2H3)
+	(1040,1,1)
+	allyloxy=C2H3+CH2O
+(72,38)-->(allyloxy,C2H4)
+	(1048,1,1)
+	allyloxy=C2H4+HCO
+(72,63)-->(allyloxy,allyl)
+	(877,1,1)
+	allyl+CH3OO=allyloxy+CH3O
+	(981,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+	(991,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+	(1035,1,1)
+	allyl+HO2=allyloxy+OH
+(72,69)-->(allyloxy,acrolein)
+	(998,1,1)
+	allyloxy+O2=acrolein+HO2
+	(1046,1,1)
+	allyloxy=acrolein+H
+(72,78)-->(allyloxy,npropyloo)
+	(991,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(72,80)-->(allyloxy,ipropyloo)
+	(981,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(72,95)-->(allyloxy,prod_2)
+	(1039,1,1)
+	prod_2=allyloxy+OH
+(72,108)-->(allyloxy,vinoxylmethyl)
+	(1042,1,1)
+	allyloxy=vinoxylmethyl
+(72,109)-->(allyloxy,formylethyl)
+	(1044,1,1)
+	allyloxy=formylethyl
+(73,59)-->(allyl-alcohol,C3H6)
+	(1021,1,1)
+	C3H6+OH=allyl-alcohol+H
+(74,16)-->(propanal,HCO)
+	(649,1,1)
+	C2H5+HCO=propanal
+(74,26)-->(propanal,CH4)
+	(656,1,1)
+	propanal+CH3=propionyl+CH4
+(74,28)-->(propanal,CH3OOH)
+	(662,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+(74,31)-->(propanal,CH3OH)
+	(660,1,1)
+	propanal+CH3O=propionyl+CH3OH
+(74,38)-->(propanal,C2H4)
+	(674,1,1)
+	propanal+C2H3=propionyl+C2H4
+(74,39)-->(propanal,C2H5)
+	(649,1,1)
+	C2H5+HCO=propanal
+(74,40)-->(propanal,C2H6)
+	(664,1,1)
+	propanal+C2H5=propionyl+C2H6
+(74,51)-->(propanal,CH3CH2OOH)
+	(668,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+(74,53)-->(propanal,ethanol)
+	(666,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(74,59)-->(propanal,C3H6)
+	(798,1,1)
+	propanal+allyl=propionyl+C3H6
+(74,62)-->(propanal,C3H8)
+	(794,1,1)
+	propanal+npropyl=propionyl+C3H8
+	(796,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(74,75)-->(propanal,propionyl)
+	(650,1,1)
+	propanal+H=propionyl+H2
+	(652,1,1)
+	propanal+O=propionyl+OH
+	(654,1,1)
+	propanal+OH=propionyl+H2O
+	(656,1,1)
+	propanal+CH3=propionyl+CH4
+	(658,1,1)
+	propanal+HO2=propionyl+H2O2
+	(660,1,1)
+	propanal+CH3O=propionyl+CH3OH
+	(662,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+	(664,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(666,1,1)
+	propanal+ethoxy=propionyl+ethanol
+	(668,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+	(670,1,1)
+	propanal+O2=propionyl+HO2
+	(672,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+	(674,1,1)
+	propanal+C2H3=propionyl+C2H4
+	(794,1,1)
+	propanal+npropyl=propionyl+C3H8
+	(796,1,1)
+	propanal+ipropyl=propionyl+C3H8
+	(798,1,1)
+	propanal+allyl=propionyl+C3H6
+	(954,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+	(956,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(74,76)-->(propanal,npropyloxy)
+	(994,1,1)
+	propanal+H=npropyloxy
+(74,79)-->(propanal,npropylooh)
+	(956,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(74,81)-->(propanal,ipropylooh)
+	(954,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(74,84)-->(propanal,CH3CO3H)
+	(672,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+(75,14)-->(propionyl,CO)
+	(677,1,1)
+	C2H5+CO=propionyl
+(75,25)-->(propionyl,CH3)
+	(657,1,1)
+	propanal+CH3=propionyl+CH4
+(75,27)-->(propionyl,CH3OO)
+	(663,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+(75,30)-->(propionyl,CH3O)
+	(661,1,1)
+	propanal+CH3O=propionyl+CH3OH
+(75,37)-->(propionyl,C2H3)
+	(675,1,1)
+	propanal+C2H3=propionyl+C2H4
+(75,39)-->(propionyl,C2H5)
+	(665,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(677,1,1)
+	C2H5+CO=propionyl
+(75,47)-->(propionyl,acetylperoxy)
+	(673,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+(75,49)-->(propionyl,ethoxy)
+	(667,1,1)
+	propanal+ethoxy=propionyl+ethanol
+(75,50)-->(propionyl,CH3CH2OO)
+	(669,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+(75,60)-->(propionyl,npropyl)
+	(795,1,1)
+	propanal+npropyl=propionyl+C3H8
+(75,61)-->(propionyl,ipropyl)
+	(797,1,1)
+	propanal+ipropyl=propionyl+C3H8
+(75,63)-->(propionyl,allyl)
+	(799,1,1)
+	propanal+allyl=propionyl+C3H6
+(75,74)-->(propionyl,propanal)
+	(651,1,1)
+	propanal+H=propionyl+H2
+	(653,1,1)
+	propanal+O=propionyl+OH
+	(655,1,1)
+	propanal+OH=propionyl+H2O
+	(657,1,1)
+	propanal+CH3=propionyl+CH4
+	(659,1,1)
+	propanal+HO2=propionyl+H2O2
+	(661,1,1)
+	propanal+CH3O=propionyl+CH3OH
+	(663,1,1)
+	propanal+CH3OO=propionyl+CH3OOH
+	(665,1,1)
+	propanal+C2H5=propionyl+C2H6
+	(667,1,1)
+	propanal+ethoxy=propionyl+ethanol
+	(669,1,1)
+	propanal+CH3CH2OO=propionyl+CH3CH2OOH
+	(671,1,1)
+	propanal+O2=propionyl+HO2
+	(673,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+	(675,1,1)
+	propanal+C2H3=propionyl+C2H4
+	(795,1,1)
+	propanal+npropyl=propionyl+C3H8
+	(797,1,1)
+	propanal+ipropyl=propionyl+C3H8
+	(799,1,1)
+	propanal+allyl=propionyl+C3H6
+	(955,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+	(957,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(75,78)-->(propionyl,npropyloo)
+	(957,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(75,80)-->(propionyl,ipropyloo)
+	(955,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(76,17)-->(npropyloxy,CH2O)
+	(993,1,1)
+	C2H5+CH2O=npropyloxy
+(76,25)-->(npropyloxy,CH3)
+	(983,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(76,27)-->(npropyloxy,CH3OO)
+	(911,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(943,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+(76,39)-->(npropyloxy,C2H5)
+	(985,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+	(993,1,1)
+	C2H5+CH2O=npropyloxy
+(76,47)-->(npropyloxy,acetylperoxy)
+	(961,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(76,50)-->(npropyloxy,CH3CH2OO)
+	(965,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+(76,60)-->(npropyloxy,npropyl)
+	(907,1,1)
+	npropyl+HO2=npropyloxy+OH
+	(911,1,1)
+	CH3OO+npropyl=CH3O+npropyloxy
+	(979,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+	(989,2,1)
+	npropyloo+npropyl=npropyloxy+npropyloxy
+(76,61)-->(npropyloxy,ipropyl)
+	(987,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(76,63)-->(npropyloxy,allyl)
+	(991,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(76,74)-->(npropyloxy,propanal)
+	(995,1,1)
+	propanal+H=npropyloxy
+(76,78)-->(npropyloxy,npropyloo)
+	(943,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(961,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+	(965,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+	(969,2,2)
+	npropyloo+npropyloo=O2+npropyloxy+npropyloxy
+	(971,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(983,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+	(985,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+	(987,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+	(989,2,1)
+	npropyloo+npropyl=npropyloxy+npropyloxy
+	(991,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(76,79)-->(npropyloxy,npropylooh)
+	(715,1,1)
+	npropylooh=npropyloxy+OH
+(76,80)-->(npropyloxy,ipropyloo)
+	(971,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(979,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+(77,25)-->(ipropyloxy,CH3)
+	(973,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(997,1,1)
+	CH3+acetaldehyde=ipropyloxy
+(77,27)-->(ipropyloxy,CH3OO)
+	(913,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(945,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+(77,39)-->(ipropyloxy,C2H5)
+	(975,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+(77,44)-->(ipropyloxy,acetaldehyde)
+	(997,1,1)
+	CH3+acetaldehyde=ipropyloxy
+(77,47)-->(ipropyloxy,acetylperoxy)
+	(959,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+(77,50)-->(ipropyloxy,CH3CH2OO)
+	(963,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+(77,60)-->(ipropyloxy,npropyl)
+	(979,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+(77,61)-->(ipropyloxy,ipropyl)
+	(909,1,1)
+	ipropyl+HO2=ipropyloxy+OH
+	(913,1,1)
+	CH3OO+ipropyl=CH3O+ipropyloxy
+	(977,2,1)
+	ipropyloo+ipropyl=ipropyloxy+ipropyloxy
+	(987,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(77,63)-->(ipropyloxy,allyl)
+	(981,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(77,66)-->(ipropyloxy,acetone)
+	(615,1,1)
+	acetone+H=ipropyloxy
+	(616,1,1)
+	ipropyloxy+O2=acetone+HO2
+(77,78)-->(ipropyloxy,npropyloo)
+	(971,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(987,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(77,80)-->(ipropyloxy,ipropyloo)
+	(945,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+	(959,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+	(963,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(967,2,2)
+	ipropyloo+ipropyloo=O2+ipropyloxy+ipropyloxy
+	(971,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(973,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(975,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+	(977,2,1)
+	ipropyloo+ipropyl=ipropyloxy+ipropyloxy
+	(979,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+	(981,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(77,81)-->(ipropyloxy,ipropylooh)
+	(717,1,1)
+	ipropylooh=ipropyloxy+OH
+(78,16)-->(npropyloo,HCO)
+	(914,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+(78,25)-->(npropyloo,CH3)
+	(938,1,1)
+	CH4+npropyloo=CH3+npropylooh
+(78,29)-->(npropyloo,CH2OH)
+	(930,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+(78,30)-->(npropyloo,CH3O)
+	(942,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(982,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+(78,37)-->(npropyloo,C2H3)
+	(926,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+(78,39)-->(npropyloo,C2H5)
+	(952,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(78,45)-->(npropyloo,acetyl)
+	(916,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+(78,48)-->(npropyloo,acetyloxy)
+	(960,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+(78,49)-->(npropyloo,ethoxy)
+	(964,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+	(984,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+(78,59)-->(npropyloo,C3H6)
+	(1082,1,1)
+	npropyloo=HO2+C3H6
+(78,60)-->(npropyloo,npropyl)
+	(706,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(1069,1,1)
+	O2+npropyl=npropyloo
+(78,61)-->(npropyloo,ipropyl)
+	(710,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+(78,63)-->(npropyloo,allyl)
+	(856,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+(78,70)-->(npropyloo,CH2CHCO)
+	(934,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+(78,72)-->(npropyloo,allyloxy)
+	(990,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(78,75)-->(npropyloo,propionyl)
+	(956,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(78,76)-->(npropyloo,npropyloxy)
+	(942,1,1)
+	npropyloo+CH3OO=npropyloxy+CH3O+O2
+	(960,1,1)
+	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2
+	(964,1,1)
+	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2
+	(968,2,2)
+	npropyloo+npropyloo=O2+npropyloxy+npropyloxy
+	(970,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(982,1,1)
+	npropyloo+CH3=npropyloxy+CH3O
+	(984,1,1)
+	npropyloo+C2H5=npropyloxy+ethoxy
+	(986,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+	(988,1,2)
+	npropyloo+npropyl=npropyloxy+npropyloxy
+	(990,1,1)
+	npropyloo+allyl=npropyloxy+allyloxy
+(78,77)-->(npropyloo,ipropyloxy)
+	(970,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(986,1,1)
+	npropyloo+ipropyl=npropyloxy+ipropyloxy
+(78,79)-->(npropyloo,npropylooh)
+	(706,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(710,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+	(856,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+	(914,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+	(916,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+	(922,1,1)
+	npropyloo+HO2=npropylooh+O2
+	(926,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+	(930,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+	(934,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+	(938,1,1)
+	CH4+npropyloo=CH3+npropylooh
+	(946,1,1)
+	H2+npropyloo=H+npropylooh
+	(952,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+	(956,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(78,86)-->(npropyloo,propoxide)
+	(1084,1,1)
+	npropyloo=OH+propoxide
+(78,87)-->(npropyloo,QOOH_1)
+	(1080,1,1)
+	npropyloo=QOOH_1
+(78,88)-->(npropyloo,QOOH_2)
+	(1078,1,1)
+	npropyloo=QOOH_2
+(79,17)-->(npropylooh,CH2O)
+	(915,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+(79,26)-->(npropylooh,CH4)
+	(939,1,1)
+	CH4+npropyloo=CH3+npropylooh
+(79,31)-->(npropylooh,CH3OH)
+	(931,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+(79,38)-->(npropylooh,C2H4)
+	(927,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+(79,40)-->(npropylooh,C2H6)
+	(953,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+(79,44)-->(npropylooh,acetaldehyde)
+	(917,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+(79,59)-->(npropylooh,C3H6)
+	(857,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+(79,62)-->(npropylooh,C3H8)
+	(707,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(711,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+(79,69)-->(npropylooh,acrolein)
+	(935,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+(79,74)-->(npropylooh,propanal)
+	(957,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(79,76)-->(npropylooh,npropyloxy)
+	(714,1,1)
+	npropylooh=npropyloxy+OH
+(79,78)-->(npropylooh,npropyloo)
+	(707,1,1)
+	npropyloo+C3H8=npropylooh+npropyl
+	(711,1,1)
+	npropyloo+C3H8=npropylooh+ipropyl
+	(857,1,1)
+	C3H6+npropyloo=allyl+npropylooh
+	(915,1,1)
+	npropyloo+CH2O=npropylooh+HCO
+	(917,1,1)
+	npropyloo+acetaldehyde=npropylooh+acetyl
+	(923,1,1)
+	npropyloo+HO2=npropylooh+O2
+	(927,1,1)
+	C2H4+npropyloo=C2H3+npropylooh
+	(931,1,1)
+	CH3OH+npropyloo=CH2OH+npropylooh
+	(935,1,1)
+	acrolein+npropyloo=CH2CHCO+npropylooh
+	(939,1,1)
+	CH4+npropyloo=CH3+npropylooh
+	(947,1,1)
+	H2+npropyloo=H+npropylooh
+	(953,1,1)
+	npropyloo+C2H6=npropylooh+C2H5
+	(957,1,1)
+	npropyloo+propanal=npropylooh+propionyl
+(80,16)-->(ipropyloo,HCO)
+	(918,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+(80,25)-->(ipropyloo,CH3)
+	(940,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+(80,29)-->(ipropyloo,CH2OH)
+	(932,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(80,30)-->(ipropyloo,CH3O)
+	(944,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+	(972,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+(80,37)-->(ipropyloo,C2H3)
+	(928,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+(80,39)-->(ipropyloo,C2H5)
+	(950,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+(80,45)-->(ipropyloo,acetyl)
+	(920,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(80,48)-->(ipropyloo,acetyloxy)
+	(958,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+(80,49)-->(ipropyloo,ethoxy)
+	(962,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(974,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+(80,59)-->(ipropyloo,C3H6)
+	(1106,1,1)
+	ipropyloo=HO2+C3H6
+(80,60)-->(ipropyloo,npropyl)
+	(708,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+(80,61)-->(ipropyloo,ipropyl)
+	(712,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(1097,1,1)
+	O2+ipropyl=ipropyloo
+(80,63)-->(ipropyloo,allyl)
+	(858,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+(80,70)-->(ipropyloo,CH2CHCO)
+	(936,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(80,72)-->(ipropyloo,allyloxy)
+	(980,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(80,75)-->(ipropyloo,propionyl)
+	(954,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(80,76)-->(ipropyloo,npropyloxy)
+	(970,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(978,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+(80,77)-->(ipropyloo,ipropyloxy)
+	(944,1,1)
+	ipropyloo+CH3OO=ipropyloxy+CH3O+O2
+	(958,1,1)
+	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2
+	(962,1,1)
+	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2
+	(966,2,2)
+	ipropyloo+ipropyloo=O2+ipropyloxy+ipropyloxy
+	(970,1,1)
+	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2
+	(972,1,1)
+	ipropyloo+CH3=ipropyloxy+CH3O
+	(974,1,1)
+	ipropyloo+C2H5=ipropyloxy+ethoxy
+	(976,1,2)
+	ipropyloo+ipropyl=ipropyloxy+ipropyloxy
+	(978,1,1)
+	ipropyloo+npropyl=ipropyloxy+npropyloxy
+	(980,1,1)
+	ipropyloo+allyl=ipropyloxy+allyloxy
+(80,81)-->(ipropyloo,ipropylooh)
+	(708,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(712,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(858,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+	(918,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+	(920,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+	(924,1,1)
+	ipropyloo+HO2=ipropylooh+O2
+	(928,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+	(932,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+	(936,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+	(940,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+	(948,1,1)
+	H2+ipropyloo=H+ipropylooh
+	(950,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+	(954,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(80,86)-->(ipropyloo,propoxide)
+	(1108,1,1)
+	ipropyloo=OH+propoxide
+(80,89)-->(ipropyloo,QOOH_3)
+	(1104,1,1)
+	ipropyloo=QOOH_3
+(81,17)-->(ipropylooh,CH2O)
+	(919,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+(81,26)-->(ipropylooh,CH4)
+	(941,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+(81,31)-->(ipropylooh,CH3OH)
+	(933,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+(81,38)-->(ipropylooh,C2H4)
+	(929,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+(81,40)-->(ipropylooh,C2H6)
+	(951,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+(81,44)-->(ipropylooh,acetaldehyde)
+	(921,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+(81,59)-->(ipropylooh,C3H6)
+	(859,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+(81,62)-->(ipropylooh,C3H8)
+	(709,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(713,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+(81,69)-->(ipropylooh,acrolein)
+	(937,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+(81,74)-->(ipropylooh,propanal)
+	(955,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(81,77)-->(ipropylooh,ipropyloxy)
+	(716,1,1)
+	ipropylooh=ipropyloxy+OH
+(81,80)-->(ipropylooh,ipropyloo)
+	(709,1,1)
+	ipropyloo+C3H8=ipropylooh+npropyl
+	(713,1,1)
+	ipropyloo+C3H8=ipropylooh+ipropyl
+	(859,1,1)
+	C3H6+ipropyloo=allyl+ipropylooh
+	(919,1,1)
+	ipropyloo+CH2O=ipropylooh+HCO
+	(921,1,1)
+	ipropyloo+acetaldehyde=ipropylooh+acetyl
+	(925,1,1)
+	ipropyloo+HO2=ipropylooh+O2
+	(929,1,1)
+	C2H4+ipropyloo=C2H3+ipropylooh
+	(933,1,1)
+	CH3OH+ipropyloo=CH2OH+ipropylooh
+	(937,1,1)
+	acrolein+ipropyloo=CH2CHCO+ipropylooh
+	(941,1,1)
+	CH4+ipropyloo=CH3+ipropylooh
+	(949,1,1)
+	H2+ipropyloo=H+ipropylooh
+	(951,1,1)
+	ipropyloo+C2H6=ipropylooh+C2H5
+	(955,1,1)
+	ipropyloo+propanal=ipropylooh+propionyl
+(82,17)-->(propen1ol,CH2O)
+	(1000,1,1)
+	propen1ol=C2H4+CH2O
+	(1002,1,1)
+	propen1ol+OH=CH2O+C2H3+H2O
+	(1004,1,1)
+	propen1ol+H=CH2O+C2H3+H2
+	(1006,1,1)
+	propen1ol+O=CH2O+C2H3+OH
+	(1008,1,1)
+	propen1ol+HO2=CH2O+C2H3+H2O2
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(82,26)-->(propen1ol,CH4)
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(82,28)-->(propen1ol,CH3OOH)
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+(82,37)-->(propen1ol,C2H3)
+	(1002,1,1)
+	propen1ol+OH=CH2O+C2H3+H2O
+	(1004,1,1)
+	propen1ol+H=CH2O+C2H3+H2
+	(1006,1,1)
+	propen1ol+O=CH2O+C2H3+OH
+	(1008,1,1)
+	propen1ol+HO2=CH2O+C2H3+H2O2
+	(1010,1,1)
+	propen1ol+CH3OO=CH2O+C2H3+CH3OOH
+	(1012,1,1)
+	propen1ol+CH3=CH2O+C2H3+CH4
+(82,38)-->(propen1ol,C2H4)
+	(1000,1,1)
+	propen1ol=C2H4+CH2O
+(82,59)-->(propen1ol,C3H6)
+	(853,1,1)
+	C3H6+HO2=propen1ol+OH
+	(1025,1,1)
+	C3H6+OH=propen1ol+H
+(83,59)-->(propen2ol,C3H6)
+	(1027,1,1)
+	C3H6+OH=propen2ol+H
+(84,17)-->(CH3CO3H,CH2O)
+	(443,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+(84,26)-->(CH3CO3H,CH4)
+	(441,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+(84,38)-->(CH3CO3H,C2H4)
+	(495,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+(84,40)-->(CH3CO3H,C2H6)
+	(445,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+(84,44)-->(CH3CO3H,acetaldehyde)
+	(423,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+(84,47)-->(CH3CO3H,acetylperoxy)
+	(423,1,1)
+	acetaldehyde+acetylperoxy=acetyl+CH3CO3H
+	(437,1,1)
+	acetylperoxy+HO2=CH3CO3H+O2
+	(439,1,1)
+	H2O2+acetylperoxy=HO2+CH3CO3H
+	(441,1,1)
+	CH4+acetylperoxy=CH3+CH3CO3H
+	(443,1,1)
+	CH2O+acetylperoxy=HCO+CH3CO3H
+	(445,1,1)
+	C2H6+acetylperoxy=C2H5+CH3CO3H
+	(495,1,1)
+	C2H4+acetylperoxy=C2H3+CH3CO3H
+	(673,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+	(775,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(777,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+	(849,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(84,48)-->(CH3CO3H,acetyloxy)
+	(446,1,1)
+	CH3CO3H=acetyloxy+OH
+(84,59)-->(CH3CO3H,C3H6)
+	(849,1,1)
+	C3H6+acetylperoxy=allyl+CH3CO3H
+(84,62)-->(CH3CO3H,C3H8)
+	(775,1,1)
+	C3H8+acetylperoxy=ipropyl+CH3CO3H
+	(777,1,1)
+	C3H8+acetylperoxy=npropyl+CH3CO3H
+(84,74)-->(CH3CO3H,propanal)
+	(673,1,1)
+	propanal+acetylperoxy=propionyl+CH3CO3H
+(85,17)-->(O2C2H4OH,CH2O)
+	(588,1,2)
+	O2C2H4OH=OH+CH2O+CH2O
+(85,54)-->(O2C2H4OH,CH2CH2OH)
+	(586,1,1)
+	O2C2H4OH=CH2CH2OH+O2
+(86,59)-->(propoxide,C3H6)
+	(1115,1,1)
+	HO2+C3H6=OH+propoxide
+(86,60)-->(propoxide,npropyl)
+	(1077,1,1)
+	O2+npropyl=OH+propoxide
+(86,61)-->(propoxide,ipropyl)
+	(1103,1,1)
+	O2+ipropyl=OH+propoxide
+(86,78)-->(propoxide,npropyloo)
+	(1085,1,1)
+	npropyloo=OH+propoxide
+(86,80)-->(propoxide,ipropyloo)
+	(1109,1,1)
+	ipropyloo=OH+propoxide
+(86,87)-->(propoxide,QOOH_1)
+	(1095,1,1)
+	QOOH_1=OH+propoxide
+(86,88)-->(propoxide,QOOH_2)
+	(1091,1,1)
+	QOOH_2=OH+propoxide
+(86,89)-->(propoxide,QOOH_3)
+	(1113,1,1)
+	QOOH_3=OH+propoxide
+(87,59)-->(QOOH_1,C3H6)
+	(1092,1,1)
+	QOOH_1=HO2+C3H6
+(87,60)-->(QOOH_1,npropyl)
+	(1073,1,1)
+	O2+npropyl=QOOH_1
+(87,78)-->(QOOH_1,npropyloo)
+	(1081,1,1)
+	npropyloo=QOOH_1
+(87,86)-->(QOOH_1,propoxide)
+	(1094,1,1)
+	QOOH_1=OH+propoxide
+(87,88)-->(QOOH_1,QOOH_2)
+	(1087,1,1)
+	QOOH_2=QOOH_1
+(87,90)-->(QOOH_1,well_1)
+	(1116,1,1)
+	O2+QOOH_1=well_1
+(87,95)-->(QOOH_1,prod_2)
+	(1120,1,1)
+	O2+QOOH_1=HO2+prod_2
+(87,96)-->(QOOH_1,prod_3)
+	(1122,1,1)
+	O2+QOOH_1=OH+prod_3
+(87,101)-->(QOOH_1,frag_1)
+	(1118,1,1)
+	O2+QOOH_1=OH+OH+frag_1
+(88,59)-->(QOOH_2,C3H6)
+	(1088,1,1)
+	QOOH_2=HO2+C3H6
+(88,60)-->(QOOH_2,npropyl)
+	(1071,1,1)
+	O2+npropyl=QOOH_2
+(88,78)-->(QOOH_2,npropyloo)
+	(1079,1,1)
+	npropyloo=QOOH_2
+(88,86)-->(QOOH_2,propoxide)
+	(1090,1,1)
+	QOOH_2=OH+propoxide
+(88,87)-->(QOOH_2,QOOH_1)
+	(1086,1,1)
+	QOOH_2=QOOH_1
+(88,89)-->(QOOH_2,QOOH_3)
+	(1142,1,1)
+	O2+QOOH_2=O2+QOOH_3
+(88,91)-->(QOOH_2,well_2)
+	(1124,1,1)
+	O2+QOOH_2=well_2
+(88,92)-->(QOOH_2,well_3)
+	(1126,1,1)
+	O2+QOOH_2=well_3
+(88,93)-->(QOOH_2,well_5)
+	(1128,1,1)
+	O2+QOOH_2=well_5
+(88,95)-->(QOOH_2,prod_2)
+	(1136,1,1)
+	O2+QOOH_2=HO2+prod_2
+(88,96)-->(QOOH_2,prod_3)
+	(1130,1,1)
+	O2+QOOH_2=OH+prod_3
+(88,99)-->(QOOH_2,prod_6)
+	(1138,1,1)
+	O2+QOOH_2=HO2+prod_6
+(88,100)-->(QOOH_2,prod_7)
+	(1140,1,1)
+	O2+QOOH_2=HO2+prod_7
+(88,103)-->(QOOH_2,frag_4)
+	(1132,1,1)
+	O2+QOOH_2=OH+OH+frag_4
+(88,104)-->(QOOH_2,frag_5)
+	(1134,1,1)
+	O2+QOOH_2=OH+OH+frag_5
+(89,59)-->(QOOH_3,C3H6)
+	(1110,1,1)
+	QOOH_3=HO2+C3H6
+(89,61)-->(QOOH_3,ipropyl)
+	(1099,1,1)
+	O2+ipropyl=QOOH_3
+(89,80)-->(QOOH_3,ipropyloo)
+	(1105,1,1)
+	ipropyloo=QOOH_3
+(89,86)-->(QOOH_3,propoxide)
+	(1112,1,1)
+	QOOH_3=OH+propoxide
+(89,88)-->(QOOH_3,QOOH_2)
+	(1143,1,1)
+	O2+QOOH_2=O2+QOOH_3
+(89,91)-->(QOOH_3,well_2)
+	(1144,1,1)
+	O2+QOOH_3=well_2
+(89,92)-->(QOOH_3,well_3)
+	(1146,1,1)
+	O2+QOOH_3=well_3
+(89,93)-->(QOOH_3,well_5)
+	(1148,1,1)
+	O2+QOOH_3=well_5
+(89,95)-->(QOOH_3,prod_2)
+	(1156,1,1)
+	O2+QOOH_3=HO2+prod_2
+(89,96)-->(QOOH_3,prod_3)
+	(1150,1,1)
+	O2+QOOH_3=OH+prod_3
+(89,99)-->(QOOH_3,prod_6)
+	(1158,1,1)
+	O2+QOOH_3=HO2+prod_6
+(89,100)-->(QOOH_3,prod_7)
+	(1160,1,1)
+	O2+QOOH_3=HO2+prod_7
+(89,103)-->(QOOH_3,frag_4)
+	(1152,1,1)
+	O2+QOOH_3=OH+OH+frag_4
+(89,104)-->(QOOH_3,frag_5)
+	(1154,1,1)
+	O2+QOOH_3=OH+OH+frag_5
+(90,87)-->(well_1,QOOH_1)
+	(1117,1,1)
+	O2+QOOH_1=well_1
+(90,94)-->(well_1,prod_1)
+	(1162,1,1)
+	well_1=OH+prod_1
+(90,95)-->(well_1,prod_2)
+	(1164,1,1)
+	well_1=HO2+prod_2
+(90,96)-->(well_1,prod_3)
+	(1166,1,1)
+	well_1=OH+prod_3
+(91,88)-->(well_2,QOOH_2)
+	(1125,1,1)
+	O2+QOOH_2=well_2
+(91,89)-->(well_2,QOOH_3)
+	(1145,1,1)
+	O2+QOOH_3=well_2
+(91,92)-->(well_2,well_3)
+	(1168,1,1)
+	well_2=well_3
+(91,93)-->(well_2,well_5)
+	(1170,1,1)
+	well_2=well_5
+(91,95)-->(well_2,prod_2)
+	(1178,1,1)
+	well_2=HO2+prod_2
+(91,96)-->(well_2,prod_3)
+	(1172,1,1)
+	well_2=OH+prod_3
+(91,97)-->(well_2,prod_4)
+	(1174,1,1)
+	well_2=OH+prod_4
+(91,98)-->(well_2,prod_5)
+	(1176,1,1)
+	well_2=OH+prod_5
+(91,99)-->(well_2,prod_6)
+	(1180,1,1)
+	well_2=HO2+prod_6
+(91,100)-->(well_2,prod_7)
+	(1182,1,1)
+	well_2=HO2+prod_7
+(92,88)-->(well_3,QOOH_2)
+	(1127,1,1)
+	O2+QOOH_2=well_3
+(92,89)-->(well_3,QOOH_3)
+	(1147,1,1)
+	O2+QOOH_3=well_3
+(92,91)-->(well_3,well_2)
+	(1169,1,1)
+	well_2=well_3
+(92,93)-->(well_3,well_5)
+	(1184,1,1)
+	well_3=well_5
+(92,95)-->(well_3,prod_2)
+	(1192,1,1)
+	well_3=HO2+prod_2
+(92,96)-->(well_3,prod_3)
+	(1186,1,1)
+	well_3=OH+prod_3
+(92,97)-->(well_3,prod_4)
+	(1188,1,1)
+	well_3=OH+prod_4
+(92,98)-->(well_3,prod_5)
+	(1190,1,1)
+	well_3=OH+prod_5
+(92,99)-->(well_3,prod_6)
+	(1194,1,1)
+	well_3=HO2+prod_6
+(92,100)-->(well_3,prod_7)
+	(1196,1,1)
+	well_3=HO2+prod_7
+(93,88)-->(well_5,QOOH_2)
+	(1129,1,1)
+	O2+QOOH_2=well_5
+(93,89)-->(well_5,QOOH_3)
+	(1149,1,1)
+	O2+QOOH_3=well_5
+(93,91)-->(well_5,well_2)
+	(1171,1,1)
+	well_2=well_5
+(93,92)-->(well_5,well_3)
+	(1185,1,1)
+	well_3=well_5
+(93,95)-->(well_5,prod_2)
+	(1204,1,1)
+	well_5=HO2+prod_2
+(93,96)-->(well_5,prod_3)
+	(1198,1,1)
+	well_5=OH+prod_3
+(93,97)-->(well_5,prod_4)
+	(1200,1,1)
+	well_5=OH+prod_4
+(93,98)-->(well_5,prod_5)
+	(1202,1,1)
+	well_5=OH+prod_5
+(93,99)-->(well_5,prod_6)
+	(1206,1,1)
+	well_5=HO2+prod_6
+(93,100)-->(well_5,prod_7)
+	(1208,1,1)
+	well_5=HO2+prod_7
+(94,90)-->(prod_1,well_1)
+	(1163,1,1)
+	well_1=OH+prod_1
+(94,101)-->(prod_1,frag_1)
+	(1214,1,1)
+	prod_1=frag_1+OH
+(95,63)-->(prod_2,allyl)
+	(1031,1,1)
+	allyl+HO2=prod_2
+(95,69)-->(prod_2,acrolein)
+	(1036,1,1)
+	prod_2=acrolein+H2O
+(95,72)-->(prod_2,allyloxy)
+	(1038,1,1)
+	prod_2=allyloxy+OH
+(95,87)-->(prod_2,QOOH_1)
+	(1121,1,1)
+	O2+QOOH_1=HO2+prod_2
+(95,88)-->(prod_2,QOOH_2)
+	(1137,1,1)
+	O2+QOOH_2=HO2+prod_2
+(95,89)-->(prod_2,QOOH_3)
+	(1157,1,1)
+	O2+QOOH_3=HO2+prod_2
+(95,90)-->(prod_2,well_1)
+	(1165,1,1)
+	well_1=HO2+prod_2
+(95,91)-->(prod_2,well_2)
+	(1179,1,1)
+	well_2=HO2+prod_2
+(95,92)-->(prod_2,well_3)
+	(1193,1,1)
+	well_3=HO2+prod_2
+(95,93)-->(prod_2,well_5)
+	(1205,1,1)
+	well_5=HO2+prod_2
+(96,87)-->(prod_3,QOOH_1)
+	(1123,1,1)
+	O2+QOOH_1=OH+prod_3
+(96,88)-->(prod_3,QOOH_2)
+	(1131,1,1)
+	O2+QOOH_2=OH+prod_3
+(96,89)-->(prod_3,QOOH_3)
+	(1151,1,1)
+	O2+QOOH_3=OH+prod_3
+(96,90)-->(prod_3,well_1)
+	(1167,1,1)
+	well_1=OH+prod_3
+(96,91)-->(prod_3,well_2)
+	(1173,1,1)
+	well_2=OH+prod_3
+(96,92)-->(prod_3,well_3)
+	(1187,1,1)
+	well_3=OH+prod_3
+(96,93)-->(prod_3,well_5)
+	(1199,1,1)
+	well_5=OH+prod_3
+(96,102)-->(prod_3,frag_3)
+	(1216,1,1)
+	prod_3=frag_3+OH
+(97,91)-->(prod_4,well_2)
+	(1175,1,1)
+	well_2=OH+prod_4
+(97,92)-->(prod_4,well_3)
+	(1189,1,1)
+	well_3=OH+prod_4
+(97,93)-->(prod_4,well_5)
+	(1201,1,1)
+	well_5=OH+prod_4
+(97,103)-->(prod_4,frag_4)
+	(1218,1,1)
+	prod_4=frag_4+OH
+(98,91)-->(prod_5,well_2)
+	(1177,1,1)
+	well_2=OH+prod_5
+(98,92)-->(prod_5,well_3)
+	(1191,1,1)
+	well_3=OH+prod_5
+(98,93)-->(prod_5,well_5)
+	(1203,1,1)
+	well_5=OH+prod_5
+(98,104)-->(prod_5,frag_5)
+	(1220,1,1)
+	prod_5=frag_5+OH
+(99,88)-->(prod_6,QOOH_2)
+	(1139,1,1)
+	O2+QOOH_2=HO2+prod_6
+(99,89)-->(prod_6,QOOH_3)
+	(1159,1,1)
+	O2+QOOH_3=HO2+prod_6
+(99,91)-->(prod_6,well_2)
+	(1181,1,1)
+	well_2=HO2+prod_6
+(99,92)-->(prod_6,well_3)
+	(1195,1,1)
+	well_3=HO2+prod_6
+(99,93)-->(prod_6,well_5)
+	(1207,1,1)
+	well_5=HO2+prod_6
+(99,105)-->(prod_6,propen1oxy)
+	(1210,1,1)
+	prod_6=propen1oxy+OH
+(100,88)-->(prod_7,QOOH_2)
+	(1141,1,1)
+	O2+QOOH_2=HO2+prod_7
+(100,89)-->(prod_7,QOOH_3)
+	(1161,1,1)
+	O2+QOOH_3=HO2+prod_7
+(100,91)-->(prod_7,well_2)
+	(1183,1,1)
+	well_2=HO2+prod_7
+(100,92)-->(prod_7,well_3)
+	(1197,1,1)
+	well_3=HO2+prod_7
+(100,93)-->(prod_7,well_5)
+	(1209,1,1)
+	well_5=HO2+prod_7
+(100,106)-->(prod_7,propen2oxy)
+	(1212,1,1)
+	prod_7=propen2oxy+OH
+(101,17)-->(frag_1,CH2O)
+	(1222,1,1)
+	frag_1=vinoxy+CH2O
+(101,46)-->(frag_1,vinoxy)
+	(1222,1,1)
+	frag_1=vinoxy+CH2O
+(101,87)-->(frag_1,QOOH_1)
+	(1119,1,1)
+	O2+QOOH_1=OH+OH+frag_1
+(101,94)-->(frag_1,prod_1)
+	(1215,1,1)
+	prod_1=frag_1+OH
+(102,96)-->(frag_3,prod_3)
+	(1217,1,1)
+	prod_3=frag_3+OH
+(103,17)-->(frag_4,CH2O)
+	(1224,1,1)
+	frag_4=acetyl+CH2O
+(103,45)-->(frag_4,acetyl)
+	(1224,1,1)
+	frag_4=acetyl+CH2O
+(103,88)-->(frag_4,QOOH_2)
+	(1133,1,1)
+	O2+QOOH_2=OH+OH+frag_4
+(103,89)-->(frag_4,QOOH_3)
+	(1153,1,1)
+	O2+QOOH_3=OH+OH+frag_4
+(103,97)-->(frag_4,prod_4)
+	(1219,1,1)
+	prod_4=frag_4+OH
+(104,16)-->(frag_5,HCO)
+	(1228,1,1)
+	frag_5=HCO+acetaldehyde
+(104,25)-->(frag_5,CH3)
+	(1226,1,1)
+	frag_5=CH3+glyoxal
+(104,44)-->(frag_5,acetaldehyde)
+	(1228,1,1)
+	frag_5=HCO+acetaldehyde
+(104,88)-->(frag_5,QOOH_2)
+	(1135,1,1)
+	O2+QOOH_2=OH+OH+frag_5
+(104,89)-->(frag_5,QOOH_3)
+	(1155,1,1)
+	O2+QOOH_3=OH+OH+frag_5
+(104,98)-->(frag_5,prod_5)
+	(1221,1,1)
+	prod_5=frag_5+OH
+(104,107)-->(frag_5,glyoxal)
+	(1226,1,1)
+	frag_5=CH3+glyoxal
+(105,99)-->(propen1oxy,prod_6)
+	(1211,1,1)
+	prod_6=propen1oxy+OH
+(106,25)-->(propen2oxy,CH3)
+	(601,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(610,1,1)
+	propen2oxy=ketene+CH3
+(106,27)-->(propen2oxy,CH3OO)
+	(609,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(106,30)-->(propen2oxy,CH3O)
+	(603,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+(106,41)-->(propen2oxy,ketene)
+	(610,1,1)
+	propen2oxy=ketene+CH3
+(106,66)-->(propen2oxy,acetone)
+	(595,1,1)
+	acetone+OH=propen2oxy+H2O
+	(597,1,1)
+	acetone+H=propen2oxy+H2
+	(599,1,1)
+	acetone+O=propen2oxy+OH
+	(601,1,1)
+	acetone+CH3=propen2oxy+CH4
+	(603,1,1)
+	acetone+CH3O=propen2oxy+CH3OH
+	(605,1,1)
+	acetone+O2=propen2oxy+HO2
+	(607,1,1)
+	acetone+HO2=propen2oxy+H2O2
+	(609,1,1)
+	acetone+CH3OO=propen2oxy+CH3OOH
+(106,100)-->(propen2oxy,prod_7)
+	(1213,1,1)
+	prod_7=propen2oxy+OH
+(107,104)-->(glyoxal,frag_5)
+	(1227,1,1)
+	frag_5=CH3+glyoxal
+(108,16)-->(vinoxylmethyl,HCO)
+	(1056,1,1)
+	vinoxylmethyl=C2H4+HCO
+(108,17)-->(vinoxylmethyl,CH2O)
+	(1050,1,1)
+	vinoxylmethyl=C2H3+CH2O
+(108,37)-->(vinoxylmethyl,C2H3)
+	(1050,1,1)
+	vinoxylmethyl=C2H3+CH2O
+(108,38)-->(vinoxylmethyl,C2H4)
+	(1056,1,1)
+	vinoxylmethyl=C2H4+HCO
+(108,69)-->(vinoxylmethyl,acrolein)
+	(1054,1,1)
+	vinoxylmethyl=acrolein+H
+(108,72)-->(vinoxylmethyl,allyloxy)
+	(1043,1,1)
+	allyloxy=vinoxylmethyl
+(108,109)-->(vinoxylmethyl,formylethyl)
+	(1052,1,1)
+	vinoxylmethyl=formylethyl
+(109,16)-->(formylethyl,HCO)
+	(1062,1,1)
+	formylethyl=C2H4+HCO
+(109,17)-->(formylethyl,CH2O)
+	(1058,1,1)
+	formylethyl=C2H3+CH2O
+(109,37)-->(formylethyl,C2H3)
+	(1058,1,1)
+	formylethyl=C2H3+CH2O
+(109,38)-->(formylethyl,C2H4)
+	(1062,1,1)
+	formylethyl=C2H4+HCO
+(109,69)-->(formylethyl,acrolein)
+	(1060,1,1)
+	formylethyl=acrolein+H
+(109,72)-->(formylethyl,allyloxy)
+	(1045,1,1)
+	allyloxy=formylethyl
+(109,108)-->(formylethyl,vinoxylmethyl)
+	(1053,1,1)
+	vinoxylmethyl=formylethyl

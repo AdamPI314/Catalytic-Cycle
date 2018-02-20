@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="1" title="name" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="weight" type="double" />
+    </attributes>
+    <nodes>
+      <node id="ipropyloo" label="ipropyloo">
+        <attvalues>
+          <attvalue for="0" value="1.0" />
+        </attvalues>
+      </node>
+      <node id="vinoxy" label="vinoxy">
+        <attvalues>
+          <attvalue for="0" value="1.8540467467625568" />
+        </attvalues>
+      </node>
+      <node id="frag_1" label="frag_1">
+        <attvalues>
+          <attvalue for="0" value="4.5542235041735415" />
+        </attvalues>
+      </node>
+      <node id="well_1" label="well_1">
+        <attvalues>
+          <attvalue for="0" value="5.0" />
+        </attvalues>
+      </node>
+      <node id="CO" label="CO">
+        <attvalues>
+          <attvalue for="0" value="1.4038348802067961" />
+        </attvalues>
+      </node>
+      <node id="CH2O" label="CH2O">
+        <attvalues>
+          <attvalue for="0" value="2.3035091055391206" />
+        </attvalues>
+      </node>
+      <node id="C3H6" label="C3H6">
+        <attvalues>
+          <attvalue for="0" value="1.3987231962960718" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="ipropyloo" target="C3H6" weight="3.1526860785844604">
+        <attvalues>
+          <attvalue for="1" value="1100,1106" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="ipropyloo" target="well_1" weight="3.001516131314638">
+        <attvalues>
+          <attvalue for="1" value="708" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="vinoxy" target="CO" weight="4.500460043292103">
+        <attvalues>
+          <attvalue for="1" value="452" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="vinoxy" target="CH2O" weight="4.500088764709907">
+        <attvalues>
+          <attvalue for="1" value="452" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="frag_1" target="CH2O" weight="5.998417456898014">
+        <attvalues>
+          <attvalue for="1" value="1222" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="frag_1" target="vinoxy" weight="6.000915398522001">
+        <attvalues>
+          <attvalue for="1" value="1222" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="frag_1" target="well_1" weight="3.0">
+        <attvalues>
+          <attvalue for="1" value="1163" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="well_1" target="frag_1" weight="15.0">
+        <attvalues>
+          <attvalue for="1" value="1162" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="well_1" target="C3H6" weight="4.330371276146154">
+        <attvalues>
+          <attvalue for="1" value="792,1074,1082" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="well_1" target="ipropyloo" weight="3.1545688004190904">
+        <attvalues>
+          <attvalue for="1" value="710,749" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

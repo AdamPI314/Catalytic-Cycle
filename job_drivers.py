@@ -107,22 +107,6 @@ def symbolic_path_2_real_path(data_dir, top_n=50, flag="", end_s_idx=None, speci
         top_n, end_s_idx, max_rows=max_rows)
 
 
-# path from file
-def symbolic_path_2_real_path_pff(data_dir, fn):
-    """
-    convert symbolic pathway to real pathway with real species name and real reaction name
-    """
-    out_fn = fn[0:-4] + "_real_path" + ".csv"
-
-    psri.symbolic_path_2_real_path(
-        data_dir,
-        os.path.join(
-            data_dir, "output", fn),
-        os.path.join(
-            data_dir, "output", out_fn),
-        10000000, None)
-
-
 def delete_non_dlsode_files(data_dir):
     """
     delete none dlsode files

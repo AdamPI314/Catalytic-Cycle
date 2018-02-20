@@ -1272,6 +1272,77 @@ def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
     plt.close()
 
 
+def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
+                                       begin_t=0.0, end_t=1.0, tau=10.0,
+                                       species_path=True, spe_idx=None, path_idx=None):
+    """
+    plot pathway arrival time
+    """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+    suffix = naming.get_suffix(data_dir, init_spe=init_spe,
+                               atom_followed=atom_followed, end_t=end_t)
+
+    # pathway names
+    f_n_path_name = os.path.join(
+        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+    pathname_all = np.genfromtxt(f_n_path_name, dtype=str)
+    pathname_selected = pathname_all[path_idx]
+
+    f_p_name = prefix + "Merchant_f_pathway_name_selected" + suffix + ".csv"
+    np.savetxt(os.path.join(data_dir, "output", f_p_name),
+               pathname_selected, fmt='%s', delimiter=',', newline='\n')
+    psri.symbolic_path_2_real_path_pff(data_dir, f_p_name)
+
+    id_tmp = ""
+    if spe_idx is None or spe_idx is []:
+        id_tmp = ""
+    elif isinstance(spe_idx, int):
+        id_tmp = str(spe_idx)
+    else:
+        for x_t in spe_idx:
+            if id_tmp == "":
+                id_tmp = str(x_t)
+            else:
+                id_tmp += "_" + str(x_t)
+
+    f_n_p_p = os.path.join(data_dir, "output", prefix +
+                           "pathway_prob" + suffix + ".csv")
+    path_prob = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
+
+    dim = len(np.shape(path_prob))
+    if dim != 2:
+        return
+    # at least 2 points
+    n_points = np.shape(path_prob)[1]
+    if n_points < 2:
+        return
+
+    if id_tmp != "":
+        suffix += "_" + id_tmp
+
+    f_n_s_p_c = os.path.join(
+        data_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
+    spe_numbers = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
+
+    if path_idx is not None and isinstance(path_idx, list):
+        spe_numbers_selected = np.zeros(len(spe_numbers))
+        for p_idx in path_idx:
+            spe_numbers_selected[p_idx] = spe_numbers[p_idx]
+        f_all_path = [np.multiply(path_prob[:, col], spe_numbers_selected)
+                      for col in range(np.shape(path_prob)[1])]
+    # pathways as rows
+    f_all_path = np.transpose(f_all_path)
+    f_selected = f_all_path[path_idx]
+
+    if path_idx is not None:
+        suffix += "_selected"
+    f_f_name = prefix + "Merchant_f_vs_time" + suffix + ".csv"
+    np.savetxt(os.path.join(data_dir, "output", f_f_name),
+               f_selected, fmt='%3.2e', delimiter=',', newline='\n')
+
+
 def plot_Merchant_alpha_value_vs_time(data_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
                                       s_idx=10, r_idx=736):
     """
@@ -1527,6 +1598,11 @@ if __name__ == '__main__':
     #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
     #                       species_path=G_S['species_path'], spe_idx=[10],
     #                       path_idx=PATH_IDX)
+    # Merchant_f_selected_pathname_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                    begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                                    species_path=G_S['species_path'],
+    #                                    spe_idx=[10],
+    #                                    path_idx=PATH_IDX)
 
     # plot_Merchant_alpha_value_vs_time(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],

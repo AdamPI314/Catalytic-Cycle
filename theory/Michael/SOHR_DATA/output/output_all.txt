@@ -1,0 +1,63 @@
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 05 13:48:52 invictus-office sendemail[24812]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 15:17:35 invictus-office sendemail[25099]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 17:52:31 invictus-office sendemail[28722]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 18:32:35 invictus-office sendemail[29184]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 18:39:01 invictus-office sendemail[29316]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 19:26:51 invictus-office sendemail[32080]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 20:13:17 invictus-office sendemail[2751]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 20:30:04 invictus-office sendemail[4045]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 21:17:18 invictus-office sendemail[5149]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 08 22:00:30 invictus-office sendemail[5804]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 12 09:14:01 invictus-office sendemail[3117]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 11436 on node invictus-office exited on signal 15 (Terminated).
+--------------------------------------------------------------------------
+Makefile:353: recipe for target 'run' failed
+Jan 12 14:20:39 invictus-office sendemail[11981]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 12 14:25:41 invictus-office sendemail[12127]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 12 21:53:19 invictus-office sendemail[18823]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 3940 on node invictus-office exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+Makefile:353: recipe for target 'run' failed
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 5316 on node invictus-office exited on signal 15 (Terminated).
+--------------------------------------------------------------------------
+Makefile:353: recipe for target 'run' failed
+Jan 15 19:44:17 invictus-office sendemail[19458]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 16 03:28:46 invictus-office sendemail[24679]: Email was sent successfully!
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c ./input/cmd.cfg
+Jan 17 09:42:25 invictus-office sendemail[23122]: Email was sent successfully!

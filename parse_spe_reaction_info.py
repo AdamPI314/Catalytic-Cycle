@@ -164,6 +164,22 @@ def symbolic_path_2_real_path(data_dir, f_n_p, f_n_p_out, top_n=50, end_s_idx=No
                               index=False, sep=',', columns=['path', 'prob'])
 
 
+def symbolic_path_2_real_path_pff(data_dir, fn):
+    """
+    convert symbolic pathway to real pathway with real species name and real reaction name
+    path from file
+    """
+    out_fn = fn[0:-4] + "_real_path" + ".csv"
+
+    psri.symbolic_path_2_real_path(
+        data_dir,
+        os.path.join(
+            data_dir, "output", fn),
+        os.path.join(
+            data_dir, "output", out_fn),
+        10000000, None)
+
+
 def parse_reaction_net_reactant(data_dir):
     """
     return a dict of "species": number based on reaction reactant
