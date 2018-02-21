@@ -331,7 +331,6 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-<<<<<<< HEAD
 
     if hasTemp is True:
         s_idx_n["-1"] = "T"
@@ -339,15 +338,6 @@ def plot_species_drc(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fraction"
         temp = np.loadtxt(os.path.join(data_dir, "output",
                                        "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-=======
-
-    if hasTemp is True:
-        s_idx_n["-1"] = "T"
-        spe_idx_tmp.append(-1)
-        temp = np.loadtxt(os.path.join(data_dir, "output",
-                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
-
->>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
     spe_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
     counter = 0
@@ -447,19 +437,11 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
 
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
-<<<<<<< HEAD
 
     if hasTemp is True:
         temp = np.loadtxt(os.path.join(data_dir, "output",
                                        "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
-=======
-
-    if hasTemp is True:
-        temp = np.loadtxt(os.path.join(data_dir, "output",
-                                       "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
-
->>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
     c_g_drc = np.loadtxt(os.path.join(data_dir, "output",
                                       "chattering_group_drc_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
@@ -1290,7 +1272,6 @@ def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
     plt.close()
 
 
-<<<<<<< HEAD
 def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
                                        begin_t=0.0, end_t=1.0, tau=10.0,
                                        species_path=True, spe_idx=None, path_idx=None):
@@ -1330,6 +1311,11 @@ def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
                            "pathway_prob" + suffix + ".csv")
     path_prob = np.loadtxt(f_n_p_p, dtype=float, delimiter=',')
 
+    f_p_p_n_selected = os.path.join(data_dir, "output", prefix +
+                                    "pathway_prob_Merchant_f_selected" + suffix + ".csv")
+    np.savetxt(f_p_p_n_selected,
+               path_prob[path_idx], fmt='%3.2e', delimiter=',', newline='\n')
+
     dim = len(np.shape(path_prob))
     if dim != 2:
         return
@@ -1344,6 +1330,11 @@ def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
     f_n_s_p_c = os.path.join(
         data_dir, "output", prefix + "pathway_species_production_count" + suffix + ".csv")
     spe_numbers = np.loadtxt(f_n_s_p_c, dtype=float, delimiter=',')
+
+    f_n_s_p_c_selected = os.path.join(
+        data_dir, "output", prefix + "pathway_species_production_count_Merchant_f_selected" + suffix + ".csv")
+    np.savetxt(f_n_s_p_c_selected,
+               spe_numbers[path_idx], fmt='%d', delimiter=',', newline='\n')
 
     if path_idx is not None and isinstance(path_idx, list):
         spe_numbers_selected = np.zeros(len(spe_numbers))
@@ -1362,8 +1353,6 @@ def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
                f_selected, fmt='%3.2e', delimiter=',', newline='\n')
 
 
-=======
->>>>>>> 2a4e821c8f2d276cd870f0fee298f4bd4cdd2c6d
 def plot_Merchant_alpha_value_vs_time(data_dir, init_spe=10, atom_followed="C", end_t=1.0, species_path=False,
                                       s_idx=10, r_idx=736):
     """
@@ -1568,24 +1557,24 @@ if __name__ == '__main__':
     #     exclude_idx=None,
     #     semilogy=True, legend_on=False)
 
-    TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
-        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], time=G_S['end_t'])
-    # plot_cumulative_pathway_prob(
-    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #     tau=G_S['tau'], end_t=G_S['end_t'],
-    #     top_n=100, species_path=G_S['species_path'],
-    #     end_s_idx=[17],
-    #     exclude_idx=None,
-    #     semilogy=False, legend_on=False,
-    #     time_axis=TIME_AXIS)
+    # TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], time=G_S['end_t'])
+    # # plot_cumulative_pathway_prob(
+    # #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    # #     tau=G_S['tau'], end_t=G_S['end_t'],
+    # #     top_n=100, species_path=G_S['species_path'],
+    # #     end_s_idx=[17],
+    # #     exclude_idx=None,
+    # #     semilogy=False, legend_on=False,
+    # #     time_axis=TIME_AXIS)
 
-    plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
-                              atom_followed=G_S['atom_f'],
-                              tau=G_S['tau'], end_t=G_S['end_t'],
-                              end_s_idx=14,
-                              species_path=G_S['species_path'],
-                              time_axis=TIME_AXIS)
+    # plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
+    #                           atom_followed=G_S['atom_f'],
+    #                           tau=G_S['tau'], end_t=G_S['end_t'],
+    #                           end_s_idx=14,
+    #                           species_path=G_S['species_path'],
+    #                           time_axis=TIME_AXIS)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
@@ -1613,17 +1602,17 @@ if __name__ == '__main__':
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
-    #             68, 93, 115, 138, 153, 165, 166, 245, 477]
-    # plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-    #                       species_path=G_S['species_path'], spe_idx=[10],
-    #                       path_idx=PATH_IDX)
-    # Merchant_f_selected_pathname_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                                    begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-    #                                    species_path=G_S['species_path'],
-    #                                    spe_idx=[10],
-    #                                    path_idx=PATH_IDX)
+    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+                68, 93, 115, 138, 153, 165, 166, 245, 477]
+    plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                          species_path=G_S['species_path'], spe_idx=[10],
+                          path_idx=PATH_IDX)
+    Merchant_f_selected_pathname_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                                       species_path=G_S['species_path'],
+                                       spe_idx=[10],
+                                       path_idx=PATH_IDX)
 
     # plot_Merchant_alpha_value_vs_time(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],

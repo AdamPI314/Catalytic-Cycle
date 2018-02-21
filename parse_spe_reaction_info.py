@@ -171,7 +171,7 @@ def symbolic_path_2_real_path_pff(data_dir, fn):
     """
     out_fn = fn[0:-4] + "_real_path" + ".csv"
 
-    psri.symbolic_path_2_real_path(
+    symbolic_path_2_real_path(
         data_dir,
         os.path.join(
             data_dir, "output", fn),
