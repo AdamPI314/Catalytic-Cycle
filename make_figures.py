@@ -1272,9 +1272,9 @@ def plot_Merchant_f_value(data_dir, init_spe=62, atom_followed="C",
     plt.close()
 
 
-def Merchant_f_selected_pathname_f_s2f(data_dir, init_spe=62, atom_followed="C",
-                                       begin_t=0.0, end_t=1.0, tau=10.0,
-                                       species_path=True, spe_idx=None, path_idx=None):
+def Merchant_f_selected_pathname_pathprob_f_s2f(data_dir, init_spe=62, atom_followed="C",
+                                                begin_t=0.0, end_t=1.0, tau=10.0,
+                                                species_path=True, spe_idx=None, path_idx=None):
     """
     plot pathway arrival time
     """
@@ -1608,11 +1608,11 @@ if __name__ == '__main__':
                           begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
                           species_path=G_S['species_path'], spe_idx=[10],
                           path_idx=PATH_IDX)
-    Merchant_f_selected_pathname_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                                       species_path=G_S['species_path'],
-                                       spe_idx=[10],
-                                       path_idx=PATH_IDX)
+    Merchant_f_selected_pathname_pathprob_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                                                begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                                                species_path=G_S['species_path'],
+                                                spe_idx=[10],
+                                                path_idx=PATH_IDX)
 
     # plot_Merchant_alpha_value_vs_time(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
