@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     81489,       1903]
-NotebookOptionsPosition[     78445,       1846]
-NotebookOutlinePosition[     78837,       1862]
-CellTagsIndexPosition[     78794,       1859]
+NotebookDataLength[     81423,       1901]
+NotebookOptionsPosition[     78379,       1844]
+NotebookOutlinePosition[     78771,       1860]
+CellTagsIndexPosition[     78728,       1857]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1819,8 +1819,7 @@ form of ",
  "\n Since Poisson Distribution has mean value kt, has standard deviation ",
  Cell[BoxData[
   FormBox[
-   SqrtBox["kt"], TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+   SqrtBox["kt"], TraditionalForm]],ExpressionUUID->
   "e5fcdc83-91c5-4eaf-9bea-0f4883357823"],
  ", \n one can estimate the pathway length, n, using the slowest chattering \
 group, \n taking the advantage of the fact that n obeys Poisson distribution \
@@ -1828,8 +1827,7 @@ n~f(n;kt),\n n_mean = ",
  Cell[BoxData[
   FormBox[
    SubsuperscriptBox["k", "slowest", 
-    RowBox[{"chattering", " ", "set"}]], TraditionalForm]],
-  FormatType->"TraditionalForm",ExpressionUUID->
+    RowBox[{"chattering", " ", "set"}]], TraditionalForm]],ExpressionUUID->
   "bd3faa8d-d34e-4f8b-91c3-3349c4030d44"],
  "\[Times]t, in time range (0, t)"
 }], "Section",
@@ -1874,8 +1872,8 @@ Cell[CellGroupData[{
 Cell[3562, 85, 853, 19, 150, "Title",ExpressionUUID->"e6c1b0ed-5fdb-4501-923f-833054807c40"],
 Cell[CellGroupData[{
 Cell[4440, 108, 559, 13, 86, "Input",ExpressionUUID->"8700a264-4107-4dc4-84f1-e705263014c6"],
-Cell[5002, 123, 5378, 163, 171, "Output",ExpressionUUID->"c17ae41d-d244-4b70-b476-3188268b047e"],
-Cell[10383, 288, 1583, 44, 128, "Output",ExpressionUUID->"c898d323-abbe-44f9-b875-fb7d4adfd98e"]
+Cell[5002, 123, 5378, 163, 157, "Output",ExpressionUUID->"c17ae41d-d244-4b70-b476-3188268b047e"],
+Cell[10383, 288, 1583, 44, 114, "Output",ExpressionUUID->"c898d323-abbe-44f9-b875-fb7d4adfd98e"]
 }, Open  ]],
 Cell[11981, 335, 537, 10, 28, "Input",ExpressionUUID->"cbd7540b-580a-4948-8bf0-0357a071d2f9"],
 Cell[CellGroupData[{
@@ -1888,12 +1886,12 @@ Cell[17981, 510, 1592, 46, 65, "Output",ExpressionUUID->"5e7051d3-46d9-4481-993d
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[19610, 561, 692, 18, 28, "Input",ExpressionUUID->"3cc0bcd1-eb54-4ec0-bf2b-6069a32d551e"],
-Cell[20305, 581, 11715, 351, 204, "Output",ExpressionUUID->"31a6eb85-6054-4e68-8822-8fb2f1753d4d"]
+Cell[20305, 581, 11715, 351, 190, "Output",ExpressionUUID->"31a6eb85-6054-4e68-8822-8fb2f1753d4d"]
 }, Open  ]],
 Cell[32035, 935, 1292, 31, 86, "Input",ExpressionUUID->"5d0cf34e-66b4-4484-b91b-10fbf59745b6"],
 Cell[CellGroupData[{
 Cell[33352, 970, 345, 9, 28, "Input",ExpressionUUID->"d4bfacf0-8314-41e4-9cc7-3566e7eaa7ac"],
-Cell[33700, 981, 2078, 61, 155, "Output",ExpressionUUID->"9cbde161-420b-4144-b85a-f9652233f45a"]
+Cell[33700, 981, 2078, 61, 141, "Output",ExpressionUUID->"9cbde161-420b-4144-b85a-f9652233f45a"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[35815, 1047, 1755, 52, 198, "Section",ExpressionUUID->"6532ed81-df7b-4355-94b9-bafc2db65e1c"],
@@ -1903,7 +1901,7 @@ Cell[38127, 1117, 36613, 622, 244, "Output",ExpressionUUID->"8b2d32d9-5a33-4659-
 }, Open  ]],
 Cell[74755, 1742, 304, 7, 28, "Input",ExpressionUUID->"23f5fca4-bb9b-47cb-a1b7-f3c71e07885f"]
 }, Open  ]],
-Cell[75074, 1752, 3355, 91, 459, "Section",ExpressionUUID->"f440d96e-7666-4c89-a80f-a08203129d60"]
+Cell[75074, 1752, 3289, 89, 459, "Section",ExpressionUUID->"f440d96e-7666-4c89-a80f-a08203129d60"]
 }, Open  ]]
 }
 ]
