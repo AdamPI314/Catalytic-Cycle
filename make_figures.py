@@ -239,6 +239,94 @@ def plot_concentrations(data_dir, spe_idx=None, tau=10.0, end_t=1.0, tag="fracti
     plt.close()
 
 
+def plot_concentration_ratio_of_spe_pairs(data_dir, spe_idx_pair=None, tau=10.0, end_t=1.0, tag="fraction", exclude_names=None,
+                                          renormalization=True, semilogy=False, hasTemp=True):
+    """
+    plot species pair concentration ratio, notice spe_idx_pair go to be list of tuple [(1,2), (3,4), (5,6)]
+    """
+    if exclude_names is None:
+        exclude_names = []
+
+    spe_idx_pair_tmp = deepcopy(spe_idx_pair)
+    if spe_idx_pair_tmp is None:
+        spe_idx_pair_tmp = [(0, 1)]
+    if spe_idx_pair_tmp is []:
+        spe_idx_pair_tmp = [(0, 1)]
+
+    colors, markers, _ = get_colors_markers_linestyles()
+
+    s_idx_n, _ = psri.parse_spe_info(data_dir)
+
+    if hasTemp is True:
+        s_idx_n["-1"] = "T"
+        spe_idx_pair_tmp.append((-1, -1))
+
+    time = np.loadtxt(os.path.join(
+        data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    temp = np.loadtxt(os.path.join(data_dir, "output",
+                                   "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    conc = trajectory.get_normalized_concentration(
+        data_dir, tag=tag, exclude_names=exclude_names, renormalization=renormalization)
+
+    counter = 0
+    # the time point where reference time tau is
+    # use interpolation here
+    idx_array = [i for i in range(len(time))]
+    end_point = int(
+        round(interpolation.interp1d(time, idx_array, tau * end_t)))
+
+    delta_n = int(end_point / 10)
+    if delta_n is 0:
+        delta_n = 1
+
+    fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
+    for s_idx_pair in spe_idx_pair_tmp:
+        if s_idx_pair == (-1, -1):
+            a_x_right = a_x_left.twinx()
+            a_x_right.plot(time[0:end_point], temp[0:end_point],
+                           color=colors[-1], label=s_idx_n[str(s_idx_pair[0])])
+        else:
+            if counter < len(colors) - 1:
+                m_k = None
+            else:
+                m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+            conc_ratio = conc[0:end_point, s_idx_pair[1]] / \
+                conc[0:end_point, s_idx_pair[0]]
+            label_pair = "[" + s_idx_n[str(
+                s_idx_pair[1])] + "]/[" + s_idx_n[str(s_idx_pair[0])] + "]"
+            if semilogy is True:
+                a_x_left.semilogy(time[0:end_point], conc_ratio, marker=m_k, markevery=delta_n,
+                                  color=colors[counter % (len(colors) - 1)], label=label_pair)
+            else:
+                a_x_left.plot(time[0:end_point], conc_ratio, marker=m_k, markevery=delta_n,
+                              color=colors[counter % (len(colors) - 1)], label=label_pair)
+            counter += 1
+    leg_left = a_x_left.legend(loc=0, fancybox=True, prop={'size': 10.0})
+    _, s_n_idx = psri.parse_spe_info(data_dir)
+    leg_left.get_frame().set_alpha(0.7)
+    a_x_left.grid()
+    a_x_left.set_xlim([0, tau * end_t])
+
+    a_x_left.set_xlabel("Time (second)")
+    # a_x_left.set_ylabel("[X$_2$]/[X$_1$]")
+    a_x_left.set_ylabel("Concentration Ratio")
+
+    if hasTemp is True:
+        leg_right = a_x_right.legend(loc=1, fancybox=True, prop={'size': 10.0})
+        leg_right.get_frame().set_alpha(0.7)
+        a_x_right.set_ylabel("T (K)")
+
+    s_n_str = "_".join(s_idx_n[str(x[0])] + "w"+s_idx_n[str(x[1])]
+                       for x in spe_idx_pair_tmp)
+    # plt.title(s_n_str)
+
+    fig.tight_layout()
+    fig.savefig(os.path.join(data_dir, "output",
+                             "concentration_ratio_" + s_n_str + "_" + str(end_t) + ".jpg"), dpi=500)
+    plt.close()
+
+
 def plot_spe_concentrations_derivative(data_dir, spe_idx=None, tau=10.0, end_t=1.0,
                                        tag="fraction", exclude_names=None, renormalization=True):
     """
@@ -1497,7 +1585,7 @@ if __name__ == '__main__':
     # SPE_LIST = [72, 108]
     # SPE_LIST = [88, 91]
     # SPE_LIST = [89, 92]
-    # SPE_LIST = [94, 101]
+    # SPE_LIST = [101, 94]
 
     # SPE_LIST, _, _ = trajectory.get_species_with_top_n_concentration(
     #     DATA_DIR, exclude=None, top_n=10,
@@ -1506,6 +1594,15 @@ if __name__ == '__main__':
     # plot_concentrations(DATA_DIR, spe_idx=SPE_LIST,
     #                     tau=G_S['tau'], end_t=G_S['end_t'], tag="M", exclude_names=None,
     #                     renormalization=False, semilogy=True, hasTemp=True)
+
+    # SPE_IDX_PAIR = [(25, 27), (39, 50), (61, 80), (72, 108),
+    #                 (88, 91), (89, 92), (101, 94)]
+    # SPE_IDX_PAIR = [(25, 27), (39, 50), (61, 80), (72, 108),
+    #                 (88, 91), (89, 92)]
+    # SPE_IDX_PAIR = [(60, 78), (60, 87), (60, 90)]
+    # plot_concentration_ratio_of_spe_pairs(DATA_DIR, spe_idx_pair=SPE_IDX_PAIR,
+    #                                       tau=G_S['tau'], end_t=0.9, tag="M", exclude_names=None,
+    #                                       renormalization=False, semilogy=True, hasTemp=True)
 
     # plot_top_n_spe_concentration(DATA_DIR, exclude_names=None,
     #                              atom_followed=G_S['atom_f'], tau=G_S['tau'], end_t=G_S['end_t'],
@@ -1602,17 +1699,17 @@ if __name__ == '__main__':
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
     #         path_idx=p_i, species_path=True)
 
-    PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
-                68, 93, 115, 138, 153, 165, 166, 245, 477]
-    plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                          species_path=G_S['species_path'], spe_idx=[10],
-                          path_idx=PATH_IDX)
-    Merchant_f_selected_pathname_pathprob_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                                begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-                                                species_path=G_S['species_path'],
-                                                spe_idx=[10],
-                                                path_idx=PATH_IDX)
+    # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+    #             68, 93, 115, 138, 153, 165, 166, 245, 477]
+    # plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                       species_path=G_S['species_path'], spe_idx=[10],
+    #                       path_idx=PATH_IDX)
+    # Merchant_f_selected_pathname_pathprob_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                             begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+    #                                             species_path=G_S['species_path'],
+    #                                             spe_idx=[10],
+    #                                             path_idx=PATH_IDX)
 
     # plot_Merchant_alpha_value_vs_time(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
