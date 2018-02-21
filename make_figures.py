@@ -611,7 +611,7 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
 
 
 def plot_reaction_rates(data_dir, reaction_idx=None, principal_reactant=None,
-                        tau=10.0, end_t=1.0,
+                        tau=10.0, end_t=1.0, sort_by_t=0.25,
                         tag="fraction", semilogy=False, hasTemp=False, top_n=None):
     """
     plot reaction rates give reaction index list
@@ -651,7 +651,7 @@ def plot_reaction_rates(data_dir, reaction_idx=None, principal_reactant=None,
     if top_n is not None:
         # sort criteria, reaction rate at
         c_point = int(round(interpolation.interp1d(
-            time, idx_array, tau * end_t)))
+            time, idx_array, tau * sort_by_t)))
         rxn_rate_at_c_point = [rxn_rates[c_point, x] for x in reaction_idx_dp]
 
         d_f_rxn_idx = pd.DataFrame(
@@ -1701,11 +1701,11 @@ if __name__ == '__main__':
     RXN_IDX, RXN_REACTANT = pattern_statistics.get_reaction_index_reactants_in_X_product_not_in_Y(
         DATA_DIR, X=(60, 78, 87, 90), Y=(60, 78, 87, 90))
     plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=None,
-                        tau=G_S['tau'], end_t=0.9, tag="M",
-                        semilogy=True, hasTemp=True, top_n=10)
+                        tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
+                        tag="M", semilogy=True, hasTemp=True, top_n=10)
     plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=RXN_REACTANT,
-                        tau=G_S['tau'], end_t=0.9, tag="M",
-                        semilogy=True, hasTemp=True, top_n=10)
+                        tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
+                        tag="M", semilogy=True, hasTemp=True, top_n=10)
 
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
