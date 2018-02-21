@@ -610,21 +610,21 @@ def plot_chattering_group_drc(data_dir, tau=10.0, end_t=1.0, tag="fraction", gro
     plt.close()
 
 
-def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
-                        tag="fraction", semilogy=False, hasTemp=False):
+def plot_reaction_rates(data_dir, reaction_idx=None, principal_reactant=None,
+                        tau=10.0, end_t=1.0,
+                        tag="fraction", semilogy=False, hasTemp=False, top_n=None):
     """
     plot reaction rates give reaction index list
+    principal reactant represents the main/target reactant of that reaction
     """
+    reaction_idx_dp = deepcopy(reaction_idx)
 
     colors, markers, _ = get_colors_markers_linestyles()
 
     _, rxn_idx_n = psri.parse_reaction_and_its_index(data_dir)
-    if hasTemp is True:
-        rxn_idx_n["-1"] = "T"
-        reaction_idx.append(-1)
 
-    if reaction_idx is None:
-        reaction_idx = [0]
+    if reaction_idx_dp is None:
+        reaction_idx_dp = [0]
     time = np.loadtxt(os.path.join(
         data_dir, "output", "time_dlsode_" + str(tag) + ".csv"), delimiter=",")
     rxn_rates = np.loadtxt(os.path.join(data_dir, "output",
@@ -632,6 +632,10 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
     if hasTemp is True:
         temp = np.loadtxt(os.path.join(data_dir, "output",
                                        "temperature_dlsode_" + str(tag) + ".csv"), delimiter=",")
+
+    if principal_reactant is not None:
+        conc = np.loadtxt(os.path.join(data_dir, "output",
+                                       "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
 
     counter = 0
     # the time point where reference time tau is
@@ -644,8 +648,45 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
     if delta_n is 0:
         delta_n = 1
 
+    if top_n is not None:
+        # sort criteria, reaction rate at
+        c_point = int(round(interpolation.interp1d(
+            time, idx_array, tau * end_t)))
+        rxn_rate_at_c_point = [rxn_rates[c_point, x] for x in reaction_idx_dp]
+
+        d_f_rxn_idx = pd.DataFrame(
+            reaction_idx_dp, columns=['index'], dtype=int)
+        if principal_reactant is None:
+            d_f_criteria = pd.DataFrame(
+                rxn_rate_at_c_point, columns=['rate'], dtype=float)
+
+            d_f = pd.concat([d_f_rxn_idx, d_f_criteria], axis=1)
+            print(d_f.head())
+            d_f.sort_values(by=['rate'], inplace=True, ascending=False)
+            # the first column is pathway names
+            reaction_idx_dp = list(d_f['index'])[0:top_n]
+        else:
+            conc_at_c_point = [conc[c_point, x] for x in principal_reactant]
+            pseudo_k_c_point = np.divide(rxn_rate_at_c_point, conc_at_c_point)
+            d_f_criteria = pd.DataFrame(
+                pseudo_k_c_point, columns=['rate'], dtype=float)
+            d_f_spe_idx = pd.DataFrame(principal_reactant, columns=[
+                                       'spe_idx'], dtype=int)
+
+            d_f = pd.concat([d_f_rxn_idx, d_f_criteria, d_f_spe_idx], axis=1)
+            print(d_f.head())
+            d_f.sort_values(by=['rate'], inplace=True, ascending=False)
+            # the first column is pathway names
+            reaction_idx_dp = list(d_f['index'])[0:top_n]
+            species_idx = list(d_f['spe_idx'])[0:top_n]
+
+    if hasTemp is True:
+        rxn_idx_n["-1"] = "T"
+        reaction_idx_dp.append(-1)
+
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
-    for s_idx in reaction_idx:
+    # for s_idx in reaction_idx_dp:
+    for idx, s_idx in enumerate(reaction_idx_dp):
         if s_idx == -1:
             a_x_right = a_x_left.twinx()
             a_x_right.plot(time[0:end_point], temp[0:end_point],
@@ -655,36 +696,52 @@ def plot_reaction_rates(data_dir, reaction_idx=None, tau=10.0, end_t=1.0,
                 m_k = None
             else:
                 m_k = markers[(counter + 1 - len(colors)) % (len(markers))]
+            if principal_reactant is None:
+                data_y = rxn_rates[0:end_point, s_idx]
+            else:
+                data_y = rxn_rates[0:end_point, s_idx] / \
+                    conc[0:end_point, species_idx[idx]]
+
             if semilogy is True:
-                a_x_left.semilogy(time[0:end_point], rxn_rates[0:end_point, s_idx], marker=m_k,
+                a_x_left.semilogy(time[0:end_point], data_y, marker=m_k,
                                   color=colors[counter % (
                                       len(colors) - 1)], label=rxn_idx_n[str(s_idx)],
                                   markevery=delta_n)
             else:
-                a_x_left.plot(time[0:end_point], rxn_rates[0:end_point, s_idx], marker=m_k,
+                a_x_left.plot(time[0:end_point], data_y, marker=m_k,
                               color=colors[counter % (
                                   len(colors) - 1)], label=rxn_idx_n[str(s_idx)],
                               markevery=delta_n)
 
             counter += 1
-    leg_left = a_x_left.legend(loc=2, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc=4, fancybox=True, prop={'size': 10.0})
     leg_left.get_frame().set_alpha(0.7)
     a_x_left.grid()
     a_x_left.set_xlim([time[0], tau * end_t])
 
     if hasTemp is True:
-        leg_right = a_x_right.legend(loc=4, fancybox=True, prop={'size': 10.0})
+        leg_right = a_x_right.legend(loc=1, fancybox=True, prop={'size': 10.0})
         leg_right.get_frame().set_alpha(0.7)
         a_x_right.set_ylabel("T (K)")
 
     a_x_left.set_xlabel("Time (second)")
-    a_x_left.set_ylabel("R (mol$\cdot L^{-1}s^{-1}$)")
+    if principal_reactant is None:
+        a_x_left.set_ylabel("R (mol$\cdot L^{-1}s^{-1}$)")
+    else:
+        a_x_left.set_ylabel("k (second$^{-1}$)")
 
-    rxn_idx_str = "_".join(str(x) for x in reaction_idx)
+    rxn_idx_str = "_".join(str(x) for x in reaction_idx_dp)
+    # in case file name too long
+    rxn_idx_str = rxn_idx_str[0:200]
 
     fig.tight_layout()
-    filename = os.path.join(data_dir, "output",
-                            "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg")
+    if principal_reactant is None:
+        filename = os.path.join(data_dir, "output",
+                                "reaction_rate_" + rxn_idx_str + "_" + str(end_t) + ".jpg")
+    else:
+        filename = os.path.join(data_dir, "output",
+                                "reaction_rate_divided_by_spe_conc_" + rxn_idx_str + "_" + str(end_t) + ".jpg")
+
     fig.savefig(filename, dpi=500)
     plt.close()
 
@@ -752,7 +809,7 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
 def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
                               tau=10.0, end_t=1.0, end_s_idx=62, species_path=False, time_axis=0):
     """
-    plot spe_path_prob give species name 
+    plot spe_path_prob give species name
     """
     if exclude_names is None:
         exclude_names = []
@@ -984,7 +1041,7 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
                               semilogy=False, legend_on=True):
     """
     plot pathway probability vs. time
-    end_s_idx can be None or a single species index 
+    end_s_idx can be None or a single species index
     """
     if exclude_idx is None:
         exclude_idx = []
@@ -1613,33 +1670,42 @@ if __name__ == '__main__':
     #                                    exclude_names=None, renormalization=False)
 
     # chattering reaction pairs
-    # REACTION_LIST = [1068, 1069]
-    # REACTION_LIST = [1096, 1097]
-    # REACTION_LIST = [1116, 1117]
-    # REACTION_LIST = [1080, 1081]
-    # REACTION_LIST = [1124, 1125]
-    # REACTION_LIST = [1146, 1147]
-    # REACTION_LIST = [1214, 1215]
-    # REACTION_LIST = [1042, 1043]
-    # REACTION_LIST = [348, 349]
-    # REACTION_LIST = [132, 133]
-    # REACTION_LIST = [586, 587]
-    # REACTION_LIST = [434, 435]
+    # RXN_IDX = [1068, 1069]
+    # RXN_IDX = [1096, 1097]
+    # RXN_IDX = [1116, 1117]
+    # RXN_IDX = [1080, 1081]
+    # RXN_IDX = [1124, 1125]
+    # RXN_IDX = [1146, 1147]
+    # RXN_IDX = [1214, 1215]
+    # RXN_IDX = [1042, 1043]
+    # RXN_IDX = [348, 349]
+    # RXN_IDX = [132, 133]
+    # RXN_IDX = [586, 587]
+    # RXN_IDX = [434, 435]
 
     # chattering group together
-    # REACTION_LIST = [1068, 1069, 1080, 1081, 1116, 1117]
+    # RXN_IDX = [1068, 1069, 1080, 1081, 1116, 1117]
 
     # out reaction of species
     # well_1
-    # REACTION_LIST = [1117, 1162, 1164, 1166]
-    # REACTION_LIST = [1117, 1116]
-    # REACTION_LIST = [1162, 1163]
-    # REACTION_LIST = [1164, 1165]
-    # REACTION_LIST = [1166, 1167]
+    # RXN_IDX = [1117, 1162, 1164, 1166]
+    # RXN_IDX = [1117, 1116]
+    # RXN_IDX = [1162, 1163]
+    # RXN_IDX = [1164, 1165]
+    # RXN_IDX = [1166, 1167]
 
-    # plot_reaction_rates(DATA_DIR, reaction_idx=REACTION_LIST,
+    # plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX,
     #                     tau=G_S['tau'], end_t=0.9, tag="M",
     #                     semilogy=True, hasTemp=True)
+
+    RXN_IDX, RXN_REACTANT = pattern_statistics.get_reaction_index_reactants_in_X_product_not_in_Y(
+        DATA_DIR, X=(60, 78, 87, 90), Y=(60, 78, 87, 90))
+    plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=None,
+                        tau=G_S['tau'], end_t=0.9, tag="M",
+                        semilogy=True, hasTemp=True, top_n=10)
+    plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=RXN_REACTANT,
+                        tau=G_S['tau'], end_t=0.9, tag="M",
+                        semilogy=True, hasTemp=True, top_n=10)
 
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:

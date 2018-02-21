@@ -8,6 +8,8 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 import re
+import json
+
 import parse_spe_reaction_info as psri
 import atom_scheme as asch
 import naming
@@ -534,6 +536,63 @@ def parse_pathway_contains_species(data_dir, s_idx_ds=None, init_spe=60,
 
     print(path_list)
     return path_list
+
+
+def get_reaction_index_reactants_in_X_product_not_in_Y(data_dir, X=None, Y=None):
+    """
+    return reaction index for those reaction which has
+    at least species from set X, in the mean time, this reaction doesn't doesn't contains any
+    species in set Y
+    X, Y can be tuple or set
+    """
+    if X is None:
+        return []
+    X = set(X)
+    Y = set(Y)
+
+    reaction_info_f_n = os.path.join(
+        data_dir, "input", "reaction_information.json")
+    with open(reaction_info_f_n, 'r') as f_h:
+        reaction_info = json.load(f_h)
+
+    rxn_idx_good = []
+    rxn_name_good = []
+    rxn_principal_reactant = []
+
+    for rxn_idx in reaction_info:
+        # print(rxn_idx)
+        indicator = False
+        p_reactant = -1
+
+        # check for reactants, find one, good to go
+        for key2 in reaction_info[rxn_idx]['reactant']:
+            spe_idx = int(reaction_info[rxn_idx]
+                          ['reactant'][key2]['species_index'])
+            # print(spe_idx)
+            if spe_idx in X:
+                indicator = True
+                p_reactant = int(spe_idx)
+                break
+        if indicator is False:
+            continue
+
+        for key3 in reaction_info[rxn_idx]['product']:
+            spe_idx = int(reaction_info[rxn_idx]
+                          ['product'][key3]['species_index'])
+            # print(spe_idx)
+            if spe_idx in X:
+                indicator = False
+                break
+
+        if indicator is True:
+            rxn_idx_good.append(int(rxn_idx))
+            rxn_name_good.append(reaction_info[rxn_idx]['reaction_name'])
+            if p_reactant != -1:
+                rxn_principal_reactant.append(p_reactant)
+    print(rxn_idx_good)
+    print(rxn_name_good)
+    print(rxn_principal_reactant)
+    return rxn_idx_good, rxn_principal_reactant
 
 
 if __name__ == "__main__":
