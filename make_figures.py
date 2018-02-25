@@ -1698,14 +1698,14 @@ if __name__ == '__main__':
     #                     tau=G_S['tau'], end_t=0.9, tag="M",
     #                     semilogy=True, hasTemp=True)
 
-    RXN_IDX, RXN_REACTANT = pattern_statistics.get_reaction_index_reactants_in_X_product_not_in_Y(
-        DATA_DIR, X=(60, 78, 87, 90), Y=(60, 78, 87, 90))
-    plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=None,
-                        tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
-                        tag="M", semilogy=True, hasTemp=True, top_n=10)
-    plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=RXN_REACTANT,
-                        tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
-                        tag="M", semilogy=True, hasTemp=True, top_n=10)
+    # RXN_IDX, RXN_REACTANT = pattern_statistics.get_reaction_index_reactants_in_X_product_not_in_Y(
+    #     DATA_DIR, X=(60, 78, 87, 90), Y=(60, 78, 87, 90))
+    # plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=None,
+    #                     tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
+    #                     tag="M", semilogy=True, hasTemp=True, top_n=10)
+    # plot_reaction_rates(DATA_DIR, reaction_idx=RXN_IDX, principal_reactant=RXN_REACTANT,
+    #                     tau=G_S['tau'], end_t=0.9, sort_by_t=0.25718313951098054,
+    #                     tag="M", semilogy=True, hasTemp=True, top_n=10)
 
     # SPE_LIST = [14, 59, 17, 44, 38, 86,  69, 15, 82]
     # for es in SPE_LIST:
@@ -1720,9 +1720,9 @@ if __name__ == '__main__':
     #     exclude_idx=None,
     #     semilogy=True, legend_on=False)
 
-    # TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
-    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-    #     species_path=G_S['species_path'], time=G_S['end_t'])
+    TIME_AXIS, TIME_END_T_EXACT = pathway_time_2_array_index(
+        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+        species_path=G_S['species_path'], time=G_S['end_t'])
     # # plot_cumulative_pathway_prob(
     # #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     # #     tau=G_S['tau'], end_t=G_S['end_t'],
@@ -1732,12 +1732,12 @@ if __name__ == '__main__':
     # #     semilogy=False, legend_on=False,
     # #     time_axis=TIME_AXIS)
 
-    # plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
-    #                           atom_followed=G_S['atom_f'],
-    #                           tau=G_S['tau'], end_t=G_S['end_t'],
-    #                           end_s_idx=14,
-    #                           species_path=G_S['species_path'],
-    #                           time_axis=TIME_AXIS)
+    plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
+                              atom_followed=G_S['atom_f'],
+                              tau=G_S['tau'], end_t=G_S['end_t'],
+                              end_s_idx=14,
+                              species_path=G_S['species_path'],
+                              time_axis=TIME_AXIS)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
