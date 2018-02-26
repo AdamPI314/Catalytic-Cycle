@@ -832,7 +832,7 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
         if idx >= 1:
             data_c[idx] += data_c[idx - 1]
 
-    delta_n = int(len(data_c) / 5)
+    delta_n = int(len(data_c) / 25)
     if delta_n is 0:
         delta_n = 1
     s_idx_n, _ = psri.parse_spe_info(data_dir)
@@ -843,42 +843,46 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     spe_conc = trajectory.convert_concentration_to_path_prob(
         data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
         renormalization=True, default_coef=None)
-    # print(spe_conc)
+
     spe_conc_const = spe_conc[int(end_s_idx)]
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     a_x_right = a_x_left.twinx()
 
-    a_x_left.plot(data_c, color=colors[0],
-                  marker=markers[0], label="pathway prob", markevery=delta_n)
+    # for plot purpose, (data_x, data_y)
+    data_x = [i+1 for i in range(len(data_c))]
 
-    a_x_left.plot([0, len(data_c) - 1], [spe_conc_const, spe_conc_const],
-                  color=colors[-1], marker=markers[1], label="exact", markevery=delta_n)
+    a_x_left.plot([1, len(data_c)], [spe_conc_const, spe_conc_const],
+                  color=colors[-1], marker=markers[1], label="Exact Concentration", markevery=delta_n)
+    a_x_left.plot(data_x, data_c, color=colors[0],
+                  marker=markers[0], label="Pathway Probability", markevery=delta_n)
 
-    a_x_right.plot((spe_conc_const - data_c) / spe_conc_const,
-                   color=colors[1], marker=markers[2], label="Error Percentage", markevery=delta_n)
+    a_x_right.plot(data_x, (spe_conc_const - data_c) / spe_conc_const,
+                   color=colors[1], marker=markers[2], label="Percentage Relative Error", markevery=delta_n)
 
-    leg_left = a_x_left.legend(loc=10, fancybox=True, prop={'size': 10.0})
-    leg_right = a_x_right.legend(loc=8, fancybox=True, prop={'size': 10.0})
+    leg_left = a_x_left.legend(loc='center', bbox_to_anchor=(
+        0.5, 0.5+0.1), fancybox=True, prop={'size': 10.0})
+    leg_right = a_x_right.legend(loc='center', bbox_to_anchor=(
+        0.5, 0.5-0.1), fancybox=True, prop={'size': 10.0})
 
     a_x_left.yaxis.get_major_formatter().set_powerlimits((0, 1))
     a_x_right.yaxis.get_major_formatter().set_powerlimits((0, 1))
     a_x_left.ticklabel_format(useOffset=False)
     a_x_right.ticklabel_format(useOffset=False)
 
-    a_x_left.set_xlim([0 - 0.5, len(data_c) - 0.5])
+    a_x_left.set_xlim([1 - 0.5, len(data_c) + 0.5])
 
     leg_left.get_frame().set_alpha(0.7)
     leg_right.get_frame().set_alpha(0.7)
     a_x_left.grid()
 
-    a_x_left.set_xlabel("#path")
-    a_x_left.set_ylabel("$\Sigma P_i$ and $\widetilde{X}$")
-    a_x_right.set_ylabel("Error")
+    a_x_left.set_xlabel("#Path")
+    a_x_left.set_ylabel("[X] and "+"$\Sigma$P$_i$")
+    a_x_right.set_ylabel("%Error")
     ytick_vals = a_x_right.get_yticks()
     a_x_right.set_yticklabels(['{:3.2f}%'.format(x * 100) for x in ytick_vals])
 
-    a_x_left.set_title(spe_name + " @" + str(end_t) + " tau")
+    a_x_left.set_title(spe_name)
 
     fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output",
@@ -1733,7 +1737,7 @@ if __name__ == '__main__':
     # #     time_axis=TIME_AXIS)
 
     for END_S_IDX in G_S['end_s_idx']:
-        plot_species_pathway_prob(DATA_DIR, top_n=1000, exclude_names=None, init_spe=G_S['init_s'],
+        plot_species_pathway_prob(DATA_DIR, top_n=25, exclude_names=None, init_spe=G_S['init_s'],
                                   atom_followed=G_S['atom_f'],
                                   tau=G_S['tau'], end_t=G_S['end_t'],
                                   end_s_idx=END_S_IDX,
