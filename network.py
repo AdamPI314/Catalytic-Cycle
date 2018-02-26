@@ -27,6 +27,8 @@ def read_spe_alias(filename=None):
     """
     if filename is None:
         return None
+    if not os.path.isfile(filename):
+        return None
     with open(filename, 'r') as f_h:
         spe_alias = json.load(f_h)
     return spe_alias
@@ -49,6 +51,8 @@ def back_2_old_name(filename):
     new name back to old name
     """
     spe_alias = read_spe_alias(filename)
+    if spe_alias is None:
+        return {}
     new_2_old = dict()
     for _, val in enumerate(spe_alias):
         new_2_old[spe_alias[val]] = val
@@ -475,23 +479,24 @@ if __name__ == '__main__':
         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
 
-    TOP_N = 10
-    PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(DATA_DIR, top_n=TOP_N,
-                                                               suffix=SUFFIX, norm=True,
-                                                               species_path=G_S['species_path'],
-                                                               time_axis=TIME_AXIS,
-                                                               sort_by_p=True)
-    PATH_IDX = [i for i in range(TOP_N)]
+    TOP_N = 15
+    # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(DATA_DIR, top_n=TOP_N,
+    #                                                            suffix=SUFFIX, norm=True,
+    #                                                            species_path=G_S['species_path'],
+    #                                                            time_axis=TIME_AXIS,
+    #                                                            sort_by_p=True)
+    # PATH_IDX = [i for i in range(TOP_N)]
 
     # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
     #             68, 93, 115, 138, 153, 165, 166, 245, 477]
-    # PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(DATA_DIR, top_n=G_S['top_n_p'],
-    #                                                  suffix=SUFFIX, norm=True,
-    #                                                  species_path=G_S['species_path'],
-    #                                                  time_axis=TIME_AXIS,
-    #                                                  sort_by_p=False)
-    # PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
-    # PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
+    PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(DATA_DIR, top_n=G_S['top_n_p'],
+                                                     suffix=SUFFIX, norm=True,
+                                                     species_path=G_S['species_path'],
+                                                     time_axis=TIME_AXIS,
+                                                     sort_by_p=False)
+    PATH_IDX = [i+1 for i in range(TOP_N-1)]
+    PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
+    PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
 
     # filename without type appendix
     NETWORK_FILENAME = PREFIX + "network" + SUFFIX
