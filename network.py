@@ -479,7 +479,7 @@ if __name__ == '__main__':
         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
         species_path=G_S['species_path'], time=G_S['mc_t'])
 
-    TOP_N = 15
+    TOP_N = 10
     # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(DATA_DIR, top_n=TOP_N,
     #                                                            suffix=SUFFIX, norm=True,
     #                                                            species_path=G_S['species_path'],
@@ -494,7 +494,7 @@ if __name__ == '__main__':
                                                      species_path=G_S['species_path'],
                                                      time_axis=TIME_AXIS,
                                                      sort_by_p=False)
-    PATH_IDX = [i+1 for i in range(TOP_N-1)]
+    PATH_IDX = [i for i in range(TOP_N)]
     PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
     PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
 
