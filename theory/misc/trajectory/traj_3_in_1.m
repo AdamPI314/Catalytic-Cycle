@@ -66,6 +66,45 @@ set(fig,'defaultAxesColorOrder',co)
 tau = 0.777660157519;
 end_t = 0.258;
 
+subplot(3, 1, 1);
+% plot conc
+% C3H6
+p1 = semilogy(time_vec, conc_mat(:, 60), 'LineWidth', 2); hold on;
+% CH2O
+p2 = semilogy(time_vec, conc_mat(:, 18), 'LineWidth', 2); hold on;
+% CO
+p3 = semilogy(time_vec, conc_mat(:, 15), 'LineWidth', 2); hold on;
+% prod_1
+p4 = semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
+% ipropyloo
+p5 = semilogy(time_vec, conc_mat(:, 81), 'LineWidth', 2); hold on;
+% ipropylooh
+p6 = semilogy(time_vec, conc_mat(:, 82), 'LineWidth', 2); hold on;
+% acetaldehyde
+p7 = semilogy(time_vec, conc_mat(:, 45), 'LineWidth', 2); hold on;
+
+%% conc
+set(gca,'GridLineStyle','--');
+% xlabel('Time (second)', 'FontSize', 20);
+ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
+ylim([10^-16, 10^-9]);
+
+%% temp
+yyaxis right
+delta_n = 100;
+plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
+scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r'); hold on;
+ylabel('T (K)', 'FontSize', 20);
+% set(gca, 'ytick', []);
+
+%% global settings
+grid on;
+xlim([0, tau*end_t]);
+leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'C_3H_6','CH_2O','CO','OQ^{\prime}OOH','iROO','iROOH','CH_3CHO');
+set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'Location', 'NorthWest')
+
+subplot(3, 1, 2);
 % plot conc
 % npropyl
 p1 = semilogy(time_vec, conc_mat(:, 61), 'LineWidth', 2); hold on;
@@ -92,7 +131,7 @@ ylim([10^-25, 10^-10]);
 yyaxis right
 delta_n = 100;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
-pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
+scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r'); hold on;
 ylabel('T (K)', 'FontSize', 20);
 % set(gca, 'ytick', []);
 
@@ -103,9 +142,42 @@ leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'nR','nROO','QOOH_1','HOOQ^{\prime}O
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 
+subplot(3,1,3);
+% plot conc
+% H2O
+p1 = semilogy(time_vec, conc_mat(:, 12), 'LineWidth', 2); hold on;
+% H2O2
+p2 = semilogy(time_vec, conc_mat(:, 14), 'LineWidth', 2); hold on;
+% HO2
+p3 = semilogy(time_vec, conc_mat(:, 13), 'LineWidth', 2); hold on;
+% OH
+p4 = semilogy(time_vec, conc_mat(:, 11), 'LineWidth', 2); hold on;
+% O
+p5 = semilogy(time_vec, conc_mat(:, 9), 'LineWidth', 2); hold on;
+% H
+p6 = semilogy(time_vec, conc_mat(:, 4), 'LineWidth', 2); hold on;
+
+%% conc
+set(gca,'GridLineStyle','--');
+xlabel('Time (second)', 'FontSize', 20);
+ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
+ylim([10^-25, 10^-9]);
+
+%% temp
+yyaxis right
+delta_n = 100;
+plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
+scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
+ylabel('T (K)', 'FontSize', 20);
+
+%% global settings
+grid on;
+xlim([0, tau*end_t]);
+leg_h = legend([p1; p2; p3; p4; p5; p6],'H_2O','H_2O_2','HO_2','OH','O','H');
+set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'Location', 'NorthWest')
+
 
 %% save to file
-figname = strcat('panel2', '.png');
+figname = strcat('traj_3_in_1', '.png');
 print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
-
-

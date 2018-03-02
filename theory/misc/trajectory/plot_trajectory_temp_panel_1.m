@@ -84,7 +84,7 @@ p7 = semilogy(time_vec, conc_mat(:, 45), 'LineWidth', 2); hold on;
 
 %% conc
 set(gca,'GridLineStyle','--');
-xlabel('Time (second)', 'FontSize', 20);
+% xlabel('Time (second)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
 ylim([10^-16, 10^-9]);
 
@@ -94,6 +94,7 @@ delta_n = 100;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
 ylabel('T (K)', 'FontSize', 20);
+% set(gca, 'ytick', []);
 
 %% global settings
 grid on;
