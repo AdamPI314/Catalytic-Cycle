@@ -37,10 +37,10 @@ if __name__ == '__main__':
         DATA_DIR, G_S['atom_f'])
 
     # run monte carlo trajectory
-    job_drivers.run_mc_trajectory(
-        SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
-        species_path=G_S['species_path'])
+    # job_drivers.run_mc_trajectory(
+    # SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+    # init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
+    # species_path=G_S['species_path'])
 
     # evaluate path integral-->pathway probability
     job_drivers.evaluate_pathway_probability(

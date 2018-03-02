@@ -1736,13 +1736,13 @@ if __name__ == '__main__':
     # #     semilogy=False, legend_on=False,
     # #     time_axis=TIME_AXIS)
 
-    for END_S_IDX in G_S['end_s_idx']:
-        plot_species_pathway_prob(DATA_DIR, top_n=25, exclude_names=None, init_spe=G_S['init_s'],
-                                  atom_followed=G_S['atom_f'],
-                                  tau=G_S['tau'], end_t=G_S['end_t'],
-                                  end_s_idx=END_S_IDX,
-                                  species_path=G_S['species_path'],
-                                  time_axis=TIME_AXIS)
+    # for END_S_IDX in G_S['end_s_idx']:
+    #     plot_species_pathway_prob(DATA_DIR, top_n=25, exclude_names=None, init_spe=G_S['init_s'],
+    #                               atom_followed=G_S['atom_f'],
+    #                               tau=G_S['tau'], end_t=G_S['end_t'],
+    #                               end_s_idx=END_S_IDX,
+    #                               species_path=G_S['species_path'],
+    #                               time_axis=TIME_AXIS)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
