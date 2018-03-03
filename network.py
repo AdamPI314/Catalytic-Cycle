@@ -68,7 +68,10 @@ def change_spe_name(spe, dict_s=None, union_find=None):
     if dict_s is None:
         return spe
     if union_find is None or str(spe) not in union_find:
-        return dict_s[str(spe)]
+        if spe in dict_s:
+            return dict_s[str(spe)]
+        else:
+            return spe
     # if union find is not None and str(spe) in union_find
     # regard the first element in the set as the root element
     set_tmp = copy.deepcopy(union_find[str(spe)])
@@ -347,6 +350,9 @@ def plot_network(data_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
 
     # read in species index name
     spe_idx_name_dict, spe_name_idx_dict = psri.parse_spe_info(data_dir)
+    spe_alias_latex = read_spe_alias(os.path.join(
+        data_dir, "input", "spe_alias_latex.json"))
+
     _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
 
     # modify labels
@@ -357,6 +363,9 @@ def plot_network(data_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
         if spe_i in spe_union_find_group:
             labels[idx] = ",".join([str(spe_idx_name_dict[str(x)])
                                     for x in spe_union_find_group[spe_i]])
+    print(labels)
+    for idx, val in enumerate(labels):
+        labels[idx] = change_spe_name(val, spe_alias_latex, None)
     print(labels)
 
     fig, a_x = plt.subplots(1, 1, sharex=True, sharey=False)
