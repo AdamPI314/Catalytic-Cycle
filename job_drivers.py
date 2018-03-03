@@ -217,7 +217,7 @@ def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n * top_n_s, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
         ppnt.prepare_pathway_time(
             data_dir, top_n=top_n * top_n_s, num=num_t, flag=flag,
             begin_t=begin_t, end_t=end_t, species_path=species_path)

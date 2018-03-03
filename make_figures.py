@@ -1057,7 +1057,7 @@ def plot_pathway_prob_vs_time(data_dir, init_spe=62, atom_followed="C", tau=10.0
     suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(data_dir, "output",
-                          prefix + "pathway_name_selected" + suffix + ".csv")
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pt = os.path.join(data_dir, "output",
                           prefix + "pathway_time_candidate" + suffix + ".csv")
     f_n_pp = os.path.join(data_dir, "output",
@@ -1435,11 +1435,11 @@ def Merchant_f_selected_pathname_pathprob_f_s2f(data_dir, init_spe=62, atom_foll
 
     # pathway names
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     pathname_all = np.genfromtxt(f_n_path_name, dtype=str)
     pathname_selected = pathname_all[path_idx]
 
-    f_p_name = prefix + "Merchant_f_pathway_name_selected" + suffix + ".csv"
+    f_p_name = prefix + "Merchant_f_pathway_name_candidate" + suffix + ".csv"
     np.savetxt(os.path.join(data_dir, "output", f_p_name),
                pathname_selected, fmt='%s', delimiter=',', newline='\n')
     psri.symbolic_path_2_real_path_pff(data_dir, f_p_name)

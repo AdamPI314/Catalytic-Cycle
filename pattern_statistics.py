@@ -31,7 +31,7 @@ def path_prob_terminating_with_spe(data_dir, init_spe=62, atom_followed="C", tau
     suffix = naming.get_suffix(data_dir, init_spe=init_spe,
                                atom_followed=atom_followed, end_t=end_t)
     f_n_pn = os.path.join(data_dir, "output",
-                          prefix + "pathway_name_selected" + suffix + ".csv")
+                          prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + suffix + ".csv")
 
@@ -100,7 +100,7 @@ def species_count(data_dir, top_n=50, norm=False):
     species occurence in a path multiply by pathway probability
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -143,7 +143,7 @@ def reaction_count(data_dir, top_n=50, norm=False):
     reaction occurence in a path multiply by pathway probability
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -183,7 +183,7 @@ def initiation_reaction_count(data_dir, top_n=50, norm=False):
     initiation reaction occurence in a path multiply by pathway probability
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -225,7 +225,7 @@ def species_cycle(data_dir, top_n=50, norm=False):
     species cycle in a path multiply by pathway probability
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -270,7 +270,7 @@ def species_production_path(data_dir, spe='OH', top_n=50, norm=False):
     or sub-pathway ends with a species
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -315,7 +315,7 @@ def species_production_reaction(data_dir, spe='OH', top_n=50, norm=False):
     species production reaction in a path multiply by pathway probability
     """
     print(data_dir)
-    f_n_n = os.path.join(data_dir, "output", "pathway_name_selected.csv")
+    f_n_n = os.path.join(data_dir, "output", "pathway_name_candidate.csv")
     f_n_p = os.path.join(data_dir, "output", "pathway_prob.csv")
 
     pathway_name = np.genfromtxt(f_n_n, dtype=str, delimiter='\n')
@@ -386,7 +386,7 @@ def parse_spe_production_along_path(data_dir, top_n=10, spe_idx=10, init_spe=62,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     pathname_data = np.genfromtxt(
         f_n_path_name, dtype=str, max_rows=top_n + 1)
 
@@ -487,7 +487,7 @@ def parse_species_from_pathway(data_dir, p_idx_l=None, init_spe=60,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
 
     unique_spe = set()
@@ -519,7 +519,7 @@ def parse_pathway_contains_species(data_dir, s_idx_ds=None, init_spe=60,
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     p_name = np.genfromtxt(f_n_path_name, dtype=str, delimiter=',')
 
     path_list = []

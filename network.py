@@ -116,7 +116,7 @@ def get_top_n_pathway(data_dir, top_n=10, suffix="", norm=False, species_path=Fa
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_path_prob = os.path.join(
         data_dir, "output", prefix + "pathway_prob" + suffix + ".csv")
 
@@ -163,7 +163,7 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
         prefix = "species_"
 
     f_n_path_name = os.path.join(
-        data_dir, "output", prefix + "pathway_name_selected" + suffix + ".csv")
+        data_dir, "output", prefix + "pathway_name_candidate" + suffix + ".csv")
     f_n_path_prob = os.path.join(
         data_dir, "output", prefix + "pathway_prob" + suffix + ".csv")
 
