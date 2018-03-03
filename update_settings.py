@@ -25,6 +25,7 @@ def update_basic_setting(data_dir, g_s):
     setting['system']['condition'] = g_s['system']['condition']
     setting['system']['initializer'] = g_s['system']['initializer']
     setting['network']['merge_chatterings'] = g_s['network']['merge_chatterings']
+    setting['network']['condense_chatterings'] = g_s['network']['condense_chatterings']
     setting['propagator']['primary_type'] = g_s['propagator']['primary_type']
     setting['propagator']['type'] = g_s['propagator']['type']
     setting['propagator']['sub_type'] = g_s['propagator']['sub_type']

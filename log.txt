@@ -72,12 +72,11 @@ OrderedDict([('1', [60, 78]), ('2', [87, 90]), ('3', [78, 87]), ('4', [61, 80]),
 9 [85, 54]
 10 [45, 47]
 OrderedDict([('1', [60, 78]), ('2', [87, 90]), ('3', [78, 87]), ('4', [61, 80]), ('5', [88, 91]), ('6', [89, 92]), ('7', [72, 108]), ('8', [39, 50]), ('9', [25, 27]), ('10', [85, 54]), ('11', [45, 47])])
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_stat.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_selected.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_prob.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathname_prob.csv found
+/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathway_stat.csv found
+/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathway_prob.csv found
+/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathname_prob.csv found
 /home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/chattering_group_info.json found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_candidate.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_time_candidate.csv found
+/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathway_name_candidate.csv found
+/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathway_time_candidate.csv found
 running time:	0.02 hours
 
