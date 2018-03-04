@@ -459,10 +459,14 @@ def plot_network(data_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
     # a_x.grid('on')
     a_x.axis('off')
-    a_x.set_title("P$_{" + str(path_idx) + "}$" + " = " +
-                  "{:.2e}".format(float(pathprob)))
+    if (path_idx == 1):
+        a_x.set_title("P$_{" + str(path_idx) + "}$" + " = " +
+                    "{:.6e}".format(float(pathprob)))
+    else:
+        a_x.set_title("P$_{" + str(path_idx) + "}$" + " = " +
+                    "{:.2e}".format(float(pathprob)))
 
-    # fig.tight_layout()
+    fig.tight_layout()
     fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
     plt.close()
 
