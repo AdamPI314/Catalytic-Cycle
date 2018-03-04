@@ -100,8 +100,8 @@ yyaxis right
 delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
-% ylabel('T (K)', 'FontSize', 20);
-set(gca, 'yticklabel', []);
+ylabel('T (K)', 'FontSize', 20);
+% set(gca, 'yticklabel', []);
 
 %% global settings
 grid on;
@@ -213,7 +213,8 @@ yyaxis right
 delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
-ylabel('T (K)', 'FontSize', 20);
+set(gca, 'yticklabel', []);
+% ylabel('T (K)', 'FontSize', 20);
 
 %% global settings
 grid on;
