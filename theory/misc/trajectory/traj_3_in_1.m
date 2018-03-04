@@ -91,6 +91,7 @@ p8 = semilogy(time_vec, conc_mat(:, 39), 'LineWidth', 2); hold on;
 %% conc
 set(gca,'GridLineStyle','--');
 % xlabel('Time (second)', 'FontSize', 20);
+set(gca, 'xticklabel', []);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
 ylim([10^-16, 10^-5.9]);
 
@@ -100,7 +101,7 @@ delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
 % ylabel('T (K)', 'FontSize', 20);
-set(gca, 'ytick', []);
+set(gca, 'yticklabel', []);
 
 %% global settings
 grid on;
@@ -147,6 +148,7 @@ p7 = semilogy(time_vec, conc_mat(:, 102), 'LineWidth', 2); hold on;
 %% conc
 set(gca,'GridLineStyle','--');
 % xlabel('Time (second)', 'FontSize', 20);
+set(gca, 'xticklabel', []);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
 ylim([10^-25, 10^-8.2]);
 
@@ -156,7 +158,7 @@ delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
 % ylabel('T (K)', 'FontSize', 20);
-set(gca, 'ytick', []);
+set(gca, 'yticklabel', []);
 
 %% global settings
 grid on;
