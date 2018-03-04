@@ -60,11 +60,12 @@ co = [    0    0.4470    0.7410 % 1th plot
     0.4660    0.6740    0.1880 % 5th plot
     0.3010    0.7450    0.9330 % 6th plot
     0.6350    0.0780    0.1840 % 7th plot
-    1   0   0]; % 8th plot
+    0         0    1.0000 % 8th plot, blue
+    1   0   0]; % 9th plot, red
 set(fig,'defaultAxesColorOrder',co)
 %%
 tau = 0.777660157519;
-end_t = 0.258;
+end_t = 0.9;
 
 % plot conc
 % C3H6
@@ -77,16 +78,19 @@ p3 = semilogy(time_vec, conc_mat(:, 15), 'LineWidth', 2); hold on;
 p4 = semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
 % ipropyloo
 p5 = semilogy(time_vec, conc_mat(:, 81), 'LineWidth', 2); hold on;
-% ipropylooh
-p6 = semilogy(time_vec, conc_mat(:, 82), 'LineWidth', 2); hold on;
 % acetaldehyde
-p7 = semilogy(time_vec, conc_mat(:, 45), 'LineWidth', 2); hold on;
+p6 = semilogy(time_vec, conc_mat(:, 45), 'LineWidth', 2); hold on;
+% propoxide
+p7 = semilogy(time_vec, conc_mat(:, 87), 'LineWidth', 2); hold on;
+% C2H4
+p8 = semilogy(time_vec, conc_mat(:, 39), 'LineWidth', 2); hold on;
+
 
 %% conc
 set(gca,'GridLineStyle','--');
-% xlabel('Time (second)', 'FontSize', 20);
+xlabel('Time (second)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
-ylim([10^-16, 10^-9]);
+ylim([10^-16, 10^-5.9]);
 
 %% temp
 yyaxis right
@@ -99,7 +103,7 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'C_3H_6','CH_2O','CO','OQ^{\prime}OOH','iROO','iROOH','CH_3CHO');
+leg_h = legend([p1; p2; p3; p4; p5; p6; p7; p8],'C_3H_6','CH_2O','CO','OQ^{\prime}OOH_1','iROO','CH_3CHO','Propoxide', 'C_2H_4');
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 

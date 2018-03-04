@@ -64,7 +64,7 @@ co = [    0    0.4470    0.7410 % 1th plot
 set(fig,'defaultAxesColorOrder',co)
 %%
 tau = 0.777660157519;
-end_t = 0.258;
+end_t = 0.9;
 
 % plot conc
 % H2O
@@ -75,16 +75,17 @@ p2 = semilogy(time_vec, conc_mat(:, 14), 'LineWidth', 2); hold on;
 p3 = semilogy(time_vec, conc_mat(:, 13), 'LineWidth', 2); hold on;
 % OH
 p4 = semilogy(time_vec, conc_mat(:, 11), 'LineWidth', 2); hold on;
-% O
-p5 = semilogy(time_vec, conc_mat(:, 9), 'LineWidth', 2); hold on;
 % H
-p6 = semilogy(time_vec, conc_mat(:, 4), 'LineWidth', 2); hold on;
+p5 = semilogy(time_vec, conc_mat(:, 4), 'LineWidth', 2); hold on;
+% O
+p6 = semilogy(time_vec, conc_mat(:, 9), 'LineWidth', 2); hold on;
+
 
 %% conc
 set(gca,'GridLineStyle','--');
 xlabel('Time (second)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
-ylim([10^-25, 10^-9]);
+ylim([10^-25, 10^-5.6]);
 
 %% temp
 yyaxis right
@@ -96,7 +97,7 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([p1; p2; p3; p4; p5; p6],'H_2O','H_2O_2','HO_2','OH','O','H');
+leg_h = legend([p1; p2; p3; p4; p5; p6],'H_2O','H_2O_2','HO_2','OH','H','O');
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 

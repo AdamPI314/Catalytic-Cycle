@@ -64,29 +64,30 @@ co = [    0    0.4470    0.7410 % 1th plot
 set(fig,'defaultAxesColorOrder',co)
 %%
 tau = 0.777660157519;
-end_t = 0.258;
+end_t = 0.9;
 
 % plot conc
-% npropyl
-p1 = semilogy(time_vec, conc_mat(:, 61), 'LineWidth', 2); hold on;
+% prod_1
+p1 = semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
 % npropyloo
 p2 = semilogy(time_vec, conc_mat(:, 79), 'LineWidth', 2); hold on;
-% QOOH_1
-p3 = semilogy(time_vec, conc_mat(:, 88), 'LineWidth', 2); hold on;
 % well_1
-p4 = semilogy(time_vec, conc_mat(:, 91), 'LineWidth', 2); hold on;
-% prod_1
-p5 = semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
-% frag_1
-p6 = semilogy(time_vec, conc_mat(:, 102), 'LineWidth', 2); hold on;
+p3 = semilogy(time_vec, conc_mat(:, 91), 'LineWidth', 2); hold on;
+% npropyl
+p4 = semilogy(time_vec, conc_mat(:, 61), 'LineWidth', 2); hold on;
+% QOOH_1
+p5 = semilogy(time_vec, conc_mat(:, 88), 'LineWidth', 2); hold on;
 % vinoxy
-p7 = semilogy(time_vec, conc_mat(:, 47), 'LineWidth', 2); hold on;
+p6 = semilogy(time_vec, conc_mat(:, 47), 'LineWidth', 2); hold on;
+% frag_1
+p7 = semilogy(time_vec, conc_mat(:, 102), 'LineWidth', 2); hold on;
+
 
 %% conc
 set(gca,'GridLineStyle','--');
-% xlabel('Time (second)', 'FontSize', 20);
+xlabel('Time (second)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
-ylim([10^-25, 10^-10]);
+ylim([10^-25, 10^-8.2]);
 
 %% temp
 yyaxis right
@@ -99,7 +100,7 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'nR','nROO','QOOH_1','HOOQ^{\prime}OOH','OQ^{\prime}OOH','OQ^{\prime}O','CH_2CHO');
+leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'OQ^{\prime}OOH_1','nROO','HOOQ^{\prime}OOH_1','nR','QOOH_1','CH_2CHO','OQ^{\prime}O_1');
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 
