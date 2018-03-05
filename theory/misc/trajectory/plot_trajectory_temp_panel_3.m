@@ -86,7 +86,7 @@ ylim([10^-25, 10^-5.6]);
 
 %% temp
 yyaxis right
-delta_n = 100;
+delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
 pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
 ylabel('T (K)', 'FontSize', 20);
