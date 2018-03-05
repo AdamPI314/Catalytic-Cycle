@@ -1,9 +1,6 @@
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 
-%% dlsode time
-filename = fullfile(file_dir, 'output', 'time_dlsode_fraction.csv');
-
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
 delimiter = '';
