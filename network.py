@@ -459,15 +459,22 @@ def plot_network(data_dir, fname="", pathname="", pathprob=1.0, path_idx=None, e
                   np.max(x) + 0.25 * (np.max(x) - np.min(x))])
     # a_x.grid('on')
     a_x.axis('off')
+    a_x.set_frame_on(False)
+    a_x.set_xticks([])  # this is needed for bbox_inches
+    a_x.set_yticks([])
+
     if (path_idx == 1):
         a_x.set_title("P$_{" + str(path_idx) + "}$" + " = " +
-                    "{:.6e}".format(float(pathprob)))
+                      "{:.6e}".format(float(pathprob)))
     else:
         a_x.set_title("P$_{" + str(path_idx) + "}$" + " = " +
-                    "{:.2e}".format(float(pathprob)))
+                      "{:.2e}".format(float(pathprob)))
 
-    fig.tight_layout()
-    fig.savefig(os.path.join(data_dir, "output", fig_name), dpi=500)
+    # fig.tight_layout()
+    # plt.subplots_adjust(left=0.01, right=0.9, top=0.9, bottom=0.01)
+    fig.savefig(os.path.join(data_dir, "output", fig_name),
+                bbox_inches='tight', dpi=500)
+    # bbox_inches='tight', pad_inches=0, dpi=500)
     plt.close()
 
     return
