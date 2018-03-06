@@ -142,14 +142,23 @@ def parse_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", n
         # print(s_r_s)
         s_1 = next(iter(re.findall(r"S(\d+)R-\d+S\d+", s_r_s)), 0)
         s_2 = next(iter(re.findall(r"S\d+R-\d+S(\d+)", s_r_s)), 0)
-        if s_1 != s_2 and s_1 in s_p_r_c:
-            if s_2 in s_p_r_c[s_1]:
-                for pair_idx in s_p_r_c[s_1][s_2]:
-                    r_idx_c = s_p_r_c[s_1][s_2][pair_idx]['r_idx']
-                    # print(r_idx_c)
-                    if str(spe_idx) in net_r_p[r_idx_c]:
-                        # print("bingo")
-                        number += int(net_r_p[r_idx_c][str(spe_idx)])
+
+        # if s_1 != s_2 and s_1 in s_p_r_c:
+        #     if s_2 in s_p_r_c[s_1]:
+        #         for pair_idx in s_p_r_c[s_1][s_2]:
+        #             r_idx_c = s_p_r_c[s_1][s_2][pair_idx]['r_idx']
+        #             # print(r_idx_c)
+        #             if str(spe_idx) in net_r_p[r_idx_c]:
+        #                 # print("bingo")
+        #                 number += int(net_r_p[r_idx_c][str(spe_idx)])
+
+        if s_1 != s_2 and (s_1, s_2) in s_p_r_c:
+            for pair_idx in s_p_r_c[(s_1, s_2)]:
+                r_idx_c = s_p_r_c[(s_1, s_2)][pair_idx]['r_idx']
+                # print(r_idx_c)
+                if str(spe_idx) in net_r_p[r_idx_c]:
+                    # print("bingo")
+                    number += int(net_r_p[r_idx_c][str(spe_idx)])
 
     # get rid of R-1000003S90, don't need it here
     pathname = re.sub(r"R-\d+S\d+", r'', pathname)

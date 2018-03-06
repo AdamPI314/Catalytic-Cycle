@@ -35,8 +35,30 @@ def parse_species_pair_reaction(data_dir):
     """
     f_n = os.path.join(data_dir, "input", "species_pairs_reactions_coefs.json")
 
-    s_p_r_c = rwc.read_configuration(f_n)
-    return s_p_r_c
+    s_p_r_c_old = rwc.read_configuration(f_n)
+    s_p_r_c_pair_counter = {}
+    s_p_r_c_new = {}
+    for idx in s_p_r_c_old:
+        src = s_p_r_c_old[idx]['from']
+        dst = s_p_r_c_old[idx]['to']
+        r_idx = s_p_r_c_old[idx]['r_idx']
+        c1 = s_p_r_c_old[idx]['c1']
+        c2 = s_p_r_c_old[idx]['c2']
+        r_name = s_p_r_c_old[idx]['r_name']
+
+        base_d = {'r_idx': r_idx, 'c1': c1, 'c2': c2, 'r_name': r_name}
+        if (src, dst) not in s_p_r_c_new:
+            s_p_r_c_pair_counter[(src, dst)] = 1
+            s_p_r_c_new[(src, dst)] = {'0': base_d}
+        else:
+            counter = s_p_r_c_pair_counter[(src, dst)]
+            s_p_r_c_new[(src, dst)].update({str(counter): base_d})
+            s_p_r_c_pair_counter[(src, dst)] += 1
+
+    # for key in s_p_r_c_new:
+        # print(key)
+        # print(s_p_r_c_new[key])
+    return s_p_r_c_new
 
 
 def read_spe_composition(f_n):
@@ -223,4 +245,4 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(DATA_DIR)
 
-    parse_reaction_net_product(DATA_DIR)
+    # parse_reaction_net_product(DATA_DIR)

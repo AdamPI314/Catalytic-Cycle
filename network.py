@@ -288,20 +288,19 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
     return di_graph
 
 
-def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir, init_spe=None, atom_followed="C",
-                                                                        tau=10.0, end_t=0.5, species_path=False, tag="M"):
+def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir, tag="M",
+                                                                        tau=10.0, end_t=0.5, end_t2=None):
     """
     init directed network
     without parallel edges
     return networkx.DiGraph
+    at least time-snapshot network at a time, end_t,
+    a second time can be added, but don't change network structure, 
+    instead add a second attribute "weight2" to edges
     """
-    spe_idx_name_dict, _ = psri.parse_spe_info(data_dir)
-
-    suffix = get_suffix(data_dir, init_spe=init_spe,
-                        atom_followed=atom_followed, end_t=end_t)
-    prefix = ""
-    if species_path is True:
-        prefix = "species_"
+    s_idx_2_name, _ = psri.parse_spe_info(data_dir)
+    spe_alias = read_spe_alias(os.path.join(
+        data_dir, "input", "spe_alias.json"))
 
     time_v = np.loadtxt(os.path.join(data_dir, "output",
                                      "time_dlsode_M.csv"), dtype=float, delimiter=',')
@@ -314,46 +313,91 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
     idx_array = [i for i in range(len(time_v))]
     time_axis = int(
         round(interpolation.interp1d(time_v, idx_array, tau * end_t)))
-
     if time_axis >= len(time_v):
         time_axis = len(time_v) - 1
 
     conc_v = conc_mat[time_axis, :]
     rxn_rates_v = rxn_rates_mat[time_axis, :]
 
-    print(np.shape(conc_v), np.shape(rxn_rates_v))
+    if end_t2 is not None:
+        time_axis2 = int(
+            round(interpolation.interp1d(time_v, idx_array, tau * end_t2)))
+        if time_axis2 >= len(time_v):
+            time_axis2 = len(time_v) - 1
+        rxn_rates_v2 = rxn_rates_mat[time_axis2, :]
 
     species_set = set()
     species_pair_weight = {}
+    if end_t2 is not None:
+        species_pair_weight2 = {}
+
     # species pairs-reactions-coefficient
     s_p_r_c = psri.parse_species_pair_reaction(data_dir)
     # print(s_p_r_c)
-    for s1 in s_p_r_c:
-        # print(s1)
+    for s1, s2 in s_p_r_c:
         species_set.add(int(s1))
-        for s2 in s_p_r_c[s1]:
-            print(s1, s2)
-            species_set.add(int(s2))
-            if (int(s1), int(s2)) not in species_pair_weight:
-                species_pair_weight.update({(int(s1), int(s2)): 0.0})
-            for idx in s_p_r_c[s1][s2]:
-                r_idx = int(s_p_r_c[s1][s2][idx]['r_idx'])
-                c1 = float(s_p_r_c[s1][s2][idx]['c1'])
-                c2 = float(s_p_r_c[s1][s2][idx]['c2'])
-                flux = rxn_rates_v[r_idx] * c2 / c1
-                species_pair_weight[(int(s1), int(s2))] += flux
-    print(species_set)
-    print(species_pair_weight)
+        # print(s1, s2)
+        species_set.add(int(s2))
+        if (int(s1), int(s2)) not in species_pair_weight:
+            species_pair_weight.update({(int(s1), int(s2)): 0.0})
+        if end_t2 is not None:
+            if (int(s1), int(s2)) not in species_pair_weight2:
+                species_pair_weight2.update({(int(s1), int(s2)): 0.0})
+
+        for idx in s_p_r_c[(s1, s2)]:
+            r_idx = int(s_p_r_c[(s1, s2)][idx]['r_idx'])
+            c1 = float(s_p_r_c[(s1, s2)][idx]['c1'])
+            c2 = float(s_p_r_c[(s1, s2)][idx]['c2'])
+            flux = rxn_rates_v[r_idx] * c2 / c1
+            species_pair_weight[(int(s1), int(s2))] += flux
+
+            if end_t2 is not None:
+                flux2 = rxn_rates_v2[r_idx] * c2 / c1
+                species_pair_weight2[(int(s1), int(s2))] += flux2
+
+    # print(species_set)
+    # print(species_pair_weight)
+
+    edge_weight_v = []
+    for idx, key in enumerate(species_pair_weight):
+        edge_weight_v.append(float(species_pair_weight[key]))
+    if end_t2 is not None:
+        edge_weight_v2 = []
+        for idx, key in enumerate(species_pair_weight2):
+            edge_weight_v2.append(float(species_pair_weight2[key]))
+
+    # rescase concentrations
+    conc_v = rescale_array(conc_v, 10.0, 25.0)
+    edge_weight_v = rescale_array(edge_weight_v, 2.0, 25.0)
+    if end_t2 is not None:
+        edge_weight_v2 = rescale_array(edge_weight_v2, 2.0, 25.0)
 
     # final directed graph
     di_graph = nx.DiGraph()
     # add nodes first
     for _, val in enumerate(species_set):
-        di_graph.add_node(val, weight=conc_v[int(val)])
+        weight = float(conc_v[int(val)])
+        node_name = change_spe_name(s_idx_2_name[str(val)], spe_alias, None)
+        di_graph.add_node(node_name,
+                          label=node_name, weight=weight)
     # add edges
+    for idx, key in enumerate(species_pair_weight):
+        src = key[0]
+        dst = key[1]
+        src_name = change_spe_name(s_idx_2_name[str(src)], spe_alias, None)
+        dst_name = change_spe_name(s_idx_2_name[str(dst)], spe_alias, None)
+        name = src_name + "," + dst_name
+        if end_t2 is None:
+            weight = float(edge_weight_v[idx])
+            di_graph.add_edge(
+                src_name, dst_name, name=name, weight=weight, weight2=weight)
+        else:
+            weight = float(edge_weight_v[idx])
+            weight2 = float(edge_weight_v2[idx])
+            di_graph.add_edge(
+                src_name, dst_name, name=name, weight=weight, weight2=weight2)
 
-    # output file name
-    of_name = prefix + "reaction_network_from_C_R_at_time" + suffix + ".jpg"
+    return di_graph
 
 
 def network_to_gephi_input_file(networkx_obj, data_dir, fname="network.gexf"):
@@ -557,11 +601,11 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting(DATA_DIR)
 
-    # PREFIX = ""
-    # if G_S['species_path'] is True:
-    #     PREFIX = "species_"
-    # SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
-    #                     atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
+    PREFIX = ""
+    if G_S['species_path'] is True:
+        PREFIX = "species_"
+    SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
+                        atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
 
     # TIME_AXIS, _ = tools.pathway_time_2_array_index(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
@@ -607,10 +651,20 @@ if __name__ == '__main__':
     #                      path_idx=P_IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
     #                      atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
-    init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(DATA_DIR, init_spe=G_S['init_s'],
-                                                                        atom_followed=G_S['atom_f'], tau=G_S['tau'],
-                                                                        end_t=0.5, tag="M")
+    END_T = 0.2
+    END_T2 = 1.0
+    RN_OBJ2 = init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(DATA_DIR, tag="M",
+                                                                                  tau=G_S['tau'],
+                                                                                  end_t=END_T, end_t2=END_T2)
+    if END_T2 is None:
+        NETWORK_FILENAME = PREFIX + "network_all_species_" + \
+            str(END_T) + SUFFIX
+    else:
+        NETWORK_FILENAME = PREFIX + "network_all_species_" + \
+            str(END_T) + "_" + str(END_T2) + SUFFIX
 
+    network_to_gephi_input_file(
+        RN_OBJ2, DATA_DIR, NETWORK_FILENAME + ".gexf")
     END_TIME = time.time()
 
     print("Time Elapsed:\t{:.5} seconds".format(END_TIME - INIT_TIME))
