@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 import parse_spe_reaction_info as psri
+import interpolation
 import global_settings
 from naming import get_suffix
 import tools
@@ -160,7 +161,6 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
 
     suffix = get_suffix(data_dir, init_spe=init_spe,
                         atom_followed=atom_followed, end_t=end_t)
-
     prefix = ""
     if species_path is True:
         prefix = "species_"
@@ -286,6 +286,74 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
         di_graph.add_edge(src, dest, name=name, weight=weight)
 
     return di_graph
+
+
+def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir, init_spe=None, atom_followed="C",
+                                                                        tau=10.0, end_t=0.5, species_path=False, tag="M"):
+    """
+    init directed network
+    without parallel edges
+    return networkx.DiGraph
+    """
+    spe_idx_name_dict, _ = psri.parse_spe_info(data_dir)
+
+    suffix = get_suffix(data_dir, init_spe=init_spe,
+                        atom_followed=atom_followed, end_t=end_t)
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    time_v = np.loadtxt(os.path.join(data_dir, "output",
+                                     "time_dlsode_M.csv"), dtype=float, delimiter=',')
+    conc_mat = np.loadtxt(os.path.join(data_dir, "output",
+                                       "concentration_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    rxn_rates_mat = np.loadtxt(os.path.join(data_dir, "output",
+                                            "reaction_rate_dlsode_" + str(tag) + ".csv"), delimiter=",")
+    # the time point where reference time tau is
+    # use interpolation here
+    idx_array = [i for i in range(len(time_v))]
+    time_axis = int(
+        round(interpolation.interp1d(time_v, idx_array, tau * end_t)))
+
+    if time_axis >= len(time_v):
+        time_axis = len(time_v) - 1
+
+    conc_v = conc_mat[time_axis, :]
+    rxn_rates_v = rxn_rates_mat[time_axis, :]
+
+    print(np.shape(conc_v), np.shape(rxn_rates_v))
+
+    species_set = set()
+    species_pair_weight = {}
+    # species pairs-reactions-coefficient
+    s_p_r_c = psri.parse_species_pair_reaction(data_dir)
+    # print(s_p_r_c)
+    for s1 in s_p_r_c:
+        # print(s1)
+        species_set.add(int(s1))
+        for s2 in s_p_r_c[s1]:
+            print(s1, s2)
+            species_set.add(int(s2))
+            if (int(s1), int(s2)) not in species_pair_weight:
+                species_pair_weight.update({(int(s1), int(s2)): 0.0})
+            for idx in s_p_r_c[s1][s2]:
+                r_idx = int(s_p_r_c[s1][s2][idx]['r_idx'])
+                c1 = float(s_p_r_c[s1][s2][idx]['c1'])
+                c2 = float(s_p_r_c[s1][s2][idx]['c2'])
+                flux = rxn_rates_v[r_idx] * c2 / c1
+                species_pair_weight[(int(s1), int(s2))] += flux
+    print(species_set)
+    print(species_pair_weight)
+
+    # final directed graph
+    di_graph = nx.DiGraph()
+    # add nodes first
+    for _, val in enumerate(species_set):
+        di_graph.add_node(val, weight=conc_v[int(val)])
+    # add edges
+
+    # output file name
+    of_name = prefix + "reaction_network_from_C_R_at_time" + suffix + ".jpg"
 
 
 def network_to_gephi_input_file(networkx_obj, data_dir, fname="network.gexf"):
@@ -489,55 +557,59 @@ if __name__ == '__main__':
 
     G_S = global_settings.get_setting(DATA_DIR)
 
-    PREFIX = ""
-    if G_S['species_path'] is True:
-        PREFIX = "species_"
-    SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
-                        atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
+    # PREFIX = ""
+    # if G_S['species_path'] is True:
+    #     PREFIX = "species_"
+    # SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
+    #                     atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
 
-    TIME_AXIS, _ = tools.pathway_time_2_array_index(
-        DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-        species_path=G_S['species_path'], time=G_S['mc_t'])
+    # TIME_AXIS, _ = tools.pathway_time_2_array_index(
+    #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #     species_path=G_S['species_path'], time=G_S['mc_t'])
 
-    TOP_N = 10
-    # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(DATA_DIR, top_n=TOP_N,
-    #                                                            suffix=SUFFIX, norm=True,
-    #                                                            species_path=G_S['species_path'],
-    #                                                            time_axis=TIME_AXIS,
-    #                                                            sort_by_p=True)
+    # TOP_N = 10
+    # # PATH_NAME_SELECTED, PATH_PROB_SELECTED = get_top_n_pathway(DATA_DIR, top_n=TOP_N,
+    # #                                                            suffix=SUFFIX, norm=True,
+    # #                                                            species_path=G_S['species_path'],
+    # #                                                            time_axis=TIME_AXIS,
+    # #                                                            sort_by_p=True)
+    # # PATH_IDX = [i for i in range(TOP_N)]
+
+    # # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
+    # #             68, 93, 115, 138, 153, 165, 166, 245, 477]
+    # PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(DATA_DIR, top_n=G_S['top_n_p'],
+    #                                                  suffix=SUFFIX, norm=True,
+    #                                                  species_path=G_S['species_path'],
+    #                                                  time_axis=TIME_AXIS,
+    #                                                  sort_by_p=False)
     # PATH_IDX = [i for i in range(TOP_N)]
+    # PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
+    # PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
 
-    # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
-    #             68, 93, 115, 138, 153, 165, 166, 245, 477]
-    PATH_NAME_ALL, PATH_PROB_ALL = get_top_n_pathway(DATA_DIR, top_n=G_S['top_n_p'],
-                                                     suffix=SUFFIX, norm=True,
-                                                     species_path=G_S['species_path'],
-                                                     time_axis=TIME_AXIS,
-                                                     sort_by_p=False)
-    PATH_IDX = [i for i in range(TOP_N)]
-    PATH_NAME_SELECTED = [PATH_NAME_ALL[I] for I in PATH_IDX]
-    PATH_PROB_SELECTED = [PATH_PROB_ALL[I] for I in PATH_IDX]
+    # # filename without type appendix
+    # NETWORK_FILENAME = PREFIX + "network" + SUFFIX
 
-    # filename without type appendix
-    NETWORK_FILENAME = PREFIX + "network" + SUFFIX
+    # if not os.path.isfile(os.path.join(DATA_DIR, "output", NETWORK_FILENAME + ".gexf")):
+    #     RN_OBJ = init_directed_network(
+    #         DATA_DIR, path_idx=PATH_IDX, init_spe=G_S['init_s'],
+    #         atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
+    #         species_path=G_S['species_path'], time_axis=TIME_AXIS)
+    #     network_to_gephi_input_file(
+    #         RN_OBJ, DATA_DIR, NETWORK_FILENAME + ".gexf")
 
-    if not os.path.isfile(os.path.join(DATA_DIR, "output", NETWORK_FILENAME + ".gexf")):
-        RN_OBJ = init_directed_network(
-            DATA_DIR, path_idx=PATH_IDX, init_spe=G_S['init_s'],
-            atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
-            species_path=G_S['species_path'], time_axis=TIME_AXIS)
-        network_to_gephi_input_file(
-            RN_OBJ, DATA_DIR, NETWORK_FILENAME + ".gexf")
+    # if os.path.isfile(os.path.join(DATA_DIR, "output", NETWORK_FILENAME + ".json")):
+    #     for IDX_TMP, P_IDX in enumerate(PATH_IDX):
+    #         PATHNAME = PATH_NAME_SELECTED[IDX_TMP]
+    #         PATHPROB = PATH_PROB_SELECTED[IDX_TMP]
 
-    if os.path.isfile(os.path.join(DATA_DIR, "output", NETWORK_FILENAME + ".json")):
-        for IDX_TMP, P_IDX in enumerate(PATH_IDX):
-            PATHNAME = PATH_NAME_SELECTED[IDX_TMP]
-            PATHPROB = PATH_PROB_SELECTED[IDX_TMP]
+    #         plot_network(data_dir=DATA_DIR, fname=NETWORK_FILENAME + ".json",
+    #                      pathname=PATHNAME, pathprob=PATHPROB,
+    #                      path_idx=P_IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
+    #                      atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
-            plot_network(data_dir=DATA_DIR, fname=NETWORK_FILENAME + ".json",
-                         pathname=PATHNAME, pathprob=PATHPROB,
-                         path_idx=P_IDX + 1, end_t=G_S['end_t'], suffix=SUFFIX,
-                         atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
+    init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(DATA_DIR, init_spe=G_S['init_s'],
+                                                                        atom_followed=G_S['atom_f'], tau=G_S['tau'],
+                                                                        end_t=0.5, tag="M")
 
     END_TIME = time.time()
 

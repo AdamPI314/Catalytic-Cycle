@@ -82,7 +82,7 @@ p7 = semilogy(time_vec, conc_mat(:, 102), 'LineWidth', 2); hold on;
 
 %% conc
 set(gca,'GridLineStyle','--');
-xlabel('Time (second)', 'FontSize', 20);
+xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
 ylim([10^-25, 10^-8.2]);
 
@@ -97,7 +97,7 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'OQ^{\prime}OOH_1','nROO','HOOQ^{\prime}OOH_1','nR','QOOH_1','CH_2CHO','OQ^{\prime}O_1');
+leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'OQ^{\prime}OOH_1','nROO','O_2QOOH_1','nR','QOOH_1','CH_2CHO','OQ^{\prime}O_1');
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 

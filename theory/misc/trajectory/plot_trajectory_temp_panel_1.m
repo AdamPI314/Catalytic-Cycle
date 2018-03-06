@@ -85,7 +85,7 @@ p8 = semilogy(time_vec, conc_mat(:, 39), 'LineWidth', 2); hold on;
 
 %% conc
 set(gca,'GridLineStyle','--');
-xlabel('Time (second)', 'FontSize', 20);
+xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('[X] (mole\cdotL^{-1})', 'FontSize', 20);
 ylim([10^-16, 10^-5.9]);
 
