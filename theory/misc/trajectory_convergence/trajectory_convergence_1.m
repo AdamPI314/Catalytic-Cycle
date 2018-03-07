@@ -1,5 +1,6 @@
 %% global settings
 spe_idx=14;
+spe_name='CO';
 folder1 = '0.5tau';
 tau = '0.777660157519';
 end_t = '0.5';
@@ -113,6 +114,10 @@ grid on;
 yyaxis right
 semilogy(path_idx(1:delta_2:end_idx2), error_data1(1:delta_2:end_idx2), ... 
     'LineStyle', ':', 'LineWidth', 2, 'color', 'r'); hold on;
+a_x = gca;
+t_x = a_x.XLim(1) + 0.465*(a_x.XLim(2) - a_x.XLim(1));
+t_y = a_x.YLim(1) + 0.618*(a_x.YLim(2) - a_x.YLim(1));
+text(t_x, t_y, spe_name);
 
 %% save to file
 figname = strcat('pathway_prob_concentration_',num2str(spe_idx), '.png');
