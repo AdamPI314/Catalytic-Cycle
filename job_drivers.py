@@ -207,29 +207,32 @@ def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n
     os.chdir(src_dir)
 
     if spe_oriented is True:
-        us.update_eval_path_integral(
-            data_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe,
-            tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
-
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
-        ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n * top_n_s, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+
+        n_path = ppnt.prepare_pathway_name(
+            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+
         ppnt.prepare_pathway_time(
-            data_dir, top_n=top_n * top_n_s, num=num_t, flag=flag,
+            data_dir, top_n=n_path, num=num_t, flag=flag,
             begin_t=begin_t, end_t=end_t, species_path=species_path)
-    else:
+
         us.update_eval_path_integral(
-            data_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            data_dir, top_n=n_path, n_traj=n_traj,
+            atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
-        ppnt.prepare_pathway_name(
+
+    else:
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
         ppnt.prepare_pathway_time(
-            data_dir, top_n=top_n, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
+            data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
 
+        us.update_eval_path_integral(
+            data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
     make_run(src_dir, data_dir)
 
 
@@ -245,22 +248,23 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
     os.chdir(src_dir)
 
     if spe_oriented is True:
-        us.update_eval_path_AT(
-            data_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
-
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
-        ppnt.prepare_pathway_name(
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
-    else:
+
         us.update_eval_path_AT(
-            data_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
-            tau=tau, begin_t=begin_t, end_t=end_t)
-        ppnt.prepare_pathway_name(
+            data_dir, top_n=n_path, n_traj=n_traj,
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
+
+    else:
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+        us.update_eval_path_AT(
+            data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
 
     make_run(src_dir, data_dir)
 
@@ -277,22 +281,22 @@ def evaluate_pathway_AT_no_IT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
     os.chdir(src_dir)
 
     if spe_oriented is True:
-        us.update_eval_path_AT_no_IT(
-            data_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
-
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
-        ppnt.prepare_pathway_name(
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
-    else:
+
         us.update_eval_path_AT_no_IT(
-            data_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
-            tau=tau, begin_t=begin_t, end_t=end_t)
-        ppnt.prepare_pathway_name(
+            data_dir, top_n=n_path, n_traj=n_traj,
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
+    else:
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+        us.update_eval_path_AT_no_IT(
+            data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
 
     make_run(src_dir, data_dir)
 
@@ -309,27 +313,27 @@ def evaluate_pathway_AT_with_SP(src_dir, data_dir, top_n=5, flag="", n_traj=1000
     os.chdir(src_dir)
 
     if spe_oriented is True:
-        us.update_eval_path_AT_with_SP(
-            data_dir, top_n=top_n * top_n_s, n_traj=n_traj,
-            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
-
         if end_s_idx is None or end_s_idx is []:
             end_s_idx, _, _ = trajectory.get_species_with_top_n_concentration(
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
-        ppnt.prepare_pathway_name(
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
-    else:
+
         us.update_eval_path_AT_with_SP(
-            data_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
-            tau=tau, begin_t=begin_t, end_t=end_t)
-        ppnt.prepare_pathway_name(
+            data_dir, top_n=n_path, n_traj=n_traj,
+            atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
+    else:
+        n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+        us.update_eval_path_AT_with_SP(
+            data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
+            tau=tau, begin_t=begin_t, end_t=end_t)
 
     make_run(src_dir, data_dir)
 
 
-def evaluate_passage_time_of_species(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
+def evaluate_passage_time_of_species(src_dir, data_dir, flag="", n_traj=10000,
                                      atom_followed="C", init_spe=114, tau=10.0,
                                      begin_t=0.0, end_t=1.0, end_s_idx=None, species_path=False):
     """
@@ -339,11 +343,11 @@ def evaluate_passage_time_of_species(src_dir, data_dir, top_n=5, flag="", n_traj
     """
     os.chdir(data_dir)
 
-    us.update_eval_path_AT(
-        data_dir, top_n=top_n, n_traj=n_traj, atom_followed=atom_followed,
-        init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
-    ppnt.prepare_pathway_name_for_passage_time(
+    n_path = ppnt.prepare_pathway_name_for_passage_time(
         data_dir, flag=flag, init_s_idx=end_s_idx, species_path=species_path)
+    us.update_eval_path_AT(
+        data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed,
+        init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
 
     make_run(src_dir, data_dir)
 

@@ -44,6 +44,7 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
+    return len(path_list)
 
 
 def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None, species_path=False):
@@ -79,6 +80,7 @@ def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None, sp
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
+    return len(path_list)
 
 
 def prepare_pathway_time(data_dir, top_n=5, num=1, flag="", begin_t=0.0, end_t=1.0, species_path=False):

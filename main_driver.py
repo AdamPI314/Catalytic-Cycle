@@ -71,7 +71,7 @@ if __name__ == '__main__':
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
-    # job_drivers.evaluate_passage_time_of_species(SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="", n_traj=G_S['pi_n_traj'],
+    # job_drivers.evaluate_passage_time_of_species(SRC_DIR, DATA_DIR, flag="", n_traj=G_S['pi_n_traj'],
     #                                              atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], tau=G_S['tau'],
     #                                              begin_t=G_S['begin_t'], end_t=G_S['end_t'],
     #                                              end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
