@@ -317,7 +317,7 @@ def plot_concentration_ratio_of_spe_pairs(data_dir, spe_idx_pair=None, tau=10.0,
         leg_right.get_frame().set_alpha(0.7)
         a_x_right.set_ylabel("T (K)")
 
-    s_n_str = "_".join(s_idx_n[str(x[0])] + "w"+s_idx_n[str(x[1])]
+    s_n_str = "_".join(s_idx_n[str(x[0])] + "w" + s_idx_n[str(x[1])]
                        for x in spe_idx_pair_tmp)
     # plt.title(s_n_str)
 
@@ -807,7 +807,7 @@ def plot_reaction_pair_rate_ratio(data_dir, rxn_idx_pair=None, spe_idx_pair=None
 
 
 def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=62, atom_followed="C",
-                              tau=10.0, end_t=1.0, end_s_idx=62, species_path=False, time_axis=0):
+                              tau=10.0, end_t=1.0, end_s_idx=62, species_path=False, time_axis=0, s2f=False):
     """
     plot spe_path_prob give species name
     """
@@ -846,11 +846,22 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
 
     spe_conc_const = spe_conc[int(end_s_idx)]
 
+    # save individual pathway probability, sorted, into file,
+    # save species concentration at that time into file
+    if s2f is True:
+        p_f_n = os.path.join(data_dir, "output",  prefix +
+                             "path_prob_top_n_sorted_" + str(top_n) + "_" + str(end_s_idx) + "_" + str(tau) + ".csv")
+        np.savetxt(p_f_n, data, fmt='%.18e', delimiter=',', newline='\n')
+        const_c_f_n = os.path.join(data_dir, "output",  prefix +
+                                   "const_conc_" + str(top_n) + "_" + str(end_s_idx) + "_" + str(tau) + ".csv")
+        np.savetxt(const_c_f_n, spe_conc_const,
+                   fmt='%.18e', delimiter=',', newline='\n')
+
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
     a_x_right = a_x_left.twinx()
 
     # for plot purpose, (data_x, data_y)
-    data_x = [i+1 for i in range(len(data_c))]
+    data_x = [i + 1 for i in range(len(data_c))]
 
     a_x_left.plot([1, len(data_c)], [spe_conc_const, spe_conc_const],
                   color=colors[-1], marker=markers[1], label="Exact Concentration", markevery=delta_n)
@@ -861,9 +872,9 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
                    color=colors[1], marker=markers[2], label="Percentage Relative Error", markevery=delta_n)
 
     leg_left = a_x_left.legend(loc='center', bbox_to_anchor=(
-        0.5, 0.5+0.1), fancybox=True, prop={'size': 10.0})
+        0.5, 0.5 + 0.1), fancybox=True, prop={'size': 10.0})
     leg_right = a_x_right.legend(loc='center', bbox_to_anchor=(
-        0.5, 0.5-0.1), fancybox=True, prop={'size': 10.0})
+        0.5, 0.5 - 0.1), fancybox=True, prop={'size': 10.0})
 
     a_x_left.yaxis.get_major_formatter().set_powerlimits((0, 1))
     a_x_right.yaxis.get_major_formatter().set_powerlimits((0, 1))
@@ -877,7 +888,7 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
     a_x_left.grid()
 
     a_x_left.set_xlabel("#Path")
-    a_x_left.set_ylabel("[X] and "+"$\Sigma$P$_i$")
+    a_x_left.set_ylabel("[X] and " + "$\Sigma$P$_i$")
     a_x_right.set_ylabel("%Error")
     ytick_vals = a_x_right.get_yticks()
     a_x_right.set_yticklabels(['{:3.2f}%'.format(x * 100) for x in ytick_vals])
@@ -1742,7 +1753,8 @@ if __name__ == '__main__':
                                   tau=G_S['tau'], end_t=G_S['end_t'],
                                   end_s_idx=END_S_IDX,
                                   species_path=G_S['species_path'],
-                                  time_axis=TIME_AXIS)
+                                  time_axis=TIME_AXIS,
+                                  s2f=True)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
