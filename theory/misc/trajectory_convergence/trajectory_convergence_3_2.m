@@ -5,6 +5,14 @@ folder1 = '0.5tau';
 tau = '0.777660157519';
 end_t = '0.5';
 
+%% index, delta, every settings
+end_idx1 = 500;
+delta1 = 1;
+end_idx2 = 25;
+delta2 = 1;
+end_idx3 = 500;
+delta3 = 1;
+
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
@@ -92,7 +100,7 @@ xlim([1, end_idx1]);
 leg_h = legend([p1; p2; p3],'EXACT','SOHR', 'Percentage Error');
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 % [left, bottom, weight, height]
-set(leg_h, 'Position', [0.275, 0.2, 0.5, 0.1])
+set(leg_h, 'Position', [0.275, 0.19, 0.5, 0.1])
 
 a_x = gca;
 t_x = a_x.XLim(1) + 0.465*(a_x.XLim(2) - a_x.XLim(1));
