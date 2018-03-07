@@ -854,7 +854,7 @@ def plot_species_pathway_prob(data_dir, top_n=10, exclude_names=None, init_spe=6
         np.savetxt(p_f_n, data, fmt='%.18e', delimiter=',', newline='\n')
         const_c_f_n = os.path.join(data_dir, "output",  prefix +
                                    "const_conc_" + str(top_n) + "_" + str(end_s_idx) + "_" + str(tau) + ".csv")
-        np.savetxt(const_c_f_n, spe_conc_const,
+        np.savetxt(const_c_f_n, [spe_conc_const],
                    fmt='%.18e', delimiter=',', newline='\n')
 
     fig, a_x_left = plt.subplots(1, 1, sharex=True, sharey=False)
