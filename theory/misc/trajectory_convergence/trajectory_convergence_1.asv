@@ -1,0 +1,17 @@
+%% Current file directory
+file_dir = fullfile(fileparts(mfilename('fullpath')), '0.5tau');
+
+filename = fullfile(file_dir, 'o', 'const_conc_500_14_0.777660157519.csv');
+
+fn_conc_c1 = 'D:\Github\SOHR\projects\catalytic_cycle\theory\misc\trajectory_convergence\0.5tau\const_conc_500_14_0.777660157519.csv';
+delimiter = '';
+formatSpec = '%f%[^\n\r]';
+%% Open the text file.
+fileID = fopen(fn_conc_c1,'r');
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,  'ReturnOnError', false);
+%% Close the text file.
+fclose(fileID);
+%% Allocate imported array to column variable names
+const_c1 = dataArray{:, 1};
+%% Clear temporary variables
+clearvars fn_conc_c1 delimiter formatSpec fileID dataArray ans;
