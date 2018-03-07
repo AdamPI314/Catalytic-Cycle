@@ -1737,7 +1737,7 @@ if __name__ == '__main__':
     #     time_axis=TIME_AXIS)
 
     for END_S_IDX in G_S['end_s_idx']:
-        plot_species_pathway_prob(DATA_DIR, top_n=100, exclude_names=None, init_spe=G_S['init_s'],
+        plot_species_pathway_prob(DATA_DIR, top_n=G_S['top_n_p'], exclude_names=None, init_spe=G_S['init_s'],
                                   atom_followed=G_S['atom_f'],
                                   tau=G_S['tau'], end_t=G_S['end_t'],
                                   end_s_idx=END_S_IDX,
