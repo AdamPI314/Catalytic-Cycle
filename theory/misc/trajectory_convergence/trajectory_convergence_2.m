@@ -1,22 +1,24 @@
 %% global settings
 spe_idx=17;
 spe_name='CH_2O';
-folder1 = '0.5tau';
+folder1 = '0.2seconds';
 tau = '0.777660157519';
-end_t = '0.5';
+end_t = '0.25718313951098054';
+n_path = '100';
 %% index, delta, every settings
-end_idx1 = 500;
+end_idx1 = 35;
 delta1 = 1;
-end_idx2 = 25;
+end_idx2 = 10;
 delta2 = 1;
-end_idx3 = 500;
+end_idx3 = 35;
 delta3 = 1;
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% const concentration at a time
-fn_conc_c1 = fullfile(file_dir, folder1, strcat('const_conc_500_',num2str(spe_idx),'_',tau,'_',end_t,'.csv'));
+fn_conc_c1 = fullfile(file_dir, folder1, strcat('const_conc_', ...
+    n_path, '_',num2str(spe_idx), '_', tau, '_', end_t, '.csv'));
 delimiter = '';
 formatSpec = '%f%[^\n\r]';
 %% Open the text file.
@@ -31,7 +33,8 @@ clearvars fn_conc_c1 delimiter formatSpec fileID dataArray ans;
 
 %% sorted pathway probabilities
 file_dir = fullfile(fileparts(mfilename('fullpath')));
-fn_path_p1 = fullfile(file_dir, folder1, strcat('path_prob_top_n_sorted_500_',num2str(spe_idx),'_',tau,'_',end_t,'.csv'));
+fn_path_p1 = fullfile(file_dir, folder1, strcat('path_prob_top_n_sorted_', ... 
+    n_path, '_',num2str(spe_idx), '_', tau, '_', end_t, '.csv'));
 
 delimiter = '';
 formatSpec = '%f%[^\n\r]';
@@ -83,7 +86,7 @@ p3 = plot(NaN, NaN, 'LineStyle', ':', 'LineWidth', 2, 'color', co(3, :));
 set(gca,'GridLineStyle','--');
 xlabel('#Path', 'FontSize', 20);
 ylabel('Concentration', 'FontSize', 20);
-ylim([10^(1.0*log10(cumu_path_p_vec1(1))), 10^(0.998*(log10(const_c1)))]);
+ylim([10^(1.0*log10(cumu_path_p_vec1(1))), 10^(0.9995*(log10(const_c1)))]);
 % ylim([0.0, 10^(0.9995*(log10(const_c1)))]);
 
 yyaxis right
@@ -159,9 +162,9 @@ grid on;
 leg_z2 = legend(zf2_1,['PATHWAY' newline 'PROBABILITY']);
 set(leg_z2, 'FontSize', 8, 'Box', 'off');
 % [left, bottom, weight, height]
-set(leg_z2, 'Position', [z2_position(1) + z2_position(3)*0.3, ...
+set(leg_z2, 'Position', [z2_position(1) + z2_position(3)*0.375, ...
     z2_position(2) + z2_position(4)*0.5, 0.1, 0.1]);
 
 %% save to file
-figname = strcat('pathway_prob_concentration_',num2str(spe_idx), '_2.png');
+figname = strcat('pathway_prob_concentration_',num2str(spe_idx), '_',end_t, '.png');
 print(fig, fullfile(file_dir, folder1, figname), '-r200', '-dpng');
