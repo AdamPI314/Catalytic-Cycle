@@ -1,5 +1,5 @@
 %% global settings
-spe_idx=14;
+spe_idx=59;
 folder1 = '0.5tau';
 tau = '0.777660157519';
 end_t = '0.5';
