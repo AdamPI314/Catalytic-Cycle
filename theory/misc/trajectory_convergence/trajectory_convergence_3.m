@@ -1,23 +1,24 @@
 %% global settings
 spe_idx=59;
 spe_name='C_3H_6';
-folder1 = '0.2seconds';
+folder1 = '0.5tau2';
 tau = '0.777660157519';
-end_t = '0.25718313951098054';
-n_path = '100';
+end_t = '0.5';
+n_path = '50';
+species_path = 'species_';
 %% index, delta, every settings
-end_idx1 = 100;
+end_idx1 = 50;
 delta1 = 1;
 end_idx2 = 10;
 delta2 = 1;
-end_idx3 = 100;
+end_idx3 = 50;
 delta3 = 1;
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% const concentration at a time
-fn_conc_c1 = fullfile(file_dir, folder1, strcat('const_conc_', ...
+fn_conc_c1 = fullfile(file_dir, folder1, strcat(species_path, 'const_conc_', ...
     n_path, '_',num2str(spe_idx), '_', tau, '_', end_t, '.csv'));
 delimiter = '';
 formatSpec = '%f%[^\n\r]';
@@ -33,7 +34,7 @@ clearvars fn_conc_c1 delimiter formatSpec fileID dataArray ans;
 
 %% sorted pathway probabilities
 file_dir = fullfile(fileparts(mfilename('fullpath')));
-fn_path_p1 = fullfile(file_dir, folder1, strcat('path_prob_top_n_sorted_', ... 
+fn_path_p1 = fullfile(file_dir, folder1, strcat(species_path, 'path_prob_top_n_sorted_', ... 
     n_path, '_',num2str(spe_idx), '_', tau, '_', end_t, '.csv'));
 
 delimiter = '';
@@ -122,10 +123,12 @@ semilogy(path_idx(1:delta2:end_idx2), cumu_path_p_vec1(1:delta2:end_idx2) , ...
 axis tight;
 grid on;
 ylim([10^(1.0*log10(cumu_path_p_vec1(1))), 10^(0.999*(log10(const_c1)))]);
+
 %% Error
 yyaxis right
 semilogy(path_idx(1:delta2:end_idx2), error_data1(1:delta2:end_idx2), ... 
     'LineStyle', ':', 'LineWidth', 2, 'color', 'r'); hold on;
+
 
 %% Zoom in figure2
 co = [    0    0.4470    0.7410 % 1th plot
@@ -164,7 +167,8 @@ set(leg_z2, 'FontSize', 8, 'Box', 'off');
 % [left, bottom, weight, height]
 set(leg_z2, 'Position', [z2_position(1) + z2_position(3)*0.375, ...
     z2_position(2) + z2_position(4)*0.5, 0.1, 0.1]);
+% alpha(0.5);
 
 %% save to file
-figname = strcat('pathway_prob_concentration_',num2str(spe_idx), '_',end_t, '.png');
+figname = strcat(species_path, 'pathway_prob_concentration_',num2str(spe_idx), '_',end_t, '.png');
 print(fig, fullfile(file_dir, folder1, figname), '-r200', '-dpng');
