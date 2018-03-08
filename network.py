@@ -10,6 +10,8 @@ import json
 import copy
 import numpy as np
 import pandas as pd
+from math import log10
+from decimal import Decimal
 import networkx as nx
 import parse_spe_reaction_info as psri
 import interpolation
@@ -103,6 +105,37 @@ def rescale_array(arr, min_t=0.0, max_t=1.0):
         for idx, val in enumerate(arr):
             arr[idx] = (val - min_val) * ratio + min_t
         return arr
+
+
+def rescale_array_v2(arr, min_t1=0.0, max_t1=1.0, min_t2=1.0, max_t2=10.0, threshold=None):
+    """
+    rescale array, to automatically select the chattering groups
+    """
+    arr2 = copy.deepcopy(arr)
+    for idx, val in enumerate(arr2):
+        if val == 0.0:
+            arr2[idx] = -1000.0
+        else:
+            d = Decimal(val)
+            # arr2[idx] = log10(val)
+            arr2[idx] = float(d.log10())
+
+    min_val = min(arr2)
+    max_val = max(arr2)
+    if max_val == min_val:
+        for idx, val in enumerate(arr2):
+            arr2[idx] = (max_t1 + min_t1) / 2.0
+        return arr2
+    else:
+        ratio1 = (max_t1 - min_t1) / (max_val - min_val)
+        ratio2 = (max_t2 - min_t2) / (max_val - min_val)
+        for idx, val in enumerate(arr2):
+            if val <= threshold:
+                arr2[idx] = (val - min_val) * ratio1 + min_t1
+            else:
+                arr2[idx] = (val - min_val) * ratio2 + min_t2
+
+        return arr2
 
 
 def get_top_n_pathway(data_dir, top_n=10, suffix="", norm=False, species_path=False, time_axis=0, sort_by_p=False):
@@ -368,9 +401,12 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
 
     # rescase concentrations
     conc_v = rescale_array(conc_v, 10.0, 25.0)
-    edge_weight_v = rescale_array(edge_weight_v, 2.0, 25.0)
+    # edge_weight_v = rescale_array(edge_weight_v, 2.0, 25.0)
+    edge_weight_v = rescale_array_v2(edge_weight_v, 1.5, 2.5, 15.0, 25.0, -9)
     if end_t2 is not None:
-        edge_weight_v2 = rescale_array(edge_weight_v2, 2.0, 25.0)
+        # edge_weight_v2 = rescale_array(edge_weight_v2, 2.0, 25.0)
+        edge_weight_v2 = rescale_array_v2(
+            edge_weight_v2, 1.5, 2.5, 15.0, 25.0, -9)
 
     # final directed graph
     di_graph = nx.DiGraph()
@@ -652,7 +688,7 @@ if __name__ == '__main__':
     #                      atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
     END_T = 0.2
-    END_T2 = 1.0
+    END_T2 = 0.9
     RN_OBJ2 = init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(DATA_DIR, tag="M",
                                                                                   tau=G_S['tau'],
                                                                                   end_t=END_T, end_t2=END_T2)
