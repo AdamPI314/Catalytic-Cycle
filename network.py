@@ -404,21 +404,26 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
     # edge_weight_v = rescale_array(edge_weight_v, 2.0, 25.0)
     edge_weight_v = rescale_array_v2(edge_weight_v, 1.5, 2.5, 15.0, 25.0, -9)
     # edge weights write to file
-    e_w_fn1 = os.path.join(data_dir, "output", "edge_weight1_" + str(end_t) + ".csv")
-    np.savetxt(e_w_fn1, edge_weight_v, fmt='%.18e', newline='\n')
+    e_w_fn1 = os.path.join(
+        data_dir, "output", "edge_weight1_" + str(end_t) + ".csv")
+    f_hanlder1 = open(e_w_fn1, 'w')
+    f_hanlder1.write("Source,Target,Weight" + str(end_t) + "\n")
+    # np.savetxt(e_w_fn1, edge_weight_v, fmt='%.18e', newline='\n')
     if end_t2 is not None:
         # edge_weight_v2 = rescale_array(edge_weight_v2, 2.0, 25.0)
         edge_weight_v2 = rescale_array_v2(
             edge_weight_v2, 1.5, 2.5, 15.0, 25.0, -9)
-        
-        e_w_fn2 = os.path.join(data_dir, "output", "edge_weight2_" + str(end_t2) + ".csv")
-        np.savetxt(e_w_fn2, edge_weight_v2, fmt='%.18e', newline='\n')
 
+        e_w_fn2 = os.path.join(
+            data_dir, "output", "edge_weight2_" + str(end_t2) + ".csv")
+        # np.savetxt(e_w_fn2, edge_weight_v2, fmt='%.18e', newline='\n')
+        f_hanlder2 = open(e_w_fn2, 'w')
+        f_hanlder2.write("Source,Target,Weight" + str(end_t2) + "\n")
 
     # final directed graph
     di_graph = nx.DiGraph()
     # add nodes first
-    for _, val in enumerate(species_set):
+    for idx, val in enumerate(species_set):
         weight = float(conc_v[int(val)])
         node_name = change_spe_name(s_idx_2_name[str(val)], spe_alias, None)
         di_graph.add_node(node_name,
@@ -430,6 +435,11 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
         src_name = change_spe_name(s_idx_2_name[str(src)], spe_alias, None)
         dst_name = change_spe_name(s_idx_2_name[str(dst)], spe_alias, None)
         name = src_name + "," + dst_name
+        # write weight1 to file
+        f_hanlder1.write(
+            src_name + "," +
+            dst_name + "," +
+            str(weight) + "\n")
         if end_t2 is None:
             weight = float(edge_weight_v[idx])
             di_graph.add_edge(
@@ -439,6 +449,15 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
             weight2 = float(edge_weight_v2[idx])
             di_graph.add_edge(
                 src_name, dst_name, name=name, weight=weight, weight2=weight2)
+            # write weight2 to file
+            f_hanlder2.write(
+                src_name + "," +
+                dst_name + "," +
+                str(weight2) + "\n")
+
+    f_hanlder1.close()
+    if end_t2 is not None:
+        f_hanlder2.close()
 
     return di_graph
 
