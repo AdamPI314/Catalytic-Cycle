@@ -1,8 +1,10 @@
 %% global settings
-spe_idx=14;
-spe_name='CO';
+% spe_idx=14;
+% spe_name='CO';
 % spe_idx=17;
 % spe_name='CH_2O';
+spe_idx=59;
+spe_name='C_3H_6';
 tau = '0.777660157519';
 
 %% Current file directory
@@ -25,11 +27,11 @@ end_t1 = '0.25718313951098054';
 n_path1 = '100';
 species_path1 = '';
 %% index, delta, every settings
-end_idx1_1 = 10;
+end_idx1_1 = 100;
 delta1_1 = 1;
-end_idx1_2 = 5;
+end_idx1_2 = 10;
 delta1_2 = 1;
-end_idx1_3 = 10;
+end_idx1_3 = 100;
 delta1_3 = 1;
 
 %% const concentration at a time
@@ -197,11 +199,11 @@ end_t2 = '0.5';
 n_path2 = '500';
 species_path2 = '';
 %% index, delta, every settings
-end_idx2_1 = 500;
+end_idx2_1 = 100;
 delta2_1 = 1;
-end_idx2_2 = 50;
+end_idx2_2 = 10;
 delta2_2 = 1;
-end_idx2_3 = 500;
+end_idx2_3 = 100;
 delta2_3 = 1;
 
 %% const concentration at a time
@@ -370,9 +372,9 @@ end_t3 = '0.5';
 n_path3 = '50';
 species_path3 = 'species_';
 %% index, delta, every settings
-end_idx3_1 = 50;
+end_idx3_1 = 10;
 delta3_1 = 1;
-end_idx3_2 = 10;
+end_idx3_2 = 5;
 delta3_2 = 1;
 end_idx3_3 = 50;
 delta3_3 = 1;

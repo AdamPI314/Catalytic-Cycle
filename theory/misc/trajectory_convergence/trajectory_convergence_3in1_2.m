@@ -1,8 +1,8 @@
 %% global settings
-spe_idx=14;
-spe_name='CO';
-% spe_idx=17;
-% spe_name='CH_2O';
+% spe_idx=14;
+% spe_name='CO';
+spe_idx=17;
+spe_name='CH_2O';
 tau = '0.777660157519';
 
 %% Current file directory
