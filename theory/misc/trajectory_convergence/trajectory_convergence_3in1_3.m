@@ -27,7 +27,7 @@ end_t1 = '0.25718313951098054';
 n_path1 = '100';
 species_path1 = '';
 %% index, delta, every settings
-end_idx1_1 = 100;
+end_idx1_1 = 50;
 delta1_1 = 1;
 end_idx1_2 = 10;
 delta1_2 = 1;
@@ -199,11 +199,11 @@ end_t2 = '0.5';
 n_path2 = '500';
 species_path2 = '';
 %% index, delta, every settings
-end_idx2_1 = 100;
+end_idx2_1 = 25;
 delta2_1 = 1;
 end_idx2_2 = 10;
 delta2_2 = 1;
-end_idx2_3 = 100;
+end_idx2_3 = 500;
 delta2_3 = 1;
 
 %% const concentration at a time
