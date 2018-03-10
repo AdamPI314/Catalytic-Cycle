@@ -240,9 +240,23 @@ def parse_reaction_net_product(data_dir):
     return net_product
 
 
+def parse_reaction_produce_net_species(data_dir, spe_idx):
+    """
+    return a list of reaction, to each reaction of this list,
+    they must return at least one expected species
+    """
+    net_product = parse_reaction_net_product(data_dir)
+    reaction_list = []
+    for rxn in net_product:
+        if str(spe_idx) in net_product[rxn]:
+            reaction_list.append(int(rxn))
+    return sorted(reaction_list)
+
+
 if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(DATA_DIR)
 
     # parse_reaction_net_product(DATA_DIR)
+    parse_reaction_produce_net_species(DATA_DIR, 10)
