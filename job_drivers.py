@@ -226,7 +226,7 @@ def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
 
@@ -261,7 +261,7 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
         us.update_eval_path_AT(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t)
@@ -293,7 +293,7 @@ def evaluate_pathway_AT_no_IT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
             atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
         us.update_eval_path_AT_no_IT(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t)
@@ -325,7 +325,7 @@ def evaluate_pathway_AT_with_SP(src_dir, data_dir, top_n=5, flag="", n_traj=1000
             atom_followed=atom_followed, init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
         us.update_eval_path_AT_with_SP(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t)
