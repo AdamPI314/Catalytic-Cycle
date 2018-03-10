@@ -8,7 +8,7 @@ import pandas as pd
 from copy import deepcopy
 
 
-def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False):
+def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False, path_reg=None):
     """
     prepare pathway_name_candidate.csv
     """
@@ -39,8 +39,13 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
         path_list = []
         d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
         for s_i in end_s_idx:
-            path_list.extend(d_f[d_f['pathway'].str.endswith(
-                "S" + str(s_i))]['pathway'][0:top_n])
+            if path_reg is None:
+                path_list.extend(d_f[d_f['pathway'].str.endswith(
+                    "S" + str(s_i))]['pathway'][0:top_n])
+            else:
+                mask1 = d_f['pathway'].str.endswith("S" + str(s_i))
+                mask2 = d_f['pathway'].str.contains(path_reg)
+                path_list.extend(d_f[mask1 and mask2]['pathway'][0:top_n])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
@@ -117,5 +122,6 @@ if __name__ == '__main__':
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
 #     print(DATA_DIR)
 
-    prepare_pathway_name(DATA_DIR, top_n=5, flag="",
-                         delimiter=",", end_s_idx=[62, 59])
+    # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
+    #                      delimiter=",", end_s_idx=[62, 59])
+    prepare_pathway_name(DATA_DIR, top_n=10, flag="M", delimiter=',', end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
