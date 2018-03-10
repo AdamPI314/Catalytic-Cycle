@@ -30,22 +30,25 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     except OSError:
         pass
 
+    path_list = []
+    d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
+    mask1 = d_f['pathway'].str.contains(path_reg)
     # read
     if end_s_idx is None or end_s_idx == []:
-        data = np.genfromtxt(
-            f_n_ps, dtype=str, delimiter=delimiter, max_rows=top_n + 1)
-        path_list = [val[0] for idx, val in enumerate(data) if idx < top_n]
+        mask2 = True
+        if path_reg is None:
+            path_list.extend(d_f[mask2]['pathway'][0:top_n])
+        else:
+            path_list.extend(d_f[mask1 & mask2]['pathway'][0:top_n])
+
     else:
-        path_list = []
-        d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
         for s_i in end_s_idx:
             if path_reg is None:
                 path_list.extend(d_f[d_f['pathway'].str.endswith(
                     "S" + str(s_i))]['pathway'][0:top_n])
             else:
-                mask1 = d_f['pathway'].str.endswith("S" + str(s_i))
-                mask2 = d_f['pathway'].str.contains(path_reg)
-                path_list.extend(d_f[mask1 and mask2]['pathway'][0:top_n])
+                mask2 = d_f['pathway'].str.endswith("S" + str(s_i))
+                path_list.extend(d_f[mask1 & mask2]['pathway'][0:top_n])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
@@ -124,4 +127,4 @@ if __name__ == '__main__':
 
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
     #                      delimiter=",", end_s_idx=[62, 59])
-    prepare_pathway_name(DATA_DIR, top_n=10, flag="M", delimiter=',', end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
+    prepare_pathway_name(DATA_DIR, top_n=10, flag="", delimiter=',', end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
