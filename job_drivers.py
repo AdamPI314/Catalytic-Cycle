@@ -198,7 +198,7 @@ def run_mc_trajectory(src_dir, data_dir, n_traj=1000000, atom_followed="C", init
 def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n_traj=10000,
                                  atom_followed="C", init_spe=114, traj_max_t=100.0,
                                  tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
-                                 spe_oriented=True, end_s_idx=None, species_path=False):
+                                 spe_oriented=True, end_s_idx=None, species_path=False, path_reg=None):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -213,7 +213,7 @@ def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
 
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path, path_reg=path_reg)
 
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag,
@@ -226,7 +226,7 @@ def evaluate_pathway_probability(src_dir, data_dir, top_n=5, num_t=1, flag="", n
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path, path_reg=path_reg)
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
 

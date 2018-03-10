@@ -32,7 +32,8 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
 
     path_list = []
     d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
-    mask1 = d_f['pathway'].str.contains(path_reg)
+    if path_reg is not None:
+        mask1 = d_f['pathway'].str.contains(path_reg)
     # read
     if end_s_idx is None or end_s_idx == []:
         mask2 = True
