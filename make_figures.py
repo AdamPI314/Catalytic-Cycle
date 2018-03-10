@@ -1749,14 +1749,14 @@ if __name__ == '__main__':
     #     semilogy=False, legend_on=False,
     #     time_axis=TIME_AXIS)
 
-    for END_S_IDX in G_S['end_s_idx']:
-        plot_species_pathway_prob(DATA_DIR, top_n=G_S['top_n_p'], exclude_names=None, init_spe=G_S['init_s'],
-                                  atom_followed=G_S['atom_f'],
-                                  tau=G_S['tau'], end_t=G_S['end_t'],
-                                  end_s_idx=END_S_IDX,
-                                  species_path=G_S['species_path'],
-                                  time_axis=TIME_AXIS,
-                                  s2f=True)
+    # for END_S_IDX in G_S['end_s_idx']:
+    #     plot_species_pathway_prob(DATA_DIR, top_n=G_S['top_n_p'], exclude_names=None, init_spe=G_S['init_s'],
+    #                               atom_followed=G_S['atom_f'],
+    #                               tau=G_S['tau'], end_t=G_S['end_t'],
+    #                               end_s_idx=END_S_IDX,
+    #                               species_path=G_S['species_path'],
+    #                               time_axis=TIME_AXIS,
+    #                               s2f=True)
 
     # SPE_LIST = [60, 78, 87, 90]
     # SPE_LIST = [94, 101, 46, 14, 17]
@@ -1786,10 +1786,11 @@ if __name__ == '__main__':
 
     # PATH_IDX = [0, 1, 2, 3, 4, 6, 11, 44, 59, 66,
     #             68, 93, 115, 138, 153, 165, 166, 245, 477]
-    # plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #                       begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
-    #                       species_path=G_S['species_path'], spe_idx=[10],
-    #                       path_idx=PATH_IDX)
+    PATH_IDX = [i for i in range(100)]
+    plot_Merchant_f_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+                          begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
+                          species_path=G_S['species_path'], spe_idx=[10],
+                          path_idx=PATH_IDX)
     # Merchant_f_selected_pathname_pathprob_f_s2f(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                             begin_t=G_S['begin_t'], end_t=G_S['end_t'], tau=G_S['tau'],
     #                                             species_path=G_S['species_path'],
