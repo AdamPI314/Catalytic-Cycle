@@ -240,7 +240,7 @@ def parse_reaction_net_product(data_dir):
     return net_product
 
 
-def parse_reaction_produce_net_species(data_dir, spe_idx):
+def net_source_reaction_of_species(data_dir, spe_idx, print_r=False):
     """
     return a list of reaction, to each reaction of this list,
     they must return at least one expected species
@@ -250,6 +250,33 @@ def parse_reaction_produce_net_species(data_dir, spe_idx):
     for rxn in net_product:
         if str(spe_idx) in net_product[rxn]:
             reaction_list.append(int(rxn))
+
+    if print_r is True:
+        _, rxn_i_2_n = parse_reaction_and_its_index(data_dir)
+        for r_i in reaction_list:
+            print(rxn_i_2_n[str(r_i)])
+
+    print(reaction_list)
+    return sorted(reaction_list)
+
+
+def net_sink_reaction_of_species(data_dir, spe_idx, print_r=False):
+    """
+    return a list of reaction, to each reaction of this list,
+    they are net sink reaction of a species
+    """
+    net_reactant = parse_reaction_net_reactant(data_dir)
+    reaction_list = []
+    for rxn in net_reactant:
+        if str(spe_idx) in net_reactant[rxn]:
+            reaction_list.append(int(rxn))
+    
+    if print_r is True:
+        _, rxn_i_2_n = parse_reaction_and_its_index(data_dir)
+        for r_i in reaction_list:
+            print(rxn_i_2_n[str(r_i)])
+
+    print(reaction_list)
     return sorted(reaction_list)
 
 
@@ -259,4 +286,5 @@ if __name__ == '__main__':
     print(DATA_DIR)
 
     # parse_reaction_net_product(DATA_DIR)
-    parse_reaction_produce_net_species(DATA_DIR, 10)
+    # net_source_reaction_of_species(DATA_DIR, 10, print_r=True)
+    net_sink_reaction_of_species(DATA_DIR, 62, print_r=True)
