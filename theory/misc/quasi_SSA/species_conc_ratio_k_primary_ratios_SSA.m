@@ -30,7 +30,6 @@ temp_vec = dataArray{:, 1};
 %% Clear temporary variables
 clearvars fn_temp delimiter formatSpec fileID dataArray ans;
 
-
 %% import concentration
 fn_conc = fullfile(file_dir, 'output', 'concentration_dlsode_M.csv');
 delimiter = ',';
@@ -47,7 +46,7 @@ conc_mat = [dataArray{1:end-1}];
 %% Clear temporary variables
 clearvars fn_conc delimiter formatSpec fileID dataArray ans;
 
-%% import time
+%% import reaction rate
 fn_R = fullfile(file_dir, 'output', 'reaction_rate_dlsode_M.csv');
 delimiter = ',';
 % For more information, see the TEXTSCAN documentation.
@@ -63,6 +62,23 @@ reaction_R_mat = [dataArray{1:end-1}];
 %% Clear temporary variables
 clearvars fn_R delimiter formatSpec fileID dataArray ans;
 
+%% import SSA concentration
+%% Initialize variables.
+% fn_SSA = 'D:\Github\SOHR\projects\catalytic_cycle\theory\misc\quasi_SSA\data\chattering_group_ss_prob_dlsode_M.csv';
+file_dir_SSA = fullfile(fileparts(mfilename('fullpath')));
+fn_SSA = fullfile(file_dir_SSA, 'data', 'chattering_group_ss_prob_dlsode_M.csv');
+
+delimiter = ',';
+formatSpec = '%f%f%f%f%[^\n\r]';
+%% Open the text file.
+fileID = fopen(fn_SSA,'r');
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue' ,NaN, 'ReturnOnError', false);
+%% Close the text file.
+fclose(fileID);
+SSA_vec = [dataArray{1:end-1}];
+%% Clear temporary variables
+clearvars fn_SSA delimiter formatSpec fileID dataArray ans;
+
 %% plot
 fig = figure();
 % https://www.mathworks.com/help/matlab/graphics_transition/why-are-plot-lines-different-colors.html
@@ -75,6 +91,9 @@ co = [    0    0.4470    0.7410 % 1th plot
     0.3010    0.7450    0.9330 % 6th plot
 %     0.6350    0.0780    0.1840 % 7th plot
 %     0         0    1.0000 % 8th plot, blue
+    1   0   0 % speceholder
+    1   0   0 % speceholder
+    1   0   0 % speceholder
     1   0   0]; % 9th plot, red
 set(fig,'defaultAxesColorOrder',co)
 %%
@@ -84,19 +103,25 @@ end_t = 0.9;
 % plot conc
 % npropyloo/npropyl
 p1 = semilogy(time_vec, conc_mat(:, 79)./conc_mat(:, 61), 'color',co(1, :), 'LineWidth', 2); hold on;
+p1_SSA = semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 1), ...
+    'linestyle', ':', 'color',co(1, :), 'LineWidth', 2); hold on;
 % R_npropyloo * [npropyl] / (R_npropyl* [npropyloo])
-p2 = semilogy(time_vec, (reaction_R_mat(:, 1069+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1068+1).*conc_mat(:, 61)) , ...
-    'color',co(1, :), 'linestyle', '-.', 'LineWidth', 2); hold on;
+p1_K = semilogy(time_vec, (reaction_R_mat(:, 1069+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1068+1).*conc_mat(:, 61)) , ...
+    'color',co(1, :), 'linestyle', '--', 'LineWidth', 2); hold on;
 % npropyloo/QOOH_1
-p3 = semilogy(time_vec, conc_mat(:, 79)./conc_mat(:, 88), 'color',co(2, :), 'LineWidth', 2); hold on;
+p2 = semilogy(time_vec, conc_mat(:, 79)./conc_mat(:, 88), 'color',co(2, :), 'LineWidth', 2); hold on;
+p2_SSA = semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 3), ...
+    'linestyle', ':', 'color',co(2, :), 'LineWidth', 2); hold on;
 % prod_1
-p4 = semilogy(time_vec, (reaction_R_mat(:, 1080+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1081+1).*conc_mat(:, 88)) , ...
-    'color',co(2, :), 'linestyle', '-.', 'LineWidth', 2); hold on;
+p2_K = semilogy(time_vec, (reaction_R_mat(:, 1080+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1081+1).*conc_mat(:, 88)) , ...
+    'color',co(2, :), 'linestyle', '--', 'LineWidth', 2); hold on;
 % well_1/QOOH_1
-p5 = semilogy(time_vec, conc_mat(:, 91)./conc_mat(:, 88), 'color',co(3, :), 'LineWidth', 2); hold on;
+p3 = semilogy(time_vec, conc_mat(:, 91)./conc_mat(:, 88), 'color',co(3, :), 'LineWidth', 2); hold on;
+p3_SSA = semilogy(time_vec, SSA_vec(:, 4)./SSA_vec(:, 3), ...
+    'linestyle', ':', 'color',co(3, :), 'LineWidth', 2); hold on;
 % acetaldehyde
-p6 = semilogy(time_vec, (reaction_R_mat(:, 1116+1).*conc_mat(:, 91)) ./ (reaction_R_mat(:, 1117+1).*conc_mat(:, 88)) , ...
-    'color',co(3, :), 'linestyle', '-.', 'LineWidth', 2); hold on;
+p3_K = semilogy(time_vec, (reaction_R_mat(:, 1116+1).*conc_mat(:, 91)) ./ (reaction_R_mat(:, 1117+1).*conc_mat(:, 88)) , ...
+    'color',co(3, :), 'linestyle', '--', 'LineWidth', 2); hold on;
 
 %% conc
 set(gca,'GridLineStyle','--');
@@ -115,11 +140,12 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([p1; p2; p3; p4; p5; p6],'[nROO]/[nR]','K_{eq}','[nROO]/[QOOH_1]','K_{eq}','[O_2QOOH_1]/[QOOH_1]','K_{eq}');
-set(leg_h, 'FontSize', 14, 'Box', 'off');
-set(leg_h, 'Location', 'South')
+leg_h = legend([p1; p1_K; p1_SSA; p2; p2_K; p2_SSA; p3; p3_K; p3_SSA;],... 
+    '[nROO]/[nR]','K_{eq}','SSA', '[nROO]/[QOOH_1]','K_{eq}', 'SSA', '[O_2QOOH_1]/[QOOH_1]','K_{eq}', 'SSA');
+set(leg_h, 'FontSize', 13, 'Box', 'off');
+set(leg_h, 'Location', 'North')
 
 
 %% save to file
-figname = strcat('species_conc_ratio_k_primary_ratio', '.png');
+figname = strcat('species_conc_ratio_k_primary_ratio_SSA', '.png');
 print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
