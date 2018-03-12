@@ -94,31 +94,41 @@ co = [    0    0.4470    0.7410 % 1th plot
     1   0   0 % speceholder
     1   0   0 % speceholder
     1   0   0 % speceholder
+    1   0   0 % speceholder
+    1   0   0 % speceholder
+    1   0   0 % speceholder
     1   0   0]; % 9th plot, red
 set(fig,'defaultAxesColorOrder',co)
 %%
 tau = 0.777660157519;
 end_t = 0.9;
 
+SSA_delta = 250;
 % plot conc
 % npropyloo/npropyl
 p1 = semilogy(time_vec, conc_mat(:, 79)./conc_mat(:, 61), 'color',co(1, :), 'LineWidth', 2); hold on;
-p1_SSA = semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 1), ...
+semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 1), ...
     'linestyle', ':', 'color',co(1, :), 'LineWidth', 2); hold on;
+p1_SSA = scatter(time_vec(1:SSA_delta:end), SSA_vec(1:SSA_delta:end, 2)./SSA_vec(1:SSA_delta:end, 1), ...
+    'MarkerEdgeColor',co(1, :), 'Marker', 'x', 'LineWidth', 1.5); hold on;
 % R_npropyloo * [npropyl] / (R_npropyl* [npropyloo])
 p1_K = semilogy(time_vec, (reaction_R_mat(:, 1069+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1068+1).*conc_mat(:, 61)) , ...
     'color',co(1, :), 'linestyle', '--', 'LineWidth', 2); hold on;
 % npropyloo/QOOH_1
 p2 = semilogy(time_vec, conc_mat(:, 79)./conc_mat(:, 88), 'color',co(2, :), 'LineWidth', 2); hold on;
-p2_SSA = semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 3), ...
+semilogy(time_vec, SSA_vec(:, 2)./SSA_vec(:, 3), ...
     'linestyle', ':', 'color',co(2, :), 'LineWidth', 2); hold on;
+p2_SSA = scatter(time_vec(1:SSA_delta:end), SSA_vec(1:SSA_delta:end, 2)./SSA_vec(1:SSA_delta:end, 3), ...
+    'MarkerEdgeColor',co(2, :), 'Marker', 'x', 'LineWidth', 1.5); hold on;
 % prod_1
 p2_K = semilogy(time_vec, (reaction_R_mat(:, 1080+1).*conc_mat(:, 79)) ./ (reaction_R_mat(:, 1081+1).*conc_mat(:, 88)) , ...
     'color',co(2, :), 'linestyle', '--', 'LineWidth', 2); hold on;
 % well_1/QOOH_1
 p3 = semilogy(time_vec, conc_mat(:, 91)./conc_mat(:, 88), 'color',co(3, :), 'LineWidth', 2); hold on;
-p3_SSA = semilogy(time_vec, SSA_vec(:, 4)./SSA_vec(:, 3), ...
+semilogy(time_vec, SSA_vec(:, 4)./SSA_vec(:, 3), ...
     'linestyle', ':', 'color',co(3, :), 'LineWidth', 2); hold on;
+p3_SSA = scatter(time_vec(1:SSA_delta:end), SSA_vec(1:SSA_delta:end, 4)./SSA_vec(1:SSA_delta:end, 3), ...
+    'MarkerEdgeColor',co(3, :), 'Marker', 'x', 'LineWidth', 1.5); hold on;
 % acetaldehyde
 p3_K = semilogy(time_vec, (reaction_R_mat(:, 1116+1).*conc_mat(:, 91)) ./ (reaction_R_mat(:, 1117+1).*conc_mat(:, 88)) , ...
     'color',co(3, :), 'linestyle', '--', 'LineWidth', 2); hold on;
@@ -147,5 +157,5 @@ set(leg_h, 'Location', 'North')
 
 
 %% save to file
-figname = strcat('species_conc_ratio_k_primary_ratio_SSA', '.png');
+figname = strcat('species_conc_ratio_k_primary_ratio_SSA_linear_algebra', '.png');
 print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
