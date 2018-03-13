@@ -37,6 +37,7 @@ def copy_sohr_files(data_dir, species_path=False):
     1. output/pathway_stat.csv
     2. output/pathway_name_candidate.csv
     3. output/pathway_time_candidate.csv
+    4. output/pathway_name_candidate_real_path.csv
     5. output/pathway_prob.csv
     6. output/pathway_AT.csv
     7. output/pathname_prob.csv
@@ -119,6 +120,13 @@ def copy_sohr_files(data_dir, species_path=False):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
+    f_n_1 = os.path.join(data_dir, "output", prefix +
+                         "pathway_name_candidate_real_path.csv")
+    f_n_2 = os.path.join(data_dir, "output",
+                         prefix + "pathway_name_candidate_real_path" + suffix + ".csv")
+    if os.path.isfile(f_n_1):
+        print(f_n_1, "found")
+        copyfile(f_n_1, f_n_2)
     return
 
 

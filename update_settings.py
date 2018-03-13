@@ -144,10 +144,6 @@ def update_mc_trajectory_setting(data_dir, n_traj=1000000, atom_followed="C", in
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
-
     setting['time']['tau'] = tau
 
     setting['pathway']['trajectoryNumber'] = int(n_traj)
@@ -181,10 +177,6 @@ def update_eval_path_integral(data_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
-
     if species_path is True:
         setting['job']['job_type'] = "evaluate_species_path_integral_over_time"
     else:
@@ -202,7 +194,7 @@ def update_eval_path_integral(data_dir, top_n=5, n_traj=10000, atom_followed="C"
         data_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+def update_eval_path_AT(data_dir, top_n=5, n_traj=10000,
                         tau=10.0, begin_t=0.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time 
@@ -217,16 +209,10 @@ def update_eval_path_AT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
-
     setting['job']['job_type'] = "evaluate_path_AT_over_time"
 
     setting['pathway']['topN'] = [int(top_n)]
     setting['pathway']['trajectoryNumber'] = int(n_traj)
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
 
     setting['time']['tau'] = tau
     setting['pathway']['end_t'] = end_t
@@ -236,7 +222,7 @@ def update_eval_path_AT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init
         data_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+def update_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000,
                               tau=10.0, begin_t=0.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time without IT (initiation time)
@@ -251,16 +237,10 @@ def update_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000, atom_followed="C"
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
-
     setting['job']['job_type'] = "evaluate_path_AT_no_IT_over_time"
 
     setting['pathway']['topN'] = [int(top_n)]
     setting['pathway']['trajectoryNumber'] = int(n_traj)
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
 
     setting['time']['tau'] = tau
     setting['pathway']['begin_t'] = begin_t
@@ -270,7 +250,7 @@ def update_eval_path_AT_no_IT(data_dir, top_n=5, n_traj=10000, atom_followed="C"
         data_dir, 'input', 'setting.json'))
 
 
-def update_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000, atom_followed="C", init_spe=114,
+def update_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000,
                                 tau=10.0, begin_t=0.0, end_t=1.0):
     """
     update settings.json, primarily for evaluate pathway arrival time 
@@ -285,16 +265,10 @@ def update_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000, atom_followed="
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
-    chattering_spe = global_settings.get_chattering_species(
-        data_dir, atom_followed)
-    setting['pathway']['chattering_species'] = chattering_spe
-
     setting['job']['job_type'] = "evaluate_path_AT_with_SP_over_time"
 
     setting['pathway']['topN'] = [int(top_n)]
     setting['pathway']['trajectoryNumber'] = int(n_traj)
-    setting['pathway']['atom_followed'] = atom_followed
-    setting['pathway']['init_spe'] = init_spe
 
     setting['time']['tau'] = tau
     setting['pathway']['begin_t'] = begin_t

@@ -56,14 +56,12 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     return len(path_list)
 
 
-def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None, species_path=False):
+def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None):
     """
     prepare pathway_name_candidate.csv
     """
     # read from pathway_stat.csv
-    prefix = ""
-    if species_path is True:
-        prefix = "species_"
+    prefix = "species_"
 
     if flag == "":
         f_n_pn = os.path.join(data_dir, "output",
@@ -128,4 +126,5 @@ if __name__ == '__main__':
 
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
     #                      delimiter=",", end_s_idx=[62, 59])
-    prepare_pathway_name(DATA_DIR, top_n=10, flag="", delimiter=',', end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
+    prepare_pathway_name(DATA_DIR, top_n=10, flag="", delimiter=',',
+                         end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
