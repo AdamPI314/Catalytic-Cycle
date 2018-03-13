@@ -335,7 +335,7 @@ def evaluate_pathway_AT_with_SP(src_dir, data_dir, top_n=5, flag="", n_traj=1000
 
 def evaluate_passage_time_of_species(src_dir, data_dir, flag="", n_traj=10000,
                                      atom_followed="C", init_spe=114, tau=10.0,
-                                     begin_t=0.0, end_t=1.0, end_s_idx=None, species_path=False):
+                                     begin_t=0.0, end_t=1.0, init_s_idx=None, species_path=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -344,7 +344,7 @@ def evaluate_passage_time_of_species(src_dir, data_dir, flag="", n_traj=10000,
     os.chdir(data_dir)
 
     n_path = ppnt.prepare_pathway_name_for_passage_time(
-        data_dir, flag=flag, init_s_idx=end_s_idx, species_path=species_path)
+        data_dir, flag=flag, init_s_idx=init_s_idx, species_path=species_path)
     us.update_eval_path_AT(
         data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed,
         init_spe=init_spe, tau=tau, begin_t=begin_t, end_t=end_t)
