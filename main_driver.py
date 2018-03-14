@@ -51,12 +51,12 @@ if __name__ == '__main__':
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
-    # j_b.evaluate_pathway_AT(
-    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
-    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'],
-    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    j_b.evaluate_pathway_AT(
+        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
+        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'],
+        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # j_b.evaluate_pathway_AT_no_IT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
@@ -72,10 +72,10 @@ if __name__ == '__main__':
     #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
-    j_b.evaluate_passage_time_of_species(
-        SRC_DIR, DATA_DIR, flag="", n_traj=G_S['pi_n_traj'],
-        tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-        init_s_idx=G_S['end_s_idx'])
+    # j_b.evaluate_passage_time_of_species(
+    #     SRC_DIR, DATA_DIR, flag="", n_traj=G_S['pi_n_traj'],
+    #     tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+    #     init_s_idx=G_S['end_s_idx'])
 
     # convert symbolic pathway to real pathway
     # with real species names and real reaction expression
