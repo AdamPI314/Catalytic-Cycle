@@ -2,13 +2,13 @@
 species_name = 'C3H8';
 % end_t = '0.25718313951098054';
 % end_t = '0.5';
-% end_t = '0.9';
-end_t = '1.0';
+end_t = '0.9';
+% end_t = '1.0';
 
-% text_str = 't=0.2 seconds';
-% text_str = 't=0.5\tau';
-% text_str = 't=0.9\tau';
-text_str = 't=1.0\tau';
+% text_str = 't_f=0.2 seconds';
+% text_str = 't_f=0.5\tau';
+text_str = 't_f=0.9\tau';
+% text_str = 't_f=1.0\tau';
 
 %% read file
 file_dir_PT = fullfile(fileparts(mfilename('fullpath')));
@@ -31,7 +31,7 @@ fn_time_pt = fullfile(file_dir_PT, 'data', ['time_pt_dlsode_M_', end_t ,'.csv'])
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(fn_time_pt,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 fclose(fileID);
 time_pt_vec = dataArray{:, 1};
 clearvars fn_time_pt delimiter formatSpec fileID dataArray ans;
@@ -40,7 +40,7 @@ fn_drc_pt = fullfile(file_dir_PT, 'data', ['pt_dlsode_M_', end_t ,'.csv']);
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(fn_drc_pt,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 fclose(fileID);
 pt_drc_vec = dataArray{:, 1};
 clearvars fn_drc_pt delimiter formatSpec fileID dataArray ans;

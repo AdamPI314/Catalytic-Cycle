@@ -5,10 +5,10 @@ species_name = 'C3H8';
 % end_t = '0.9';
 end_t = '1.0';
 
-% text_str = 't=0.2 seconds';
-% text_str = 't=0.5\tau';
-% text_str = 't=0.9\tau';
-text_str = 't=1.0\tau';
+% text_str = 't_f=0.2 seconds';
+% text_str = 't_f=0.5\tau';
+% text_str = 't_f=0.9\tau';
+text_str = 't_f=1.0\tau';
 
 %% read file
 file_dir_PT = fullfile(fileparts(mfilename('fullpath')));
