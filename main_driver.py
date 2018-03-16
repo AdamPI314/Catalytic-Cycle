@@ -77,17 +77,17 @@ if __name__ == '__main__':
     #     tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
     #     init_s_idx=G_S['end_s_idx'])
 
-    # convert symbolic pathway to real pathway
-    # with real species names and real reaction expression
-    j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
-                                  end_s_idx=None, species_path=G_S['species_path'])
+    # # convert symbolic pathway to real pathway
+    # # with real species names and real reaction expression
+    # j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
+    #                               end_s_idx=None, species_path=G_S['species_path'])
 
-    if G_S['species_path'] is False:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'pathway_name_candidate.csv')
-    else:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'species_pathway_name_candidate.csv')
+    # if G_S['species_path'] is False:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'pathway_name_candidate.csv')
+    # else:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'species_pathway_name_candidate.csv')
 
     # copy SOHR/C++ routine files
     j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
