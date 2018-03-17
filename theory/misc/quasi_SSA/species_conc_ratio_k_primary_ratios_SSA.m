@@ -137,7 +137,7 @@ p3_K = semilogy(time_vec, (reaction_R_mat(:, 1116+1).*conc_mat(:, 91)) ./ (react
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Ratios', 'FontSize', 20);
-ylim([10^1.7, 10^4.95]);
+% ylim([10^1.7, 10^4.95]);
 
 %% temp
 yyaxis right
