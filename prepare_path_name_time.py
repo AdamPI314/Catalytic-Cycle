@@ -35,10 +35,10 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     if path_reg is not None:
         mask1 = d_f['pathway'].str.contains(path_reg)
     else:
-        mask1 = True
+        mask1 = ~d_f['pathway'].str.empty()
     # read
     if end_s_idx is None or end_s_idx == []:
-        mask2 = True
+        mask2 = ~d_f['pathway'].str.empty()
         path_list.extend(d_f.loc[mask1 & mask2]['pathway'][0:top_n])
     else:
         for s_i in end_s_idx:
