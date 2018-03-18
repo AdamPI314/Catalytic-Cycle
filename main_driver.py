@@ -43,13 +43,14 @@ if __name__ == '__main__':
         init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
         species_path=G_S['species_path'])
 
-    # # evaluate path integral-->pathway probability
-    # j_b.evaluate_pathway_probability(
-    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
-    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
+    # evaluate path integral-->pathway probability
+    j_b.evaluate_pathway_probability(
+        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    # end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
     # j_b.evaluate_pathway_AT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
@@ -77,17 +78,17 @@ if __name__ == '__main__':
     #     tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
     #     init_s_idx=G_S['end_s_idx'])
 
-    # # convert symbolic pathway to real pathway
-    # # with real species names and real reaction expression
-    # j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
-    #                               end_s_idx=None, species_path=G_S['species_path'])
+    # convert symbolic pathway to real pathway
+    # with real species names and real reaction expression
+    j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
+                                  end_s_idx=None, species_path=G_S['species_path'])
 
-    # if G_S['species_path'] is False:
-    #     psri.symbolic_path_2_real_path_pff(
-    #         DATA_DIR, 'pathway_name_candidate.csv')
-    # else:
-    #     psri.symbolic_path_2_real_path_pff(
-    #         DATA_DIR, 'species_pathway_name_candidate.csv')
+    if G_S['species_path'] is False:
+        psri.symbolic_path_2_real_path_pff(
+            DATA_DIR, 'pathway_name_candidate.csv')
+    else:
+        psri.symbolic_path_2_real_path_pff(
+            DATA_DIR, 'species_pathway_name_candidate.csv')
 
     # copy SOHR/C++ routine files
     j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
