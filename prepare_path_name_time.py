@@ -39,11 +39,11 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
     # read
     if end_s_idx is None or end_s_idx == []:
         mask2 = True
-        path_list.extend(d_f[mask1 & mask2]['pathway'][0:top_n])
+        path_list.extend(d_f.loc[mask1 & mask2]['pathway'][0:top_n])
     else:
         for s_i in end_s_idx:
             mask2 = d_f['pathway'].str.endswith("S" + str(s_i))
-            path_list.extend(d_f[mask1 & mask2]['pathway'][0:top_n])
+            path_list.extend(d_f.loc[mask1 & mask2]['pathway'][0:top_n])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")
