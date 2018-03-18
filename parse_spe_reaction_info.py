@@ -61,6 +61,19 @@ def parse_species_pair_reaction(data_dir):
     return s_p_r_c_new
 
 
+def get_reactions_from_si_2_sj(data_dir, si, sj):
+    """
+    return a list of reactions that transform species si to sj
+    """
+    s_p_r_c = parse_species_pair_reaction(data_dir)
+    r_list = []
+    if (str(si), str(sj)) in s_p_r_c:
+        for _, val in s_p_r_c[(str(si), str(sj))].items():
+            r_list.append(int(val['r_idx']))
+    print(r_list)
+    return r_list
+
+
 def read_spe_composition(f_n):
     """
     read species composition
@@ -270,7 +283,7 @@ def net_sink_reaction_of_species(data_dir, spe_idx, print_r=False):
     for rxn in net_reactant:
         if str(spe_idx) in net_reactant[rxn]:
             reaction_list.append(int(rxn))
-    
+
     if print_r is True:
         _, rxn_i_2_n = parse_reaction_and_its_index(data_dir)
         for r_i in reaction_list:
@@ -287,4 +300,10 @@ if __name__ == '__main__':
 
     # parse_reaction_net_product(DATA_DIR)
     # net_source_reaction_of_species(DATA_DIR, 10, print_r=True)
-    net_sink_reaction_of_species(DATA_DIR, 62, print_r=True)
+    # net_sink_reaction_of_species(DATA_DIR, 62, print_r=True)
+    # get_reactions_from_si_2_sj(DATA_DIR, 60, 78)
+    # get_reactions_from_si_2_sj(DATA_DIR, 78, 60)
+    # get_reactions_from_si_2_sj(DATA_DIR, 78, 87)
+    # get_reactions_from_si_2_sj(DATA_DIR, 87, 78)
+    # get_reactions_from_si_2_sj(DATA_DIR, 87, 90)
+    get_reactions_from_si_2_sj(DATA_DIR, 90, 87)
