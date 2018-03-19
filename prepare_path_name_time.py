@@ -49,7 +49,7 @@ def prepare_pathway_name(
 
         def func_filter(x): return pp.parse_species_along_path_using_reaction(
             pathname=x, net_r_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1
-        mask2 = func_filter(d_f['pathway'])
+        mask2 = d_f.apply(func_filter)
 
     # read
     if end_s_idx is None or end_s_idx == []:
