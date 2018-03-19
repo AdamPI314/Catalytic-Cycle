@@ -9,7 +9,7 @@ import time
 import update_settings as us
 import job_drivers as j_b
 import global_settings
-# import pattern_statistics as ps
+import pattern_statistics as ps
 import parse_spe_reaction_info as psri
 
 if __name__ == '__main__':
@@ -93,11 +93,12 @@ if __name__ == '__main__':
     # copy SOHR/C++ routine files
     j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
 
-    # ps.parse_spe_production_along_path(
-    #     DATA_DIR, top_n=G_S['top_n_p'], spe_idx=10,
-    #     init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-    #     end_t=G_S['end_t'], species_path=G_S['species_path'],
-    #     axis=0, path_branching_factor=False)
+    ps.parse_spe_production_along_path(
+        DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+        init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+        end_t=G_S['end_t'], species_path=G_S['species_path'],
+        axis=0, path_branching_factor=False,
+        s_consumption=False, s_production=True)
 
     # # # species count
     # # j_b.species_count(DATA_DIR, top_n=G_S['top_n_p'], norm=True)
