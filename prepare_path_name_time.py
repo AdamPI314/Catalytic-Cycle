@@ -6,9 +6,13 @@ import sys
 import numpy as np
 import pandas as pd
 from copy import deepcopy
+import parse_spe_reaction_info as psri
+import parse_pattern as pp
 
 
-def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False, path_reg=None):
+def prepare_pathway_name(
+        data_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False,
+        path_reg=None, spe_idx=None):
     """
     prepare pathway_name_candidate.csv
     """
@@ -36,14 +40,25 @@ def prepare_pathway_name(data_dir, top_n=5, flag="", delimiter=",", end_s_idx=No
         mask1 = d_f['pathway'].str.contains(path_reg)
     else:
         mask1 = d_f['pathway'].str.len() > 0
+
+    if spe_idx is None:
+        mask2 = d_f['pathway'].str.len() > 0
+    else:
+        net_product = psri.parse_reaction_net_product(DATA_DIR)
+        s_p_r_c = psri.parse_species_pair_reaction(DATA_DIR)
+
+        def func_filter(x): return pp.parse_species_along_path_using_reaction(
+            pathname=x, net_r_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1
+        mask2 = func_filter(d_f['pathway'])
+
     # read
     if end_s_idx is None or end_s_idx == []:
-        mask2 = d_f['pathway'].str.len() > 0
-        path_list.extend(d_f.loc[mask1 & mask2]['pathway'][0:top_n])
+        mask3 = d_f['pathway'].str.len() > 0
+        path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
     else:
         for s_i in end_s_idx:
-            mask2 = d_f['pathway'].str.endswith("S" + str(s_i))
-            path_list.extend(d_f.loc[mask1 & mask2]['pathway'][0:top_n])
+            mask3 = d_f['pathway'].str.endswith("S" + str(s_i))
+            path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
 
     # save
     np.savetxt(f_n_pn, path_list, fmt="%s")

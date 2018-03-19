@@ -253,27 +253,26 @@ def parse_reaction_net_product(data_dir):
     return net_product
 
 
-def net_source_reaction_of_species(data_dir, spe_idx, print_r=False):
+def net_source_reaction_of_species(data_dir, spe_idx):
     """
     return a list of reaction, to each reaction of this list,
     they must return at least one expected species
     """
     net_product = parse_reaction_net_product(data_dir)
     reaction_list = []
+    _, rxn_i_2_n = parse_reaction_and_its_index(data_dir)
+    name_list = []
     for rxn in net_product:
         if str(spe_idx) in net_product[rxn]:
             reaction_list.append(int(rxn))
+            name_list.append(rxn_i_2_n[str(rxn)])
 
-    if print_r is True:
-        _, rxn_i_2_n = parse_reaction_and_its_index(data_dir)
-        for r_i in reaction_list:
-            print(rxn_i_2_n[str(r_i)])
-
-    print(reaction_list)
+    print(reaction_list, len(reaction_list))
+    print(name_list, len(name_list))
     return sorted(reaction_list)
 
 
-def net_sink_reaction_of_species(data_dir, spe_idx, print_r=False):
+def net_sink_reaction_of_species(data_dir, spe_idx):
     """
     return a list of reaction, to each reaction of this list,
     they are net sink reaction of a species
@@ -287,10 +286,6 @@ def net_sink_reaction_of_species(data_dir, spe_idx, print_r=False):
             reaction_list.append(int(rxn))
             name_list.append(rxn_i_2_n[str(rxn)])
 
-    if print_r is True:
-        for r_i in reaction_list:
-            print(rxn_i_2_n[str(r_i)])
-
     print(reaction_list, len(reaction_list))
     print(name_list, len(name_list))
     return sorted(reaction_list)
@@ -302,9 +297,9 @@ if __name__ == '__main__':
     print(DATA_DIR)
 
     # parse_reaction_net_product(DATA_DIR)
-    # net_source_reaction_of_species(DATA_DIR, 10, print_r=True)
-    # net_sink_reaction_of_species(DATA_DIR, 62, print_r=True)
-    net_sink_reaction_of_species(DATA_DIR, 10, print_r=True)
+    # net_source_reaction_of_species(DATA_DIR, 10)
+    # net_sink_reaction_of_species(DATA_DIR, 62)
+    net_sink_reaction_of_species(DATA_DIR, 10)
     # get_reactions_from_si_2_sj(DATA_DIR, 60, 78)
     # get_reactions_from_si_2_sj(DATA_DIR, 78, 60)
     # get_reactions_from_si_2_sj(DATA_DIR, 78, 87)

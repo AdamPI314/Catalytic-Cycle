@@ -49,7 +49,8 @@ if __name__ == '__main__':
         n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
         traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
+        path_reg=None, spe_idx=10)
     # end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
     # j_b.evaluate_pathway_AT(
