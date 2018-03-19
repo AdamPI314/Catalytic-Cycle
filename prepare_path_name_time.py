@@ -47,9 +47,8 @@ def prepare_pathway_name(
         net_product = psri.parse_reaction_net_product(data_dir)
         s_p_r_c = psri.parse_species_pair_reaction(data_dir)
 
-        def func_filter(x): return pp.parse_species_along_path_using_reaction(
-            pathname=x, net_r_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1
-        mask2 = d_f.apply(func_filter, axis=1)
+        mask2 = d_f.apply(lambda x: pp.parse_species_along_path_using_reaction(
+            pathname=x['pathway'], net_r_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1, axis=1)
 
     # read
     if end_s_idx is None or end_s_idx == []:
