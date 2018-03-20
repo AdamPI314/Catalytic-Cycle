@@ -76,7 +76,7 @@ if __name__ == '__main__':
     #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     j_b.evaluate_passage_time_of_species(
-        SRC_DIR, DATA_DIR, flag="", n_traj=G_S['pi_n_traj'],
+        SRC_DIR, DATA_DIR, flag="", n_traj=1000000,
         tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         init_s_idx=G_S['init_s_idx'])
 
