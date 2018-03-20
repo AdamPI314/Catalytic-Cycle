@@ -11,6 +11,7 @@ import job_drivers as j_b
 import global_settings
 import pattern_statistics as ps
 import parse_spe_reaction_info as psri
+import trajectory as traj
 
 if __name__ == '__main__':
     TIME_I = time.time()
@@ -79,27 +80,30 @@ if __name__ == '__main__':
         tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         init_s_idx=G_S['init_s_idx'])
 
-    # convert symbolic pathway to real pathway
-    # with real species names and real reaction expression
-    j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
-                                  end_s_idx=None, species_path=G_S['species_path'])
+    traj.cal_passage_time_distribution(
+        DATA_DIR, G_S['init_s_idx'][0], G_S['tau'], G_S['end_t'])
 
-    if G_S['species_path'] is False:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'pathway_name_candidate.csv')
-    else:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'species_pathway_name_candidate.csv')
+    # # convert symbolic pathway to real pathway
+    # # with real species names and real reaction expression
+    # j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
+    #                               end_s_idx=None, species_path=G_S['species_path'])
+
+    # if G_S['species_path'] is False:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'pathway_name_candidate.csv')
+    # else:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'species_pathway_name_candidate.csv')
 
     # copy SOHR/C++ routine files
     j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
 
-    ps.parse_spe_production_along_path(
-        DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
-        init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-        end_t=G_S['end_t'], species_path=G_S['species_path'],
-        axis=0, path_branching_factor=False,
-        s_consumption=False, s_production=True)
+    # ps.parse_spe_production_along_path(
+    #     DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    #     init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #     end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #     axis=0, path_branching_factor=False,
+    #     s_consumption=False, s_production=True)
 
     # # # species count
     # # j_b.species_count(DATA_DIR, top_n=G_S['top_n_p'], norm=True)
