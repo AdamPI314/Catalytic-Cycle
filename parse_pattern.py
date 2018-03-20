@@ -123,6 +123,37 @@ def parse_species_cycle(path):
     return cycle_map
 
 
+def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
+    """
+    return sub-pathway that give rise to a species, produces a species along a pathway
+    """
+    if net_r_p is None:
+        return []
+
+    # get rid of R-1000003S90, don't need it here
+    pathname = re.sub(r"R-\d+S\d+", r'', pathname)
+
+    sub_path = []
+    sub_path_reaction = []
+    # parse pathway
+    p = re.compile(r"R(\d+)S(\d+)")
+
+    reaction_str = ""
+    for m in p.finditer(pathname):
+        # print(m.start(), m.end(), m.group(), m.group(1))
+        r_idx = m.group(1)
+        reaction_str += ("R" + str(r_idx))
+        if str(r_idx) in net_r_p:
+            # print(net_r_p[r_idx])
+            if str(spe_idx) in net_r_p[str(r_idx)]:
+                # print([net_r_p[r_idx][str(spe_idx)]])
+                sub_path.append(str(pathname[0:m.end()]))
+                sub_path_reaction.append(reaction_str)
+
+    print(sub_path, sub_path_reaction)
+    return sub_path, sub_path_reaction
+
+
 def parse_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
     """
     calculate number of species being used or produced along a path, depends on net_r_p,
@@ -142,15 +173,6 @@ def parse_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", n
         # print(s_r_s)
         s_1 = next(iter(re.findall(r"S(\d+)R-\d+S\d+", s_r_s)), 0)
         s_2 = next(iter(re.findall(r"S\d+R-\d+S(\d+)", s_r_s)), 0)
-
-        # if s_1 != s_2 and s_1 in s_p_r_c:
-        #     if s_2 in s_p_r_c[s_1]:
-        #         for pair_idx in s_p_r_c[s_1][s_2]:
-        #             r_idx_c = s_p_r_c[s_1][s_2][pair_idx]['r_idx']
-        #             # print(r_idx_c)
-        #             if str(spe_idx) in net_r_p[r_idx_c]:
-        #                 # print("bingo")
-        #                 number += int(net_r_p[r_idx_c][str(spe_idx)])
 
         if s_1 != s_2 and (s_1, s_2) in s_p_r_c:
             for pair_idx in s_p_r_c[(s_1, s_2)]:
@@ -271,5 +293,7 @@ if __name__ == "__main__":
     #     pathname="S60R-100001S90R1162S94R-100006S101R1222S46R452S17", net_reactant=NET_REACTANT, net_product=NET_PRODUCT,
     #     s_idx_name=S_IDX_NAME, atom_scheme=ATOM_SCHEME, atom_followed="C")
 
-    parse_species_along_path_using_reaction(
-        pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+    # parse_species_along_path_using_reaction(
+    #     pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+    get_spe_production_sub_path(
+        pathname="S90R1162S94R-100006S101R1222S46R90S14R90S17R90S45", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)

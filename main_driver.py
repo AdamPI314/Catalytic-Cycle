@@ -50,7 +50,7 @@ if __name__ == '__main__':
         traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
         end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
-        path_reg=None, spe_idx=10)
+        path_reg=None, spe_idx=10, spe_production_oriented=True)
     # end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
     # j_b.evaluate_pathway_AT(

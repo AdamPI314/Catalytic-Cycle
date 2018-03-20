@@ -12,7 +12,7 @@ import parse_pattern as pp
 
 def prepare_pathway_name(
         data_dir, top_n=5, flag="", end_s_idx=None, species_path=False,
-        path_reg=None, spe_idx=None):
+        path_reg=None, spe_idx=None, spe_production_oriented=False):
     """
     prepare pathway_name_candidate.csv
     """
@@ -59,9 +59,24 @@ def prepare_pathway_name(
             mask3 = d_f['pathway'].str.endswith("S" + str(s_i))
             path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
 
-    # save
-    np.savetxt(f_n_pn, path_list, fmt="%s")
-    return len(path_list)
+    if spe_production_oriented is False:
+        # save
+        np.savetxt(f_n_pn, path_list, fmt="%s")
+        return len(path_list)
+    elif spe_idx is not None:
+        path_list2 = []
+        path_set = set()
+
+        for _, val1 in enumerate(path_list):
+            p_list, r_list = pp.get_spe_production_sub_path(
+                val1, net_product, spe_idx, s_p_r_c)
+            for idx2, val2 in enumerate(r_list):
+                if val2 not in path_set:
+                    path_set.add(val2)
+                    path_list2.append(p_list[idx2])
+
+        np.savetxt(f_n_pn, path_list2, fmt="%s")
+        return path_list2
 
 
 def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None):
@@ -134,5 +149,9 @@ if __name__ == '__main__':
 
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
     #                      end_s_idx=[62, 59])
-    prepare_pathway_name(DATA_DIR, top_n=10, flag="",
-                         end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
+    # prepare_pathway_name(DATA_DIR, top_n=10, flag="",
+    #                      end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
+
+    prepare_pathway_name(
+        DATA_DIR, top_n=5, flag="", end_s_idx=None, species_path=False,
+        path_reg=None, spe_idx=10, spe_production_oriented=True)
