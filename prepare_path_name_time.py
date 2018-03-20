@@ -53,30 +53,33 @@ def prepare_pathway_name(
     # read
     if end_s_idx is None or end_s_idx == []:
         mask3 = d_f['pathway'].str.len() > 0
-        path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
+        path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'])
+
+        if spe_production_oriented is False:
+            # save
+            np.savetxt(f_n_pn, path_list[0:top_n], fmt="%s")
+            return len(path_list[0:top_n])
+        elif spe_idx is not None:
+            path_list2 = []
+            path_set = set()
+
+            for _, val1 in enumerate(path_list):
+                p_list, r_list = pp.get_spe_production_sub_path(
+                    val1, net_product, spe_idx, s_p_r_c)
+                for idx2, val2 in enumerate(r_list):
+                    if val2 not in path_set:
+                        path_set.add(val2)
+                        path_list2.append(p_list[idx2])
+
+            np.savetxt(f_n_pn, path_list2[0:top_n], fmt="%s")
+            return len(path_list2[0:top_n])
     else:
         for s_i in end_s_idx:
             mask3 = d_f['pathway'].str.endswith("S" + str(s_i))
             path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
-
-    if spe_production_oriented is False:
         # save
         np.savetxt(f_n_pn, path_list, fmt="%s")
         return len(path_list)
-    elif spe_idx is not None:
-        path_list2 = []
-        path_set = set()
-
-        for _, val1 in enumerate(path_list):
-            p_list, r_list = pp.get_spe_production_sub_path(
-                val1, net_product, spe_idx, s_p_r_c)
-            for idx2, val2 in enumerate(r_list):
-                if val2 not in path_set:
-                    path_set.add(val2)
-                    path_list2.append(p_list[idx2])
-
-        np.savetxt(f_n_pn, path_list2, fmt="%s")
-        return len(path_list2)
 
 
 def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None):
