@@ -3,15 +3,15 @@ prepare pathway name and pathway time for pathway-probability evaluation
 """
 import os
 import sys
+from copy import deepcopy
 import numpy as np
 import pandas as pd
-from copy import deepcopy
 import parse_spe_reaction_info as psri
 import parse_pattern as pp
 
 
 def prepare_pathway_name(
-        data_dir, top_n=5, flag="", delimiter=",", end_s_idx=None, species_path=False,
+        data_dir, top_n=5, flag="", end_s_idx=None, species_path=False,
         path_reg=None, spe_idx=None):
     """
     prepare pathway_name_candidate.csv
@@ -133,6 +133,6 @@ if __name__ == '__main__':
 #     print(DATA_DIR)
 
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
-    #                      delimiter=",", end_s_idx=[62, 59])
-    prepare_pathway_name(DATA_DIR, top_n=10, flag="", delimiter=',',
+    #                      end_s_idx=[62, 59])
+    prepare_pathway_name(DATA_DIR, top_n=10, flag="",
                          end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
