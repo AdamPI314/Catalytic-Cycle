@@ -1,6 +1,7 @@
 # user defined ignoring files
 .vscode/settings.json
 theory/misc/species_passage_time/data/
+theory/misc/species_passage_time/*/data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
