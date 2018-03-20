@@ -289,6 +289,9 @@ def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5, n_poi
         tf_idx = int(
             round(interpolation.interp1d(time_o, idx_array, tau * t_f)))
 
+    if tf_idx == 0:
+        tf_idx = 1
+
     if n_point is None or n_point <= 3:
         n_point = tf_idx
 

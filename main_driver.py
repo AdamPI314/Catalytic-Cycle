@@ -81,7 +81,7 @@ if __name__ == '__main__':
         init_s_idx=G_S['init_s_idx'])
 
     traj.cal_passage_time_distribution(
-        DATA_DIR, G_S['init_s_idx'][0], G_S['tau'], 0.000001, n_point=10000)
+        DATA_DIR, G_S['init_s_idx'][0], G_S['tau'], float(1.0e-6), n_point=10000)
 
     # # convert symbolic pathway to real pathway
     # # with real species names and real reaction expression
