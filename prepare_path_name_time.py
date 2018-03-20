@@ -76,7 +76,7 @@ def prepare_pathway_name(
                     path_list2.append(p_list[idx2])
 
         np.savetxt(f_n_pn, path_list2, fmt="%s")
-        return path_list2
+        return len(path_list2)
 
 
 def prepare_pathway_name_for_passage_time(data_dir, flag="", init_s_idx=None):
