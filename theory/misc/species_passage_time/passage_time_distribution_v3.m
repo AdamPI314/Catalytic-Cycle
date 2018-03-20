@@ -1,9 +1,13 @@
 %% global settings
-species_idx = 10;
-species_name = 'OH';
+init_s = 10;
+% species_idx = 10;
+% species_name = 'OH';
+species_idx = 62;
+species_name = 'C3H8';
 % end_t = '0.25718313951098054';
 % end_t = '0.5';
-end_t = '1e-06';
+end_t = '0.9';
+% end_t = '1e-06';
 % end_t = '1.0';
 
 % text_str = 't_f=0.2 seconds';
@@ -13,7 +17,7 @@ text_str = 't_f=0.9\tau';
 
 %% read file
 file_dir_PT = fullfile(fileparts(mfilename('fullpath')));
-fn_PT = fullfile(file_dir_PT, species_name,'data', ['species_pathway_AT_S',num2str(species_idx), '_HA4_', end_t ,'.csv']);
+fn_PT = fullfile(file_dir_PT, species_name,'data', ['species_pathway_AT_S',num2str(init_s), '_HA4_', end_t ,'.csv']);
 
 delimiter = '';
 formatSpec = '%f%[^\n\r]';
@@ -71,12 +75,12 @@ p2= plot(time_pt_vec, pt_drc_vec, 'color',co(2, :), 'LineWidth', 2); hold on;
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('PDF ({second}^{-1})', 'FontSize', 20);
-xlim([0.0, 10^(-6)]);
+% xlim([0.0, 10^(-6)]);
 
 leg_h = legend([p1; p2],... 
     'SOHR', 'EXACT');
 set(leg_h, 'FontSize', 13, 'Box', 'off');
-set(leg_h, 'Location', 'East')
+set(leg_h, 'Location', 'West')
 
 %% global figure settings
 grid on;
