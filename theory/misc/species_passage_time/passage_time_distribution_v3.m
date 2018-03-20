@@ -3,8 +3,7 @@ species_idx = 10;
 species_name = 'OH';
 % end_t = '0.25718313951098054';
 % end_t = '0.5';
-end_t = '0.9';
-end_t2 = '1e-06';
+end_t = '1e-06';
 % end_t = '1.0';
 
 % text_str = 't_f=0.2 seconds';
@@ -28,7 +27,7 @@ PT_vec = dataArray{:, 1};
 clearvars fn_PT delimiter formatSpec fileID dataArray ans;
 
 %% passage time calculated from drc
-fn_time_pt = fullfile(file_dir_PT, species_name, 'data', ['time_pt_dlsode_M_', end_t2 ,'.csv']);
+fn_time_pt = fullfile(file_dir_PT, species_name, 'data', ['time_pt_dlsode_M_', end_t ,'.csv']);
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(fn_time_pt,'r');
@@ -37,7 +36,7 @@ fclose(fileID);
 time_pt_vec = dataArray{:, 1};
 clearvars fn_time_pt delimiter formatSpec fileID dataArray ans;
 
-fn_drc_pt = fullfile(file_dir_PT, species_name, 'data', ['pt_dlsode_M_', end_t2 ,'.csv']);
+fn_drc_pt = fullfile(file_dir_PT, species_name, 'data', ['pt_dlsode_M_', end_t ,'.csv']);
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(fn_drc_pt,'r');

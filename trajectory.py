@@ -294,8 +294,8 @@ def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5, n_poi
 
     if n_point is None or n_point <= 3:
         n_point = tf_idx
-
-    time = np.linspace(0, time_o[tf_idx], n_point)
+    # use value at time point 1, avoid 0 value
+    time = np.linspace(time_o[1], time_o[tf_idx], n_point)
     spe_drc = np.zeros(len(time))
     for idx, val in enumerate(time):
         spe_drc[idx] = interpolation.interp1d(time_o, drc[:, spe_idx], val)
