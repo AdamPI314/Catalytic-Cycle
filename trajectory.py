@@ -271,26 +271,31 @@ def get_time_at_temperature_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
         print("not converges\t")
 
 
-def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5):
+def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5, n_point=7000):
     """
     calculate passage time distribution,
     """
     f_n_time = os.path.join(data_dir, "output", "time_dlsode_M.csv")
     f_n_drc = os.path.join(data_dir, "output", "drc_dlsode_M.csv")
 
-    time = np.loadtxt(f_n_time, dtype=float, delimiter=',')
+    time_o = np.loadtxt(f_n_time, dtype=float, delimiter=',')
     drc = np.loadtxt(f_n_drc, dtype=float, delimiter=',')
 
     tf_idx = 0
     if t_f is None:
         tf_idx = len(drc) - 1
     else:
-        idx_array = [i for i in range(len(time))]
+        idx_array = [i for i in range(len(time_o))]
         tf_idx = int(
-            round(interpolation.interp1d(time, idx_array, tau * t_f)))
+            round(interpolation.interp1d(time_o, idx_array, tau * t_f)))
 
-    time = time[0:tf_idx+1]
-    spe_drc = drc[0:tf_idx+1, spe_idx]
+    if n_point is None or n_point <= 3:
+        n_point = tf_idx
+
+    time = np.linspace(0, time_o[tf_idx], n_point)
+    spe_drc = np.zeros(len(time))
+    for idx, val in enumerate(time):
+        spe_drc[idx] = interpolation.interp1d(time_o, drc[:, spe_idx], val)
 
     # integral of k
     spe_drc_int = np.zeros(len(spe_drc))
