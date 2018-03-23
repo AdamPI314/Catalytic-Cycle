@@ -200,7 +200,8 @@ def evaluate_pathway_probability(
         atom_followed="C", init_spe=114, traj_max_t=100.0,
         tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
         spe_oriented=True, end_s_idx=None, species_path=False, path_reg=None,
-        spe_idx=None, spe_production_oriented=False):
+        spe_idx=None, spe_production_oriented=False,
+        fixed_t0_or_tf=None):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -220,7 +221,8 @@ def evaluate_pathway_probability(
 
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag,
-            begin_t=begin_t, end_t=end_t, species_path=species_path)
+            begin_t=begin_t, end_t=end_t, species_path=species_path,
+            fixed_t0_or_tf=fixed_t0_or_tf)
 
         us.update_eval_path_integral(
             data_dir, top_n=n_path, n_traj=n_traj,
@@ -232,7 +234,8 @@ def evaluate_pathway_probability(
             data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path,
             path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented)
         ppnt.prepare_pathway_time(
-            data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
+            data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t,
+            species_path=species_path, fixed_t0_or_tf=fixed_t0_or_tf)
 
         us.update_eval_path_integral(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
