@@ -32,6 +32,8 @@ def update_basic_setting(data_dir, g_s):
     setting['propagator']['convert_molar_concentration_to_mole_fraction'] = g_s['propagator']['convert_molar_concentration_to_mole_fraction']
     setting['propagator']['normalize_initial_concentration'] = g_s['propagator']['normalize_initial_concentration']
 
+    setting['pathway']['fixed_t0_or_tf'] = g_s['fixed_t0_or_tf']
+
     rwc.write_configuration(setting, os.path.join(
         data_dir, 'input', 'setting.json'))
 
