@@ -111,7 +111,7 @@ xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
 ylim([0.30, 0.52]);
 
-%% temp
+%% ratio
 yyaxis right
 delta_n = 1000;
 plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
