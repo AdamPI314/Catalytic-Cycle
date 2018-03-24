@@ -93,7 +93,7 @@ ylabel('Ratio (%)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t2]);
-leg_h = legend([p1; p2; p3], 'TOP 3', 'TOP 1000', 'TOP 3 / TOP 1000');
+leg_h = legend([p1; p2; p3], 'SUM(p1,p2,p3)', 'SUM(p1,...,p1000)', 'SUM(p1,p2,p3) / SUM(p1,...,p1000)');
 set(leg_h, 'FontSize', 12, 'Box', 'off');
 set(leg_h, 'Location', 'South')
 
