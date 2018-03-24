@@ -80,7 +80,7 @@ p3 = plot(nan, nan, 'LineWidth', 2, 'marker', 'd');
 %% settings
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
-ylabel('Fraction', 'FontSize', 20);
+ylabel('f', 'FontSize', 20);
 ylim([0.15, 1.8]);
 
 %% temp

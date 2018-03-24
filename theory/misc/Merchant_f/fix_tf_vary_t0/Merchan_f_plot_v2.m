@@ -86,7 +86,7 @@ p5 = plot(time_vec * tau, top_4_to_1000_vec, 'LineWidth', 2, 'marker', 'o'); hol
 %% settings
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
-ylabel('Fraction', 'FontSize', 20);
+ylabel('f', 'FontSize', 20);
 % ylim([0.15, 1.8]);
 
 % %% ratio
