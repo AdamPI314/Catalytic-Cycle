@@ -2,6 +2,8 @@
 .vscode/settings.json
 theory/misc/species_passage_time/data/
 theory/misc/species_passage_time/*/data
+theory/misc/Merchant_f/fix_t0_vary_tf/*/data
+theory/misc/Merchant_f/fix_tf_vary_t0/*/data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
