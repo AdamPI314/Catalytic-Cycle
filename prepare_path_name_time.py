@@ -66,7 +66,7 @@ def prepare_pathway_name(
 
             for _, val1 in enumerate(path_list):
                 p_list, r_list = pp.get_spe_production_sub_path(
-                    val1, net_product, spe_idx, s_p_r_c)
+                    val1, net_reactant, net_product, spe_idx, s_p_r_c)
                 for idx2, val2 in enumerate(r_list):
                     if val2 not in path_set:
                         path_set.add(val2)
