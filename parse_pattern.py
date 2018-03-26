@@ -123,7 +123,7 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, net_p=None, spe_idx=10, s_p_r_c=None):
+def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, net_p=None, spe_idx=10, s_p_r_c=None, n_threshold=0):
     """
     return sub-pathway that give rise to a species, produces a species along a pathway
     """
@@ -145,7 +145,7 @@ def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, n
         reaction_str += ("R" + str(r_idx))
         path_tmp = str(pathname[0:m.end()])
 
-        if parse_net_species_along_path_using_reaction(path_tmp, net_r=net_r, net_p=net_p, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1:
+        if parse_net_species_along_path_using_reaction(path_tmp, net_r=net_r, net_p=net_p, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= n_threshold:
             sub_path.append(path_tmp)
             sub_path_reaction.append(reaction_str)
 

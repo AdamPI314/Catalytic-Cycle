@@ -12,7 +12,7 @@ import parse_pattern as pp
 
 def prepare_pathway_name(
         data_dir, top_n=5, flag="", end_s_idx=None, species_path=False,
-        path_reg=None, spe_idx=None, spe_production_oriented=False):
+        path_reg=None, spe_idx=None, spe_production_oriented=False, n_threshold=0):
     """
     prepare pathway_name_candidate.csv
     """
@@ -49,7 +49,7 @@ def prepare_pathway_name(
         s_p_r_c = psri.parse_species_pair_reaction(data_dir)
 
         mask2 = d_f.apply(lambda x: pp.parse_net_species_along_path_using_reaction(
-            pathname=x['pathway'], net_r=net_reactant, net_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1, axis=1)
+            pathname=x['pathway'], net_r=net_reactant, net_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= n_threshold, axis=1)
 
     # read
     if end_s_idx is None or end_s_idx == []:
@@ -66,7 +66,7 @@ def prepare_pathway_name(
 
             for _, val1 in enumerate(path_list):
                 p_list, r_list = pp.get_spe_production_sub_path(
-                    val1, net_reactant, net_product, spe_idx, s_p_r_c)
+                    val1, net_reactant, net_product, spe_idx, s_p_r_c, n_threshold)
                 for idx2, val2 in enumerate(r_list):
                     if val2 not in path_set:
                         path_set.add(val2)
