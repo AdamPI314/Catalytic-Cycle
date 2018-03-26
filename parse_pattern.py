@@ -149,7 +149,7 @@ def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, n
             sub_path.append(path_tmp)
             sub_path_reaction.append(reaction_str)
 
-    print(sub_path, sub_path_reaction)
+    # print(sub_path, sub_path_reaction)
     return sub_path, sub_path_reaction
 
 
@@ -234,7 +234,7 @@ def parse_net_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94
     matched_reaction = re.findall(r"R(\d+)", pathname)
 
     for _, r_idx in enumerate(matched_reaction):
-        print(r_idx)
+        # print(r_idx)
         if str(r_idx) in net_r:
             if str(spe_idx) in net_r[str(r_idx)]:
                 number -= int(net_r[r_idx][str(spe_idx)])
