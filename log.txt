@@ -1,5 +1,5 @@
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA
+D:\VS_workspace\CPlusPlus\SOHR
+D:\VS_workspace\CPlusPlus\SOHR_DATA
 {'rxn': [1068, 1069], 'spe': {'H': [60, 78], 'C': [60, 78], 'O': [9, 78], 'HA1': [60, 78], 'HA2': [60, 78], 'HA3': [60, 78], 'HA4': [60, 78]}}
 {'rxn': [1116, 1117], 'spe': {'H': [87, 90], 'C': [87, 90], 'O': [9, 90], 'HA1': [87, 90], 'HA2': [87, 90], 'HA3': [87, 90], 'HA4': [87, 90]}}
 {'rxn': [1080, 1081], 'spe': {'H': [78, 87], 'C': [78, 87], 'O': [78, 87], 'HA1': [78, 87], 'HA2': [78, 87], 'HA3': [78, 87], 'HA4': [78, 87]}}
@@ -24,13 +24,15 @@
 9 [85, 54]
 10 [45, 47]
 OrderedDict([('1', [60, 78]), ('2', [87, 90]), ('3', [78, 87]), ('4', [61, 80]), ('5', [88, 91]), ('6', [89, 92]), ('7', [72, 108]), ('8', [39, 50]), ('9', [25, 27]), ('10', [85, 54]), ('11', [45, 47])])
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_stat.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_prob.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/species_pathway_AT.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathname_prob.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/chattering_group_info.json found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_candidate.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_time_candidate.csv found
-/home/sohr/Documents/spring_2018_boulder/SRC_EXE_DIR/SOHR_DATA/output/pathway_name_candidate_real_path.csv found
-running time:	0.01 hours
-
+Traceback (most recent call last):
+  File "./main_driver.py", line 55, in <module>
+    fixed_t0_or_tf=G_S['fixed_t0_or_tf'])
+  File "D:\VS_workspace\CPlusPlus\SOHR\projects\catalytic_cycle\job_drivers.py", line 243, in evaluate_pathway_probability
+    make_run(src_dir, data_dir)
+  File "D:\VS_workspace\CPlusPlus\SOHR\projects\catalytic_cycle\job_drivers.py", line 155, in make_run
+    cmd, stdout=subprocess.PIPE, stderr=error_file)
+  File "E:\Anaconda\Anaconda3\lib\subprocess.py", line 709, in __init__
+    restore_signals, start_new_session)
+  File "E:\Anaconda\Anaconda3\lib\subprocess.py", line 997, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified

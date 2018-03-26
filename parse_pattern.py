@@ -145,9 +145,13 @@ def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, n
         reaction_str += ("R" + str(r_idx))
         path_tmp = str(pathname[0:m.end()])
 
-        if parse_net_species_along_path_using_reaction(path_tmp, net_r=net_r, net_p=net_p, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= n_threshold:
-            sub_path.append(path_tmp)
-            sub_path_reaction.append(reaction_str)
+        # gotta to make sure the last reaction creates at least one OH
+        if str(spe_idx) in net_p[str(r_idx)]:
+            # the whole sub-pathway create net number of OH more than threshold
+            if parse_net_species_along_path_using_reaction(
+                    path_tmp, net_r=net_r, net_p=net_p, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= n_threshold:
+                sub_path.append(path_tmp)
+                sub_path_reaction.append(reaction_str)
 
     # print(sub_path, sub_path_reaction)
     return sub_path, sub_path_reaction
