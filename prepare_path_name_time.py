@@ -44,11 +44,12 @@ def prepare_pathway_name(
     if spe_idx is None:
         mask2 = d_f['pathway'].str.len() > 0
     else:
+        net_reactant = psri.parse_reaction_net_reactant(data_dir)
         net_product = psri.parse_reaction_net_product(data_dir)
         s_p_r_c = psri.parse_species_pair_reaction(data_dir)
 
-        mask2 = d_f.apply(lambda x: pp.parse_species_along_path_using_reaction(
-            pathname=x['pathway'], net_r_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1, axis=1)
+        mask2 = d_f.apply(lambda x: pp.parse_net_species_along_path_using_reaction(
+            pathname=x['pathway'], net_r=net_reactant, net_p=net_product, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= 1, axis=1)
 
     # read
     if end_s_idx is None or end_s_idx == []:
