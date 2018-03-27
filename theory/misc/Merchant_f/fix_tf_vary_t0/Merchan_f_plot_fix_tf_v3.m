@@ -95,8 +95,8 @@ p6 = plot(time_vec * tau, top_1_to_1000_vec, 'LineWidth', 2, 'marker', 'o'); hol
 
 %% settings
 set(gca,'GridLineStyle','--');
-xlabel('Time (seconds)', 'FontSize', 20);
-ylabel('f', 'FontSize', 20);
+xlabel('$t_0$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
+ylabel('$f$', 'Interpreter','latex', 'FontSize', 20);
 % ylim([0.15, 1.8]);
 
 % %% ratio
@@ -112,6 +112,12 @@ xlim([0, tau*end_t2]);
 leg_h = legend([p1; p2; p3; p4; p5; p6], 'p1', 'p2', 'p3', 'SUM(p1,p2,p3)', 'SUM(p4,...,p1000)', 'SUM(p1,...,p1000)');
 set(leg_h, 'FontSize', 12, 'Box', 'off');
 % set(leg_h, 'Location', 'South')
+
+%% text
+a_x = gca;
+t_x = a_x.XLim(1) + 0.325*(a_x.XLim(2) - a_x.XLim(1));
+t_y = a_x.YLim(1) + 0.858*(a_x.YLim(2) - a_x.YLim(1));
+text(t_x, t_y, '$t_f$=$0.9\tau$', 'Interpreter','latex', 'FontSize', 20);
 
 %% save to file
 figname = strcat('Merchant_f_fix_tf_vary_t0_', end_t, '_v3.png');
