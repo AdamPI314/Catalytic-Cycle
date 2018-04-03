@@ -245,7 +245,7 @@ def evaluate_pathway_probability(
 
 
 def Merchant_f_2d_t0_tf(
-        src_dir, data_dir, top_n=5, flag="", n_traj=10000,
+        src_dir, data_dir, top_n=5, num_t=25, flag="", n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
         tau=10.0, begin_t=0.0, end_t=1.0, spe_idx=10):
 
@@ -262,24 +262,27 @@ def Merchant_f_2d_t0_tf(
     except OSError:
         pass
 
-    b_t = begin_t
-    e_t = end_t
-    # num_t set to be 1
-    evaluate_pathway_probability(
-        src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=n_traj,
-        atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
-        tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
-        spe_oriented=False, end_s_idx=None, species_path=False, path_reg=None,
-        spe_idx=spe_idx, spe_production_oriented=True,
-        fixed_t0_or_tf="t0")
+    time_vec = np.linspace(begin_t, end_t, num_t)
+    for i in range(num_t-1):
+        for j in range(i+1, num_t):
+            b_t = time_vec[i]
+            e_t = time_vec[j]
+            # num_t set to be 1
+            evaluate_pathway_probability(
+                src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=n_traj,
+                atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
+                tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
+                spe_oriented=False, end_s_idx=None, species_path=False, path_reg=None,
+                spe_idx=spe_idx, spe_production_oriented=True,
+                fixed_t0_or_tf="t0")
 
-    f_n_pp = os.path.join(data_dir, "output", "pathway_prob" + suffix + ".csv")
-    print(f_n_merchant_f)
-    print(f_n_pp)
-    f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
+            f_n_pp = os.path.join(data_dir, "output",
+                                  "pathway_prob" + suffix + ".csv")
+            f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
 
-    with open(f_n_merchant_f, 'a') as f_handler:
-        f_handler.write(str(b_t) + ',' + str(e_t) + ',' + str(f_value) + '\n')
+            with open(f_n_merchant_f, 'a') as f_handler:
+                f_handler.write(str(b_t) + ',' + str(e_t) +
+                                ',' + str(f_value) + '\n')
 
     return
 
