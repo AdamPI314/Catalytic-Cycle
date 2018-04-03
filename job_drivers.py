@@ -5,6 +5,7 @@ Job drivers
 import subprocess
 import os
 import sys
+import numpy as np
 import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
@@ -241,6 +242,44 @@ def evaluate_pathway_probability(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
     make_run(src_dir, data_dir)
+
+
+def Merchant_f_2d_t0_tf(
+        src_dir, data_dir, top_n=5, flag="", n_traj=10000,
+        atom_followed="C", init_spe=114, traj_max_t=100.0,
+        tau=10.0, begin_t=0.0, end_t=1.0, spe_idx=10):
+
+    suffix = naming.get_suffix(data_dir)
+
+    if flag == "":
+        f_n_merchant_f = os.path.join(data_dir, "output",
+                                      "Merchant_f_2d.csv")
+    else:
+        f_n_merchant_f = os.path.join(data_dir, "output",
+                                      "Merchant_f_2d_" + str(flag) + ".csv")
+    try:
+        os.remove(f_n_merchant_f)
+    except OSError:
+        pass
+
+    b_t = begin_t
+    e_t = end_t
+    # num_t set to be 1
+    evaluate_pathway_probability(
+        src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=n_traj,
+        atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
+        tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
+        spe_oriented=False, end_s_idx=None, species_path=False, path_reg=None,
+        spe_idx=spe_idx, spe_production_oriented=True,
+        fixed_t0_or_tf="t0")
+
+    f_n_pp = os.path.join(data_dir, "output", "pathway_prob" + suffix + ".csv")
+    f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
+
+    with open(f_n_merchant_f, 'a') as f_handler:
+        f_handler.write(str(b_t) + ',' + str(e_t) + ',' + str(f_value) + '\n')
+
+    return
 
 
 def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
