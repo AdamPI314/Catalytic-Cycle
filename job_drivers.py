@@ -274,6 +274,8 @@ def Merchant_f_2d_t0_tf(
         fixed_t0_or_tf="t0")
 
     f_n_pp = os.path.join(data_dir, "output", "pathway_prob" + suffix + ".csv")
+    print(f_n_merchant_f)
+    print(f_n_pp)
     f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
 
     with open(f_n_merchant_f, 'a') as f_handler:
