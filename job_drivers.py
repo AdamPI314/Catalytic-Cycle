@@ -17,6 +17,38 @@ import make_figures as mf
 import global_settings
 
 
+def quick_clean_up(data_dir, flag="", species_path=False):
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    if flag == "":
+        f_n_pn = os.path.join(data_dir, "output",
+                              prefix + "pathway_name_candidate.csv")
+    else:
+        f_n_pn = os.path.join(data_dir, "output",
+                              prefix + "pathway_name_candidate_" + str(flag) + ".csv")
+
+    try:
+        os.remove(f_n_pn)
+    except OSError:
+        pass
+
+    if flag == "":
+        f_n_pp = os.path.join(data_dir, "output",
+                              prefix + "pathway_prob.csv")
+    else:
+        f_n_pp = os.path.join(data_dir, "output",
+                              prefix + "pathway_prob_" + str(flag) + ".csv")
+
+    try:
+        os.remove(f_n_pp)
+    except OSError:
+        pass
+
+    return
+
+
 def update_terminal_species_setting(data_dir, terminal_spe=None):
     """
     update settings.json, primarily for terminal species
@@ -202,7 +234,7 @@ def evaluate_pathway_probability(
         tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
         spe_oriented=True, end_s_idx=None, species_path=False, path_reg=None,
         spe_idx=None, spe_production_oriented=False,
-        fixed_t0_or_tf=None):
+        fixed_t0_or_tf=None, same_path_list=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -218,7 +250,8 @@ def evaluate_pathway_probability(
 
         n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path,
-            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented)
+            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented,
+            same_path_list=same_path_list)
 
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag,
@@ -233,7 +266,8 @@ def evaluate_pathway_probability(
     else:
         n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path,
-            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented)
+            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented,
+            same_path_list=same_path_list)
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t,
             species_path=species_path, fixed_t0_or_tf=fixed_t0_or_tf)
@@ -272,7 +306,7 @@ def Merchant_f_2d_t0_tf(
                 tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
                 spe_oriented=False, end_s_idx=None, species_path=False, path_reg=None,
                 spe_idx=spe_idx, spe_production_oriented=True,
-                fixed_t0_or_tf="t0")
+                fixed_t0_or_tf="t0", same_path_list=True)
 
             f_n_pp = os.path.join(data_dir, "output",
                                   "pathway_prob" + ".csv")

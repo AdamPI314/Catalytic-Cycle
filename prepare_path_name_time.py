@@ -12,7 +12,8 @@ import parse_pattern as pp
 
 def prepare_pathway_name(
         data_dir, top_n=5, flag="", end_s_idx=None, species_path=False,
-        path_reg=None, spe_idx=None, spe_production_oriented=False, n_threshold=0):
+        path_reg=None, spe_idx=None, spe_production_oriented=False, n_threshold=0,
+        same_path_list=False):
     """
     prepare pathway_name_candidate.csv
     """
@@ -20,7 +21,6 @@ def prepare_pathway_name(
     prefix = ""
     if species_path is True:
         prefix = "species_"
-    f_n_ps = os.path.join(data_dir, "output", prefix + "pathway_stat.csv")
 
     if flag == "":
         f_n_pn = os.path.join(data_dir, "output",
@@ -29,10 +29,16 @@ def prepare_pathway_name(
         f_n_pn = os.path.join(data_dir, "output",
                               prefix + "pathway_name_candidate_" + str(flag) + ".csv")
 
+    if same_path_list is True and os.path.isfile(f_n_pn):
+        path_list = np.loadtxt(f_n_pn, dtype=float, delimiter=',')
+        return len(path_list)
+
     try:
         os.remove(f_n_pn)
     except OSError:
         pass
+
+    f_n_ps = os.path.join(data_dir, "output", prefix + "pathway_stat.csv")
 
     path_list = []
     d_f = pd.read_csv(f_n_ps, names=['pathway', 'frequency'])
