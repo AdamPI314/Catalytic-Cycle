@@ -127,6 +127,14 @@ def copy_sohr_files(data_dir, species_path=False):
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
+
+    f_n_1 = os.path.join(data_dir, "output", prefix +
+                         "Merchant_f_2d.csv")
+    f_n_2 = os.path.join(data_dir, "output",
+                         prefix + "Merchant_f_2d" + suffix + ".csv")
+    if os.path.isfile(f_n_1):
+        print(f_n_1, "found")
+        copyfile(f_n_1, f_n_2)
     return
 
 

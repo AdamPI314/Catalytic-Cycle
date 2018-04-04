@@ -2,7 +2,7 @@
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 spe_idx = '60';
-spe_name = 'npropyl';
+spe_name = 'ipropyl';
 tau = 0.777660157519;
 end_t = '0.9';
 
@@ -43,7 +43,7 @@ fig = figure();
 % mesh(X,Y,Z); %interpolated
 
 % reduce number of s.f. in coutour plot
-contour(X,Y,Z, 20, 'ShowText', 'on');
+contour(X,Y,Z, 15, 'ShowText', 'on');
 
 axis tight;
 hold on;
