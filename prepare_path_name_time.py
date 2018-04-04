@@ -30,7 +30,7 @@ def prepare_pathway_name(
                               prefix + "pathway_name_candidate_" + str(flag) + ".csv")
 
     if same_path_list is True and os.path.isfile(f_n_pn):
-        path_list = np.loadtxt(f_n_pn, dtype=float, delimiter=',')
+        path_list = np.loadtxt(f_n_pn, dtype=str, delimiter=',')
         return len(path_list)
 
     try:
