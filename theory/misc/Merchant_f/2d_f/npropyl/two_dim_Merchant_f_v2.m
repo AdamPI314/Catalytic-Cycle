@@ -42,17 +42,7 @@ fig = figure();
 % mesh(X,Y,Z); %interpolated
 
 % reduce number of s.f. in coutour plot
-[C,~]=contour(X,Y,Z, 25, 'ShowText', 'on');
-
-% reduce number of s.f. in coutour plot
-tl = clabel(C, 'FontSize', 10);
-itvec = 2:2:length(tl);
-NewCoutours = zeros(size(itvec));
-for i= itvec
-    textstr = get(tl(i), 'String');
-    NewCoutours(i) = round(str2double(textstr), 2);
-end
-contour(X,Y,Z, NewCoutours, 'ShowText','on');
+contour(X,Y,Z, 25, 'ShowText', 'on');
 
 axis tight;
 hold on;
