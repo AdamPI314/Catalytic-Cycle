@@ -60,7 +60,7 @@ grid on;
 a_x = gca;
 t_x = a_x.XLim(1) + 0.525*(a_x.XLim(2) - a_x.XLim(1));
 t_y = a_x.YLim(1) + 0.278*(a_x.YLim(2) - a_x.YLim(1));
-text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t_f$'], 'Interpreter','latex', 'FontSize', 20);
+text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t_f$' char(10) '$t_f > t$'], 'Interpreter','latex', 'FontSize', 20);
 
 %% save to file
 figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_v2.png');
