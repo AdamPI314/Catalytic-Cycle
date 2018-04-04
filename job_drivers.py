@@ -249,8 +249,6 @@ def Merchant_f_2d_t0_tf(
         atom_followed="C", init_spe=114, traj_max_t=100.0,
         tau=10.0, begin_t=0.0, end_t=1.0, spe_idx=10):
 
-    suffix = naming.get_suffix(data_dir)
-
     if flag == "":
         f_n_merchant_f = os.path.join(data_dir, "output",
                                       "Merchant_f_2d.csv")
@@ -277,7 +275,7 @@ def Merchant_f_2d_t0_tf(
                 fixed_t0_or_tf="t0")
 
             f_n_pp = os.path.join(data_dir, "output",
-                                  "pathway_prob" + suffix + ".csv")
+                                  "pathway_prob" + ".csv")
             f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
 
             with open(f_n_merchant_f, 'a') as f_handler:
