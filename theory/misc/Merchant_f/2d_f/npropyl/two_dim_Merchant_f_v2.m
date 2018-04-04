@@ -6,7 +6,7 @@ spe_name = 'npropyl';
 tau = 0.777660157519;
 end_t = '0.9';
 
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d' ,'.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_HA4_', end_t ,'.csv']);
 delimiter = ',';
 formatSpec = '%f%f%f%[^\n\r]';
 fileID = fopen(fn_2d_f,'r');
@@ -44,9 +44,27 @@ fig = figure();
 
 % reduce number of s.f. in coutour plot
 contour(X,Y,Z, 20, 'ShowText', 'on');
+hold on;
+
+% draw circle to emphase
+he1 = ellipse(0.045,0.075,pi/2,0.085,0.65);
+set(he1, 'LineStyle', '--', 'color', 'b', 'LineWidth', 2.0);
+hold on;
+
+% draw circle to emphase
+he2 = ellipse(0.065,0.075,pi/2,0.085,0.525);
+set(he2, 'LineStyle', '--', 'color', 'r', 'LineWidth', 2.0);
+hold on;
+
+% draw circle to emphase
+he3 = ellipse(0.11,0.065,pi/2,0.075,0.325);
+set(he3, 'LineStyle', '--', 'color', 'k', 'LineWidth', 2.0);
+hold on;
 
 axis tight;
 hold on;
+
+
 
 %% settings
 set(gca,'GridLineStyle','--');
