@@ -297,9 +297,10 @@ if __name__ == '__main__':
     print(DATA_DIR)
 
     # parse_reaction_net_product(DATA_DIR)
-    net_source_reaction_of_species(DATA_DIR, 10)
+    # net_source_reaction_of_species(DATA_DIR, 10)
     # net_sink_reaction_of_species(DATA_DIR, 62)
     # net_sink_reaction_of_species(DATA_DIR, 10)
+    net_sink_reaction_of_species(DATA_DIR, 12)
     # net_sink_reaction_of_species(DATA_DIR, 16)
     # get_reactions_from_si_2_sj(DATA_DIR, 60, 78)
     # get_reactions_from_si_2_sj(DATA_DIR, 78, 60)
