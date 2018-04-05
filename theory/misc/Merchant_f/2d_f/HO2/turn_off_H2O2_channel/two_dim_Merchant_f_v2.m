@@ -2,7 +2,7 @@
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 spe_idx = '12';
-spe_name = 'HO2';
+spe_name = 'HO$_2$';
 atom_f = 'HA5';
 tau = 0.777660157519;
 end_t = '0.9';

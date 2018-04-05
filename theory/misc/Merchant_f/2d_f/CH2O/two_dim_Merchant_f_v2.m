@@ -2,7 +2,7 @@
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 spe_idx = '17';
-spe_name = 'CH2O';
+spe_name = 'CH$_2$O';
 atom_f = 'HA5';
 tau = 0.777660157519;
 end_t = '0.9';
