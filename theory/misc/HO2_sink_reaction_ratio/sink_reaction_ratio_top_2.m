@@ -83,8 +83,9 @@ R_name = {'npropyloo+HO_2 \rightarrow npropylooh+O_2', 'HO_2+C_3H_6 \rightarrow 
 
 R_mat = reaction_R_mat(:, R_idx);
 
-% sort by the reaction rates around 0.5 tau, idx == 3500
-[B,I] = sort(R_mat(3500, :),'descend');
+% sort by the reaction rates around 0.5 tau, idx == 3550 for example
+sort_axis = round(0.5 * length(time_vec));
+[B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
     r_idx = I(idx);

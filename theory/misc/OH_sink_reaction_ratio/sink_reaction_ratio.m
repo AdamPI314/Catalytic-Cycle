@@ -1,3 +1,6 @@
+%% global settings
+spe_name = 'OH';
+
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 
@@ -72,24 +75,25 @@ tau = 0.777660157519;
 end_t = 0.9;
 
 %% plot
-OH_sink_R_idx = [1, 3, 4, 7, 21, 22, 29, 31, 32, 37, 39, 43, 44, 51, 52, 61, 62, 67, 79, 89, 90, 104, 111, 121, 122, 149, 152, 155, 161, 163, 164, 179, 183, 185, 186, 198, 209, 210, 212, 228, 236, 241, 243, 262, 267, 282, 290, 311, 312, 339, 361, 367, 369, 373, 377, 379, 383, 388, 411, 412, 424, 431, 447, 453, 461, 462, 464, 466, 471, 482, 501, 514, 517, 522, 524, 526, 533, 542, 544, 546, 567, 569, 571, 582, 589, 594, 599, 623, 628, 653, 654, 680, 685, 715, 717, 733, 735, 736, 738, 786, 815, 817, 819, 853, 862, 867, 884, 889, 898, 903, 907, 909, 1002, 1007, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028, 1035, 1039, 1077, 1085, 1091, 1095, 1103, 1109, 1113, 1115, 1119, 1123, 1131, 1133, 1135, 1151, 1153, 1155, 1163, 1167, 1173, 1175, 1177, 1187, 1189, 1191, 1199, 1201, 1203, 1211, 1213, 1215, 1217, 1219, 1221];
-for idx=1:length(OH_sink_R_idx)
-    OH_sink_R_idx(idx) = OH_sink_R_idx(idx) + 1;
+R_idx = [1, 3, 4, 7, 21, 22, 29, 31, 32, 37, 39, 43, 44, 51, 52, 61, 62, 67, 79, 89, 90, 104, 111, 121, 122, 149, 152, 155, 161, 163, 164, 179, 183, 185, 186, 198, 209, 210, 212, 228, 236, 241, 243, 262, 267, 282, 290, 311, 312, 339, 361, 367, 369, 373, 377, 379, 383, 388, 411, 412, 424, 431, 447, 453, 461, 462, 464, 466, 471, 482, 501, 514, 517, 522, 524, 526, 533, 542, 544, 546, 567, 569, 571, 582, 589, 594, 599, 623, 628, 653, 654, 680, 685, 715, 717, 733, 735, 736, 738, 786, 815, 817, 819, 853, 862, 867, 884, 889, 898, 903, 907, 909, 1002, 1007, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028, 1035, 1039, 1077, 1085, 1091, 1095, 1103, 1109, 1113, 1115, 1119, 1123, 1131, 1133, 1135, 1151, 1153, 1155, 1163, 1167, 1173, 1175, 1177, 1187, 1189, 1191, 1199, 1201, 1203, 1211, 1213, 1215, 1217, 1219, 1221];
+for idx=1:length(R_idx)
+    R_idx(idx) = R_idx(idx) + 1;
 end
 
-OH_sink_R_name = {'O+OH=>H+O2', 'H+OH=>O+H2', 'H2+OH=>H2O+H', 'OH+OH=>O+H2O', 'OH+M=>O+H+M', 'H+OH+M=>H2O+M', 'OH+OH=>HO2+H', 'O2+OH=>HO2+O', 'HO2+OH=>H2O+O2', 'OH+OH(+M)=>H2O2(+M)', 'H2O+OH=>H2O2+H', 'OH+HO2=>H2O2+O', 'H2O2+OH=>HO2+H2O', 'CO2+OH=>CO+HO2', 'CO+OH=>CO2+H', 'CO+OH=>HCO+O', 'HCO+OH=>CO+H2O', 'CO2+OH+H=>HCO+HO2', 'formyloxy+OH=>formylooh', 'HCO+OH=>CH2O+O', 'CH2O+OH=>HCO+H2O', 'HOCH2O+OH=>HOCH2OOH', 'CH3O+OH=>CH3+HO2', 'CH3+OH=>CH4+O', 'CH4+OH=>CH3+H2O', 'CH3O+OH=>CH3OO+H', 'CH3OO+OH=>CH3OH+O2', 'CH3O+OH=>CH3OOH', 'CH3+OH=>CH2OH+H', 'CH2O+OH=>CH2OH+O', 'CH2OH+OH=>CH2O+H2O', 'HOCH2O+OH=>CH2OH+HO2', 'CH3+OH=>CH3O+H', 'CH2O+OH=>CH3O+O', 'CH3O+OH=>CH2O+H2O', 'OH+CH3(+M)=>CH3OH(+M)', 'CH2OH+OH=>CH3OH+O', 'CH3OH+OH=>CH3O+H2O', 'CH3OH+OH=>CH2OH+H2O', 'CH3+OH=>CH2+H2O', 'CH2+OH=>CH2O+H', 'HCO+OH=>CH2+O2', 'CH2O+OH=>CH2+HO2', 'CH2(S)+OH=>CH2O+H', 'H+OH+CO=>CH2(S)+O2', 'CH2+OH=>CH+H2O', 'CH+OH=>HCO+H', 'C2H5+OH=>C2H6+O', 'C2H6+OH=>C2H5+H2O', 'ethoxy+OH=>C2H5+HO2', 'ethoxy+OH=>CH3CH2OOH', 'oxirane+OH=>C2H5+O2', 'acetaldehyde+OH=>C2H5+O2', 'acetaldehyde+OH=>CH3CH2OO', 'oxirane+OH=>CH3CH2OO', 'oxirane+OH=>CH2CH2OOH', 'acetaldehyde+OH=>CH2CH2OOH', 'oxirane+OH=>oxiranyl+H2O', 'acetyl+OH=>acetaldehyde+O', 'acetaldehyde+OH=>acetyl+H2O', 'acetaldehyde+OH=>vinoxy+H2O', 'ketene+OH=>acetyl+O', 'acetyloxy+OH=>CH3CO3H', 'CH2O+CO+OH=>vinoxy+O2', 'HCCO+OH=>ketene+O', 'ketene+OH=>HCCO+H2O', 'ketene+OH=>CH2OH+CO', 'HCCO+OH=>H2+CO+CO', 'OH+CO+CO=>HCCO+O2', 'C2H4+OH=>C2H3+H2O', 'oxirane+OH=>C2H4+HO2', 'C2H3+OH=>C2H2+H2O', 'HCCO+OH=>C2H2+O2', 'C2H2+OH=>ketene+H', 'C2H2+OH=>CH3+CO', 'OH+C2H2=>H+ethynol', 'C2H5+OH(+M)=>ethanol(+M)', 'ethanol+OH=>CH2CH2OH+H2O', 'ethanol+OH=>CH3CHOH+H2O', 'ethanol+OH=>ethoxy+H2O', 'CH2CH2OH+OH=>ethanol+O', 'CH3CHOH+OH=>ethanol+O', 'ethoxy+OH=>ethanol+O', 'C2H4+OH=>CH2CH2OH', 'OH+CH2O+CH2O=>O2C2H4OH', 'acetone+OH=>propen2oxy+H2O', 'propen2oxy+OH=>acetone+O', 'CH2CHCO+OH=>acrolein+O', 'acrolein+OH=>CH2CHCO+H2O', 'propionyl+OH=>propanal+O', 'propanal+OH=>propionyl+H2O', 'CH3OCH3+OH=>CH3OCH2+H2O', 'CH3OCH2+OH=>CH3OCH3+O', 'npropyloxy+OH=>npropylooh', 'ipropyloxy+OH=>ipropylooh', 'ipropyl+OH=>C3H8+O', 'npropyl+OH=>C3H8+O', 'C3H8+OH=>npropyl+H2O', 'C3H8+OH=>ipropyl+H2O', 'ipropyl+OH=>C3H6+H2O', 'allyl+OH=>C3H6+O', 'propen1yl+OH=>C3H6+O', 'propen2yl+OH=>C3H6+O', 'propen1ol+OH=>C3H6+HO2', 'allyl+OH=>acrolein+H+H', 'acrolein+OH=>allyl+O2', 'propen1yl+OH=>C2H4+HCO+H', 'C2H4+HCO+OH=>propen1yl+HO2', 'propen2yl+OH=>CH3+ketene+H', 'CH3+ketene+OH=>propen2yl+HO2', 'npropyloxy+OH=>npropyl+HO2', 'ipropyloxy+OH=>ipropyl+HO2', 'propen1ol+OH=>CH2O+C2H3+H2O', 'CH2O+C2H3+OH=>propen1ol+O', 'C3H6+OH=>allyl+H2O', 'C3H6+OH=>propen1yl+H2O', 'C3H6+OH=>propen2yl+H2O', 'C3H6+OH=>allyl-alcohol+H', 'C3H6+OH=>ethenol+CH3', 'C3H6+OH=>propen1ol+H', 'C3H6+OH=>propen2ol+H', 'C3H6+OH=>acetaldehyde+CH3', 'allyloxy+OH=>allyl+HO2', 'allyloxy+OH=>prod_2', 'OH+propoxide=>O2+npropyl', 'OH+propoxide=>npropyloo', 'OH+propoxide=>QOOH_2', 'OH+propoxide=>QOOH_1', 'OH+propoxide=>O2+ipropyl', 'OH+propoxide=>ipropyloo', 'OH+propoxide=>QOOH_3', 'OH+propoxide=>HO2+C3H6', 'OH+OH+frag_1=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_2', 'OH+OH+frag_4=>O2+QOOH_2', 'OH+OH+frag_5=>O2+QOOH_2', 'OH+prod_3=>O2+QOOH_3', 'OH+OH+frag_4=>O2+QOOH_3', 'OH+OH+frag_5=>O2+QOOH_3', 'OH+prod_1=>well_1', 'OH+prod_3=>well_1', 'OH+prod_3=>well_2', 'OH+prod_4=>well_2', 'OH+prod_5=>well_2', 'OH+prod_3=>well_3', 'OH+prod_4=>well_3', 'OH+prod_5=>well_3', 'OH+prod_3=>well_5', 'OH+prod_4=>well_5', 'OH+prod_5=>well_5', 'propen1oxy+OH=>prod_6', 'propen2oxy+OH=>prod_7', 'frag_1+OH=>prod_1', 'frag_3+OH=>prod_3', 'frag_4+OH=>prod_4', 'frag_5+OH=>prod_5'};
+R_name = {'O+OH=>H+O2', 'H+OH=>O+H2', 'H2+OH=>H2O+H', 'OH+OH=>O+H2O', 'OH+M=>O+H+M', 'H+OH+M=>H2O+M', 'OH+OH=>HO2+H', 'O2+OH=>HO2+O', 'HO2+OH=>H2O+O2', 'OH+OH(+M)=>H2O2(+M)', 'H2O+OH=>H2O2+H', 'OH+HO2=>H2O2+O', 'H2O2+OH=>HO2+H2O', 'CO2+OH=>CO+HO2', 'CO+OH=>CO2+H', 'CO+OH=>HCO+O', 'HCO+OH=>CO+H2O', 'CO2+OH+H=>HCO+HO2', 'formyloxy+OH=>formylooh', 'HCO+OH=>CH2O+O', 'CH2O+OH=>HCO+H2O', 'HOCH2O+OH=>HOCH2OOH', 'CH3O+OH=>CH3+HO2', 'CH3+OH=>CH4+O', 'CH4+OH=>CH3+H2O', 'CH3O+OH=>CH3OO+H', 'CH3OO+OH=>CH3OH+O2', 'CH3O+OH=>CH3OOH', 'CH3+OH=>CH2OH+H', 'CH2O+OH=>CH2OH+O', 'CH2OH+OH=>CH2O+H2O', 'HOCH2O+OH=>CH2OH+HO2', 'CH3+OH=>CH3O+H', 'CH2O+OH=>CH3O+O', 'CH3O+OH=>CH2O+H2O', 'OH+CH3(+M)=>CH3OH(+M)', 'CH2OH+OH=>CH3OH+O', 'CH3OH+OH=>CH3O+H2O', 'CH3OH+OH=>CH2OH+H2O', 'CH3+OH=>CH2+H2O', 'CH2+OH=>CH2O+H', 'HCO+OH=>CH2+O2', 'CH2O+OH=>CH2+HO2', 'CH2(S)+OH=>CH2O+H', 'H+OH+CO=>CH2(S)+O2', 'CH2+OH=>CH+H2O', 'CH+OH=>HCO+H', 'C2H5+OH=>C2H6+O', 'C2H6+OH=>C2H5+H2O', 'ethoxy+OH=>C2H5+HO2', 'ethoxy+OH=>CH3CH2OOH', 'oxirane+OH=>C2H5+O2', 'acetaldehyde+OH=>C2H5+O2', 'acetaldehyde+OH=>CH3CH2OO', 'oxirane+OH=>CH3CH2OO', 'oxirane+OH=>CH2CH2OOH', 'acetaldehyde+OH=>CH2CH2OOH', 'oxirane+OH=>oxiranyl+H2O', 'acetyl+OH=>acetaldehyde+O', 'acetaldehyde+OH=>acetyl+H2O', 'acetaldehyde+OH=>vinoxy+H2O', 'ketene+OH=>acetyl+O', 'acetyloxy+OH=>CH3CO3H', 'CH2O+CO+OH=>vinoxy+O2', 'HCCO+OH=>ketene+O', 'ketene+OH=>HCCO+H2O', 'ketene+OH=>CH2OH+CO', 'HCCO+OH=>H2+CO+CO', 'OH+CO+CO=>HCCO+O2', 'C2H4+OH=>C2H3+H2O', 'oxirane+OH=>C2H4+HO2', 'C2H3+OH=>C2H2+H2O', 'HCCO+OH=>C2H2+O2', 'C2H2+OH=>ketene+H', 'C2H2+OH=>CH3+CO', 'OH+C2H2=>H+ethynol', 'C2H5+OH(+M)=>ethanol(+M)', 'ethanol+OH=>CH2CH2OH+H2O', 'ethanol+OH=>CH3CHOH+H2O', 'ethanol+OH=>ethoxy+H2O', 'CH2CH2OH+OH=>ethanol+O', 'CH3CHOH+OH=>ethanol+O', 'ethoxy+OH=>ethanol+O', 'C2H4+OH=>CH2CH2OH', 'OH+CH2O+CH2O=>O2C2H4OH', 'acetone+OH=>propen2oxy+H2O', 'propen2oxy+OH=>acetone+O', 'CH2CHCO+OH=>acrolein+O', 'acrolein+OH=>CH2CHCO+H2O', 'propionyl+OH=>propanal+O', 'propanal+OH=>propionyl+H2O', 'CH3OCH3+OH=>CH3OCH2+H2O', 'CH3OCH2+OH=>CH3OCH3+O', 'npropyloxy+OH=>npropylooh', 'ipropyloxy+OH=>ipropylooh', 'ipropyl+OH=>C3H8+O', 'npropyl+OH=>C3H8+O', 'C3H8+OH=>npropyl+H2O', 'C3H8+OH=>ipropyl+H2O', 'ipropyl+OH=>C3H6+H2O', 'allyl+OH=>C3H6+O', 'propen1yl+OH=>C3H6+O', 'propen2yl+OH=>C3H6+O', 'propen1ol+OH=>C3H6+HO2', 'allyl+OH=>acrolein+H+H', 'acrolein+OH=>allyl+O2', 'propen1yl+OH=>C2H4+HCO+H', 'C2H4+HCO+OH=>propen1yl+HO2', 'propen2yl+OH=>CH3+ketene+H', 'CH3+ketene+OH=>propen2yl+HO2', 'npropyloxy+OH=>npropyl+HO2', 'ipropyloxy+OH=>ipropyl+HO2', 'propen1ol+OH=>CH2O+C2H3+H2O', 'CH2O+C2H3+OH=>propen1ol+O', 'C3H6+OH=>allyl+H2O', 'C3H6+OH=>propen1yl+H2O', 'C3H6+OH=>propen2yl+H2O', 'C3H6+OH=>allyl-alcohol+H', 'C3H6+OH=>ethenol+CH3', 'C3H6+OH=>propen1ol+H', 'C3H6+OH=>propen2ol+H', 'C3H6+OH=>acetaldehyde+CH3', 'allyloxy+OH=>allyl+HO2', 'allyloxy+OH=>prod_2', 'OH+propoxide=>O2+npropyl', 'OH+propoxide=>npropyloo', 'OH+propoxide=>QOOH_2', 'OH+propoxide=>QOOH_1', 'OH+propoxide=>O2+ipropyl', 'OH+propoxide=>ipropyloo', 'OH+propoxide=>QOOH_3', 'OH+propoxide=>HO2+C3H6', 'OH+OH+frag_1=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_2', 'OH+OH+frag_4=>O2+QOOH_2', 'OH+OH+frag_5=>O2+QOOH_2', 'OH+prod_3=>O2+QOOH_3', 'OH+OH+frag_4=>O2+QOOH_3', 'OH+OH+frag_5=>O2+QOOH_3', 'OH+prod_1=>well_1', 'OH+prod_3=>well_1', 'OH+prod_3=>well_2', 'OH+prod_4=>well_2', 'OH+prod_5=>well_2', 'OH+prod_3=>well_3', 'OH+prod_4=>well_3', 'OH+prod_5=>well_3', 'OH+prod_3=>well_5', 'OH+prod_4=>well_5', 'OH+prod_5=>well_5', 'propen1oxy+OH=>prod_6', 'propen2oxy+OH=>prod_7', 'frag_1+OH=>prod_1', 'frag_3+OH=>prod_3', 'frag_4+OH=>prod_4', 'frag_5+OH=>prod_5'};
 
-OH_sink_R_mat = reaction_R_mat(:, OH_sink_R_idx);
+R_mat = reaction_R_mat(:, R_idx);
 
-% sort by the reaction rates around 0.5 tau, idx == 3500
-[B,I] = sort(OH_sink_R_mat(3500, :),'descend');
+% sort by the reaction rates around 0.5 tau, idx == 3550 for example
+sort_axis = round(0.5 * length(time_vec));
+[B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
     r_idx = I(idx);
     if idx == 1
-        R_total = OH_sink_R_mat(:, r_idx);
+        R_total = R_mat(:, r_idx);
     else
-        R_total = (R_total + OH_sink_R_mat(:, r_idx));
+        R_total = (R_total + R_mat(:, r_idx));
     end
 end
 
@@ -99,7 +103,7 @@ H = gobjects(length(I));
 for idx=1:length(I)
 % for idx=1:10
     r_idx = I(idx);
-    H(idx) = semilogy(time_vec, (OH_sink_R_mat(:, r_idx)) ./ (R_total), ...
+    H(idx) = semilogy(time_vec, (R_mat(:, r_idx)) ./ (R_total), ...
         'LineWidth', 1.25); hold on;
 end
 
@@ -128,5 +132,5 @@ xlim([0, tau*end_t]);
 
 
 %% save to file
-figname = strcat('OH_sink_reaction_ratio_all', '.png');
+figname = strcat(spe_name, '_sink_reaction_ratio_all', '.png');
 print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');

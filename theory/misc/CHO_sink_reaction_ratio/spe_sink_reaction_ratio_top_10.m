@@ -74,23 +74,24 @@ tau = 0.777660157519;
 end_t = 0.9;
 
 %% plot
-spe_sink_R_idx = [54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 77, 83, 87, 89, 91, 93, 95, 97, 135, 170, 172, 194, 216, 235, 241, 261, 285, 291, 295, 351, 385, 406, 443, 479, 505, 618, 625, 627, 648, 703, 809, 868, 883, 885, 887, 889, 890, 904, 915, 919, 1049, 1057, 1063, 1067, 1229];
-for idx=1:length(spe_sink_R_idx)
-    spe_sink_R_idx(idx) = spe_sink_R_idx(idx) + 1;
+R_idx = [54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 77, 83, 87, 89, 91, 93, 95, 97, 135, 170, 172, 194, 216, 235, 241, 261, 285, 291, 295, 351, 385, 406, 443, 479, 505, 618, 625, 627, 648, 703, 809, 868, 883, 885, 887, 889, 890, 904, 915, 919, 1049, 1057, 1063, 1067, 1229];
+for idx=1:length(R_idx)
+    R_idx(idx) = R_idx(idx) + 1;
 end
 
 R_name = {'HCO+M \rightarrow H+CO+M', 'HCO+O_2 \rightarrow CO+HO_2', 'HCO+H \rightarrow CO+H_2', 'HCO+O \rightarrow CO+OH', 'HCO+OH \rightarrow CO+H_2O', 'HCO+O \rightarrow CO_2+H', 'HCO+HO_2 \rightarrow CO_2+OH+H', 'HCO+CH_3 \rightarrow CO+CH_4', 'HCO+HCO \rightarrow H_2+CO+CO', 'HCO+HCO \rightarrow CH_2O+CO', 'HCO+O_2 \rightarrow formylperoxy', 'HCO+formylooh \rightarrow CH_2O+formylperoxy', 'HCO+H+M \rightarrow CH_2O+M', 'HCO+H_2 \rightarrow CH_2O+H', 'HCO+OH \rightarrow CH_2O+O', 'HCO+H_2O \rightarrow CH_2O+OH', 'HCO+HO_2 \rightarrow CH_2O+O_2', 'HCO+H_2O_2 \rightarrow CH_2O+HO_2', 'HCO+CH_4 \rightarrow CH_2O+CH_3', 'CH_3OOH+HCO \rightarrow CH_3OO+CH_2O', 'CH_2OH+HCO \rightarrow CH_3OH+CO', 'CH_2OH+HCO \rightarrow CH_2O+CH_2O', 'CH_3O+HCO \rightarrow CH_3OH+CO', 'CH_3OH+HCO \rightarrow CH_2OH+CH_2O', 'HCO+H \rightarrow CH_2+O', 'HCO+OH \rightarrow CH_2+O_2', 'HCO+H \rightarrow CH_2(S)+O', 'HCO+O \rightarrow CH+O_2', 'HCO+H \rightarrow CH+OH', 'HCO+CO \rightarrow CH+CO_2', 'CH_3CH_2OOH+HCO \rightarrow CH_3CH_2OO+CH_2O', 'CH_3+HCO \rightarrow oxirane', 'CH_3+HCO \rightarrow acetaldehyde', 'HCO+CH_3CO3H \rightarrow CH_2O+acetylperoxy', 'CH_3+HCO \rightarrow C_2H_4+O', 'HCO+CH_2O \rightarrow C_2H_3+O_2', 'C_2H_3+HCO \rightarrow acrolein', 'C_2H_4+HCO \rightarrow acrolein+H', 'ketene+HCO+H \rightarrow acrolein+O', 'C_2H_5+HCO \rightarrow propanal', 'CH_3OCH_3+HCO \rightarrow CH_3OCH_2+CH_2O', 'C_2H_5+HCO \rightarrow C_3H_6+O', 'allyl+HCO \rightarrow C_3H_6+CO', 'C_2H_4+HCO \rightarrow propen1yl+O', 'C_2H_4+HCO+H \rightarrow propen1yl+OH', 'acetaldehyde+HCO \rightarrow propen1yl+O_2', 'C_2H_4+HCO+OH \rightarrow propen1yl+HO_2', 'propen1yl+HCO \rightarrow C_3H_6+CO', 'propen2yl+HCO \rightarrow C_3H_6+CO', 'npropylooh+HCO \rightarrow npropyloo+CH_2O', 'ipropylooh+HCO \rightarrow ipropyloo+CH_2O', 'C_2H_4+HCO \rightarrow allyloxy', 'C_2H_4+HCO \rightarrow vinoxylmethyl', 'C_2H_4+HCO \rightarrow formylethyl', 'C_2H_4+HCO \rightarrow C_2H_3+CH_2O', 'HCO+acetaldehyde \rightarrow frag_5'};
-spe_sink_R_mat = reaction_R_mat(:, spe_sink_R_idx);
+R_mat = reaction_R_mat(:, R_idx);
 
-% sort by the reaction rates around 0.5 tau, idx == 3500
-[B,I] = sort(spe_sink_R_mat(3500, :),'descend');
+% sort by the reaction rates around 0.5 tau, idx == 3550 for example
+sort_axis = round(0.5 * length(time_vec));
+[B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
     r_idx = I(idx);
     if idx == 1
-        R_total = spe_sink_R_mat(:, r_idx);
+        R_total = R_mat(:, r_idx);
     else
-        R_total = (R_total + spe_sink_R_mat(:, r_idx));
+        R_total = (R_total + R_mat(:, r_idx));
     end
 end
 
@@ -101,7 +102,7 @@ H = gobjects(N);
 
 for idx=1:N
     r_idx = I(idx);
-    H(idx) = semilogy(time_vec, (spe_sink_R_mat(:, r_idx)) ./ (R_total), ...
+    H(idx) = semilogy(time_vec, (R_mat(:, r_idx)) ./ (R_total), ...
         'LineWidth', 2); hold on;
 end
 
