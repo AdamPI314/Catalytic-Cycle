@@ -3,6 +3,7 @@ spe_name = 'OH';
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
@@ -84,7 +85,7 @@ R_name = {'H+O_2 \rightarrow O+OH', 'O+H_2 \rightarrow H+OH', 'H_2O+H \rightarro
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
-sort_axis = round(0.5 * length(time_vec));
+sort_axis = round(0.45 * length(time_vec));
 [B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
@@ -133,4 +134,4 @@ set(leg_h, 'Location', 'South')
 
 %% save to file
 figname = strcat(spe_name, '_source_reaction_ratio_top_5', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');

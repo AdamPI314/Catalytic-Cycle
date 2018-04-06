@@ -3,6 +3,7 @@ spe_name = 'OH';
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
@@ -60,9 +61,9 @@ co = [    0    0.4470    0.7410 % 1th plot
     0.4660    0.6740    0.1880 % 5th plot
     0.3010    0.7450    0.9330 % 6th plot
     0.6350    0.0780    0.1840 % 7th plot
-    0   0   1 % placeholder
-    0   0.5   0 % placeholder
-    0   0.75   0.75 % placeholder
+%     0   0   1 % placeholder
+%     0   0.5   0 % placeholder
+%     0   0.75   0.75 % placeholder
 %     0.7500         0    0.7500 % placeholder
 %     0.7500    0.7500         0 % placeholder
 %     0.2500    0.2500    0.2500 % placeholder
@@ -84,7 +85,7 @@ R_name = {'H+O_2 \rightarrow O+OH', 'O+H_2 \rightarrow H+OH', 'H_2O+H \rightarro
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
-sort_axis = round(0.5 * length(time_vec));
+sort_axis = round(0.45 * length(time_vec));
 [B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
@@ -96,7 +97,7 @@ for idx=1:length(I)
     end
 end
 
-N = 10;
+N = 7;
 
 % graph handler
 H = gobjects(N);
@@ -114,7 +115,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-4, 10^-0.1]);
+ylim([10^-2.5, 10^-0.1]);
 
 %% temp
 yyaxis right
@@ -127,13 +128,16 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([H(1);H(2);H(3);H(4);H(5);H(6);H(7);H(8);H(9);H(10)], ...
+% leg_h = legend([H(1);H(2);H(3);H(4);H(5);H(6);H(7);H(8);H(9);H(10)], ...
+%     R_name{1,I(1)},R_name{1,I(2)},R_name{1,I(3)},R_name{1,I(4)},R_name{1,I(5)},...
+%     R_name{1,I(6)},R_name{1,I(7)},R_name{1,I(8)},R_name{1,I(9)},R_name{1,I(10)});
+leg_h = legend([H(1);H(2);H(3);H(4);H(5);H(6);H(7)], ...
     R_name{1,I(1)},R_name{1,I(2)},R_name{1,I(3)},R_name{1,I(4)},R_name{1,I(5)},...
-    R_name{1,I(6)},R_name{1,I(7)},R_name{1,I(8)},R_name{1,I(9)},R_name{1,I(10)});
+    R_name{1,I(6)},R_name{1,I(7)});
 set(leg_h, 'FontSize', 12, 'Box', 'off');
 set(leg_h, 'Location', 'South')
 
 
 %% save to file
-figname = strcat(spe_name, '_source_reaction_ratio_top_10', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+figname = strcat(spe_name, '_source_reaction_ratio_top_7', '.png');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');

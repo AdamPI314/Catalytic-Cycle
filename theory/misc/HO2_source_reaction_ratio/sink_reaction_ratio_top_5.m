@@ -1,8 +1,9 @@
 %% global settings
-spe_name = 'OH';
+spe_name = 'HO2';
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
@@ -58,16 +59,15 @@ co = [    0    0.4470    0.7410 % 1th plot
     0.9290    0.6940    0.1250 % 3rd plot
     0.4940    0.1840    0.5560 % 4th plot
     0.4660    0.6740    0.1880 % 5th plot
-    0.3010    0.7450    0.9330 % 6th plot
-    0.6350    0.0780    0.1840 % 7th plot
-    1   0   0 % 8th plot, blue
-    0   0   1 % placeholder
-    0   0.5   0 % placeholder
-    0   0.75   0.75 % placeholder
-    0.7500         0    0.7500 % placeholder
-    0.7500    0.7500         0 % placeholder
-    0.2500    0.2500    0.2500 % placeholder
-    0   0   1 % blue
+%     0.3010    0.7450    0.9330 % 6th plot
+%     0.6350    0.0780    0.1840 % 7th plot
+%     0   0   1 % placeholder
+%     0   0.5   0 % placeholder
+%     0   0.75   0.75 % placeholder
+%     0.7500         0    0.7500 % placeholder
+%     0.7500    0.7500         0 % placeholder
+%     0.2500    0.2500    0.2500 % placeholder
+    1   0   0 % bl
     ]; 
 set(fig,'defaultAxesColorOrder',co)
 %%
@@ -75,12 +75,12 @@ tau = 0.777660157519;
 end_t = 0.9;
 
 %% plot
-R_idx = [1, 3, 4, 7, 21, 22, 29, 31, 32, 37, 39, 43, 44, 51, 52, 61, 62, 67, 79, 89, 90, 104, 111, 121, 122, 149, 152, 155, 161, 163, 164, 179, 183, 185, 186, 198, 209, 210, 212, 228, 236, 241, 243, 262, 267, 282, 290, 311, 312, 339, 361, 367, 369, 373, 377, 379, 383, 388, 411, 412, 424, 431, 447, 453, 461, 462, 464, 466, 471, 482, 501, 514, 517, 522, 524, 526, 533, 542, 544, 546, 567, 569, 571, 582, 589, 594, 599, 623, 628, 653, 654, 680, 685, 715, 717, 733, 735, 736, 738, 786, 815, 817, 819, 853, 862, 867, 884, 889, 898, 903, 907, 909, 1002, 1007, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028, 1035, 1039, 1077, 1085, 1091, 1095, 1103, 1109, 1113, 1115, 1119, 1123, 1131, 1133, 1135, 1151, 1153, 1155, 1163, 1167, 1173, 1175, 1177, 1187, 1189, 1191, 1199, 1201, 1203, 1211, 1213, 1215, 1217, 1219, 1221];
+R_idx = [24, 27, 29, 31, 33, 35, 40, 42, 44, 51, 56, 67, 92, 95, 99, 103, 111, 113, 125, 143, 166, 169, 179, 188, 191, 214, 219, 243, 314, 319, 339, 342, 357, 364, 374, 380, 393, 414, 419, 437, 438, 486, 501, 506, 538, 540, 555, 557, 559, 590, 604, 607, 616, 630, 633, 659, 670, 687, 692, 724, 726, 741, 743, 821, 823, 825, 834, 836, 838, 853, 889, 903, 907, 909, 923, 925, 998, 1009, 1031, 1033, 1035, 1074, 1082, 1088, 1092, 1100, 1106, 1110, 1115, 1120, 1136, 1138, 1140, 1156, 1158, 1160, 1164, 1178, 1180, 1182, 1192, 1194, 1196, 1204, 1206, 1208];
 for idx=1:length(R_idx)
     R_idx(idx) = R_idx(idx) + 1;
 end
 
-R_name = {'O+OH=>H+O2', 'H+OH=>O+H2', 'H2+OH=>H2O+H', 'OH+OH=>O+H2O', 'OH+M=>O+H+M', 'H+OH+M=>H2O+M', 'OH+OH=>HO2+H', 'O2+OH=>HO2+O', 'HO2+OH=>H2O+O2', 'OH+OH(+M)=>H2O2(+M)', 'H2O+OH=>H2O2+H', 'OH+HO2=>H2O2+O', 'H2O2+OH=>HO2+H2O', 'CO2+OH=>CO+HO2', 'CO+OH=>CO2+H', 'CO+OH=>HCO+O', 'HCO+OH=>CO+H2O', 'CO2+OH+H=>HCO+HO2', 'formyloxy+OH=>formylooh', 'HCO+OH=>CH2O+O', 'CH2O+OH=>HCO+H2O', 'HOCH2O+OH=>HOCH2OOH', 'CH3O+OH=>CH3+HO2', 'CH3+OH=>CH4+O', 'CH4+OH=>CH3+H2O', 'CH3O+OH=>CH3OO+H', 'CH3OO+OH=>CH3OH+O2', 'CH3O+OH=>CH3OOH', 'CH3+OH=>CH2OH+H', 'CH2O+OH=>CH2OH+O', 'CH2OH+OH=>CH2O+H2O', 'HOCH2O+OH=>CH2OH+HO2', 'CH3+OH=>CH3O+H', 'CH2O+OH=>CH3O+O', 'CH3O+OH=>CH2O+H2O', 'OH+CH3(+M)=>CH3OH(+M)', 'CH2OH+OH=>CH3OH+O', 'CH3OH+OH=>CH3O+H2O', 'CH3OH+OH=>CH2OH+H2O', 'CH3+OH=>CH2+H2O', 'CH2+OH=>CH2O+H', 'HCO+OH=>CH2+O2', 'CH2O+OH=>CH2+HO2', 'CH2(S)+OH=>CH2O+H', 'H+OH+CO=>CH2(S)+O2', 'CH2+OH=>CH+H2O', 'CH+OH=>HCO+H', 'C2H5+OH=>C2H6+O', 'C2H6+OH=>C2H5+H2O', 'ethoxy+OH=>C2H5+HO2', 'ethoxy+OH=>CH3CH2OOH', 'oxirane+OH=>C2H5+O2', 'acetaldehyde+OH=>C2H5+O2', 'acetaldehyde+OH=>CH3CH2OO', 'oxirane+OH=>CH3CH2OO', 'oxirane+OH=>CH2CH2OOH', 'acetaldehyde+OH=>CH2CH2OOH', 'oxirane+OH=>oxiranyl+H2O', 'acetyl+OH=>acetaldehyde+O', 'acetaldehyde+OH=>acetyl+H2O', 'acetaldehyde+OH=>vinoxy+H2O', 'ketene+OH=>acetyl+O', 'acetyloxy+OH=>CH3CO3H', 'CH2O+CO+OH=>vinoxy+O2', 'HCCO+OH=>ketene+O', 'ketene+OH=>HCCO+H2O', 'ketene+OH=>CH2OH+CO', 'HCCO+OH=>H2+CO+CO', 'OH+CO+CO=>HCCO+O2', 'C2H4+OH=>C2H3+H2O', 'oxirane+OH=>C2H4+HO2', 'C2H3+OH=>C2H2+H2O', 'HCCO+OH=>C2H2+O2', 'C2H2+OH=>ketene+H', 'C2H2+OH=>CH3+CO', 'OH+C2H2=>H+ethynol', 'C2H5+OH(+M)=>ethanol(+M)', 'ethanol+OH=>CH2CH2OH+H2O', 'ethanol+OH=>CH3CHOH+H2O', 'ethanol+OH=>ethoxy+H2O', 'CH2CH2OH+OH=>ethanol+O', 'CH3CHOH+OH=>ethanol+O', 'ethoxy+OH=>ethanol+O', 'C2H4+OH=>CH2CH2OH', 'OH+CH2O+CH2O=>O2C2H4OH', 'acetone+OH=>propen2oxy+H2O', 'propen2oxy+OH=>acetone+O', 'CH2CHCO+OH=>acrolein+O', 'acrolein+OH=>CH2CHCO+H2O', 'propionyl+OH=>propanal+O', 'propanal+OH=>propionyl+H2O', 'CH3OCH3+OH=>CH3OCH2+H2O', 'CH3OCH2+OH=>CH3OCH3+O', 'npropyloxy+OH=>npropylooh', 'ipropyloxy+OH=>ipropylooh', 'ipropyl+OH=>C3H8+O', 'npropyl+OH=>C3H8+O', 'C3H8+OH=>npropyl+H2O', 'C3H8+OH=>ipropyl+H2O', 'ipropyl+OH=>C3H6+H2O', 'allyl+OH=>C3H6+O', 'propen1yl+OH=>C3H6+O', 'propen2yl+OH=>C3H6+O', 'propen1ol+OH=>C3H6+HO2', 'allyl+OH=>acrolein+H+H', 'acrolein+OH=>allyl+O2', 'propen1yl+OH=>C2H4+HCO+H', 'C2H4+HCO+OH=>propen1yl+HO2', 'propen2yl+OH=>CH3+ketene+H', 'CH3+ketene+OH=>propen2yl+HO2', 'npropyloxy+OH=>npropyl+HO2', 'ipropyloxy+OH=>ipropyl+HO2', 'propen1ol+OH=>CH2O+C2H3+H2O', 'CH2O+C2H3+OH=>propen1ol+O', 'C3H6+OH=>allyl+H2O', 'C3H6+OH=>propen1yl+H2O', 'C3H6+OH=>propen2yl+H2O', 'C3H6+OH=>allyl-alcohol+H', 'C3H6+OH=>ethenol+CH3', 'C3H6+OH=>propen1ol+H', 'C3H6+OH=>propen2ol+H', 'C3H6+OH=>acetaldehyde+CH3', 'allyloxy+OH=>allyl+HO2', 'allyloxy+OH=>prod_2', 'OH+propoxide=>O2+npropyl', 'OH+propoxide=>npropyloo', 'OH+propoxide=>QOOH_2', 'OH+propoxide=>QOOH_1', 'OH+propoxide=>O2+ipropyl', 'OH+propoxide=>ipropyloo', 'OH+propoxide=>QOOH_3', 'OH+propoxide=>HO2+C3H6', 'OH+OH+frag_1=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_1', 'OH+prod_3=>O2+QOOH_2', 'OH+OH+frag_4=>O2+QOOH_2', 'OH+OH+frag_5=>O2+QOOH_2', 'OH+prod_3=>O2+QOOH_3', 'OH+OH+frag_4=>O2+QOOH_3', 'OH+OH+frag_5=>O2+QOOH_3', 'OH+prod_1=>well_1', 'OH+prod_3=>well_1', 'OH+prod_3=>well_2', 'OH+prod_4=>well_2', 'OH+prod_5=>well_2', 'OH+prod_3=>well_3', 'OH+prod_4=>well_3', 'OH+prod_5=>well_3', 'OH+prod_3=>well_5', 'OH+prod_4=>well_5', 'OH+prod_5=>well_5', 'propen1oxy+OH=>prod_6', 'propen2oxy+OH=>prod_7', 'frag_1+OH=>prod_1', 'frag_3+OH=>prod_3', 'frag_4+OH=>prod_4', 'frag_5+OH=>prod_5'};
+R_name = {'H+O_2(+M) \rightarrow HO_2(+M)', 'H_2+O_2 \rightarrow HO_2+H', 'OH+OH \rightarrow HO_2+H', 'O_2+OH \rightarrow HO_2+O', 'H_2O+O_2 \rightarrow HO_2+OH', 'H_2O_2+O_2 \rightarrow HO_2+HO_2', 'H_2O_2+H \rightarrow HO_2+H_2', 'H_2O_2+O \rightarrow OH+HO_2', 'H_2O_2+OH \rightarrow HO_2+H_2O', 'CO_2+OH \rightarrow CO+HO_2', 'HCO+O_2 \rightarrow CO+HO_2', 'CO_2+OH+H \rightarrow HCO+HO_2', 'CH_2O+O_2 \rightarrow HCO+HO_2', 'HCO+H_2O_2 \rightarrow CH_2O+HO_2', 'OCH_2OOH \rightarrow CH_2O+HO_2', 'HOCH_2OOH+O_2 \rightarrow HOCH_2OO+HO_2', 'CH_3O+OH \rightarrow CH_3+HO_2', 'CH_4+O_2 \rightarrow CH_3+HO_2', 'CH_3+H_2O_2 \rightarrow CH_4+HO_2', 'CH_3OOH+O_2 \rightarrow CH_3OO+HO_2', 'CH_2OH+O_2 \rightarrow CH_2O+HO_2', 'CH_2O+H_2O_2 \rightarrow CH_2OH+HO_2', 'HOCH_2O+OH \rightarrow CH_2OH+HO_2', 'CH_3O+O_2 \rightarrow CH_2O+HO_2', 'CH_2O+H_2O_2 \rightarrow CH_3O+HO_2', 'CH_3OH+O_2 \rightarrow CH_2OH+HO_2', 'CH_2OH+H_2O_2 \rightarrow CH_3OH+HO_2', 'CH_2O+OH \rightarrow CH_2+HO_2', 'C_2H_6+O_2 \rightarrow C_2H_5+HO_2', 'C_2H_5+H_2O_2 \rightarrow C_2H_6+HO_2', 'ethoxy+OH \rightarrow C_2H_5+HO_2', 'ethoxy+O_2 \rightarrow acetaldehyde+HO_2', 'CH_3CH_2OOH+O_2 \rightarrow CH_3CH_2OO+HO_2', 'C_2H_5+O_2 \rightarrow C_2H_4+HO_2', 'CH_3CH_2OO \rightarrow C_2H_4+HO_2', 'CH_2CH_2OOH \rightarrow C_2H_4+HO_2', 'oxiranyl+H_2O_2 \rightarrow oxirane+HO_2', 'acetaldehyde+O_2 \rightarrow acetyl+HO_2', 'acetyl+H_2O_2 \rightarrow acetaldehyde+HO_2', 'CH_3CO_3H+O_2 \rightarrow acetylperoxy+HO_2', 'H_2O_2+acetylperoxy \rightarrow HO_2+CH_3CO_3H', 'C_2H_4+O_2 \rightarrow C_2H_3+HO_2', 'oxirane+OH \rightarrow C_2H_4+HO_2', 'C_2H_3+O_2 \rightarrow HO_2+C_2H_2', 'ethanol+O_2 \rightarrow CH_2CH_2OH+HO_2', 'ethanol+O_2 \rightarrow CH_3CHOH+HO_2', 'CH_2CH_2OH+H_2O_2 \rightarrow ethanol+HO_2', 'CH_3CHOH+H_2O_2 \rightarrow ethanol+HO_2', 'ethoxy+H_2O_2 \rightarrow ethanol+HO_2', 'CH_3CHOH+O_2 \rightarrow acetaldehyde+HO_2', 'acetone+O_2 \rightarrow propen2oxy+HO_2', 'propen2oxy+H_2O_2 \rightarrow acetone+HO_2', 'ipropyloxy+O_2 \rightarrow acetone+HO_2', 'acrolein+O_2 \rightarrow CH_2CHCO+HO_2', 'CH_2CHCO+H_2O_2 \rightarrow acrolein+HO_2', 'propionyl+H_2O_2 \rightarrow propanal+HO_2', 'propanal+O_2 \rightarrow propionyl+HO_2', 'CH_3OCH_2+H_2O_2 \rightarrow CH_3OCH_3+HO_2', 'CH_3OCH_3+O_2 \rightarrow CH_3OCH_2+HO_2', 'C_3H_8+O_2 \rightarrow ipropyl+HO_2', 'C_3H_8+O_2 \rightarrow npropyl+HO_2', 'ipropyl+H_2O_2 \rightarrow C_3H_8+HO_2', 'npropyl+H_2O_2 \rightarrow C_3H_8+HO_2', 'allyl+H_2O_2 \rightarrow C_3H_6+HO_2', 'propen1yl+H_2O_2 \rightarrow C_3H_6+HO_2', 'propen2yl+H_2O_2 \rightarrow C_3H_6+HO_2', 'C_3H_6+O_2 \rightarrow allyl+HO_2', 'C_3H_6+O_2 \rightarrow propen1yl+HO_2', 'C_3H_6+O_2 \rightarrow propen2yl+HO_2', 'propen1ol+OH \rightarrow C_3H_6+HO_2', 'C_2H_4+HCO+OH \rightarrow propen1yl+HO_2', 'CH_3+ketene+OH \rightarrow propen2yl+HO_2', 'npropyloxy+OH \rightarrow npropyl+HO_2', 'ipropyloxy+OH \rightarrow ipropyl+HO_2', 'npropylooh+O_2 \rightarrow npropyloo+HO_2', 'ipropylooh+O_2 \rightarrow ipropyloo+HO_2', 'allyloxy+O_2 \rightarrow acrolein+HO_2', 'CH_2O+C_2H_3+H_2O_2 \rightarrow propen1ol+HO_2', 'prod_2 \rightarrow allyl+HO_2', 'acrolein+H_2O \rightarrow allyl+HO_2', 'allyloxy+OH \rightarrow allyl+HO_2', 'O_2+npropyl \rightarrow HO_2+C_3H_6', 'npropyloo \rightarrow HO_2+C_3H_6', 'QOOH_2 \rightarrow HO_2+C_3H_6', 'QOOH_1 \rightarrow HO_2+C_3H_6', 'O_2+ipropyl \rightarrow HO_2+C_3H_6', 'ipropyloo \rightarrow HO_2+C_3H_6', 'QOOH_3 \rightarrow HO_2+C_3H_6', 'OH+propoxide \rightarrow HO_2+C_3H_6', 'O_2+QOOH_1 \rightarrow HO_2+prod_2', 'O_2+QOOH_2 \rightarrow HO_2+prod_2', 'O_2+QOOH_2 \rightarrow HO_2+prod_6', 'O_2+QOOH_2 \rightarrow HO_2+prod_7', 'O_2+QOOH_3 \rightarrow HO_2+prod_2', 'O_2+QOOH_3 \rightarrow HO_2+prod_6', 'O_2+QOOH_3 \rightarrow HO_2+prod_7', 'well_1 \rightarrow HO_2+prod_2', 'well_2 \rightarrow HO_2+prod_2', 'well_2 \rightarrow HO_2+prod_6', 'well_2 \rightarrow HO_2+prod_7', 'well_3 \rightarrow HO_2+prod_2', 'well_3 \rightarrow HO_2+prod_6', 'well_3 \rightarrow HO_2+prod_7', 'well_5 \rightarrow HO_2+prod_2', 'well_5 \rightarrow HO_2+prod_6', 'well_5 \rightarrow HO_2+prod_7'};
 
 R_mat = reaction_R_mat(:, R_idx);
 
@@ -97,14 +97,15 @@ for idx=1:length(I)
     end
 end
 
-% graph handler
-H = gobjects(length(I));
+N = 5;
 
-for idx=1:length(I)
-% for idx=1:10
+% graph handler
+H = gobjects(N);
+
+for idx=1:N
     r_idx = I(idx);
     H(idx) = semilogy(time_vec, (R_mat(:, r_idx)) ./ (R_total), ...
-        'LineWidth', 1.25); hold on;
+        'LineWidth', 2); hold on;
 end
 
 
@@ -113,7 +114,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-60, 10^0]);
+ylim([10^-2, 10^0]);
 
 %% temp
 yyaxis right
@@ -126,11 +127,12 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-% leg_h = legend([p1; p2; p3; p4; p5; p6],'[nROO]/[nR]','K_{eq}','[nROO]/[QOOH_1]','K_{eq}','[O_2QOOH_1]/[QOOH_1]','K_{eq}');
-% set(leg_h, 'FontSize', 14, 'Box', 'off');
-% set(leg_h, 'Location', 'South')
+leg_h = legend([H(1);H(2);H(3);H(4);H(5)], ...
+    R_name{1,I(1)},R_name{1,I(2)},R_name{1,I(3)},R_name{1,I(4)},R_name{1,I(5)});
+set(leg_h, 'FontSize', 12, 'Box', 'off');
+set(leg_h, 'Location', 'South')
 
 
 %% save to file
-figname = strcat(spe_name, '_sink_reaction_ratio_all', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+figname = strcat(spe_name, '_source_reaction_ratio_top_5', '.png');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
