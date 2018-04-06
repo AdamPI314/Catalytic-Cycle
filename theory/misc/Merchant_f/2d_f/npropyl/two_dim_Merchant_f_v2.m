@@ -46,20 +46,27 @@ fig = figure();
 contour(X,Y,Z, 20, 'ShowText', 'on');
 hold on;
 
-% draw circle to emphase
-he1 = ellipse(0.045,0.075,pi/2,0.085,0.65);
-set(he1, 'LineStyle', '--', 'color', 'b', 'LineWidth', 2.0);
-hold on;
+% % draw circle to emphase
+% he1 = ellipse(0.045,0.075,pi/2,0.085,0.65);
+% set(he1, 'LineStyle', '--', 'color', 'b', 'LineWidth', 2.0);
+% hold on;
 
 % draw circle to emphase
-he2 = ellipse(0.065,0.075,pi/2,0.085,0.525);
-set(he2, 'LineStyle', '--', 'color', 'r', 'LineWidth', 2.0);
+% he2 = ellipse(0.065,0.075,pi/2,0.085,0.525);
+% set(he2, 'LineStyle', '--', 'color', 'r', 'LineWidth', 2.0);
+% hold on;
+center_x2 = 0.085; center_y2 = 0.525; delta_x2 = 0.065*2; delta_y2 = 0.075*2;
+r2=rectangle('Position',[center_x2 - delta_x2/2, center_y2 - delta_y2/2, delta_x2, delta_y2]);
+r2.EdgeColor = 'r';
+r2.LineWidth = 3;
+r2.LineStyle = '--';
+r2.Curvature = [0.5,1];
 hold on;
 
-% draw circle to emphase
-he3 = ellipse(0.11,0.065,pi/2,0.075,0.325);
-set(he3, 'LineStyle', '--', 'color', 'k', 'LineWidth', 2.0);
-hold on;
+% % draw circle to emphase
+% he3 = ellipse(0.11,0.065,pi/2,0.075,0.325);
+% set(he3, 'LineStyle', '--', 'color', 'k', 'LineWidth', 2.0);
+% hold on;
 
 axis tight;
 hold on;
