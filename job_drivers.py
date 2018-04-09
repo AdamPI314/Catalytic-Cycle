@@ -310,11 +310,16 @@ def Merchant_f_2d_t0_tf(
 
             f_n_pp = os.path.join(data_dir, "output",
                                   "pathway_prob" + ".csv")
-            f_value = np.sum(np.loadtxt(f_n_pp, dtype=float, delimiter=','))
+            f_vec = np.loadtxt(f_n_pp, dtype=float, delimiter=',')
 
+            text = str(b_t) + ',' + str(e_t)
+            for _, val in enumerate(f_vec):
+                text += (',' + str(val))
+
+            f_sum = np.sum(f_vec)
+            text += (',' + str(f_sum) + '\n')
             with open(f_n_merchant_f, 'a') as f_handler:
-                f_handler.write(str(b_t) + ',' + str(e_t) +
-                                ',' + str(f_value) + '\n')
+                f_handler.write(text)
 
     return
 
