@@ -2,38 +2,58 @@
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 spe_idx = '60';
+atom_f = 'HA6';
 spe_name = 'npropyl';
 tau = 0.777660157519;
 end_t = '0.9';
+n_path = 100;
 
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_HA4_', end_t ,'.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
+
 delimiter = ',';
-formatSpec = '%f%f%f%[^\n\r]';
+formatSpec='%f%f%f';
+for i=1:n_path
+    formatSpec = [formatSpec, '%f'];
+end
+formatSpec = [formatSpec, '%[^\n\r]'];
+
+%% Open the text file.
 fileID = fopen(fn_2d_f,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+%% Close the text file.
 fclose(fileID);
-t0 = dataArray{:, 1};
-tf_absolute = dataArray{:, 2};
-f_value = dataArray{:, 3};
-clearvars fn_2d_f delimiter formatSpec fileID dataArray ans;
+f_mat = [dataArray{1:end-1}];
+
+t0 = f_mat(:, 1);
+tf = f_mat(:, 2);
+% f_value = f_mat(:, end);
 
 for i = 1:length(t0)
     t0(i) = t0(i) * tau;
-    tf_absolute(i) = tf_absolute(i) * tau;
+    tf(i) = tf(i) * tau;
 end
 
-tf_relative = tf_absolute - t0;
+% path index
+path_idx = [1, 2, 3];
+for i = 1:length(path_idx)
+    if i==1
+        f_value = f_mat(:, 2 + path_idx(i));
+    else
+        f_value = f_value .+ 
+    end
+    
+end
 
 % construct 3d surface
 xlin = linspace(min(t0), max(t0), 25);
-ylin = linspace(min(tf_relative), max(tf_relative), 25);
+ylin = linspace(min(tf), max(tf), 25);
 [X,Y] = meshgrid(xlin, ylin);
-f = scatteredInterpolant(t0, tf_relative, f_value);
+f = scatteredInterpolant(t0, tf, f_value);
 Z = f(X,Y);
 
 %% update Z
 for i = 1:length(X)    
-    for j = length(X) - i + 1 : length(X)
+    for j = i+1:length(X)
         Z(i,j) = nan;
     end
 end
@@ -57,6 +77,7 @@ hold on;
 % he2 = ellipse(0.065,0.075,pi/2,0.085,0.525);
 % set(he2, 'LineStyle', '--', 'color', 'r', 'LineWidth', 2.0);
 % hold on;
+
 % center_x2 = 0.085; center_y2 = 0.525; delta_x2 = 0.065*2; delta_y2 = 0.075*2;
 % r2=rectangle('Position',[center_x2 - delta_x2/2, center_y2 - delta_y2/2, delta_x2, delta_y2]);
 % r2.EdgeColor = 'r';
@@ -77,24 +98,19 @@ hold on;
 %% settings
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
-ylabel('$\delta t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
+ylabel('$t_f$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
 % xlim([0, tau*str2double(end_t)]);
 % ylim([0, tau*str2double(end_t)]);
 grid on;
 
-%% reverse axis
-% set ( gca,'xdir','reverse');
-% set ( gca,'ydir','reverse');
-
 %% text
 a_x = gca;
-t_x = a_x.XLim(1) + 0.505*(a_x.XLim(2) - a_x.XLim(1));
-t_y = a_x.YLim(1) + 0.625*(a_x.YLim(2) - a_x.YLim(1));
-text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t+\delta t$' char(10) '$t+\delta t < t_f$'], 'Interpreter','latex', 'FontSize', 20);
+t_x = a_x.XLim(1) + 0.525*(a_x.XLim(2) - a_x.XLim(1));
+t_y = a_x.YLim(1) + 0.278*(a_x.YLim(2) - a_x.YLim(1));
+text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t_f$' char(10) '$t_f > t$'], 'Interpreter','latex', 'FontSize', 20);
 
 %% save to file
-figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_v3.png');
+figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_v4.png');
 print(fig, fullfile(file_dir, figname), '-r200', '-dpng');
-
 
 
