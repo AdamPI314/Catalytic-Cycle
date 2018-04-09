@@ -116,8 +116,10 @@ for idx=4:length(I)
 end
 
 %% plot
-h1 = plot(time_vec, R_main_cycle ./ R_total,'LineWidth', 2); hold on;
-h2 = plot(time_vec, R_other_reactions ./ R_total,'LineWidth', 2); hold on;
+y_data1 = R_main_cycle ./ R_total;
+y_data2 = R_other_reactions ./ R_total;
+h1 = plot(time_vec, y_data1, 'LineWidth', 2); hold on;
+h2 = plot(time_vec, y_data2, 'LineWidth', 2); hold on;
 
 %% settings
 set(gca,'GridLineStyle','--');
@@ -137,7 +139,7 @@ ylabel('T (K)', 'FontSize', 20);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([h1;h2], 'main cycle', 'others');
+leg_h = legend([h1;h2], 'primary cycle', 'others');
 set(leg_h, 'FontSize', 12, 'Box', 'off');
 % set(leg_h, 'Location', 'South');
 

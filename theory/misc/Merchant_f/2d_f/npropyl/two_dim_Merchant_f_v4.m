@@ -6,6 +6,7 @@ atom_f = 'HA6';
 spe_name = 'npropyl';
 tau = 0.777660157519;
 end_t = '0.9';
+% end_t = '0.12859156975';
 cycle = 'primary_cycle';
 % cycle = 'others';
 n_path = 100;
@@ -13,11 +14,12 @@ n_path = 100;
 fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
 
 delimiter = ',';
-formatSpec='%f%f%f';
+formatStr = "%f%f%f";
 for i=1:n_path
-    formatSpec = [formatSpec, '%f'];
+    formatStr = formatStr + "%f";
 end
-formatSpec = [formatSpec, '%[^\n\r]'];
+formatStr = formatStr + "%[^\n\r]";
+formatSpec = char(formatStr);
 
 %% Open the text file.
 fileID = fopen(fn_2d_f,'r');
