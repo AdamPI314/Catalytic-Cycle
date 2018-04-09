@@ -298,7 +298,11 @@ if __name__ == '__main__':
 
     # parse_reaction_net_product(DATA_DIR)
     # net_source_reaction_of_species(DATA_DIR, 10)
-    net_source_reaction_of_species(DATA_DIR, 12)
+    # net_source_reaction_of_species(DATA_DIR, 12)
+    # net_source_reaction_of_species(DATA_DIR, 27)
+    # net_source_reaction_of_species(DATA_DIR, 25)
+    # net_source_reaction_of_species(DATA_DIR, 39)
+    net_source_reaction_of_species(DATA_DIR, 50)
     # net_sink_reaction_of_species(DATA_DIR, 62)
     # net_sink_reaction_of_species(DATA_DIR, 10)
     # net_sink_reaction_of_species(DATA_DIR, 12)
