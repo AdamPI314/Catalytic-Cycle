@@ -16,11 +16,7 @@ def path_contain_regex(path, path_reg=None):
     """
     if path_reg is None:
         return True
-    regexp = re.compile(path_reg)
-    if regexp.search(path):
-        return True
-    else:
-        return False
+    return bool(re.search(path_reg, path))
 
 
 def parse_path_length(path):
@@ -341,11 +337,11 @@ if __name__ == "__main__":
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     # print(parse_path_length("S10"))
-    NET_REACTANT = psri.parse_reaction_net_reactant(DATA_DIR)
-    NET_PRODUCT = psri.parse_reaction_net_product(DATA_DIR)
-    ATOM_SCHEME = asch.get_atom_scheme(DATA_DIR)
-    S_IDX_NAME, _ = psri.parse_spe_info(DATA_DIR)
-    S_P_R_C = psri.parse_species_pair_reaction(DATA_DIR)
+    # NET_REACTANT = psri.parse_reaction_net_reactant(DATA_DIR)
+    # NET_PRODUCT = psri.parse_reaction_net_product(DATA_DIR)
+    # ATOM_SCHEME = asch.get_atom_scheme(DATA_DIR)
+    # S_IDX_NAME, _ = psri.parse_spe_info(DATA_DIR)
+    # S_P_R_C = psri.parse_species_pair_reaction(DATA_DIR)
     # parse_spe_production_along_path(net_product=NET_PRODUCT)
 
     # calculate_reaction_branching_number(
@@ -358,5 +354,8 @@ if __name__ == "__main__":
 
     # parse_species_along_path_using_reaction(
     #     pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
-    get_spe_production_sub_path(
-        pathname="S90R1162S94R-100006S101R1222S46R90S14R90S17R90S45", net_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+
+    # get_spe_production_sub_path(
+    #     pathname="S90R1162S94R-100006S101R1222S46R90S14R90S17R90S45", net_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+
+    print(path_contain_regex('S60R1162S94', 'S(39|50)'))
