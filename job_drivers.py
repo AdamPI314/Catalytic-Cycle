@@ -281,7 +281,7 @@ def evaluate_pathway_probability(
 def Merchant_f_2d_t0_tf(
         src_dir, data_dir, top_n=5, num_t=25, flag="", n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
-        tau=10.0, begin_t=0.0, end_t=1.0, spe_idx=10):
+        tau=10.0, begin_t=0.0, end_t=1.0, path_reg=None, spe_idx=10):
 
     if flag == "":
         f_n_merchant_f = os.path.join(data_dir, "output",
@@ -304,7 +304,7 @@ def Merchant_f_2d_t0_tf(
                 src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=n_traj,
                 atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
                 tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
-                spe_oriented=False, end_s_idx=None, species_path=False, path_reg=None,
+                spe_oriented=False, end_s_idx=None, species_path=False, path_reg=path_reg,
                 spe_idx=spe_idx, spe_production_oriented=True,
                 fixed_t0_or_tf="t0", same_path_list=True)
 
