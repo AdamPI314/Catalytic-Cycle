@@ -170,7 +170,7 @@ if __name__ == '__main__':
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
     #                      end_s_idx=[62, 59])
     # prepare_pathway_name(DATA_DIR, top_n=10, flag="",
-    #                      end_s_idx=None, species_path=False, path_reg='^S62R[736|738]')
+    #                      end_s_idx=None, species_path=False, path_reg='^S62R(736|738)')
 
     prepare_pathway_name(
         DATA_DIR, top_n=5, flag="", end_s_idx=None, species_path=False,
