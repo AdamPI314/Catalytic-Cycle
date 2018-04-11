@@ -5,28 +5,49 @@ namespace, naming stuff
 import os
 import sys
 from shutil import copyfile
-import read_write_configuration as rwc
+import global_settings
+
+
+def valid_name(name1):
+    name2 = ''
+    for c in name1:
+        if (c >= 'A' and c <= 'Z') or (c >= 'a' and c <= 'z') or (c >= '0' and c <= '9'):
+            name2 += c
+        elif len(name2) > 0 and name2[-1] != '_':
+            name2 += '_'
+    # get rid of trailing '_'
+    if len(name2) > 0 and name2[-1] == '_':
+        return name2[0:-1]
+    return name2
 
 
 def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None):
     """
     get suffix
     """
-    setting = rwc.read_configuration(
-        os.path.join(data_dir, 'input', 'setting.json'))
+    g_s = global_settings.get_setting(data_dir)
     suffix = ""
     if init_spe is None:
-        suffix += "_S" + str(setting['pathway']['init_spe'])
+        suffix += "_S" + str(g_s['init_s'])
     else:
         suffix += "_S" + str(init_spe)
     if atom_followed is None:
-        suffix += "_" + str(setting['pathway']['atom_followed'])
+        suffix += "_" + str(g_s['atom_f'])
     else:
         suffix += "_" + str(atom_followed)
     if end_t is None:
-        suffix += "_" + str(setting['pathway']['end_t'])
+        suffix += "_" + str(g_s['end_t'])
     else:
         suffix += "_" + str(end_t)
+    # add mc_n_traj
+    suffix += "_" + str(int(g_s['mc_n_traj']))
+    # add pi_n_traj
+    suffix += "_" + str(int(g_s['pi_n_traj']))
+    # add top_n_p
+    suffix += "_" + str(int(g_s['top_n_p']))
+    # path reg
+    if g_s['path_reg'] is not None:
+        suffix += "_" + str(valid_name(g_s['path_reg']))
 
     return suffix
 
@@ -69,14 +90,16 @@ def copy_sohr_files(data_dir, species_path=False):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(data_dir, "output", prefix + "species_pathway_AT_no_IT.csv")
+    f_n_1 = os.path.join(data_dir, "output", prefix +
+                         "species_pathway_AT_no_IT.csv")
     f_n_2 = os.path.join(data_dir, "output", prefix +
                          "species_pathway_AT_no_IT" + suffix + ".csv")
     if os.path.isfile(f_n_1):
         print(f_n_1, "found")
         copyfile(f_n_1, f_n_2)
 
-    f_n_1 = os.path.join(data_dir, "output", prefix + "species_pathway_AT_with_SP.csv")
+    f_n_1 = os.path.join(data_dir, "output", prefix +
+                         "species_pathway_AT_with_SP.csv")
     f_n_2 = os.path.join(data_dir, "output", prefix +
                          "species_pathway_AT_with_SP" + suffix + ".csv")
     if os.path.isfile(f_n_1):
@@ -142,4 +165,5 @@ if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(DATA_DIR)
-    copy_sohr_files(DATA_DIR)
+    # copy_sohr_files(DATA_DIR)
+    print(get_suffix(DATA_DIR))
