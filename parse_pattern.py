@@ -10,6 +10,19 @@ import parse_spe_reaction_info as psri
 import atom_scheme as asch
 
 
+def path_contain_regex(path, path_reg=None):
+    """
+    test if a path string contains regular expression 
+    """
+    if path_reg is None:
+        return True
+    regexp = re.compile(path_reg)
+    if regexp.search(path):
+        return True
+    else:
+        return False
+
+
 def parse_path_length(path):
     """
     parse path length

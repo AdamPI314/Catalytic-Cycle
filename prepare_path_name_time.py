@@ -78,8 +78,13 @@ def prepare_pathway_name(
                         path_set.add(val2)
                         path_list2.append(p_list[idx2])
 
-            np.savetxt(f_n_pn, path_list2[0:top_n], fmt="%s")
-            return len(path_list2[0:top_n])
+            # one more filter of path, have to contain path_reg
+            path_list3 = []
+            for path in path_list2:
+                if pp.path_contain_regex(path, path_reg=path_reg):
+                    path_list3.append(path)
+            np.savetxt(f_n_pn, path_list3[0:top_n], fmt="%s")
+            return len(path_list3[0:top_n])
     else:
         for s_i in end_s_idx:
             mask3 = d_f['pathway'].str.endswith("S" + str(s_i))
