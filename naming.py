@@ -47,7 +47,10 @@ def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None):
     suffix += "_" + str(int(g_s['top_n_p']))
     # path reg
     if g_s['path_reg'] is not None:
-        suffix += "_" + str(valid_name(g_s['path_reg']))
+        suffix += "_include_" + str(valid_name(g_s['path_reg']))
+    # no path reg
+    if g_s['no_path_reg'] is not None:
+        suffix += "_exclude_" + str(valid_name(g_s['no_path_reg']))
 
     return suffix
 
