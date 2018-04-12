@@ -12,7 +12,7 @@ import parse_pattern as pp
 
 def prepare_pathway_name(
         data_dir, top_n=5, flag="", end_s_idx=None, species_path=False,
-        path_reg=None, spe_idx=None, spe_production_oriented=False, n_threshold=0,
+        path_reg=None, no_path_reg=None, spe_idx=None, spe_production_oriented=False, n_threshold=0,
         same_path_list=False):
     """
     prepare pathway_name_candidate.csv
@@ -83,8 +83,17 @@ def prepare_pathway_name(
             for path in path_list2:
                 if pp.path_contain_regex(path, path_reg=path_reg):
                     path_list3.append(path)
-            np.savetxt(f_n_pn, path_list3[0:top_n], fmt="%s")
-            return len(path_list3[0:top_n])
+            # one more filter of path, don't contain no_path_reg
+            path_list4 = []
+            if no_path_reg is None:
+                path_list4 = path_list3
+            else:
+                for path in path_list3:
+                    if not pp.path_contain_regex(path, path_reg=no_path_reg):
+                        path_list4.append(path)
+
+            np.savetxt(f_n_pn, path_list4[0:top_n], fmt="%s")
+            return len(path_list4[0:top_n])
     else:
         for s_i in end_s_idx:
             mask3 = d_f['pathway'].str.endswith("S" + str(s_i))
@@ -170,8 +179,8 @@ if __name__ == '__main__':
     # prepare_pathway_name(DATA_DIR, top_n=5, flag="",
     #                      end_s_idx=[62, 59])
     # prepare_pathway_name(DATA_DIR, top_n=10, flag="",
-    #                      end_s_idx=None, species_path=False, path_reg='^S62R(736|738)')
+    #                      end_s_idx=None, species_path=False, path_reg='^S62R(736|738)', no_path_reg=None)
 
     prepare_pathway_name(
         DATA_DIR, top_n=5, flag="", end_s_idx=None, species_path=False,
-        path_reg=None, spe_idx=10, spe_production_oriented=True)
+        path_reg=None, no_path_reg=None, spe_idx=10, spe_production_oriented=True)
