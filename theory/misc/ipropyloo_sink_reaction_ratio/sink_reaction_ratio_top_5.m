@@ -83,7 +83,7 @@ end
 R_name = {'ipropyloo+C_3H_8=>ipropylooh+npropyl', 'ipropyloo+C_3H_8=>ipropylooh+ipropyl', 'C_3H_6+ipropyloo=>allyl+ipropylooh', 'ipropyloo+CH_2O=>ipropylooh+HCO', 'ipropyloo+acetaldehyde=>ipropylooh+acetyl', 'ipropyloo+HO_2=>ipropylooh+O_2', 'C_2H_4+ipropyloo=>C_2H_3+ipropylooh', 'CH_3OH+ipropyloo=>CH_2OH+ipropylooh', 'acrolein+ipropyloo=>CH_2CHCO+ipropylooh', 'CH_4+ipropyloo=>CH_3+ipropylooh', 'ipropyloo+CH_3OO=>ipropyloxy+CH_3O+O_2', 'H_2+ipropyloo=>H+ipropylooh', 'ipropyloo+C_2H_6=>ipropylooh+C_2H_5', 'ipropyloo+propanal=>ipropylooh+propionyl', 'ipropyloo+acetylperoxy=>ipropyloxy+acetyloxy+O_2', 'ipropyloo+CH_3CH_2OO=>ipropyloxy+ethoxy+O_2', 'ipropyloo+ipropyloo=>O_2+ipropyloxy+ipropyloxy', 'ipropyloo+npropyloo=>ipropyloxy+npropyloxy+O_2', 'ipropyloo+CH_3=>ipropyloxy+CH_3O', 'ipropyloo+C_2H_5=>ipropyloxy+ethoxy', 'ipropyloo+ipropyl=>ipropyloxy+ipropyloxy', 'ipropyloo+npropyl=>ipropyloxy+npropyloxy', 'ipropyloo+allyl=>ipropyloxy+allyloxy', 'ipropyloo=>O_2+ipropyl', 'ipropyloo=>QOOH_3', 'ipropyloo=>HO_2+C_3H_6', 'ipropyloo=>OH+propoxide'};
 
 %% chattering reactions
-chattering_R_idx = [1068, 1069, 1096, 1097];
+chattering_R_idx = [1068, 1069, 1096, 1097, 1080, 1081];
 R_idx_reduced = {};
 R_name_reduced = {};
 for i=1:length(R_idx)
@@ -92,7 +92,6 @@ for i=1:length(R_idx)
         R_name_reduced{end+1} = R_name{1,i};
     end
 end
-
 R_idx = cell2mat(R_idx_reduced);
 R_name = R_name_reduced;
 

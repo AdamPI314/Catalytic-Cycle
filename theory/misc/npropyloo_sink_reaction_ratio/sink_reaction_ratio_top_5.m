@@ -82,6 +82,19 @@ end
 
 R_name = {'npropyloo+C_3H_8=>npropylooh+npropyl', 'npropyloo+C_3H_8=>npropylooh+ipropyl', 'C_3H_6+npropyloo=>allyl+npropylooh', 'npropyloo+CH_2O=>npropylooh+HCO', 'npropyloo+acetaldehyde=>npropylooh+acetyl', 'npropyloo+HO_2=>npropylooh+O_2', 'C_2H_4+npropyloo=>C_2H_3+npropylooh', 'CH_3OH+npropyloo=>CH_2OH+npropylooh', 'acrolein+npropyloo=>CH_2CHCO+npropylooh', 'CH_4+npropyloo=>CH_3+npropylooh', 'npropyloo+CH_3OO=>npropyloxy+CH_3O+O_2', 'H_2+npropyloo=>H+npropylooh', 'npropyloo+C_2H_6=>npropylooh+C_2H_5', 'npropyloo+propanal=>npropylooh+propionyl', 'npropyloo+acetylperoxy=>npropyloxy+acetyloxy+O_2', 'npropyloo+CH_3CH_2OO=>npropyloxy+ethoxy+O_2', 'npropyloo+npropyloo=>O_2+npropyloxy+npropyloxy', 'ipropyloo+npropyloo=>ipropyloxy+npropyloxy+O_2', 'npropyloo+CH_3=>npropyloxy+CH_3O', 'npropyloo+C_2H_5=>npropyloxy+ethoxy', 'npropyloo+ipropyl=>npropyloxy+ipropyloxy', 'npropyloo+npropyl=>npropyloxy+npropyloxy', 'npropyloo+allyl=>npropyloxy+allyloxy', 'npropyloo=>O_2+npropyl', 'npropyloo=>QOOH_2', 'npropyloo=>QOOH_1', 'npropyloo=>HO_2+C_3H_6', 'npropyloo=>OH+propoxide'};
 
+%% chattering reactions
+chattering_R_idx = [1068, 1069, 1096, 1097, 1080, 1081];
+R_idx_reduced = {};
+R_name_reduced = {};
+for i=1:length(R_idx)
+    if ~ ismember(R_idx(i)-1, chattering_R_idx)
+        R_idx_reduced{end+1} = R_idx(i);
+        R_name_reduced{end+1} = R_name{1,i};
+    end
+end
+R_idx = cell2mat(R_idx_reduced);
+R_name = R_name_reduced;
+
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
@@ -114,7 +127,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-3.5, 10^0]);
+ylim([10^-2, 10^0]);
 
 %% temp
 yyaxis right
