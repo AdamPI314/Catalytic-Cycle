@@ -89,7 +89,7 @@ R_name_reduced = {};
 for i=1:length(R_idx)
     if ~ ismember(R_idx(i)-1, chattering_R_idx)
         R_idx_reduced{end+1} = R_idx(i);
-        R_name_reduced{end+1} = R_name(i);
+        R_name_reduced{end+1} = R_name{1,i};
     end
 end
 
