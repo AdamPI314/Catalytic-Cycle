@@ -80,7 +80,7 @@ for idx=1:length(R_idx)
     R_idx(idx) = R_idx(idx) + 1;
 end
 
-R_name = {'npropyloo+C_3H_8=>npropylooh+npropyl', 'npropyloo+C_3H_8=>npropylooh+ipropyl', 'npropyloxy+OH=>npropylooh', 'C_3H_6+npropyloo=>allyl+npropylooh', 'npropyloo+CH_2O=>npropylooh+HCO', 'npropyloo+acetaldehyde=>npropylooh+acetyl', 'npropyloo+HO_2=>npropylooh+O_2', 'C_2H_4+npropyloo=>C_2H_3+npropylooh', 'CH_3OH+npropyloo=>CH_2OH+npropylooh', 'acrolein+npropyloo=>CH_2CHCO+npropylooh', 'CH_4+npropyloo=>CH_3+npropylooh', 'H_2+npropyloo=>H+npropylooh', 'npropyloo+C_2H_6=>npropylooh+C_2H_5', 'npropyloo+propanal=>npropylooh+propionyl'};
+R_name = {'npropyloo+C_3H_8 \rightarrow npropylooh+npropyl', 'npropyloo+C_3H_8 \rightarrow npropylooh+ipropyl', 'npropyloxy+OH \rightarrow npropylooh', 'C_3H_6+npropyloo \rightarrow allyl+npropylooh', 'npropyloo+CH_2O \rightarrow npropylooh+HCO', 'npropyloo+acetaldehyde \rightarrow npropylooh+acetyl', 'npropyloo+HO_2 \rightarrow npropylooh+O_2', 'C_2H_4+npropyloo \rightarrow C_2H_3+npropylooh', 'CH_3OH+npropyloo \rightarrow CH_2OH+npropylooh', 'acrolein+npropyloo \rightarrow CH_2CHCO+npropylooh', 'CH_4+npropyloo \rightarrow CH_3+npropylooh', 'H_2+npropyloo \rightarrow H+npropylooh', 'npropyloo+C_2H_6 \rightarrow npropylooh+C_2H_5', 'npropyloo+propanal \rightarrow npropylooh+propionyl'};
 
 R_mat = reaction_R_mat(:, R_idx);
 
