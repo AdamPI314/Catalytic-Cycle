@@ -9,6 +9,9 @@ import global_settings
 
 
 def valid_name(name1):
+    """
+    valid filename or not
+    """
     name2 = ''
     for c in name1:
         if (c >= 'A' and c <= 'Z') or (c >= 'a' and c <= 'z') or (c >= '0' and c <= '9'):
@@ -21,7 +24,7 @@ def valid_name(name1):
     return name2
 
 
-def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None):
+def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None, len_threshold=100):
     """
     get suffix
     """
@@ -52,6 +55,10 @@ def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None):
     if g_s['no_path_reg'] is not None:
         suffix += "_exclude_" + str(valid_name(g_s['no_path_reg']))
 
+    if len(suffix) > len_threshold:
+        suffix = suffix[0:len_threshold]
+    if len(suffix) > 0 and suffix[-1] == '_':
+        suffix = suffix[0:-1]
     return suffix
 
 
