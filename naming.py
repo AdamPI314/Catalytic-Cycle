@@ -49,10 +49,10 @@ def get_suffix(data_dir, init_spe=None, atom_followed=None, end_t=None, len_thre
     # add top_n_p
     suffix += "_" + str(int(g_s['top_n_p']))
     # path reg
-    if g_s['path_reg'] is not None:
+    if len(suffix) < len_threshold and g_s['path_reg'] is not None:
         suffix += "_include_" + str(valid_name(g_s['path_reg']))
     # no path reg
-    if g_s['no_path_reg'] is not None:
+    if len(suffix) < len_threshold and g_s['no_path_reg'] is not None:
         suffix += "_exclude_" + str(valid_name(g_s['no_path_reg']))
 
     if len(suffix) > len_threshold:
