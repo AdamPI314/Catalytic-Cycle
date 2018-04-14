@@ -103,7 +103,7 @@ end
 %% settings
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
-ylabel('$\delta t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
+ylabel('$\#$(OH)', 'Interpreter','latex', 'FontSize', 20);
 xlim([0, tau*str2double(end_t)]);
 % ylim([0, tau*str2double(end_t)]);
 grid on;
