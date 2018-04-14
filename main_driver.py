@@ -64,7 +64,7 @@ if __name__ == '__main__':
         atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
         tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
-        spe_idx=10)
+        spe_idx=10, min_delta_t=None, num_delta_t=None)
 
     # j_b.evaluate_pathway_AT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
