@@ -38,10 +38,12 @@ for i = 1:length(t0)
     tf(i) = tf(i) * tau;
 end
 
+tf = tf - t0;
+
 % path index
 offset = 2;
-path_idx = linspace(1, n_path, n_path-1+1);
-% path_idx = [1, 2, 3];
+% path_idx = linspace(1, n_path, n_path-1+1);
+path_idx = [1, 2, 3];
 % path_idx = linspace(3, n_path, n_path-3+1);
 for i = 1:length(path_idx)
     if i==1
@@ -60,7 +62,7 @@ Z = f(X,Y);
 
 %% update Z
 for i = 1:length(X)    
-    for j = i+1:length(X)
+    for j = length(X) - i + 1 : length(X)
         Z(i,j) = nan;
     end
 end
@@ -69,55 +71,56 @@ end
 fig = figure();
 
 %% plot
-% mesh(X,Y,Z); %interpolated
+X_tmp1 = X(1, :);
 
-% reduce number of s.f. in coutour plot
-contour(X,Y,Z, 20, 'ShowText', 'on');
-hold on;
+delta_t_vec = [1e-4, 1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1];
+N = length(delta_t_vec);
+str_name = cell(N,1);
+for i=1:N
+    str_name{i, 1} = strcat('$\delta$t=', num2str(delta_t_vec(i),'%1.1e\n'));
+end
 
-% % draw circle to emphase
-% he1 = ellipse(0.045,0.075,pi/2,0.085,0.65);
-% set(he1, 'LineStyle', '--', 'color', 'b', 'LineWidth', 2.0);
-% hold on;
+H = gobjects(N);
 
-% draw circle to emphase
-% he2 = ellipse(0.065,0.075,pi/2,0.085,0.525);
-% set(he2, 'LineStyle', '--', 'color', 'r', 'LineWidth', 2.0);
-% hold on;
+for idx=1:N
+    % delta
+    delta_t = ones(1, length(X_tmp1));
+    delta_t = delta_t.* delta_t_vec(idx);
+    Z_tmp1 = f(X_tmp1, delta_t);
+    % check data
+    for i=1:length(X_tmp1)
+        if X_tmp1(i) + delta_t(i) > ylin(end)
+            Z_tmp1(i) = nan;
+        end
+    end
+    H(idx) = plot(X_tmp1, Z_tmp1, 'LineWidth', 2, 'marker', '>'); hold on;
+    hold on;
+end
 
-% center_x2 = 0.085; center_y2 = 0.525; delta_x2 = 0.065*2; delta_y2 = 0.075*2;
-% r2=rectangle('Position',[center_x2 - delta_x2/2, center_y2 - delta_y2/2, delta_x2, delta_y2]);
-% r2.EdgeColor = 'r';
-% r2.LineWidth = 3;
-% r2.LineStyle = '--';
-% r2.Curvature = [0.5,1];
-% hold on;
 
-% % draw circle to emphase
-% he3 = ellipse(0.11,0.065,pi/2,0.075,0.325);
-% set(he3, 'LineStyle', '--', 'color', 'k', 'LineWidth', 2.0);
-% hold on;
-
-axis tight;
-hold on;
 
 
 %% settings
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
-ylabel('$t_f$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
-% xlim([0, tau*str2double(end_t)]);
+ylabel('$\delta t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
+xlim([0, tau*str2double(end_t)]);
 % ylim([0, tau*str2double(end_t)]);
 grid on;
 
-%% text
-a_x = gca;
-t_x = a_x.XLim(1) + 0.525*(a_x.XLim(2) - a_x.XLim(1));
-t_y = a_x.YLim(1) + 0.278*(a_x.YLim(2) - a_x.YLim(1));
-text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t_f$' char(10) '$t_f > t$'], 'Interpreter','latex', 'FontSize', 20);
+%%  legend
+leg_h = legend(str_name, 'Interpreter','latex');
+set(leg_h, 'FontSize', 12, 'Box', 'off');
+set(leg_h, 'Location', 'South')
+
+% %% text
+% a_x = gca;
+% t_x = a_x.XLim(1) + 0.525*(a_x.XLim(2) - a_x.XLim(1));
+% t_y = a_x.YLim(1) + 0.278*(a_x.YLim(2) - a_x.YLim(1));
+% text(t_x, t_y, [spe_name, '@ $t$' char(10) 'stop path@ $t_f$' char(10) '$t_f > t$'], 'Interpreter','latex', 'FontSize', 20);
 
 %% save to file
-figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_', cycle, '_v4.png');
+figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_', cycle, '_v4_delta_t.png');
 print(fig, fullfile(file_dir, figname), '-r200', '-dpng');
 
 

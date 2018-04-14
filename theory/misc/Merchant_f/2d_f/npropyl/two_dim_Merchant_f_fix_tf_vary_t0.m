@@ -14,16 +14,16 @@ n_path = 100;
 fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
 
 delimiter = ',';
-formatStr = "%f%f%f";
+formatStr = '%f%f%f';
 for i=1:n_path
-    formatStr = formatStr + "%f";
+    formatStr = strcat(formatStr, '%f');
 end
-formatStr = formatStr + "%[^\n\r]";
+formatStr = strcat(formatStr, '%[^\n\r]');
 formatSpec = char(formatStr);
 
 %% Open the text file.
 fileID = fopen(fn_2d_f,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 %% Close the text file.
 fclose(fileID);
 f_mat = [dataArray{1:end-1}];
