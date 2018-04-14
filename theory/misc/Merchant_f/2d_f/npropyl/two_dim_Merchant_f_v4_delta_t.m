@@ -73,7 +73,7 @@ fig = figure();
 %% plot
 X_tmp1 = X(1, :);
 
-delta_t_vec = [1e-4, 1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1];
+delta_t_vec = [1e-4, 1e-3, 1e-2, 2.5e-2, 5e-2, 7.5e-2, 1e-1];
 N = length(delta_t_vec);
 str_name = cell(N,1);
 for i=1:N
