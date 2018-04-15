@@ -284,7 +284,7 @@ def Merchant_f_2d_t0_tf(
         atom_followed="C", init_spe=114, traj_max_t=100.0,
         tau=10.0, begin_t=0.0, end_t=1.0,
         path_reg=None, no_path_reg=None,
-        spe_idx=10, min_delta_t=None, num_delta_t=None):
+        spe_idx=10, min_delta_t=None, num_delta_t=None, delta_t_vec=None):
 
     if flag == "":
         f_n_merchant_f = os.path.join(data_dir, "output",
@@ -300,7 +300,12 @@ def Merchant_f_2d_t0_tf(
     time_vec = np.linspace(begin_t, end_t, num_t)
     for i in range(num_t - 1):
         b_t = time_vec[i]
-        if min_delta_t is None or num_delta_t is None:
+        if delta_t_vec is not None:
+            end_t_vec = []
+            for _, dt_val in enumerate(delta_t_vec):
+                if b_t + float(dt_val) <= end_t:
+                    end_t_vec.append(b_t + float(dt_val))
+        elif min_delta_t is None or num_delta_t is None:
             end_t_vec = time_vec[i + 1:]
         else:
             end_t_vec = []

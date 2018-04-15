@@ -12,7 +12,8 @@ cycle = 'all';
 % cycle = 'others';
 n_path = 1000;
 
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
+% fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d', '.csv']);
 
 delimiter = ',';
 formatStr = '%f%f%f';
@@ -73,7 +74,7 @@ fig = figure();
 %% plot
 X_tmp1 = X(1, :);
 
-delta_t_vec = [1e-4, 1e-3, 1e-2, 2.5e-2, 5e-2, 7.5e-2, 1e-1];
+delta_t_vec = [3e-5, 4e-5, 5e-5, 1e-4, 1e-3, 1e-2];
 N = length(delta_t_vec);
 str_name = cell(N,1);
 for i=1:N
@@ -89,7 +90,8 @@ for idx=1:N
     Z_tmp1 = f(X_tmp1, delta_t);
     % check data
     for i=1:length(X_tmp1)
-        if X_tmp1(i) + delta_t(i) > ylin(end)
+%         if X_tmp1(i) + delta_t(i) > ylin(end)
+        if X_tmp1(i) + delta_t(i) > str2double(end_t)
             Z_tmp1(i) = nan;
         end
     end
@@ -104,7 +106,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
 ylabel('$\#$(OH)', 'Interpreter','latex', 'FontSize', 20);
-xlim([0, tau*str2double(end_t)]);
+% xlim([0, tau*str2double(end_t)]);
 % ylim([0, tau*str2double(end_t)]);
 grid on;
 
