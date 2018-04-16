@@ -10,9 +10,12 @@ tau = 0.777660157519;
 end_t = '0.9';
 % end_t = '0.12859156975';
 % cycle = 'all';
+% cycle = 'p1';
+% cycle = 'p2';
+% cycle = 'p3';
 cycle = 'primary_cycle';
 % cycle = 'others';
-n_path = 1000;
+n_path = 3;
 
 % fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
 fn_2d_f = fullfile(file_dir, ['Merchant_f_2d', '.csv']);
@@ -46,6 +49,9 @@ tf = tf - t0;
 % path index
 offset = 2;
 % path_idx = linspace(1, n_path, n_path-1+1);
+% path_idx = [1];
+% path_idx = [2];
+% path_idx = [3];
 path_idx = [1, 2, 3];
 % path_idx = linspace(3, n_path, n_path-3+1);
 for i = 1:length(path_idx)
