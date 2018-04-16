@@ -82,7 +82,7 @@ fig = figure();
 %% plot
 X_tmp1 = X(1, :);
 
-delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1];
+delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2, 2.5e-2, 5e-2, 1e-1];
 N = length(delta_t_vec);
 colors = lines(N);
 % colors = colorcube(N);
