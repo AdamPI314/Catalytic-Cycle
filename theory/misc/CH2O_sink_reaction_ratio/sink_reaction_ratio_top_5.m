@@ -3,6 +3,7 @@ spe_name = 'CH2O';
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
@@ -134,4 +135,4 @@ set(leg_h, 'Location', 'South')
 
 %% save to file
 figname = strcat(spe_name, '_sink_reaction_ratio_top_5', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');

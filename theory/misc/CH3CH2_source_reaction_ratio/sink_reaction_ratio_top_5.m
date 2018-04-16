@@ -82,6 +82,32 @@ end
 
 R_name = {'CH_3+CH_3=>H+C_2H_5', 'CH_2(S)+C_2H_6=>CH_3+C_2H_5', 'C_2H_6+CH=>C_2H_5+CH_2', 'C_2H_6(+M)=>C_2H_5+H(+M)', 'C_2H_6+H=>C_2H_5+H_2', 'C_2H_6+O=>C_2H_5+OH', 'C_2H_6+OH=>C_2H_5+H_2O', 'C_2H_6+O_2=>C_2H_5+HO_2', 'C_2H_6+CH_3=>C_2H_5+CH_4', 'C_2H_6+HO_2=>C_2H_5+H_2O_2', 'C_2H_6+CH_3OO=>C_2H_5+CH_3OOH', 'C_2H_6+CH_3O=>C_2H_5+CH_3OH', 'H+C_2H_4(+M)=>C_2H_5(+M)', 'C_2H_4+C_2H_4=>C_2H_5+C_2H_3', 'CH_4+C_2H_4=>CH_3+C_2H_5', 'C_2H_4+H_2=>C_2H_5+H', 'acetaldehyde+H=>C_2H_5+O', 'ethoxy+OH=>C_2H_5+HO_2', 'CH_3O+ethoxy=>CH_3OO+C_2H_5', 'CH_3CH_2OO=>C_2H_5+O_2', 'C_2H_6+CH_3CH_2OO=>C_2H_5+CH_3CH_2OOH', 'CH_2CH_2OOH=>C_2H_5+O_2', 'C_2H_4+HO_2=>C_2H_5+O_2', 'oxirane+OH=>C_2H_5+O_2', 'acetaldehyde+OH=>C_2H_5+O_2', 'C_2H_6+acetylperoxy=>C_2H_5+CH_3CO_3H', 'ethanol(+M)=>C_2H_5+OH(+M)', 'CH_2CH_2OH+C_2H_6=>ethanol+C_2H_5', 'CH_3CHOH+C_2H_6=>ethanol+C_2H_5', 'propanal=>C_2H_5+HCO', 'propionyl+C_2H_6=>propanal+C_2H_5', 'propionyl=>C_2H_5+CO', 'C_3H_8(+M)=>CH_3+C_2H_5(+M)', 'C_2H_6+ipropyl=>C_2H_5+C_3H_8', 'C_2H_6+npropyl=>C_2H_5+C_3H_8', 'ipropyl+H=>C_2H_5+CH_3', 'C_3H_6+O=>C_2H_5+HCO', 'allyl+C_2H_6=>C_3H_6+C_2H_5', 'C_2H_4+C_3H_6=>allyl+C_2H_5', 'ipropyloo+C_2H_6=>ipropylooh+C_2H_5', 'npropyloo+C_2H_6=>npropylooh+C_2H_5', 'ipropyloxy+ethoxy=>ipropyloo+C_2H_5', 'npropyloxy+ethoxy=>npropyloo+C_2H_5', 'npropyloxy=>C_2H_5+CH_2O'};
 
+%% chattering reactions
+chattering_R_idx = [1068, 1069, 1096, 1097, 1080, 1081, 132, 133, 348, 349];
+R_idx_reduced = {};
+R_name_reduced = {};
+for i=1:length(R_idx)
+    if ~ ismember(R_idx(i)-1, chattering_R_idx)
+        R_idx_reduced{end+1} = R_idx(i);
+        R_name_reduced{end+1} = R_name{1,i};
+    end
+end
+R_idx = cell2mat(R_idx_reduced);
+R_name = R_name_reduced;
+
+%% chattering reactions
+chattering_R_idx = [1068, 1069, 1096, 1097, 1080, 1081, 132, 133, 348, 349];
+R_idx_reduced = {};
+R_name_reduced = {};
+for i=1:length(R_idx)
+    if ~ ismember(R_idx(i)-1, chattering_R_idx)
+        R_idx_reduced{end+1} = R_idx(i);
+        R_name_reduced{end+1} = R_name{1,i};
+    end
+end
+R_idx = cell2mat(R_idx_reduced);
+R_name = R_name_reduced;
+
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
@@ -114,7 +140,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-15, 10^0]);
+ylim([10^-10, 10^0]);
 
 %% temp
 yyaxis right

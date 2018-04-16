@@ -82,6 +82,19 @@ end
 
 R_name = {'H+CH_3CH_2OOH=>H_2+CH_3CH_2OO', 'C_2H_5+O_2=>CH_3CH_2OO', 'CH_3CH_2OOH+HCO=>CH_3CH_2OO+CH_2O', 'CH_3+CH_3CH_2OOH=>CH_4+CH_3CH_2OO', 'CH_2OH+CH_3CH_2OOH=>CH_3OH+CH_3CH_2OO', 'CH_3CH_2OOH+O_2=>CH_3CH_2OO+HO_2', 'C_2H_5+CH_3CH_2OOH=>C_2H_6+CH_3CH_2OO', 'CH_2CH_2OOH=>CH_3CH_2OO', 'acetaldehyde+OH=>CH_3CH_2OO', 'C_2H_4+HO_2=>CH_3CH_2OO', 'oxirane+OH=>CH_3CH_2OO', 'oxiranyl+CH_3CH_2OOH=>oxirane+CH_3CH_2OO', 'C_2H_3+CH_3CH_2OOH=>C_2H_4+CH_3CH_2OO', 'oxirane+ethoxy=>C_2H_4+CH_3CH_2OO', 'propionyl+CH_3CH_2OOH=>propanal+CH_3CH_2OO', 'CH_3CH_2OOH+npropyl=>CH_3CH_2OO+C_3H_8', 'CH_3CH_2OOH+ipropyl=>CH_3CH_2OO+C_3H_8', 'allyl+CH_3CH_2OOH=>C_3H_6+CH_3CH_2OO', 'ipropyloxy+ethoxy+O_2=>ipropyloo+CH_3CH_2OO', 'npropyloxy+ethoxy+O_2=>npropyloo+CH_3CH_2OO'};
 
+%% chattering reactions
+chattering_R_idx = [1068, 1069, 1096, 1097, 1080, 1081, 132, 133, 348, 349];
+R_idx_reduced = {};
+R_name_reduced = {};
+for i=1:length(R_idx)
+    if ~ ismember(R_idx(i)-1, chattering_R_idx)
+        R_idx_reduced{end+1} = R_idx(i);
+        R_name_reduced{end+1} = R_name{1,i};
+    end
+end
+R_idx = cell2mat(R_idx_reduced);
+R_name = R_name_reduced;
+
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
@@ -114,7 +127,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-15, 10^0]);
+ylim([10^-5, 10^0]);
 
 %% temp
 yyaxis right
