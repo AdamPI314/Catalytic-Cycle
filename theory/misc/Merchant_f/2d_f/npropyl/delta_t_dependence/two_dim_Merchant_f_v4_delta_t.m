@@ -1,14 +1,16 @@
 %% global settings
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
+% marker
+markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
 spe_idx = '60';
 atom_f = 'HA6';
 spe_name = 'npropyl';
 tau = 0.777660157519;
 end_t = '0.9';
 % end_t = '0.12859156975';
-cycle = 'all';
-% cycle = 'primary_cycle';
+% cycle = 'all';
+cycle = 'primary_cycle';
 % cycle = 'others';
 n_path = 1000;
 
@@ -74,8 +76,10 @@ fig = figure();
 %% plot
 X_tmp1 = X(1, :);
 
-delta_t_vec = [3e-5, 4e-5, 5e-5, 1e-4, 1e-3, 1e-2];
+delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1];
 N = length(delta_t_vec);
+colors = lines(N);
+% colors = colorcube(N);
 str_name = cell(N,1);
 for i=1:N
     str_name{i, 1} = strcat('$\delta$t=', num2str(delta_t_vec(i),'%1.1e\n'));
@@ -95,7 +99,8 @@ for idx=1:N
             Z_tmp1(i) = nan;
         end
     end
-    H(idx) = plot(X_tmp1, Z_tmp1, 'LineWidth', 2, 'marker', '>'); hold on;
+    H(idx) = plot(X_tmp1, Z_tmp1, 'LineWidth', 2, 'color', colors(idx, :), ...
+        'marker', markers{1, mod(idx-1, length(markers))+ 1}); hold on;
     hold on;
 end
 
@@ -113,7 +118,7 @@ grid on;
 %%  legend
 leg_h = legend(str_name, 'Interpreter','latex');
 set(leg_h, 'FontSize', 12, 'Box', 'off');
-set(leg_h, 'Location', 'South')
+% set(leg_h, 'Location', 'South');
 
 % %% text
 % a_x = gca;
