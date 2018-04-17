@@ -266,7 +266,7 @@ def evaluate_pathway_probability(
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path,
+            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path,
             path_reg=path_reg, no_path_reg=no_path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented,
             same_path_list=same_path_list)
         ppnt.prepare_pathway_time(
