@@ -55,7 +55,7 @@ if __name__ == '__main__':
         top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
         end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
-        spe_idx=10, spe_production_oriented=True,
+        spe_idx=None, spe_production_oriented=True,
         fixed_t0_or_tf=G_S['fixed_t0_or_tf'])
     # # end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
