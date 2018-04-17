@@ -2,7 +2,8 @@
 file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 % marker
-markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
+% markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
+markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
 spe_idx = '60';
 atom_f = 'HA6';
 spe_name = 'npropyl';
@@ -18,7 +19,8 @@ cycle = 'primary_cycle';
 n_path = 3;
 
 % fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d', '.csv']);
+% fn_2d_f = fullfile(file_dir, ['Merchant_f_2d', '.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S60_HA4_0.9_100000000_10000_3', '.csv']);
 
 delimiter = ',';
 formatStr = '%f%f%f';
@@ -38,11 +40,6 @@ f_mat = [dataArray{1:end-1}];
 t0 = f_mat(:, 1);
 tf = f_mat(:, 2);
 % f_value = f_mat(:, end);
-
-for i = 1:length(t0)
-    t0(i) = t0(i) * tau;
-    tf(i) = tf(i) * tau;
-end
 
 tf = tf - t0;
 
@@ -82,13 +79,14 @@ fig = figure();
 %% plot
 X_tmp1 = X(1, :);
 
-delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2, 2.5e-2, 5e-2, 1e-1];
+delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1, 5e-1];
+
 N = length(delta_t_vec);
 colors = lines(N);
 % colors = colorcube(N);
 str_name = cell(N,1);
 for i=1:N
-    str_name{i, 1} = strcat('$\delta$t=', num2str(delta_t_vec(i),'%1.1e\n'));
+    str_name{i, 1} = strcat('$\delta$t=', num2str(delta_t_vec(i)*tau,'%1.2e\n'));
 end
 
 H = gobjects(N);
@@ -100,12 +98,11 @@ for idx=1:N
     Z_tmp1 = f(X_tmp1, delta_t);
     % check data
     for i=1:length(X_tmp1)
-%         if X_tmp1(i) + delta_t(i) > ylin(end)
         if X_tmp1(i) + delta_t(i) > str2double(end_t)
             Z_tmp1(i) = nan;
         end
     end
-    H(idx) = plot(X_tmp1, Z_tmp1, 'LineWidth', 2, 'color', colors(idx, :), ...
+    H(idx) = plot(X_tmp1 * tau, Z_tmp1, 'LineWidth', 2, 'color', colors(idx, :), ...
         'marker', markers{1, mod(idx-1, length(markers))+ 1}); hold on;
     hold on;
 end

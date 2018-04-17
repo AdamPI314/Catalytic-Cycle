@@ -1,8 +1,10 @@
 %% global settings
 spe_name = 'OH';
 
+sort_time = '0.6';
+
 %% Current file directory
-file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
@@ -85,7 +87,7 @@ R_name = {'H+O_2 \rightarrow O+OH', 'O+H_2 \rightarrow H+OH', 'H_2O+H \rightarro
 R_mat = reaction_R_mat(:, R_idx);
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
-sort_axis = round(0.45 * length(time_vec));
+sort_axis = round(str2double(sort_time) * length(time_vec));
 [B,I] = sort(R_mat(sort_axis, :),'descend');
 
 for idx=1:length(I)
@@ -113,7 +115,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Fraction', 'FontSize', 20);
-ylim([10^-2, 10^-0.1]);
+ylim([10^-3, 10^-0.1]);
 
 %% temp
 yyaxis right
@@ -133,5 +135,5 @@ set(leg_h, 'Location', 'South')
 
 
 %% save to file
-figname = strcat(spe_name, '_source_reaction_ratio_top_5', '.png');
+figname = strcat(spe_name, '_source_reaction_ratio_top_5_', sort_time, '.png');
 print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');

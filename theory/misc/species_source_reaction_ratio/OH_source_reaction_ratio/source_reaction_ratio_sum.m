@@ -2,7 +2,7 @@
 spe_name = 'OH';
 
 %% Current file directory
-file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
