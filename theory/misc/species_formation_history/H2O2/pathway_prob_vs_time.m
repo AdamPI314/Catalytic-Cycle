@@ -43,6 +43,10 @@ pathP_mat = [dataArray{1:end-1}];
 clearvars fn_pathP delimiter formatSpec fileID dataArray ans;
 
 %% plot
+fig = figure();
+% https://www.mathworks.com/help/matlab/graphics_transition/why-are-plot-lines-different-colors.html
+% https://www.mathworks.com/help/matlab/creating_plots/customize-graph-with-two-y-axes.html
+
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
 sort_axis = round(str2double(sort_time) * length(time_vec));
 if sort_axis <= 0
@@ -68,6 +72,6 @@ xlabel('Time (seconds)', 'FontSize', 20);
 ylabel('Pathway Probability', 'FontSize', 20);
 grid on;
 
-% %% save to file
-% figname = strcat(spe_name, '_formation_pathway_prob_vs_time', '.png');
-% print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
+%% save to file
+figname = strcat(spe_name, '_formation_pathway_prob_vs_time', '.png');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
