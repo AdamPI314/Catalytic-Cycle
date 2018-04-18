@@ -53,9 +53,9 @@ if sort_axis <= 0
     sort_axis = 1;
 end
     
-[B,I] = sort(pathP_mat(sort_axis, :),'descend');
+[B,I] = sort(pathP_mat(:, sort_axis),'descend');
 
-N = 5;
+N = 10;
 % graph handler
 H = gobjects(N);
 
