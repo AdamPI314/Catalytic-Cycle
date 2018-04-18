@@ -3,6 +3,7 @@ update settings.json
 """
 
 import os
+import sys
 from shutil import copy2
 import read_write_configuration as rwc
 import global_settings
@@ -33,6 +34,10 @@ def update_basic_setting(data_dir, g_s):
     setting['propagator']['normalize_initial_concentration'] = g_s['propagator']['normalize_initial_concentration']
 
     setting['pathway']['fixed_t0_or_tf'] = g_s['fixed_t0_or_tf']
+
+    setting['pathway']['not_allowed_out_species'] = g_s['network']['not_allowed_out_species']
+    setting['pathway']['spe_branching'] = g_s['network']['spe_branching']
+    setting['pathway']['terminal_sp'] = g_s['network']['terminal_sp']
 
     rwc.write_configuration(setting, os.path.join(
         data_dir, 'input', 'setting.json'))
@@ -278,3 +283,16 @@ def update_eval_path_AT_with_SP(data_dir, top_n=5, n_traj=10000,
 
     rwc.write_configuration(setting, os.path.join(
         data_dir, 'input', 'setting.json'))
+
+
+if __name__ == '__main__':
+    # source file directory
+    SRC_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir))
+    print(SRC_DIR)
+    # data directory
+    DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
+        sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
+
+    G_S = global_settings.get_setting(DATA_DIR)
+    update_basic_setting(DATA_DIR, G_S)

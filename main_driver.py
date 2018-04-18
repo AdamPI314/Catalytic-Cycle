@@ -47,25 +47,25 @@ if __name__ == '__main__':
         init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
         species_path=G_S['species_path'])
 
-    # evaluate path integral-->pathway probability, multiple use
-    j_b.evaluate_pathway_probability(
-        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
-        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
-        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
-        path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
-        spe_idx=None, spe_production_oriented=True,
-        fixed_t0_or_tf=G_S['fixed_t0_or_tf'])
+    # # evaluate path integral-->pathway probability, multiple use
+    # j_b.evaluate_pathway_probability(
+    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=G_S['pi_n_time'], flag="",
+    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'], init_spe=G_S['init_s'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
+    #     path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
+    #     spe_idx=None, spe_production_oriented=True,
+    #     fixed_t0_or_tf=G_S['fixed_t0_or_tf'])
     # # end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'], path_reg='^S62R(736|738)')
 
-    # j_b.Merchant_f_2d_t0_tf(
-    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=25, flag="", n_traj=G_S['pi_n_traj'],
-    #     atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
-    #     tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-    #     path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
-    #     spe_idx=10, min_delta_t=None, num_delta_t=None,
-    #     delta_t_vec=[1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 5e-3, 1e-2, 5e-2, 1e-1])
+    j_b.Merchant_f_2d_t0_tf(
+        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=15, flag="", n_traj=G_S['pi_n_traj'],
+        atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
+        tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
+        spe_idx=25, min_delta_t=None, num_delta_t=None,
+        delta_t_vec=None)
 
     # j_b.evaluate_pathway_AT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
