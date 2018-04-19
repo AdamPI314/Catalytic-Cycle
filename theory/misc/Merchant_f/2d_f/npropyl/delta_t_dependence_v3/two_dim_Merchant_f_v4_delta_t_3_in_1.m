@@ -14,7 +14,7 @@ end_t = '0.9';
 
 % cycle = 'primary_cycle';
 % path_idx = [1, 2, 3];
-% % delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1, 5e-1];
+% % delta_t_vec = [1.2859087486111409e-06, 3.214771871527852e-06, 6.429543743055704e-06, 9.644315614583557e-06, 1.285908748611141e-05, 3.2147718715278524e-05, 6.429543743055705e-05, 9.644315614583559e-05, 0.0001285908748611141, 0.00032147718715278527, 0.0006429543743055705, 0.0009644315614583557, 0.001285908748611141, 0.0032147718715278524, 0.006429543743055705, 0.009644315614583556, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557,0.1285908748611141, 0.3214771871527852, 0.6429543743055705, 0.9644315614583557];
 % delta_t_vec = [1e-5, 1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1];
 % y_label_str = '\chi';
 % title_p = ['primary cycle'];
@@ -77,7 +77,7 @@ subplot('Position',pos);
 %% prepare data
 cycle = 'p1';
 path_idx = [1];
-delta_t_vec = [1e-5, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2]; 
+delta_t_vec = [1.2859087486111409e-06, 0.0001285908748611141, 0.001285908748611141, 0.003214771871527852, 0.006429543743055705, 0.009644315614583556]; 
 y_label_str = '\chi_1';
 title_p = '\color{red} O_2QOOH_1\color{black}\rightarrow(\color{blue}OH\color{black}+)\color{red}OQ^{\prime}OOH_1';
 %% interpolation
@@ -141,13 +141,13 @@ ylabel(y_label_str, 'FontSize', 20);
 % title(title_p);
 a_x = gca;
 t_x = a_x.XLim(1) + 0.050*(a_x.XLim(2) - a_x.XLim(1));
-t_y = a_x.YLim(1) + 0.140*(a_x.YLim(2) - a_x.YLim(1));
+t_y = a_x.YLim(1) + 0.200*(a_x.YLim(2) - a_x.YLim(1));
 text(t_x, t_y, title_p, 'Fontsize', 13);
 xticklabels([]);
 grid on;
 %%  legend
 leg_h = legend(str_name, 'Interpreter','latex');
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 13, 'Box', 'off');
 
 %##########################################################################
 % Panel 2
@@ -160,7 +160,7 @@ subplot('Position',pos);
 %% prepare data
 cycle = 'p2';
 path_idx = [2];
-delta_t_vec = [1e-5,1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1];
+delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557];
 y_label_str = '\chi_2';
 title_p = ['\color{red} O_2QOOH_1\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}OOH_1', ... 
     '\color{black}\rightarrow(\color{blue}OH\color{black}+)\color{red}OQ^{\prime}O_1'];
@@ -225,13 +225,13 @@ ylabel(y_label_str, 'FontSize', 20);
 % title(title_p);
 a_x = gca;
 t_x = a_x.XLim(1) + 0.050*(a_x.XLim(2) - a_x.XLim(1));
-t_y = a_x.YLim(1) + 0.140*(a_x.YLim(2) - a_x.YLim(1));
+t_y = a_x.YLim(1) + 0.200*(a_x.YLim(2) - a_x.YLim(1));
 text(t_x, t_y, title_p, 'Fontsize', 13);
 xticklabels([]);
 grid on;
 %%  legend
 leg_h = legend(str_name, 'Interpreter','latex');
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 13, 'Box', 'off');
 
 %##########################################################################
 % Panel 3
@@ -244,7 +244,7 @@ subplot('Position',pos);
 %% prepare data
 cycle = 'p3';
 path_idx = [3];
-delta_t_vec = [1e-5,1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1];
+delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557];
 y_label_str = '{\chi}_{3}';
 title_p = ['\color{red} O_2QOOH_1\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}OOH_1', ...
     '\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}O_1' char(10), ...
@@ -311,13 +311,13 @@ ylabel(y_label_str, 'FontSize', 20);
 % title(title_p);
 a_x = gca;
 t_x = a_x.XLim(1) + 0.050*(a_x.XLim(2) - a_x.XLim(1));
-t_y = a_x.YLim(1) + 0.140*(a_x.YLim(2) - a_x.YLim(1));
+t_y = a_x.YLim(1) + 0.200*(a_x.YLim(2) - a_x.YLim(1));
 text(t_x, t_y, title_p, 'Fontsize', 11);
 grid on;
 
 %%  legend
 leg_h = legend(str_name, 'Interpreter','latex');
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 13, 'Box', 'off');
 % set(leg_h, 'Location', 'South');
 
 %##########################################################################
