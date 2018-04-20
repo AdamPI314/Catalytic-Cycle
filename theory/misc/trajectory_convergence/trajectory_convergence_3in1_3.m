@@ -13,14 +13,19 @@ fig = figure();
 n_xaxis = 3;
 x_ratio = 1.0;
 y_ratio = 1.0/3.0;
+
+xpos = [0.14 0.87];
+vertical_space = 0.0385;
+ypos = [0.07, 0.3733-vertical_space, 0.3733, 0.6767-vertical_space, 0.6767, 0.98];
+
 %##########################################################################
 % Panel 1
 %##########################################################################
 iax = 1; % Or whichever
-subaxis(n_xaxis, 1, iax, 'SpacingVertical',0.05,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0.01,'PaddingBottom',0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0.01,'MarginBottom',0.04);
-% subplot(3, 1, 1);
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
 
 folder1 = '0.2seconds';
 end_t1 = '0.25718313951098054';
@@ -189,10 +194,10 @@ set(leg_z2, 'Position', [z2_position(1) + z2_position(3)*0.375, ...
 % Panel 2
 %##########################################################################
 iax = 2; % Or whichever
-subaxis(n_xaxis, 1, iax, 'SpacingVertical',0.04,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0,'PaddingBottom',0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0,'MarginBottom',0.04);
-% subplot(3, 1, 2);
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
 
 folder2 = '0.5tau';
 end_t2 = '0.5';
@@ -362,10 +367,10 @@ set(leg_z2, 'Position', [z2_position(1) + z2_position(3)*0.375, ...
 % Panel 3
 %##########################################################################
 iax = 3; % Or whichever
-subaxis(n_xaxis, 1, iax, 'SpacingVertical',0.06,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0,'PaddingBottom',0.0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0.0,'MarginBottom',0.06);
-% subplot(3, 1, 3);
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
 
 folder3 = '0.5tau2';
 end_t3 = '0.5';
