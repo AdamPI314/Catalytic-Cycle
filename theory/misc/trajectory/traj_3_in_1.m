@@ -1,5 +1,6 @@
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% dlsode time
 filename = fullfile(file_dir, 'output', 'time_dlsode_fraction.csv');
@@ -65,11 +66,18 @@ set(fig,'defaultAxesColorOrder',co)
 tau = 0.777660157519;
 end_t = 0.9;
 
+xpos = [0.14 0.87];
+ypos = [0.07, 0.375, 0.375, 0.685, 0.685, 0.99];
+
+%##########################################################################
+% Panel 1
+%##########################################################################
 iax = 1; % Or whichever
-subaxis(3, 1, iax, 'SpacingVertical',0.0,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0.01,'PaddingBottom',0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0,'MarginBottom',0.0);
-% subplot(3,1,1)
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
+
 % plot conc
 % C3H6
 p1 = semilogy(time_vec, conc_mat(:, 60), 'LineWidth', 2); hold on;
@@ -123,11 +131,15 @@ set(fig,'defaultAxesColorOrder',co)
 tau = 0.777660157519;
 end_t = 0.9;
 
+%##########################################################################
+% Panel 2
+%##########################################################################
 iax = 2; % Or whichever
-subaxis(3, 1, iax, 'SpacingVertical',0.0,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0,'PaddingBottom',0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0,'MarginBottom',0.0);
-% subplot(3,1,2)
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
+
 % plot conc
 % prod_1
 p1 = semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
@@ -167,11 +179,15 @@ leg_h = legend([p1; p2; p3; p4; p5; p6; p7],'OQ^{\prime}OOH_1','nROO','O_2QOOH_1
 set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 
+%##########################################################################
+% Panel 3
+%##########################################################################
 iax = 3; % Or whichever
-subaxis(3, 1, iax, 'SpacingVertical',0.06,'SpacingHorizontal',0, ...
-    'PaddingLeft',0,'PaddingRight',0,'PaddingTop',0,'PaddingBottom',0.0, ...
-    'MarginLeft',.14,'MarginRight',.13,'MarginTop',0,'MarginBottom',0.06);
-% subplot(3,1,3);
+x0=xpos(1); y0=ypos((length(ypos)/2 - iax)*2 + 1); spanx=xpos(2) - xpos(1); spany=ypos((length(ypos)/2 - iax)*2 + 1 + 1) - ypos((length(ypos)/2 - iax)*2 + 1);
+%% [left bottom width height]
+pos = [x0 y0 spanx spany];
+subplot('Position',pos);
+
 % https://www.mathworks.com/help/matlab/graphics_transition/why-are-plot-lines-different-colors.html
 % https://www.mathworks.com/help/matlab/creating_plots/customize-graph-with-two-y-axes.html
 co = [    0    0.4470    0.7410 % 1th plot
@@ -227,9 +243,9 @@ set(leg_h, 'Location', 'NorthWest')
 x0=10;
 y0=10;
 width=400;
-height=900;
+height=850;
 set(gcf,'units','points','position',[x0,y0,width,height]);
 
 %% save to file
 figname = strcat('traj_3_in_1', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
