@@ -26,22 +26,22 @@ end_t = '0.9';
 % title_p = ['\color{red} O_2QOOH_1\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}OOH_1', ... 
 %     '\color{black}\rightarrow(\color{blue}OH\color{black}+)\color{red}OQ^{\prime}O_1'];
 
-cycle = 'p3';
-path_idx = [3];
-delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557];
-y_label_str = '\chi_3';
-title_p = ['\color{red} O_2QOOH_1\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}OOH_1', ...
-    '\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}O_1' char(10), ...
-    '\color{black}\rightarrow(CH_2O+)\color{red}vinoxy\color{black}', ...
-    '', '[+O_2]\rightarrowCH_2O+CO+\color{blue}OH'];
+% cycle = 'p3';
+% path_idx = [3];
+% delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557];
+% y_label_str = '\chi_3';
+% title_p = ['\color{red} O_2QOOH_1\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}OOH_1', ...
+%     '\color{black}\rightarrow(OH+)\color{red}OQ^{\prime}O_1' char(10), ...
+%     '\color{black}\rightarrow(CH_2O+)\color{red}vinoxy\color{black}', ...
+%     '', '[+O_2]\rightarrowCH_2O+CO+\color{blue}OH'];
 
 
-% cycle = 'primary_cycle';
-% path_idx = [1, 2, 3];
-% % delta_t_vec = [1e-5, 5e-5, 1e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 1e-2, 1.5e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1, 5e-1];
+cycle = 'primary_cycle';
+path_idx = [1, 2, 3];
+delta_t_vec = [0.009644315614583557, 0.09644315614583557];
 % delta_t_vec = [1e-5, 1e-3, 1e-2, 2.5e-2, 5e-2, 1e-1, 2.5e-1];
-% y_label_str = '\chi';
-% title_p = ['primary cycle'];
+y_label_str = '\chi';
+title_p = ['primary cycle'];
 
 % cycle = 'others';
 
