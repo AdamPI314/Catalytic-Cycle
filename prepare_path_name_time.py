@@ -62,7 +62,7 @@ def prepare_pathway_name(
         mask3 = d_f['pathway'].str.len() > 0
         path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'])
 
-        if spe_production_oriented is False:
+        if spe_production_oriented is False or spe_idx is None:
             # save
             np.savetxt(f_n_pn, path_list[0:top_n], fmt="%s")
             return len(path_list[0:top_n])
