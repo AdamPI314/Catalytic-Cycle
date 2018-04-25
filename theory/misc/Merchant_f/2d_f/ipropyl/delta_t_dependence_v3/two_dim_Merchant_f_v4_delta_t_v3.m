@@ -115,7 +115,7 @@ path_idx = linspace(1, 100, 100);
 delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.1285908748611141, 0.3214771871527852, 0.6429543743055705];
 % delta_t_vec = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557];
 y_label_str = '$\sum_{i=1}^{100}{\chi_{i}^{iR}}$';
-title_p = ['iR'];
+title_p = ['$iR$'];
 
 % cycle = 'primary_cycle';
 % path_idx = [1, 2, 3];
@@ -130,8 +130,8 @@ n_path = 100;
 
 % fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
 % fn_2d_f = fullfile(file_dir, ['Merchant_f_2d', '.csv']);
-% fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S60_HA4_0.9_100000000_10000_3', '.csv']);
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100', '.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100', '.csv']);
+% fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100', '.csv']);
 
 delimiter = ',';
 formatStr = '%f%f%f';
@@ -221,11 +221,8 @@ ylabel(y_label_str, 'Interpreter','latex', 'FontSize', 20);
 % xlim([0, tau*str2double(end_t)]);
 xlim([0, max(X_tmp1 * tau)]);
 % ylim([0, tau*str2double(end_t)]);
-if length(path_idx) == 3
-    ylim([0.45, 2.6]);
-end
 
-title(title_p);
+title(title_p, 'Interpreter', 'Latex', 'FontSize', 20);
 grid on;
 
 %%  legend

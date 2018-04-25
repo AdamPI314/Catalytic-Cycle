@@ -10,7 +10,8 @@ tau = 0.777660157519;
 end_t = '0.9';
 
 %% for contour plot
-fn_2d_f = fullfile(file_dir, '..', ['Merchant_f_2d_S61_C_0.9_100000000_10000_100.csv']);
+% fn_2d_f1 = fullfile(file_dir, '..', ['Merchant_f_2d_S61_C_0.9_100000000_10000_100.csv']);
+fn_2d_f1 = fullfile(file_dir, '..', ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100.csv']);
 
 n_path1 = 100;
 delimiter1 = ',';
@@ -21,12 +22,12 @@ end
 formatStr1 = strcat(formatStr1, '%[^\n\r]');
 formatSpec1 = char(formatStr1);
 % Open the text file.
-fileID1 = fopen(fn_2d_f,'r');
+fileID1 = fopen(fn_2d_f1,'r');
 dataArray1 = textscan(fileID1, formatSpec1, 'Delimiter', delimiter1, 'EmptyValue', NaN,  'ReturnOnError', false);
 % Close the text file.
 fclose(fileID1);
 f_mat1 = [dataArray1{1:end-1}];
-t01 = f_mat1(:, 1);
+t01 = f_mat1(:, 1); 
 tf1 = f_mat1(:, 2);
 % convert time to seconds
 for i = 1:length(t01)
@@ -57,7 +58,8 @@ for i = 1:length(X1)
 end
 
 %% read pathway data
-fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100', '.csv']);
+% fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100', '.csv']);
+fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100', '.csv']);
 
 n_path2 = 100;
 delimiter2 = ',';
