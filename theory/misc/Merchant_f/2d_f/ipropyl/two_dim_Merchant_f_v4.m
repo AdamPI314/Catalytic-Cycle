@@ -13,7 +13,8 @@ cycle = 'all';
 n_path = 100;
 
 % fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S', spe_idx, '_', atom_f, '_', end_t ,'.csv']);
-fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100.csv']);
+% fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100.csv']);
+fn_2d_f = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100.csv']);
 
 delimiter = ',';
 formatStr = '%f%f%f';
