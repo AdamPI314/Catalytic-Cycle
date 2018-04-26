@@ -3,15 +3,15 @@ file_dir = fullfile(fileparts(mfilename('fullpath')));
 
 % markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
-spe_idx = '61';
+spe_idx = '60';
 atom_f = 'HA4';
-spe_name = 'iR';
+spe_name = 'nR';
 tau = 0.777660157519;
 end_t = '0.9';
 
 %% for contour plot
 % fn_2d_f1 = fullfile(file_dir, '..', ['Merchant_f_2d_S61_C_0.9_100000000_10000_100.csv']);
-fn_2d_f1 = fullfile(file_dir, '..', ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100.csv']);
+fn_2d_f1 = fullfile(file_dir, '..', ['Merchant_f_2d_S60_HA4_0.9_100000000_10000_100.csv']);
 
 n_path1 = 100;
 delimiter1 = ',';
@@ -36,7 +36,7 @@ for i = 1:length(t01)
 end
 % path index
 offset1 = 2;
-path_idx1 = linspace(1, n_path1, n_path1-1+1);
+path_idx1 = linspace(1+3, n_path1, n_path1-1+1-3);
 for i = 1:length(path_idx1)
     if i==1
         f_value1 = f_mat1(:, offset1 + path_idx1(i));
@@ -59,7 +59,7 @@ end
 
 %% read pathway data
 % fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S61_C_0.9_100000000_10000_100', '.csv']);
-fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S61_HA4_0.9_100000000_10000_100', '.csv']);
+fn_2d_f2 = fullfile(file_dir, ['Merchant_f_2d_S60_HA4_0.9_100000000_10000_100', '.csv']);
 
 n_path2 = 100;
 delimiter2 = ',';
@@ -79,9 +79,9 @@ tf2 = f_mat2(:, 2);
 tf2 = tf2 - t02;
 offset2 = 2;
 % path index
-path_idx2 = linspace(1, n_path2, n_path2-1+1);
+path_idx2 = linspace(1+3, n_path2, n_path2-1+1-3);
 delta_t_vec2 = [1.2859087486111409e-06, 0.001285908748611141, 0.01285908748611141, 0.1285908748611141, 0.3214771871527852, 0.6429543743055705];
-y_label_str2 = '$\sum_{i=1}^{100}{\chi_{i}^{iR}}$';
+y_label_str2 = '$\sum_{i=4}^{100}{\chi_{i}^{nR}}$';
 title_p2 = '$iR$';
 %% interpolation
 for i = 1:length(path_idx2)
@@ -188,7 +188,7 @@ xlim([0, max(X_tmp2 * tau)]);
 grid on;
 a_x2 = gca;
 t_x2 = a_x2.XLim(1) + 0.325*(a_x2.XLim(2) - a_x2.XLim(1));
-t_y2 = a_x2.YLim(1) + 0.550*(a_x2.YLim(2) - a_x2.YLim(1));
+t_y2 = a_x2.YLim(1) + 0.625*(a_x2.YLim(2) - a_x2.YLim(1));
 text(t_x2, t_y2, [spe_name, '@ $t$' char(10) 'stop path@ t+$\delta t$'], 'Interpreter','latex', 'FontSize', 20);
 
 %%  legend
@@ -205,7 +205,7 @@ height=650;
 set(gcf,'units','points','position',[x0,y0,width,height]);
 
 %% save to file
-figname = strcat('2d_Merchant_f_', end_t, '_S', spe_idx, '_v4_delta_t_2_in_1_v2.png');
+figname = strcat('2d_Merchant_f_spur_cycle_', end_t, '_S', spe_idx, '_v4_delta_t_2_in_1_v2.png');
 print(fig, fullfile(file_dir, figname), '-r200', '-dpng');
 
 
