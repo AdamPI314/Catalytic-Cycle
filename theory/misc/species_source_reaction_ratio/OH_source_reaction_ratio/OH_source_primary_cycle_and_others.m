@@ -1,6 +1,10 @@
 %% global settings
 spe_name = 'OH';
 
+%% for plot
+markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
+colors = lines(3);
+
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 pic_dir = fullfile(fileparts(mfilename('fullpath')));
@@ -118,15 +122,23 @@ ylim([0.05, 1.0]);
 %% temp
 yyaxis right
 delta_n = 1000;
-plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
-pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
+marker_idx = 2;
+plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r', ...
+    'HandleVisibility','off'); hold on;
+scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), ...
+    'MarkerEdgeColor', 'r', 'marker', markers{1, mod(marker_idx-1, length(markers))+ 1}, ...
+    'HandleVisibility','off'); hold on;
+plot(nan, nan, 'LineWidth', 2, 'LineStyle', '-', ...
+    'color', 'r', 'marker', markers{1, mod(marker_idx-1, length(markers))+ 1});
+hold on;
+
 ylabel('T (K)', 'FontSize', 20);
 % set(gca, 'ytick', []);
 
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_h = legend([h1;h2], 'primary cycle', 'others');
+leg_h = legend('primary cycle', 'others', 'T');
 set(leg_h, 'FontSize', 12, 'Box', 'off');
 % set(leg_h, 'Location', 'South');
 

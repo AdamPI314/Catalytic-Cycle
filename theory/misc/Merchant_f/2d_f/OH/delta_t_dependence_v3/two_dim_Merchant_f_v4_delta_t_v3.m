@@ -225,7 +225,7 @@ h_beta = plot(time_vec(start_idx:end), 3*alpha(start_idx:end) .* beta(start_idx:
 % scatter(time_vec(start_idx:delta_n:end), 3*alpha(start_idx:delta_n:end) .* beta(start_idx:delta_n:end),...
 %         'LineWidth', 2, 'MarkerEdgeColor', colors(idx, :), 'marker', markers{1, mod(idx-1, length(markers))+ 1}, ...
 %         'HandleVisibility','off');
-% plot(nan, nan, 'LineWidth', 2, 'color', colors(idx, :), 'marker', markers{1, mod(idx-1, length(markers))+ 1});
+% plot(nan, nan, 'LineWidth', 2, 'color', colors(idx, :), 'LineStyle', '-', 'marker', markers{1, mod(idx-1, length(markers))+ 1});
 % hold on;
 
 
