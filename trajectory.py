@@ -298,7 +298,8 @@ def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5, n_poi
     spe_drc = np.zeros(len(time))
     for idx, val in enumerate(time):
         # use value at time point 1, avoid 0 value
-        spe_drc[idx] = interpolation.interp1d(time_o[1::], drc[1::, spe_idx], val)
+        spe_drc[idx] = interpolation.interp1d(
+            time_o[1::], drc[1::, spe_idx], val)
 
     # integral of k
     spe_drc_int = np.zeros(len(spe_drc))
@@ -345,9 +346,9 @@ if __name__ == '__main__':
     #     DATA_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
     # convert_concentration_to_path_prob(
     #     DATA_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)
-    # get_time_at_temperature_differential_maximum(DATA_DIR)
-    cal_passage_time_distribution(
-        DATA_DIR, 62, G_S['tau'], 0.25718313951098054)
-    cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 0.5)
-    cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 0.9)
-    cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 1.0)
+    get_time_at_temperature_differential_maximum(DATA_DIR)
+    # cal_passage_time_distribution(
+    #     DATA_DIR, 62, G_S['tau'], 0.25718313951098054)
+    # cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 0.5)
+    # cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 0.9)
+    # cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 1.0)
