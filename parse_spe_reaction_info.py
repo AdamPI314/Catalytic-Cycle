@@ -291,14 +291,31 @@ def net_sink_reaction_of_species(data_dir, spe_idx):
     return sorted(reaction_list)
 
 
+def get_all_species_names_and_reaction_names(data_dir):
+    """
+    print all species names and reaction names
+    """
+    spe_idx_name, _ = parse_spe_info(data_dir)
+    spe_name = []
+    for _, key in enumerate(spe_idx_name):
+        spe_name.append(spe_idx_name[key])
+    print(spe_name)
+    _, reaction_idx_name = parse_reaction_and_its_index(data_dir)
+    reaction_name = []
+    for _, key in enumerate(reaction_idx_name):
+        reaction_name.append(reaction_idx_name[key])
+    print(reaction_name)
+    return
+
+
 if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(DATA_DIR)
-
+    get_all_species_names_and_reaction_names(DATA_DIR)
     # parse_reaction_net_product(DATA_DIR)
-    net_sink_reaction_of_species(DATA_DIR, 10)
-    net_source_reaction_of_species(DATA_DIR, 10)
+    # net_sink_reaction_of_species(DATA_DIR, 10)
+    # net_source_reaction_of_species(DATA_DIR, 10)
     # net_source_reaction_of_species(DATA_DIR, 12)
     # net_source_reaction_of_species(DATA_DIR, 27)
     # net_source_reaction_of_species(DATA_DIR, 25)
@@ -311,8 +328,8 @@ if __name__ == '__main__':
     # net_sink_reaction_of_species(DATA_DIR, 39)
     # net_sink_reaction_of_species(DATA_DIR, 27)
     # net_sink_reaction_of_species(DATA_DIR, 50)
-    net_sink_reaction_of_species(DATA_DIR, 78)
-    net_source_reaction_of_species(DATA_DIR, 78)
+    # net_sink_reaction_of_species(DATA_DIR, 78)
+    # net_source_reaction_of_species(DATA_DIR, 78)
     # net_sink_reaction_of_species(DATA_DIR, 80)
     # net_sink_reaction_of_species(DATA_DIR, 62)
     # net_sink_reaction_of_species(DATA_DIR, 10)
