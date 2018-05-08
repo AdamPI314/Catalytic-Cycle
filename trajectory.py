@@ -8,6 +8,7 @@ from collections import defaultdict, OrderedDict
 import numpy as np
 from copy import deepcopy
 from scipy.interpolate import CubicSpline
+from scipy.interpolate import interp1d
 import scipy.optimize as opt
 import parse_spe_reaction_info as psri
 import interpolation
@@ -271,6 +272,25 @@ def get_time_at_temperature_differential_maximum(data_dir, l_b=0.7, h_b=0.8):
         print("not converges\t")
 
 
+def get_time_at_a_temperature(data_dir, target=1800):
+    """
+    return time at which the first order differential of temperature is maximum
+    l_b: lower bound
+    h_b: higher bound
+    """
+    print(data_dir)
+    f_n_time = os.path.join(data_dir, "output", "time_dlsode_M.csv")
+    f_n_temp = os.path.join(data_dir, "output", "temperature_dlsode_M.csv")
+
+    time = np.loadtxt(f_n_time, dtype=float, delimiter=',')
+    temp = np.loadtxt(f_n_temp, dtype=float, delimiter=',')
+    print(np.shape(time))
+
+    ans = np.interp(target, temp, time)
+    print(ans)
+    return ans
+
+
 def cal_passage_time_distribution(data_dir, spe_idx=62, tau=10.0, t_f=0.5, n_point=7000):
     """
     calculate passage time distribution,
@@ -346,7 +366,8 @@ if __name__ == '__main__':
     #     DATA_DIR, tag="M", end_t=0.9, exclude_names=None, renormalization=True)
     # convert_concentration_to_path_prob(
     #     DATA_DIR, atom_followed="C", spe_conc=[1.0, 2.0], renormalization=True)
-    get_time_at_temperature_differential_maximum(DATA_DIR)
+    # get_time_at_temperature_differential_maximum(DATA_DIR)
+    get_time_at_a_temperature(DATA_DIR)
     # cal_passage_time_distribution(
     #     DATA_DIR, 62, G_S['tau'], 0.25718313951098054)
     # cal_passage_time_distribution(DATA_DIR, 62, G_S['tau'], 0.5)
