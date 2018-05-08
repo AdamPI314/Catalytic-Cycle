@@ -2,13 +2,13 @@
 fig_prefix = 'trajectory_low_T_550K_cv';
 tau = 58.903433322215285;
 end_t = 0.99;
-% topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
+topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
 % topN_array = linspace(5, 14, 10); ylim_range = [10^-14, 10^-6.5];
 % topN_array = linspace(15, 24, 10); ylim_range = [10^-15.5, 10^-8];
 % topN_array = linspace(25, 34, 10); ylim_range = [10^-17, 10^-9];
 % topN_array = linspace(35, 44, 10); ylim_range = [10^-20, 10^-10];
 % topN_array = linspace(45, 54, 10); ylim_range = [10^-20, 10^-12];
-topN_array = linspace(55, 64, 10); ylim_range = [10^-22, 10^-13];
+% topN_array = linspace(55, 64, 10); ylim_range = [10^-22, 10^-13];
 N = length(topN_array);
 
 % species renaming
@@ -108,7 +108,7 @@ for idx=1:N
     legend_name{idx, 1} = spe_name_latex{1, spe_idx};
     
     semilogy(time_vec, conc_mat(:, spe_idx), ...
-        'LineWidth', 2, ...
+        'LineWidth', 1, ...
         'color', colors(mod(color_idx-1, length(colors))+ 1, :), ...
         'HandleVisibility','off'); hold on;
     scatter(time_vec(1:delta_n:end), conc_mat(1:delta_n:end, spe_idx), ...

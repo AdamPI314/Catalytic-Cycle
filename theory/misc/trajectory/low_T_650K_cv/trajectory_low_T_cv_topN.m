@@ -1,13 +1,14 @@
 %% global settings
-fig_prefix = 'trajectory_low_T_600K_cv';
-tau = 3.924696409359822;
+fig_prefix = 'trajectory_low_T_650K_cv';
+tau = 0.777660157519;
 end_t = 0.95;
 % topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
-% topN_array = linspace(5, 14, 10); ylim_range = [10^-14, 10^-6];
-% topN_array = linspace(15, 24, 10); ylim_range = [10^-15.5, 10^-8];
-% topN_array = linspace(25, 34, 10); ylim_range = [10^-17, 10^-9];
-% topN_array = linspace(35, 44, 10); ylim_range = [10^-20, 10^-10];
-topN_array = linspace(45, 54, 10); ylim_range = [10^-20, 10^-12];
+% topN_array = linspace(5, 14, 10); ylim_range = [10^-14, 10^-5.5];
+% topN_array = linspace(15, 24, 10); ylim_range = [10^-15.5, 10^-7.25];
+% topN_array = linspace(25, 34, 10); ylim_range = [10^-17, 10^-7.25];
+% topN_array = linspace(35, 44, 10); ylim_range = [10^-20, 10^-8];
+% topN_array = linspace(45, 54, 10); ylim_range = [10^-20, 10^-9];
+topN_array = linspace(55, 64, 10); ylim_range = [10^-20, 10^-10];
 N = length(topN_array);
 
 % species renaming
@@ -91,7 +92,7 @@ co = [
 set(fig,'defaultAxesColorOrder',co)
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
-sort_axis = round(0.5 * length(time_vec));
+sort_axis = round(0.42 * length(time_vec));
 [B,I] = sort(conc_mat(sort_axis, :),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], [10^-50, 10^1], ...
     '--k', 'HandleVisibility','off');
@@ -100,7 +101,7 @@ hold on;
 % graph handler
 color_idx = 1;
 marker_idx = 1;
-delta_n = 3500;
+delta_n = 800;
 legend_name = cell(N,1);
 for idx=1:N
     spe_idx = I(topN_array(idx));
