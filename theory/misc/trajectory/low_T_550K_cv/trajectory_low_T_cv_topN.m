@@ -1,7 +1,7 @@
 %% global settings
 fig_prefix = 'trajectory_low_T_550K_cv';
-tau = 58.903433322215285;
-end_t = 0.99;
+tau = 58.90343239036802;
+end_t = 1.0;
 topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
 % topN_array = linspace(5, 14, 10); ylim_range = [10^-14, 10^-6.5];
 % topN_array = linspace(15, 24, 10); ylim_range = [10^-15.5, 10^-8];

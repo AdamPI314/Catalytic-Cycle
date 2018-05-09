@@ -1,0 +1,10 @@
+"max_time": 1899.74496652704784
+"critical_time": 1899.74023628405075
+"tau": 1899.7449542644167
+"dt": 2.5e-08
+"atol": 1e-19
+"rtol": 1e-16
+"deltaN1": 10000000
+"deltaN2": 100
+"init_temperature": 500
+"end_temperature": 2800

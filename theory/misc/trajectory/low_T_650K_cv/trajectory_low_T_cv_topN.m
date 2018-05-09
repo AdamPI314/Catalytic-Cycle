@@ -1,14 +1,14 @@
 %% global settings
 fig_prefix = 'trajectory_low_T_650K_cv';
 tau = 0.777660157519;
-end_t = 0.95;
-% topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
+end_t = 1.0;
+topN_array = linspace(1, 4, 4); ylim_range = [10^-6.5, 10^-3.5];
 % topN_array = linspace(5, 14, 10); ylim_range = [10^-14, 10^-5.5];
 % topN_array = linspace(15, 24, 10); ylim_range = [10^-15.5, 10^-7.25];
 % topN_array = linspace(25, 34, 10); ylim_range = [10^-17, 10^-7.25];
 % topN_array = linspace(35, 44, 10); ylim_range = [10^-20, 10^-8];
 % topN_array = linspace(45, 54, 10); ylim_range = [10^-20, 10^-9];
-topN_array = linspace(55, 64, 10); ylim_range = [10^-20, 10^-10];
+% topN_array = linspace(55, 64, 10); ylim_range = [10^-20, 10^-10];
 N = length(topN_array);
 
 % species renaming
