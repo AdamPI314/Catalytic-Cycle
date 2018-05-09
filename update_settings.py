@@ -23,6 +23,10 @@ def update_basic_setting(data_dir, g_s):
     setting = rwc.read_configuration(
         os.path.join(data_dir, 'input', 'setting.json'))
 
+    setting['time']['max_time'] = g_s['traj_max_t']
+    setting['time']['critical_time'] = g_s['traj_critical_t']
+    setting['time']['tau'] = g_s['tau']
+
     setting['system']['condition'] = g_s['system']['condition']
     setting['system']['initializer'] = g_s['system']['initializer']
     setting['network']['merge_chatterings'] = g_s['network']['merge_chatterings']
