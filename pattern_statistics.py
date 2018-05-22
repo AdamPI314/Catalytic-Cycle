@@ -174,6 +174,9 @@ def reaction_count(data_dir, top_n=50, norm=False):
         .strip())
     # print(d_f['reaction'])
     f_n_out2 = os.path.join(data_dir, "output", "reaction_count_name.csv")
+    # replace [] with ""
+    d_f['reaction'].replace("[", "")
+    d_f['reaction'].replace("]", "")
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
@@ -601,7 +604,7 @@ if __name__ == "__main__":
     G_S = global_settings.get_setting(DATA_DIR)
 
     # species_count(DATA_DIR)
-    reaction_count(DATA_DIR)
+    reaction_count(DATA_DIR, top_n=100, norm=True)
     # initiation_reaction_count(DATA_DIR)
     # species_cycle(DATA_DIR)
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
