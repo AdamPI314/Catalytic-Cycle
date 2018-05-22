@@ -601,7 +601,7 @@ if __name__ == "__main__":
     G_S = global_settings.get_setting(DATA_DIR)
 
     # species_count(DATA_DIR)
-    # reaction_count(DATA_DIR)
+    reaction_count(DATA_DIR)
     # initiation_reaction_count(DATA_DIR)
     # species_cycle(DATA_DIR)
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
@@ -614,11 +614,11 @@ if __name__ == "__main__":
     #     path_length_statistics(
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], end_spe=es)
 
-    parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
-                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=False,
-                                    s_consumption=False, s_production=True)
+    # parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #                                 axis=0, path_branching_factor=False,
+    #                                 s_consumption=False, s_production=True)
 
     # calculate_Merchant_alpha_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],
