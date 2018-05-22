@@ -175,8 +175,7 @@ def reaction_count(data_dir, top_n=50, norm=False):
     # print(d_f['reaction'])
     f_n_out2 = os.path.join(data_dir, "output", "reaction_count_name.csv")
     # replace [] with ""
-    d_f['reaction'].apply(lambda x: x.replace("[", ""))
-    d_f['reaction'].apply(lambda x: x.replace("]", ""))
+    d_f['reaction'].apply(lambda x: x[1:-1])
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
