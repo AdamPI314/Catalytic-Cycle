@@ -41,11 +41,11 @@ if __name__ == '__main__':
     # quick clean up, remove a few files
     j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
 
-    # run monte carlo trajectory
-    j_b.run_mc_trajectory(
-        SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
-        species_path=G_S['species_path'])
+    # # run monte carlo trajectory
+    # j_b.run_mc_trajectory(
+    #     SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+    #     init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
+    #     species_path=G_S['species_path'])
 
     # # evaluate path integral-->pathway probability, multiple use
     # j_b.evaluate_pathway_probability(
