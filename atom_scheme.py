@@ -135,7 +135,7 @@ if __name__ == '__main__':
     # spe_composition_2_atom_scheme(DATA_DIR)
     # spe_information_2_atom_scheme(DATA_DIR)
     # atom_scheme_set_atom_number(DATA_DIR, followed_atom="HA3", number=1.0)
-    update_a_atom_entry(DATA_DIR, source_atoms=["C", "O", "H"], entry_name="HA4", number=1.0)
+    update_a_atom_entry(DATA_DIR, source_atoms=["C", "O", "H"], entry_name="X1", number=1.0)
 
     END_TIME = time.time()
 
