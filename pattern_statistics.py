@@ -174,6 +174,9 @@ def reaction_count(data_dir, top_n=50, norm=False):
         .strip())
     # print(d_f['reaction'])
     f_n_out2 = os.path.join(data_dir, "output", "reaction_count_name.csv")
+    # replace [] with ""
+    d_f['reaction'] = d_f['reaction'].apply(lambda x: x.replace("[", ""))
+    d_f['reaction'] = d_f['reaction'].apply(lambda x: x.replace("]", ""))
     d_f[0:top_n].to_csv(f_n_out2, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
 
@@ -601,7 +604,7 @@ if __name__ == "__main__":
     G_S = global_settings.get_setting(DATA_DIR)
 
     # species_count(DATA_DIR)
-    # reaction_count(DATA_DIR)
+    reaction_count(DATA_DIR, top_n=100, norm=True)
     # initiation_reaction_count(DATA_DIR)
     # species_cycle(DATA_DIR)
     # print(parse_species_production_path("S114R15S9R15S9", 'S9'))
@@ -614,11 +617,11 @@ if __name__ == "__main__":
     #     path_length_statistics(
     #         DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'], end_spe=es)
 
-    parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
-                                    init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
-                                    end_t=G_S['end_t'], species_path=G_S['species_path'],
-                                    axis=0, path_branching_factor=False,
-                                    s_consumption=False, s_production=True)
+    # parse_spe_production_along_path(DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
+    #                                 init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
+    #                                 end_t=G_S['end_t'], species_path=G_S['species_path'],
+    #                                 axis=0, path_branching_factor=False,
+    #                                 s_consumption=False, s_production=True)
 
     # calculate_Merchant_alpha_value(DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'],
     #                                end_t=G_S['end_t'], species_path=G_S['species_path'],

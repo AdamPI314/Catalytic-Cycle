@@ -2,6 +2,7 @@ plot_exact_ssa_ratio = true;
 
 %% Current file directory
 file_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
+pic_dir = fullfile(fileparts(mfilename('fullpath')));
 
 %% import time
 fn_time = fullfile(file_dir, 'output', 'time_dlsode_M.csv');
@@ -166,7 +167,7 @@ set(leg_h, 'Location', 'North')
 
 %% save to file
 figname = strcat('species_conc_ratio_k_primary_ratio_SSA_linear_algebra', '.png');
-print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
 
 
 %% A new figure, for the ratio of exact solution and SSA solution
@@ -219,5 +220,5 @@ if plot_exact_ssa_ratio == true
     
     %% save to file
     figname = strcat('ratio_exact_over_SSA', '.png');
-    print(fig, fullfile(file_dir, 'output', figname), '-r200', '-dpng');
+    print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
 end

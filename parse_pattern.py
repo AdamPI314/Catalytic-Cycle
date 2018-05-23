@@ -10,6 +10,15 @@ import parse_spe_reaction_info as psri
 import atom_scheme as asch
 
 
+def path_contain_regex(path, path_reg=None):
+    """
+    test if a path string contains regular expression 
+    """
+    if path_reg is None:
+        return True
+    return bool(re.search(path_reg, path))
+
+
 def parse_path_length(path):
     """
     parse path length
@@ -123,11 +132,11 @@ def parse_species_cycle(path):
     return cycle_map
 
 
-def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r_p=None, spe_idx=10, s_p_r_c=None):
+def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r=None, net_p=None, spe_idx=10, s_p_r_c=None, n_threshold=0):
     """
     return sub-pathway that give rise to a species, produces a species along a pathway
     """
-    if net_r_p is None:
+    if net_r is None or net_p is None:
         return []
 
     # get rid of R-1000003S90, don't need it here
@@ -143,14 +152,17 @@ def get_spe_production_sub_path(pathname="S60R-100001S90R1162S94", net_r_p=None,
         # print(m.start(), m.end(), m.group(), m.group(1))
         r_idx = m.group(1)
         reaction_str += ("R" + str(r_idx))
-        if str(r_idx) in net_r_p:
-            # print(net_r_p[r_idx])
-            if str(spe_idx) in net_r_p[str(r_idx)]:
-                # print([net_r_p[r_idx][str(spe_idx)]])
-                sub_path.append(str(pathname[0:m.end()]))
+        path_tmp = str(pathname[0:m.end()])
+
+        # gotta to make sure the last reaction creates at least one OH
+        if str(spe_idx) in net_p[str(r_idx)]:
+            # the whole sub-pathway create net number of OH more than threshold
+            if parse_net_species_along_path_using_reaction(
+                    path_tmp, net_r=net_r, net_p=net_p, spe_idx=spe_idx, s_p_r_c=s_p_r_c) >= n_threshold:
+                sub_path.append(path_tmp)
                 sub_path_reaction.append(reaction_str)
 
-    print(sub_path, sub_path_reaction)
+    # print(sub_path, sub_path_reaction)
     return sub_path, sub_path_reaction
 
 
@@ -195,6 +207,53 @@ def parse_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", n
             if str(spe_idx) in net_r_p[str(r_idx)]:
                 # print([net_r_p[r_idx][str(spe_idx)]])
                 number += int(net_r_p[r_idx][str(spe_idx)])
+
+    return number
+
+
+def parse_net_species_along_path_using_reaction(pathname="S60R-100001S90R1162S94", net_r=None, net_p=None, spe_idx=10, s_p_r_c=None):
+    """
+    calculate net number of species being produced along a path
+    net_r is net_reactant
+    net_p is net_product
+    notice OH might be not directly shown on a path, but can be side products of reactions from path
+    """
+    if net_r is None or net_p is None:
+        return 0
+
+    number = 0
+
+    # chattering might produce desired spe_idx as well
+    # match S1R-1000S2 combination
+    m_srs = re.findall(r"(S\d+R-\d+S\d+)", pathname)
+    for _, s_r_s in enumerate(m_srs):
+        # print(s_r_s)
+        s_1 = next(iter(re.findall(r"S(\d+)R-\d+S\d+", s_r_s)), 0)
+        s_2 = next(iter(re.findall(r"S\d+R-\d+S(\d+)", s_r_s)), 0)
+
+        if s_1 != s_2 and (s_1, s_2) in s_p_r_c:
+            for pair_idx in s_p_r_c[(s_1, s_2)]:
+                r_idx_c = s_p_r_c[(s_1, s_2)][pair_idx]['r_idx']
+                # print(r_idx_c)
+                if str(spe_idx) in net_r[r_idx_c]:
+                    number -= int(net_r[r_idx_c][str(spe_idx)])
+                if str(spe_idx) in net_p[r_idx_c]:
+                    number += int(net_p[r_idx_c][str(spe_idx)])
+
+    # get rid of R-1000003S90, don't need it here
+    pathname = re.sub(r"R-\d+S\d+", r'', pathname)
+
+    # parse pathway
+    matched_reaction = re.findall(r"R(\d+)", pathname)
+
+    for _, r_idx in enumerate(matched_reaction):
+        # print(r_idx)
+        if str(r_idx) in net_r:
+            if str(spe_idx) in net_r[str(r_idx)]:
+                number -= int(net_r[r_idx][str(spe_idx)])
+        if str(r_idx) in net_p:
+            if str(spe_idx) in net_p[str(r_idx)]:
+                number += int(net_p[r_idx][str(spe_idx)])
 
     return number
 
@@ -278,11 +337,11 @@ if __name__ == "__main__":
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     # print(parse_path_length("S10"))
-    NET_REACTANT = psri.parse_reaction_net_reactant(DATA_DIR)
-    NET_PRODUCT = psri.parse_reaction_net_product(DATA_DIR)
-    ATOM_SCHEME = asch.get_atom_scheme(DATA_DIR)
-    S_IDX_NAME, _ = psri.parse_spe_info(DATA_DIR)
-    S_P_R_C = psri.parse_species_pair_reaction(DATA_DIR)
+    # NET_REACTANT = psri.parse_reaction_net_reactant(DATA_DIR)
+    # NET_PRODUCT = psri.parse_reaction_net_product(DATA_DIR)
+    # ATOM_SCHEME = asch.get_atom_scheme(DATA_DIR)
+    # S_IDX_NAME, _ = psri.parse_spe_info(DATA_DIR)
+    # S_P_R_C = psri.parse_species_pair_reaction(DATA_DIR)
     # parse_spe_production_along_path(net_product=NET_PRODUCT)
 
     # calculate_reaction_branching_number(
@@ -295,5 +354,8 @@ if __name__ == "__main__":
 
     # parse_species_along_path_using_reaction(
     #     pathname="S90R1162S94R-100006S101R1222S46R90S14", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
-    get_spe_production_sub_path(
-        pathname="S90R1162S94R-100006S101R1222S46R90S14R90S17R90S45", net_r_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+
+    # get_spe_production_sub_path(
+    #     pathname="S90R1162S94R-100006S101R1222S46R90S14R90S17R90S45", net_p=NET_REACTANT, spe_idx=10, s_p_r_c=S_P_R_C)
+
+    print(path_contain_regex('S60R1162S94', 'S(39|50)'))

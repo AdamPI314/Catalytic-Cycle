@@ -5,6 +5,7 @@ Job drivers
 import subprocess
 import os
 import sys
+import numpy as np
 import update_settings as us
 import parse_spe_reaction_info as psri
 import prepare_path_name_time as ppnt
@@ -14,6 +15,38 @@ import naming
 import trajectory
 import make_figures as mf
 import global_settings
+
+
+def quick_clean_up(data_dir, flag="", species_path=False):
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    if flag == "":
+        f_n_pn = os.path.join(data_dir, "output",
+                              prefix + "pathway_name_candidate.csv")
+    else:
+        f_n_pn = os.path.join(data_dir, "output",
+                              prefix + "pathway_name_candidate_" + str(flag) + ".csv")
+
+    try:
+        os.remove(f_n_pn)
+    except OSError:
+        pass
+
+    if flag == "":
+        f_n_pp = os.path.join(data_dir, "output",
+                              prefix + "pathway_prob.csv")
+    else:
+        f_n_pp = os.path.join(data_dir, "output",
+                              prefix + "pathway_prob_" + str(flag) + ".csv")
+
+    try:
+        os.remove(f_n_pp)
+    except OSError:
+        pass
+
+    return
 
 
 def update_terminal_species_setting(data_dir, terminal_spe=None):
@@ -199,8 +232,10 @@ def evaluate_pathway_probability(
         src_dir, data_dir, top_n=5, num_t=1, flag="", n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
         tau=10.0, begin_t=0.0, end_t=1.0, top_n_s=10,
-        spe_oriented=True, end_s_idx=None, species_path=False, path_reg=None,
-        spe_idx=None, spe_production_oriented=False):
+        spe_oriented=True, end_s_idx=None, species_path=False,
+        path_reg=None, no_path_reg=None,
+        spe_idx=None, spe_production_oriented=False,
+        fixed_t0_or_tf=None, same_path_list=False):
     """
     evaluate pathway probability
     top_n_s is top N species number
@@ -216,11 +251,13 @@ def evaluate_pathway_probability(
 
         n_path = ppnt.prepare_pathway_name(
             data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path,
-            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented)
+            path_reg=path_reg, no_path_reg=no_path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented,
+            same_path_list=same_path_list)
 
         ppnt.prepare_pathway_time(
             data_dir, top_n=n_path, num=num_t, flag=flag,
-            begin_t=begin_t, end_t=end_t, species_path=species_path)
+            begin_t=begin_t, end_t=end_t, species_path=species_path,
+            fixed_t0_or_tf=fixed_t0_or_tf)
 
         us.update_eval_path_integral(
             data_dir, top_n=n_path, n_traj=n_traj,
@@ -229,15 +266,78 @@ def evaluate_pathway_probability(
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path,
-            path_reg=path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented)
+            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path,
+            path_reg=path_reg, no_path_reg=no_path_reg, spe_idx=spe_idx, spe_production_oriented=spe_production_oriented,
+            same_path_list=same_path_list)
         ppnt.prepare_pathway_time(
-            data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t, species_path=species_path)
+            data_dir, top_n=n_path, num=num_t, flag=flag, begin_t=begin_t, end_t=end_t,
+            species_path=species_path, fixed_t0_or_tf=fixed_t0_or_tf)
 
         us.update_eval_path_integral(
             data_dir, top_n=n_path, n_traj=n_traj, atom_followed=atom_followed, init_spe=init_spe,
             tau=tau, begin_t=begin_t, end_t=end_t, species_path=species_path)
     make_run(src_dir, data_dir)
+
+
+def Merchant_f_2d_t0_tf(
+        src_dir, data_dir, top_n=5, num_t=25, flag="", n_traj=10000,
+        atom_followed="C", init_spe=114, traj_max_t=100.0,
+        tau=10.0, begin_t=0.0, end_t=1.0,
+        path_reg=None, no_path_reg=None,
+        spe_idx=10, min_delta_t=None, num_delta_t=None, delta_t_vec=None):
+
+    if flag == "":
+        f_n_merchant_f = os.path.join(data_dir, "output",
+                                      "Merchant_f_2d.csv")
+    else:
+        f_n_merchant_f = os.path.join(data_dir, "output",
+                                      "Merchant_f_2d_" + str(flag) + ".csv")
+    try:
+        os.remove(f_n_merchant_f)
+    except OSError:
+        pass
+
+    time_vec = np.linspace(begin_t, end_t, num_t)
+    for i in range(num_t - 1):
+        b_t = time_vec[i]
+        if delta_t_vec is not None:
+            end_t_vec = []
+            for _, dt_val in enumerate(delta_t_vec):
+                if b_t + float(dt_val) <= end_t:
+                    end_t_vec.append(b_t + float(dt_val))
+        elif min_delta_t is None or num_delta_t is None:
+            end_t_vec = time_vec[i + 1:]
+        else:
+            end_t_vec = []
+            for idx in range(int(num_delta_t)):
+                if b_t + (idx + 1) * float(min_delta_t) <= end_t:
+                    end_t_vec.append(b_t + (idx + 1) * float(min_delta_t))
+        print(end_t_vec)
+        for e_t in end_t_vec:
+            # num_t set to be 1
+            evaluate_pathway_probability(
+                src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=n_traj,
+                atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
+                tau=tau, begin_t=b_t, end_t=e_t, top_n_s=None,
+                spe_oriented=False, end_s_idx=None, species_path=False,
+                path_reg=path_reg, no_path_reg=no_path_reg,
+                spe_idx=spe_idx, spe_production_oriented=True,
+                fixed_t0_or_tf="t0", same_path_list=True)
+
+            f_n_pp = os.path.join(data_dir, "output",
+                                  "pathway_prob" + ".csv")
+            f_vec = np.loadtxt(f_n_pp, dtype=float, delimiter=',')
+
+            text = str(b_t) + ',' + str(e_t)
+            for _, val in enumerate(f_vec):
+                text += (',' + str(val))
+
+            f_sum = np.sum(f_vec)
+            text += (',' + str(f_sum) + '\n')
+            with open(f_n_merchant_f, 'a') as f_handler:
+                f_handler.write(text)
+
+    return
 
 
 def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
@@ -257,7 +357,10 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag,
+            end_s_idx=end_s_idx,
+            species_path=species_path,
+            same_path_list=True)
 
         us.update_eval_path_AT(
             data_dir, top_n=n_path, n_traj=n_traj,
@@ -265,7 +368,10 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag,
+            end_s_idx=None,
+            species_path=species_path,
+            same_path_list=True)
         us.update_eval_path_AT(
             data_dir, top_n=n_path, n_traj=n_traj,
             tau=tau, begin_t=begin_t, end_t=end_t)
