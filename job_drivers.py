@@ -357,7 +357,10 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
                 data_dir, exclude=None, top_n=top_n_s, traj_max_t=traj_max_t,
                 tau=tau, end_t=end_t, tag="M", atoms=[atom_followed])
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=end_s_idx, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag,
+            end_s_idx=end_s_idx,
+            species_path=species_path,
+            same_path_list=True)
 
         us.update_eval_path_AT(
             data_dir, top_n=n_path, n_traj=n_traj,
@@ -365,7 +368,10 @@ def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
 
     else:
         n_path = ppnt.prepare_pathway_name(
-            data_dir, top_n=top_n, flag=flag, end_s_idx=None, species_path=species_path)
+            data_dir, top_n=top_n, flag=flag,
+            end_s_idx=None,
+            species_path=species_path,
+            same_path_list=True)
         us.update_eval_path_AT(
             data_dir, top_n=n_path, n_traj=n_traj,
             tau=tau, begin_t=begin_t, end_t=end_t)
