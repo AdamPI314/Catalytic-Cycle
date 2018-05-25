@@ -349,6 +349,7 @@ def spe_concentration_converge_at_different_times(
         path_reg=None, no_path_reg=None,
         species_path=False,
         begin_t=0.0,
+        mc_end_t_threshlod=0.5,
         end_t_vec=[0.1, 0.2]):
     """
     For a single species, at different time points, run monte carlo pathway generation,
@@ -390,9 +391,10 @@ def spe_concentration_converge_at_different_times(
 
     for e_t in end_t_vec:
         print("time point:\t", e_t)
-        # run mc trajectory
+        # run mc trajectory, set a end_t threshold here, if end_t < 0.5, end_t --> 0.5
+        mc_e_t = e_t if e_t >= mc_end_t_threshlod else mc_end_t_threshlod 
         run_mc_trajectory(src_dir, data_dir, n_traj=mc_n_traj, atom_followed=atom_followed, init_spe=init_spe,
-                          tau=tau, begin_t=begin_t, end_t=e_t, species_path=species_path)
+                          tau=tau, begin_t=begin_t, end_t=mc_e_t, species_path=species_path)
         # prepare pathway name candidate and evaluate pathway probabilities
         evaluate_pathway_probability(
             src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=pi_n_traj,
