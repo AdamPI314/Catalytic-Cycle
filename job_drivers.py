@@ -392,7 +392,7 @@ def spe_concentration_converge_at_different_times(
     for e_t in end_t_vec:
         print("time point:\t", e_t)
         # run mc trajectory, set a end_t threshold here, if end_t < 0.5, end_t --> 0.5
-        mc_e_t = e_t if e_t >= mc_end_t_threshlod else mc_end_t_threshlod 
+        mc_e_t = e_t if e_t >= mc_end_t_threshlod else mc_end_t_threshlod
         run_mc_trajectory(src_dir, data_dir, n_traj=mc_n_traj, atom_followed=atom_followed, init_spe=init_spe,
                           tau=tau, begin_t=begin_t, end_t=mc_e_t, species_path=species_path)
         # prepare pathway name candidate and evaluate pathway probabilities
@@ -407,7 +407,7 @@ def spe_concentration_converge_at_different_times(
         # save pathway probabilities at current time to a file
         data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
         with open(f_n_scc_pp, 'a') as f_handler:
-            np.savetxt(f_handler, data_pp.transpose(), fmt='%.18e',
+            np.savetxt(f_handler, np.transpose(data_pp), fmt='%.18e',
                        delimiter=',', newline='\n', header='')
         return
 
