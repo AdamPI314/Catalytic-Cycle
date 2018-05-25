@@ -385,6 +385,19 @@ def spe_concentration_converge_at_different_times(
         os.remove(f_n_scc_pp)
     except OSError:
         pass
+
+    # species concentration converted to pathway probabilitiy
+    if flag == "":
+        f_n_scc_conc = os.path.join(data_dir, "output",
+                                    prefix + "spe_conc_converted_to_pp.csv")
+    else:
+        f_n_scc_conc = os.path.join(data_dir, "output",
+                                    prefix + "spe_conc_converted_to_pp_" + str(flag) + ".csv")
+    try:
+        os.remove(f_n_scc_conc)
+    except OSError:
+        pass
+
     # temporary files
     f_n_pp = os.path.join(data_dir, "output",
                           prefix + "pathway_prob" + ".csv")
@@ -407,9 +420,23 @@ def spe_concentration_converge_at_different_times(
         # save pathway probabilities at current time to a file
         data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",").flatten()
         with open(f_n_scc_pp, 'a') as f_handler:
-            for idx, p_val in enumerate(data_pp):
-                f_handler.write("{0:.18e}".format(p_val))
+            for idx, c_val in enumerate(data_pp):
+                f_handler.write("{0:.18e}".format(c_val))
                 if idx == len(data_pp) - 1:
+                    f_handler.write('\n')
+                else:
+                    f_handler.write(',')
+
+        # species concentration converted to pathway probability
+        spe_conc = trajectory.get_normalized_concentration_at_time(
+            data_dir, tag="M", tau=tau, end_t=e_t, exclude_names=None, renormalization=False)
+        spe_conc = trajectory.convert_concentration_to_path_prob(
+            data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
+            renormalization=True, default_coef=None)
+        with open(f_n_scc_conc, 'a') as f_handler:
+            for idx, c_val in enumerate(data_pp):
+                f_handler.write("{0:.18e}".format(c_val))
+                if idx == len(spe_conc) - 1:
                     f_handler.write('\n')
                 else:
                     f_handler.write(',')
