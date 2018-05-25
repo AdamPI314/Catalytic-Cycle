@@ -409,7 +409,8 @@ def spe_concentration_converge_at_different_times(
         with open(f_n_scc_pp, 'a') as f_handler:
             np.savetxt(f_handler, np.transpose(data_pp), fmt='%.18e',
                        delimiter=',', newline='\n', header='')
-        return
+
+    return
 
 
 def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
