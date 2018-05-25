@@ -412,7 +412,7 @@ def spe_concentration_converge_at_different_times(
                 if idx == len(data_pp) - 1:
                     f_handler.write('\n')
                 else:
-                    f_handler.write('\t')
+                    f_handler.write(',')
 
     return
 
