@@ -407,8 +407,14 @@ def spe_concentration_converge_at_different_times(
         # save pathway probabilities at current time to a file
         data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",").flatten()
         with open(f_n_scc_pp, 'a') as f_handler:
-            np.savetxt(f_handler, data_pp, fmt='%.18e',
-                       delimiter=',', newline='\n', header='')
+            for idx, p_val in enumerate(data_pp):
+                f_handler.write('{:%.18e}'.format(p_val))
+                if idx == len(data_pp) - 1:
+                    f_handler.write('\n')
+                else:
+                    f_handler.write('\t')
+            # np.savetxt(f_handler, data_pp, fmt='%.18e',
+                    #    delimiter=',', newline='\n', header='')
 
     return
 
