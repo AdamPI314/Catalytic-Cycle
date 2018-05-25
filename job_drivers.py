@@ -434,7 +434,7 @@ def spe_concentration_converge_at_different_times(
             data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
             renormalization=True, default_coef=None)
         with open(f_n_scc_conc, 'a') as f_handler:
-            for idx, c_val in enumerate(data_pp):
+            for idx, c_val in enumerate(spe_conc):
                 f_handler.write("{0:.18e}".format(c_val))
                 if idx == len(spe_conc) - 1:
                     f_handler.write('\n')
