@@ -77,7 +77,7 @@ if __name__ == '__main__':
         no_path_reg=G_S['no_path_reg'],
         species_path=G_S['species_path'],
         begin_t=0.0,
-        end_t_vec=[0.1, 0.2])
+        end_t_vec=[0.0375,0.075,0.1125,0.15,0.1875,0.225,0.2625,0.3,0.3375,0.375,0.4125,0.45,0.4875,0.525,0.5625,0.6,0.6375,0.675,0.7125,0.75,0.7875,0.825,0.8625,0.9])
 
     # j_b.evaluate_pathway_AT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
