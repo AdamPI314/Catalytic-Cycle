@@ -66,12 +66,25 @@ if __name__ == '__main__':
     #     spe_idx=10, min_delta_t=None, num_delta_t=None,
     #     delta_t_vec=[1.2859087486111409e-06, 3.214771871527852e-06, 6.429543743055704e-06, 9.644315614583557e-06, 1.285908748611141e-05, 3.2147718715278524e-05, 6.429543743055705e-05, 9.644315614583559e-05, 0.0001285908748611141, 0.00032147718715278527, 0.0006429543743055705, 0.0009644315614583557, 0.001285908748611141, 0.0032147718715278524, 0.006429543743055705, 0.009644315614583556, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557, 0.1285908748611141, 0.3214771871527852, 0.6429543743055705, 0.9644315614583557])
 
-    j_b.evaluate_pathway_AT(
-        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
-        n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'],
-        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-        top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
-        end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
+    j_b.spe_concentration_converge_at_different_times(
+        SRC_DIR, DATA_DIR, flag="",
+        top_n=G_S['top_n_p'],
+        mc_n_traj=G_S['mc_n_traj'], pi_n_traj=G_S['pi_n_traj'],
+        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'],
+        atom_followed=G_S['atom_f'],
+        init_spe=G_S['init_s'],
+        path_reg=G_S['path_reg'],
+        no_path_reg=G_S['no_path_reg'],
+        species_path=G_S['species_path'],
+        begin_t=0.0,
+        end_t_vec=[0.1, 0.2])
+
+    # j_b.evaluate_pathway_AT(
+    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
+    #     n_traj=G_S['pi_n_traj'], atom_followed=G_S['atom_f'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+    #     top_n_s=G_S['top_n_s'], spe_oriented=G_S['spe_oriented'],
+    #     end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
 
     # j_b.evaluate_pathway_AT_no_IT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
@@ -100,12 +113,12 @@ if __name__ == '__main__':
     # j_b.symbolic_path_2_real_path(DATA_DIR, top_n=G_S['top_n_p'], flag="",
     #                               end_s_idx=None, species_path=G_S['species_path'])
 
-    if G_S['species_path'] is False:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'pathway_name_candidate.csv')
-    else:
-        psri.symbolic_path_2_real_path_pff(
-            DATA_DIR, 'species_pathway_name_candidate.csv')
+    # if G_S['species_path'] is False:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'pathway_name_candidate.csv')
+    # else:
+    #     psri.symbolic_path_2_real_path_pff(
+    #         DATA_DIR, 'species_pathway_name_candidate.csv')
 
     # # copy SOHR/C++ routine files
     # j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])

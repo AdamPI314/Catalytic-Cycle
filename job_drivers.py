@@ -340,6 +340,76 @@ def Merchant_f_2d_t0_tf(
     return
 
 
+def spe_concentration_converge_at_different_times(
+        src_dir, data_dir, flag="", top_n=5,
+        mc_n_traj=10000, pi_n_traj=10000,
+        traj_max_t=100.0, tau=10.0,
+        atom_followed="C",
+        init_spe=114,
+        path_reg=None, no_path_reg=None,
+        species_path=False,
+        begin_t=0.0,
+        end_t_vec=[0.1, 0.2]):
+    """
+    For a single species, at different time points, run monte carlo pathway generation,
+    select top n pathways, evaluate pathway probabilities
+    species concentration converge --> scc
+    end species index control by regular expression "path_reg"
+    """
+    prefix = ""
+    if species_path is True:
+        prefix = "species_"
+
+    # save end time vector
+    if flag == "":
+        f_n_scc_time = os.path.join(data_dir, "output",
+                                    prefix + "scc_time.csv")
+    else:
+        f_n_scc_time = os.path.join(data_dir, "output",
+                                    prefix + "scc_time_" + str(flag) + ".csv")
+    try:
+        os.remove(f_n_scc_time)
+    except OSError:
+        pass
+    np.savetxt(f_n_scc_time, end_t_vec, fmt='%.18e', delimiter='\n')
+
+    # pathway probabilities
+    if flag == "":
+        f_n_scc_pp = os.path.join(data_dir, "output",
+                                  prefix + "scc_path_prob.csv")
+    else:
+        f_n_scc_pp = os.path.join(data_dir, "output",
+                                  prefix + "scc_path_prob_" + str(flag) + ".csv")
+    try:
+        os.remove(f_n_scc_pp)
+    except OSError:
+        pass
+    # temporary files
+    f_n_pp = os.path.join(data_dir, "output",
+                          prefix + "pathway_prob" + ".csv")
+
+    for e_t in end_t_vec:
+        print("time point:\t", e_t)
+        # run mc trajectory
+        run_mc_trajectory(src_dir, data_dir, n_traj=mc_n_traj, atom_followed=atom_followed, init_spe=init_spe,
+                          tau=tau, begin_t=begin_t, end_t=e_t, species_path=species_path)
+        # prepare pathway name candidate and evaluate pathway probabilities
+        evaluate_pathway_probability(
+            src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=pi_n_traj,
+            atom_followed=atom_followed, init_spe=init_spe, traj_max_t=traj_max_t,
+            tau=tau, begin_t=begin_t, end_t=e_t, top_n_s=None,
+            spe_oriented=False, end_s_idx=None, species_path=species_path,
+            path_reg=path_reg, no_path_reg=no_path_reg,
+            spe_idx=None, spe_production_oriented=False,
+            fixed_t0_or_tf="t0", same_path_list=False)
+        # save pathway probabilities at current time to a file
+        data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",")
+        with open(f_n_scc_pp, 'a') as f_handler:
+            np.savetxt(f_handler, data_pp, fmt='%.18e',
+                       delimiter=',', newline='\n', header='')
+        return
+
+
 def evaluate_pathway_AT(src_dir, data_dir, top_n=5, flag="", n_traj=10000,
                         traj_max_t=100.0, atom_followed="C",
                         tau=10.0, begin_t=0.0, end_t=1.0,
@@ -566,4 +636,4 @@ if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print("test")
-    symbolic_path_2_real_path_pff(DATA_DIR, "heuristic_pathname_O_10_10_3.csv")
+    # symbolic_path_2_real_path_pff(DATA_DIR, "heuristic_pathname_O_10_10_3.csv")
