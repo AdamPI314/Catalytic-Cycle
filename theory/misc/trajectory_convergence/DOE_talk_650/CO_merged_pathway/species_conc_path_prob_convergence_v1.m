@@ -5,6 +5,7 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 % marker
 % markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
+prefix = 'species_';
 spe_idx = 14;
 spe_name = 'CO';
 tau = 0.777660157519;
@@ -12,7 +13,7 @@ end_t = '0.9';
 n_path = 100;
 
 %% import time
-f_n_scc_time = fullfile(file_dir, 'scc_time.csv');
+f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(f_n_scc_time,'r');
@@ -22,7 +23,7 @@ scc_time_vec = dataArray{:, 1};
 clearvars f_n_scc_time delimiter formatSpec fileID dataArray ans;
 
 %% import spe conc
-f_n_conc = fullfile(file_dir, 'spe_conc_converted_to_pp.csv');
+f_n_conc = fullfile(file_dir, [prefix, 'spe_conc_converted_to_pp.csv']);
 delimiter = ',';
 formatStr = '';
 for i=1:n_path
@@ -37,7 +38,7 @@ spe_conc_in_pp = [dataArray{1:end-1}];
 clearvars f_n_conc delimiter formatSpec fileID dataArray ans;
 
 %% import pathway prob
-f_n_pp = fullfile(file_dir, 'scc_path_prob.csv');
+f_n_pp = fullfile(file_dir, [prefix, 'scc_path_prob.csv']);
 delimiter = ',';
 formatStr = '';
 for i=1:n_path
@@ -52,7 +53,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 20 40 60 80 100];
+idx_vec = [1 10 20 25];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
@@ -69,7 +70,7 @@ for idx=1:N
 end
 str_name{N+1, 1} = 'EXACT';
 
-data_x = scc_time_vec;
+data_x = scc_time_vec * tau;
 color_idx = 1;
 for idx =1:N+1
     if idx == N+1
@@ -92,7 +93,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
 ylabel(y_label_str, 'Interpreter','latex', 'FontSize', 20);
-xlim([0,  str2double(end_t) * tau]);
+% xlim([0,  str2double(end_t) * tau]);
 % xlim([0,  str2double('0.50') * tau]);
 grid on;
 
