@@ -10,7 +10,7 @@ spe_idx = 14;
 spe_name = 'CO';
 tau = 0.777660157519;
 end_t = '0.9';
-n_path = 100;
+n_path = 200;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
@@ -53,7 +53,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 10 20 25];
+idx_vec = [1 10 20 40 60 80 100 120 140 160 200];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
@@ -93,6 +93,7 @@ end
 set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
 ylabel(y_label_str, 'Interpreter','latex', 'FontSize', 20);
+yticks([0 0.01 0.02 0.03 0.04 0.05]);
 % xlim([0,  str2double(end_t) * tau]);
 % xlim([0,  str2double('0.50') * tau]);
 grid on;
