@@ -56,7 +56,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 2 3 4 5];
+idx_vec = [1 2 4 5];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
