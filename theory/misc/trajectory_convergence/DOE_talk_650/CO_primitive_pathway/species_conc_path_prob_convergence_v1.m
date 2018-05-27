@@ -9,8 +9,9 @@ prefix = '';
 spe_idx = 14;
 spe_name = 'CO';
 tau = 0.777660157519;
-end_t = '0.9';
-n_path = 7500;
+% stage 1B end time
+end_t = '0.720108899222239';
+n_path = 1000;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
@@ -53,8 +54,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-% idx_vec = [1 50 100 200 500 1000 2000 3000 4000 5000 6000 7000 7500];
-idx_vec = [1 5 10 25 50 100 150 200 250];
+idx_vec = [1 5 10 25 50 100 200 300 400 500 600 700 800 900 1000];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
@@ -95,8 +95,8 @@ set(gca,'GridLineStyle','--');
 xlabel('$t$ (seconds)', 'Interpreter','latex', 'FontSize', 20);
 ylabel(y_label_str, 'Interpreter','latex', 'FontSize', 20);
 % yticks([0 0.01 0.02 0.03 0.04 0.05]);
-% xlim([0,  str2double(end_t) * tau]);
-xlim([0,  str2double('0.50') * tau]);
+xlim([0,  str2double(end_t) * tau]);
+% xlim([0,  str2double('0.25718313951098054') * tau]);
 grid on;
 
 %  legend
