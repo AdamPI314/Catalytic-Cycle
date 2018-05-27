@@ -5,13 +5,16 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 % marker
 % markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
+% markers = {'None'};
 prefix = '';
 spe_idx = 14;
 spe_name = 'CO';
 tau = 0.777660157519;
+% stage 1A end time
+end_t = '0.25718313951098054';
 % stage 1B end time
-end_t = '0.720108899222239';
-n_path = 1000;
+% end_t = '0.720108899222239';
+n_path = 100;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
@@ -54,7 +57,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 5 10 25 50 100 200 300 400 500 600 700 800 900 1000];
+idx_vec = [1 5 10 15];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
@@ -106,11 +109,11 @@ l_pos = get(leg_h, 'Position');
 set(leg_h, 'Position', [0 l_pos(2) 0.5 l_pos(4)]);
 % set(leg_h, 'Location', 'West');
 
-% %% text
-% a_x = gca;
-% t_x = a_x.XLim(1) + 0.30*(a_x.XLim(2) - a_x.XLim(1));
-% t_y = a_x.YLim(1) + 0.40*(a_x.YLim(2) - a_x.YLim(1));
-% text(t_x, t_y, ['$\delta t=$', num2str(delta_t_value*tau), ' seconds'], 'Interpreter','latex', 'FontSize', 20);
+%% text
+a_x = gca;
+t_x = a_x.XLim(1) + 0.45*(a_x.XLim(2) - a_x.XLim(1));
+t_y = a_x.YLim(1) + 0.80*(a_x.YLim(2) - a_x.YLim(1));
+text(t_x, t_y, ['CO'], 'Interpreter','latex', 'FontSize', 20);
 
 %% save to file
 figname = strcat('spe_conc_path_prob_convergence_', end_t, '_', spe_name, '.png');
