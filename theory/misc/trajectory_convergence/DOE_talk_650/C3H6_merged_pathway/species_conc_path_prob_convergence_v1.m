@@ -6,8 +6,9 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 % markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.', 'none'};
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
 prefix = 'species_';
-spe_idx = 14;
-spe_name = 'CO';
+spe_idx = 59;
+spe_name = 'C3H6';
+spe_n_latex = 'C_3H_6';
 tau = 0.777660157519;
 % stage 1A end time
 end_t = '0.25718313951098054';
@@ -20,7 +21,7 @@ f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
 delimiter = {''};
 formatSpec = '%f%[^\n\r]';
 fileID = fopen(f_n_scc_time,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string',  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'ReturnOnError', false);
 fclose(fileID);
 scc_time_vec = dataArray{:, 1};
 clearvars f_n_scc_time delimiter formatSpec fileID dataArray ans;
@@ -35,7 +36,7 @@ end
 formatStr = strcat(formatStr, '%[^\n\r]');
 formatSpec = char(formatStr);
 fileID = fopen(f_n_conc,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 fclose(fileID);
 spe_conc_in_pp = [dataArray{1:end-1}];
 clearvars f_n_conc delimiter formatSpec fileID dataArray ans;
@@ -50,13 +51,13 @@ end
 formatStr = strcat(formatStr, '%[^\n\r]');
 formatSpec = char(formatStr);
 fileID = fopen(f_n_pp,'r');
-dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string', 'EmptyValue', NaN,  'ReturnOnError', false);
+dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 fclose(fileID);
 scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 2 4 5];
+idx_vec = [1 2 5 10];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
@@ -77,7 +78,7 @@ data_x = scc_time_vec * tau;
 color_idx = 1;
 for idx =1:N+1
     if idx == N+1
-        data_y = spe_conc_in_pp(:, 14 + 1);
+        data_y = spe_conc_in_pp(:, spe_idx + 1);
     else
         A = scc_pp(:, 1:idx_vec(idx));
         data_y = sum(A, 2);
@@ -112,7 +113,7 @@ set(leg_h, 'Position', [0 l_pos(2) 0.5 l_pos(4)]);
 a_x = gca;
 t_x = a_x.XLim(1) + 0.45*(a_x.XLim(2) - a_x.XLim(1));
 t_y = a_x.YLim(1) + 0.80*(a_x.YLim(2) - a_x.YLim(1));
-text(t_x, t_y, ['CO'], 'Interpreter','latex', 'FontSize', 20);
+text(t_x, t_y, spe_n_latex, 'FontSize', 20);
 
 %% save to file
 figname = strcat('spe_conc_path_prob_convergence_', end_t, '_', spe_name, '.png');
