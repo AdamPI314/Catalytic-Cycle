@@ -31,7 +31,7 @@ clearvars f_n_scc_time delimiter formatSpec fileID dataArray ans;
 f_n_conc = fullfile(file_dir, [prefix, 'spe_conc_converted_to_pp.csv']);
 delimiter = ',';
 formatStr = '';
-for i=1:n_path
+for i=1:110
     formatStr = strcat(formatStr, '%f');
 end
 formatStr = strcat(formatStr, '%[^\n\r]');

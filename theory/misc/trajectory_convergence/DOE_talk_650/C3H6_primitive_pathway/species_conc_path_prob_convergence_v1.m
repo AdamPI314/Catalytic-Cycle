@@ -15,7 +15,7 @@ tau = 0.777660157519;
 end_t = '0.25718313951098054';
 % stage 1B end time
 % end_t = '0.720108899222239';
-n_path = 100;
+n_path = 500;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
@@ -31,7 +31,7 @@ clearvars f_n_scc_time delimiter formatSpec fileID dataArray ans;
 f_n_conc = fullfile(file_dir, [prefix, 'spe_conc_converted_to_pp.csv']);
 delimiter = ',';
 formatStr = '';
-for i=1:n_path
+for i=1:110
     formatStr = strcat(formatStr, '%f');
 end
 formatStr = strcat(formatStr, '%[^\n\r]');
@@ -58,7 +58,7 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 5 10 50];
+idx_vec = [1 5 10 100 200 300 400 500];
 N = length(idx_vec);
 y_label_str = 'Normalized [X]';
 
