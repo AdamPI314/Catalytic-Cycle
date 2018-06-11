@@ -38,14 +38,14 @@ if __name__ == '__main__':
     j_b.update_chattering_species_setting(
         DATA_DIR, G_S['atom_f'])
 
-    # quick clean up, remove a few files
-    j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
+    # # quick clean up, remove a few files
+    # j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
 
-    # run monte carlo trajectory
-    j_b.run_mc_trajectory(
-        SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
-        species_path=G_S['species_path'])
+    # # run monte carlo trajectory
+    # j_b.run_mc_trajectory(
+    #     SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+    #     init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
+    #     species_path=G_S['species_path'])
 
     # evaluate path integral-->pathway probability, multiple use
     j_b.evaluate_pathway_probability(
@@ -56,7 +56,8 @@ if __name__ == '__main__':
         end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
         spe_idx=None, spe_production_oriented=True,
-        fixed_t0_or_tf=G_S['fixed_t0_or_tf'])
+        fixed_t0_or_tf=G_S['fixed_t0_or_tf'],
+        same_path_list=True)
 
     # j_b.Merchant_f_2d_t0_tf(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=25, flag="", n_traj=G_S['pi_n_traj'],
