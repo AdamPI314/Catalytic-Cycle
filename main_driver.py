@@ -122,8 +122,8 @@ if __name__ == '__main__':
         psri.symbolic_path_2_real_path_pff(
             DATA_DIR, 'species_pathway_name_candidate.csv')
 
-    # copy SOHR/C++ routine files
-    j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
+    # # copy SOHR/C++ routine files
+    # j_b.copy_sohr_files(DATA_DIR, species_path=G_S['species_path'])
 
     # ps.parse_spe_production_along_path(
     #     DATA_DIR, top_n=G_S['top_n_p'], spe_idx=[10],
