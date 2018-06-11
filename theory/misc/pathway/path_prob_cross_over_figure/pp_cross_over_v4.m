@@ -93,7 +93,7 @@ delta_n = 16;
 legend_name = cell(N,1);
 for idx=1:N
     path_idx = I1(topN_array(idx));
-    legend_name{idx, 1} = ['p', num2str(path_idx)];
+    legend_name{idx, 1} = ['p', num2str(path_idx-1)];
     
     semilogy(time_vec1, pp1(path_idx, :), ...
         'LineWidth', 1.5, ...
