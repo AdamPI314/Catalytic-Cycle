@@ -33,7 +33,12 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 %% import time 1
 fn_time1 = fullfile(pic_dir, 'data4', 'pathway_time_candidate.csv');
 delimiter = ',';
-formatSpec = '%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%[^\n\r]';
+formatStr = '';
+for i=1:50
+    formatStr = strcat(formatStr, '%f');
+end
+formatStr = strcat(formatStr, '%[^\n\r]');
+formatSpec = char(formatStr);
 fileID = fopen(fn_time1,'r');
 dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string',  'ReturnOnError', false);
 fclose(fileID);
@@ -44,7 +49,12 @@ clearvars fn_time1 delimiter formatSpec fileID dataArray ans;
 %% import pathway probability 1
 fn_pp1 = fullfile(pic_dir, 'data4', 'pathway_prob.csv');
 delimiter = ',';
-formatSpec = '%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%[^\n\r]';
+formatStr = '';
+for i=1:50
+    formatStr = strcat(formatStr, '%f');
+end
+formatStr = strcat(formatStr, '%[^\n\r]');
+formatSpec = char(formatStr);
 fileID = fopen(fn_pp1,'r');
 dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'TextType', 'string',  'ReturnOnError', false);
 fclose(fileID); 
@@ -79,7 +89,7 @@ hold on;
 % graph handler
 color_idx = 1;
 marker_idx = 1;
-delta_n = 8;
+delta_n = 16;
 legend_name = cell(N,1);
 for idx=1:N
     path_idx = I1(topN_array(idx));
