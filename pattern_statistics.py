@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import re
 import json
+from copy import deepcopy
 
 import parse_spe_reaction_info as psri
 import atom_scheme as asch
@@ -165,9 +166,18 @@ def reaction_count(data_dir, top_n=50, norm=False):
     f_n_out1 = os.path.join(data_dir, "output", "reaction_count_index.csv")
     d_f[0:top_n].to_csv(f_n_out1, header=False,
                         index=False, sep=',', columns=['reaction', 'frequency'])
-
+    # old/chemkin reaction index
     # load reaction info
-    _, new_ind_reaction_dict = psri.parse_reaction_and_its_index(data_dir)
+    new_old_ind_dict, new_ind_reaction_dict = psri.parse_reaction_and_its_index(
+        data_dir)
+    d_f2 = deepcopy(d_f)
+    d_f2['reaction'] = d_f2['reaction'].apply(
+        lambda x: new_old_ind_dict[x[1::]])
+    f_n_out1_5 = os.path.join(
+        data_dir, "output", "reaction_count_old_index.csv")
+    d_f2[0:top_n].to_csv(f_n_out1_5, header=False,
+                         index=False, sep=',', columns=['reaction', 'frequency'])
+
     # convert species reaction index to real species and reactions
     d_f['reaction'] = d_f['reaction'].apply(
         lambda x: psri.reaction_name_to_real_reaction(new_ind_reaction_dict, x)
