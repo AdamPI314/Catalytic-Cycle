@@ -109,9 +109,9 @@ ylim([10^-14, 10^-5.9]);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_str = {'CH_2O','C_3H_6','CO','CH_3CHO','OQ^{\prime}OOH_1','Propoxide','iROO'};
+leg_str = {'CH_2O','C_3H_6','CO','CH_3CHO','OQ^{\prime}OOH_1','propoxide','iROO'};
 leg_h = legend(leg_str);
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'SouthEast')
 
 co = [    0    0.4470    0.7410 % 1th plot
@@ -169,7 +169,7 @@ grid on;
 xlim([0, tau*end_t]);
 leg_str = {'OQ^{\prime}OOH_1','nROO','O_2QOOH_1','nR','QOOH_1','CH_2CHO','OQ^{\prime}O_1'};
 leg_h = legend(leg_str);
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 
 %##########################################################################
@@ -234,7 +234,7 @@ grid on;
 xlim([0, tau*end_t]);
 leg_str = {'H_2O','H_2O_2','HO_2','OH','H','O'};
 leg_h = legend(leg_str);
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
 
 %% figure size

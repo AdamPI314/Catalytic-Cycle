@@ -98,22 +98,22 @@ p5 = semilogy(time_vec, 1./chattering_drc_mat(:, ch_idx), 'LineWidth', 2); hold 
 %% conc
 set(gca,'GridLineStyle','--');
 xlabel('Time (seconds)', 'FontSize', 20);
-ylabel('k^{-1} (seconds)', 'FontSize', 20);
+ylabel('Lifetime (seconds)', 'FontSize', 20);
 ylim([10^-8.5, 10^-2.8]);
 
-%% temp
-yyaxis right
-delta_n = 1000;
-plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
-pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
-ylabel('T (K)', 'FontSize', 20);
-% set(gca, 'ytick', []);
+% %% temp
+% yyaxis right
+% delta_n = 1000;
+% plot(time_vec, temp_vec, 'LineWidth', 2, 'color', 'r'); hold on;
+% pt = scatter(time_vec(1:delta_n:end), temp_vec(1:delta_n:end), 'MarkerEdgeColor', 'r');
+% ylabel('T (K)', 'FontSize', 20);
+% % set(gca, 'ytick', []);
 
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
 leg_h = legend([p1; p2; p3; p4; p5],'nR','nROO','QOOH_1','O_2QOOH_1','Chattering Group');
-set(leg_h, 'FontSize', 14, 'Box', 'off');
+set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'North')
 
 
