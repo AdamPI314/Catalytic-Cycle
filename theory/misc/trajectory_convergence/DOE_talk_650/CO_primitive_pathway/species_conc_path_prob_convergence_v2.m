@@ -62,7 +62,7 @@ clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 %% global properties
 idx_vec = [1 5 10 50];
 N = length(idx_vec);
-y_label_str = 'Normalized [X]';
+y_label_str = '[X]';
 
 %% plot
 fig = figure();
