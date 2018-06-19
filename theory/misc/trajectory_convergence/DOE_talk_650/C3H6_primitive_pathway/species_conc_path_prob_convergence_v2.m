@@ -7,16 +7,16 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
 % markers = {'None'};
 prefix = '';
-spe_idx = 17;
-spe_name = 'CH2O';
-spe_n_latex = 'CH_2O';
+spe_idx = 59;
+spe_name = 'C3H6';
+spe_n_latex = 'C_3H_6';
 tau = 0.777660157519;
 % stage 1A end time
 end_t = '0.25718313951098054';
 % stage 1B end time
 % end_t = '0.720108899222239';
 n_path = 100;
-pre_factor = 7.44277901848944108e-06 * 1.0 * 3.0;
+pre_factor = 7.44277901848944108e-06 * 1.0;
 % pre_factor = 1.0;
 
 %% import time
