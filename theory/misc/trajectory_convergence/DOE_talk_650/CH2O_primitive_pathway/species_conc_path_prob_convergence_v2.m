@@ -7,15 +7,17 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 markers = {'+' , 'o' , '*' , 'x' , 'square' , 'diamond' , 'v' , '^' , '>' , '<' , 'pentagram' , 'hexagram' , '.'};
 % markers = {'None'};
 prefix = '';
-spe_idx = 59;
-spe_name = 'C3H6';
-spe_n_latex = 'C_3H_6';
+spe_idx = 17;
+spe_name = 'CH2O';
+spe_n_latex = 'CH_2O';
 tau = 0.777660157519;
 % stage 1A end time
 end_t = '0.25718313951098054';
 % stage 1B end time
 % end_t = '0.720108899222239';
-n_path = 500;
+n_path = 100;
+pre_factor = 7.44277901848944108e-06 * 1.0 * 3.0;
+% pre_factor = 1.0;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
@@ -28,7 +30,7 @@ scc_time_vec = dataArray{:, 1};
 clearvars f_n_scc_time delimiter formatSpec fileID dataArray ans;
 
 %% import spe conc
-f_n_conc = fullfile(file_dir, [prefix, 'spe_conc_converted_to_pp.csv']);
+f_n_conc = fullfile(file_dir, [prefix, 'spe_conc.csv']);
 delimiter = ',';
 formatStr = '';
 for i=1:110
@@ -39,7 +41,7 @@ formatSpec = char(formatStr);
 fileID = fopen(f_n_conc,'r');
 dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', NaN,  'ReturnOnError', false);
 fclose(fileID);
-spe_conc_in_pp = [dataArray{1:end-1}];
+spe_conc = [dataArray{1:end-1}];
 clearvars f_n_conc delimiter formatSpec fileID dataArray ans;
 
 %% import pathway prob
@@ -58,9 +60,9 @@ scc_pp = [dataArray{1:end-1}];
 clearvars f_n_pp delimiter formatSpec fileID dataArray ans;
 
 %% global properties
-idx_vec = [1 2 50];
+idx_vec = [1 5 10 75];
 N = length(idx_vec);
-y_label_str = 'Normalized [X]';
+y_label_str = '[X]';
 
 %% plot
 fig = figure();
@@ -79,10 +81,10 @@ data_x = scc_time_vec * tau;
 color_idx = 1;
 for idx =1:N+1
     if idx == N+1
-        data_y = spe_conc_in_pp(:, spe_idx + 1);
+        data_y = spe_conc(:, spe_idx + 1);
     else
         A = scc_pp(:, 1:idx_vec(idx));
-        data_y = sum(A, 2);
+        data_y = pre_factor * sum(A, 2);
     end
 
     plot(data_x, data_y, ...
