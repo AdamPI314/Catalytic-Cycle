@@ -357,6 +357,8 @@ def spe_concentration_converge_at_different_times(
     species concentration converge --> scc
     end species index control by regular expression "path_reg"
     """
+    quick_clean_up(data_dir, flag, species_path)
+
     prefix = ""
     if species_path is True:
         prefix = "species_"
@@ -418,8 +420,14 @@ def spe_concentration_converge_at_different_times(
         print("time point:\t", e_t)
         # run mc trajectory, set a end_t threshold here, if end_t < 0.5, end_t --> 0.5
         mc_e_t = e_t if e_t >= mc_end_t_threshlod else mc_end_t_threshlod
-        run_mc_trajectory(src_dir, data_dir, n_traj=mc_n_traj, atom_followed=atom_followed, init_spe=init_spe,
-                          tau=tau, begin_t=begin_t, end_t=mc_e_t, species_path=species_path)
+        # run mc trajectory, prepare "pathway_name_candidate.csv" if and only if e_t is the fist time
+        # or mc_e_t is a different value
+        same_path_list = True
+        if e_t == end_t_vec[0] or mc_e_t != mc_end_t_threshlod:
+            run_mc_trajectory(src_dir, data_dir, n_traj=mc_n_traj,
+                              atom_followed=atom_followed, init_spe=init_spe,
+                              tau=tau, begin_t=begin_t, end_t=mc_e_t, species_path=species_path)
+            same_path_list = False
         # prepare pathway name candidate and evaluate pathway probabilities
         evaluate_pathway_probability(
             src_dir, data_dir, top_n=top_n, num_t=1, flag=flag, n_traj=pi_n_traj,
@@ -428,7 +436,7 @@ def spe_concentration_converge_at_different_times(
             spe_oriented=False, end_s_idx=None, species_path=species_path,
             path_reg=path_reg, no_path_reg=no_path_reg,
             spe_idx=None, spe_production_oriented=False,
-            fixed_t0_or_tf="t0", same_path_list=False)
+            fixed_t0_or_tf="t0", same_path_list=same_path_list)
         # save pathway probabilities at current time to a file
         data_pp = np.loadtxt(f_n_pp, dtype=float, delimiter=",").flatten()
         with open(f_n_scc_pp, 'a') as f_handler:
