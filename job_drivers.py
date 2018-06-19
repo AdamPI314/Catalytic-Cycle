@@ -386,13 +386,25 @@ def spe_concentration_converge_at_different_times(
     except OSError:
         pass
 
-    # species concentration converted to pathway probabilitiy
+    # # species concentration converted to pathway probabilitiy
+    # if flag == "":
+    #     f_n_scc_conc = os.path.join(data_dir, "output",
+    #                                 prefix + "spe_conc_converted_to_pp.csv")
+    # else:
+    #     f_n_scc_conc = os.path.join(data_dir, "output",
+    #                                 prefix + "spe_conc_converted_to_pp_" + str(flag) + ".csv")
+    # try:
+    #     os.remove(f_n_scc_conc)
+    # except OSError:
+    #     pass
+
+    # species concentration
     if flag == "":
         f_n_scc_conc = os.path.join(data_dir, "output",
-                                    prefix + "spe_conc_converted_to_pp.csv")
+                                    prefix + "spe_conc.csv")
     else:
         f_n_scc_conc = os.path.join(data_dir, "output",
-                                    prefix + "spe_conc_converted_to_pp_" + str(flag) + ".csv")
+                                    prefix + "spe_conc_" + str(flag) + ".csv")
     try:
         os.remove(f_n_scc_conc)
     except OSError:
@@ -427,12 +439,13 @@ def spe_concentration_converge_at_different_times(
                 else:
                     f_handler.write(',')
 
-        # species concentration converted to pathway probability
+        # species concentration
+        # or species concentration converted to pathway probability
         spe_conc = trajectory.get_normalized_concentration_at_time(
             data_dir, tag="M", tau=tau, end_t=e_t, exclude_names=None, renormalization=False)
-        spe_conc = trajectory.convert_concentration_to_path_prob(
-            data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
-            renormalization=True, default_coef=None)
+        # spe_conc = trajectory.convert_concentration_to_path_prob(
+        #     data_dir, atom_followed=atom_followed, spe_conc=spe_conc,
+        #     renormalization=True, default_coef=None)
         with open(f_n_scc_conc, 'a') as f_handler:
             for idx, c_val in enumerate(spe_conc):
                 f_handler.write("{0:.18e}".format(c_val))
