@@ -16,8 +16,8 @@ end_t = '0.25718313951098054';
 % stage 1B end time
 % end_t = '0.720108899222239';
 n_path = 100;
-% pre_factor = 7.44277901848944108e-06 * 1.0 * 3.0;
-pre_factor = 1.0;
+pre_factor = 7.44277901848944108e-06 * 1.0 * 3.0;
+% pre_factor = 1.0;
 
 %% import time
 f_n_scc_time = fullfile(file_dir, [prefix, 'scc_time.csv']);
