@@ -38,8 +38,8 @@ if __name__ == '__main__':
     j_b.update_chattering_species_setting(
         DATA_DIR, G_S['atom_f'])
 
-    # quick clean up, remove a few files
-    j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
+    # # quick clean up, remove a few files
+    # j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
 
     # # run monte carlo trajectory
     # j_b.run_mc_trajectory(
