@@ -66,7 +66,9 @@ co = [
 set(fig,'defaultAxesColorOrder',co)
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
+% sort_axis = round(0.15 * length(time_vec));
 sort_axis = round(0.42 * length(time_vec));
+% sort_axis = round(0.50 * length(time_vec));
 % sort_axis = round(0.678 * length(time_vec));
 target_array = [709, 710, 720, 727, 731, 735, 737, 743, 747, 749, 753, 757, 759, 763, 767, 771, 777, 779, 790, 792, 794, 856, 906, 910, 914, 916, 922, 926, 930, 934, 938, 942, 946, 952, 956, 960, 964, 968, 970, 978, 982, 984, 986, 988, 990, 1070, 1074, 1076, 1078, 1082, 1084, 1087, 1092, 1094, 1118, 1120, 1122, 1162, 1164, 1166];
 target_array = target_array + 1;
@@ -142,5 +144,5 @@ set(leg_h, 'FontSize', 14, 'Box', 'off');
 set(leg_h, 'Location', 'West');
 
 %% save to file
-figname = strcat(fig_prefix, '_', spe_name, '.png');
+figname = strcat(fig_prefix, '_', spe_name, '_', num2str(sort_axis), '.png');
 print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');
