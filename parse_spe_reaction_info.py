@@ -74,6 +74,51 @@ def get_reactions_from_si_2_sj(data_dir, si, sj):
     return r_list
 
 
+def get_chattering_reactions(data_dir, spe_idx_vec=[60, 78, 87, 90]):
+    """
+    return all the internal reactions, namely chattering reactions of a chattering
+    group
+    """
+    if spe_idx_vec is None or spe_idx_vec is []:
+        spe_idx_vec = [60, 78, 87, 90]
+    rxn_set = set()
+    for i in range(len(spe_idx_vec)):
+        s_idx_i = spe_idx_vec[i]
+        for j in range(len(spe_idx_vec)):
+            s_idx_j = spe_idx_vec[j]
+            if s_idx_i != s_idx_j:
+                r_idx_vec_tmp = get_reactions_from_si_2_sj(
+                    data_dir, s_idx_i, s_idx_j)
+                for r_idx in r_idx_vec_tmp:
+                    rxn_set.add(r_idx)
+
+    rxn_vec = sorted(list(rxn_set))
+    print(rxn_vec)
+    return rxn_vec
+
+
+def get_sink_reactions_of_chattering_group(data_dir, spe_idx_vec=[60, 78, 87, 90]):
+    """
+    return unique sink reactions of a chattering group, exclude internal reactions
+    """
+    if spe_idx_vec is None or spe_idx_vec is []:
+        spe_idx_vec = [60, 78, 87, 90]
+    internal_rxn_vec = get_chattering_reactions(data_dir, spe_idx_vec)
+    internal_rxn_set = set(internal_rxn_vec)
+    print(internal_rxn_set)
+    rxn_set = set()
+    for spe_idx in spe_idx_vec:
+        net_sink_rxn_vec_tmp = net_sink_reaction_of_species(data_dir, spe_idx)
+        for r_idx in net_sink_rxn_vec_tmp:
+            if r_idx not in internal_rxn_set:
+                rxn_set.add(r_idx)
+
+    # print(rxn_set)
+    rxn_vec = sorted(list(rxn_set))
+    print(rxn_vec)
+    return rxn_vec
+
+
 def read_spe_composition(f_n):
     """
     read species composition
@@ -312,7 +357,7 @@ if __name__ == '__main__':
     DATA_DIR = os.path.abspath(os.path.join(os.path.realpath(
         sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir, "SOHR_DATA"))
     print(DATA_DIR)
-    get_all_species_names_and_reaction_names(DATA_DIR)
+    # get_all_species_names_and_reaction_names(DATA_DIR)
     # parse_reaction_net_product(DATA_DIR)
     # net_sink_reaction_of_species(DATA_DIR, 10)
     # net_source_reaction_of_species(DATA_DIR, 10)
@@ -325,7 +370,7 @@ if __name__ == '__main__':
     # net_source_reaction_of_species(DATA_DIR, 79)
     # net_sink_reaction_of_species(DATA_DIR, 28)
     # net_sink_reaction_of_species(DATA_DIR, 51)
-    net_sink_reaction_of_species(DATA_DIR, 94)
+    # net_sink_reaction_of_species(DATA_DIR, 94)
     # net_sink_reaction_of_species(DATA_DIR, 81)
     # net_sink_reaction_of_species(DATA_DIR, 79)
     # net_sink_reaction_of_species(DATA_DIR, 62)
@@ -347,3 +392,6 @@ if __name__ == '__main__':
     # get_reactions_from_si_2_sj(DATA_DIR, 87, 78)
     # get_reactions_from_si_2_sj(DATA_DIR, 87, 90)
     # get_reactions_from_si_2_sj(DATA_DIR, 90, 87)
+    # get_chattering_reactions(DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
+    get_sink_reactions_of_chattering_group(
+        DATA_DIR, spe_idx_vec=[60, 78, 87, 90])

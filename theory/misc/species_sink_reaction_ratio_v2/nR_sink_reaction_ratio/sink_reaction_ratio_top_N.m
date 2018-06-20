@@ -1,10 +1,10 @@
 %% global settings
-fig_prefix = 'sink_reaction_ratio';
+fig_prefix = 'sink_rxn_ratio';
 N_S = 110;
 N_R = 1230;
 tau = 0.777660157519;
 end_t = 0.9;
-spe_name = 'OH';
+spe_name = 'nR_nROO_QOOH1_O2QOOH1';
 
 % species renaming
 % "npropyloxy", "nRO"
@@ -66,9 +66,9 @@ co = [
 set(fig,'defaultAxesColorOrder',co)
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
-% sort_axis = round(0.42 * length(time_vec));
-sort_axis = round(0.678 * length(time_vec));
-target_array = [1, 3, 4, 7, 21, 22, 29, 31, 32, 37, 39, 43, 44, 51, 52, 61, 62, 67, 79, 89, 90, 104, 111, 121, 122, 149, 152, 155, 161, 163, 164, 179, 183, 185, 186, 198, 209, 210, 212, 228, 236, 241, 243, 262, 267, 282, 290, 311, 312, 339, 361, 367, 369, 373, 377, 379, 383, 388, 411, 412, 424, 431, 447, 453, 461, 462, 464, 466, 471, 482, 501, 514, 517, 522, 524, 526, 533, 542, 544, 546, 567, 569, 571, 582, 589, 594, 599, 623, 628, 653, 654, 680, 685, 715, 717, 733, 735, 736, 738, 786, 815, 817, 819, 853, 862, 867, 884, 889, 898, 903, 907, 909, 1002, 1007, 1014, 1016, 1018, 1020, 1022, 1024, 1026, 1028, 1035, 1039, 1077, 1085, 1091, 1095, 1103, 1109, 1113, 1115, 1119, 1123, 1131, 1133, 1135, 1151, 1153, 1155, 1163, 1167, 1173, 1175, 1177, 1187, 1189, 1191, 1199, 1201, 1203, 1211, 1213, 1215, 1217, 1219, 1221];
+sort_axis = round(0.42 * length(time_vec));
+% sort_axis = round(0.678 * length(time_vec));
+target_array = [709, 710, 720, 727, 731, 735, 737, 743, 747, 749, 753, 757, 759, 763, 767, 771, 777, 779, 790, 792, 794, 856, 906, 910, 914, 916, 922, 926, 930, 934, 938, 942, 946, 952, 956, 960, 964, 968, 970, 978, 982, 984, 986, 988, 990, 1070, 1074, 1076, 1078, 1082, 1084, 1087, 1092, 1094, 1118, 1120, 1122, 1162, 1164, 1166];
 target_array = target_array + 1;
 ylim_range = [10^-5, 10^0];
 [B,I] = sort(R_mat(sort_axis, target_array),'descend');
@@ -84,7 +84,7 @@ colors = lines(N_plot);
 
 %% a few reaction's rate are too small, just noise
 time_threshold = round(length(time_vec)*0.1);
-NReaction_threshold = round(length(I)*0.1);
+NReaction_threshold = round(length(I)*0.8);
 % first/largest rate reaction
 R_total = R_mat(:, target_array(I(1)));  
 
