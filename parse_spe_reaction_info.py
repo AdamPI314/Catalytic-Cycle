@@ -393,5 +393,7 @@ if __name__ == '__main__':
     # get_reactions_from_si_2_sj(DATA_DIR, 87, 90)
     # get_reactions_from_si_2_sj(DATA_DIR, 90, 87)
     # get_chattering_reactions(DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
+    # get_sink_reactions_of_chattering_group(
+    #     DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
     get_sink_reactions_of_chattering_group(
-        DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
+        DATA_DIR, spe_idx_vec=[61, 80])
