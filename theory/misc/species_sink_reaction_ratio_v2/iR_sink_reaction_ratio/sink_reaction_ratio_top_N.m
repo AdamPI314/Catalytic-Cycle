@@ -67,7 +67,8 @@ set(fig,'defaultAxesColorOrder',co)
 
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
 % sort_axis = round(0.15 * length(time_vec));
-% sort_axis = round(0.42 * length(time_vec));
+% sort_axis = round(0.25 * length(time_vec));
+sort_axis = round(0.42 * length(time_vec));
 % sort_axis = round(0.50 * length(time_vec));
 % sort_axis = round(0.678 * length(time_vec));
 target_array = [612, 708, 711, 722, 725, 729, 733, 739, 741, 745, 748, 751, 755, 761, 765, 769, 773, 775, 781, 783, 784, 786, 788, 796, 858, 908, 912, 918, 920, 924, 928, 932, 936, 940, 944, 948, 950, 954, 958, 962, 966, 970, 972, 974, 976, 978, 980, 986, 1098, 1100, 1102, 1104, 1106, 1108];
