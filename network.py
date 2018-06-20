@@ -321,8 +321,8 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
     return di_graph
 
 
-def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir, tag="M",
-                                                                        tau=10.0, end_t=0.5, end_t2=None):
+def init_directed_network_from_X_and_R_at_a_time(data_dir, tag="M",
+                                                 tau=10.0, end_t=0.5, end_t2=None):
     """
     init directed network
     without parallel edges
@@ -426,8 +426,12 @@ def init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(data_dir
     for idx, val in enumerate(species_set):
         weight = float(conc_v[int(val)])
         node_name = change_spe_name(s_idx_2_name[str(val)], spe_alias, None)
+        # add a layer to control whether to show the species label name
+        label_name = ''
+        if s_idx_2_name[str(val)] in spe_alias:
+            label_name = node_name
         di_graph.add_node(node_name,
-                          label=node_name, weight=weight)
+                          label=label_name, weight=weight)
     # add edges
     for idx, key in enumerate(species_pair_weight):
         src = key[0]
@@ -715,9 +719,9 @@ if __name__ == '__main__':
 
     END_T = 0.2
     END_T2 = 0.9
-    RN_OBJ2 = init_directed_network_from_concentrtion_and_reaction_rate_at_a_time(DATA_DIR, tag="M",
-                                                                                  tau=G_S['tau'],
-                                                                                  end_t=END_T, end_t2=END_T2)
+    RN_OBJ2 = init_directed_network_from_X_and_R_at_a_time(DATA_DIR, tag="M",
+                                                           tau=G_S['tau'],
+                                                           end_t=END_T, end_t2=END_T2)
     if END_T2 is None:
         NETWORK_FILENAME = PREFIX + "network_all_species_" + \
             str(END_T) + SUFFIX
