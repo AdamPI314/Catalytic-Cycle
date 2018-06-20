@@ -104,6 +104,9 @@ for t_idx=1:length(time_vec)
     end
 end
 
+%% manually smooth the first few points
+R_total(1:10) = nan;
+
 colorxn_idx = 1;
 markerxn_idx = 1;
 delta_n = 800;
