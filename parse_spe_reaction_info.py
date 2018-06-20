@@ -395,5 +395,9 @@ if __name__ == '__main__':
     # get_chattering_reactions(DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
     # get_sink_reactions_of_chattering_group(
     #     DATA_DIR, spe_idx_vec=[60, 78, 87, 90])
+    # get_sink_reactions_of_chattering_group(
+    #     DATA_DIR, spe_idx_vec=[61, 80])
+    # get_sink_reactions_of_chattering_group(
+    #     DATA_DIR, spe_idx_vec=[25, 27])
     get_sink_reactions_of_chattering_group(
-        DATA_DIR, spe_idx_vec=[61, 80])
+        DATA_DIR, spe_idx_vec=[39, 50])
