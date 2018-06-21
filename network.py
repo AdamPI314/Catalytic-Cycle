@@ -322,7 +322,8 @@ def init_directed_network(data_dir, path_idx=None, init_spe=None, atom_followed=
 
 
 def init_directed_network_from_X_and_R_at_a_time(data_dir, tag="M",
-                                                 tau=10.0, end_t=0.5, end_t2=None):
+                                                 tau=10.0, end_t=0.5, end_t2=None,
+                                                 x_y_dict=None):
     """
     init directed network
     without parallel edges
@@ -430,8 +431,15 @@ def init_directed_network_from_X_and_R_at_a_time(data_dir, tag="M",
         label_name = ''
         if s_idx_2_name[str(val)] in spe_alias:
             label_name = node_name
-        di_graph.add_node(node_name,
-                          label=label_name, weight=weight)
+        if x_y_dict is None:
+            di_graph.add_node(node_name,
+                              label=label_name, weight=weight)
+        else:
+            di_graph.add_node(node_name,
+                              label=label_name, weight=weight,
+                              x=x_y_dict[node_name][0],
+                              y=x_y_dict[node_name][1])
+
     # add edges
     for idx, key in enumerate(species_pair_weight):
         src = key[0]
@@ -474,27 +482,44 @@ def network_to_gephi_input_file(networkx_obj, data_dir, fname="network.gexf"):
     return
 
 
-def get_names_coordinates(data_dir, fname=""):
+def get_names_coordinates(data_dir, fname="", xyfname=None):
     """
     read nodes names and corresponding coordinates
     """
     with open(os.path.join(data_dir, "output", fname), 'r') as f_h:
         data = json.load(f_h)
 
-    # naming thing
-    new_2_old = back_2_old_name(os.path.join(
-        data_dir, "input", "spe_alias.json"))
-
     # we only need names and coordinates
     n_coordinate = dict()
+    n_coordinate_mat = []
     for _, node in enumerate(data['nodes']):
-        if node['label'] in new_2_old:
-            n_coordinate[new_2_old[node['label']]] = (node['x'], node['y'])
-        else:
-            n_coordinate[node['label']] = (node['x'], node['y'])
+        n_coordinate[node['id']] = (node['x'], node['y'])
+        n_coordinate_mat.append(
+            [node['id'], node['x'], node['y']])
 
     # print(n_coordinate)
+    # print(n_coordinate_mat)
+    if xyfname is not None:
+        np.savetxt(os.path.join(data_dir, "output", xyfname),
+                   n_coordinate_mat, fmt="%s", delimiter=',')
+
     return n_coordinate
+
+
+def get_name_X_Y(data_dir, xyfname=None):
+    """
+    read name coordinate as dictionary
+    """
+    if xyfname is None:
+        return
+    A = np.loadtxt(os.path.join(data_dir, "output", xyfname),
+                   dtype=str, delimiter=',')
+    X_Y_dict = dict()
+    for i in range(len(A)):
+        X_Y_dict[A[i][0]] = (float(A[i][1]), float(A[i][2]))
+
+    print(X_Y_dict)
+    return X_Y_dict
 
 
 def plot_network(data_dir, fname="", pathname="", pathprob=1.0, path_idx=None, end_t=1.0, suffix="", atom_followed="C", species_path=False):
@@ -670,8 +695,8 @@ if __name__ == '__main__':
     PREFIX = ""
     if G_S['species_path'] is True:
         PREFIX = "species_"
-    SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
-                        atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
+    # SUFFIX = get_suffix(DATA_DIR, init_spe=G_S['init_s'],
+    #                     atom_followed=G_S['atom_f'], end_t=G_S['end_t'])
 
     # TIME_AXIS, _ = tools.pathway_time_2_array_index(
     #     DATA_DIR, init_spe=G_S['init_s'], atom_followed=G_S['atom_f'], end_t=G_S['end_t'],
@@ -718,19 +743,19 @@ if __name__ == '__main__':
     #                      atom_followed=G_S["atom_f"], species_path=G_S['species_path'])
 
     END_T = 0.2
-    END_T2 = 0.9
+    NETWORK_FILENAME = PREFIX + "network_all_species_" + str(END_T)
+
+    X_Y = None
+    # X_Y = get_names_coordinates(
+    #     DATA_DIR, NETWORK_FILENAME + ".json", "name_x_y.csv")
+    X_Y = get_name_X_Y(DATA_DIR, "name_x_y.csv")
+
     RN_OBJ2 = init_directed_network_from_X_and_R_at_a_time(DATA_DIR, tag="M",
                                                            tau=G_S['tau'],
-                                                           end_t=END_T, end_t2=END_T2)
-    if END_T2 is None:
-        NETWORK_FILENAME = PREFIX + "network_all_species_" + \
-            str(END_T) + SUFFIX
-    else:
-        NETWORK_FILENAME = PREFIX + "network_all_species_" + \
-            str(END_T) + "_" + str(END_T2) + SUFFIX
-
+                                                           end_t=END_T,
+                                                           x_y_dict=X_Y)
     network_to_gephi_input_file(
         RN_OBJ2, DATA_DIR, NETWORK_FILENAME + ".gexf")
-    END_TIME = time.time()
 
+    END_TIME = time.time()
     print("Time Elapsed:\t{:.5} seconds".format(END_TIME - INIT_TIME))
