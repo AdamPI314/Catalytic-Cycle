@@ -401,9 +401,10 @@ def init_directed_network_from_X_and_R_at_a_time(data_dir, tag="M",
             edge_weight_v2.append(float(species_pair_weight2[key]))
 
     # rescase concentrations
-    conc_v = rescale_array(conc_v, 10.0, 25.0)
+    # conc_v = rescale_array(conc_v, 10.0, 25.0)
+    conc_v = rescale_array_v2(conc_v, 1.0, 5.0, 15.0, 25.0, -12)
     # edge_weight_v = rescale_array(edge_weight_v, 2.0, 25.0)
-    edge_weight_v = rescale_array_v2(edge_weight_v, 1.5, 2.5, 15.0, 25.0, -9)
+    edge_weight_v = rescale_array_v2(edge_weight_v, 0.5, 1.0, 15.0, 25.0, -9)
     # edge weights write to file
     e_w_fn1 = os.path.join(
         data_dir, "output", "edge_weight1_" + str(end_t) + ".csv")
@@ -492,6 +493,7 @@ def get_names_coordinates(data_dir, fname="", xyfname=None):
     # we only need names and coordinates
     n_coordinate = dict()
     n_coordinate_mat = []
+    n_coordinate_mat.append(['Id', 'x', 'y'])
     for _, node in enumerate(data['nodes']):
         n_coordinate[node['id']] = (node['x'], node['y'])
         n_coordinate_mat.append(
@@ -515,7 +517,8 @@ def get_name_X_Y(data_dir, xyfname=None):
     A = np.loadtxt(os.path.join(data_dir, "output", xyfname),
                    dtype=str, delimiter=',')
     X_Y_dict = dict()
-    for i in range(len(A)):
+    # neglect header
+    for i in range(1, len(A)):
         X_Y_dict[A[i][0]] = (float(A[i][1]), float(A[i][2]))
 
     print(X_Y_dict)
@@ -746,14 +749,14 @@ if __name__ == '__main__':
     NETWORK_FILENAME = PREFIX + "network_all_species_" + str(END_T)
 
     X_Y = None
-    # X_Y = get_names_coordinates(
-    #     DATA_DIR, NETWORK_FILENAME + ".json", "name_x_y.csv")
-    X_Y = get_name_X_Y(DATA_DIR, "name_x_y.csv")
+    X_Y = get_names_coordinates(
+        DATA_DIR, NETWORK_FILENAME + ".json", "name_x_y.csv")
+    # X_Y = get_name_X_Y(DATA_DIR, "name_x_y.csv")
 
     RN_OBJ2 = init_directed_network_from_X_and_R_at_a_time(DATA_DIR, tag="M",
                                                            tau=G_S['tau'],
                                                            end_t=END_T,
-                                                           x_y_dict=X_Y)
+                                                           x_y_dict=None)
     network_to_gephi_input_file(
         RN_OBJ2, DATA_DIR, NETWORK_FILENAME + ".gexf")
 
