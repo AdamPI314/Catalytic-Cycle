@@ -81,8 +81,8 @@ sort_axis = round(0.42 * length(time_vec));
 % the whole array
 % target_array = linspace(10, N_S, N_S+1-10);
 % target_array = [17, 59, 14, 44, 86, 69]; ylim_range = [10^-1.5, 10^20];
-target_array = [94, 78, 90, 87, 46, 101, 80]; ylim_range = [10^-12, 10^-1];
-% target_array = [11, 13, 12, 10, 3, 8]; ylim_range = [10^-8, 10^13];
+% target_array = [94, 78, 90, 87, 46, 101, 80]; ylim_range = [10^-12, 10^-1];
+target_array = [11, 13, 12, 10, 3, 8]; ylim_range = [10^-8, 10^13];
 
 target_array = target_array + 1;
 
@@ -137,5 +137,5 @@ set(leg_h, 'FontSize', 12, 'Box', 'off');
 % set(leg_h, 'Location', 'West')
 
 %% save to file
-figname = strcat(fig_prefix, '_v2.png');
+figname = strcat(fig_prefix, '_v3.png');
 print(fig, fullfile(pic_dir, figname), '-r200', '-dpng');

@@ -38,14 +38,14 @@ if __name__ == '__main__':
     j_b.update_chattering_species_setting(
         DATA_DIR, G_S['atom_f'])
 
-    # # quick clean up, remove a few files
-    # j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
+    # quick clean up, remove a few files
+    j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
 
-    # # run monte carlo trajectory
-    # j_b.run_mc_trajectory(
-    #     SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-    #     init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
-    #     species_path=G_S['species_path'])
+    # run monte carlo trajectory
+    j_b.run_mc_trajectory(
+        SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+        init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
+        species_path=G_S['species_path'])
 
     # # evaluate path integral-->pathway probability, multiple use
     # j_b.evaluate_pathway_probability(
@@ -59,27 +59,27 @@ if __name__ == '__main__':
     #     fixed_t0_or_tf=G_S['fixed_t0_or_tf'],
     #     same_path_list=True)
 
-    # j_b.Merchant_f_2d_t0_tf(
-    #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=25, flag="", n_traj=G_S['pi_n_traj'],
-    #     atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
-    #     tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
-    #     path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
-    #     spe_idx=10, min_delta_t=None, num_delta_t=None,
-    #     delta_t_vec=[1.2859087486111409e-06, 3.214771871527852e-06, 6.429543743055704e-06, 9.644315614583557e-06, 1.285908748611141e-05, 3.2147718715278524e-05, 6.429543743055705e-05, 9.644315614583559e-05, 0.0001285908748611141, 0.00032147718715278527, 0.0006429543743055705, 0.0009644315614583557, 0.001285908748611141, 0.0032147718715278524, 0.006429543743055705, 0.009644315614583556, 0.01285908748611141, 0.03214771871527852, 0.06429543743055705, 0.09644315614583557, 0.1285908748611141, 0.3214771871527852, 0.6429543743055705, 0.9644315614583557])
+    j_b.Merchant_f_2d_t0_tf(
+        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=3, flag="", n_traj=G_S['pi_n_traj'],
+        atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
+        tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
+        spe_idx=10, min_delta_t=None, num_delta_t=None,
+        delta_t_vec=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
 
-    j_b.spe_concentration_converge_at_different_times(
-        SRC_DIR, DATA_DIR, flag="",
-        top_n=G_S['top_n_p'],
-        mc_n_traj=G_S['mc_n_traj'], pi_n_traj=G_S['pi_n_traj'],
-        traj_max_t=G_S['traj_max_t'], tau=G_S['tau'],
-        atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'],
-        path_reg=G_S['path_reg'],
-        no_path_reg=G_S['no_path_reg'],
-        species_path=G_S['species_path'],
-        begin_t=0.0,
-        mc_end_t_threshlod=0.25,
-        end_t_vec=[0.0107159062384, 0.0214318124768, 0.0321477187152, 0.0428636249537, 0.0535795311921, 0.0642954374305, 0.0750113436689, 0.0857272499073, 0.0964431561457, 0.107159062384, 0.117874968623, 0.128590874861, 0.139306781099, 0.150022687338, 0.160738593576, 0.171454499815, 0.182170406053, 0.192886312291, 0.20360221853, 0.214318124768, 0.225034031007, 0.235749937245, 0.246465843484, 0.257181749722])
+    # j_b.spe_concentration_converge_at_different_times(
+    #     SRC_DIR, DATA_DIR, flag="",
+    #     top_n=G_S['top_n_p'],
+    #     mc_n_traj=G_S['mc_n_traj'], pi_n_traj=G_S['pi_n_traj'],
+    #     traj_max_t=G_S['traj_max_t'], tau=G_S['tau'],
+    #     atom_followed=G_S['atom_f'],
+    #     init_spe=G_S['init_s'],
+    #     path_reg=G_S['path_reg'],
+    #     no_path_reg=G_S['no_path_reg'],
+    #     species_path=G_S['species_path'],
+    #     begin_t=0.0,
+    #     mc_end_t_threshlod=0.25,
+    #     end_t_vec=[0.0107159062384, 0.0214318124768, 0.0321477187152, 0.0428636249537, 0.0535795311921, 0.0642954374305, 0.0750113436689, 0.0857272499073, 0.0964431561457, 0.107159062384, 0.117874968623, 0.128590874861, 0.139306781099, 0.150022687338, 0.160738593576, 0.171454499815, 0.182170406053, 0.192886312291, 0.20360221853, 0.214318124768, 0.225034031007, 0.235749937245, 0.246465843484, 0.257181749722])
 
     # j_b.evaluate_pathway_AT(
     #     SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], flag="",
