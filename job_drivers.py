@@ -280,9 +280,10 @@ def evaluate_pathway_probability(
 
 
 def Merchant_f_2d_t0_tf(
-        src_dir, data_dir, top_n=5, num_t=25, flag="", n_traj=10000,
+        src_dir, data_dir, top_n=5, num_t=25, flag="",
+        mc_n_traj=10000, n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
-        tau=10.0, begin_t=0.0, end_t=1.0,
+        tau=10.0, mc_end_t=1.0, begin_t=0.0, end_t=1.0,
         path_reg=None, no_path_reg=None,
         spe_idx=10, min_delta_t=None, num_delta_t=None, delta_t_vec=None):
 
@@ -297,9 +298,26 @@ def Merchant_f_2d_t0_tf(
     except OSError:
         pass
 
+    # save merchant candidate pathway
+    mer_f_p_fn = os.path.join(
+        data_dir, "output", "mer_f_pathway_" + str(flag) + ".csv")
+    try:
+        os.remove(mer_f_p_fn)
+    except OSError:
+        pass
+
     time_vec = np.linspace(begin_t, end_t, num_t)
     for i in range(num_t - 1):
         b_t = time_vec[i]
+
+        # for each pair of begin_t and end_t, gonna to run mc trajectory
+        # and prepare candidate pathway locally
+        quick_clean_up(data_dir, flag="", species_path=False)
+        run_mc_trajectory(
+            src_dir, data_dir, n_traj=mc_n_traj, atom_followed=atom_followed,
+            init_spe=init_spe, tau=tau, begin_t=b_t, end_t=mc_end_t,
+            species_path=False)
+
         if delta_t_vec is not None:
             end_t_vec = []
             for _, dt_val in enumerate(delta_t_vec):
@@ -337,6 +355,16 @@ def Merchant_f_2d_t0_tf(
             with open(f_n_merchant_f, 'a') as f_handler:
                 f_handler.write(text)
 
+    # save candidate pathway
+    path_data = np.loadtxt(os.path.join(
+        data_dir, "output", "pathway_name_candidate_real_path.csv"), dtype=str, delimiter=",").flatten()
+    with open(mer_f_p_fn, 'a') as f_handler:
+        for idx, c_val in enumerate(path_data):
+            f_handler.write("{0:%s}".format(c_val))
+            if idx == len(path_data) - 1:
+                f_handler.write('\n')
+            else:
+                f_handler.write(',')
     return
 
 

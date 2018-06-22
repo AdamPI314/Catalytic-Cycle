@@ -41,11 +41,11 @@ if __name__ == '__main__':
     # quick clean up, remove a few files
     j_b.quick_clean_up(DATA_DIR, flag="", species_path=G_S['species_path'])
 
-    # run monte carlo trajectory
-    j_b.run_mc_trajectory(
-        SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
-        init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
-        species_path=G_S['species_path'])
+    # # run monte carlo trajectory
+    # j_b.run_mc_trajectory(
+    #     SRC_DIR, DATA_DIR, n_traj=G_S['mc_n_traj'], atom_followed=G_S['atom_f'],
+    #     init_spe=G_S['init_s'], tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['mc_t'],
+    #     species_path=G_S['species_path'])
 
     # # evaluate path integral-->pathway probability, multiple use
     # j_b.evaluate_pathway_probability(
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     j_b.Merchant_f_2d_t0_tf(
         SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=3, flag="", n_traj=G_S['pi_n_traj'],
         atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
-        tau=G_S['tau'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        tau=G_S['tau'], mc_end_t=G_S['mc_t'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
         spe_idx=10, min_delta_t=None, num_delta_t=None,
         delta_t_vec=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
