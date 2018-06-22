@@ -300,7 +300,7 @@ def Merchant_f_2d_t0_tf(
 
     # save merchant candidate pathway
     mer_f_p_fn = os.path.join(
-        data_dir, "output", "mer_f_pathway_" + str(flag) + ".csv")
+        data_dir, "output", "mer_f_pathway" + str(flag) + ".csv")
     try:
         os.remove(mer_f_p_fn)
     except OSError:
@@ -355,12 +355,14 @@ def Merchant_f_2d_t0_tf(
             with open(f_n_merchant_f, 'a') as f_handler:
                 f_handler.write(text)
 
+    psri.symbolic_path_2_real_path_pff(
+        data_dir, 'pathway_name_candidate.csv')
     # save candidate pathway
     path_data = np.loadtxt(os.path.join(
         data_dir, "output", "pathway_name_candidate_real_path.csv"), dtype=str, delimiter=",").flatten()
     with open(mer_f_p_fn, 'a') as f_handler:
         for idx, c_val in enumerate(path_data):
-            f_handler.write(c_val)
+            f_handler.write(c_val[0:-2])
             if idx == len(path_data) - 1:
                 f_handler.write('\n')
             else:
