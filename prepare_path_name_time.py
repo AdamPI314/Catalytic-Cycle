@@ -31,6 +31,8 @@ def prepare_pathway_name(
 
     if same_path_list is True and os.path.isfile(f_n_pn):
         path_list = np.loadtxt(f_n_pn, dtype=str, delimiter=',')
+        if (len(path_list) == 0):
+            raise ValueError("NO VALID path found!!!")
         return len(path_list)
 
     try:
@@ -65,6 +67,8 @@ def prepare_pathway_name(
         if spe_production_oriented is False or spe_idx is None:
             # save
             np.savetxt(f_n_pn, path_list[0:top_n], fmt="%s")
+            if (len(path_list) == 0):
+                raise ValueError("NO VALID path found!!!")
             return len(path_list[0:top_n])
         elif spe_idx is not None:
             path_list2 = []
@@ -93,6 +97,8 @@ def prepare_pathway_name(
                         path_list4.append(path)
 
             np.savetxt(f_n_pn, path_list4[0:top_n], fmt="%s")
+            if (len(path_list) == 0):
+                raise ValueError("NO VALID path found!!!")
             return len(path_list4[0:top_n])
     else:
         for s_i in end_s_idx:
@@ -100,6 +106,8 @@ def prepare_pathway_name(
             path_list.extend(d_f[mask1 & mask2 & mask3]['pathway'][0:top_n])
         # save
         np.savetxt(f_n_pn, path_list, fmt="%s")
+        if (len(path_list) == 0):
+            raise ValueError("NO VALID path found!!!")
         return len(path_list)
 
 
