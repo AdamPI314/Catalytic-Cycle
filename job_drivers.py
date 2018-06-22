@@ -283,7 +283,7 @@ def Merchant_f_2d_t0_tf(
         src_dir, data_dir, top_n=5, num_t=25, flag="",
         mc_n_traj=10000, n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
-        tau=10.0, mc_end_t=1.0, begin_t=0.0, end_t=1.0,
+        tau=10.0, mc_end_t=1.0, t0_min=0.0, t0_max=1.0, end_t=1.0,
         path_reg=None, no_path_reg=None,
         spe_idx=10, min_delta_t=None, num_delta_t=None, delta_t_vec=None):
 
@@ -306,10 +306,27 @@ def Merchant_f_2d_t0_tf(
     except OSError:
         pass
 
-    time_vec = np.linspace(begin_t, end_t, num_t)
-    print(time_vec)
+    # begin time range
+    t0_vec = np.linspace(t0_min, t0_max, num_t)
+    print(t0_vec)
     for i in range(num_t - 1):
-        b_t = time_vec[i]
+        b_t = t0_vec[i]
+
+        if delta_t_vec is not None:
+            end_t_vec = []
+            for _, dt_val in enumerate(delta_t_vec):
+                if b_t + float(dt_val) <= end_t:
+                    end_t_vec.append(b_t + float(dt_val))
+        elif min_delta_t is None or num_delta_t is None:
+            end_t_vec = t0_vec[i + 1:]
+        else:
+            end_t_vec = []
+            for idx in range(int(num_delta_t)):
+                if b_t + (idx + 1) * float(min_delta_t) <= end_t:
+                    end_t_vec.append(b_t + (idx + 1) * float(min_delta_t))
+        print(end_t_vec)
+        if len(end_t_vec) == 0:
+            break
 
         # for each pair of begin_t and end_t, gonna to run mc trajectory
         # and prepare candidate pathway locally
@@ -319,19 +336,6 @@ def Merchant_f_2d_t0_tf(
             init_spe=init_spe, tau=tau, begin_t=b_t, end_t=mc_end_t,
             species_path=False)
 
-        if delta_t_vec is not None:
-            end_t_vec = []
-            for _, dt_val in enumerate(delta_t_vec):
-                if b_t + float(dt_val) <= end_t:
-                    end_t_vec.append(b_t + float(dt_val))
-        elif min_delta_t is None or num_delta_t is None:
-            end_t_vec = time_vec[i + 1:]
-        else:
-            end_t_vec = []
-            for idx in range(int(num_delta_t)):
-                if b_t + (idx + 1) * float(min_delta_t) <= end_t:
-                    end_t_vec.append(b_t + (idx + 1) * float(min_delta_t))
-        print(end_t_vec)
         for e_t in end_t_vec:
             # num_t set to be 1
             evaluate_pathway_probability(

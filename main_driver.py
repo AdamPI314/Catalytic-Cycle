@@ -63,7 +63,7 @@ if __name__ == '__main__':
         SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=3, flag="",
         mc_n_traj=G_S['mc_n_traj'], n_traj=G_S['pi_n_traj'],
         atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
-        tau=G_S['tau'], mc_end_t=G_S['mc_t'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
+        tau=G_S['tau'], mc_end_t=G_S['mc_t'], t0_min=0.0, t0_max=0.1, end_t=G_S['end_t'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
         spe_idx=10, min_delta_t=None, num_delta_t=None,
         delta_t_vec=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
