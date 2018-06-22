@@ -93,9 +93,11 @@ subplot('Position',pos);
 % target array is the species index we want to study, sort this array, not
 % the whole array
 % target_array = linspace(10, N_S, N_S+1-10);
-target_array = [18, 60, 15, 45, 95, 87, 81]; ylim_range = [10^-6, 10^20];
-% target_array = [95, 79, 91, 61, 88, 47, 102]; ylim_range = [10^-12, 10^-1];
-% target_array = [12, 14, 13, 11, 4, 9]; ylim_range = [10^-8, 10^13];
+target_array = [17, 59, 14, 44, 86, 69]; ylim_range = [10^-1.5, 10^20];
+% target_array = [94, 78, 90, 87, 46, 101, 80]; ylim_range = [10^-12, 10^-1];
+% target_array = [11, 13, 12, 10, 3, 8]; ylim_range = [10^-8, 10^13];
+target_array = target_array + 1;
+
 [~,I] = sort(k_mat(sort_axis, target_array),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], ylim_range, ...
     '--k', 'HandleVisibility','off');
@@ -159,9 +161,11 @@ subplot('Position',pos);
 % target array is the species index we want to study, sort this array, not
 % the whole array
 % target_array = linspace(10, N_S, N_S+1-10);
-% target_array = [18, 60, 15, 45, 95, 87, 81]; ylim_range = [10^-6, 10^20];
-target_array = [95, 79, 91, 61, 88, 47, 102]; ylim_range = [10^-12, 10^-1];
-% target_array = [12, 14, 13, 11, 4, 9]; ylim_range = [10^-8, 10^13];
+% target_array = [17, 59, 14, 44, 86, 69]; ylim_range = [10^-1.5, 10^20];
+target_array = [94, 78, 90, 87, 46, 101, 80]; ylim_range = [10^-12, 10^-1];
+% target_array = [11, 13, 12, 10, 3, 8]; ylim_range = [10^-8, 10^13];
+target_array = target_array + 1;
+
 [~,I] = sort(k_mat(sort_axis, target_array),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], ylim_range, ...
     '--k', 'HandleVisibility','off');
@@ -224,11 +228,12 @@ pos = [x0 y0 spanx spany];
 subplot('Position',pos);
 
 % target array is the species index we want to study, sort this array, not
-% the whole array
 % target_array = linspace(10, N_S, N_S+1-10);
-% target_array = [18, 60, 15, 45, 95, 87, 81]; ylim_range = [10^-6, 10^20];
-% target_array = [95, 79, 91, 61, 88, 47, 102]; ylim_range = [10^-12, 10^-1];
-target_array = [12, 14, 13, 11, 4, 9]; ylim_range = [10^-8, 10^13];
+% target_array = [17, 59, 14, 44, 86, 69]; ylim_range = [10^-1.5, 10^20];
+% target_array = [94, 78, 90, 87, 46, 101, 80]; ylim_range = [10^-12, 10^-1];
+target_array = [11, 13, 12, 10, 3, 8]; ylim_range = [10^-8, 10^13];
+target_array = target_array + 1;
+
 [~,I] = sort(k_mat(sort_axis, target_array),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], ylim_range, ...
     '--k', 'HandleVisibility','off');
