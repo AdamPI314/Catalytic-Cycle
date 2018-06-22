@@ -360,7 +360,7 @@ def Merchant_f_2d_t0_tf(
         data_dir, "output", "pathway_name_candidate_real_path.csv"), dtype=str, delimiter=",").flatten()
     with open(mer_f_p_fn, 'a') as f_handler:
         for idx, c_val in enumerate(path_data):
-            f_handler.write("{0:%s}".format(c_val))
+            f_handler.write(c_val)
             if idx == len(path_data) - 1:
                 f_handler.write('\n')
             else:
