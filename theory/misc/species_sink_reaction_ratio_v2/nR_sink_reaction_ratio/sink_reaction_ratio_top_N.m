@@ -70,9 +70,9 @@ set(fig,'defaultAxesColorOrder',co)
 sort_axis = round(0.42 * length(time_vec));
 % sort_axis = round(0.50 * length(time_vec));
 % sort_axis = round(0.678 * length(time_vec));
-target_array = [709, 710, 720, 727, 731, 735, 737, 743, 747, 749, 753, 757, 759, 763, 767, 771, 777, 779, 790, 792, 794, 856, 906, 910, 914, 916, 922, 926, 930, 934, 938, 942, 946, 952, 956, 960, 964, 968, 970, 978, 982, 984, 986, 988, 990, 1070, 1074, 1076, 1078, 1082, 1084, 1087, 1092, 1094, 1118, 1120, 1122, 1162, 1164, 1166];
+target_array = [706, 709, 710, 720, 727, 731, 735, 737, 743, 747, 749, 753, 757, 759, 763, 767, 771, 777, 779, 790, 792, 794, 856, 906, 910, 914, 916, 922, 926, 930, 934, 938, 942, 946, 952, 956, 960, 964, 968, 970, 978, 982, 984, 986, 988, 990, 1070, 1074, 1076, 1078, 1082, 1084, 1087, 1092, 1094, 1118, 1120, 1122, 1162, 1164, 1166];
 target_array = target_array + 1;
-ylim_range = [10^-5, 10^0];
+ylim_range = [10^-3, 0.18];
 [B,I] = sort(R_mat(sort_axis, target_array),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], ylim_range, ...
     '--k', 'HandleVisibility','off');
@@ -80,7 +80,8 @@ hold on;
 
 % number of lines we will plot
 % topN_array = linspace(1, length(target_array), length(target_array));
-topN_array = linspace(1, 5, 5);
+% topN_array = linspace(1, 15, 15);
+topN_array = [3, 8, 9, 11];
 N_plot = length(topN_array);
 colors = lines(N_plot);
 
@@ -144,7 +145,7 @@ grid on;
 xlim([0, tau*end_t]);
 leg_h = legend(legend_name);
 set(leg_h, 'FontSize', 14, 'Box', 'off');
-set(leg_h, 'Location', 'West');
+set(leg_h, 'Location', 'South');
 
 %% save to file
 figname = strcat(fig_prefix, '_', spe_name, '_', num2str(sort_axis), '.png');

@@ -68,12 +68,12 @@ set(fig,'defaultAxesColorOrder',co)
 % sort by the reaction rates around 0.5 tau, idx == 3550 for example
 % sort_axis = round(0.15 * length(time_vec));
 % sort_axis = round(0.25 * length(time_vec));
-% sort_axis = round(0.42 * length(time_vec));
+sort_axis = round(0.42 * length(time_vec));
 % sort_axis = round(0.50 * length(time_vec));
-sort_axis = round(0.678 * length(time_vec));
+% sort_axis = round(0.678 * length(time_vec));
 target_array = [68, 96, 106, 108, 110, 112, 114, 116, 119, 121, 123, 125, 126, 128, 134, 138, 140, 142, 144, 146, 148, 150, 152, 161, 183, 193, 198, 220, 224, 227, 228, 230, 233, 239, 265, 273, 316, 320, 326, 332, 340, 344, 353, 385, 394, 398, 406, 416, 420, 427, 432, 441, 449, 455, 479, 484, 490, 496, 510, 525, 531, 560, 562, 564, 572, 574, 576, 593, 600, 608, 611, 634, 640, 656, 662, 679, 688, 690, 699, 719, 744, 746, 766, 768, 785, 789, 791, 802, 811, 827, 840, 842, 844, 850, 874, 876, 880, 892, 897, 899, 903, 910, 912, 939, 941, 942, 944, 972, 982, 996, 1010, 1012, 1023, 1029, 1227];
 target_array = target_array + 1;
-ylim_range = [10^-5, 10^0];
+ylim_range = [10^-3, 10^0];
 [B,I] = sort(R_mat(sort_axis, target_array),'descend');
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], ylim_range, ...
     '--k', 'HandleVisibility','off');
@@ -81,7 +81,8 @@ hold on;
 
 % number of lines we will plot
 % topN_array = linspace(1, length(target_array), length(target_array));
-topN_array = linspace(1, 5, 5);
+% topN_array = linspace(1, 15, 15);
+topN_array = [1, 3, 6, 7, 9];
 N_plot = length(topN_array);
 colors = lines(N_plot);
 
@@ -145,7 +146,7 @@ grid on;
 xlim([0, tau*end_t]);
 leg_h = legend(legend_name);
 set(leg_h, 'FontSize', 14, 'Box', 'off');
-set(leg_h, 'Location', 'West');
+set(leg_h, 'Location', 'South');
 
 %% save to file
 figname = strcat(fig_prefix, '_', spe_name, '_', num2str(sort_axis), '.png');
