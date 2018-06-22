@@ -60,7 +60,8 @@ if __name__ == '__main__':
     #     same_path_list=True)
 
     j_b.Merchant_f_2d_t0_tf(
-        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=3, flag="", n_traj=G_S['pi_n_traj'],
+        SRC_DIR, DATA_DIR, top_n=G_S['top_n_p'], num_t=3, flag="",
+        mc_n_traj=G_S['mc_n_traj'], n_traj=G_S['pi_n_traj'],
         atom_followed=G_S['atom_f'], init_spe=G_S['init_s'], traj_max_t=G_S['traj_max_t'],
         tau=G_S['tau'], mc_end_t=G_S['mc_t'], begin_t=G_S['begin_t'], end_t=G_S['end_t'],
         path_reg=G_S['path_reg'], no_path_reg=G_S['no_path_reg'],
