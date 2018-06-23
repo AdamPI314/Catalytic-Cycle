@@ -309,7 +309,7 @@ def Merchant_f_2d_t0_tf(
     # begin time range
     t0_vec = np.linspace(t0_min, t0_max, num_t)
     print(t0_vec)
-    for i in range(num_t - 1):
+    for i in range(num_t):
         b_t = t0_vec[i]
 
         if delta_t_vec is not None:
@@ -367,9 +367,11 @@ def Merchant_f_2d_t0_tf(
         path_data = np.loadtxt(os.path.join(
             data_dir, "output", "pathway_name_candidate_real_path.csv"), dtype=str, delimiter=",").flatten()
         print(path_data)
+        # get rid of '', empty path
+        path_data = [x for x in path_data if x != '']
         with open(mer_f_p_fn, 'a') as f_handler:
             for idx, c_val in enumerate(path_data):
-                f_handler.write(c_val[0:-1])
+                f_handler.write(c_val)
                 if idx == len(path_data) - 1:
                     f_handler.write('\n')
                 else:
