@@ -280,12 +280,13 @@ def evaluate_pathway_probability(
 
 
 def Merchant_f_2d_t0_tf(
-        src_dir, data_dir, top_n=5, num_t=25, flag="",
+        src_dir, data_dir, top_n=5, flag="",
         mc_n_traj=10000, n_traj=10000,
         atom_followed="C", init_spe=114, traj_max_t=100.0,
-        tau=10.0, mc_end_t=1.0, t0_min=0.0, t0_max=1.0, end_t=1.0,
+        tau=10.0, mc_end_t=1.0,
+        t0_vec=None, t0_min=0.0, t0_max=1.0, num_t=25, end_t=1.0,
         path_reg=None, no_path_reg=None,
-        spe_idx=10, min_delta_t=None, num_delta_t=None, delta_t_vec=None):
+        spe_idx=10, delta_t_min=None, delta_t_num=None, delta_t_vec=None):
 
     if flag == "":
         f_n_merchant_f = os.path.join(data_dir, "output",
@@ -307,9 +308,10 @@ def Merchant_f_2d_t0_tf(
         pass
 
     # begin time range
-    t0_vec = np.linspace(t0_min, t0_max, num_t)
+    if t0_vec is None and t0_min < t0_max and num_t >= 1:
+        t0_vec = np.linspace(t0_min, t0_max, num_t)
     print(t0_vec)
-    for i in range(num_t):
+    for i in range(len(t0_vec)):
         b_t = t0_vec[i]
 
         if delta_t_vec is not None:
@@ -317,13 +319,13 @@ def Merchant_f_2d_t0_tf(
             for _, dt_val in enumerate(delta_t_vec):
                 if b_t + float(dt_val) <= end_t:
                     end_t_vec.append(b_t + float(dt_val))
-        elif min_delta_t is None or num_delta_t is None:
+        elif delta_t_min is None or delta_t_num is None:
             end_t_vec = t0_vec[i + 1:]
         else:
             end_t_vec = []
-            for idx in range(int(num_delta_t)):
-                if b_t + (idx + 1) * float(min_delta_t) <= end_t:
-                    end_t_vec.append(b_t + (idx + 1) * float(min_delta_t))
+            for idx in range(int(delta_t_num)):
+                if b_t + (idx + 1) * float(delta_t_min) <= end_t:
+                    end_t_vec.append(b_t + (idx + 1) * float(delta_t_min))
         print(end_t_vec)
         if len(end_t_vec) == 0:
             break
