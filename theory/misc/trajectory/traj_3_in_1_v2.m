@@ -66,7 +66,7 @@ set(fig,'defaultAxesColorOrder',co)
 tau = 0.777660157519;
 end_t = 0.9;
 
-xpos = [0.14 0.87];
+xpos = [0.15 0.87];
 ypos = [0.07, 0.375, 0.375, 0.685, 0.685, 0.99];
 
 %##########################################################################
@@ -80,19 +80,17 @@ subplot('Position',pos);
 
 % plot conc
 % CH2O
-semilogy(time_vec, conc_mat(:, 18), 'LineWidth', 2); hold on;
+semilogy(time_vec, conc_mat(:, 17+1), 'LineWidth', 2); hold on;
 % C3H6
-semilogy(time_vec, conc_mat(:, 60), 'LineWidth', 2); hold on;
+semilogy(time_vec, conc_mat(:, 59+1), 'LineWidth', 2); hold on;
 % CO
-semilogy(time_vec, conc_mat(:, 15), 'LineWidth', 2); hold on;
+semilogy(time_vec, conc_mat(:, 14+1), 'LineWidth', 2); hold on;
 % acetaldehyde
-semilogy(time_vec, conc_mat(:, 45), 'LineWidth', 2); hold on;
-% prod_1
-semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
+semilogy(time_vec, conc_mat(:, 44+1), 'LineWidth', 2); hold on;
 % propoxide
-semilogy(time_vec, conc_mat(:, 87), 'LineWidth', 2); hold on;
-% ipropyloo
-semilogy(time_vec, conc_mat(:, 81), 'LineWidth', 2); hold on;
+semilogy(time_vec, conc_mat(:, 86+1), 'LineWidth', 2); hold on;
+% acrolein
+semilogy(time_vec, conc_mat(:, 69+1), 'LineWidth', 2); hold on;
 
 sort_axis = round(0.42 * length(time_vec));
 semilogy([time_vec(sort_axis), time_vec(sort_axis)], [10^-50, 10^1], ...
@@ -109,7 +107,7 @@ ylim([10^-14, 10^-5.9]);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_str = {'CH_2O','C_3H_6','CO','CH_3CHO','OQ^{\prime}OOH_1','propoxide','iROO'};
+leg_str = {'CH_2O','C_3H_6','CO','CH_3CHO','propoxide','acrolein'};
 leg_h = legend(leg_str);
 set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'SouthEast')
@@ -139,12 +137,12 @@ subplot('Position',pos);
 % plot conc
 % prod_1
 semilogy(time_vec, conc_mat(:, 95), 'LineWidth', 2); hold on;
+% ipropyloo
+semilogy(time_vec, conc_mat(:, 81), 'LineWidth', 2); hold on;
 % npropyloo
 semilogy(time_vec, conc_mat(:, 79), 'LineWidth', 2); hold on;
 % well_1
 semilogy(time_vec, conc_mat(:, 91), 'LineWidth', 2); hold on;
-% npropyl
-semilogy(time_vec, conc_mat(:, 61), 'LineWidth', 2); hold on;
 % QOOH_1
 semilogy(time_vec, conc_mat(:, 88), 'LineWidth', 2); hold on;
 % vinoxy
@@ -167,7 +165,7 @@ ylim([10^-20, 10^-8.2]);
 %% global settings
 grid on;
 xlim([0, tau*end_t]);
-leg_str = {'OQ^{\prime}OOH_1','nROO','O_2QOOH_1','nR','QOOH_1','CH_2CHO','OQ^{\prime}O_1'};
+leg_str = {'OQ^{\prime}OOH_1','iROO','nROO','O_2QOOH_1','QOOH_1','CH_2CHO','OQ^{\prime}O_1'};
 leg_h = legend(leg_str);
 set(leg_h, 'FontSize', 16, 'Box', 'off');
 set(leg_h, 'Location', 'NorthWest')
