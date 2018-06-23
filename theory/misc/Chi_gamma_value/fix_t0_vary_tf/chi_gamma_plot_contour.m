@@ -4,14 +4,8 @@ pic_dir = fullfile(fileparts(mfilename('fullpath')));
 sohr_dir = fullfile(fileparts(mfilename('fullpath')), '..', '..', '..', '..', '..', '..', '..', 'SOHR_DATA');
 
 %% global settings
-fig_prefix = 'chi_value';
+fig_prefix = 'chi_value_contour';
 % time in unit of tau
-t_value = [0.0, 0.1, 0.5, 0.7];
-delta_t_vec = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3, 0.31, 0.32, 0.33, 0.34, 0.35, 0.36, 0.37, 0.38, 0.39, 0.4, 0.41, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47, 0.48, 0.49, 0.5, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 0.59, 0.6, 0.61, 0.62, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.69, 0.7, 0.71, 0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79, 0.8, 0.81, 0.82, 0.83, 0.84, 0.85, 0.86, 0.87, 0.88, 0.89, 0.9];
-% number of lines
-N_plot = length(t_value);
-time_cell = cell(N_plot, 1);
-yvalue_cell = cell(N_plot, 1);
 
 N_S = 110;
 N_R = 1230;
@@ -130,9 +124,9 @@ dataArray = textscan(fileID, formatSpec, 'Delimiter', delimiter, 'EmptyValue', N
 fclose(fileID);
 f_mat = [dataArray{1:end-1}];
 
-t0 = f_mat(:, 1);
-tf = f_mat(:, 2);
-tf = tf - t0;
+t0 = f_mat(:, 1) .* tau;
+tf = f_mat(:, 2) .* tau;
+% tf = tf - t0;
 
 % path index
 t_offset = 2;
@@ -148,61 +142,39 @@ for i = 1:length(path_idx)
 end
 f_interp = scatteredInterpolant(t0, tf, f_value);
 
-for idx=1:N_plot
-    % t0 vector
-    tf_vec = delta_t_vec + t_value(idx);
-    t0_vec = ones(1, length(delta_t_vec));
-    t0_vec = t0_vec.* t_value(idx);
-    Z_tmp = f_interp(t0_vec, tf_vec);
-    % check data
-    for i=1:length(delta_t_vec)
-        if delta_t_vec(i) + t_value(idx) > str2double(end_t)
-            Z_tmp(i) = nan;
-        end
+
+% construct 3d surface
+xlin = linspace(min(t0), max(t0), 100);
+ylin = linspace(min(tf), max(tf), 100);
+[X,Y] = meshgrid(xlin, ylin);
+f = scatteredInterpolant(t0, tf, f_value);
+Z = f(X,Y);
+
+%% update Z
+for i = 1:length(X)    
+    for j = i+1:length(X)
+        Z(i,j) = nan;
     end
-    time_cell{idx, 1} = delta_t_vec .* tau;
-    yvalue_cell{idx, 1} = Z_tmp;
 end
 
 %% plot
 fig = figure();
-% https://www.mathworks.com/help/matlab/graphics_transition/why-are-plot-lines-different-colors.html
-% https://www.mathworks.com/help/matlab/creating_plots/customize-graph-with-two-y-axes.html
-co = [    
-%     0    0.4470    0.7410 % 1th plot
-    1   0   0 % bl
-    ]; 
-set(fig,'defaultAxesColorOrder',co);
 
-colors = lines(N_plot);
+%% plot
+% mesh(X,Y,Z); %interpolated
 
-colorxn_idx = 1;
-markerxn_idx = 1;
-legend_name = cell(N_plot,1);
-for idx=1:N_plot
-    legend_name{idx, 1} = ['t=', num2str(t_value(idx)*tau)];
-    
-    plot(time_cell{idx, 1}, yvalue_cell{idx, 1}, ...
-        'LineWidth', 2, ...
-        'color', colors(mod(colorxn_idx-1, length(colors))+ 1, :), ...
-        'HandleVisibility','on'); hold on;
-    
-    hold on;
-    colorxn_idx = colorxn_idx + 1;
-    markerxn_idx = markerxn_idx + 1;
-end
+% reduce number of s.f. in coutour plot
+contour(X,Y,Z, 20, 'ShowText', 'on');
+hold on;
 
 %% settings
 set(gca,'GridLineStyle','--');
-xlabel('\delta (seconds)', 'FontSize', 20);
-ylabel('\chi', 'FontSize', 20);
+xlabel('$t$ (seconds)', 'Interpreter', 'Latex', 'FontSize', 20);
+ylabel('$t+\delta$ (seconds)', 'Interpreter', 'Latex', 'FontSize', 20);
 
 %% global settings
 grid on;
 xlim([0, tau*str2double(end_t)]);
-leg_h = legend(legend_name);
-set(leg_h, 'FontSize', 14, 'Box', 'off');
-set(leg_h, 'Location', 'South');
 
 %% save to file
 figname = strcat(fig_prefix, '_', spe_name, '.png');
