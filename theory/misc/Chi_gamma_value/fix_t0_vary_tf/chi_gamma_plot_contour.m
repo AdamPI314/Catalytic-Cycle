@@ -107,7 +107,7 @@ beta = (theta .*  reaction_R_mat(:, r_idx_14) ) ./ (theta .* reaction_R_mat(:, r
 
 %% read Chi f value, construct data structure, the first two number are time
 n_path = 2+100;
-fn_2d_f = fullfile(curr_dir, 'iROO_data1', 'Merchant_f_2d.csv');
+fn_2d_f = fullfile(curr_dir, 'iROO_data2', 'Merchant_f_2d.csv');
 
 delimiter = ',';
 formatStr = '%f%f%f';
